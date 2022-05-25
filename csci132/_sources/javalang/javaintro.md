@@ -26,7 +26,9 @@ https://books.trinket.io/thinkjava/chapter1.html
 
 * Created by James Gosling and a team of developers.
 
-* Released the fall of 1995Created applets – run on web pages.
+  ![jgosling](jgosling.jpg)
+
+* Released in the fall of 1995Created applets – run on web pages.
 
 * Was controlled by Sun Microsystems until 2010 then bought out by Oracle.
 

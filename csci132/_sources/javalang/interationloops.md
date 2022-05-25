@@ -269,5 +269,3 @@ public class Loops_Lecture_Grid {
 
 
 
----
-
