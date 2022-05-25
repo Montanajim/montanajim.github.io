@@ -1,6 +1,6 @@
 # Building Large Java Applications
 
-this is by [Ray Toal](https://cs.lmu.edu/~ray/notes/largejavaapps/)
+Author:  [Ray Toal](https://cs.lmu.edu/~ray/notes/largejavaapps/)
 
 
 

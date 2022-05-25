@@ -1,10 +1,6 @@
 # Ant Vs Maven Vs Gradle
 
-
-
-# Ant Vs Maven vs Gradle
-
-from [Baeldung](https://www.baeldung.com/ant-maven-gradle#:~:text=While%20Ant%20gives%20flexibility%20and,the%20framework%20to%20do%20it.)
+Author:  [Baeldung](https://www.baeldung.com/ant-maven-gradle#:~:text=While%20Ant%20gives%20flexibility%20and,the%20framework%20to%20do%20it.)
 
 ## Introduction
 
