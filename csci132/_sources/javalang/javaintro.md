@@ -14,7 +14,7 @@
 
 ## Readings
 
-https://books.trinket.io/thinkjava/chapter1.html
+https://books.trinket.io/thinkjava2/chapter1.html
 
 [History of Java](https://en.wikipedia.org/wiki/Java_(programming_language)#:~:text=Java%20was%20originally%20developed%20by,by%20Sun%20under%20proprietary%20licenses.)
 
@@ -65,3 +65,6 @@ https://books.trinket.io/thinkjava/chapter1.html
 
 ---
 
+
+
+End Of Topic

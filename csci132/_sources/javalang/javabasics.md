@@ -25,7 +25,7 @@ https://books.trinket.io/thinkjava/chapter1.html
 **Comment** allows the programmer to document their code. It is not compiled.
 ```
 
-#### Examples
+### Examples
 
 ```java
 // This is a single line comment
@@ -217,6 +217,7 @@ salary--;
 ```{admonition} Definition
 **Concatenation** is the action of putting strings togeher to form a new string.
 ```
+
 ### Example
 ```java
 //Note we concantenate a space " " between the first and last name
@@ -229,3 +230,6 @@ String fullName = fName  + “ “ + lname;
 
 ---
 
+
+
+End Of Topic

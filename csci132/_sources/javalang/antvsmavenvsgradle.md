@@ -170,7 +170,7 @@ Notice that Kotlin offers better IDE support than Groovy for auto-completion and
 Here is an example of a build.gradle file for the same simple Java project with the HelloWorld main class from before:
 
 apply plugin: 'java'
-```gradle
+```
 repositories {
     mavenCentral()
 }
@@ -210,3 +210,7 @@ Gradle, however, has seen good adoption in more complex codebases, for the follo
 * It offers advanced analysis and debugging services
 
 However that Gradle seems to have a steeper learning curve, especially if you're not familiar with Groovy or Kotlin.
+
+---
+
+End Of Topic

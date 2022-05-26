@@ -14,6 +14,12 @@
 
   
 
+## Readings
+
+https://books.trinket.io/thinkjava2/chapter3.html
+
+
+
 Programs are written functions/methods. In the example below there is only one function called *main()*. 
 
 ```{admonition} Definition
@@ -77,7 +83,7 @@ Programs are written functions/methods. In the example below there is only one f
 Notice the programing pattern:
 
 1. Asks for information from the user with a System.out.print().
-2. Collect the information from the user using a scanner and storing it in a variable.
+2. Collect the information from the user using a scanner and store it in a variable.
 3. Calculate the data
 4. Return an answer using the System.out.print().
 
@@ -184,4 +190,6 @@ public class J1_FirstProgrA {
 ```
 
 ---
+
+End Of Topic
 

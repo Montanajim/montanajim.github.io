@@ -1,22 +1,37 @@
-Book Order
+# Book Order
 
-[Preface](javalanguage.md)
+## [Preface](javalanguage.md)
 
-[Introduction](javaintro.md)
+## JAVA Language
 
-[The basics](javabasics.md)
+​	[Introduction](javaintro.md)
 
-[First Program](firstprogram.md)
+​	[The basics](javabasics.md)
 
-[Second Program](secondprogram.md)
+​	[Variable Lecture Code](java_variable_lc.md)
 
-[Functions](functions.md)
+​	[First Program](firstprogram.md)
 
-[Decision Trees](decisiontrees.md)
+​	[Second Program](secondprogram.md)
 
-[Switch Statement](switchstatement.md)
+​	[Functions](functions.md)
 
-[String Functions](stringfunctions.md)
+​	[Decision Trees](decisiontrees.md)
 
-[Number Formats](numberformats.md)
+​	[Switch Statement](switchstatement.md)
 
+​	[String Functions](stringfunctions.md)
+
+​	[Number Formats](numberformats.md)
+
+​	[Iteration  /  Loops](iterationloops.md)
+
+​	[Exception Handling](exceptionhandling.md)
+
+​	[Arrays](arrays.md)
+
+​	[Reference Reading](referencereading.md)
+
+​		[Building Large Java Applications](buildinglargejavaapplications.md)
+
+​		[Ant vs Maven vs Gradle](antvsmavenvsgradle.md)

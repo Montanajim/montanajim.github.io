@@ -10,9 +10,7 @@
 
 ## Readings
 
-https://books.trinket.io/thinkjava/chapter4.html
-
-https://books.trinket.io/thinkjava/chapter6.html
+https://books.trinket.io/thinkjava2/chapter4.html
 
 https://www.geeksforgeeks.org/methods-in-java/?ref=gcse
 
@@ -341,4 +339,6 @@ public class Function_Demo_Rev1
 
 
 ---
+
+End Of Topic
 

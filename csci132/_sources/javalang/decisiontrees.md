@@ -12,7 +12,7 @@ String Functions
 
 ## Readings
 
-https://books.trinket.io/thinkjava/chapter5.html
+https://books.trinket.io/thinkjava2/chapter5.html
 
 https://www.geeksforgeeks.org/decision-making-javaif-else-switch-break-continue-jump/?ref=lbp
 
@@ -246,6 +246,5 @@ Post This Exercise
 
 
 
-
----
+End Of Topic
 
