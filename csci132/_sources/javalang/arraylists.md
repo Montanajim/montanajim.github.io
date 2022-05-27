@@ -25,19 +25,22 @@ https://www.geeksforgeeks.org/arraylist-in-java/
 
 
 ```{admonition} Tip
-The best practice is to make all the data the same type. This is done using the <datatype> classifier.  
+The best practice is to make all the data the same type. This is done using the <datatype> classifier. 
+```
 
-// only accept data that is a double
-ArrayList<Double> myArrayList = new ArrayList();
+```java
 
-// only accept data that is an int
-ArrayList<Integer> myArrayList = new ArrayList();
+    // only accept data that is a double
+    ArrayList<Double> myArrayList = new ArrayList();
 
-// only accept data that is a String
-ArrayList<String> myArrayList = new ArrayList();
+    // only accept data that is an int
+    ArrayList<Integer> myArrayList = new ArrayList();
 
-// accepts any type of data including mixed
-ArrayList myArrayList = new ArrayList();
+    // only accept data that is a String
+    ArrayList<String> myArrayList = new ArrayList();
+
+    // accepts any type of data including mixed
+    ArrayList myArrayList = new ArrayList();
 ```
 
 
