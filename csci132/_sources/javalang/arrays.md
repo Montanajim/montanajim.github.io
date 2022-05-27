@@ -33,17 +33,85 @@ https://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html
 
 **Element** - the box itself is referred to as an element
 
+
+
+```java
+// This is a one dimensional array
+String[] states = new String[5];
+
+// set values - include the index and value
+states[0] = "Montana";
+states[1] = "Colorado";
+states[2] = "Indiana";
+states[3] = "Washington";
+states[4] = "Idaho";
+
+//alternative method
+String[] states2 = {"Montana","Colorado","Indiana","Washington","Idaho"};
+
+// retrieve value
+String astate;
+astate = states[2];
+System.out.print(astate);
+// output is Indiana
+```
+
+
+
 ```{tip}
 In the majority of programming languages, the first index starts at 0.
 ```
 
 
 
+### 2 Dimensional Array
+
+Assume the following array. It is tracking states, their capitals, state bird, and state rock.  It is named stateData. 
+
+The "[ ]" are there for reference only.  The squares "[ ]" indicate the coordinate system. They are not part of the actual data - they are there for reference only.  Note that the coordinates are [row, column].
+
+![](array2.png)
+
+```java
+//create the 2 dimensional array
+String[][] stateData =
+{
+    {"Montana", "Colorado", "Ohio"},
+    {"Helena", "Denver", "Columbus"},
+    {"Meadolark", "Lark", "Cardinal"},
+    {"Agate", "Aquamarine", "Flint"}
+};
+
+// output some data
+String myData = "";
+myData = stateData[1][1];
+System.out.println("Capital of Colorado is " + myData);
+
+myData = stateData[2][0];
+System.out.println("The state bird of Montana is " + myData);
+
+myData = stateData[0][2];
+System.out.println("The state is " + myData);
+
+//change Montana's state bird to hawk
+myData = "Hawk";
+stateData[2][0] = myData;
+myData = stateData[2][0];
+System.out.println("The state bird of Montana is " + myData);
+/*
+Output
+Capital of Colorado is Denver
+The state bird of Montana is Meadolark
+The state is Ohio
+The state bird of Montana is Hawk
+*/
+
+
+```
+
 
 
 ## Lecture Code
-
-
 
 ```java
 /*
@@ -59,9 +127,7 @@ import java.util.Arrays;
 
 public class Array_Lecture {
 
-
     public static void main(String[] args) {
-
 
         //Variables
 
@@ -157,6 +223,8 @@ public class Array_Lecture {
 
         double myValue;
 
+        // Note how the counters row and col will always increment
+        // to the coordinates of current element
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 2; col++) {
                 myValue = Grid3by2[row][col];
@@ -250,11 +318,6 @@ public class Array_Lecture {
             System.out.print(vehicles[NumCntr] + " ");
         }
         System.out.println("\n----------------\n");
-
- 
-
-    
-
 
     }
 }
