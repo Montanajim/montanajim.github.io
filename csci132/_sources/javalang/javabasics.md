@@ -219,11 +219,12 @@ salary--;
 ```
 
 ### Example
+
 ```java
-//Note we concantenate a space " " between the first and last name
-String fName = “Bubba”;
-String lName =  “Smith”;
-String fullName = fName  + “ “ + lname;
+String fName = "Bubba";
+String lName =  "Smith";
+String fullName = fName  + " " + lname;
+// Note we concantenate a space " " between the first and last name
 ```
 
 

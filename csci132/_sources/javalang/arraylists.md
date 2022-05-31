@@ -47,6 +47,24 @@ The best practice is to make all the data the same type. This is done using the 
 
 ## Lecture Code
 
+### Observations:
+
+* We create an ArrayList with the following syntax:
+
+ ```java
+  ArrayList<datatype> arraylistname = new ArrayList();
+ ```
+
+* *.add(value)* method is used to add a data to the ArrayList
+
+* *.remove(index)* method will remove data by position
+
+* *.remove(value)* method will remove data by value
+
+* *.clear()* method will clear the ArrayList of all elements - "emptying it"
+
+* We iterate/loop through the array using a for statement:
+
 ```java
 /*
 Project: ArrayLists
@@ -142,6 +160,9 @@ public class Arraylist_Lecture {
 
 
 
+
+
 ---
 
 End Of Topic
+

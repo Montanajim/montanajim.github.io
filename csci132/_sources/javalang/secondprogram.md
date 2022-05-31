@@ -30,6 +30,10 @@ Note the following:
 	
 	* Note the commenting. 
 
+
+
+## Lecture Code
+
 ```java
 /*
 Name: James Goudy
