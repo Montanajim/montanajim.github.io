@@ -58,7 +58,7 @@ Java has four main types of loops
 Loop Lecture Code
 Programmer: James Goudy
  */
-package loops;
+
 
 
 public class Loops {

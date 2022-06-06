@@ -107,7 +107,6 @@ Program: First_Program
 
 Note: When you are naming projects - do not use spaces.
  */
-package j1_firstprogra;
 
 import java.util.Scanner;
 

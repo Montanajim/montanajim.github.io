@@ -120,7 +120,7 @@ static double inchesFeet()
     Programmer: James Goudy
     Project: Function Lecture Code
  */
-package function_demo_rev1;
+
 
 import java.util.Scanner;
 

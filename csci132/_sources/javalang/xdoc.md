@@ -36,6 +36,10 @@
 
 ​	[Classes and Objects](classesandobjects.md)
 
+​	[Classes - Inheritance](classesinheritance.md)
+
+​	[Abstract Classes](abstractclasses.md)
+
 ​	[Reference Reading](referencereading.md)
 
 ​		[Building Large Java Applications](buildinglargejavaapplications.md)

@@ -34,7 +34,7 @@ a menu system in the console environment.
 Jim Goudy
 */
 
-package menu_demo;
+
 import java.util.Scanner;
 public class Menu_Demo {
     

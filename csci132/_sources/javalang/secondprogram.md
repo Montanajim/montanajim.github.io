@@ -59,7 +59,7 @@ Formula:    V = lwd
 Exit Message
 
  */
-package javaintro_exampleprogram2;
+
 
 import java.util.Scanner;
 

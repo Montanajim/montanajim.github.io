@@ -21,7 +21,7 @@ string functions
 
 Jim Goudy
  */
-package string_functions;
+
 
 public class String_Functions {
 

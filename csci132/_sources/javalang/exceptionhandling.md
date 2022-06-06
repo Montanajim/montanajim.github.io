@@ -17,7 +17,7 @@ https://books.trinket.io/thinkjava2/chapter15.html#sec187
 Try and Catch Demo
 by James Goudy
  */
-package j1_try_catch;
+
 
 import java.util.Scanner;
 

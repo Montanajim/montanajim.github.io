@@ -18,7 +18,7 @@ Example Code
 	Number Formats
 	Programmer: James Goudy
 */
-package numberdateformats;
+
 
 import java.math.BigInteger;
 import java.time.LocalDate;

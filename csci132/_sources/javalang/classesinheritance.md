@@ -44,7 +44,6 @@ https://www.mygreatlearning.com/blog/polymorphism-in-java/
 ## Lecture Code
 
 ```java
-package com.mycompany.personworker;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -94,7 +94,7 @@ Note in the code below how a string is converted to an integer - *Integer.parseI
 ``` java
 //James Goudy
 //If demo
-package if_demo;
+
 
 import java.util.Scanner;
 

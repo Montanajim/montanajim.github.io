@@ -119,7 +119,6 @@ Programmer: James Goudy
 Project:  Array Lecture Code
 ANT project
  */
-package array_lecture;
 
 
 import java.util.Arrays;
