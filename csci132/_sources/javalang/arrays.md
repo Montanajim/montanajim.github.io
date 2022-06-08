@@ -73,7 +73,7 @@ The "[ ]" are there for reference only.  The squares "[ ]" indicate the coordina
 ![](array2.png)
 
 ```java
-//create the 2 dimensional array
+// create the 2 dimensional array
 String[][] stateData =
 {
     {"Montana", "Colorado", "Ohio"},
@@ -93,11 +93,32 @@ System.out.println("The state bird of Montana is " + myData);
 myData = stateData[0][2];
 System.out.println("The state is " + myData);
 
-//change Montana's state bird to hawk
+// change Montana's state bird to hawk
 myData = "Hawk";
 stateData[2][0] = myData;
 myData = stateData[2][0];
 System.out.println("The state bird of Montana is " + myData);
+
+// to iterate through the 2 dimensional array
+int Rows = 4;
+int Cols = 3;
+
+	// this for statement controls the rows
+	// note that r will keep track of the index of the rows
+	for(int r = 0; r < Rows; r++)
+    {
+       	// this for statement controls the columns
+		// note that c will keep track of the index of the columns
+        for(int c = 0; c < Cols; c++)
+        {
+            System.out.print(stateData[r][c] + " ");
+        }
+        // code is now at the end of a "row"
+        // move the cursor down
+        System.out.println();    
+    }
+
+
 /*
 Output
 Capital of Colorado is Denver

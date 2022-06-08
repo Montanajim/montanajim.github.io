@@ -199,6 +199,11 @@ const thebe_selector_output = ".output, .cell_output"
      Abstract Classes
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lambdafunctions.html">
+     Lambda Functions
+    </a>
+   </li>
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="referencereading.html">
      Reference Reading
@@ -452,7 +457,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Assume the following array. It is tracking states, their capitals, state bird, and state rock.  It is named stateData.</p>
 <p>The “[ ]” are there for reference only.  The squares “[ ]” indicate the coordinate system. They are not part of the actual data - they are there for reference only.  Note that the coordinates are [row, column].</p>
 <p><img alt="" src="../_images/array2.png" /></p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">//create the 2 dimensional array</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// create the 2 dimensional array</span>
 <span class="n">String</span><span class="o">[][]</span> <span class="n">stateData</span> <span class="o">=</span>
 <span class="p">{</span>
     <span class="p">{</span><span class="s">&quot;Montana&quot;</span><span class="p">,</span> <span class="s">&quot;Colorado&quot;</span><span class="p">,</span> <span class="s">&quot;Ohio&quot;</span><span class="p">},</span>
@@ -472,11 +477,32 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">myData</span> <span class="o">=</span> <span class="n">stateData</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span><span class="p">;</span>
 <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;The state is &quot;</span> <span class="o">+</span> <span class="n">myData</span><span class="p">);</span>
 
-<span class="c1">//change Montana&#39;s state bird to hawk</span>
+<span class="c1">// change Montana&#39;s state bird to hawk</span>
 <span class="n">myData</span> <span class="o">=</span> <span class="s">&quot;Hawk&quot;</span><span class="p">;</span>
 <span class="n">stateData</span><span class="o">[</span><span class="mi">2</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">myData</span><span class="p">;</span>
 <span class="n">myData</span> <span class="o">=</span> <span class="n">stateData</span><span class="o">[</span><span class="mi">2</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
 <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;The state bird of Montana is &quot;</span> <span class="o">+</span> <span class="n">myData</span><span class="p">);</span>
+
+<span class="c1">// to iterate through the 2 dimensional array</span>
+<span class="kt">int</span> <span class="n">Rows</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">Cols</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+	<span class="c1">// this for statement controls the rows</span>
+	<span class="c1">// note that r will keep track of the index of the rows</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">Rows</span><span class="p">;</span> <span class="n">r</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+       	<span class="c1">// this for statement controls the columns</span>
+		<span class="c1">// note that c will keep track of the index of the columns</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">Cols</span><span class="p">;</span> <span class="n">c</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">stateData</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="c1">// code is now at the end of a &quot;row&quot;</span>
+        <span class="c1">// move the cursor down</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>    
+    <span class="p">}</span>
+
+
 <span class="cm">/*</span>
 <span class="cm">Output</span>
 <span class="cm">Capital of Colorado is Denver</span>

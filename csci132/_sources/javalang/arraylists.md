@@ -107,6 +107,14 @@ public class Arraylist_Lecture {
             System.out.println("This is " + cars.get(CarCntr));
         }
 
+        System.out.println("\n-------Print With ForEach -----------");
+        
+        // print items using forEach
+        cars.forEach((n)->{System.out.println(n);});
+        
+        System.out.println("\n------------------");
+        
+        
         ///////////////////////////////////////
         // Sort an Arraylist
         ///////////////////////////////////////
