@@ -23,7 +23,7 @@
 
 
 ```{admonition} Definition
-In its most common form, an interface is a group of related methods with empty bodies.  The programmer is then responsible for writing the functions
+**Interface** - In its most common form, an interface is a group of related methods with empty bodies.  The programmer is then responsible for writing the functions
 ```
 
 
@@ -136,4 +136,6 @@ Always bring a towel
 ---
 
 End of Topic
+
+
 

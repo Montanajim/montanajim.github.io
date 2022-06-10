@@ -1,4 +1,4 @@
-# Functions 
+# Functions
 
 ## Key Ideas
 
@@ -341,4 +341,6 @@ public class Function_Demo_Rev1
 ---
 
 End Of Topic
+
+
 
