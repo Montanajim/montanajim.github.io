@@ -26,13 +26,13 @@
 **[Tail Recursion](https://www.pixelstech.net/article/1474689232-Traditional-recursion-vs-Tail-recursion)**  A tail recursion is also a kind of recursion but it will make the return value of the recursion call as the last statement of the method.
 ```
 
-```{admonition} Warning
-Java as of JDK 17 does not optimize for tail recursion
+```{warning}
+Java does not optimize for tail recursion
 ```
 
 
 
-````{admonition} Warning
+````{tip}
 In order to trap a stack over flow error, it has to be specified in the catch statment as shown below:
 
 ```java
