@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data Structures and Algorithms &#8212; CSCI 132&lt;br&gt;Basic Data Structures&lt;br&gt;Class Materials</title>
+    <title>Visualizing Big O notation &#8212; CSCI 132&lt;br&gt;Basic Data Structures&lt;br&gt;Class Materials</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Array Techniques" href="ArrayTechniques.html" />
-    <link rel="prev" title="End Of Section" href="../javalang/end.html" />
+    <link rel="next" title="Big O Notation - Explained" href="BigONotationExplained.html" />
+    <link rel="prev" title="Big O Notation" href="BigONotation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -244,7 +244,7 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+  <a class="reference internal" href="DataStructuresAndAlgorithms.html">
    Data Structures and Algorithms
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -252,7 +252,7 @@ const thebe_selector_output = ".output, .cell_output"
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="ArrayTechniques.html">
      Array Techniques
@@ -275,18 +275,18 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 has-children">
+   <li class="toctree-l2 current active has-children">
     <a class="reference internal" href="BigONotation.html">
      Big O Notation
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
     <label for="toctree-checkbox-5">
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ON_VisualizingBigONotation.html">
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
        Visualizing Big O notation
       </a>
      </li>
@@ -367,7 +367,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/basicalgo/DataStructuresAndAlgorithms.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/basicalgo/ON_VisualizingBigONotation.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -398,8 +398,68 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#textbooks-and-online-sources">
-   Textbooks and Online Sources
+  <a class="reference internal nav-link" href="#o-1">
+   O(1)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#o-1-plot1">
+     O(1) plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-logn">
+   O(logN)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#o-logn-plot">
+     O(logN) plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-n">
+   O(N)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#o-n-plotfoo">
+     O(N) plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-n-2">
+   O(N^2^)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#o-n-2-plotfoo">
+     O(N^2^) plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-n-3">
+   O(N^3^)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#o-n-3-plot">
+     O(N^3^) plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusions">
+   Conclusions
   </a>
  </li>
 </ul>
@@ -412,7 +472,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Data Structures and Algorithms</h1>
+                <h1>Visualizing Big O notation</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -423,8 +483,68 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#textbooks-and-online-sources">
-   Textbooks and Online Sources
+  <a class="reference internal nav-link" href="#o-1">
+   O(1)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#o-1-plot1">
+     O(1) plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-logn">
+   O(logN)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#o-logn-plot">
+     O(logN) plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-n">
+   O(N)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#o-n-plotfoo">
+     O(N) plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-n-2">
+   O(N^2^)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#o-n-2-plotfoo">
+     O(N^2^) plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-n-3">
+   O(N^3^)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#o-n-3-plot">
+     O(N^3^) plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusions">
+   Conclusions
   </a>
  </li>
 </ul>
@@ -436,35 +556,109 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="data-structures-and-algorithms">
-<h1>Data Structures and Algorithms<a class="headerlink" href="#data-structures-and-algorithms" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="textbooks-and-online-sources">
-<h2>Textbooks and Online Sources<a class="headerlink" href="#textbooks-and-online-sources" title="Permalink to this headline">¶</a></h2>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="text-align:center head"><p>Book</p></th>
-<th class="text-align:center head"><p>Book Information</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-align:center"><p><img alt="Data Strucures" src="https://images-na.ssl-images-amazon.com/images/I/51NoqhM4r9L._SX407_BO1,204,203,200_.jpg" /></p></td>
-<td class="text-align:center"><p><a class="reference external" href="https://www.amazon.com/Data-Structures-Algorithms-Java-2nd/dp/0672324539/ref=sr_1_1?crid=M8ANR5REE3Y8&amp;keywords=robert+lafore&amp;qid=1655244033&amp;sprefix=robert+lafore%2Caps%2C126&amp;sr=8-1">Data Structures and Algorithms in Java</a> <br>Second Edition<br>Robert Lafore</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><img alt="Data Structrues &amp; Alogrithms" src="https://images-na.ssl-images-amazon.com/images/I/61cFhkf7NCL._SX405_BO1,204,203,200_.jpg" /></p></td>
-<td class="text-align:center"><p><a class="reference external" href="https://www.amazon.com/Data-Structures-Algorithms-Michael-Goodrich/dp/1118771338/ref=sr_1_6?keywords=data+structures+and+algorithms&amp;qid=1655244532&amp;s=books&amp;sprefix=datastructures+and+%2Cstripbooks%2C130&amp;sr=1-6">Data Structures and Algorithms in Java 6th Edition</a><br>Micahel T. Goodrich</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><img alt="Algorithms" src="https://images-na.ssl-images-amazon.com/images/I/41a4YqyJv4S._SX400_BO1,204,203,200_.jpg" /></p></td>
-<td class="text-align:center"><p><a class="reference external" href="https://www.amazon.com/gp/product/032157351X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;tag=algs4-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=032157351X">Algorithms (4th Edition) 4th Edition<br/>by Robert Sedgewick and Kevin Wayne</a></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><img alt="Open Data Structures" src="https://opendatastructures.org/ods-java/img41.png" /></p></td>
-<td class="text-align:center"><p><a class="reference external" href="https://opendatastructures.org/">Open Data Structures</a></p></td>
-</tr>
-</tbody>
-</table>
+  <div class="tex2jax_ignore mathjax_ignore section" id="visualizing-big-o-notation">
+<h1>Visualizing Big O notation<a class="headerlink" href="#visualizing-big-o-notation" title="Permalink to this headline">¶</a></h1>
+<p>From <a class="reference external" href="https://mellowd.co.uk/ccie/?p=6122">https://mellowd.co.uk/ccie/?p=6122</a></p>
+<p>Author: Darren O’Connor</p>
+<p>I’m currently learning as much computer science as I can on the side. I’ve come across <a class="reference external" href="https://en.wikipedia.org/wiki/Big_O_notation">Big O notation</a> a few times already, and while I understand it, I’m much more of a visual guy.</p>
+<p>It’s rather easy to use Python and matplotlib to graph out how a function’s execution time grows as the size of the input grows. The important thing to note is not total execution time, but rather how the runtime of that function grows in relation to the input size. This can be plotted onto a graph which should give us a nice representation of Big O notations.</p>
+<p>Note too that Big O notations always show the worst case. For this reason, I’ll ensure to use values which the function will have to do the most work for.</p>
+<div class="section" id="o-1">
+<h2>O(1)<a class="headerlink" href="#o-1" title="Permalink to this headline">¶</a></h2>
+<p>O(1) means constant time. No matter what size the input, the runtime will always be the same. A simple example is finding the middle number in a list. I’ll ensure that all code return the amount of time a command was run in the function. This may make the code look just a bit bloated, but for a good <a class="reference external" href="http://reason.To">reason.To</a> find the center of a list we simply divide the length of the list in two, and return that number. It does not matter if a list has 10 elements or 100 elements, the same amount of steps is performed:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">O1</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">count</span>
+</pre></div>
+</div>
+<p>I have created 5 lists. The first is length 10, second the length 20, and so on. I’ll get the returned values and plot them.</p>
+<div class="section" id="o-1-plot1">
+<h3>O(1) plot<img alt="1" src="E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_O1" /><a class="headerlink" href="#o-1-plot1" title="Permalink to this headline">¶</a></h3>
+<p>As can be seen, it doesn’t matter the size of the input. It will always run in the same constant time.</p>
+</div>
+</div>
+<div class="section" id="o-logn">
+<h2>O(logN)<a class="headerlink" href="#o-logn" title="Permalink to this headline">¶</a></h2>
+<p>O(logN) increases as the input size goes up. However it goes up as a log of the input size. This means that you can exponentially increase your input size, without linearly increasing the processing time to match.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">OlogN</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">length</span> <span class="o">/=</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">count</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">search</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">search</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<div class="section" id="o-logn-plot">
+<h3>O(logN) plot<a class="headerlink" href="#o-logn-plot" title="Permalink to this headline">¶</a></h3>
+<p><img alt="foo" src="E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_OlogN" />The run time is going up, but look at the size of the inputs at the bottom. I start with 10,000 and move up to 500,000. The number of steps has increased, but not significantly.</p>
+</div>
+</div>
+<div class="section" id="o-n">
+<h2>O(N)<a class="headerlink" href="#o-n" title="Permalink to this headline">¶</a></h2>
+<p>O(N) is linear. This means that the run time is linearly matched to the input size. They should increase at exactly the same rate.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ON</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">check</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">==</span> <span class="n">check</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">count</span>
+
+</pre></div>
+</div>
+<div class="section" id="o-n-plotfoo">
+<h3>O(N) plot<img alt="foo" src="E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_ON" /><a class="headerlink" href="#o-n-plotfoo" title="Permalink to this headline">¶</a></h3>
+<p>There is a 1:1 correlation between input size and run time. As expected this produces a linear graph.</p>
+</div>
+</div>
+<div class="section" id="o-n-2">
+<h2>O(N^2^)<a class="headerlink" href="#o-n-2" title="Permalink to this headline">¶</a></h2>
+<p>O(N^2^)’s runtime will go up as a square of the input size. The runtime goes up faster than your input sizes, so processing time increases rapidly. This is usually when you iterate through multiple loops at the same time like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ON2</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">count</span>
+
+</pre></div>
+</div>
+<div class="section" id="o-n-2-plotfoo">
+<h3>O(N^2^) plot<img alt="foo" src="E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_ON2" /><a class="headerlink" href="#o-n-2-plotfoo" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="o-n-3">
+<h2>O(N^3^)<a class="headerlink" href="#o-n-3" title="Permalink to this headline">¶</a></h2>
+<p>O(N^3^)is merely O(N^2^) with another exponent. I wanted to show the difference by simply changing the exponent.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ON3</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
+                <span class="n">count</span> <span class="o">+=</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">count</span>
+
+</pre></div>
+</div>
+<div class="section" id="o-n-3-plot">
+<h3>O(N^3^) plot<a class="headerlink" href="#o-n-3-plot" title="Permalink to this headline">¶</a></h3>
+<p>Graphs increase rapidly as the exponent increases.<img alt="foo" src="E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_ON3" /></p>
+</div>
+</div>
+<div class="section" id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<p>I’ve not shown every single type of algorithm, as I just wanted to show the ones I have the most experience with. It’s nice to have a visual representation of these things as it really drills down just how fast your runtime can increase with larger inputs</p>
+<p>.<a class="reference external" href="https://github.com/mellowdrifter/Blog_Code/tree/master/Big_O">You can find my code used over here.</a><a class="reference external" href="https://github.com/mellowdrifter/Blog_Code/tree/master/Big_O">https://github.com/mellowdrifter/Blog_Code/tree/master/Big_O</a></p>
 <hr class="docutils" />
 <p>End Of Topic</p>
-</div>
-<div class="toctree-wrapper compound">
 </div>
 </div>
 
@@ -493,17 +687,17 @@ const thebe_selector_output = ".output, .cell_output"
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../javalang/end.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="BigONotation.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">End Of Section</p>
+            <p class="prev-next-title">Big O Notation</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="ArrayTechniques.html" title="next page">
+    <a class='right-next' id="next-link" href="BigONotationExplained.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Array Techniques</p>
+        <p class="prev-next-title">Big O Notation - Explained</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
