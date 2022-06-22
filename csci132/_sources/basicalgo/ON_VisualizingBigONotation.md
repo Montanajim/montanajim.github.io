@@ -127,9 +127,10 @@ Graphs increase rapidly as the exponent increases.![foo](E:/My%20Drive/0_CSCI_13
 
 ## Conclusions
 
-I’ve not shown every single type of algorithm, as I just wanted to show the ones I have the most experience with. It’s nice to have a visual representation of these things as it really drills down just how fast your runtime can increase with larger inputs
+I’ve not shown every single type of algorithm, as I just wanted to show the ones I have the most experience with. It’s nice to have a visual representation of these things as it really drills down just how fast your runtime can increase with larger inputs.
 
-.[You can find my code used over here.](https://github.com/mellowdrifter/Blog_Code/tree/master/Big_O)https://github.com/mellowdrifter/Blog_Code/tree/master/Big_O
+ [You can find my code used over here.](https://github.com/mellowdrifter/Blog_Code/tree/master/Big_O)
+ https://github.com/mellowdrifter/Blog_Code/tree/master/Big_O
 
 
 
