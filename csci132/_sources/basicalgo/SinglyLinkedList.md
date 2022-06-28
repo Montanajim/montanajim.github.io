@@ -12,31 +12,29 @@
 
 ```java
 /*
-Single Link List
-
-Project: Singly LinkedList Rev2
-Programmer: James Goudy
-
+ *
+ * Project: Singly LinkedList
+ * Programmer: J Goudy
  */
-package singlelinklist_rev2;
 
-class Link {
+class Node {
 
-    //Data goes here
+    // Data goes here
     public String city = "";
     public int population = 0;
 
-    //link to next one
-    public Link next;
+    // link to the next node
+    // Next is a reference - think of it as a location to the next link.
+    public Node next;
 
     //constructor
-    public Link(String city, int population) {
+    public Node(String city, int population) {
         this.city = city;
         this.population = population;
     }
 
-    //display the link
-    public void displayLink() {
+    //display node
+    public void displayNode() {
         System.out.print("{" + city + ", " + population + "} ");
     }
 
@@ -44,162 +42,188 @@ class Link {
 
 class LinkList {
 
-    // first is a reference / "address" of the first link
-    private Link first;
+    //keep track of the head / first
+    private Node head;
 
     //constructor
     public LinkList() {
-        first = null;
+        this.head = null;
     }
 
-    //Check if the list is empty
+    // check to see if the list is empty
     public boolean isEmpty() {
-        return (first == null);
+        
+        // alternative code
+        /* 
+         * boolean status;
+         * if(head == null)
+         * {
+         * status = true;
+         * }
+         *
+         * return true;
+         */
+
+        return (head == null);
     }
 
-    // insert at the front of the list (front[left] -- to --> back[right]) 
     public void insertFirst(String city, int population) {
-        
-        //create a new link
-        Link newLink = new Link(city, population);
 
-        // the new link is to the left or in front of first
-        // the new link will make first in the second spot 
-        // so newLink.next has to point to the address first
-        newLink.next = first;
 
-        // now that the newLink.next is looking at the seond spot 
-        // or the next spot, first can have the address of the newLink
-        first = newLink;
+        // create a new node
+        Node newNode = new Node(city, population);
 
-    }
+        newNode.next = head;
 
-    public Link deleteFirst() {
-        
-        //temp variable to hold first
-        Link temp = first;
-
-        // set variable first to the second spot or the next spot
-        first = first.next;
-
-        //c or c++ you would not do  a return
-        // make    temp = null;
-        return temp;
+        head = newNode;
     }
 
     public void displayList() {
         
-        System.out.print("\nList (first --> last): ");
-        Link current = first;
+        System.out.println("\nList (first/head ---> last)");
+
+        // set the current node to the head
+        // current will be the node/"variable" moving
+        // through the list
+        
+        Node current = head;
 
         while (current != null) {
-            current.displayLink();
-            //move to the next link
+            current.displayNode();
             current = current.next;
         }
-        System.out.println();
+
+        System.out.println("\n");
 
     }
 
-    public void deleteCity(String city) {
-        // need to check if city was found
+    public Node deleteFirst() {
+        
+        // Instantiate temp node
+        Node temp = null;
+
+        // check if empty
+        if (isEmpty()) {
+            return temp;
+        }
+        
+        temp = head;
+        
+        head = head.next;
+        
+        return temp;
+
+    }
+
+    public boolean deleteCity(String city) {
+        
+        //flag to see if we found the city
         boolean found = false;
 
-        Link current = first;
-        Link prev = first;
-        Link temp;
+        Node current = head;
+        Node prev = head;
+        Node temp;
 
-        // check if city is in the first node
-        if (first.city.equals(city)) {
-            temp = first;
-            first = first.next;
-            temp = null;
-            return;
+        //check to see if the first node is the city
+        if (head.city.equals(city)) {
+            head = head.next;
+            return true;
         }
 
         while (current != null) {
-
-            // if found, signal the boolean 
-            // that it was found
-            // stop the loop at the current node
-            // using break
-            if (current.city.equals(city)) {         
+            if (current.city.equals(city)) {
                 found = true;
                 break;
             }
-
             prev = current;
             current = current.next;
-
         }
 
-        // if false city wasn't found and 
-        // program returns back to main
-        if (found==false) {
-            System.out.println("City Not Found - Nothing Deleted");
-            return;
+        if (found == false) {
+            System.out.println("City not found");
+            return false;
         }
+
+        // jump the one that needs to be deleted
         prev.next = current.next;
+
+        // this destroys the node
         current = null;
-        
+
         System.out.println("City was successfully deleted");
+        return true;
 
     }
 
-    public boolean findCity(String city) {
+    public void insertAfter(String searchCity, String newCity, 
+                            int newPopulation) {
+
+        //flag to see if we found the city
         boolean found = false;
 
-        Link temp = first;
+        Node current = head;
+        Node temp;
+        
+        // create the new node
+        Node newNode = new Node(newCity, newPopulation);
 
-        while (temp != null) {
-            if (temp.city.equals(city)) {
+        
+        while (current != null) {
+            if (current.city.equals(searchCity)) {
+                newNode.next = current.next;
+                current.next = newNode;
                 found = true;
                 break;
             }
-            temp = temp.next;
+            current = current.next;
         }
-        return found;
+
+        if (found == false) {
+            System.out.println("Warning: City not inserted");
+            return;
+        }
+
+        displayList();
+
     }
 
 }
 
-public class SingleLinkList_Rev2 {
+public class DS132SU_SinglyLinkkedList {
 
     public static void main(String[] args) {
 
+        Node temp = new Node("", 0);
         LinkList theList = new LinkList();
 
         theList.insertFirst("Kali", 32000);
-        theList.insertFirst("Whitefish", 7700);
-        theList.insertFirst("Polson", 20000);
+        theList.insertFirst("Whitefish", 33000);
+        theList.insertFirst("Polson", 28000);
         theList.insertFirst("Chicago", 1320000);
         theList.insertFirst("Convoy", 500);
 
         theList.displayList();
 
-        System.out.println("Find Result for Kali: " + 
-                theList.findCity("Kali"));
-        System.out.println("Find Result for Libby: " + 
-                theList.findCity("Libby"));
-
-        theList.deleteCity("Chicago");
+        //delete first
+        System.out.println("\nDelete First");
+        temp = theList.deleteFirst();
+        temp.displayNode();
         theList.displayList();
 
-        while (!theList.isEmpty()) {
-            Link aLink = theList.deleteFirst();
-
-            //display the deleted link
-            System.out.print("\nDeleted");
-            aLink.displayLink();
-
-        }
-
-        System.out.println("\n---------------\n");
+        System.out.println("Delete Polson");
+        theList.deleteCity("Polson");
         theList.displayList();
 
-        System.out.println("\n\nBye");
+        System.out.println("\nInsert New York after Whitefish");
+        theList.insertAfter("Whitefish", "New York", 6000000);
+        
+        System.out.println("\nInsert Buffalo after Noxon - FAIL-NO NOXON");
+        theList.insertAfter("Noxon", "Buffalo", 300000);
+        
+        System.out.println("\nInsert Billings after Kali");
+        theList.insertAfter("Kali", "Billings", 400000);
+
     }
-
 }
 
 ```

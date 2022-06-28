@@ -457,31 +457,29 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="lecture-code">
 <h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
-<span class="cm">Single Link List</span>
-
-<span class="cm">Project: Singly LinkedList Rev2</span>
-<span class="cm">Programmer: James Goudy</span>
-
+<span class="cm"> *</span>
+<span class="cm"> * Project: Singly LinkedList</span>
+<span class="cm"> * Programmer: J Goudy</span>
 <span class="cm"> */</span>
-<span class="kn">package</span> <span class="nn">singlelinklist_rev2</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">Link</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nc">Node</span> <span class="p">{</span>
 
-    <span class="c1">//Data goes here</span>
+    <span class="c1">// Data goes here</span>
     <span class="kd">public</span> <span class="n">String</span> <span class="n">city</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
     <span class="kd">public</span> <span class="kt">int</span> <span class="n">population</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    <span class="c1">//link to next one</span>
-    <span class="kd">public</span> <span class="n">Link</span> <span class="n">next</span><span class="p">;</span>
+    <span class="c1">// link to the next node</span>
+    <span class="c1">// Next is a reference - think of it as a location to the next link.</span>
+    <span class="kd">public</span> <span class="n">Node</span> <span class="n">next</span><span class="p">;</span>
 
     <span class="c1">//constructor</span>
-    <span class="kd">public</span> <span class="nf">Link</span><span class="p">(</span><span class="n">String</span> <span class="n">city</span><span class="p">,</span> <span class="kt">int</span> <span class="n">population</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">Node</span><span class="p">(</span><span class="n">String</span> <span class="n">city</span><span class="p">,</span> <span class="kt">int</span> <span class="n">population</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="na">city</span> <span class="o">=</span> <span class="n">city</span><span class="p">;</span>
         <span class="k">this</span><span class="p">.</span><span class="na">population</span> <span class="o">=</span> <span class="n">population</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="c1">//display the link</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">displayLink</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//display node</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">displayNode</span><span class="p">()</span> <span class="p">{</span>
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;{&quot;</span> <span class="o">+</span> <span class="n">city</span> <span class="o">+</span> <span class="s">&quot;, &quot;</span> <span class="o">+</span> <span class="n">population</span> <span class="o">+</span> <span class="s">&quot;} &quot;</span><span class="p">);</span>
     <span class="p">}</span>
 
@@ -489,162 +487,188 @@ const thebe_selector_output = ".output, .cell_output"
 
 <span class="kd">class</span> <span class="nc">LinkList</span> <span class="p">{</span>
 
-    <span class="c1">// first is a reference / &quot;address&quot; of the first link</span>
-    <span class="kd">private</span> <span class="n">Link</span> <span class="n">first</span><span class="p">;</span>
+    <span class="c1">//keep track of the head / first</span>
+    <span class="kd">private</span> <span class="n">Node</span> <span class="n">head</span><span class="p">;</span>
 
     <span class="c1">//constructor</span>
     <span class="kd">public</span> <span class="nf">LinkList</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">first</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">head</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="c1">//Check if the list is empty</span>
+    <span class="c1">// check to see if the list is empty</span>
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span>
+        
+        <span class="c1">// alternative code</span>
+        <span class="cm">/* </span>
+<span class="cm">         * boolean status;</span>
+<span class="cm">         * if(head == null)</span>
+<span class="cm">         * {</span>
+<span class="cm">         * status = true;</span>
+<span class="cm">         * }</span>
+<span class="cm">         *</span>
+<span class="cm">         * return true;</span>
+<span class="cm">         */</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="c1">// insert at the front of the list (front[left] -- to --&gt; back[right]) </span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertFirst</span><span class="p">(</span><span class="n">String</span> <span class="n">city</span><span class="p">,</span> <span class="kt">int</span> <span class="n">population</span><span class="p">)</span> <span class="p">{</span>
-        
-        <span class="c1">//create a new link</span>
-        <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="p">(</span><span class="n">city</span><span class="p">,</span> <span class="n">population</span><span class="p">);</span>
 
-        <span class="c1">// the new link is to the left or in front of first</span>
-        <span class="c1">// the new link will make first in the second spot </span>
-        <span class="c1">// so newLink.next has to point to the address first</span>
-        <span class="n">newLink</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
 
-        <span class="c1">// now that the newLink.next is looking at the seond spot </span>
-        <span class="c1">// or the next spot, first can have the address of the newLink</span>
-        <span class="n">first</span> <span class="o">=</span> <span class="n">newLink</span><span class="p">;</span>
+        <span class="c1">// create a new node</span>
+        <span class="n">Node</span> <span class="n">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">city</span><span class="p">,</span> <span class="n">population</span><span class="p">);</span>
 
-    <span class="p">}</span>
+        <span class="n">newNode</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="n">Link</span> <span class="nf">deleteFirst</span><span class="p">()</span> <span class="p">{</span>
-        
-        <span class="c1">//temp variable to hold first</span>
-        <span class="n">Link</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
-
-        <span class="c1">// set variable first to the second spot or the next spot</span>
-        <span class="n">first</span> <span class="o">=</span> <span class="n">first</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
-
-        <span class="c1">//c or c++ you would not do  a return</span>
-        <span class="c1">// make    temp = null;</span>
-        <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">newNode</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">displayList</span><span class="p">()</span> <span class="p">{</span>
         
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;\nList (first --&gt; last): &quot;</span><span class="p">);</span>
-        <span class="n">Link</span> <span class="n">current</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nList (first/head ---&gt; last)&quot;</span><span class="p">);</span>
+
+        <span class="c1">// set the current node to the head</span>
+        <span class="c1">// current will be the node/&quot;variable&quot; moving</span>
+        <span class="c1">// through the list</span>
+        
+        <span class="n">Node</span> <span class="n">current</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
 
         <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">current</span><span class="p">.</span><span class="na">displayLink</span><span class="p">();</span>
-            <span class="c1">//move to the next link</span>
+            <span class="n">current</span><span class="p">.</span><span class="na">displayNode</span><span class="p">();</span>
             <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
         <span class="p">}</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">);</span>
 
     <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteCity</span><span class="p">(</span><span class="n">String</span> <span class="n">city</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// need to check if city was found</span>
+    <span class="kd">public</span> <span class="n">Node</span> <span class="nf">deleteFirst</span><span class="p">()</span> <span class="p">{</span>
+        
+        <span class="c1">// Instantiate temp node</span>
+        <span class="n">Node</span> <span class="n">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="c1">// check if empty</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        
+        <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+        
+        <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">deleteCity</span><span class="p">(</span><span class="n">String</span> <span class="n">city</span><span class="p">)</span> <span class="p">{</span>
+        
+        <span class="c1">//flag to see if we found the city</span>
         <span class="kt">boolean</span> <span class="n">found</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
-        <span class="n">Link</span> <span class="n">current</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
-        <span class="n">Link</span> <span class="n">prev</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
-        <span class="n">Link</span> <span class="n">temp</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">current</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">temp</span><span class="p">;</span>
 
-        <span class="c1">// check if city is in the first node</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">first</span><span class="p">.</span><span class="na">city</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">city</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
-            <span class="n">first</span> <span class="o">=</span> <span class="n">first</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-            <span class="k">return</span><span class="p">;</span>
+        <span class="c1">//check to see if the first node is the city</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">head</span><span class="p">.</span><span class="na">city</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">city</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-
-            <span class="c1">// if found, signal the boolean </span>
-            <span class="c1">// that it was found</span>
-            <span class="c1">// stop the loop at the current node</span>
-            <span class="c1">// using break</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">city</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">city</span><span class="p">))</span> <span class="p">{</span>         
+            <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">city</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">city</span><span class="p">))</span> <span class="p">{</span>
                 <span class="n">found</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
                 <span class="k">break</span><span class="p">;</span>
             <span class="p">}</span>
-
             <span class="n">prev</span> <span class="o">=</span> <span class="n">current</span><span class="p">;</span>
             <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
-
         <span class="p">}</span>
 
-        <span class="c1">// if false city wasn&#39;t found and </span>
-        <span class="c1">// program returns back to main</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">found</span><span class="o">==</span><span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;City Not Found - Nothing Deleted&quot;</span><span class="p">);</span>
-            <span class="k">return</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">found</span> <span class="o">==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;City not found&quot;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
         <span class="p">}</span>
+
+        <span class="c1">// jump the one that needs to be deleted</span>
         <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+
+        <span class="c1">// this destroys the node</span>
         <span class="n">current</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-        
+
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;City was successfully deleted&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
 
     <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">findCity</span><span class="p">(</span><span class="n">String</span> <span class="n">city</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertAfter</span><span class="p">(</span><span class="n">String</span> <span class="n">searchCity</span><span class="p">,</span> <span class="n">String</span> <span class="n">newCity</span><span class="p">,</span> 
+                            <span class="kt">int</span> <span class="n">newPopulation</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">//flag to see if we found the city</span>
         <span class="kt">boolean</span> <span class="n">found</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
-        <span class="n">Link</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">current</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">temp</span><span class="p">;</span>
+        
+        <span class="c1">// create the new node</span>
+        <span class="n">Node</span> <span class="n">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">newCity</span><span class="p">,</span> <span class="n">newPopulation</span><span class="p">);</span>
 
-        <span class="k">while</span> <span class="p">(</span><span class="n">temp</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">temp</span><span class="p">.</span><span class="na">city</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">city</span><span class="p">))</span> <span class="p">{</span>
+        
+        <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">city</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">searchCity</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">newNode</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+                <span class="n">current</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="p">;</span>
                 <span class="n">found</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
                 <span class="k">break</span><span class="p">;</span>
             <span class="p">}</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="n">found</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">found</span> <span class="o">==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Warning: City not inserted&quot;</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">displayList</span><span class="p">();</span>
+
     <span class="p">}</span>
 
 <span class="p">}</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SingleLinkList_Rev2</span> <span class="p">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DS132SU_SinglyLinkkedList</span> <span class="p">{</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
+        <span class="n">Node</span> <span class="n">temp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
         <span class="n">LinkList</span> <span class="n">theList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkList</span><span class="p">();</span>
 
         <span class="n">theList</span><span class="p">.</span><span class="na">insertFirst</span><span class="p">(</span><span class="s">&quot;Kali&quot;</span><span class="p">,</span> <span class="mi">32000</span><span class="p">);</span>
-        <span class="n">theList</span><span class="p">.</span><span class="na">insertFirst</span><span class="p">(</span><span class="s">&quot;Whitefish&quot;</span><span class="p">,</span> <span class="mi">7700</span><span class="p">);</span>
-        <span class="n">theList</span><span class="p">.</span><span class="na">insertFirst</span><span class="p">(</span><span class="s">&quot;Polson&quot;</span><span class="p">,</span> <span class="mi">20000</span><span class="p">);</span>
+        <span class="n">theList</span><span class="p">.</span><span class="na">insertFirst</span><span class="p">(</span><span class="s">&quot;Whitefish&quot;</span><span class="p">,</span> <span class="mi">33000</span><span class="p">);</span>
+        <span class="n">theList</span><span class="p">.</span><span class="na">insertFirst</span><span class="p">(</span><span class="s">&quot;Polson&quot;</span><span class="p">,</span> <span class="mi">28000</span><span class="p">);</span>
         <span class="n">theList</span><span class="p">.</span><span class="na">insertFirst</span><span class="p">(</span><span class="s">&quot;Chicago&quot;</span><span class="p">,</span> <span class="mi">1320000</span><span class="p">);</span>
         <span class="n">theList</span><span class="p">.</span><span class="na">insertFirst</span><span class="p">(</span><span class="s">&quot;Convoy&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
 
         <span class="n">theList</span><span class="p">.</span><span class="na">displayList</span><span class="p">();</span>
 
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Find Result for Kali: &quot;</span> <span class="o">+</span> 
-                <span class="n">theList</span><span class="p">.</span><span class="na">findCity</span><span class="p">(</span><span class="s">&quot;Kali&quot;</span><span class="p">));</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Find Result for Libby: &quot;</span> <span class="o">+</span> 
-                <span class="n">theList</span><span class="p">.</span><span class="na">findCity</span><span class="p">(</span><span class="s">&quot;Libby&quot;</span><span class="p">));</span>
-
-        <span class="n">theList</span><span class="p">.</span><span class="na">deleteCity</span><span class="p">(</span><span class="s">&quot;Chicago&quot;</span><span class="p">);</span>
+        <span class="c1">//delete first</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nDelete First&quot;</span><span class="p">);</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">theList</span><span class="p">.</span><span class="na">deleteFirst</span><span class="p">();</span>
+        <span class="n">temp</span><span class="p">.</span><span class="na">displayNode</span><span class="p">();</span>
         <span class="n">theList</span><span class="p">.</span><span class="na">displayList</span><span class="p">();</span>
 
-        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">theList</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
-            <span class="n">Link</span> <span class="n">aLink</span> <span class="o">=</span> <span class="n">theList</span><span class="p">.</span><span class="na">deleteFirst</span><span class="p">();</span>
-
-            <span class="c1">//display the deleted link</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;\nDeleted&quot;</span><span class="p">);</span>
-            <span class="n">aLink</span><span class="p">.</span><span class="na">displayLink</span><span class="p">();</span>
-
-        <span class="p">}</span>
-
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n---------------\n&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Delete Polson&quot;</span><span class="p">);</span>
+        <span class="n">theList</span><span class="p">.</span><span class="na">deleteCity</span><span class="p">(</span><span class="s">&quot;Polson&quot;</span><span class="p">);</span>
         <span class="n">theList</span><span class="p">.</span><span class="na">displayList</span><span class="p">();</span>
 
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n\nBye&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nInsert New York after Whitefish&quot;</span><span class="p">);</span>
+        <span class="n">theList</span><span class="p">.</span><span class="na">insertAfter</span><span class="p">(</span><span class="s">&quot;Whitefish&quot;</span><span class="p">,</span> <span class="s">&quot;New York&quot;</span><span class="p">,</span> <span class="mi">6000000</span><span class="p">);</span>
+        
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nInsert Buffalo after Noxon - FAIL-NO NOXON&quot;</span><span class="p">);</span>
+        <span class="n">theList</span><span class="p">.</span><span class="na">insertAfter</span><span class="p">(</span><span class="s">&quot;Noxon&quot;</span><span class="p">,</span> <span class="s">&quot;Buffalo&quot;</span><span class="p">,</span> <span class="mi">300000</span><span class="p">);</span>
+        
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nInsert Billings after Kali&quot;</span><span class="p">);</span>
+        <span class="n">theList</span><span class="p">.</span><span class="na">insertAfter</span><span class="p">(</span><span class="s">&quot;Kali&quot;</span><span class="p">,</span> <span class="s">&quot;Billings&quot;</span><span class="p">,</span> <span class="mi">400000</span><span class="p">);</span>
+
     <span class="p">}</span>
-
 <span class="p">}</span>
 </pre></div>
 </div>
