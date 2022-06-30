@@ -12,29 +12,31 @@
 
 ```java
 /*
+ * Single Link List
  *
- * Project: Singly LinkedList
- * Programmer: J Goudy
+ * SingleLinkList_Rev2
+ * Programmer: James Goudy
+ *
  */
 
-class Node {
 
-    // Data goes here
+class Link {
+
+    //Data goes here
     public String city = "";
     public int population = 0;
 
-    // link to the next node
-    // Next is a reference - think of it as a location to the next link.
-    public Node next;
+    //link to next one
+    public Link next;
 
     //constructor
-    public Node(String city, int population) {
+    public Link(String city, int population) {
         this.city = city;
         this.population = population;
     }
 
-    //display node
-    public void displayNode() {
+    //display the link
+    public void displayLink() {
         System.out.print("{" + city + ", " + population + "} ");
     }
 
@@ -42,132 +44,137 @@ class Node {
 
 class LinkList {
 
-    //keep track of the head / first
-    private Node head;
+    // first is a reference / "address" of the first link
+    private Link first;
 
     //constructor
     public LinkList() {
-        this.head = null;
+        first = null;
     }
 
-    // check to see if the list is empty
+    //Check if the list is empty
     public boolean isEmpty() {
-        
-        // alternative code
-        /* 
-         * boolean status;
-         * if(head == null)
-         * {
-         * status = true;
-         * }
-         *
-         * return true;
-         */
-
-        return (head == null);
+        return (first == null);
     }
 
+    // insert at the front of the list (front[left] -- to --> back[right]) 
     public void insertFirst(String city, int population) {
 
+        //create a new link
+        Link newLink = new Link(city, population);
 
-        // create a new node
-        Node newNode = new Node(city, population);
+        // the new link is to the left or in front of first
+        // the new link will make first in the second spot 
+        // so newLink.next has to point to the address first
+        newLink.next = first;
 
-        newNode.next = head;
+        // now that the newLink.next is looking at the seond spot 
+        // or the next spot, first can have the address of the newLink
+        first = newLink;
 
-        head = newNode;
+    }
+
+//set this up to see what was deleted
+    public Link deleteFirst() {
+
+        //temp variable to hold first
+        Link temp = first;
+
+        // set variable first to the second spot or the next spot
+        first = first.next;
+
+        //c or c++ you would not do  a return
+        // make    temp = null;
+        return temp;
     }
 
     public void displayList() {
-        
-        System.out.println("\nList (first/head ---> last)");
 
-        // set the current node to the head
-        // current will be the node/"variable" moving
-        // through the list
-        
-        Node current = head;
+        System.out.print("\nList (first --> last): ");
+        Link current = first;
 
         while (current != null) {
-            current.displayNode();
+            current.displayLink();
+            //move to the next link
             current = current.next;
         }
-
-        System.out.println("\n");
-
-    }
-
-    public Node deleteFirst() {
-        
-        // Instantiate temp node
-        Node temp = null;
-
-        // check if empty
-        if (isEmpty()) {
-            return temp;
-        }
-        
-        temp = head;
-        
-        head = head.next;
-        
-        return temp;
+        System.out.println();
 
     }
 
-    public boolean deleteCity(String city) {
-        
-        //flag to see if we found the city
+    public void deleteCity(String city) {
+        // need to check if city was found
         boolean found = false;
 
-        Node current = head;
-        Node prev = head;
-        Node temp;
+        Link current = first;
+        Link prev = first;
+        Link temp;
 
-        //check to see if the first node is the city
-        if (head.city.equals(city)) {
-            head = head.next;
-            return true;
+        // check if city is in the first node
+        if (first.city.equals(city)) {
+            temp = first;
+            first = first.next;
+            temp = null;
+            return;
         }
 
         while (current != null) {
+
+            // if found, signal the boolean 
+            // that it was found
+            // stop the loop at the current node
+            // using break
             if (current.city.equals(city)) {
                 found = true;
                 break;
             }
+
             prev = current;
             current = current.next;
+
         }
 
+        // if false city wasn't found and 
+        // program returns back to main
         if (found == false) {
-            System.out.println("City not found");
-            return false;
+            System.out.println("City Not Found - Nothing Deleted");
+            return;
         }
-
-        // jump the one that needs to be deleted
         prev.next = current.next;
-
-        // this destroys the node
         current = null;
 
         System.out.println("City was successfully deleted");
-        return true;
 
     }
 
-    public void insertAfter(String searchCity, String newCity, 
-                            int newPopulation) {
+    public boolean findCity(String city) {
+        boolean found = false;
+
+        Link temp = first;
+
+        while (temp != null) {
+            if (temp.city.equals(city)) {
+                found = true;
+                break;
+            }
+            temp = temp.next;
+        }
+
+        return found;
+    }
+
+    public void insertAfter(String searchCity, String newCity,
+            int newPopulation) {
 
         //flag to see if we found the city
         boolean found = false;
 
-        Node current = head;
-        Node temp;
-        
-        // create the new node
-        Node newNode = new Node(newCity, newPopulation);
+        Link current = first;
+        Link temp;
 
-        
+        // create the new node
+        Link newNode = new Link(newCity, newPopulation);
+
         while (current != null) {
             if (current.city.equals(searchCity)) {
                 newNode.next = current.next;
@@ -187,13 +194,26 @@ class LinkList {
 
     }
 
+    public boolean deleteList() {
+
+        String city = "";
+
+        while (!isEmpty()) {
+            Link aLink = deleteFirst();
+            city = aLink.city;
+            //display the deleted link
+            System.out.println(city + " Deleted");
+        }
+        return true;
+    }
+
 }
 
-public class DS132SU_SinglyLinkkedList {
+public class SingleLinkList_Rev2 {
 
     public static void main(String[] args) {
 
-        Node temp = new Node("", 0);
+        Link temp = new Link("", 0);
         LinkList theList = new LinkList();
 
         theList.insertFirst("Kali", 32000);
@@ -207,7 +227,7 @@ public class DS132SU_SinglyLinkkedList {
         //delete first
         System.out.println("\nDelete First");
         temp = theList.deleteFirst();
-        temp.displayNode();
+        temp.displayLink();
         theList.displayList();
 
         System.out.println("Delete Polson");
@@ -216,14 +236,20 @@ public class DS132SU_SinglyLinkkedList {
 
         System.out.println("\nInsert New York after Whitefish");
         theList.insertAfter("Whitefish", "New York", 6000000);
-        
+
         System.out.println("\nInsert Buffalo after Noxon - FAIL-NO NOXON");
         theList.insertAfter("Noxon", "Buffalo", 300000);
-        
+
         System.out.println("\nInsert Billings after Kali");
         theList.insertAfter("Kali", "Billings", 400000);
 
+        // Delete the list
+        System.out.println("\n\ndelete list");
+        theList.deleteList();
+
+        System.out.println("\n\nBye");
     }
+
 }
 
 ```
