@@ -28,7 +28,7 @@ def O1(input):
 
 I have created 5 lists. The first is length 10, second the length 20, and so on. I’ll get the returned values and plot them.
 
-### O(1) plot![1](E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_O1)
+### O(1) plot![1](E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_O1.png)
 
 As can be seen, it doesn’t matter the size of the input. It will always run in the same constant time.
 
@@ -55,7 +55,7 @@ def OlogN(input):
 
 ### O(logN) plot
 
-![foo](E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_OlogN)The run time is going up, but look at the size of the inputs at the bottom. I start with 10,000 and move up to 500,000. The number of steps has increased, but not significantly.
+![foo](E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_OlogN.png)The run time is going up, but look at the size of the inputs at the bottom. I start with 10,000 and move up to 500,000. The number of steps has increased, but not significantly.
 
 ## O(N)
 
@@ -75,7 +75,7 @@ def ON(input, check):
 
 
 
-### O(N) plot![foo](E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_ON)
+### O(N) plot![foo](E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_ON.png)
 
 
 
@@ -98,7 +98,7 @@ def ON2(input):
 
 
 
-### O(N^2^) plot![foo](E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_ON2)
+### O(N^2^) plot![foo](E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_ON2.png)
 
 ## O(N^3^)
 
@@ -123,7 +123,7 @@ def ON3(input):
 
 
 
-Graphs increase rapidly as the exponent increases.![foo](E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_ON3)
+Graphs increase rapidly as the exponent increases.![foo](E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/basicalgo/images/vbon_image_ON3.png)
 
 ## Conclusions
 
