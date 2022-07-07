@@ -182,7 +182,7 @@ public class J1_IO_CSV_Demo_Rev2 {
 
 
 /*
- citdata.csv
+ citydata.csv
  Key,Town,State,Population
  1,New York,New York,18713220
  2,Los Angeles,California,12750807
