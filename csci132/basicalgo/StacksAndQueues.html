@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Linked Lists &#8212; CSCI 132&lt;br&gt;Basic Data Structures&lt;br&gt;Class Materials</title>
+    <title>Stacks and Queues &#8212; CSCI 132&lt;br&gt;Basic Data Structures&lt;br&gt;Class Materials</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Singly Linked List" href="SinglyLinkedList.html" />
-    <link rel="prev" title="Big O Notation - Explained" href="BigONotationExplained.html" />
+    <link rel="next" title="Sorting Algorithms" href="SortAlgorithms.html" />
+    <link rel="prev" title="Circular Linked List - Links as Sub Class" href="CircularLinkedList.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -307,11 +307,11 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 current active has-children">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="LinkedLists.html">
      Linked Lists
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
     <label for="toctree-checkbox-6">
      <i class="fas fa-chevron-down">
      </i>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Stacks and Queues
+    </a>
    </li>
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="SortAlgorithms.html">
@@ -404,7 +409,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/basicalgo/LinkedLists.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/basicalgo/StacksAndQueues.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -435,19 +440,31 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#benefits-of-a-linked-list">
-   Benefits of a linked list
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#disadvantages-of-a-linked-list">
-   Disadvantages of a linked list
+  <a class="reference internal nav-link" href="#discussion">
+   Discussion
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#types-of-linked-lists">
-   Types of linked lists
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stack">
+     Stack
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#queue">
+     Queue
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#priority-queue">
+     Priority Queue
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -459,7 +476,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Linked Lists</h1>
+                <h1>Stacks and Queues</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -470,19 +487,31 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#benefits-of-a-linked-list">
-   Benefits of a linked list
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#disadvantages-of-a-linked-list">
-   Disadvantages of a linked list
+  <a class="reference internal nav-link" href="#discussion">
+   Discussion
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#types-of-linked-lists">
-   Types of linked lists
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stack">
+     Stack
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#queue">
+     Queue
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#priority-queue">
+     Priority Queue
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -493,39 +522,59 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="linked-lists">
-<h1>Linked Lists<a class="headerlink" href="#linked-lists" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="stacks-and-queues">
+<h1>Stacks and Queues<a class="headerlink" href="#stacks-and-queues" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Stacks</p></li>
+<li><p>Queues</p></li>
+</ul>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<p>Stacks and queues are a way of organizing data and consuming data. The data can be stored in an array or linked list.</p>
+<div class="section" id="stack">
+<h3>Stack<a class="headerlink" href="#stack" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
-<p><em>Linked List</em> is a set of nodes where each node contains a data field(s) and a reference(link) to the next node in the list.</p>
+<p>A <strong>Stack</strong> is a way of organizing and consuming data where the Last In is the First Out (LIFO). Or it can be thought of as First In is the Last Out (FILO).</p>
 </div>
-<div class="section" id="benefits-of-a-linked-list">
-<h2>Benefits of a linked list<a class="headerlink" href="#benefits-of-a-linked-list" title="Permalink to this headline">¶</a></h2>
+<p>Most people think of a stack as a stack of plates, where each plate represents data. Data is <em><strong>pushed</strong></em> onto the stack. Meaning. it is added to the array or linked list. Data is consumed by <em><strong>popping</strong></em> it off of the stack. Meaning, that the last piece of data added to the stack is removed from the array or linked list. This data is usually used by the part of the program that is popping/removing it from the stack.  <em><strong>Peeking</strong></em> is looking at the last/next piece of data, but <em>not</em> removing it from the stack.</p>
+<p>Methods usually associated with a <strong>stack</strong> are as follows:</p>
 <ul class="simple">
-<li><p>Not limited to a specific data space amount.</p></li>
-<li><p>Easy to add and delete data</p></li>
+<li><p><strong>Push</strong> - adds data to the stack</p></li>
+<li><p><strong>Pop</strong> - removes data from the stack</p></li>
+<li><p><strong>Peek</strong> - retrieves the next piece/top data from the stack, but does not remove it.</p></li>
+<li><p><strong>isFull</strong> - this is used when making a stack with an array since an array has a limited number of elements.</p></li>
+<li><p><strong>isEmpty</strong> - this is used to determine if the stack is empty.</p></li>
 </ul>
 </div>
-<div class="section" id="disadvantages-of-a-linked-list">
-<h2>Disadvantages of a linked list<a class="headerlink" href="#disadvantages-of-a-linked-list" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="queue">
+<h3>Queue<a class="headerlink" href="#queue" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>A <strong>Queue</strong> is a way of organizing and consuming data where the First In is the First Out (FIFO).</p>
+</div>
+<p>Most people think of a queue as people standing in a line, where people represent data.  Data is consumed in the order in which it was added.</p>
+<p>Methods usually associated with a <strong>queue</strong> are as follows:</p>
 <ul class="simple">
-<li><p>The retrieval time of stored data is dependent on the size of the list and the position/node of the data in the list. O(n)</p></li>
+<li><p><strong>Enqueue</strong> - add data to the queue.</p></li>
+<li><p><strong>Dequeue</strong> - remove data from the queue</p></li>
+<li><p><strong>Peek</strong> - retrieves the next piece/”head” data from the queue, but does not remove it.</p></li>
+<li><p><strong>isFull</strong> - this is used when making a queue with an array since an array has a limited number of elements.</p></li>
+<li><p><strong>isEmpty</strong> - this is used to determine if the queue is empty.</p></li>
 </ul>
 </div>
-<div class="section" id="types-of-linked-lists">
-<h2>Types of linked lists<a class="headerlink" href="#types-of-linked-lists" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><span class="xref myst">Singly linked lists</span></p></li>
-<li><p><a class="reference internal" href="DoublyLinkedList.html"><span class="doc std std-doc">Doubly linked lists</span></a></p></li>
-<li><p><a class="reference internal" href="DoublyLinkedListSubClass.html"><span class="doc std std-doc">Doubly linked lists with links as sub class</span></a></p></li>
-<li><p><a class="reference internal" href="CircularLinkedList.html"><span class="doc std std-doc">Circular linked lists</span></a></p></li>
-</ul>
-<hr class="docutils" />
-<p>End of Topic</p>
+<div class="section" id="priority-queue">
+<h3>Priority Queue<a class="headerlink" href="#priority-queue" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>A <strong>Priority Queue</strong> is a queue where there is a mechanism to place data at the start or infront of other data.</p>
+</div>
 <hr class="docutils" />
 <p>End Of Topic</p>
 </div>
-<div class="toctree-wrapper compound">
 </div>
 </div>
 
@@ -554,17 +603,17 @@ const thebe_selector_output = ".output, .cell_output"
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="BigONotationExplained.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="CircularLinkedList.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Big O Notation - Explained</p>
+            <p class="prev-next-title">Circular Linked List - Links as Sub Class</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="SinglyLinkedList.html" title="next page">
+    <a class='right-next' id="next-link" href="SortAlgorithms.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Singly Linked List</p>
+        <p class="prev-next-title">Sorting Algorithms</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

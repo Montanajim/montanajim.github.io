@@ -1,28 +1,6 @@
-# Circular Linked List - Links as Sub Class
+# Circular Linked List
 
 
-
-## Key Ideas
-
-* The doubly linked list allows the list to be traversed in both directions; forwards and backwards
-
-* In a circular doubly-linked list the last node (next) points to the first. The first node (previous) points to the last node.
-* The doubly linked list allows the list to be traversed in both directions; forwards and backwards
-
-
-
-![Circular Linked List](images/CircularLinkList.png)
-
-
-
-```{Note}
-Not all languages support subclasses. 
-```
-
-
-
-
-## Lecture Code
 
 ```java
 package com.mycompany.linkedlistcircular;
@@ -31,11 +9,11 @@ package com.mycompany.linkedlistcircular;
  * Programmer: James Goudy
  * Project Circular LinkedList
  *
- * NOTE: last link is referenced as first.prev
  */
-class CircularLinkedList {
+class Doubly {
 
-    Link first = new Link("");
+    Link first = new Link("xx");
+    Link last = new Link("yy");
 
     // ---------------------------------
     // sub class - Link / Nodes
@@ -43,6 +21,7 @@ class CircularLinkedList {
     class Link {
 
         Link first = null;
+        Link last = null;
 
         // data
         String city = null;
@@ -65,9 +44,10 @@ class CircularLinkedList {
     // ---------------------------------
 
     // constructor
-    public CircularLinkedList() {
+    public Doubly() {
 
         first = null;
+        last = null;
     }
 
     // add link at the beginning of the list
@@ -76,27 +56,31 @@ class CircularLinkedList {
         Link newLink = new Link(city);
 
         if (first == null) {
-            // empty list
+
             newLink.next = newLink;
             newLink.prev = newLink;
 
             first = newLink;
+            last = newLink;
 
         } else {
 
-            // connect the newLink references
+            if (first == last) {
+
+                Link temp = new Link("");
+                temp = newLink;
+
+                last.prev = temp;
+            }
+
             newLink.next = first;
-
-            newLink.prev = first.prev;
-
+            newLink.prev = last;
             first.prev = newLink;
 
-            // move first to the new link
             first = newLink;
+            last.next = first;
 
-            // point the last link to the new first
-            first.prev.next = first;
-
+            //last = tempLast;
         }
 
         return true;
@@ -108,18 +92,20 @@ class CircularLinkedList {
         Link newLink = new Link(city);
 
         if (first == null) {
-            //list is empty
+            // if list is empty
             first = newLink;
+            last = newLink;
         } else {
-            // set new link references
+
             newLink.next = first;
 
             newLink.prev = first.prev;
 
-            // last link is (first.prev)
             first.prev.next = newLink;
 
             first.prev = newLink;
+
+            last = newLink;
 
         }
 
@@ -141,7 +127,11 @@ class CircularLinkedList {
                 }
                 current = current.next;
 
-            } while (current != first);
+                if (current.next == first) {
+                    break;
+                }
+
+            } while (current != null);
 
             return false;
         }
@@ -155,6 +145,7 @@ class CircularLinkedList {
 
             // list is empty - add the link
             first = newLink;
+            last = newLink;
 
             // NOTE: there is an option not to insert
             // a link then the code above would be replaced
@@ -166,12 +157,12 @@ class CircularLinkedList {
                 if (current.city.equals(citySearch)) {
 
                     // check if last link
-                    if (current.next == first.prev) {
+                    if (current.next == null) {
                         // check if last link
                         current.next = newLink;
                         newLink.prev = current;
 
-                        first.prev = newLink;
+                        last = newLink;
 
                     } else {
                         newLink.next = current.next;
@@ -200,6 +191,7 @@ class CircularLinkedList {
 
             // list is empty - add the link
             first = newLink;
+            last = newLink;
 
             // NOTE: there is an option not to insert
             // a link then the code above would be replaced
@@ -255,7 +247,7 @@ class CircularLinkedList {
                     } else if (current.next == null) {
                         // last node
                         current.prev.next = null;
-                        first.prev = current;
+                        last = current;
                         current = null;
                         return true;
                     } else {
@@ -278,7 +270,7 @@ class CircularLinkedList {
     public void displayList() {
         Link current = first;
 
-        System.out.println("\n** Display List Forward To Back **");
+        System.out.println("");
 
         do {
             current.displayNode();
@@ -297,10 +289,6 @@ class CircularLinkedList {
         Link current = first;
         Link start = null;
 
-        System.out.println("\n ** Display List Forward To Back"
-                + " starting at " + startCity + "**");
-
-        // find the city in the list
         do {
             if (current.city.equals(startCity)) {
                 break;
@@ -333,14 +321,13 @@ class CircularLinkedList {
 
     public void displayListReverse() {
 
+        //Link current = last;
         Link current = first.prev;
-
-        System.out.println("\n** Display List in Reverse **\n");
 
         do {
             current.displayNode();
             current = current.prev;
-            if (current == first.prev) {
+            if (current == last) {
                 System.out.println("\n-----------\n");
                 return;
             }
@@ -350,13 +337,10 @@ class CircularLinkedList {
 
     public void displayListReverse(String startCity) {
 
+        //Link current = last;
         Link current = first;
         Link start = null;
 
-        System.out.println("\n ** Display list in reverse"
-                + " starting at " + startCity + "**");
-
-        // find the city in the list
         do {
             if (current.city.equals(startCity)) {
                 break;
@@ -390,7 +374,7 @@ class CircularLinkedList {
 
 public class DS_LinkedListCircular {
 
-    static CircularLinkedList dl = new CircularLinkedList();
+    static Doubly dl = new Doubly();
 
     public static void citySearch(String searchCity) {
 
@@ -434,13 +418,13 @@ public class DS_LinkedListCircular {
         dl.addLast("Sandiego");
 
         dl.displayList();
-        dl.displayListReverse();
 
         dl.displayList("Missoula");
-        dl.displayList("Wolfcreek");
+        //dl.displayList("Wolfcreek");
 
+        System.out.println("\nReverse");
         dl.displayListReverse();
-        dl.displayListReverse("Missoula");
+        dl.displayListReverse("Whitefish");
 
         System.out.println("\n----- Find Examples------\n");
 
@@ -493,88 +477,75 @@ public class DS_LinkedListCircular {
     }
 }
 /*
- * output
- *
- ** Display List Forward To Back **
- * Plains Whitefish Missoula Polson Kali Chicago Denver Sandiego
- * -----------
- *
- *
- ** Display List in Reverse **
- *
- * Sandiego Denver Chicago Kali Polson Missoula Whitefish Plains
- * -----------
- *
- *
- ** Display List Forward To Back starting at Missoula**
- *
- * Missoula Polson Kali Chicago Denver Sandiego Plains Whitefish
- * -----------
- *
- *
- ** Display List Forward To Back starting at Wolfcreek**
- * City Not Found
- *
- ** Display List in Reverse **
- *
- * Sandiego Denver Chicago Kali Polson Missoula Whitefish Plains
- * -----------
- *
- *
- ** Display list in reverse starting at Missoula**
- *
- * Missoula Whitefish Plains Sandiego Denver Chicago Kali Polson
- * -----------
- *
- *
- * ----- Find Examples------
- *
- *
- * Missoula is in list
- *
- * Bozeman not found
- *
- * ----- Delete Examples------
- *
- * Polson was deleted
- * Bozeman was NOT deleted
- * Sandiego was deleted
- * Whitefish was deleted
- *
- ** Display List Forward To Back **
- * Plains Missoula Kali Chicago Denver
- * -----------
- *
- *
- * ----- Insert After Examples------
- *
- *
- ** Display List Forward To Back **
- * Plains Missoula Dayton Kali Chicago Denver Boulder
- * -----------
- *
- *
- * ----- Insert After Examples------
- *
- *
- ** Display List Forward To Back **
- * Plains Libby Missoula Dayton Kali Springfield Chicago Denver Boulder
- * -----------
- *
- *
- * bye
- *
+cd E:\My Drive\NetBeansProjects\DS_Algorithms\LinkedListCircular; "JAVA_HOME=C:\\Program Files\\Java\\jdk-18" cmd /c "\"C:\\Program Files\\NetBeans-13\\netbeans\\java\\maven\\bin\\mvn.cmd\" -Dexec.vmArgs= \"-Dexec.args=${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}\" -Dexec.appArgs= -Dexec.mainClass=com.mycompany.linkedlistcircular.DS_LinkedListCircular \"-Dexec.executable=C:\\Program Files\\Java\\jdk-18\\bin\\java.exe\" \"-Dmaven.ext.class.path=C:\\Program Files\\NetBeans-13\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar\" org.codehaus.mojo:exec-maven-plugin:3.0.0:exec"
+Running NetBeans Compile On Save execution. Phase execution is skipped and output directories of dependency projects (with Compile on Save turned on) will be used instead of their jar artifacts.
+Scanning for projects...
+
+--------< com.mycompany.linkedlistcircular:LinkedListCircular >---------
+Building DS_LinkedListCircular 1.0-SNAPSHOT
+--------------------------------[ jar ]---------------------------------
+
+--- exec-maven-plugin:3.0.0:exec (default-cli) @ LinkedListCircular ---
+
+Plains Whitefish Missoula Polson Kali Chicago Denver Sandiego 
+-----------
+
+
+Missoula Polson Kali Chicago Denver Sandiego Plains Whitefish 
+-----------
+
+
+Reverse
+Sandiego Denver Chicago Kali Polson Missoula Whitefish Plains 
+-----------
+
+
+Whitefish Plains Sandiego Denver Chicago Kali Polson Missoula 
+-----------
+
+
+----- Find Examples------
+
+
+Missoula is in list
+
+Bozeman not found
+
+----- Delete Examples------
+
+Polson was deleted
+Bozeman was NOT deleted
+Sandiego was deleted
+Whitefish was deleted
+
+Plains Missoula Kali Chicago Denver 
+-----------
+
+
+----- Insert After Examples------
+
+
+Plains Missoula Dayton Kali Chicago Denver Boulder 
+-----------
+
+
+----- Insert After Examples------
+
+
+Plains Libby Missoula Dayton Kali Springfield Chicago Denver Boulder 
+-----------
+
+
+bye
+------------------------------------------------------------------------
+BUILD SUCCESS
+------------------------------------------------------------------------
+Total time:  0.522 s
+Finished at: 2022-07-18T17:53:35-06:00
+------------------------------------------------------------------------
+
+
  */
 
 ```
-
-
-
----
-
-End Of Topic
-
-
-
-
 
