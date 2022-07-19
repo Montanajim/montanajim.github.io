@@ -17,15 +17,24 @@
 
 ## Disadvantages of a linked list
 
-* The retrieval time of stored data is dependent on the size of the list and the position/node of the data in the list.
+* The retrieval time of stored data is dependent on the size of the list and the position/node of the data in the list. O(n)
 
 
 
 ## Types of linked lists
 
 * [Singly linked lists](SinglyLinkedList.)
-* Doubly linked lists
-* Circular linked lists
+* [Doubly linked lists](DoublyLinkedList)
+* [Doubly linked lists with links as sub class](DoublyLinkedListSubClass)
+* [Circular linked lists](CircularLinkedList)
+
+---
+
+End of Topic
+
+
+
+
 
 
 

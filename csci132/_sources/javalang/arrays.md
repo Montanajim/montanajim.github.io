@@ -27,7 +27,7 @@ https://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html
 
 ### Visualization
 
-![array1](array1.png)
+![array1](E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/javalang/array1.png)
 
 **Index** - the index identifies the location of the data.
 
@@ -70,7 +70,7 @@ Assume the following array. It is tracking states, their capitals, state bird, a
 
 The "[ ]" are there for reference only.  The squares "[ ]" indicate the coordinate system. They are not part of the actual data - they are there for reference only.  Note that the coordinates are [row, column].
 
-![](array2.png)
+![array2](E:/My%20Drive/0_CSCI_132_BasicDataStructures/bdbook/javalang/array2.png)
 
 ```java
 // create the 2 dimensional array
@@ -349,6 +349,4 @@ public class Array_Lecture {
 ---
 
 End Of Topic
-
-
 

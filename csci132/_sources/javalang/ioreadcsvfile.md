@@ -1,4 +1,4 @@
-# IO Read Data File
+# IO Read CSV File
 
 
 
@@ -162,6 +162,8 @@ class readCSV_BufferedReader {
 
 public class J1_IO_CSV_Demo_Rev2 {
     
+    static String[][] theArray;
+    
     public void printArray(int rows, int cols)
     {
        for (int r = 0; r < cols; r++) {
@@ -175,9 +177,7 @@ public class J1_IO_CSV_Demo_Rev2 {
     }
 
     public static void main(String[] args) {
-
-        String[][] theArray;
-        
+      
         // file location
         String dataFile = "c:\\z\\citydata.csv";
         
@@ -269,12 +269,6 @@ public class J1_IO_CSV_Demo_Rev2 {
 ---
 
 End of Topic
-
-
-
-
-
-
 
 
 
