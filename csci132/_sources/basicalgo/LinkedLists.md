@@ -23,7 +23,7 @@
 
 ## Types of linked lists
 
-* [Singly linked lists](SinglyLinkedList.)
+* [Singly linked lists](SinglyLinkedList)
 * [Doubly linked lists](DoublyLinkedList)
 * [Doubly linked lists with links as sub class](DoublyLinkedListSubClass)
 * [Circular linked lists](CircularLinkedList)
@@ -33,12 +33,4 @@
 End of Topic
 
 
-
-
-
-
-
----
-
-End Of Topic
 

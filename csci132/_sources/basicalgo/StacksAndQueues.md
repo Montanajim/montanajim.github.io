@@ -21,7 +21,7 @@ A __Stack__ is a way of organizing and consuming data where the Last In is the F
 
 
 
-Most people think of a stack as a stack of plates, where each plate represents data. Data is _**pushed**_ onto the stack. Meaning. it is added to the array or linked list. Data is consumed by _**popping**_ it off of the stack. Meaning, that the last piece of data added to the stack is removed from the array or linked list. This data is usually used by the part of the program that is popping/removing it from the stack.  _**Peeking**_ is looking at the last/next piece of data, but _not_ removing it from the stack.
+Most people think of a stack as a stack of plates, where each plate represents data. Data is _**pushed**_ onto the stack. Meaning. it is added to the array or linked list. Data is consumed by _**popping**_ it off of the stack. Meaning, that the last piece of data added to the stack is removed from the array or linked list. This data is usually used by the part of the program that is popping/removing it from the stack.  _**Peeking**_ is looking at the last/next piece of data, but _not_ removing it from the stack. An example is [Stack Array](StackUsingArrayOfObjects)
 
 Methods usually associated with a __stack__ are as follows:
 
@@ -62,4 +62,3 @@ End Of Topic
 
 
 
- 
