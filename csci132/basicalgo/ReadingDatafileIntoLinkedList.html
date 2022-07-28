@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Doubly Linked List &#8212; CSCI 132&lt;br&gt;Basic Data Structures&lt;br&gt;Class Materials</title>
+    <title>Reading Datafile Into Linked List &#8212; CSCI 132&lt;br&gt;Basic Data Structures&lt;br&gt;Class Materials</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Doubly Linked List - Links as Sub Class" href="DoublyLinkedListSubClass.html" />
-    <link rel="prev" title="Singly Linked List" href="SinglyLinkedList.html" />
+    <link rel="next" title="Stacks and Queues" href="StacksAndQueues.html" />
+    <link rel="prev" title="Circular Linked List - Links as Sub Class" href="CircularLinkedList.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -327,8 +327,8 @@ const thebe_selector_output = ".output, .cell_output"
        Singly Linked List
       </a>
      </li>
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
+     <li class="toctree-l3">
+      <a class="reference internal" href="DoublyLinkedList.html">
        Doubly Linked List
       </a>
      </li>
@@ -342,8 +342,8 @@ const thebe_selector_output = ".output, .cell_output"
        Circular Linked List - Links as Sub Class
       </a>
      </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ReadingDatafileIntoLinkedList.html">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
        Reading Datafile Into Linked List
       </a>
      </li>
@@ -441,7 +441,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/basicalgo/DoublyLinkedList.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/basicalgo/ReadingDatafileIntoLinkedList.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -472,11 +472,6 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#key-ideas">
-   Key Ideas
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#lecture-code">
    Lecture Code
   </a>
@@ -491,7 +486,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Doubly Linked List</h1>
+                <h1>Reading Datafile Into Linked List</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -501,11 +496,6 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#key-ideas">
-   Key Ideas
-  </a>
- </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#lecture-code">
    Lecture Code
@@ -520,21 +510,22 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="doubly-linked-list">
-<h1>Doubly Linked List<a class="headerlink" href="#doubly-linked-list" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="key-ideas">
-<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>The doubly linked list allows the list to be traversed in both directions; forwards and backwards</p></li>
-</ul>
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="reading-datafile-into-linked-list">
+<h1>Reading Datafile Into Linked List<a class="headerlink" href="#reading-datafile-into-linked-list" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="lecture-code">
 <h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
-<span class="cm"> * Programmer: James Goudy</span>
-<span class="cm"> * Project: Doubly Linked List </span>
+<span class="cm">Programmer: James Goudy</span>
+<span class="cm">Project: Reading a csv file into a linked list</span>
 <span class="cm"> */</span>
 
+
+
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileNotFoundException</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileReader</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.logging.Level</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.logging.Logger</span><span class="p">;</span>
 
 <span class="kd">class</span> <span class="nc">Link</span> <span class="p">{</span>
 
@@ -542,23 +533,32 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">Link</span> <span class="n">last</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
     <span class="c1">// data</span>
-    <span class="n">String</span> <span class="n">city</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="n">String</span> <span class="n">id</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="n">String</span> <span class="n">firstname</span><span class="p">;</span>
+    <span class="n">String</span> <span class="n">lastname</span><span class="p">;</span>
+    <span class="n">String</span> <span class="n">pet</span><span class="p">;</span>
+    
 
     <span class="c1">// link navigation</span>
     <span class="n">Link</span> <span class="n">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
     <span class="n">Link</span> <span class="n">prev</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
     <span class="c1">// constructor</span>
-    <span class="n">Link</span><span class="p">(</span><span class="n">String</span> <span class="n">city</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="na">city</span> <span class="o">=</span> <span class="n">city</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="nf">Link</span><span class="p">(</span><span class="n">String</span> <span class="n">id</span><span class="p">,</span> <span class="n">String</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">String</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">String</span> <span class="n">pet</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">firstname</span> <span class="o">=</span> <span class="n">firstname</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">lastname</span> <span class="o">=</span> <span class="n">lastname</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">pet</span> <span class="o">=</span> <span class="n">pet</span><span class="p">;</span>
     <span class="p">}</span>
 
+
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">displayNode</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">city</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;{&quot;</span><span class="o">+</span> <span class="n">firstname</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">lastname</span> <span class="o">+</span> <span class="s">&quot; &quot;</span>
+                            <span class="o">+</span><span class="n">pet</span><span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">id</span> <span class="o">+</span><span class="s">&quot; } &quot;</span> <span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span> <span class="c1">// end of link</span>
+
+
 
 
 <span class="kd">class</span> <span class="nc">Doubly</span> <span class="p">{</span>
@@ -574,8 +574,9 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="p">}</span>
 
     <span class="c1">// add link at the beginning of the list</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">addFirst</span><span class="p">(</span><span class="n">String</span> <span class="n">city</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="p">(</span><span class="n">city</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">addFirst</span><span class="p">(</span><span class="n">String</span> <span class="n">id</span><span class="p">,</span><span class="n">String</span> <span class="n">firstname</span><span class="p">,</span> 
+            <span class="n">String</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">String</span> <span class="n">pet</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="p">(</span> <span class="n">id</span><span class="p">,</span><span class="n">firstname</span><span class="p">,</span>  <span class="n">lastname</span><span class="p">,</span>  <span class="n">pet</span><span class="p">);</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// if list is empty</span>
@@ -591,9 +592,9 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="p">}</span>
 
     <span class="c1">// add link to the end of the list</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">addLast</span><span class="p">(</span><span class="n">String</span> <span class="n">city</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="p">(</span><span class="n">city</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">addLast</span><span class="p">(</span><span class="n">String</span> <span class="n">id</span><span class="p">,</span><span class="n">String</span> <span class="n">firstname</span><span class="p">,</span> 
+            <span class="n">String</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">String</span> <span class="n">pet</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="p">(</span> <span class="n">id</span><span class="p">,</span><span class="n">firstname</span><span class="p">,</span>  <span class="n">lastname</span><span class="p">,</span>  <span class="n">pet</span><span class="p">);</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// if list is empty</span>
@@ -608,7 +609,7 @@ const thebe_selector_output = ".output, .cell_output"
         <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">findCity</span><span class="p">(</span><span class="n">String</span> <span class="n">citySearch</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">findId</span><span class="p">(</span><span class="n">String</span> <span class="n">searchID</span><span class="p">)</span> <span class="p">{</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
 
@@ -618,7 +619,7 @@ const thebe_selector_output = ".output, .cell_output"
             <span class="n">Link</span> <span class="n">current</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
 
             <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">city</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">citySearch</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">searchID</span><span class="p">))</span> <span class="p">{</span>
                     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
                 <span class="p">}</span>
                 <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
@@ -628,9 +629,9 @@ const thebe_selector_output = ".output, .cell_output"
         <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">insertAfter</span><span class="p">(</span><span class="n">String</span> <span class="n">citySearch</span><span class="p">,</span> <span class="n">String</span> <span class="n">insertCity</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="p">(</span><span class="n">insertCity</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">insertAfter</span><span class="p">(</span><span class="n">String</span> <span class="n">searchId</span><span class="p">,</span> <span class="n">String</span> <span class="n">id</span><span class="p">,</span><span class="n">String</span> <span class="n">firstname</span><span class="p">,</span> 
+            <span class="n">String</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">String</span> <span class="n">pet</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="p">(</span> <span class="n">id</span><span class="p">,</span><span class="n">firstname</span><span class="p">,</span>  <span class="n">lastname</span><span class="p">,</span>  <span class="n">pet</span><span class="p">);</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
 
@@ -645,7 +646,7 @@ const thebe_selector_output = ".output, .cell_output"
             <span class="n">Link</span> <span class="n">current</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
 
             <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">city</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">citySearch</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">searchId</span><span class="p">))</span> <span class="p">{</span>
 
                     <span class="c1">// check if last link</span>
                     <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
@@ -674,9 +675,10 @@ const thebe_selector_output = ".output, .cell_output"
 
     <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">insertBefore</span><span class="p">(</span><span class="n">String</span> <span class="n">citySearch</span><span class="p">,</span> <span class="n">String</span> <span class="n">insertCity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">insertBefore</span><span class="p">(</span><span class="n">String</span> <span class="n">searchId</span><span class="p">,</span> <span class="n">String</span> <span class="n">id</span><span class="p">,</span><span class="n">String</span> <span class="n">firstname</span><span class="p">,</span> 
+            <span class="n">String</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">String</span> <span class="n">pet</span><span class="p">)</span> <span class="p">{</span>
 
-        <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="p">(</span><span class="n">insertCity</span><span class="p">);</span>
+        <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="p">(</span> <span class="n">id</span><span class="p">,</span><span class="n">firstname</span><span class="p">,</span>  <span class="n">lastname</span><span class="p">,</span>  <span class="n">pet</span><span class="p">);</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
 
@@ -691,7 +693,7 @@ const thebe_selector_output = ".output, .cell_output"
             <span class="n">Link</span> <span class="n">current</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
 
             <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">city</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">citySearch</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">searchId</span><span class="p">))</span> <span class="p">{</span>
 
                     <span class="c1">// check for first link</span>
                     <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">prev</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
@@ -719,7 +721,7 @@ const thebe_selector_output = ".output, .cell_output"
         <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">deleteCity</span><span class="p">(</span><span class="n">String</span> <span class="n">citySearch</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">deleteId</span><span class="p">(</span><span class="n">String</span> <span class="n">searchID</span><span class="p">)</span> <span class="p">{</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
@@ -727,7 +729,7 @@ const thebe_selector_output = ".output, .cell_output"
             <span class="n">Link</span> <span class="n">current</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
 
             <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">city</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">citySearch</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">searchID</span><span class="p">))</span> <span class="p">{</span>
 
                     <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">prev</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
                         <span class="c1">// first node</span>
@@ -770,95 +772,111 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DS_DoublyLinkedList</span> <span class="p">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DS_ReadDataIntoLinkedList</span> <span class="p">{</span>
 
     <span class="kd">static</span> <span class="n">Doubly</span> <span class="n">dl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Doubly</span><span class="p">();</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">citySearch</span><span class="p">(</span><span class="n">String</span> <span class="n">searchCity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">idSearch</span><span class="p">(</span><span class="n">String</span> <span class="n">searchId</span><span class="p">)</span> <span class="p">{</span>
 
         <span class="c1">// note that findCity returns a boolean</span>
         <span class="c1">// so it can be used in an &quot;if&quot; statement</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">dl</span><span class="p">.</span><span class="na">findCity</span><span class="p">(</span><span class="n">searchCity</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n&quot;</span> <span class="o">+</span> <span class="n">searchCity</span> <span class="o">+</span> <span class="s">&quot; is in list&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">dl</span><span class="p">.</span><span class="na">findId</span><span class="p">(</span><span class="n">searchId</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n&quot;</span> <span class="o">+</span> <span class="n">searchId</span> <span class="o">+</span> <span class="s">&quot; is in list&quot;</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n&quot;</span> <span class="o">+</span> <span class="n">searchCity</span> <span class="o">+</span> <span class="s">&quot; not found&quot;</span><span class="p">);</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n&quot;</span> <span class="o">+</span> <span class="n">searchId</span> <span class="o">+</span> <span class="s">&quot; not found&quot;</span><span class="p">);</span>
         <span class="p">}</span>
 
     <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">deleteCity</span><span class="p">(</span><span class="n">String</span> <span class="n">searchCity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">deleteID</span><span class="p">(</span><span class="n">String</span> <span class="n">searchId</span><span class="p">)</span> <span class="p">{</span>
 
         <span class="c1">// note that findCity returns a boolean</span>
         <span class="c1">// so it can be used in an &quot;if&quot; statement</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">dl</span><span class="p">.</span><span class="na">deleteCity</span><span class="p">(</span><span class="n">searchCity</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">searchCity</span> <span class="o">+</span> <span class="s">&quot; was deleted&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">dl</span><span class="p">.</span><span class="na">deleteId</span><span class="p">(</span><span class="n">searchId</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">searchId</span> <span class="o">+</span> <span class="s">&quot; was deleted&quot;</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">searchCity</span> <span class="o">+</span> <span class="s">&quot; was NOT deleted&quot;</span><span class="p">);</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">searchId</span> <span class="o">+</span> <span class="s">&quot; was NOT deleted&quot;</span><span class="p">);</span>
         <span class="p">}</span>
 
     <span class="p">}</span>
+    
+    
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">addData</span><span class="p">(</span><span class="n">String</span> <span class="n">filePath</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">BufferedReader</span> <span class="n">br</span><span class="p">;</span>
+        <span class="n">FileReader</span> <span class="n">fr</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">inputLine</span><span class="p">;</span>
+        
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="c1">// create buffered reader</span>
+            <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="p">(</span><span class="k">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="n">filePath</span><span class="p">));</span>
+            
+            <span class="c1">// skip the header line</span>
+            <span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">();</span>
+            
+            <span class="k">while</span><span class="p">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">String</span><span class="o">[]</span> <span class="n">inputArray</span> <span class="o">=</span> <span class="n">inputLine</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">);</span>
+                <span class="n">dl</span><span class="p">.</span><span class="na">addLast</span><span class="p">(</span><span class="n">inputArray</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span>
+                           <span class="n">inputArray</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span>
+                           <span class="n">inputArray</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">,</span>
+                           <span class="n">inputArray</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">);</span>
+            
+            <span class="p">}</span>
+            
+            <span class="n">br</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+            
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">FileNotFoundException</span> <span class="n">ex</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+        
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-        <span class="n">String</span> <span class="n">searchCity</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">searchID</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
         <span class="n">String</span> <span class="n">insertCity</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+        
+        <span class="n">String</span> <span class="n">filePath</span> <span class="o">=</span> <span class="s">&quot;c:\\z\\peoplePets.csv&quot;</span><span class="p">;</span>
 
-        <span class="c1">// insert data at front of list</span>
-        <span class="n">dl</span><span class="p">.</span><span class="na">addFirst</span><span class="p">(</span><span class="s">&quot;Kali&quot;</span><span class="p">);</span>
-        <span class="n">dl</span><span class="p">.</span><span class="na">addFirst</span><span class="p">(</span><span class="s">&quot;Polson&quot;</span><span class="p">);</span>
-        <span class="n">dl</span><span class="p">.</span><span class="na">addFirst</span><span class="p">(</span><span class="s">&quot;Missoula&quot;</span><span class="p">);</span>
-        <span class="n">dl</span><span class="p">.</span><span class="na">addFirst</span><span class="p">(</span><span class="s">&quot;Whitefish&quot;</span><span class="p">);</span>
-
-        <span class="c1">// insert data at end of list</span>
-        <span class="n">dl</span><span class="p">.</span><span class="na">addLast</span><span class="p">(</span><span class="s">&quot;Chicago&quot;</span><span class="p">);</span>
-        <span class="n">dl</span><span class="p">.</span><span class="na">addLast</span><span class="p">(</span><span class="s">&quot;Denver&quot;</span><span class="p">);</span>
-        <span class="n">dl</span><span class="p">.</span><span class="na">addLast</span><span class="p">(</span><span class="s">&quot;Sandiego&quot;</span><span class="p">);</span>
+        <span class="n">addData</span><span class="p">(</span><span class="n">filePath</span><span class="p">);</span>
 
         <span class="n">dl</span><span class="p">.</span><span class="na">displayList</span><span class="p">();</span>
 
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n----- Find Examples------\n&quot;</span><span class="p">);</span>
 
-        <span class="n">searchCity</span> <span class="o">=</span> <span class="s">&quot;Chicago&quot;</span><span class="p">;</span>
-        <span class="n">citySearch</span><span class="p">(</span><span class="n">searchCity</span><span class="p">);</span>
+        <span class="n">searchID</span> <span class="o">=</span> <span class="s">&quot;10&quot;</span><span class="p">;</span>
+        <span class="n">idSearch</span><span class="p">(</span><span class="n">searchID</span><span class="p">);</span>
 
-        <span class="n">searchCity</span> <span class="o">=</span> <span class="s">&quot;Bozeman&quot;</span><span class="p">;</span>
-        <span class="n">citySearch</span><span class="p">(</span><span class="n">searchCity</span><span class="p">);</span>
+        <span class="n">searchID</span> <span class="o">=</span> <span class="s">&quot;AAA&quot;</span><span class="p">;</span>
+        <span class="n">idSearch</span><span class="p">(</span><span class="n">searchID</span><span class="p">);</span>
 
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n----- Delete Examples------\n&quot;</span><span class="p">);</span>
 
-        <span class="n">searchCity</span> <span class="o">=</span> <span class="s">&quot;Polson&quot;</span><span class="p">;</span>
-        <span class="n">deleteCity</span><span class="p">(</span><span class="n">searchCity</span><span class="p">);</span>
+        <span class="n">searchID</span> <span class="o">=</span> <span class="s">&quot;10&quot;</span><span class="p">;</span>
+        <span class="n">deleteID</span><span class="p">(</span><span class="n">searchID</span><span class="p">);</span>
 
-        <span class="n">searchCity</span> <span class="o">=</span> <span class="s">&quot;Bozeman&quot;</span><span class="p">;</span>
-        <span class="n">deleteCity</span><span class="p">(</span><span class="n">searchCity</span><span class="p">);</span>
+        <span class="n">searchID</span> <span class="o">=</span> <span class="s">&quot;AA&quot;</span><span class="p">;</span>
+        <span class="n">deleteID</span><span class="p">(</span><span class="n">searchID</span><span class="p">);</span>
 
-        <span class="n">searchCity</span> <span class="o">=</span> <span class="s">&quot;Sandiego&quot;</span><span class="p">;</span>
-        <span class="n">deleteCity</span><span class="p">(</span><span class="n">searchCity</span><span class="p">);</span>
-
-        <span class="n">searchCity</span> <span class="o">=</span> <span class="s">&quot;Whitefish&quot;</span><span class="p">;</span>
-        <span class="n">deleteCity</span><span class="p">(</span><span class="n">searchCity</span><span class="p">);</span>
-
-        <span class="n">dl</span><span class="p">.</span><span class="na">displayList</span><span class="p">();</span>
 
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n----- Insert Examples------\n&quot;</span><span class="p">);</span>
 
-        <span class="n">searchCity</span> <span class="o">=</span> <span class="s">&quot;Missoula&quot;</span><span class="p">;</span>
-        <span class="n">insertCity</span> <span class="o">=</span> <span class="s">&quot;Dayton&quot;</span><span class="p">;</span>
-        <span class="n">dl</span><span class="p">.</span><span class="na">insertAfter</span><span class="p">(</span><span class="n">searchCity</span><span class="p">,</span> <span class="n">insertCity</span><span class="p">);</span>
+        <span class="n">searchID</span> <span class="o">=</span> <span class="s">&quot;140&quot;</span><span class="p">;</span>
+        <span class="n">dl</span><span class="p">.</span><span class="na">insertAfter</span><span class="p">(</span><span class="n">searchID</span><span class="p">,</span> <span class="s">&quot;1440&quot;</span><span class="p">,</span><span class="s">&quot;Duke&quot;</span><span class="p">,</span><span class="s">&quot;Ellington&quot;</span><span class="p">,</span> <span class="s">&quot;Phoenix&quot;</span><span class="p">);</span>
 
-        <span class="n">searchCity</span> <span class="o">=</span> <span class="s">&quot;Denver&quot;</span><span class="p">;</span>
-        <span class="n">insertCity</span> <span class="o">=</span> <span class="s">&quot;Boulder&quot;</span><span class="p">;</span>
-        <span class="n">dl</span><span class="p">.</span><span class="na">insertAfter</span><span class="p">(</span><span class="n">searchCity</span><span class="p">,</span> <span class="n">insertCity</span><span class="p">);</span>
 
-        <span class="n">dl</span><span class="p">.</span><span class="na">displayList</span><span class="p">();</span>
+        <span class="n">searchID</span> <span class="o">=</span> <span class="s">&quot;145&quot;</span><span class="p">;</span>
+        <span class="n">dl</span><span class="p">.</span><span class="na">insertBefore</span><span class="p">(</span><span class="n">searchID</span><span class="p">,</span> <span class="s">&quot;1455&quot;</span><span class="p">,</span><span class="s">&quot;John&quot;</span><span class="p">,</span><span class="s">&quot;Coletrane&quot;</span><span class="p">,</span> <span class="s">&quot;Hydra&quot;</span><span class="p">);</span>
 
-        <span class="n">searchCity</span> <span class="o">=</span> <span class="s">&quot;Chicago&quot;</span><span class="p">;</span>
-        <span class="n">insertCity</span> <span class="o">=</span> <span class="s">&quot;Springfield&quot;</span><span class="p">;</span>
-        <span class="n">dl</span><span class="p">.</span><span class="na">insertBefore</span><span class="p">(</span><span class="n">searchCity</span><span class="p">,</span> <span class="n">insertCity</span><span class="p">);</span>
-
-        <span class="n">searchCity</span> <span class="o">=</span> <span class="s">&quot;Missoula&quot;</span><span class="p">;</span>
-        <span class="n">insertCity</span> <span class="o">=</span> <span class="s">&quot;Libby&quot;</span><span class="p">;</span>
-        <span class="n">dl</span><span class="p">.</span><span class="na">insertBefore</span><span class="p">(</span><span class="n">searchCity</span><span class="p">,</span> <span class="n">insertCity</span><span class="p">);</span>
 
         <span class="n">dl</span><span class="p">.</span><span class="na">displayList</span><span class="p">();</span>
 
@@ -866,31 +884,160 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="cm">/*</span>
-<span class="cm"> * OUTPUT  *</span>
-<span class="cm"> * Whitefish Missoula Polson Kali Chicago Denver Sandiego  *</span>
-<span class="cm"> * ----- Find Examples------</span>
-<span class="cm"> *</span>
-<span class="cm"> *</span>
-<span class="cm"> * Chicago is in list</span>
-<span class="cm"> *</span>
-<span class="cm"> * Bozeman not found</span>
-<span class="cm"> *</span>
-<span class="cm"> * ----- Delete Examples------</span>
-<span class="cm"> *</span>
-<span class="cm"> * Polson was deleted</span>
-<span class="cm"> * Bozeman was NOT deleted</span>
-<span class="cm"> * Sandiego was deleted</span>
-<span class="cm"> * Whitefish was deleted</span>
-<span class="cm"> *</span>
-<span class="cm"> * Missoula Kali Chicago Denver  *</span>
-<span class="cm"> * ----- Insert Examples------</span>
-<span class="cm"> *</span>
-<span class="cm"> *</span>
-<span class="cm"> * Missoula Dayton Kali Chicago Denver Boulder  *</span>
-<span class="cm"> * Libby Missoula Dayton Kali Springfield Chicago Denver Boulder  *</span>
-<span class="cm"> * bye</span>
-<span class="cm"> *</span>
+<span class="cm">/* peoplePet.csv</span>
+
+<span class="cm">id,firstname,lastname,pet</span>
+<span class="cm">1,Wini,Gwinnett,Crowned hawk-eagle</span>
+<span class="cm">2,Birgit,Tabb,Silver gull</span>
+<span class="cm">3,Alfonso,Moyle,Ring-tailed possum</span>
+<span class="cm">4,Ode,Buckwell,Leopard</span>
+<span class="cm">5,Francene,Zanazzi,Wambenger</span>
+<span class="cm">6,Willie,Hakking,Butterfly</span>
+<span class="cm">7,Carlie,Pizey,Northern fur seal</span>
+<span class="cm">8,Cobby,Chittock,Great white pelican</span>
+<span class="cm">9,Ingamar,Cardenoza,Puma</span>
+<span class="cm">10,Brady,Vowles,Red meerkat</span>
+<span class="cm">11,Nonna,Betser,Lesser mouse lemur</span>
+<span class="cm">12,Antonina,Dovey,Insect</span>
+<span class="cm">13,Erastus,Crackett,Cow</span>
+<span class="cm">14,Lucien,Cardenosa,Yellow baboon</span>
+<span class="cm">15,Leon,Storm,Blue catfish</span>
+<span class="cm">16,Reinaldos,Welberry,Common grenadier</span>
+<span class="cm">17,Cherice,Coleson,Shrike</span>
+<span class="cm">18,Elyn,Antill,Echidna</span>
+<span class="cm">19,Dicky,Guppie,Puna ibis</span>
+<span class="cm">20,Erasmus,Pauncefort,White-necked stork</span>
+<span class="cm">21,Stewart,Pettifer,Starling</span>
+<span class="cm">22,Brand,Tytcomb,Raccoon</span>
+<span class="cm">23,Edwina,Cosens,Radiated tortoise</span>
+<span class="cm">24,Martelle,Barkus,Cormorant</span>
+<span class="cm">25,Blithe,Prevett,Kafue flats lechwe</span>
+<span class="cm">26,Abbie,Ferber,Common wombat</span>
+<span class="cm">27,Antonin,Sayes,Small-clawed otter</span>
+<span class="cm">28,Vaughan,Barzen,Hawk-eagle</span>
+<span class="cm">29,Elwira,Braemer,Monkey</span>
+<span class="cm">30,Sibelle,Vennings,Javanese cormorant</span>
+<span class="cm">31,Mavra,Bulter,Lemur</span>
+<span class="cm">32,Darrelle,Sanford,Beisa oryx</span>
+<span class="cm">33,Rodney,Whapples,Gull</span>
+<span class="cm">34,Horace,Gerwood,Tropical buckeye butterfly</span>
+<span class="cm">35,Garvin,Pestell,Bleu</span>
+<span class="cm">36,Lauralee,Crowdace,Dama wallaby</span>
+<span class="cm">37,Farica,Juara,Penguin</span>
+<span class="cm">38,Bucky,Taylo,Crab</span>
+<span class="cm">39,Carlynne,Pleasaunce,Common genet</span>
+<span class="cm">40,Dana,Percy,White-throated kingfisher</span>
+<span class="cm">41,Esma,McKerley,Southern ground hornbill</span>
+<span class="cm">42,Hube,Grills,Flamingo</span>
+<span class="cm">43,Hersch,Schneidau,Kangaroo</span>
+<span class="cm">44,Hildy,Matfin,Gull</span>
+<span class="cm">45,Lelia,Donaghy,American marten</span>
+<span class="cm">46,Eric,Tydd,Bahama pintail</span>
+<span class="cm">47,Clim,Tetsall,Spur-winged goose</span>
+<span class="cm">48,Berke,Brotherwood,Little cormorant</span>
+<span class="cm">49,Steve,Bride,Turtle</span>
+<span class="cm">50,Christiane,Stoppe,Fox</span>
+<span class="cm">51,Riley,Badgers,Swallow</span>
+<span class="cm">52,Leonidas,Pughsley,Roseate cockatoo</span>
+<span class="cm">53,Richard,Baudon,White-browed owl</span>
+<span class="cm">54,Marline,Tousey,Indian mynah</span>
+<span class="cm">55,Margarita,Breche,Phalarope</span>
+<span class="cm">56,Gerek,Aspinwall,Great horned owl</span>
+<span class="cm">57,Mabelle,Aronin,Grouse</span>
+<span class="cm">58,Curtice,Provost,Indian mynah</span>
+<span class="cm">59,Nikolaos,Cass,Desert tortoise</span>
+<span class="cm">60,Edmund,Pogosian,Grenadier</span>
+<span class="cm">61,Cindi,Vell,Catfish</span>
+<span class="cm">62,Davis,Roberts,Three-banded plover</span>
+<span class="cm">63,Clayborne,Jennrich,Roe deer</span>
+<span class="cm">64,Malory,Iwanicki,Snowy owl</span>
+<span class="cm">65,Toddy,Vannuchi,Arboral spiny rat</span>
+<span class="cm">66,Terri,Dudson,Malachite kingfisher</span>
+<span class="cm">67,Gabriel,Prine,Possum</span>
+<span class="cm">68,Jeannine,Westwick,Gecko</span>
+<span class="cm">69,Conney,Mattke,Stork</span>
+<span class="cm">70,Eulalie,Wapplington,Flamingo</span>
+<span class="cm">71,Darrick,Porcas,Rat</span>
+<span class="cm">72,Matty,Marchment,Deer</span>
+<span class="cm">73,Fedora,Semper,Nighthawk</span>
+<span class="cm">74,Barnebas,Wychard,Flying fox</span>
+<span class="cm">75,Edmund,Whitton,Squirrel</span>
+<span class="cm">76,Oliver,Dragoe,Parrot</span>
+<span class="cm">77,Carly,Royden,Lourie</span>
+<span class="cm">78,Cairistiona,Brothwell,Chestnut weaver</span>
+<span class="cm">79,Barnabas,Eastby,Lion</span>
+<span class="cm">80,Clementina,McCoish,European stork</span>
+<span class="cm">81,Rupert,Goosnell,Boa</span>
+<span class="cm">82,Jerrylee,Keir,Lizard</span>
+<span class="cm">83,Cariotta,Strettell,Little blue penguin</span>
+<span class="cm">84,Onida,Wysome,White-rumped vulture</span>
+<span class="cm">85,Reggis,Thursby,Cape wild cat</span>
+<span class="cm">86,Sharleen,Yele,Gazer</span>
+<span class="cm">87,Obadias,Rosedale,Vine snake</span>
+<span class="cm">88,Jodie,Harmond,Boat-billed heron</span>
+<span class="cm">89,Jonie,Goodricke,Brush-tailed phascogale</span>
+<span class="cm">90,Carissa,Clorley,Elk</span>
+<span class="cm">91,Jacki,Belhome,Northern elephant seal</span>
+<span class="cm">92,Virgina,Jarrette,House sparrow</span>
+<span class="cm">93,Hasheem,Cordeiro,Oystercatcher</span>
+<span class="cm">94,Roseann,Hussy,Fairy penguin</span>
+<span class="cm">95,Emmeline,Saurat,Bee-eater</span>
+<span class="cm">96,Ashlin,Ollerhead,Grey lourie</span>
+<span class="cm">97,Frannie,Sailes,Jungle kangaroo</span>
+<span class="cm">98,Shelden,Imason,Woodpecker</span>
+<span class="cm">99,Nicole,Cattle,Starling</span>
+<span class="cm">100,Bennie,Selliman,Ant</span>
+<span class="cm">101,Monroe,Sturzaker,Wild turkey</span>
+<span class="cm">102,Lou,Drew-Clifton,Ferruginous hawk</span>
+<span class="cm">103,Gerladina,Broadbere,Yellow-billed stork</span>
+<span class="cm">104,Laney,Scartifield,Common zebra</span>
+<span class="cm">105,Rolfe,Dressel,Cape Barren goose</span>
+<span class="cm">106,Clarita,Zylbermann,Red-legged pademelon</span>
+<span class="cm">107,Ev,Buckston,Kite</span>
+<span class="cm">108,Vidovic,Lawson,Buffalo</span>
+<span class="cm">109,Daloris,Grzesiak,Southern brown bandicoot</span>
+<span class="cm">110,Pier,Sproson,Brocket</span>
+<span class="cm">111,Edwina,Barlace,Giant girdled lizard</span>
+<span class="cm">112,Elvin,Birchwood,Deer</span>
+<span class="cm">113,Jedediah,Lazonby,Wallaby</span>
+<span class="cm">114,Ambur,Lochead,Gila monster</span>
+<span class="cm">115,Mirabella,Ferron,Possum</span>
+<span class="cm">116,Dougy,Gianinotti,Openbill</span>
+<span class="cm">117,Cher,Sivill,Dog</span>
+<span class="cm">118,Durante,Wissby,Genet</span>
+<span class="cm">119,Rora,Shord,Dove</span>
+<span class="cm">120,Dame,Jennison,Red-billed toucan</span>
+<span class="cm">121,Ira,Karolowski,Eurasian red squirrel</span>
+<span class="cm">122,Juliet,Hobson,Greylag goose</span>
+<span class="cm">123,Natale,Tattersdill,Starling</span>
+<span class="cm">124,Caitlin,Leggett,Ring-necked pheasant</span>
+<span class="cm">125,Hamnet,Danelut,South African hedgehog</span>
+<span class="cm">126,Christye,Stores,Porcupine</span>
+<span class="cm">127,Vince,Paolo,Kangaroo</span>
+<span class="cm">128,Cristy,Fesby,Starling</span>
+<span class="cm">129,Britney,Standfield,Burrowing owl</span>
+<span class="cm">130,Kaleena,Volkers,Langur</span>
+<span class="cm">131,Averil,Kimbell,Rhea</span>
+<span class="cm">132,Carmelita,Gehrels,Spotted-tailed quoll</span>
+<span class="cm">133,Cory,Sreenan,Hyrax</span>
+<span class="cm">134,Sybille,Filippone,Dove</span>
+<span class="cm">135,Delia,Forkan,Agama lizard</span>
+<span class="cm">136,Sigfried,Cattlemull,Eastern dwarf mongoose</span>
+<span class="cm">137,Rowena,James,Fox</span>
+<span class="cm">138,Shane,Naisey,Jaguarundi</span>
+<span class="cm">139,Janine,Ielden,Eastern fox squirrel</span>
+<span class="cm">140,Beverlie,Biggerstaff,Fox</span>
+<span class="cm">141,Menard,Archbould,Roe deer</span>
+<span class="cm">142,Darline,Keating,Caribou</span>
+<span class="cm">143,Heall,Chritchley,Beaver</span>
+<span class="cm">144,Corenda,Bunnell,Glossy starling</span>
+<span class="cm">145,Town,Mandal,White-winged tern</span>
+<span class="cm">146,Pietrek,Primmer,Superb starling</span>
+<span class="cm">147,Guillemette,Jasper,Gemsbok</span>
+<span class="cm">148,Diane,Mewes,Civet</span>
+<span class="cm">149,Hatty,Liddle,Grouse</span>
+<span class="cm">150,Ange,Beardwell,Deer</span>
+
 <span class="cm"> */</span>
 </pre></div>
 </div>
@@ -924,17 +1071,17 @@ const thebe_selector_output = ".output, .cell_output"
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="SinglyLinkedList.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="CircularLinkedList.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Singly Linked List</p>
+            <p class="prev-next-title">Circular Linked List - Links as Sub Class</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="DoublyLinkedListSubClass.html" title="next page">
+    <a class='right-next' id="next-link" href="StacksAndQueues.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Doubly Linked List - Links as Sub Class</p>
+        <p class="prev-next-title">Stacks and Queues</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

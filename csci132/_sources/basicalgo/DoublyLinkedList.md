@@ -16,8 +16,6 @@
  * Project: Doubly Linked List 
  */
 
-package com.mycompany.ds_doublylinkedlist;
-
 
 class Link {
 
