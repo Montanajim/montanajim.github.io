@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Stateless Routes &mdash; CSCI 238\nMobile Apps&lt;br&gt;Class Materials</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/mystnb.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Stateful and Stateless Routes" href="StatefulStatelessRoutes.html" />
+    <link rel="prev" title="Stateless Widgets - ListView" href="StatelessWidgetsListView.html" /> 
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
+            <a class="site-title" href="../index.html">
+                Python
+            </a>
+        </div>
+    </header>
+
+
+<div class="breadcrumbs-outer hidden-xs-down">
+    <div class="container">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="breadcrumbs">
+    
+      <li><a href="../intro.html">Docs</a></li>
+        
+      <li>Stateless Routes</li>
+    
+    
+      <li class="breadcrumbs-aside">
+        
+            
+            <a href="../_sources/maref/StatelessRoutes.md" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+</div>
+    </div>
+</div>
+    <div class="main-outer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 site-nav">
+                    
+<div role="search">
+    <form class="search" action="../search.html" method="get">
+        <div class="icon-input">
+            <input type="text" name="q" placeholder="Search" />
+            <span class="icon-search"></span>
+        </div>
+        <input type="submit" value="Go" class="d-hidden" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+                    <div class="site-nav-tree">
+                        
+                            
+                            
+                                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="DartAndroidStudio.html">Run your first Dart example <br /> in Android Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DartVariablesDataTypes.html">Dart Variables and Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LambdaFunctions.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DartClasses.html">Dart Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Future.html">Future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Future.html#lecture-code">Lecture Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InputOutput.html">Input Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StatelessWidgetsContainer.html">Stateless Widgets - Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StatelessWidgetsListView.html">Stateless Widgets - ListView</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Stateless Routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StatefulStatelessRoutes.html">Stateful and Stateless Routes</a></li>
+</ul>
+
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <div class="document">
+                        
+                            
+  <section class="tex2jax_ignore mathjax_ignore" id="stateless-routes">
+<h1>Stateless Routes<a class="headerlink" href="#stateless-routes" title="Permalink to this headline">¶</a></h1>
+<section id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Key Widgets</p>
+<ul>
+<li><p>Material App</p></li>
+<li><p>Scaffold</p></li>
+<li><p>Icon Button</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="routes">
+<h2>Routes<a class="headerlink" href="#routes" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Routes are an attribute in the Material App Widget.  They allow for the creation of multiple “pages” in a Flutter App.</p>
+</div></blockquote>
+</section>
+<section id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">MaterialApp</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nl">home:</span><span class="w"> </span><span class="n">HomePage</span><span class="p">(),</span><span class="w"></span>
+<span class="w">      </span><span class="nl">debugShowCheckedModeBanner:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nl">routes:</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">WidgetBuilder</span><span class="o">&gt;</span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;/HomePage&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">HomePage</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;/SecondPage&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">SecondPage</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;/ThirdPage&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ThirdPage</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;/FourthPage&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">FourthPage</span><span class="p">()</span><span class="w"></span>
+<span class="w">      </span><span class="p">}));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">HomePage</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatelessWidget</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Scaffold</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nl">appBar:</span><span class="w"> </span><span class="n">AppBar</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="nl">title:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;HomePage&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">            </span><span class="nl">backgroundColor:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">deepOrange</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="nl">body:</span><span class="w"> </span><span class="n">ListView</span><span class="p">(</span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="nl">mainAxisAlignment:</span><span class="w"> </span><span class="n">MainAxisAlignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="nl">children:</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="n">Container</span><span class="p">(</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">padding:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">40.0</span><span class="p">),</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">tealAccent</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">child:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                        </span><span class="s2">&quot;This is </span><span class="se">\n</span><span class="s2">my travel app.</span><span class="se">\n</span><span class="s2">Isn&#39;t it great&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36.0</span><span class="p">))),</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="n">Row</span><span class="p">(</span><span class="nl">mainAxisAlignment:</span><span class="w"> </span><span class="n">MainAxisAlignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                  </span><span class="n">IconButton</span><span class="p">(</span><span class="w"></span>
+<span class="w">                      </span><span class="nl">icon:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="p">.</span><span class="n">airplanemode_active</span><span class="p">,</span><span class="w"></span>
+<span class="w">                          </span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">),</span><span class="w"></span>
+<span class="w">                      </span><span class="nl">padding:</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">zero</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="nl">iconSize:</span><span class="w"> </span><span class="m">70.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="nl">onPressed:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">Navigator</span><span class="p">.</span><span class="n">of</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">pushNamed</span><span class="p">(</span><span class="s2">&quot;/SecondPage&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                      </span><span class="p">}),</span><span class="w"></span>
+<span class="w">                  </span><span class="n">IconButton</span><span class="p">(</span><span class="w"></span>
+<span class="w">                      </span><span class="nl">icon:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="p">.</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">blueAccent</span><span class="p">),</span><span class="w"></span>
+<span class="w">                      </span><span class="nl">padding:</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">zero</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="nl">iconSize:</span><span class="w"> </span><span class="m">70.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="nl">onPressed:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">Navigator</span><span class="p">.</span><span class="n">of</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">pushNamed</span><span class="p">(</span><span class="s2">&quot;/ThirdPage&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                      </span><span class="p">}),</span><span class="w"></span>
+<span class="w">                  </span><span class="n">IconButton</span><span class="p">(</span><span class="w"></span>
+<span class="w">                      </span><span class="nl">icon:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="p">.</span><span class="n">directions_car_outlined</span><span class="p">,</span><span class="w"></span>
+<span class="w">                          </span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">green</span><span class="p">),</span><span class="w"></span>
+<span class="w">                      </span><span class="nl">padding:</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">zero</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="nl">iconSize:</span><span class="w"> </span><span class="m">70.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="nl">onPressed:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">Navigator</span><span class="p">.</span><span class="n">of</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">pushNamed</span><span class="p">(</span><span class="s2">&quot;/FourthPage&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                      </span><span class="p">}),</span><span class="w"></span>
+<span class="w">                </span><span class="p">]),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Home Page&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">              </span><span class="p">])</span><span class="w"></span>
+<span class="w">        </span><span class="p">]));</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">SecondPage</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatelessWidget</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">SecondPage</span><span class="p">({</span><span class="n">Key</span><span class="o">?</span><span class="w"> </span><span class="n">key</span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">key:</span><span class="w"> </span><span class="n">key</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Scaffold</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nl">appBar:</span><span class="w"> </span><span class="n">AppBar</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="nl">title:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Second Page&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="nl">backgroundColor:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">deepOrange</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="nl">body:</span><span class="w"> </span><span class="n">ListView</span><span class="p">(</span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="n">Container</span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="nl">padding:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">40.0</span><span class="p">),</span><span class="w"></span>
+<span class="w">              </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="nl">child:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;This is the plane&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">))),</span><span class="w"></span>
+<span class="w">          </span><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="nl">mainAxisAlignment:</span><span class="w"> </span><span class="n">MainAxisAlignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="nl">children:</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="n">IconButton</span><span class="p">(</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">icon:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="p">.</span><span class="n">home</span><span class="p">,</span><span class="w"> </span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">blue</span><span class="p">),</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">padding:</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">zero</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">iconSize:</span><span class="w"> </span><span class="m">70.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">onPressed:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                      </span><span class="n">Navigator</span><span class="p">.</span><span class="n">of</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">pushNamed</span><span class="p">(</span><span class="s2">&quot;/HomePage&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}),</span><span class="w"></span>
+<span class="w">              </span><span class="p">])</span><span class="w"></span>
+<span class="w">        </span><span class="p">]));</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">ThirdPage</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatelessWidget</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">ThirdPage</span><span class="p">({</span><span class="n">Key</span><span class="o">?</span><span class="w"> </span><span class="n">key</span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">key:</span><span class="w"> </span><span class="n">key</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Scaffold</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nl">appBar:</span><span class="w"> </span><span class="n">AppBar</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="nl">title:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Third Page&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="nl">backgroundColor:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">deepOrange</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="nl">body:</span><span class="w"> </span><span class="n">ListView</span><span class="p">(</span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="n">Container</span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="nl">padding:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">40.0</span><span class="p">),</span><span class="w"></span>
+<span class="w">              </span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">tealAccent</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="nl">child:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;This is the train&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">))),</span><span class="w"></span>
+<span class="w">          </span><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="nl">mainAxisAlignment:</span><span class="w"> </span><span class="n">MainAxisAlignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="nl">children:</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="n">IconButton</span><span class="p">(</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">icon:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="p">.</span><span class="n">home</span><span class="p">,</span><span class="w"> </span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">blue</span><span class="p">),</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">padding:</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">zero</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">iconSize:</span><span class="w"> </span><span class="m">70.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">onPressed:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                      </span><span class="n">Navigator</span><span class="p">.</span><span class="n">of</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">pushNamed</span><span class="p">(</span><span class="s2">&quot;/HomePage&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}),</span><span class="w"></span>
+<span class="w">              </span><span class="p">])</span><span class="w"></span>
+<span class="w">        </span><span class="p">]));</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">FourthPage</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatelessWidget</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">FourthPage</span><span class="p">({</span><span class="n">Key</span><span class="o">?</span><span class="w"> </span><span class="n">key</span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">key:</span><span class="w"> </span><span class="n">key</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Scaffold</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nl">appBar:</span><span class="w"> </span><span class="n">AppBar</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="nl">title:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Fourth Page&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="nl">backgroundColor:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">deepOrange</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="nl">body:</span><span class="w"> </span><span class="n">ListView</span><span class="p">(</span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="n">Container</span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="nl">padding:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">40.0</span><span class="p">),</span><span class="w"></span>
+<span class="w">              </span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">tealAccent</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="nl">child:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;This is the automobile&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">))),</span><span class="w"></span>
+<span class="w">          </span><span class="n">Column</span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="nl">mainAxisAlignment:</span><span class="w"> </span><span class="n">MainAxisAlignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="nl">children:</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="s2">&quot;Content Here&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="n">IconButton</span><span class="p">(</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">icon:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="p">.</span><span class="n">home</span><span class="p">,</span><span class="w"> </span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">blue</span><span class="p">),</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">padding:</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">zero</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">iconSize:</span><span class="w"> </span><span class="m">70.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nl">onPressed:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                      </span><span class="n">Navigator</span><span class="p">.</span><span class="n">of</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">pushNamed</span><span class="p">(</span><span class="s2">&quot;/HomePage&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}),</span><span class="w"></span>
+<span class="w">              </span><span class="p">])</span><span class="w"></span>
+<span class="w">        </span><span class="p">]));</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="screenshots">
+<h2>Screenshots<a class="headerlink" href="#screenshots" title="Permalink to this headline">¶</a></h2>
+<p><img alt="image-20221012121755164" src="../_images/stateless1.png" /></p>
+<p><img alt="image-20221012121902941" src="../_images/stateless2.png" /></p>
+<p><img alt="image-20221012122018939" src="../_images/stateless3.png" /></p>
+<p><img alt="image-20221012122135516" src="../_images/Stateless4.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./maref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/clipboard.min.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script type="text/javascript" src="../None"></script>
+    <script type="text/javascript" src="../None"></script>
+    <script type="text/javascript" src="../None"></script>
+    <script type="text/javascript" src="../_static/togglebutton.js"></script>
+    <script type="text/javascript" src="../None"></script>
+    <script type="text/javascript" src="../_static/design-tabs.js"></script>
+    <script type="text/javascript" src="../None"></script>
+    <script type="text/javascript" src="../_static/sphinx-thebe.js"></script>
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+    <div class="footer" role="contentinfo">
+        <div class="container">
+            &#169; Copyright 2022 by James Goudy.
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.
+        </div>
+    </div>  
+
+</body>
+</html>

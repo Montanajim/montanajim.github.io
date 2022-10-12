@@ -1,11 +1,6 @@
-# Welcome to your Jupyter Book
+# Class Notes For CSCI 238
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
-
-Check out the content pages bundled with this sample book to see more.
+These are the class notes for CSCI 238 Mobile Applications.  This course focuses on Mobile Apps using the Flutter Suite.  The developer only has to write the code once and the flutter suite can allow it to be deployed on Android, IOS, websites, etc.
 
 ```{tableofcontents}
 ```
