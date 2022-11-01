@@ -2,7 +2,14 @@
 
 ## Key Ideas
 
+* Key Widgets
+  * radio
 
+
+
+```{note}
+The __groupValue__  is the value of the selected radio button and it binds all of the radio buttons that use it.
+```
 
 
 
