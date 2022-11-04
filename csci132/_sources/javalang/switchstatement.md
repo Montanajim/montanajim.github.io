@@ -23,7 +23,7 @@
 A switch statement acts like an if statement, but there are definite choices. The switch statement will allow specific code to run pending the choice. Swtich statements are usually used in building menus, but can be used anywhere where there is a definite choice.
 ```
 
-**Example**
+### Example
 
 ```java
 
@@ -120,7 +120,7 @@ public class Menu_Demo {
 
 
 
-## More Menu Examples
+###  More Menu Examples
 
 ```java
 package switch_menuexamples;
@@ -251,6 +251,116 @@ public class Switch_MenuExamples {
             myScanner.nextLine();
     }
     
+}
+
+```
+
+
+
+### New format of switch statement after version 14+
+
+```java
+/*
+ * Switch Statement
+ * As of Java 14 went to the "->"
+ */
+package com.mycompany.switch_statement_revised;
+
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author jgoudy
+ */
+public class Switch_statement_revised {
+
+    static int menu() {
+        int choice = 0;
+
+        try {
+            Scanner myScan = new Scanner(System.in);
+
+            System.out.print("Menu\n"
+                    + "1. Pick Larry\n"
+                    + "2. Pick Curly\n"
+                    + "3. Pick Moe\n"
+                    + "Please pick 1,2 or 3:  ");
+            choice = Integer.parseInt(myScan.nextLine());
+
+            return choice;
+        } catch (Exception e) {
+            return -1;
+        }
+
+    }
+
+    static void Larry() {
+        System.out.println("You chose Larry");
+    }
+
+    static void Curly() {
+        System.out.println("You chose Curly");
+    }
+
+    static void Moe() {
+        System.out.println("You chose Moe");
+    }
+
+    static void switch_example1() {
+        // this format is the same in most languages
+        // and in all version of java
+
+        int choice = -1;
+
+        System.out.println("Example 1");
+        choice = menu();
+
+        switch (choice) {
+            case 1:
+                Larry();
+                break;
+            case 2:
+                Curly();
+                break;
+            case 3:
+                Moe();
+                break;
+            default:
+                System.out.println("That wasn't a choice");
+
+        }
+
+        System.out.println("\n--------------------------\n");
+    }
+
+    static void switch_example2() {
+        // This format of a switch effective version 14+
+
+        int choice = -1;
+
+        System.out.println("Example 1");
+        choice = menu();
+
+        switch (choice) {
+            case 1 -> Larry();
+            case 2 -> Curly();
+            case 3 -> Moe();
+            default ->
+                System.out.println("That wasn't a choice");
+
+        }
+
+        System.out.println("\n--------------------------\n");
+    }
+
+    public static void main(String[] args) {
+
+        switch_example1();
+        
+        switch_example2();    
+
+    }
 }
 
 ```

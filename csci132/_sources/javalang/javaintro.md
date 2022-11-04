@@ -22,6 +22,13 @@ https://books.trinket.io/thinkjava2/chapter1.html
 
 
 
+## PDF Of This Book
+
+
+For A PDF Copy Of CSCI 132 Class Materials: {Download}`Click Here<./book.pdf>`
+
+
+
 ## History
 
 * Created by James Gosling and a team of developers.

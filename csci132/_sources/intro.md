@@ -1,15 +1,6 @@
-Welcome to CSCI 132
-============================
+# Welcome to CSCI 127 Joy and Beauty of Data
 
-This class introduces the JAVA language and basic data structures. Some of the basic data structures include arrays, linked lists, and some sorting.
+These are the class notes for CSCI 127 Joy and Beauty of data. This course focuses on core programming techniques applicable to all languages along with specific libraries and techniques only to Python.
 
-
-
-> “Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live” - John Woods
-
-
-
----
-
-
-
+```{tableofcontents}
+```

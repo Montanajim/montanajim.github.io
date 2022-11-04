@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Visualizing Big O notation &#8212; CSCI 132&lt;br&gt;Basic Data Structures&lt;br&gt;Class Materials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Visualizing Big O notation &#8212; CSCI 132 Basic Data Structures</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,14 +84,15 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
       
       
-      <h1 class="site-logo" id="site-title">CSCI 132<br>Basic Data Structures<br>Class Materials</h1>
+      <h1 class="site-logo" id="site-title">CSCI 132 Basic Data Structures</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -86,17 +100,148 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to CSCI 132
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Java Language
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to CSCI 132
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
   <a class="reference internal" href="../javalang/javalanguage.html">
    Java Language
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/netbeansinstall.html">
+   NetBeans Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/javaintro.html">
+   JAVA Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/javabasics.html">
+   Java Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/java_variable_lc.html">
+   Variable Lecture Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/firstprogram.html">
+   First Program
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/secondprogram.html">
+   Second Program
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/decisiontrees.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/switchstatement.html">
+   Switch Statement
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/stringfunctions.html">
+   String Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/numberformats.html">
+   Number Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/iterationloops.html">
+   Iteration / Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/exceptionhandling.html">
+   Exception Handling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/iofilefoldercreationdeletion.html">
+   File, Folder - Creation and Deletion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/ioreadcsvfile.html">
+   IO Read CSV File
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/arrays.html">
+   Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/arraylists.html">
+   ArrayLists
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/overloading.html">
+   Overloading
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/classesandobjects.html">
+   Classes and Objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/classesinheritance.html">
+   Classes  - Inheritance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/abstractclasses.html">
+   Abstract Classes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/lambdafunctions.html">
+   Lambda Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/recursion.html">
+   Recursion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../javalang/regexmatches.html">
+   Regex - Using Java Matches
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../javalang/referencereading.html">
+   Reference Reading
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -105,151 +250,24 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/netbeansinstall.html">
-     NetBeans Installation
+    <a class="reference internal" href="../javalang/buildinglargejavaapplications.html">
+     Building Large Java Applications
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/javaintro.html">
-     JAVA Introduction
+    <a class="reference internal" href="../javalang/antvsmavenvsgradle.html">
+     Ant Vs Maven Vs Gradle
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/javabasics.html">
-     Java Basics
+    <a class="reference internal" href="../javalang/PolymorphismInJavaWithExamples.html">
+     Polymorphism in Java (With Examples)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/java_variable_lc.html">
-     Variable Lecture Code
+    <a class="reference internal" href="../javalang/UnableToRunJarFiles.html">
+     Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution
     </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/firstprogram.html">
-     First Program
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/secondprogram.html">
-     Second Program
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/functions.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/decisiontrees.html">
-     Decision Trees
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/switchstatement.html">
-     Switch Statement
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/stringfunctions.html">
-     String Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/numberformats.html">
-     Number Formats
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/iterationloops.html">
-     Iteration / Loops
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/exceptionhandling.html">
-     Exception Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/iofilefoldercreationdeletion.html">
-     File, Folder - Creation and Deletion
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/ioreadcsvfile.html">
-     IO Read CSV File
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/arrays.html">
-     Arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/arraylists.html">
-     ArrayLists
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/overloading.html">
-     Overloading
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/classesandobjects.html">
-     Classes and Objects
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/classesinheritance.html">
-     Classes  - Inheritance
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/abstractclasses.html">
-     Abstract Classes
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/lambdafunctions.html">
-     Lambda Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/recursion.html">
-     Recursion
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../javalang/regexmatches.html">
-     Regex - Using Java Matches
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../javalang/referencereading.html">
-     Reference Reading
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../javalang/buildinglargejavaapplications.html">
-       Building Large Java Applications
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../javalang/antvsmavenvsgradle.html">
-       Ant Vs Maven Vs Gradle
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../javalang/PolymorphismInJavaWithExamples.html">
-       Polymorphism in Java (With Examples)
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../javalang/end.html">
@@ -258,9 +276,43 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Structures
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="DataStructuresAndAlgorithms.html">
    Data Structures and Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="ArrayTechniques.html">
+   Array Techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ArrayWarpAround.html">
+     Array Warp Around
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ArrayAddDeleteData.html">
+     Array Add and Delete Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="BigONotation.html">
+   Big O Notation
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -268,125 +320,96 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="ArrayTechniques.html">
-     Array Techniques
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Visualizing Big O notation
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-    <label for="toctree-checkbox-4">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ArrayWarpAround.html">
-       Array Warp Around
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ArrayAddDeleteData.html">
-       Array Add and Delete Data
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toctree-l2 current active has-children">
-    <a class="reference internal" href="BigONotation.html">
-     Big O Notation
+   <li class="toctree-l2">
+    <a class="reference internal" href="BigONotationExplained.html">
+     Big O Notation - Explained
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-    <label for="toctree-checkbox-5">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul class="current">
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
-       Visualizing Big O notation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="BigONotationExplained.html">
-       Big O Notation - Explained
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="LinkedLists.html">
-     Linked Lists
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="LinkedLists.html">
+   Linked Lists
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="SinglyLinkedListRev3.html">
+     Singly Linked List
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-    <label for="toctree-checkbox-6">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="SinglyLinkedList.html">
-       Singly Linked List
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DoublyLinkedList.html">
-       Doubly Linked List
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DoublyLinkedListSubClass.html">
-       Doubly Linked List - Links as Sub Class
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="CircularLinkedList.html">
-       Circular Linked List - Links as Sub Class
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="StacksAndQueues.html">
-     Stacks and Queues
+   <li class="toctree-l2">
+    <a class="reference internal" href="DoublyLinkedList.html">
+     Doubly Linked List
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-    <label for="toctree-checkbox-7">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="StackUsingArrayOfObjects.html">
-       Stack  - Using Array of Objects
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="QueueUsingArrayOfObjects.html">
-       Queue  - Using Array Of Objects
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="PriorityQueue.html">
-       Priority Queue
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="SortAlgorithms.html">
-     Sorting Algorithms
+   <li class="toctree-l2">
+    <a class="reference internal" href="DoublyLinkedListSubClass.html">
+     Doubly Linked List - Links as Sub Class
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-    <label for="toctree-checkbox-8">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="Sort_Bubble.html">
-       Bubble Sort
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="CircularLinkedList.html">
+     Circular Linked List - Links as Sub Class
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ReadingDatafileIntoLinkedList.html">
+     Reading Datafile Into Linked List
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="StacksAndQueues.html">
+   Stacks and Queues
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="StackUsingArrayOfObjects.html">
+     Stack  - Using Array of Objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="QueueUsingArrayOfObjects.html">
+     Queue  - Using Array Of Objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="PriorityQueue.html">
+     Priority Queue
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="SortAlgorithms.html">
+   Sorting Algorithms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Sort_Bubble.html">
+     Bubble Sort
+    </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="end.html">
@@ -398,12 +421,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -411,61 +439,117 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/basicalgo/ON_VisualizingBigONotation.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/basicalgo/ON_VisualizingBigONotation.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#o-1">
    O(1)
@@ -496,7 +580,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#o-n-plot3">
+    <a class="reference internal nav-link" href="#o-n-plot">
      O(N) plot
     </a>
    </li>
@@ -508,7 +592,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#o-n-2-plot4">
+    <a class="reference internal nav-link" href="#o-n-2-plot">
      O(N^2^) plot
     </a>
    </li>
@@ -533,12 +617,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Visualizing Big O notation</h1>
@@ -581,7 +664,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#o-n-plot3">
+    <a class="reference internal nav-link" href="#o-n-plot">
      O(N) plot
     </a>
    </li>
@@ -593,7 +676,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#o-n-2-plot4">
+    <a class="reference internal nav-link" href="#o-n-2-plot">
      O(N^2^) plot
     </a>
    </li>
@@ -622,18 +705,19 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="visualizing-big-o-notation">
-<h1>Visualizing Big O notation<a class="headerlink" href="#visualizing-big-o-notation" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="visualizing-big-o-notation">
+<h1>Visualizing Big O notation<a class="headerlink" href="#visualizing-big-o-notation" title="Permalink to this headline">#</a></h1>
 <p>From <a class="reference external" href="https://mellowd.co.uk/ccie/?p=6122">https://mellowd.co.uk/ccie/?p=6122</a></p>
 <p>Author: Darren O’Connor</p>
 <p>I’m currently learning as much computer science as I can on the side. I’ve come across <a class="reference external" href="https://en.wikipedia.org/wiki/Big_O_notation">Big O notation</a> a few times already, and while I understand it, I’m much more of a visual guy.</p>
 <p>It’s rather easy to use Python and matplotlib to graph out how a function’s execution time grows as the size of the input grows. The important thing to note is not total execution time, but rather how the runtime of that function grows in relation to the input size. This can be plotted onto a graph which should give us a nice representation of Big O notations.</p>
 <p>Note too that Big O notations always show the worst case. For this reason, I’ll ensure to use values which the function will have to do the most work for.</p>
-<div class="section" id="o-1">
-<h2>O(1)<a class="headerlink" href="#o-1" title="Permalink to this headline">¶</a></h2>
+<section id="o-1">
+<h2>O(1)<a class="headerlink" href="#o-1" title="Permalink to this headline">#</a></h2>
 <p>O(1) means constant time. No matter what size the input, the runtime will always be the same. A simple example is finding the middle number in a list. I’ll ensure that all code return the amount of time a command was run in the function. This may make the code look just a bit bloated, but for a good <a class="reference external" href="http://reason.To">reason.To</a> find the center of a list we simply divide the length of the list in two, and return that number. It does not matter if a list has 10 elements or 100 elements, the same amount of steps is performed:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">O1</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
@@ -642,15 +726,15 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="k">return</span> <span class="n">count</span>
 </pre></div>
 </div>
-<p>I have created 5 lists. The first is length 10, second the length 20, and so on. I’ll get the returned values and plot them.</p>
-<div class="section" id="o-1-plot1">
-<h3>O(1) plot<img alt="1" src="../_images/vbon_image_O1.png" /><a class="headerlink" href="#o-1-plot1" title="Permalink to this headline">¶</a></h3>
-<p>As can be seen, it doesn’t matter the size of the input. It will always run in the same constant time.</p>
-</div>
-</div>
-<div class="section" id="o-logn">
-<h2>O(logN)<a class="headerlink" href="#o-logn" title="Permalink to this headline">¶</a></h2>
-<p>O(logN) increases as the input size goes up. However it goes up as a log of the input size. This means that you can exponentially increase your input size, without linearly increasing the processing time to match.</p>
+<p>I have created 5 lists. The first is length 10, the second the length 20, and so on. I’ll get the returned values and plot them.</p>
+<section id="o-1-plot1">
+<h3>O(1) plot<img alt="1" src="../_images/vbon_image_O1.png" /><a class="headerlink" href="#o-1-plot1" title="Permalink to this headline">#</a></h3>
+<p>As can be seen, it doesn’t matter the size of the input. It will always run at the same constant time.</p>
+</section>
+</section>
+<section id="o-logn">
+<h2>O(logN)<a class="headerlink" href="#o-logn" title="Permalink to this headline">#</a></h2>
+<p>O(logN) increases as the input size goes up. However, it goes up as a log of the input size. This means that you can exponentially increase your input size, without linearly increasing the processing time to match.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">OlogN</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -663,13 +747,14 @@ const thebe_selector_output = ".output, .cell_output"
 
 </pre></div>
 </div>
-<div class="section" id="o-logn-plot">
-<h3>O(logN) plot<a class="headerlink" href="#o-logn-plot" title="Permalink to this headline">¶</a></h3>
-<p><img alt="2" src="../_images/vbon_image_OlogN.png" />The run time is going up, but look at the size of the inputs at the bottom. I start with 10,000 and move up to 500,000. The number of steps has increased, but not significantly.</p>
-</div>
-</div>
-<div class="section" id="o-n">
-<h2>O(N)<a class="headerlink" href="#o-n" title="Permalink to this headline">¶</a></h2>
+<section id="o-logn-plot">
+<h3>O(logN) plot<a class="headerlink" href="#o-logn-plot" title="Permalink to this headline">#</a></h3>
+<p><img alt="2" src="../_images/vbon_image_OlogN.png" /></p>
+<p>The run time is going up but look at the size of the inputs at the bottom. I start with 10,000 and move up to 500,000. The number of steps has increased, but not significantly.</p>
+</section>
+</section>
+<section id="o-n">
+<h2>O(N)<a class="headerlink" href="#o-n" title="Permalink to this headline">#</a></h2>
 <p>O(N) is linear. This means that the run time is linearly matched to the input size. They should increase at exactly the same rate.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ON</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">check</span><span class="p">):</span>
     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
@@ -680,13 +765,14 @@ const thebe_selector_output = ".output, .cell_output"
 
 </pre></div>
 </div>
-<div class="section" id="o-n-plot3">
-<h3>O(N) plot<img alt="3" src="../_images/vbon_image_ON.png" /><a class="headerlink" href="#o-n-plot3" title="Permalink to this headline">¶</a></h3>
+<section id="o-n-plot">
+<h3>O(N) plot<a class="headerlink" href="#o-n-plot" title="Permalink to this headline">#</a></h3>
+<p><img alt="3" src="../_images/vbon_image_ON.png" /></p>
 <p>There is a 1:1 correlation between input size and run time. As expected this produces a linear graph.</p>
-</div>
-</div>
-<div class="section" id="o-n-2">
-<h2>O(N^2^)<a class="headerlink" href="#o-n-2" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="o-n-2">
+<h2>O(N^2^)<a class="headerlink" href="#o-n-2" title="Permalink to this headline">#</a></h2>
 <p>O(N^2^)’s runtime will go up as a square of the input size. The runtime goes up faster than your input sizes, so processing time increases rapidly. This is usually when you iterate through multiple loops at the same time like so:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ON2</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
@@ -698,12 +784,13 @@ const thebe_selector_output = ".output, .cell_output"
 
 </pre></div>
 </div>
-<div class="section" id="o-n-2-plot4">
-<h3>O(N^2^) plot<img alt="4" src="../_images/vbon_image_ON2.png" /><a class="headerlink" href="#o-n-2-plot4" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
-<div class="section" id="o-n-3">
-<h2>O(N^3^)<a class="headerlink" href="#o-n-3" title="Permalink to this headline">¶</a></h2>
+<section id="o-n-2-plot">
+<h3>O(N^2^) plot<a class="headerlink" href="#o-n-2-plot" title="Permalink to this headline">#</a></h3>
+<p><img alt="4" src="../_images/vbon_image_ON2.png" /></p>
+</section>
+</section>
+<section id="o-n-3">
+<h2>O(N^3^)<a class="headerlink" href="#o-n-3" title="Permalink to this headline">#</a></h2>
 <p>O(N^3^)is merely O(N^2^) with another exponent. I wanted to show the difference by simply changing the exponent.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ON3</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
@@ -717,20 +804,21 @@ const thebe_selector_output = ".output, .cell_output"
 
 </pre></div>
 </div>
-<div class="section" id="o-n-3-plot">
-<h3>O(N^3^) plot<a class="headerlink" href="#o-n-3-plot" title="Permalink to this headline">¶</a></h3>
-<p>Graphs increase rapidly as the exponent increases.<img alt="5" src="../_images/vbon_image_ON3.png" /></p>
-</div>
-</div>
-<div class="section" id="conclusions">
-<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<section id="o-n-3-plot">
+<h3>O(N^3^) plot<a class="headerlink" href="#o-n-3-plot" title="Permalink to this headline">#</a></h3>
+<p>Graphs increase rapidly as the exponent increases.</p>
+<p><img alt="5" src="../_images/vbon_image_ON3.png" /></p>
+</section>
+</section>
+<section id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">#</a></h2>
 <p>I’ve not shown every single type of algorithm, as I just wanted to show the ones I have the most experience with. It’s nice to have a visual representation of these things as it really drills down just how fast your runtime can increase with larger inputs.</p>
 <p><a class="reference external" href="https://github.com/mellowdrifter/Blog_Code/tree/master/Big_O">You can find my code used over here.</a>
 <a class="reference external" href="https://github.com/mellowdrifter/Blog_Code/tree/master/Big_O">https://github.com/mellowdrifter/Blog_Code/tree/master/Big_O</a></p>
 <hr class="docutils" />
 <p>End Of Topic</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -754,9 +842,11 @@ const thebe_selector_output = ".output, .cell_output"
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="BigONotation.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -772,24 +862,28 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By James Goudy<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By James Goudy<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

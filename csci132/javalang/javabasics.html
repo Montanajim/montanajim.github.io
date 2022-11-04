@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Java Basics &#8212; CSCI 132&lt;br&gt;Basic Data Structures&lt;br&gt;Class Materials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Java Basics &#8212; CSCI 132 Basic Data Structures</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,14 +84,15 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
       
       
-      <h1 class="site-logo" id="site-title">CSCI 132<br>Basic Data Structures<br>Class Materials</h1>
+      <h1 class="site-logo" id="site-title">CSCI 132 Basic Data Structures</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -86,170 +100,174 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to CSCI 132
-  </a>
- </li>
-</ul>
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to CSCI 132
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Java Language
+ </span>
+</p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1">
   <a class="reference internal" href="javalanguage.html">
    Java Language
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="netbeansinstall.html">
+   NetBeans Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="javaintro.html">
+   JAVA Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Java Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="java_variable_lc.html">
+   Variable Lecture Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="firstprogram.html">
+   First Program
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="secondprogram.html">
+   Second Program
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decisiontrees.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="switchstatement.html">
+   Switch Statement
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stringfunctions.html">
+   String Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numberformats.html">
+   Number Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iterationloops.html">
+   Iteration / Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exceptionhandling.html">
+   Exception Handling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iofilefoldercreationdeletion.html">
+   File, Folder - Creation and Deletion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ioreadcsvfile.html">
+   IO Read CSV File
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays.html">
+   Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arraylists.html">
+   ArrayLists
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="overloading.html">
+   Overloading
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="classesandobjects.html">
+   Classes and Objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="classesinheritance.html">
+   Classes  - Inheritance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="abstractclasses.html">
+   Abstract Classes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lambdafunctions.html">
+   Lambda Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="recursion.html">
+   Recursion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regexmatches.html">
+   Regex - Using Java Matches
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="referencereading.html">
+   Reference Reading
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="netbeansinstall.html">
-     NetBeans Installation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="javaintro.html">
-     JAVA Introduction
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Java Basics
+    <a class="reference internal" href="buildinglargejavaapplications.html">
+     Building Large Java Applications
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="java_variable_lc.html">
-     Variable Lecture Code
+    <a class="reference internal" href="antvsmavenvsgradle.html">
+     Ant Vs Maven Vs Gradle
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="firstprogram.html">
-     First Program
+    <a class="reference internal" href="PolymorphismInJavaWithExamples.html">
+     Polymorphism in Java (With Examples)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="secondprogram.html">
-     Second Program
+    <a class="reference internal" href="UnableToRunJarFiles.html">
+     Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution
     </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="functions.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="decisiontrees.html">
-     Decision Trees
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="switchstatement.html">
-     Switch Statement
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="stringfunctions.html">
-     String Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="numberformats.html">
-     Number Formats
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="iterationloops.html">
-     Iteration / Loops
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="exceptionhandling.html">
-     Exception Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="iofilefoldercreationdeletion.html">
-     File, Folder - Creation and Deletion
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ioreadcsvfile.html">
-     IO Read CSV File
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="arrays.html">
-     Arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="arraylists.html">
-     ArrayLists
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="overloading.html">
-     Overloading
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="classesandobjects.html">
-     Classes and Objects
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="classesinheritance.html">
-     Classes  - Inheritance
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="abstractclasses.html">
-     Abstract Classes
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="lambdafunctions.html">
-     Lambda Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="recursion.html">
-     Recursion
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="regexmatches.html">
-     Regex - Using Java Matches
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="referencereading.html">
-     Reference Reading
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="buildinglargejavaapplications.html">
-       Building Large Java Applications
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="antvsmavenvsgradle.html">
-       Ant Vs Maven Vs Gradle
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="PolymorphismInJavaWithExamples.html">
-       Polymorphism in Java (With Examples)
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="end.html">
@@ -258,9 +276,43 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Structures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="../basicalgo/DataStructuresAndAlgorithms.html">
    Data Structures and Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../basicalgo/ArrayTechniques.html">
+   Array Techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/ArrayWarpAround.html">
+     Array Warp Around
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/ArrayAddDeleteData.html">
+     Array Add and Delete Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../basicalgo/BigONotation.html">
+   Big O Notation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -268,125 +320,96 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../basicalgo/ArrayTechniques.html">
-     Array Techniques
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/ON_VisualizingBigONotation.html">
+     Visualizing Big O notation
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-    <label for="toctree-checkbox-4">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../basicalgo/ArrayWarpAround.html">
-       Array Warp Around
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../basicalgo/ArrayAddDeleteData.html">
-       Array Add and Delete Data
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../basicalgo/BigONotation.html">
-     Big O Notation
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/BigONotationExplained.html">
+     Big O Notation - Explained
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-    <label for="toctree-checkbox-5">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../basicalgo/ON_VisualizingBigONotation.html">
-       Visualizing Big O notation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../basicalgo/BigONotationExplained.html">
-       Big O Notation - Explained
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../basicalgo/LinkedLists.html">
-     Linked Lists
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../basicalgo/LinkedLists.html">
+   Linked Lists
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/SinglyLinkedListRev3.html">
+     Singly Linked List
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-    <label for="toctree-checkbox-6">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../basicalgo/SinglyLinkedList.html">
-       Singly Linked List
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../basicalgo/DoublyLinkedList.html">
-       Doubly Linked List
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../basicalgo/DoublyLinkedListSubClass.html">
-       Doubly Linked List - Links as Sub Class
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../basicalgo/CircularLinkedList.html">
-       Circular Linked List - Links as Sub Class
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../basicalgo/StacksAndQueues.html">
-     Stacks and Queues
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/DoublyLinkedList.html">
+     Doubly Linked List
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-    <label for="toctree-checkbox-7">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../basicalgo/StackUsingArrayOfObjects.html">
-       Stack  - Using Array of Objects
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../basicalgo/QueueUsingArrayOfObjects.html">
-       Queue  - Using Array Of Objects
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../basicalgo/PriorityQueue.html">
-       Priority Queue
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../basicalgo/SortAlgorithms.html">
-     Sorting Algorithms
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/DoublyLinkedListSubClass.html">
+     Doubly Linked List - Links as Sub Class
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-    <label for="toctree-checkbox-8">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../basicalgo/Sort_Bubble.html">
-       Bubble Sort
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/CircularLinkedList.html">
+     Circular Linked List - Links as Sub Class
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/ReadingDatafileIntoLinkedList.html">
+     Reading Datafile Into Linked List
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../basicalgo/StacksAndQueues.html">
+   Stacks and Queues
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/StackUsingArrayOfObjects.html">
+     Stack  - Using Array of Objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/QueueUsingArrayOfObjects.html">
+     Queue  - Using Array Of Objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/PriorityQueue.html">
+     Priority Queue
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../basicalgo/SortAlgorithms.html">
+   Sorting Algorithms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/Sort_Bubble.html">
+     Bubble Sort
+    </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../basicalgo/end.html">
@@ -398,12 +421,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -411,61 +439,117 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/javalang/javabasics.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/javalang/javabasics.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    Java Basics
@@ -572,12 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Java Basics</h1>
@@ -700,13 +783,14 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="java-basics">
-<h1>Java Basics<a class="headerlink" href="#java-basics" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="key-topics">
-<h2>Key Topics<a class="headerlink" href="#key-topics" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="java-basics">
+<h1>Java Basics<a class="headerlink" href="#java-basics" title="Permalink to this headline">#</a></h1>
+<section id="key-topics">
+<h2>Key Topics<a class="headerlink" href="#key-topics" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Comments</p></li>
 <li><p>Variables</p></li>
@@ -718,38 +802,38 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Comparative Operators</p></li>
 <li><p>Concatenation</p></li>
 </ul>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="readings">
-<h1>Readings<a class="headerlink" href="#readings" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="readings">
+<h1>Readings<a class="headerlink" href="#readings" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://books.trinket.io/thinkjava/chapter1.html">https://books.trinket.io/thinkjava/chapter1.html</a></p>
-<div class="section" id="comments">
-<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<section id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">#</a></h2>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p><strong>Comment</strong> allows the programmer to document their code. It is not compiled.</p>
 </div>
-<div class="section" id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is a single line comment</span>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is a single line comment</span><span class="w"></span>
 
 <span class="cm">/*</span>
 <span class="cm">This is </span>
 <span class="cm">a multiline</span>
 <span class="cm">comment</span>
-<span class="cm">*/</span>
+<span class="cm">*/</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="variables">
-<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">#</a></h2>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p><strong>Variable</strong> stores one item of information.</p>
 </div>
-<div class="section" id="naming-variables">
-<h3>Naming Variables<a class="headerlink" href="#naming-variables" title="Permalink to this headline">¶</a></h3>
+<section id="naming-variables">
+<h3>Naming Variables<a class="headerlink" href="#naming-variables" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Start with a letter, underscore or a dollar sign</p></li>
 <li><p>Can not start with an number</p></li>
@@ -766,33 +850,33 @@ const thebe_selector_output = ".output, .cell_output"
 <p><em>datatype</em> variableName;<br>
 <em>datatype</em> variableName = value;</p>
 </div>
-</div>
-<div class="section" id="id1">
-<h3>Examples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// declaring variables</span>
-<span class="kt">int</span> <span class="n">Age</span><span class="p">;</span>
-<span class="n">String</span> <span class="n">First_Name</span><span class="p">;</span>
-<span class="kt">boolean</span> <span class="n">Breathing</span><span class="p">;</span>
+</section>
+<section id="id1">
+<h3>Examples<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// declaring variables</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">Age</span><span class="p">;</span><span class="w"></span>
+<span class="n">String</span><span class="w"> </span><span class="n">First_Name</span><span class="p">;</span><span class="w"></span>
+<span class="kt">boolean</span><span class="w"> </span><span class="n">Breathing</span><span class="p">;</span><span class="w"></span>
 
-<span class="c1">//declaring variables and intializing them with a value</span>
-<span class="kt">int</span> <span class="n">numberOfStates</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
-<span class="kt">double</span> <span class="n">salary</span> <span class="o">=</span> <span class="mi">50000</span><span class="p">;</span>
+<span class="c1">//declaring variables and intializing them with a value</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">numberOfStates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50000</span><span class="p">;</span><span class="w"></span>
 
-<span class="c1">// note that strings get double quotes</span>
-<span class="c1">// chars get single quotes</span>
-<span class="n">String</span> <span class="n">dogName</span> <span class="o">=</span> <span class="s">&quot;Spot&quot;</span><span class="p">;</span>
-<span class="kt">char</span> <span class="n">middleInital</span> <span class="o">=</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+<span class="c1">// note that strings get double quotes</span><span class="w"></span>
+<span class="c1">// chars get single quotes</span><span class="w"></span>
+<span class="n">String</span><span class="w"> </span><span class="n">dogName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Spot&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="kt">char</span><span class="w"> </span><span class="n">middleInital</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">boolean</span> <span class="n">isBreathing</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="n">isBreathing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>A variable is usually declared once within a set of braces{}.</p>
 </div>
-</div>
-<div class="section" id="data-types">
-<h3>Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="data-types">
+<h3>Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline">#</a></h3>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Data Type</p></th>
@@ -864,10 +948,10 @@ const thebe_selector_output = ".output, .cell_output"
 </tbody>
 </table>
 <p>Note: for precise decimals i.e. currency – use java.math.BigDecimal – reason – rounding accuracy</p>
-</div>
-</div>
-<div class="section" id="operators">
-<h2>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="operators">
+<h2>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">#</a></h2>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Sign</p></th>
@@ -892,9 +976,9 @@ const thebe_selector_output = ".output, .cell_output"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="order-of-operations">
-<h2>Order Of Operations<a class="headerlink" href="#order-of-operations" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="order-of-operations">
+<h2>Order Of Operations<a class="headerlink" href="#order-of-operations" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Increment and decrement</p></li>
 <li><p>Parentheses ()</p></li>
@@ -909,24 +993,24 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Logical Operations &amp;&amp; ||</p></li>
 <li><p>Assignment Expressions</p></li>
 </ul>
-</div>
-<div class="section" id="incrementors-and-decrementors">
-<h2>Incrementors and Decrementors<a class="headerlink" href="#incrementors-and-decrementors" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="incrementors-and-decrementors">
+<h2>Incrementors and Decrementors<a class="headerlink" href="#incrementors-and-decrementors" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>use ++ to add the number 1 to a variable.</p></li>
 <li><p>use – to subtract the number one from a variable.</p></li>
 </ul>
 <p><strong>Examples</strong></p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">++</span><span class="p">;</span>
-<span class="n">age</span><span class="o">++</span><span class="p">;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="n">age</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">y</span><span class="o">--</span><span class="p">;</span>
-<span class="n">salary</span><span class="o">--</span><span class="p">;</span>
+<span class="n">y</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
+<span class="n">salary</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="escape-characters">
-<h2>Escape Characters<a class="headerlink" href="#escape-characters" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="escape-characters">
+<h2>Escape Characters<a class="headerlink" href="#escape-characters" title="Permalink to this headline">#</a></h2>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p><strong>Escape Character</strong> is a backslash \ followed by the character you want to insert into your for printing or inserting into a string.</p>
@@ -973,9 +1057,9 @@ const thebe_selector_output = ".output, .cell_output"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="comparative-operators">
-<h2><strong>Comparative Operators</strong><a class="headerlink" href="#comparative-operators" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="comparative-operators">
+<h2><strong>Comparative Operators</strong><a class="headerlink" href="#comparative-operators" title="Permalink to this headline">#</a></h2>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p><strong>Comparative Operators</strong> evaluate is something is true or false.</p>
@@ -1007,9 +1091,9 @@ const thebe_selector_output = ".output, .cell_output"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="logical-operators">
-<h2>Logical Operators<a class="headerlink" href="#logical-operators" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="logical-operators">
+<h2>Logical Operators<a class="headerlink" href="#logical-operators" title="Permalink to this headline">#</a></h2>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p><strong>Logica Operators</strong> connect two or more expression together and evalute to true or false.</p>
@@ -1029,8 +1113,8 @@ const thebe_selector_output = ".output, .cell_output"
 </tr>
 </tbody>
 </table>
-<div class="section" id="truth-table">
-<h3>Truth Table<a class="headerlink" href="#truth-table" title="Permalink to this headline">¶</a></h3>
+<section id="truth-table">
+<h3>Truth Table<a class="headerlink" href="#truth-table" title="Permalink to this headline">#</a></h3>
 <p><strong>(x &lt; y &amp;&amp; z &gt; 10)</strong></p>
 <table class="colwidths-auto table">
 <thead>
@@ -1093,27 +1177,27 @@ const thebe_selector_output = ".output, .cell_output"
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="concatenation">
-<h2>Concatenation<a class="headerlink" href="#concatenation" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="concatenation">
+<h2>Concatenation<a class="headerlink" href="#concatenation" title="Permalink to this headline">#</a></h2>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p><strong>Concatenation</strong> is the action of putting strings togeher to form a new string.</p>
 </div>
-<div class="section" id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="n">fName</span> <span class="o">=</span> <span class="s">&quot;Bubba&quot;</span><span class="p">;</span>
-<span class="n">String</span> <span class="n">lName</span> <span class="o">=</span>  <span class="s">&quot;Smith&quot;</span><span class="p">;</span>
-<span class="n">String</span> <span class="n">fullName</span> <span class="o">=</span> <span class="n">fName</span>  <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">lname</span><span class="p">;</span>
-<span class="c1">// Note we concantenate a space &quot; &quot; between the first and last name</span>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">fName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Bubba&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="n">String</span><span class="w"> </span><span class="n">lName</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="s">&quot;Smith&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="n">String</span><span class="w"> </span><span class="n">fullName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fName</span><span class="w">  </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lname</span><span class="p">;</span><span class="w"></span>
+<span class="c1">// Note we concantenate a space &quot; &quot; between the first and last name</span><span class="w"></span>
 </pre></div>
 </div>
 <hr class="docutils" />
 <p>End Of Topic</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1137,9 +1221,11 @@ const thebe_selector_output = ".output, .cell_output"
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="javaintro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1155,24 +1241,28 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By James Goudy<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By James Goudy<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
