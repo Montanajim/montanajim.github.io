@@ -1,974 +1,138 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-    <title>Polymorphism in Java (With Examples) &#8212; CSCI 132 Basic Data Structures</title>
-    
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Polymorphism in Java (With Examples) &mdash; CSCI 132 Basic Data Structures</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+        <script src="../_static/design-tabs.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+        <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution" href="UnableToRunJarFiles.html" />
-    <link rel="prev" title="Ant Vs Maven Vs Gradle" href="antvsmavenvsgradle.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
+    <link rel="prev" title="Ant Vs Maven Vs Gradle" href="antvsmavenvsgradle.html" /> 
+</head>
 
-    <!-- Google Analytics -->
-    
-  </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">CSCI 132 Basic Data Structures</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome to CSCI 132
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Java Language
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="javalanguage.html">
-   Java Language
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="netbeansinstall.html">
-   NetBeans Installation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="javaintro.html">
-   JAVA Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="javabasics.html">
-   Java Basics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="java_variable_lc.html">
-   Variable Lecture Code
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="firstprogram.html">
-   First Program
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="secondprogram.html">
-   Second Program
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="functions.html">
-   Functions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="decisiontrees.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="switchstatement.html">
-   Switch Statement
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="stringfunctions.html">
-   String Functions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numberformats.html">
-   Number Formats
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="iterationloops.html">
-   Iteration / Loops
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="exceptionhandling.html">
-   Exception Handling
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="iofilefoldercreationdeletion.html">
-   File, Folder - Creation and Deletion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ioreadcsvfile.html">
-   IO Read CSV File
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="arrays.html">
-   Arrays
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="arraylists.html">
-   ArrayLists
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="overloading.html">
-   Overloading
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="classesandobjects.html">
-   Classes and Objects
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="classesinheritance.html">
-   Classes  - Inheritance
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="abstractclasses.html">
-   Abstract Classes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lambdafunctions.html">
-   Lambda Functions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="recursion.html">
-   Recursion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regexmatches.html">
-   Regex - Using Java Matches
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="referencereading.html">
-   Reference Reading
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="buildinglargejavaapplications.html">
-     Building Large Java Applications
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="antvsmavenvsgradle.html">
-     Ant Vs Maven Vs Gradle
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Polymorphism in Java (With Examples)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="UnableToRunJarFiles.html">
-     Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="end.html">
-     End Of Section
-    </a>
-   </li>
-  </ul>
- </li>
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../intro.html" class="icon icon-home"> Python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Java Language</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="javalanguage.html">Java Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netbeansinstall.html">NetBeans Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javaintro.html">JAVA Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javabasics.html">Java Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javabasics.html#readings">Readings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="java_variable_lc.html">Variable Lecture Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprogram.html">First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="secondprogram.html">Second Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decisiontrees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="switchstatement.html">Switch Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stringfunctions.html">String Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numberformats.html">Number Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iterationloops.html">Iteration / Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptionhandling.html">Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iofilefoldercreationdeletion.html">File, Folder - Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ioreadcsvfile.html">IO Read CSV File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraylists.html">ArrayLists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overloading.html">Overloading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classesandobjects.html">Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classesinheritance.html">Classes  - Inheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classesinheritance.html#concepts">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstractclasses.html">Abstract Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambdafunctions.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html#videos">Videos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regexmatches.html">Regex - Using Java Matches</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="referencereading.html">Reference Reading</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="buildinglargejavaapplications.html">Building Large Java Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="antvsmavenvsgradle.html">Ant Vs Maven Vs Gradle</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Polymorphism in Java (With Examples)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnableToRunJarFiles.html">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Structures
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../basicalgo/DataStructuresAndAlgorithms.html">
-   Data Structures and Algorithms
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../basicalgo/ArrayTechniques.html">
-   Array Techniques
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/ArrayWarpAround.html">
-     Array Warp Around
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/ArrayAddDeleteData.html">
-     Array Add and Delete Data
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../basicalgo/BigONotation.html">
-   Big O Notation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/ON_VisualizingBigONotation.html">
-     Visualizing Big O notation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/BigONotationExplained.html">
-     Big O Notation - Explained
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../basicalgo/LinkedLists.html">
-   Linked Lists
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/SinglyLinkedListRev3.html">
-     Singly Linked List
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/DoublyLinkedList.html">
-     Doubly Linked List
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/DoublyLinkedListSubClass.html">
-     Doubly Linked List - Links as Sub Class
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/CircularLinkedList.html">
-     Circular Linked List - Links as Sub Class
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/ReadingDatafileIntoLinkedList.html">
-     Reading Datafile Into Linked List
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../basicalgo/StacksAndQueues.html">
-   Stacks and Queues
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/StackUsingArrayOfObjects.html">
-     Stack  - Using Array of Objects
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/QueueUsingArrayOfObjects.html">
-     Queue  - Using Array Of Objects
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/PriorityQueue.html">
-     Priority Queue
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../basicalgo/SortAlgorithms.html">
-   Sorting Algorithms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/Sort_Bubble.html">
-     Bubble Sort
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../basicalgo/end.html">
-     End Of Section
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/DataStructuresAndAlgorithms.html">Data Structures and Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/ArrayTechniques.html">Array Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/BigONotation.html">Big O Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/LinkedLists.html">Linked Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/StacksAndQueues.html">Stacks and Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/SortAlgorithms.html">Sorting Algorithms</a></li>
 </ul>
 
-    </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
         </div>
-    </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/javalang/PolymorphismInJavaWithExamples.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
-</div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-polymorphism">
-   <strong>
-    What is Polymorphism?
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-polymorphism-in-java">
-   <strong>
-    What is Polymorphism in Java?
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#real-life-examples-of-polymorphism">
-   <strong>
-    Real-Life Examples of Polymorphism
-   </strong>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#polymorphism-in-java-example">
-     <strong>
-      Polymorphism in Java Example
-     </strong>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#types-of-polymorphism">
-   <strong>
-    Types of Polymorphism
-   </strong>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-method-overloading-in-java">
-     <strong>
-      What is Method Overloading in Java?
-     </strong>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#example-of-method-overloading-in-java">
-       <strong>
-        Example of Method Overloading in Java
-       </strong>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-method-overriding-in-java">
-     <strong>
-      What is Method Overriding in Java?
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-of-method-overriding-in-java">
-     <strong>
-      Example of Method Overriding in Java
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-compile-time-polymorphism-in-java">
-     <strong>
-      What is Compile-Time Polymorphism in Java?
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-of-compile-time-polymorphism-in-java">
-     <strong>
-      Example of Compile-Time Polymorphism in Java
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-runtime-polymorphism-in-java">
-     <strong>
-      What is Runtime Polymorphism in Java?
-     </strong>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#examples-of-runtime-polymorphism-in-java">
-       <strong>
-        Examples of Runtime Polymorphism in Java
-       </strong>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-of-run-time-polymorphism-in-java">
-     <strong>
-      Example of run-time polymorphism in java
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#runtime-polymorphism-with-multilevel-inheritance">
-     <strong>
-      Runtime polymorphism with multilevel inheritance
-     </strong>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#polymorphic-subtypes">
-   <strong>
-    Polymorphic Subtypes
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-polymorphism-in-programming">
-   <strong>
-    What is Polymorphism in Programming?
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-polymorphism-variables">
-   <strong>
-    What is Polymorphism Variables?
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#why-use-polymorphism-in-java">
-   <strong>
-    Why use Polymorphism in Java?
-   </strong>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#advantages-of-polymorphism-in-java">
-     <strong>
-      Advantages of Polymorphism in Java
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#characteristics-of-polymorphism">
-     <strong>
-      Characteristics of Polymorphism
-     </strong>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#coercion">
-       <strong>
-        1. Coercion
-       </strong>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#internal-operator-overloading">
-       <strong>
-        2. Internal Operator Overloading
-       </strong>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#polymorphic-variables-or-parameters">
-       <strong>
-        3. Polymorphic Variables or Parameters
-       </strong>
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problems-with-polymorphism">
-   <strong>
-    Problems with Polymorphism
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   <strong>
-    Conclusion
-   </strong>
-  </a>
- </li>
-</ul>
-
+      </div>
     </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Polymorphism in Java (With Examples)</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-polymorphism">
-   <strong>
-    What is Polymorphism?
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-polymorphism-in-java">
-   <strong>
-    What is Polymorphism in Java?
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#real-life-examples-of-polymorphism">
-   <strong>
-    Real-Life Examples of Polymorphism
-   </strong>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#polymorphism-in-java-example">
-     <strong>
-      Polymorphism in Java Example
-     </strong>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#types-of-polymorphism">
-   <strong>
-    Types of Polymorphism
-   </strong>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-method-overloading-in-java">
-     <strong>
-      What is Method Overloading in Java?
-     </strong>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#example-of-method-overloading-in-java">
-       <strong>
-        Example of Method Overloading in Java
-       </strong>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-method-overriding-in-java">
-     <strong>
-      What is Method Overriding in Java?
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-of-method-overriding-in-java">
-     <strong>
-      Example of Method Overriding in Java
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-compile-time-polymorphism-in-java">
-     <strong>
-      What is Compile-Time Polymorphism in Java?
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-of-compile-time-polymorphism-in-java">
-     <strong>
-      Example of Compile-Time Polymorphism in Java
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-runtime-polymorphism-in-java">
-     <strong>
-      What is Runtime Polymorphism in Java?
-     </strong>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#examples-of-runtime-polymorphism-in-java">
-       <strong>
-        Examples of Runtime Polymorphism in Java
-       </strong>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-of-run-time-polymorphism-in-java">
-     <strong>
-      Example of run-time polymorphism in java
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#runtime-polymorphism-with-multilevel-inheritance">
-     <strong>
-      Runtime polymorphism with multilevel inheritance
-     </strong>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#polymorphic-subtypes">
-   <strong>
-    Polymorphic Subtypes
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-polymorphism-in-programming">
-   <strong>
-    What is Polymorphism in Programming?
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-polymorphism-variables">
-   <strong>
-    What is Polymorphism Variables?
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#why-use-polymorphism-in-java">
-   <strong>
-    Why use Polymorphism in Java?
-   </strong>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#advantages-of-polymorphism-in-java">
-     <strong>
-      Advantages of Polymorphism in Java
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#characteristics-of-polymorphism">
-     <strong>
-      Characteristics of Polymorphism
-     </strong>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#coercion">
-       <strong>
-        1. Coercion
-       </strong>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#internal-operator-overloading">
-       <strong>
-        2. Internal Operator Overloading
-       </strong>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#polymorphic-variables-or-parameters">
-       <strong>
-        3. Polymorphic Variables or Parameters
-       </strong>
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problems-with-polymorphism">
-   <strong>
-    Problems with Polymorphism
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   <strong>
-    Conclusion
-   </strong>
-  </a>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../intro.html">Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../intro.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="referencereading.html">Reference Reading</a></li>
+      <li class="breadcrumb-item active">Polymorphism in Java (With Examples)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/javalang/PolymorphismInJavaWithExamples.md" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section class="tex2jax_ignore mathjax_ignore" id="polymorphism-in-java-with-examples">
-<h1>Polymorphism in Java (With Examples)<a class="headerlink" href="#polymorphism-in-java-with-examples" title="Permalink to this headline">#</a></h1>
+<h1>Polymorphism in Java (With Examples)<a class="headerlink" href="#polymorphism-in-java-with-examples" title="Permalink to this headline"></a></h1>
 <p>By  <a class="reference external" href="https://www.mygreatlearning.com/blog/author/greatlearning/">Great Learning Team</a></p>
 <p><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/">https://www.mygreatlearning.com/blog/polymorphism-in-java/</a></p>
 <p>Polymorphism is the ability of an object to take on different forms. In Java, polymorphism refers to the ability of a class to provide different implementations of a method, depending on the type of object that is passed to the method.</p>
@@ -992,22 +156,22 @@ title="Print to PDF"
 <li><p><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#conclusion"><strong>Conclusion</strong></a></p></li>
 </ol>
 <section id="what-is-polymorphism">
-<h2><strong>What is Polymorphism?</strong><a class="headerlink" href="#what-is-polymorphism" title="Permalink to this headline">#</a></h2>
+<h2><strong>What is Polymorphism?</strong><a class="headerlink" href="#what-is-polymorphism" title="Permalink to this headline"></a></h2>
 <p>The derivation of the word Polymorphism is from two different Greek words- poly and morphs. “Poly” means numerous, and “Morphs” means forms. So, polymorphism means innumerable forms. Polymorphism, therefore, is one of the most significant features of Object-Oriented Programming.</p>
 </section>
 <section id="what-is-polymorphism-in-java">
-<h2><strong>What is Polymorphism in Java?</strong><a class="headerlink" href="#what-is-polymorphism-in-java" title="Permalink to this headline">#</a></h2>
+<h2><strong>What is Polymorphism in Java?</strong><a class="headerlink" href="#what-is-polymorphism-in-java" title="Permalink to this headline"></a></h2>
 <p><strong>Polymorphism in Java</strong> is the task that performs a single action in different ways.</p>
 <p>So, languages that do not support polymorphism are not ‘Object-Oriented Languages’, but, ‘Object-Based Languages’. Ada, for instance, is one such language. Since Java supports polymorphism, it is an <a class="reference external" href="https://www.mygreatlearning.com/academy/learn-for-free/courses/oops-in-java/?gl_blog_26164">Object-Oriented Language</a>.</p>
 <p>Polymorphism occurs when there is inheritance, i.e. there are many classes that are related to each other.</p>
 <p><a class="reference external" href="https://www.mygreatlearning.com/academy/learn-for-free/courses/inheritance-in-java/?gl_blog_26164">Inheritance</a> is a powerful feature in Java.<a class="reference external" href="https://www.mygreatlearning.com/blog/inheritance-in-java/"> Java Inheritance</a> lets one class acquire the properties and attributes of another class. Polymorphism in Java allows us to use these inherited properties to perform different tasks. Thus, allowing us to achieve the same action in many different ways.</p>
 </section>
 <section id="real-life-examples-of-polymorphism">
-<h2><strong>Real-Life Examples of Polymorphism</strong><a class="headerlink" href="#real-life-examples-of-polymorphism" title="Permalink to this headline">#</a></h2>
+<h2><strong>Real-Life Examples of Polymorphism</strong><a class="headerlink" href="#real-life-examples-of-polymorphism" title="Permalink to this headline"></a></h2>
 <p>An individual can have different relationships with different people. A woman can be a mother, a daughter, a sister, a friend, all at the same time, i.e. she performs other behaviours in different situations.</p>
 <p>The human body has different organs. Every organ has a different function to perform; the heart is responsible for blood flow, lungs for breathing, brain for cognitive activity, and kidneys for excretion. So we have a standard method function that performs differently depending upon the organ of the body.</p>
 <section id="polymorphism-in-java-example">
-<h3><strong>Polymorphism in Java Example</strong><a class="headerlink" href="#polymorphism-in-java-example" title="Permalink to this headline">#</a></h3>
+<h3><strong>Polymorphism in Java Example</strong><a class="headerlink" href="#polymorphism-in-java-example" title="Permalink to this headline"></a></h3>
 <p>A superclass named “Shapes” has a method “area()”. Subclasses of “Shapes” can be “Triangle”, “circle”, “Rectangle”, etc. Each subclass has its way of calculating area. Using Inheritance and Polymorphism means, the subclasses can use the “area()” method to find the area’s formula for that shape.</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Shapes</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -1044,17 +208,17 @@ The formula for the area of the Circle is 3.14 * radius * radius</p>
 </section>
 </section>
 <section id="types-of-polymorphism">
-<h2><strong>Types of Polymorphism</strong><a class="headerlink" href="#types-of-polymorphism" title="Permalink to this headline">#</a></h2>
+<h2><strong>Types of Polymorphism</strong><a class="headerlink" href="#types-of-polymorphism" title="Permalink to this headline"></a></h2>
 <p>You can perform Polymorphism in Java via two different methods:</p>
 <ol class="simple">
 <li><p>Method Overloading</p></li>
 <li><p>Method Overriding</p></li>
 </ol>
 <section id="what-is-method-overloading-in-java">
-<h3><strong>What is Method Overloading in Java?</strong><a class="headerlink" href="#what-is-method-overloading-in-java" title="Permalink to this headline">#</a></h3>
+<h3><strong>What is Method Overloading in Java?</strong><a class="headerlink" href="#what-is-method-overloading-in-java" title="Permalink to this headline"></a></h3>
 <p><strong>Method overloading</strong> is the process that can create multiple methods of the same name in the same class, and all the methods work in different ways. Method overloading occurs when there is more than one method of the same name in the class.</p>
 <section id="example-of-method-overloading-in-java">
-<h4><strong>Example of Method Overloading in Java</strong><a class="headerlink" href="#example-of-method-overloading-in-java" title="Permalink to this headline">#</a></h4>
+<h4><strong>Example of Method Overloading in Java</strong><a class="headerlink" href="#example-of-method-overloading-in-java" title="Permalink to this headline"></a></h4>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Shapes</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Find area &quot;</span><span class="p">);</span><span class="w"></span>
@@ -1094,11 +258,11 @@ Rectangle area=12</p>
 </section>
 </section>
 <section id="what-is-method-overriding-in-java">
-<h3><strong>What is Method Overriding in Java?</strong><a class="headerlink" href="#what-is-method-overriding-in-java" title="Permalink to this headline">#</a></h3>
+<h3><strong>What is Method Overriding in Java?</strong><a class="headerlink" href="#what-is-method-overriding-in-java" title="Permalink to this headline"></a></h3>
 <p>Method overriding is the process when the subclass or a child class has the same method as declared in the parent class.</p>
 </section>
 <section id="example-of-method-overriding-in-java">
-<h3><strong>Example of Method Overriding in Java</strong><a class="headerlink" href="#example-of-method-overriding-in-java" title="Permalink to this headline">#</a></h3>
+<h3><strong>Example of Method Overriding in Java</strong><a class="headerlink" href="#example-of-method-overriding-in-java" title="Permalink to this headline"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Vehicle</span><span class="p">{</span>  
   <span class="o">//</span><span class="n">defining</span> <span class="n">a</span> <span class="n">method</span>  
   <span class="n">void</span> <span class="n">run</span><span class="p">(){</span><span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Vehicle is moving&quot;</span><span class="p">);}</span>  
@@ -1126,12 +290,12 @@ Rectangle area=12</p>
 </ol>
 </section>
 <section id="what-is-compile-time-polymorphism-in-java">
-<h3><strong>What is Compile-Time Polymorphism in Java?</strong><a class="headerlink" href="#what-is-compile-time-polymorphism-in-java" title="Permalink to this headline">#</a></h3>
+<h3><strong>What is Compile-Time Polymorphism in Java?</strong><a class="headerlink" href="#what-is-compile-time-polymorphism-in-java" title="Permalink to this headline"></a></h3>
 <p><strong>Compile Time Polymorphism In</strong> Java is also known as <strong>Static Polymorphism.</strong> Furthermore, the call to the method is resolved at compile-time. Compile-Time polymorphism is achieved through <strong>Method Overloading</strong>. This type of polymorphism can also be achieved through <strong>Operator Overloading</strong>. However, Java does not support Operator Overloading.</p>
 <p>Method Overloading is when a class has multiple methods with the same name, but the number, types, and order of parameters and the return type of the methods are different. Java allows the user freedom to use the same name for various functions as long as it can distinguish between them by the type and number of parameters.</p>
 </section>
 <section id="example-of-compile-time-polymorphism-in-java">
-<h3><strong>Example of Compile-Time Polymorphism in Java</strong><a class="headerlink" href="#example-of-compile-time-polymorphism-in-java" title="Permalink to this headline">#</a></h3>
+<h3><strong>Example of Compile-Time Polymorphism in Java</strong><a class="headerlink" href="#example-of-compile-time-polymorphism-in-java" title="Permalink to this headline"></a></h3>
 <p><em>We will do addition in Java and understand the concept of compile time polymorphism using subtract()</em></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>package staticPolymorphism; 
 public class Addition 
@@ -1160,7 +324,7 @@ obj.sum(45, 80, 22);
 <p><em>This is the basic concept of compile-time polymorphism in java where we can perform various operations by using multiple methods having the same name.</em></p>
 </section>
 <section id="what-is-runtime-polymorphism-in-java">
-<h3><strong>What is Runtime Polymorphism in Java?</strong><a class="headerlink" href="#what-is-runtime-polymorphism-in-java" title="Permalink to this headline">#</a></h3>
+<h3><strong>What is Runtime Polymorphism in Java?</strong><a class="headerlink" href="#what-is-runtime-polymorphism-in-java" title="Permalink to this headline"></a></h3>
 <p><strong>Runtime polymorphism</strong> in Java is also popularly known as <strong>Dynamic Binding or Dynamic Method Dispatch.</strong> In this process, the call to an overridden method is resolved dynamically at runtime rather than at compile-time. You can achieve Runtime polymorphism via <strong>Method Overriding</strong>.</p>
 <p>Method Overriding is done when a child or a subclass has a method with the same name, parameters, and return type as the parent or the superclass; then that function overrides the function in the superclass. In simpler terms, if the subclass provides its definition to a method already present in the superclass; then that function in the base class is said to be overridden.</p>
 <p>Also, it should be noted that runtime polymorphism can only be achieved through functions and not data members.</p>
@@ -1170,7 +334,7 @@ obj.sum(45, 80, 22);
 </pre></div>
 </div>
 <section id="examples-of-runtime-polymorphism-in-java">
-<h4><strong>Examples of Runtime Polymorphism in Java</strong><a class="headerlink" href="#examples-of-runtime-polymorphism-in-java" title="Permalink to this headline">#</a></h4>
+<h4><strong>Examples of Runtime Polymorphism in Java</strong><a class="headerlink" href="#examples-of-runtime-polymorphism-in-java" title="Permalink to this headline"></a></h4>
 <p><strong>Example 1:</strong></p>
 <p>In this example, we are creating one superclass Animal and three subclasses, Herbivores, Carnivores, and Omnivores. Subclasses extend the superclass and override its eat() method. We will call the eat() method by the reference variable of Parent class, i.e. Animal class. As it refers to the base class object and the base class method overrides the superclass method; the base class method is invoked at runtime. As Java Virtual Machine or the JVM and not the compiler determines method invocation, it is, therefore, runtime polymorphism.</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Animal</span><span class="p">{</span><span class="w">  </span>
@@ -1284,7 +448,7 @@ It is Famous for skiing</p>
 </section>
 </section>
 <section id="example-of-run-time-polymorphism-in-java">
-<h3><strong>Example of run-time polymorphism in java</strong><a class="headerlink" href="#example-of-run-time-polymorphism-in-java" title="Permalink to this headline">#</a></h3>
+<h3><strong>Example of run-time polymorphism in java</strong><a class="headerlink" href="#example-of-run-time-polymorphism-in-java" title="Permalink to this headline"></a></h3>
 <p>We will create two classes Car and Innova, Innova class will extend the car class and will override its run() method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>class Car 
 { 
@@ -1330,7 +494,7 @@ c.run();
 <p><em>This clearly implies we can’t achieve Runtime polymorphism via data members. In short, a method is overridden, not the data members.</em></p>
 </section>
 <section id="runtime-polymorphism-with-multilevel-inheritance">
-<h3><strong>Runtime polymorphism with multilevel inheritance</strong><a class="headerlink" href="#runtime-polymorphism-with-multilevel-inheritance" title="Permalink to this headline">#</a></h3>
+<h3><strong>Runtime polymorphism with multilevel inheritance</strong><a class="headerlink" href="#runtime-polymorphism-with-multilevel-inheritance" title="Permalink to this headline"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>class grandfather 
 { 
 void swim() 
@@ -1414,7 +578,7 @@ f3.swim():
 </section>
 </section>
 <section id="polymorphic-subtypes">
-<h2><strong>Polymorphic Subtypes</strong><a class="headerlink" href="#polymorphic-subtypes" title="Permalink to this headline">#</a></h2>
+<h2><strong>Polymorphic Subtypes</strong><a class="headerlink" href="#polymorphic-subtypes" title="Permalink to this headline"></a></h2>
 <p>Subtype basically means that a subtype can serve as another type’s subtype, sounds a bit complicated?</p>
 <p>Let’s understand this with the help of an example:</p>
 <p>Assuming we have to draw some arbitrary shapes, we can introduce a class named ‘shape’ with a draw() method. By overriding draw() with other subclasses such as circle, square, rectangle, trapezium, etc we will introduce an array of type ‘shape’ whose elements store references will refer to ‘shape’ subclass references. Next time, we will call draw(), all shapes instances draw () method will be called.</p>
@@ -1422,18 +586,18 @@ f3.swim():
 <p>To call non-final instance methods we use late binding. In short, a compiler should not perform any argument checks, type checks, method calls, etc, and leave everything on the runtime.</p>
 </section>
 <section id="what-is-polymorphism-in-programming">
-<h2><strong>What is Polymorphism in Programming?</strong><a class="headerlink" href="#what-is-polymorphism-in-programming" title="Permalink to this headline">#</a></h2>
+<h2><strong>What is Polymorphism in Programming?</strong><a class="headerlink" href="#what-is-polymorphism-in-programming" title="Permalink to this headline"></a></h2>
 <p>Polymorphism in programming is defined usage of a single symbol to represent multiple different types.</p>
 </section>
 <section id="what-is-polymorphism-variables">
-<h2><strong>What is Polymorphism Variables?</strong><a class="headerlink" href="#what-is-polymorphism-variables" title="Permalink to this headline">#</a></h2>
+<h2><strong>What is Polymorphism Variables?</strong><a class="headerlink" href="#what-is-polymorphism-variables" title="Permalink to this headline"></a></h2>
 <p>A <strong>polymorphic variable</strong> is defined as a variable that can hold values of different types during the course of execution.</p>
 </section>
 <section id="why-use-polymorphism-in-java">
-<h2><strong>Why use Polymorphism in Java?</strong><a class="headerlink" href="#why-use-polymorphism-in-java" title="Permalink to this headline">#</a></h2>
+<h2><strong>Why use Polymorphism in Java?</strong><a class="headerlink" href="#why-use-polymorphism-in-java" title="Permalink to this headline"></a></h2>
 <p>Polymorphism in Java makes it possible to write a method that can correctly process lots of different types of functionalities that have the same name. We can also gain consistency in our code by using polymorphism.</p>
 <section id="advantages-of-polymorphism-in-java">
-<h3><strong>Advantages of Polymorphism in Java</strong><a class="headerlink" href="#advantages-of-polymorphism-in-java" title="Permalink to this headline">#</a></h3>
+<h3><strong>Advantages of Polymorphism in Java</strong><a class="headerlink" href="#advantages-of-polymorphism-in-java" title="Permalink to this headline"></a></h3>
 <ol class="simple">
 <li><p>It provides reusability to the code. The classes that are written, tested and implemented can be reused multiple times. Furthermore, it saves a lot of time for the coder. Also, the one can change the code without affecting the original code.</p></li>
 <li><p>A single variable can be used to store multiple data values. The value of a variable you inherit from the superclass into the subclass can be changed without changing that variable’s value in the superclass; or any other subclasses.</p></li>
@@ -1441,7 +605,7 @@ f3.swim():
 </ol>
 </section>
 <section id="characteristics-of-polymorphism">
-<h3><strong>Characteristics of Polymorphism</strong><a class="headerlink" href="#characteristics-of-polymorphism" title="Permalink to this headline">#</a></h3>
+<h3><strong>Characteristics of Polymorphism</strong><a class="headerlink" href="#characteristics-of-polymorphism" title="Permalink to this headline"></a></h3>
 <p>Polymorphism has many other characteristics other than Method Overloading and Method Overriding. They include:</p>
 <ul class="simple">
 <li><p>Coercion</p></li>
@@ -1449,7 +613,7 @@ f3.swim():
 <li><p>Polymorphic Variables or Parameters</p></li>
 </ul>
 <section id="coercion">
-<h4><strong>1. Coercion</strong><a class="headerlink" href="#coercion" title="Permalink to this headline">#</a></h4>
+<h4><strong>1. Coercion</strong><a class="headerlink" href="#coercion" title="Permalink to this headline"></a></h4>
 <p>Coercion deals with implicitly converting one type of object into a new object of a different kind. Also, this is done automatically to prevent type errors in the code.</p>
 <p>Programming languages such as <a class="reference external" href="https://www.mygreatlearning.com/blog/learn-c-programming-online-for-free/">C</a>, java, etc support the conversion of value from one data type to another data type. Data type conversions are of two types, i.e., implicit and explicit.</p>
 <p>Implicit type conversion is automatically done in the program and this type of conversion is also termed coercion.</p>
@@ -1474,7 +638,7 @@ f3.swim():
 happy5</p>
 </section>
 <section id="internal-operator-overloading">
-<h4><strong>2. Internal Operator Overloading</strong><a class="headerlink" href="#internal-operator-overloading" title="Permalink to this headline">#</a></h4>
+<h4><strong>2. Internal Operator Overloading</strong><a class="headerlink" href="#internal-operator-overloading" title="Permalink to this headline"></a></h4>
 <p>In Operator Overloading, an operator or symbol behaves in more ways than one depending upon the input context or the type of operands. It is a characteristic of static polymorphism. Although Java does not support user-defined operator overloading like C++, where the user can define how an operator works for different operands, there are few instances where Java internally overloads operators.</p>
 <p>Operator overloading is the concept of using the operator as per your choice. Therefore, an operator symbol or method name can be used as a ‘user-defined’ type as per the requirements.</p>
 <p>For example, ‘+’ can be used to perform the addition of numbers (same data type) or for concatenation of two or more strings.</p>
@@ -1502,7 +666,7 @@ happy5</p>
 <p>Similarly, operators like**! &amp;, and |** are also in the overload position for logical and bitwise operations. In both of these cases, the type of argument will decide how the operator will interpret.</p>
 </section>
 <section id="polymorphic-variables-or-parameters">
-<h4><strong>3. Polymorphic Variables or Parameters</strong><a class="headerlink" href="#polymorphic-variables-or-parameters" title="Permalink to this headline">#</a></h4>
+<h4><strong>3. Polymorphic Variables or Parameters</strong><a class="headerlink" href="#polymorphic-variables-or-parameters" title="Permalink to this headline"></a></h4>
 <p>In Java, the object or instance variables represent the polymorphic variables. This is because any object variables of a class can have an IS-A relationship with their own classes and subclasses.</p>
 <p>The Polymorphic Variable is a variable that can hold values of different types during the time of execution.</p>
 <p>Parametric polymorphism specifies that while class declaration, a field name can associate with different types, and a method name can associate with different parameters and return types.</p>
@@ -1541,7 +705,7 @@ I am a triangle.</p>
 </section>
 </section>
 <section id="problems-with-polymorphism">
-<h2><strong>Problems with Polymorphism</strong><a class="headerlink" href="#problems-with-polymorphism" title="Permalink to this headline">#</a></h2>
+<h2><strong>Problems with Polymorphism</strong><a class="headerlink" href="#problems-with-polymorphism" title="Permalink to this headline"></a></h2>
 <p>With lots of advantages, there are also a few disadvantages of polymorphism.</p>
 <ul class="simple">
 <li><p>Polymorphism is quite challenging while implementation.</p></li>
@@ -1568,7 +732,7 @@ I am a triangle.</p>
 <p>Basically, the reason for the fragile base problem is that the developer of the base class has no idea of the subclass design. There is no solution yet for this problem.</p>
 </section>
 <section id="conclusion">
-<h2><strong>Conclusion</strong><a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<h2><strong>Conclusion</strong><a class="headerlink" href="#conclusion" title="Permalink to this headline"></a></h2>
 <p>We hope you must have got a basic idea of polymorphism in Java and how we use it as well as problems related to them.</p>
 <hr class="docutils" />
 <p>End Of Topic</p>
@@ -1595,50 +759,34 @@ I am a triangle.</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="antvsmavenvsgradle.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Ant Vs Maven Vs Gradle</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="UnableToRunJarFiles.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</p>
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="antvsmavenvsgradle.html" class="btn btn-neutral float-left" title="Ant Vs Maven Vs Gradle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="UnableToRunJarFiles.html" class="btn btn-neutral float-right" title="Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By James Goudy<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
       </div>
-    </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-  </body>
+</body>
 </html>
