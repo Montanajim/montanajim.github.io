@@ -7,7 +7,10 @@
 
 
 ```{admonition} Note
-**Bottom Navigation Bar** is a property of the Scaffold.  There are three important properties *items*, *currentIndex*, and *onTap*. *items* setup the bottom buttons. *currentIndex* is the button index that was tapped. *onTap* is the listener for the button. The onTap should call the setState() function in order to update the screen and change the index.
+**Bottom Navigation Bar** is a property of the Scaffold.  There are three important properties *items*, *currentIndex*, and *onTap*. 
+*items* setup the bottom buttons. 
+*currentIndex* is the button index that was tapped. 
+*onTap* is the listener for the button. The onTap should call the setState() function in order to update the screen and change the index.
 ```
 
 
@@ -16,8 +19,6 @@
 
 ```dart
 import 'package:flutter/material.dart';
-
-
 
 void main() {
   runApp(const MaterialApp(home: MyApp()));
@@ -37,6 +38,7 @@ class _MyAppState extends State<MyApp> {
   static const TextStyle myStyle =
       TextStyle(fontSize: 36, fontWeight: FontWeight.bold);
 
+  // Note that we are creating the custom widget "myWidget"  
   static List<Widget> _widgetOptions = [
     Text('Index 0: People', style: myStyle),
     Text('Index 1: Weekend', style: myStyle),
@@ -62,8 +64,10 @@ class _MyAppState extends State<MyApp> {
   // NOTE: This is Widget is defined as a variable.
   static Widget myWidget = Scrollbar(
       thickness: 10.0,
+      // thumbVisibilty set to true will always
+      // show the scroll bar
       thumbVisibility: true,
-      radius: Radius.elliptical(5, 30),
+      radius: Radius.circular(10),
       child: ListView.builder(
           primary: true,
           itemCount: 50,
@@ -74,9 +78,9 @@ class _MyAppState extends State<MyApp> {
                 child: Padding(
                     padding: const EdgeInsets.all(10),
                     child: Text('City: ' + cities[index],
-                        style: TextStyle(color: Colors.yellow))));
+                        style: TextStyle(color: Colors.indigo[800]))));
           }));
-
+  
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
@@ -117,3 +121,14 @@ class _MyAppState extends State<MyApp> {
 
 ```
 
+### Example of Buttons 1 through 3
+
+![Bottom Navigation Figure](maimages/BottomNav_1.png)
+
+
+
+
+
+### Example of the List Builder for Button 4
+
+![Bottom Navigation Example 2](maimages/BottomNav_2.png)
