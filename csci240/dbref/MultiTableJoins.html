@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Python - Multi Table Joins</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha256-8uHMIn1ru0GS5KO+zf7Zccf8Uw12IA5DrdEcmMuWLFM=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/tooltipster.bundle.min.css" integrity="sha256-Qc4lCfqZWYaHF5hgEOFrYzSIX9Rrxk0NPHRac+08QeQ=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css" integrity="sha256-Wa1I4jhSXeWd3N6RhfPlkqr1WlT+zS3Vh2YGCg0129E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Code+Pro|Source+Sans+Pro|Source+Serif+Pro|Roboto|Roboto+Mono" rel="stylesheet">
+<link href="https://fonts.red-dove.com/iosevka-ss09-regular/webfont.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/sizzle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/sizzle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/mystnb.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" integrity="sha256-G7A4JrJjJlFqP0yamznwPjAApIKPkadeHfyIwiaa9e0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js" integrity="sha256-v8akIv8SCqn5f3mbVB7vEWprIizxPh6oV0yhao/dbB4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+    <script>
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        LINK_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: ''
+      };
+      $(document).data('sizzle', {on_load: []});
+    </script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../app-data.js"></script>
+<link rel="index" title="Index" href="../genindex.html" />
+<link rel="search" title="Search" href="../search.html" />
+<link rel="next" title="Foreign Keys and Cascading" href="ForeignKeysandCascading.html" />
+<link rel="prev" title="Single File Queries" href="SingleFileQueries.html" />
+
+</head>
+<body class="full-height test">
+<noscript>
+  <div>
+    <div id="noscript-message">JavaScript is not enabled. It is needed for this website to work.</div>
+  </div>
+</noscript>
+<div id="whole-page" class="container-fluid content full-height">
+  <div id="header-row" class="row">
+    <div id="header-container" class="col-md-12">
+      <div id="hdr-left">
+        <i class="fa fa-bars menu-toggle"></i>
+        
+<a href="../index.html" class="text-logo">CSCI 240</a>
+
+      </div>
+      <div id="hdr-centre" class="text-center stretch">
+        <h3 title="Multi Table Joins">Multi Table Joins</h3>
+        <h6>Multi Table Joins</h6>
+      </div>
+      <div id="hdr-search">
+        
+<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
+  <input type="text" class="form-control search-query" placeholder="Search docs ...">
+  <div class="input-group-addon">
+    <i class="fa fa-search"></i>
+  </div>
+</div>
+      </div>
+
+      <div id="hdr-index">
+        <a href="../genindex.html" class="btn btn-default" title="Go to the index"><i class="fa fa-list"></i></a>
+      </div>
+
+      <div id="hdr-source">
+        <a href="../_sources/dbref/MultiTableJoins.md" class="btn btn-default" title="See the source for this page"><i class="fa fa-code"></i></a>
+      </div>
+
+      <div id="hdr-right">
+        
+  
+  <div class="prev-next">
+    
+      <div class="pull-left">
+        <a class="btn btn-default prev" href="SingleFileQueries.html" title="Previous chapter (Single File Queries)"><i class="fa fa-chevron-left mr-1em" aria-hidden="true"></i><span class="btn-text">Single File Queries</span></a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default next" href="ForeignKeysandCascading.html" title="Next chapter (Foreign Keys and Cascading)"><span class="btn-text">Foreign Keys and Cascading</span>&nbsp;<i class="fa fa-chevron-right ml-1em" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  
+      </div>
+      <div id="alt-hdr-right">
+
+        <a href="SingleFileQueries.html"><i class="fa fa-chevron-left mr-8"></i></a>
+
+
+        <a href="../index.html"><i class="fa fa-home mr-8"></i></a>
+
+
+        <a href="../search.html"><i class="fa fa-search mr-8"></i></a>
+
+
+        <a href="../genindex.html"><i class="fa fa-list mr-8"></i></a>
+
+
+        <a href="ForeignKeysandCascading.html"><i class="fa fa-chevron-right"></i></a>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="content-row" class="row">
+    <div id="page-content" class="col-md-12 flex-col">
+      <div id="content-container">
+        <div id="nav">
+          
+  <div class="navsidebar">
+    <div id="sidebar-search">
+      
+<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
+  <input type="text" class="form-control search-query" placeholder="Search docs ...">
+  <div class="input-group-addon">
+    <i class="fa fa-search"></i>
+  </div>
+</div>
+    </div>
+      <div class="sidebar-block">
+        <div class="sidebar-tocheading">
+          <div class="pull-left">
+            <h2>Table Of Contents</h2>
+          </div>
+          <div class="pull-right" title="Hide this sidebar (hover at left edge to bring it back)"><i class="fa fa-chevron-left hidetoc"></i></div>
+        </div>
+        <div class="sidebar-toc">
+      
+          <div id="toc-filter" title="Type in here to show only matching topics">
+            <input class="form-control" id="toc-filter-query" placeholder="Filter by title ...">
+          </div>
+      
+        
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="RelationalDatabases.html">Relational Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MySQLFundamentals.html">MySQL Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreatingDatabasesAndTables.html">Creating Databases and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataDefinitionLanguage.html">Data Definition Language - DDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataQueryLanguage.html">Data Query Language - DQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataManipulationLanguage.html">Data Manipulation Language - DML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datatypes.html">Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cascade_Deletes.html">Cascade Deletes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SingleFileQueries.html">Single File Queries</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#multi-table-joins">Multi Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ForeignKeysandCascading.html">Foreign Keys and Cascading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Indexes.html">Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StoreProcedures.html">Store Procedures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Triggers.html">Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Events.html">Events</a></li>
+</ul>
+
+  
+        </div>
+      </div>
+  </div>
+        </div>
+        <div id="content" tabindex="0" class="stretch">
+          <div id="mnav">
+            
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="RelationalDatabases.html">Relational Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MySQLFundamentals.html">MySQL Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreatingDatabasesAndTables.html">Creating Databases and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataDefinitionLanguage.html">Data Definition Language - DDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataQueryLanguage.html">Data Query Language - DQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataManipulationLanguage.html">Data Manipulation Language - DML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datatypes.html">Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cascade_Deletes.html">Cascade Deletes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SingleFileQueries.html">Single File Queries</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#multi-table-joins">Multi Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ForeignKeysandCascading.html">Foreign Keys and Cascading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Indexes.html">Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StoreProcedures.html">Store Procedures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Triggers.html">Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Events.html">Events</a></li>
+</ul>
+
+  
+          </div>
+          <div class="body">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="multi-table-joins">
+<h1>Multi Table Joins<a class="headerlink" href="#multi-table-joins" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="joins">
+<h2>Joins<a class="headerlink" href="#joins" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><strong>Inner join:</strong> An inner join returns all rows from both tables where the join condition is satisfied. Stated differently, there is a match in both tables and only those records are returned.</li>
+<li><strong>Left join:</strong> A left join returns all rows from the left table, even if there are no matching rows in the right table. The right table will only return rows that match the join condition.</li>
+<li><strong>Right join:</strong> A right join is the opposite of a left join. It returns all rows from the right table, even if there are no matching rows in the left table. The left table will only return rows that match the join condition.</li>
+<li><strong>Self join:</strong> A self-join is a join between two tables that are the same table. This can be used to find relationships between rows in the same table.</li>
+<li><strong>Cross join:</strong> Returns all records from both tables.</li>
+</ul>
+<hr class="docutils" />
+<div class="highlight-mysql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- 03/09/23</span><span class="w"></span>
+
+<span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">zdbjoins</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">use</span><span class="w"> </span><span class="n">zdbjoins</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl_person</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">fname</span><span class="w">      </span><span class="kt">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">person_id</span><span class="w">  </span><span class="kt">int</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="no">null</span><span class="w"> </span><span class="k">auto_increment</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+
+<span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl_car</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">make</span><span class="w"> 	     </span><span class="kt">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">model</span><span class="w">       </span><span class="kt">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">color</span><span class="w">       </span><span class="kt">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">person_id</span><span class="w">   </span><span class="kt">int</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">car_id</span><span class="w">      </span><span class="kt">int</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="no">null</span><span class="w"> </span><span class="k">auto_increment</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">constraint</span><span class="w"> </span><span class="n">fk_carperson</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="k">references</span><span class="w"> </span><span class="n">tbl_person</span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+
+
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl_person</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">person_id</span><span class="p">)</span><span class="w"></span>
+<span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Ally&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="s1">&#39;Bubba&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="s1">&#39;Billy&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="w"></span>
+<span class="w">       </span><span class="p">(</span><span class="s1">&#39;Danny&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="s1">&#39;David&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">),(</span><span class="s1">&#39;Jim&#39;</span><span class="p">,</span><span class="mi">7</span><span class="p">),(</span><span class="s1">&#39;Jack&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+
+
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl_car</span><span class="p">(</span><span class="n">make</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">color</span><span class="p">,</span><span class="n">person_id</span><span class="p">)</span><span class="w"> </span>
+<span class="k">values</span><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Ford&#39;</span><span class="p">,</span><span class="s1">&#39;F150&#39;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;Ford&#39;</span><span class="p">,</span><span class="s1">&#39;F150&#39;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;Ford&#39;</span><span class="p">,</span><span class="s1">&#39;Mustang&#39;</span><span class="p">,</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;Ford&#39;</span><span class="p">,</span><span class="s1">&#39;Fiesta&#39;</span><span class="p">,</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="no">null</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;Scion&#39;</span><span class="p">,</span><span class="s1">&#39;XB&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="no">null</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;Subaru&#39;</span><span class="p">,</span><span class="s1">&#39;Forester&#39;</span><span class="p">,</span><span class="s1">&#39;forest&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">Select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_person</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">Select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_car</span><span class="p">;</span><span class="w"></span>
+
+
+<span class="c1">-- cartesian product</span><span class="w"></span>
+<span class="c1">-- **** VERY VERY BAD ********</span><span class="w"></span>
+
+<span class="k">Select</span><span class="w"> </span><span class="n">tbl_person</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="n">tbl_car</span><span class="p">.</span><span class="n">make</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"></span>
+<span class="k">from</span><span class="w"> </span><span class="n">tbl_person</span><span class="w"> </span><span class="k">Join</span><span class="w"> </span><span class="n">tbl_car</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">-- INNER JOIN --</span><span class="w"></span>
+<span class="c1">-- Connect where there is a one to one match</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="n">tbl_person</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="n">tbl_car</span><span class="p">.</span><span class="n">make</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"></span>
+<span class="k">from</span><span class="w"> </span><span class="n">tbl_person</span><span class="w"> </span><span class="k">Inner</span><span class="w"> </span><span class="k">Join</span><span class="w"> </span><span class="n">tbl_car</span><span class="w"></span>
+<span class="w">     </span><span class="k">on</span><span class="w"> </span><span class="n">tbl_person</span><span class="p">.</span><span class="n">person_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tbl_car</span><span class="p">.</span><span class="n">person_id</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">-- output label</span><span class="w"></span>
+<span class="k">Select</span><span class="w">  </span><span class="s2">&quot;Left Join&quot;</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">-- LEFT JOIN --</span><span class="w"></span>
+<span class="c1">-- Connect where you show ALL of the data in </span><span class="w"></span>
+<span class="c1">-- the left table [tbl_person] and </span><span class="w"></span>
+<span class="c1">-- only the data in the right table[tbl_car]</span><span class="w"></span>
+<span class="c1">-- that has a match</span><span class="w"></span>
+
+<span class="k">Select</span><span class="w"> </span><span class="n">tbl_person</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="n">tbl_car</span><span class="p">.</span><span class="n">make</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"></span>
+<span class="k">from</span><span class="w"> </span><span class="n">tbl_person</span><span class="w"> </span><span class="k">Left</span><span class="w"> </span><span class="k">Join</span><span class="w"> </span><span class="n">tbl_car</span><span class="w"></span>
+<span class="w">     </span><span class="k">on</span><span class="w"> </span><span class="n">tbl_person</span><span class="p">.</span><span class="n">person_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tbl_car</span><span class="p">.</span><span class="n">person_id</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">-- output label</span><span class="w"></span>
+<span class="k">Select</span><span class="w">  </span><span class="s2">&quot;Right Join&quot;</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">-- RIGHT JOIN --</span><span class="w"></span>
+<span class="c1">-- Connect where you show ALL of the data in </span><span class="w"></span>
+<span class="c1">-- the right table [tbl_car] and </span><span class="w"></span>
+<span class="c1">-- only the data in the left table[tbl_person]</span><span class="w"></span>
+<span class="c1">-- that has a match</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="n">tbl_person</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="n">tbl_car</span><span class="p">.</span><span class="n">make</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"></span>
+<span class="k">from</span><span class="w"> </span><span class="n">tbl_person</span><span class="w"> </span><span class="k">Right</span><span class="w"> </span><span class="k">Join</span><span class="w"> </span><span class="n">tbl_car</span><span class="w"></span>
+<span class="w">     </span><span class="k">on</span><span class="w"> </span><span class="n">tbl_person</span><span class="p">.</span><span class="n">person_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tbl_car</span><span class="p">.</span><span class="n">person_id</span><span class="p">;</span><span class="w"></span>
+
+
+<span class="c1">-- output label</span><span class="w"></span>
+<span class="k">Select</span><span class="w">  </span><span class="s2">&quot;Cross Join&quot;</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">-- Cross JOIN --</span><span class="w"></span>
+<span class="c1">-- Connect where you show ALL of the data in </span><span class="w"></span>
+<span class="c1">-- the right table [tbl_car] and </span><span class="w"></span>
+<span class="c1">-- all of  the data in the left table[tbl_person]</span><span class="w"></span>
+<span class="c1">-- There will be nulls from both tables</span><span class="w"></span>
+
+<span class="k">Select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span>
+<span class="k">From</span><span class="w"> </span><span class="n">tbl_person</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">Join</span><span class="w"> </span><span class="n">tbl_car</span><span class="w"></span>
+<span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">tbl_person</span><span class="p">.</span><span class="n">person_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tbl_car</span><span class="p">.</span><span class="n">person_id</span><span class="w"> </span>
+<span class="k">UNION</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="k">From</span><span class="w"> </span><span class="n">tbl_person</span><span class="w"> </span><span class="k">Right</span><span class="w"> </span><span class="k">Join</span><span class="w"> </span><span class="n">tbl_car</span><span class="w"></span>
+<span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">tbl_person</span><span class="p">.</span><span class="n">person_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tbl_car</span><span class="p">.</span><span class="n">person_id</span><span class="p">;</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">Note that the UNION will delete any duplicates.</span>
+<span class="cm">If you wanted to see duplicates, then you use UNION ALL</span>
+
+<span class="cm">*/</span><span class="p">.</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">######### NOTE: ################</span>
+<span class="cm">Some forms of SQL including mysql</span>
+<span class="cm">they will equate an </span>
+<span class="cm">inner join/ join/cross join</span>
+<span class="cm">as the same. In the standard, </span>
+<span class="cm">they are not the same.</span>
+<span class="cm">#################################</span>
+<span class="cm">*/</span><span class="w"></span>
+
+
+<span class="c1">-- ----------  Similiar Tables --------------------------</span><span class="w"></span>
+<span class="c1">-- Dealing with two similar tables</span><span class="w"></span>
+<span class="c1">-- putting two tables together</span><span class="w"></span>
+
+<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl_hunters</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">fname</span><span class="w"> </span><span class="kt">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">lname</span><span class="w"> </span><span class="kt">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="kt">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">hunters_id</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="no">null</span><span class="w"> </span><span class="k">auto_increment</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"></span>
+<span class="p">);</span><span class="w"> </span>
+
+<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tbl_fishermen</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">fname</span><span class="w"> </span><span class="kt">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">lname</span><span class="w"> </span><span class="kt">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="kt">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">fisherman_id</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="no">null</span><span class="w"> </span><span class="k">auto_increment</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+
+
+<span class="c1">-- in the tables below</span><span class="w"></span>
+<span class="c1">-- Dan, Jon and Tom are in both groups</span><span class="w"></span>
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl_hunters</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="p">,</span><span class="k">type</span><span class="p">)</span><span class="w"></span>
+<span class="k">values</span><span class="w">  </span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span><span class="s2">&quot;Barker&quot;</span><span class="p">,</span><span class="s2">&quot;hunter&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Ali&quot;</span><span class="p">,</span><span class="s2">&quot;Allison&quot;</span><span class="p">,</span><span class="s2">&quot;hunter&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Car&quot;</span><span class="p">,</span><span class="s2">&quot;Carlson&quot;</span><span class="p">,</span><span class="s2">&quot;hunter&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Dan&quot;</span><span class="p">,</span><span class="s2">&quot;Dunsford&quot;</span><span class="p">,</span><span class="s2">&quot;hunter&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Jon&quot;</span><span class="p">,</span><span class="s2">&quot;Jones&quot;</span><span class="p">,</span><span class="s2">&quot;hunter&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Tom&quot;</span><span class="p">,</span><span class="s2">&quot;Troves&quot;</span><span class="p">,</span><span class="s2">&quot;hunter&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Sam&quot;</span><span class="p">,</span><span class="s2">&quot;Smith&quot;</span><span class="p">,</span><span class="s2">&quot;hunter&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Tim&quot;</span><span class="p">,</span><span class="s2">&quot;Truvers&quot;</span><span class="p">,</span><span class="s2">&quot;hunter&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">Select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">From</span><span class="w"> </span><span class="n">tbl_hunters</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tbl_fishermen</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="p">,</span><span class="k">type</span><span class="p">)</span><span class="w"></span>
+<span class="k">values</span><span class="w">  </span><span class="p">(</span><span class="s2">&quot;Bobby&quot;</span><span class="p">,</span><span class="s2">&quot;Barnes&quot;</span><span class="p">,</span><span class="s2">&quot;fisherman&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Alley&quot;</span><span class="p">,</span><span class="s2">&quot;Allsford&quot;</span><span class="p">,</span><span class="s2">&quot;fisherman&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Carrie&quot;</span><span class="p">,</span><span class="s2">&quot;Cooper&quot;</span><span class="p">,</span><span class="s2">&quot;fisherman&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Dan&quot;</span><span class="p">,</span><span class="s2">&quot;Dunsford&quot;</span><span class="p">,</span><span class="s2">&quot;fisherman&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Jon&quot;</span><span class="p">,</span><span class="s2">&quot;Jones&quot;</span><span class="p">,</span><span class="s2">&quot;fisherman&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Tom&quot;</span><span class="p">,</span><span class="s2">&quot;Troves&quot;</span><span class="p">,</span><span class="s2">&quot;fisherman&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Sammy&quot;</span><span class="p">,</span><span class="s2">&quot;Smothers&quot;</span><span class="p">,</span><span class="s2">&quot;fisherman&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="s2">&quot;Thomas&quot;</span><span class="p">,</span><span class="s2">&quot;Tuffy&quot;</span><span class="p">,</span><span class="s2">&quot;fisherman&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span>
+<span class="k">Select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">From</span><span class="w"> </span><span class="n">tbl_fishermen</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">-- combine both tables - UNION</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="p">,</span><span class="k">type</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_hunters</span><span class="w"> </span>
+<span class="k">UNION</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_fishermen</span><span class="w"> </span>
+<span class="k">Order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="n">lname</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">Select</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_hunters</span><span class="w"> </span>
+<span class="k">UNION</span><span class="w"> </span>
+<span class="k">Select</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_fishermen</span><span class="w"> </span>
+<span class="k">Order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="n">lname</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">-- preserves the duplicates</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_hunters</span><span class="w"> </span>
+<span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span>
+<span class="k">Select</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_fishermen</span><span class="w"> </span>
+<span class="k">Order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="n">lname</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">-- ensures that there is one distinct</span><span class="w"></span>
+<span class="c1">-- entry for each name</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_hunters</span><span class="w"> </span>
+<span class="k">UNION</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span>
+<span class="k">Select</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_fishermen</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">-- find overlapping / intersecting names</span><span class="w"></span>
+<span class="c1">-- find members in both groups</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_hunters</span><span class="w"> </span>
+<span class="n">Intersect</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_fishermen</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">-- this exludes the overlapping names</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_hunters</span><span class="w"> </span>
+<span class="k">Except</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tbl_fishermen</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./dbref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer-row" class="row">
+
+    <div class="col-md-12">
+        <span title="Built on 2023-04-26" class="pull-right">&copy; Copyright 2023 By James Goudy.
+        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3 and the
+        <a href="https://pypi.org/project/sphinx-sizzle-theme/"
+
+           title="0.1.1/6a5828d9 [2022-05-03T16:20:16]"
+
+        >Sizzle</a> theme.</span>
+    </div>
+
+  </div>
+</div>
+
+<div id="tooltips" class="hidden">
+</div>
+
+<script>
+$(document).ready(function() {
+  'use strict';
+  var $search = $('.search-query');
+
+  var $filter = $('#toc-filter-query');
+  var $toclist = $('.sidebar-toc > ul').find('li');
+
+  if ($toclist.length === 0) {
+    $toclist = $('.localtoc > ul').find('li');
+  }
+
+
+  var $nav = $('#nav');
+
+  //$('#whole-page').removeClass('hidden');
+  var nav_width = $nav.width();
+
+
+  var search_url = '../search.html';
+
+  function perform_search(e) {
+    var $elem;
+
+    if (e.type === 'keypress') {
+      $elem = $(e.target);
+    }
+    else if (e.type === 'click') {
+      $elem = $(e.target).parents('.input-group').find('input');
+    }
+    var q = $elem.val().trim();
+
+    if (q) {
+      var url = search_url + '?q=' + q + '&check_keywords=yes&area=default';
+
+      location.href = url;
+    }
+  }
+
+
+  function apply_filter() {
+    var s = $filter.val().trim().toLowerCase();
+
+    $toclist.find('a').removeClass('hidden');
+    $toclist.each(function() {
+      var $this = $(this);
+      var $link = $this.find('> a');
+      var t = $link.text().toLowerCase();
+      var show = t.indexOf(s) >= 0;
+
+      if (!show) {
+        $link.addClass('hidden');
+      }
+    });
+  }
+
+  $filter.on('keyup', function(e) {
+    apply_filter();
+  });
+
+
+
+  $search.on('keypress', function(e) {
+    if (e.which == 13) {
+      perform_search(e);
+    }
+  });
+  $search.parents('.input-group').find('.input-group-addon').on('click', perform_search);
+  $(document).on('click', '.summary .fa-caret-right', function(e) {
+    var $elem = $(e.target).parents('li');
+    var $next = $elem.next();
+    $elem.addClass('hidden');
+    $next.removeClass('hidden');
+  });
+  $(document).on('click', '.detail .fa-caret-down', function(e) {
+    var $elem = $(e.target).parents('li');
+    var $prev = $elem.prev();
+    $elem.addClass('hidden');
+    $prev.removeClass('hidden');
+  });
+
+  $('#content').on('click', function() {
+    $('#mnav').hide();
+  });
+
+  var counter = 0;
+  var timer = null;
+
+  function show_nav() {
+    $('#content').off('mousemove', track_mouse);
+    if (timer !== null) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    $nav.show();
+  }
+
+  function track_mouse(e) {
+    var x = e.clientX;
+
+    if (x < 15) {
+      ++counter;
+      if (timer === null) {
+        timer = setTimeout(show_nav, 2000);
+      }
+    }
+    else {
+      counter = 0;
+    }
+    if (counter >= 20) {
+      show_nav();
+    }
+  };
+
+  function hide_nav() {
+    $nav.hide();
+    counter = 0;
+    $('#content').on('mousemove', track_mouse);
+  }
+
+  $('.hidetoc').on('click', hide_nav);
+
+  $(document).on('keyup', function(e) {
+    if (e.ctrlKey) {
+      if (e.which == 37) {      // Ctrl+left arrow
+        hide_nav();
+      }
+      else if (e.which == 39) { // Ctrl+right arrow
+        show_nav();
+      }
+    }
+  });
+
+  $('.menu-toggle').on('click', function(e) {
+    $('#mnav').toggle();
+  });
+
+  function scroll_nav(frag) {
+    var sel = '#nav ' + (frag ? 'a[href="' + frag + '"]' : '.toctree-l1 a.current');
+
+    var $link = $(sel);
+
+    if ($link.length > 0) {
+      $link[0].scrollIntoView({block: 'center'});
+    }
+  }
+
+  // If the navigator is long, then the item we clicked on to get here might
+  // not be in view. Try to scroll it into the view - a slight delay is needed
+  // to get it to sync properly with other stuff going on (as the page has just
+  // loaded). Hence the setTimeout with a timeout of 0.
+
+  function do_scroll() {
+    scroll_nav(window.location.hash);
+  }
+
+  setTimeout(do_scroll, 0);
+
+  function adjust_size() {
+    // we need to set the height explicitly so that scrolling regions in the
+    // content area work properly.
+    var h = $('#page-content').height();
+
+    $('#nav, #content').height(h);
+    if ($('#nav').is(':visible')) {
+      $('#mnav').hide();
+    }
+  }
+
+  adjust_size();
+
+  $(window).on('resize', adjust_size);
+
+  function focus_content() {
+    $('#content').focus();  // so that keyboard can be used to scroll, etc.
+  }
+
+  setTimeout(focus_content, 150);
+
+  var sizzle = $(document).data('sizzle');
+
+  function make_tooltip(id, h, b) {
+    var $e = $('<div>').attr('id', id);
+    var $b = $('<div>').addClass('tc-body').html(b);
+
+    if (h) {
+      var $h = $('<div>').addClass('tc-heading').html(h);
+      $e.append($h);
+    }
+    $e.append($b);
+    return $e;
+  }
+
+  var default_tt_options = {
+    theme: ['tooltipster-light', 'tooltipster-light-customized'],
+    interactive: true,
+    maxWidth: 600,
+    contentCloning: true
+  };
+
+  function activate_tooltips() {
+    var $tt = $('.tt');
+
+    //console.log('tt links:', $tt.length);
+    $tt.tooltipster(default_tt_options);
+  }
+
+
+
+  function add_glossary_tooltips() {
+    var links = $('a');  // can qualify with .reference.internal
+    var glinks = {};
+    var pat = /(.*)\.html#(term-.*)$/;
+    var found = false;  // links in this document
+
+    $.each(links, function(i, link) {
+        var $link = $(link);
+        var href = $link.attr('href');
+        var m = href.match(pat);
+
+        if (m) {
+          var s = m[1].replace(/^(\.\.\/)+/, '');
+
+          if (s === sizzle.app_data.glossary.document) {
+            var k = m[2];
+
+            if (k in glinks) {
+              glinks[k].push($link);
+            }
+            else {
+              glinks[k] = [$link];
+            }
+            found = true;
+          }
+        }
+    });
+    if (found) {
+      var $t = $('#tooltips');
+      var data = sizzle.app_data.glossary.terms;
+
+      $.each(glinks, function(k, v) {
+        var d = data[k];
+
+        if (d) {  // as a sanity check
+          var s = 'tc-'+ k;
+          var $e = make_tooltip(s, d.term, d.defn);
+          $t.append($e);
+
+          $.each(v, function(i, link) {
+            link.addClass('tt').attr('data-tooltip-content', '#' + s);
+          });
+        }
+      });
+    }
+  }
+
+  if (sizzle.app_data && sizzle.app_data.glossary &&
+      sizzle.app_data.glossary.document) {
+    add_glossary_tooltips();
+  }
+
+
+
+
+  function add_custom_tooltips() {
+    if (!sizzle.app_data) {
+      return;
+    }
+
+    var info_tips = sizzle.app_data.custom_data['info-tips'] || {};
+
+    if ($.isEmptyObject(info_tips)) {
+      return;
+    }
+
+    var tt_options = $.extend({contentAsHTML: true}, default_tt_options);
+
+    $('.tc-info').each(function() {
+      var $elem = $(this).prev();
+      var classes = $elem.attr('class');
+      var m = /\btci-([\S]+)/.exec(classes);
+
+      if (m !== null) {
+        var key = m[1];
+
+        if (key in info_tips) {
+          var v = info_tips[key];
+          var tt = $elem.tooltipster(tt_options).tooltipster('content', v);
+        }
+      }
+    });
+  }
+
+  add_custom_tooltips();
+
+  setTimeout(activate_tooltips, 1000);
+
+
+  // Clipboard copy for code blocks with captions
+
+  $('.code-block-caption').each(function() {
+    var $cap = $(this);
+    var $btn = $('<span class="clip-copy"><span class="copied hidden">Copied!</span><i class="fa fa-clipboard" title="Copy contents"></i></span>');
+    var $code = $cap.parent().find('.highlight');
+
+    $cap.append($btn);
+    $btn.find('.fa-clipboard').data('clip-text', $code.text());
+  });
+
+  var clipboard = new ClipboardJS('.code-block-caption .fa-clipboard', {
+    'text': function(trigger) {
+      return $(trigger).data('clip-text');
+    }
+  });
+
+  clipboard.on('success', function(e) {
+    var $copied = $(e.trigger).prev();
+
+    $copied.removeClass('hidden');
+
+    setTimeout(function() {$copied.addClass('hidden'); }, 1000);
+  });
+
+  if (sizzle.on_load) {
+    sizzle.on_load.forEach(function(f) {
+      f();
+    });
+  }
+});
+</script>
+</body>
+</html>
