@@ -12,7 +12,11 @@
 
 
 
-![](SQL_Joins.svg)
+![MultiTableJoins](SQL_Joins.svg)
+
+
+
+<img src="SQL_Joins.svg" style="zoom:67%;" />
 
 
 
