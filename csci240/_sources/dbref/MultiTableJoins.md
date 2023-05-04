@@ -12,17 +12,9 @@
 
 
 
-![MultiTableJoins](SQL_Joins.svg)
-
-
-
-<img src="SQL_Joins.svg" style="zoom:67%;" />
-
-
-
 ---
 
-
+![](SQL_Joins.png)
 
 ```mysql
 -- 03/09/23
