@@ -1,8 +1,4 @@
----
-
----
-
-# Run your first Dart example <br /> in Android Studio
+# Run your first Dart example<br>  in Android Studio
 
 https://o7planning.org/13965/dart-programming-with-dartpad-online-tool
 
