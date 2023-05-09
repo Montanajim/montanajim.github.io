@@ -1,63 +1,173 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html lang="en-gb">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Polymorphism in Java (With Examples) &mdash; CSCI 132 Basic Data Structures</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-        <script src="../_static/design-tabs.js"></script>
-        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+
+<title>CSCI 132 - Polymorphism in Java (With Examples)</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha256-8uHMIn1ru0GS5KO+zf7Zccf8Uw12IA5DrdEcmMuWLFM=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/tooltipster.bundle.min.css" integrity="sha256-Qc4lCfqZWYaHF5hgEOFrYzSIX9Rrxk0NPHRac+08QeQ=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css" integrity="sha256-Wa1I4jhSXeWd3N6RhfPlkqr1WlT+zS3Vh2YGCg0129E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Code+Pro|Source+Sans+Pro|Source+Serif+Pro|Roboto|Roboto+Mono" rel="stylesheet">
+<link href="https://fonts.red-dove.com/iosevka-ss09-regular/webfont.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/sizzle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/sizzle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" integrity="sha256-G7A4JrJjJlFqP0yamznwPjAApIKPkadeHfyIwiaa9e0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js" integrity="sha256-v8akIv8SCqn5f3mbVB7vEWprIizxPh6oV0yhao/dbB4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+    <script>
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        LINK_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: ''
+      };
+      $(document).data('sizzle', {on_load: []});
+    </script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-        <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution" href="UnableToRunJarFiles.html" />
-    <link rel="prev" title="Ant Vs Maven Vs Gradle" href="antvsmavenvsgradle.html" /> 
-</head>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../app-data.js"></script>
+<link rel="index" title="Index" href="../genindex.html" />
+<link rel="search" title="Search" href="../search.html" />
+<link rel="next" title="Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution" href="UnableToRunJarFiles.html" />
+<link rel="prev" title="Ant Vs Maven Vs Gradle" href="antvsmavenvsgradle.html" />
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../intro.html" class="icon icon-home"> Python
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+</head>
+<body class="full-height test">
+<noscript>
+  <div>
+    <div id="noscript-message">JavaScript is not enabled. It is needed for this website to work.</div>
+  </div>
+</noscript>
+<div id="whole-page" class="container-fluid content full-height">
+  <div id="header-row" class="row">
+    <div id="header-container" class="col-md-12">
+      <div id="hdr-left">
+        <i class="fa fa-bars menu-toggle"></i>
+        
+<a href="../index.html" class="text-logo">CSCI 132 Basic Data Structures</a>
+
+      </div>
+      <div id="hdr-centre" class="text-center stretch">
+        <h3 title="Polymorphism in Java (With Examples)">Polymorphism in Java (With Examples)</h3>
+        <h6>Polymorphism in Java (With Examples)</h6>
+      </div>
+      <div id="hdr-search">
+        
+<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
+  <input type="text" class="form-control search-query" placeholder="Search docs ...">
+  <div class="input-group-addon">
+    <i class="fa fa-search"></i>
+  </div>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Java Language</span></p>
+      </div>
+
+      <div id="hdr-index">
+        <a href="../genindex.html" class="btn btn-default" title="Go to the index"><i class="fa fa-list"></i></a>
+      </div>
+
+      <div id="hdr-source">
+        <a href="../_sources/javalang/PolymorphismInJavaWithExamples.md" class="btn btn-default" title="See the source for this page"><i class="fa fa-code"></i></a>
+      </div>
+
+      <div id="hdr-right">
+        
+  
+  <div class="prev-next">
+    
+      <div class="pull-left">
+        <a class="btn btn-default prev" href="antvsmavenvsgradle.html" title="Previous chapter (Ant Vs Maven Vs Gradle)"><i class="fa fa-chevron-left mr-1em" aria-hidden="true"></i><span class="btn-text">Ant Vs Maven Vs Gradle</span></a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default next" href="UnableToRunJarFiles.html" title="Next chapter (Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution)"><span class="btn-text">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</span>&nbsp;<i class="fa fa-chevron-right ml-1em" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  
+      </div>
+      <div id="alt-hdr-right">
+
+        <a href="antvsmavenvsgradle.html"><i class="fa fa-chevron-left mr-8"></i></a>
+
+
+        <a href="../index.html"><i class="fa fa-home mr-8"></i></a>
+
+
+        <a href="../search.html"><i class="fa fa-search mr-8"></i></a>
+
+
+        <a href="../genindex.html"><i class="fa fa-list mr-8"></i></a>
+
+
+        <a href="UnableToRunJarFiles.html"><i class="fa fa-chevron-right"></i></a>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="content-row" class="row">
+    <div id="page-content" class="col-md-12 flex-col">
+      <div id="content-container">
+        <div id="nav">
+          
+  <div class="navsidebar">
+    <div id="sidebar-search">
+      
+<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
+  <input type="text" class="form-control search-query" placeholder="Search docs ...">
+  <div class="input-group-addon">
+    <i class="fa fa-search"></i>
+  </div>
+</div>
+    </div>
+      <div class="sidebar-block">
+        <div class="sidebar-tocheading">
+          <div class="pull-left">
+            <h2>Table Of Contents</h2>
+          </div>
+          <div class="pull-right" title="Hide this sidebar (hover at left edge to bring it back)"><i class="fa fa-chevron-left hidetoc"></i></div>
+        </div>
+        <div class="sidebar-toc">
+      
+          <div id="toc-filter" title="Type in here to show only matching topics">
+            <input class="form-control" id="toc-filter-query" placeholder="Filter by title ...">
+          </div>
+      
+        
+  
+    <p class="caption" role="heading"><span class="caption-text">Java Language</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="javalanguage.html">Java Language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="netbeansinstall.html">NetBeans Installation</a></li>
@@ -90,7 +200,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current"><a class="reference internal" href="referencereading.html">Reference Reading</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="buildinglargejavaapplications.html">Building Large Java Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="antvsmavenvsgradle.html">Ant Vs Maven Vs Gradle</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Polymorphism in Java (With Examples)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#polymorphism-in-java-with-examples">Polymorphism in Java (With Examples)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="UnableToRunJarFiles.html">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
 </ul>
@@ -98,156 +208,243 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/DataStructuresAndAlgorithms.html">Data Structures and Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/ArrayTechniques.html">Array Techniques</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/BigONotation.html">Big O Notation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/LinkedLists.html">Linked Lists</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/StacksAndQueues.html">Stacks and Queues</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/SortAlgorithms.html">Sorting Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/DataStructuresAndAlgorithms.html#data-structures-and-algorithms">Data Structures and Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/ArrayTechniques.html#array-techniques">Array Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayWarpAround.html#array-warp-around">Array Warp Around</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayAddDeleteData.html#array-add-and-delete-data">Array Add and Delete Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/BigONotation.html#big-o-notation">Big O Notation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ON_VisualizingBigONotation.html#visualizing-big-o-notation">Visualizing Big O notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/BigONotationExplained.html#big-o-notation-explained">Big O Notation - Explained</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/LinkedLists.html#linked-lists">Linked Lists</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/SinglyLinkedListRev3.html#singly-linked-list">Singly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedList.html#doubly-linked-list">Doubly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListSubClass.html#doubly-linked-list-links-as-sub-class">Doubly Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/CircularLinkedList.html#circular-linked-list-links-as-sub-class">Circular Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ReadingDatafileIntoLinkedList.html#reading-datafile-into-linked-list">Reading Datafile Into Linked List</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/StacksAndQueues.html#stacks-and-queues">Stacks and Queues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/StackUsingArrayOfObjects.html#stack-using-array-of-objects">Stack  - Using Array of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/QueueUsingArrayOfObjects.html#queue-using-array-of-objects">Queue  - Using Array Of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/PriorityQueue.html#priority-queue">Priority Queue</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/SortAlgorithms.html#sorting-algorithms">Sorting Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/Sort_Bubble.html#bubble-sort">Bubble Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/Sort_Bubble.html#performance">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/end.html#end-of-section">End Of Section</a></li>
+</ul>
+</li>
 </ul>
 
+  
         </div>
       </div>
-    </nav>
+  </div>
+        </div>
+        <div id="content" tabindex="0" class="stretch">
+          <div id="mnav">
+            
+  
+    <p class="caption" role="heading"><span class="caption-text">Java Language</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="javalanguage.html">Java Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netbeansinstall.html">NetBeans Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javaintro.html">JAVA Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javabasics.html">Java Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javabasics.html#readings">Readings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="java_variable_lc.html">Variable Lecture Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprogram.html">First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="secondprogram.html">Second Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decisiontrees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="switchstatement.html">Switch Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stringfunctions.html">String Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numberformats.html">Number Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iterationloops.html">Iteration / Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptionhandling.html">Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iofilefoldercreationdeletion.html">File, Folder - Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ioreadcsvfile.html">IO Read CSV File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arraylists.html">ArrayLists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overloading.html">Overloading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classesandobjects.html">Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classesinheritance.html">Classes  - Inheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classesinheritance.html#concepts">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstractclasses.html">Abstract Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambdafunctions.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html#videos">Videos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regexmatches.html">Regex - Using Java Matches</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="referencereading.html">Reference Reading</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="buildinglargejavaapplications.html">Building Large Java Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="antvsmavenvsgradle.html">Ant Vs Maven Vs Gradle</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#polymorphism-in-java-with-examples">Polymorphism in Java (With Examples)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnableToRunJarFiles.html">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/DataStructuresAndAlgorithms.html#data-structures-and-algorithms">Data Structures and Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/ArrayTechniques.html#array-techniques">Array Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayWarpAround.html#array-warp-around">Array Warp Around</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayAddDeleteData.html#array-add-and-delete-data">Array Add and Delete Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/BigONotation.html#big-o-notation">Big O Notation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ON_VisualizingBigONotation.html#visualizing-big-o-notation">Visualizing Big O notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/BigONotationExplained.html#big-o-notation-explained">Big O Notation - Explained</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/LinkedLists.html#linked-lists">Linked Lists</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/SinglyLinkedListRev3.html#singly-linked-list">Singly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedList.html#doubly-linked-list">Doubly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListSubClass.html#doubly-linked-list-links-as-sub-class">Doubly Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/CircularLinkedList.html#circular-linked-list-links-as-sub-class">Circular Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ReadingDatafileIntoLinkedList.html#reading-datafile-into-linked-list">Reading Datafile Into Linked List</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/StacksAndQueues.html#stacks-and-queues">Stacks and Queues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/StackUsingArrayOfObjects.html#stack-using-array-of-objects">Stack  - Using Array of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/QueueUsingArrayOfObjects.html#queue-using-array-of-objects">Queue  - Using Array Of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/PriorityQueue.html#priority-queue">Priority Queue</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/SortAlgorithms.html#sorting-algorithms">Sorting Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/Sort_Bubble.html#bubble-sort">Bubble Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/Sort_Bubble.html#performance">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/end.html#end-of-section">End Of Section</a></li>
+</ul>
+</li>
+</ul>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../intro.html">Python</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../intro.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="referencereading.html">Reference Reading</a></li>
-      <li class="breadcrumb-item active">Polymorphism in Java (With Examples)</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/javalang/PolymorphismInJavaWithExamples.md" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <section class="tex2jax_ignore mathjax_ignore" id="polymorphism-in-java-with-examples">
-<h1>Polymorphism in Java (With Examples)<a class="headerlink" href="#polymorphism-in-java-with-examples" title="Permalink to this headline"></a></h1>
+  
+          </div>
+          <div class="body">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="polymorphism-in-java-with-examples">
+<h1>Polymorphism in Java (With Examples)<a class="headerlink" href="#polymorphism-in-java-with-examples" title="Permalink to this headline">¶</a></h1>
 <p>By  <a class="reference external" href="https://www.mygreatlearning.com/blog/author/greatlearning/">Great Learning Team</a></p>
 <p><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/">https://www.mygreatlearning.com/blog/polymorphism-in-java/</a></p>
 <p>Polymorphism is the ability of an object to take on different forms. In Java, polymorphism refers to the ability of a class to provide different implementations of a method, depending on the type of object that is passed to the method.</p>
 <p>To put it simply, polymorphism in Java allows us to perform the same action in many different ways. Any <a class="reference external" href="https://www.mygreatlearning.com/blog/web-stories/how-can-a-beginner-start-with-java-programming/">Java</a> object that can pass more than one IS-A test is polymorphic in Java. Therefore, all the Java objects are polymorphic as it has passed the IS-A test for their own type and for the class Object.</p>
 <p>This article also talks about two types of polymorphism in Java: compile time polymorphism and runtime polymorphism, Java polymorphism examples, <a class="reference external" href="https://www.mygreatlearning.com/blog/method-overloading-in-java/">method overloading</a>, method overriding, why to use polymorphism in java,<a class="reference external" href="https://www.mygreatlearning.com/academy/learn-for-free/courses/java-programming?gl_blog_id=26164"> java programming</a>, and many more.</p>
 <p>Polymorphism is a feature of the object-oriented programming language, Java, which implies that you can perform a single task in different ways. In the technical world, polymorphism in Java allows one to do multiple implementations by defining one interface.</p>
-<ol class="simple">
-<li><p><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#what-is-polymorphism">What is Polymorphism?</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#what-is-polymorphism-in-Java">What is Polymorphism in Java?</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#real-life-examples-of-polymorphism">Real-Life Examples of Polymorphism</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#types-of-polymorphism">Types of Polymorphism</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#method-overloading-in-java">Method Overloading in Java</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#method-overriding-in-java">Method Overriding in Java</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#runtime-polymorphism-in-java">Runtime Polymorphism in Java</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#compile-time-polymorphism-in-java">Compile-Time Polymorphism in Java</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#Polymorphism-in-programming">Polymorphism in programming</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#what-is-polymorphism-variables">Polymorphism variables</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#why-use-polymorphism-in-java">Why use Polymorphism in Java?</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#characteristics-of-polymorphism">Characteristics of Polymorphism</a></strong></p></li>
-<li><p><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#problems-with-polymorphism"><strong>Problems with Polymorphism</strong></a></p></li>
-<li><p><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#conclusion"><strong>Conclusion</strong></a></p></li>
+<ol class="arabic simple">
+<li><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#what-is-polymorphism">What is Polymorphism?</a></strong></li>
+<li><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#what-is-polymorphism-in-Java">What is Polymorphism in Java?</a></strong></li>
+<li><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#real-life-examples-of-polymorphism">Real-Life Examples of Polymorphism</a></strong></li>
+<li><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#types-of-polymorphism">Types of Polymorphism</a></strong></li>
+<li><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#method-overloading-in-java">Method Overloading in Java</a></strong></li>
+<li><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#method-overriding-in-java">Method Overriding in Java</a></strong></li>
+<li><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#runtime-polymorphism-in-java">Runtime Polymorphism in Java</a></strong></li>
+<li><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#compile-time-polymorphism-in-java">Compile-Time Polymorphism in Java</a></strong></li>
+<li><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#Polymorphism-in-programming">Polymorphism in programming</a></strong></li>
+<li><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#what-is-polymorphism-variables">Polymorphism variables</a></strong></li>
+<li><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#why-use-polymorphism-in-java">Why use Polymorphism in Java?</a></strong></li>
+<li><strong><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#characteristics-of-polymorphism">Characteristics of Polymorphism</a></strong></li>
+<li><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#problems-with-polymorphism"><strong>Problems with Polymorphism</strong></a></li>
+<li><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/#conclusion"><strong>Conclusion</strong></a></li>
 </ol>
-<section id="what-is-polymorphism">
-<h2><strong>What is Polymorphism?</strong><a class="headerlink" href="#what-is-polymorphism" title="Permalink to this headline"></a></h2>
+<div class="section" id="what-is-polymorphism">
+<h2><strong>What is Polymorphism?</strong><a class="headerlink" href="#what-is-polymorphism" title="Permalink to this headline">¶</a></h2>
 <p>The derivation of the word Polymorphism is from two different Greek words- poly and morphs. “Poly” means numerous, and “Morphs” means forms. So, polymorphism means innumerable forms. Polymorphism, therefore, is one of the most significant features of Object-Oriented Programming.</p>
-</section>
-<section id="what-is-polymorphism-in-java">
-<h2><strong>What is Polymorphism in Java?</strong><a class="headerlink" href="#what-is-polymorphism-in-java" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="what-is-polymorphism-in-java">
+<h2><strong>What is Polymorphism in Java?</strong><a class="headerlink" href="#what-is-polymorphism-in-java" title="Permalink to this headline">¶</a></h2>
 <p><strong>Polymorphism in Java</strong> is the task that performs a single action in different ways.</p>
 <p>So, languages that do not support polymorphism are not ‘Object-Oriented Languages’, but, ‘Object-Based Languages’. Ada, for instance, is one such language. Since Java supports polymorphism, it is an <a class="reference external" href="https://www.mygreatlearning.com/academy/learn-for-free/courses/oops-in-java/?gl_blog_26164">Object-Oriented Language</a>.</p>
 <p>Polymorphism occurs when there is inheritance, i.e. there are many classes that are related to each other.</p>
 <p><a class="reference external" href="https://www.mygreatlearning.com/academy/learn-for-free/courses/inheritance-in-java/?gl_blog_26164">Inheritance</a> is a powerful feature in Java.<a class="reference external" href="https://www.mygreatlearning.com/blog/inheritance-in-java/"> Java Inheritance</a> lets one class acquire the properties and attributes of another class. Polymorphism in Java allows us to use these inherited properties to perform different tasks. Thus, allowing us to achieve the same action in many different ways.</p>
-</section>
-<section id="real-life-examples-of-polymorphism">
-<h2><strong>Real-Life Examples of Polymorphism</strong><a class="headerlink" href="#real-life-examples-of-polymorphism" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="real-life-examples-of-polymorphism">
+<h2><strong>Real-Life Examples of Polymorphism</strong><a class="headerlink" href="#real-life-examples-of-polymorphism" title="Permalink to this headline">¶</a></h2>
 <p>An individual can have different relationships with different people. A woman can be a mother, a daughter, a sister, a friend, all at the same time, i.e. she performs other behaviours in different situations.</p>
 <p>The human body has different organs. Every organ has a different function to perform; the heart is responsible for blood flow, lungs for breathing, brain for cognitive activity, and kidneys for excretion. So we have a standard method function that performs differently depending upon the organ of the body.</p>
-<section id="polymorphism-in-java-example">
-<h3><strong>Polymorphism in Java Example</strong><a class="headerlink" href="#polymorphism-in-java-example" title="Permalink to this headline"></a></h3>
+<div class="section" id="polymorphism-in-java-example">
+<h3><strong>Polymorphism in Java Example</strong><a class="headerlink" href="#polymorphism-in-java-example" title="Permalink to this headline">¶</a></h3>
 <p>A superclass named “Shapes” has a method “area()”. Subclasses of “Shapes” can be “Triangle”, “circle”, “Rectangle”, etc. Each subclass has its way of calculating area. Using Inheritance and Polymorphism means, the subclasses can use the “area()” method to find the area’s formula for that shape.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Shapes</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;The formula for area of &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kd">class</span> <span class="nc">Triangle</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Shapes</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Triangle is ½ * base * height &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kd">class</span> <span class="nc">Circle</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Shapes</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Circle is 3.14 * radius * radius &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">Shapes</span><span class="w"> </span><span class="n">myShape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Shapes</span><span class="p">();</span><span class="w">  </span><span class="c1">// Create a Shapes object</span><span class="w"></span>
-<span class="w">    </span><span class="n">Shapes</span><span class="w"> </span><span class="n">myTriangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Triangle</span><span class="p">();</span><span class="w">  </span><span class="c1">// Create a Triangle object</span><span class="w"></span>
-<span class="w">    </span><span class="n">Shapes</span><span class="w"> </span><span class="n">myCircle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">();</span><span class="w">  </span><span class="c1">// Create a Circle object</span><span class="w"></span>
-<span class="w">    </span><span class="n">myShape</span><span class="p">.</span><span class="na">area</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">myTriangle</span><span class="p">.</span><span class="na">area</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">myShape</span><span class="p">.</span><span class="na">area</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">myCircle</span><span class="p">.</span><span class="na">area</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Shapes</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;The formula for area of &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nc">Triangle</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Shapes</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Triangle is ½ * base * height &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nc">Circle</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Shapes</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Circle is 3.14 * radius * radius &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Shapes</span><span class="w"> </span><span class="n">myShape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Shapes</span><span class="p">();</span><span class="w">  </span><span class="c1">// Create a Shapes object</span>
+<span class="w">    </span><span class="n">Shapes</span><span class="w"> </span><span class="n">myTriangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Triangle</span><span class="p">();</span><span class="w">  </span><span class="c1">// Create a Triangle object</span>
+<span class="w">    </span><span class="n">Shapes</span><span class="w"> </span><span class="n">myCircle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">();</span><span class="w">  </span><span class="c1">// Create a Circle object</span>
+<span class="w">    </span><span class="n">myShape</span><span class="p">.</span><span class="na">area</span><span class="p">();</span>
+<span class="w">    </span><span class="n">myTriangle</span><span class="p">.</span><span class="na">area</span><span class="p">();</span>
+<span class="w">    </span><span class="n">myShape</span><span class="p">.</span><span class="na">area</span><span class="p">();</span>
+<span class="w">    </span><span class="n">myCircle</span><span class="p">.</span><span class="na">area</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
 <p>The formula for the area of Triangle is ½ * base * height
 The formula for the area of the Circle is 3.14 * radius * radius</p>
 <p><strong>Also Read: <a class="reference external" href="https://www.mygreatlearning.com/blog/oops-concepts-in-java/?highlight=polymorphism">OOPs concepts in Java</a></strong></p>
-</section>
-</section>
-<section id="types-of-polymorphism">
-<h2><strong>Types of Polymorphism</strong><a class="headerlink" href="#types-of-polymorphism" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+<div class="section" id="types-of-polymorphism">
+<h2><strong>Types of Polymorphism</strong><a class="headerlink" href="#types-of-polymorphism" title="Permalink to this headline">¶</a></h2>
 <p>You can perform Polymorphism in Java via two different methods:</p>
-<ol class="simple">
-<li><p>Method Overloading</p></li>
-<li><p>Method Overriding</p></li>
+<ol class="arabic simple">
+<li>Method Overloading</li>
+<li>Method Overriding</li>
 </ol>
-<section id="what-is-method-overloading-in-java">
-<h3><strong>What is Method Overloading in Java?</strong><a class="headerlink" href="#what-is-method-overloading-in-java" title="Permalink to this headline"></a></h3>
+<div class="section" id="what-is-method-overloading-in-java">
+<h3><strong>What is Method Overloading in Java?</strong><a class="headerlink" href="#what-is-method-overloading-in-java" title="Permalink to this headline">¶</a></h3>
 <p><strong>Method overloading</strong> is the process that can create multiple methods of the same name in the same class, and all the methods work in different ways. Method overloading occurs when there is more than one method of the same name in the class.</p>
-<section id="example-of-method-overloading-in-java">
-<h4><strong>Example of Method Overloading in Java</strong><a class="headerlink" href="#example-of-method-overloading-in-java" title="Permalink to this headline"></a></h4>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Shapes</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Find area &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Circle area = &quot;</span><span class="o">+</span><span class="mf">3.14</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">r</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<div class="section" id="example-of-method-overloading-in-java">
+<h4><strong>Example of Method Overloading in Java</strong><a class="headerlink" href="#example-of-method-overloading-in-java" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Shapes</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Find area &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Circle area = &quot;</span><span class="o">+</span><span class="mf">3.14</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">r</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="w"> </span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Triangle area=&quot;</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">h</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Rectangle area=&quot;</span><span class="o">+</span><span class="n">l</span><span class="o">*</span><span class="n">b</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Triangle area=&quot;</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">h</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Rectangle area=&quot;</span><span class="o">+</span><span class="n">l</span><span class="o">*</span><span class="n">b</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="w"> </span>
 <span class="w"> </span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 <span class="w"> </span>
-<span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">Shapes</span><span class="w"> </span><span class="n">myShape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Shapes</span><span class="p">();</span><span class="w">  </span><span class="c1">// Create a Shapes object</span><span class="w"></span>
+<span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Shapes</span><span class="w"> </span><span class="n">myShape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Shapes</span><span class="p">();</span><span class="w">  </span><span class="c1">// Create a Shapes object</span>
 <span class="w">     </span>
-<span class="w">    </span><span class="n">myShape</span><span class="p">.</span><span class="na">area</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">myShape</span><span class="p">.</span><span class="na">area</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">myShape</span><span class="p">.</span><span class="na">area</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span><span class="mf">1.2</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">myShape</span><span class="p">.</span><span class="na">area</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">myShape</span><span class="p">.</span><span class="na">area</span><span class="p">();</span>
+<span class="w">    </span><span class="n">myShape</span><span class="p">.</span><span class="na">area</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="w">    </span><span class="n">myShape</span><span class="p">.</span><span class="na">area</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span><span class="mf">1.2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">myShape</span><span class="p">.</span><span class="na">area</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
 <span class="w">     </span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
@@ -255,14 +452,14 @@ The formula for the area of the Circle is 3.14 * radius * radius</p>
 Circle area = 78.5
 Triangle area=3.60
 Rectangle area=12</p>
-</section>
-</section>
-<section id="what-is-method-overriding-in-java">
-<h3><strong>What is Method Overriding in Java?</strong><a class="headerlink" href="#what-is-method-overriding-in-java" title="Permalink to this headline"></a></h3>
+</div>
+</div>
+<div class="section" id="what-is-method-overriding-in-java">
+<h3><strong>What is Method Overriding in Java?</strong><a class="headerlink" href="#what-is-method-overriding-in-java" title="Permalink to this headline">¶</a></h3>
 <p>Method overriding is the process when the subclass or a child class has the same method as declared in the parent class.</p>
-</section>
-<section id="example-of-method-overriding-in-java">
-<h3><strong>Example of Method Overriding in Java</strong><a class="headerlink" href="#example-of-method-overriding-in-java" title="Permalink to this headline"></a></h3>
+</div>
+<div class="section" id="example-of-method-overriding-in-java">
+<h3><strong>Example of Method Overriding in Java</strong><a class="headerlink" href="#example-of-method-overriding-in-java" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Vehicle</span><span class="p">{</span>  
   <span class="o">//</span><span class="n">defining</span> <span class="n">a</span> <span class="n">method</span>  
   <span class="n">void</span> <span class="n">run</span><span class="p">(){</span><span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Vehicle is moving&quot;</span><span class="p">);}</span>  
@@ -284,18 +481,18 @@ Rectangle area=12</p>
 </pre></div>
 </div>
 <p>Also, Polymorphism in Java can be classified into two types, i.e:</p>
-<ol class="simple">
-<li><p>Static/Compile-Time Polymorphism</p></li>
-<li><p>Dynamic/Runtime Polymorphism</p></li>
+<ol class="arabic simple">
+<li>Static/Compile-Time Polymorphism</li>
+<li>Dynamic/Runtime Polymorphism</li>
 </ol>
-</section>
-<section id="what-is-compile-time-polymorphism-in-java">
-<h3><strong>What is Compile-Time Polymorphism in Java?</strong><a class="headerlink" href="#what-is-compile-time-polymorphism-in-java" title="Permalink to this headline"></a></h3>
+</div>
+<div class="section" id="what-is-compile-time-polymorphism-in-java">
+<h3><strong>What is Compile-Time Polymorphism in Java?</strong><a class="headerlink" href="#what-is-compile-time-polymorphism-in-java" title="Permalink to this headline">¶</a></h3>
 <p><strong>Compile Time Polymorphism In</strong> Java is also known as <strong>Static Polymorphism.</strong> Furthermore, the call to the method is resolved at compile-time. Compile-Time polymorphism is achieved through <strong>Method Overloading</strong>. This type of polymorphism can also be achieved through <strong>Operator Overloading</strong>. However, Java does not support Operator Overloading.</p>
 <p>Method Overloading is when a class has multiple methods with the same name, but the number, types, and order of parameters and the return type of the methods are different. Java allows the user freedom to use the same name for various functions as long as it can distinguish between them by the type and number of parameters.</p>
-</section>
-<section id="example-of-compile-time-polymorphism-in-java">
-<h3><strong>Example of Compile-Time Polymorphism in Java</strong><a class="headerlink" href="#example-of-compile-time-polymorphism-in-java" title="Permalink to this headline"></a></h3>
+</div>
+<div class="section" id="example-of-compile-time-polymorphism-in-java">
+<h3><strong>Example of Compile-Time Polymorphism in Java</strong><a class="headerlink" href="#example-of-compile-time-polymorphism-in-java" title="Permalink to this headline">¶</a></h3>
 <p><em>We will do addition in Java and understand the concept of compile time polymorphism using subtract()</em></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>package staticPolymorphism; 
 public class Addition 
@@ -322,9 +519,9 @@ obj.sum(45, 80, 22);
 <p><em>Sum of three numbers: 147</em></p>
 <p><em>In this program, the sum() method overloads with two types via different parameters.</em></p>
 <p><em>This is the basic concept of compile-time polymorphism in java where we can perform various operations by using multiple methods having the same name.</em></p>
-</section>
-<section id="what-is-runtime-polymorphism-in-java">
-<h3><strong>What is Runtime Polymorphism in Java?</strong><a class="headerlink" href="#what-is-runtime-polymorphism-in-java" title="Permalink to this headline"></a></h3>
+</div>
+<div class="section" id="what-is-runtime-polymorphism-in-java">
+<h3><strong>What is Runtime Polymorphism in Java?</strong><a class="headerlink" href="#what-is-runtime-polymorphism-in-java" title="Permalink to this headline">¶</a></h3>
 <p><strong>Runtime polymorphism</strong> in Java is also popularly known as <strong>Dynamic Binding or Dynamic Method Dispatch.</strong> In this process, the call to an overridden method is resolved dynamically at runtime rather than at compile-time. You can achieve Runtime polymorphism via <strong>Method Overriding</strong>.</p>
 <p>Method Overriding is done when a child or a subclass has a method with the same name, parameters, and return type as the parent or the superclass; then that function overrides the function in the superclass. In simpler terms, if the subclass provides its definition to a method already present in the superclass; then that function in the base class is said to be overridden.</p>
 <p>Also, it should be noted that runtime polymorphism can only be achieved through functions and not data members.</p>
@@ -333,38 +530,38 @@ obj.sum(45, 80, 22);
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>class` `A{} ``class` `B ``extends` `A{} ``A a=``new` `B(); ``//upcasting
 </pre></div>
 </div>
-<section id="examples-of-runtime-polymorphism-in-java">
-<h4><strong>Examples of Runtime Polymorphism in Java</strong><a class="headerlink" href="#examples-of-runtime-polymorphism-in-java" title="Permalink to this headline"></a></h4>
+<div class="section" id="examples-of-runtime-polymorphism-in-java">
+<h4><strong>Examples of Runtime Polymorphism in Java</strong><a class="headerlink" href="#examples-of-runtime-polymorphism-in-java" title="Permalink to this headline">¶</a></h4>
 <p><strong>Example 1:</strong></p>
 <p>In this example, we are creating one superclass Animal and three subclasses, Herbivores, Carnivores, and Omnivores. Subclasses extend the superclass and override its eat() method. We will call the eat() method by the reference variable of Parent class, i.e. Animal class. As it refers to the base class object and the base class method overrides the superclass method; the base class method is invoked at runtime. As Java Virtual Machine or the JVM and not the compiler determines method invocation, it is, therefore, runtime polymorphism.</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Animal</span><span class="p">{</span><span class="w">  </span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">eat</span><span class="p">(){</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Animals Eat&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">eat</span><span class="p">(){</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Animals Eat&quot;</span><span class="p">);</span>
 <span class="p">}</span><span class="w">  </span>
 <span class="p">}</span><span class="w">  </span>
 <span class="kd">class</span> <span class="nc">herbivores</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="p">{</span><span class="w">  </span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">eat</span><span class="p">(){</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Herbivores Eat Plants&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">eat</span><span class="p">(){</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Herbivores Eat Plants&quot;</span><span class="p">);</span>
 <span class="p">}</span><span class="w"> </span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span>
 <span class="kd">class</span> <span class="nc">omnivores</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="p">{</span><span class="w">  </span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">eat</span><span class="p">(){</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Omnivores Eat Plants and meat&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">eat</span><span class="p">(){</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Omnivores Eat Plants and meat&quot;</span><span class="p">);</span>
 <span class="p">}</span><span class="w"> </span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span>
 <span class="kd">class</span> <span class="nc">carnivores</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="p">{</span><span class="w">  </span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">eat</span><span class="p">(){</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Carnivores Eat meat&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">eat</span><span class="p">(){</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Carnivores Eat meat&quot;</span><span class="p">);</span>
 <span class="p">}</span><span class="w"> </span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="kd">class</span> <span class="nc">main</span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span>
+<span class="kd">class</span> <span class="nc">main</span><span class="p">{</span>
 <span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">args</span><span class="o">[]</span><span class="p">){</span><span class="w"> </span>
-<span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Animal</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">herbivores</span><span class="p">();</span><span class="w"> </span><span class="c1">//upcasting  </span><span class="w"></span>
-<span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">omnivores</span><span class="p">();</span><span class="w"> </span><span class="c1">//upcasting  </span><span class="w"></span>
-<span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">carnivores</span><span class="p">();</span><span class="w"> </span><span class="c1">//upcasting  </span><span class="w"></span>
-<span class="w">    </span><span class="n">A</span><span class="p">.</span><span class="na">eat</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">h</span><span class="p">.</span><span class="na">eat</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Animal</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">herbivores</span><span class="p">();</span><span class="w"> </span><span class="c1">//upcasting  </span>
+<span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">omnivores</span><span class="p">();</span><span class="w"> </span><span class="c1">//upcasting  </span>
+<span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">carnivores</span><span class="p">();</span><span class="w"> </span><span class="c1">//upcasting  </span>
+<span class="w">    </span><span class="n">A</span><span class="p">.</span><span class="na">eat</span><span class="p">();</span>
+<span class="w">    </span><span class="n">h</span><span class="p">.</span><span class="na">eat</span><span class="p">();</span>
 <span class="w">    </span><span class="n">o</span><span class="p">.</span><span class="na">eat</span><span class="p">();</span><span class="w">  </span>
 <span class="w">    </span><span class="n">c</span><span class="p">.</span><span class="na">eat</span><span class="p">();</span><span class="w">  </span>
 <span class="w">   </span>
@@ -380,58 +577,58 @@ Carnivores eat meat</p>
 <p><strong>Example 2:</strong></p>
 <p>In this example, we are creating one superclass Hillstations and three subclasses Manali, Mussoorie, Gulmarg. Subclasses extend the superclass and override its location() and famousfor() method. We will call the location() and famousfor() method by the Parent class’, i.e. Hillstations class. As it refers to the base class object and the base class method overrides the superclass method; the base class method is invoked at runtime. Also, as Java Virtual Machine or the JVM and not the compiler determines method invocation, it is runtime polymorphism.</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Hillstations</span><span class="p">{</span><span class="w">  </span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">location</span><span class="p">(){</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Location is:&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">location</span><span class="p">(){</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Location is:&quot;</span><span class="p">);</span>
 <span class="p">}</span><span class="w">  </span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">famousfor</span><span class="p">(){</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Famous for:&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">famousfor</span><span class="p">(){</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Famous for:&quot;</span><span class="p">);</span>
 <span class="p">}</span><span class="w">  </span>
 <span class="w"> </span>
 <span class="p">}</span><span class="w">  </span>
 <span class="kd">class</span> <span class="nc">Manali</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Hillstations</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">location</span><span class="p">(){</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Manali is in Himachal Pradesh&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">location</span><span class="p">(){</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Manali is in Himachal Pradesh&quot;</span><span class="p">);</span>
 <span class="p">}</span><span class="w">  </span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">famousfor</span><span class="p">(){</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;It is Famous for Hadimba Temple and adventure sports&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">famousfor</span><span class="p">(){</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;It is Famous for Hadimba Temple and adventure sports&quot;</span><span class="p">);</span>
 <span class="p">}</span><span class="w">  </span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span>
 <span class="kd">class</span> <span class="nc">Mussoorie</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Hillstations</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">location</span><span class="p">(){</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Mussoorie is in Uttarakhand&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">location</span><span class="p">(){</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Mussoorie is in Uttarakhand&quot;</span><span class="p">);</span>
 <span class="p">}</span><span class="w">  </span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">famousfor</span><span class="p">(){</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;It is Famous for education institutions&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">famousfor</span><span class="p">(){</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;It is Famous for education institutions&quot;</span><span class="p">);</span>
 <span class="p">}</span><span class="w">  </span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span>
 <span class="kd">class</span> <span class="nc">Gulmarg</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Hillstations</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">location</span><span class="p">(){</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Gulmarg is in J&amp;K&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">location</span><span class="p">(){</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Gulmarg is in J&amp;K&quot;</span><span class="p">);</span>
 <span class="p">}</span><span class="w">  </span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">famousfor</span><span class="p">(){</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;It is Famous for skiing&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">famousfor</span><span class="p">(){</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;It is Famous for skiing&quot;</span><span class="p">);</span>
 <span class="p">}</span><span class="w">  </span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="kd">class</span> <span class="nc">main</span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span>
+<span class="kd">class</span> <span class="nc">main</span><span class="p">{</span>
 <span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">args</span><span class="o">[]</span><span class="p">){</span><span class="w"> </span>
-<span class="w">    </span><span class="n">Hillstations</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Hillstations</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">Hillstations</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Manali</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">Hillstations</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Hillstations</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Hillstations</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Manali</span><span class="p">();</span>
 <span class="w"> </span>
-<span class="w">    </span><span class="n">Hillstations</span><span class="w"> </span><span class="n">Mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mussoorie</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">Hillstations</span><span class="w"> </span><span class="n">Mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mussoorie</span><span class="p">();</span>
 <span class="w"> </span>
-<span class="w">    </span><span class="n">Hillstations</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Gulmarg</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">Hillstations</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Gulmarg</span><span class="p">();</span>
 <span class="w"> </span>
-<span class="w">    </span><span class="n">A</span><span class="p">.</span><span class="na">location</span><span class="p">();</span><span class="w"></span>
-<span class="n">A</span><span class="p">.</span><span class="na">famousfor</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">A</span><span class="p">.</span><span class="na">location</span><span class="p">();</span>
+<span class="n">A</span><span class="p">.</span><span class="na">famousfor</span><span class="p">();</span>
 <span class="w"> </span>
-<span class="n">M</span><span class="p">.</span><span class="na">location</span><span class="p">();</span><span class="w"></span>
-<span class="n">M</span><span class="p">.</span><span class="na">famousfor</span><span class="p">();</span><span class="w"></span>
+<span class="n">M</span><span class="p">.</span><span class="na">location</span><span class="p">();</span>
+<span class="n">M</span><span class="p">.</span><span class="na">famousfor</span><span class="p">();</span>
 <span class="w"> </span>
-<span class="n">Mu</span><span class="p">.</span><span class="na">location</span><span class="p">();</span><span class="w"></span>
-<span class="n">Mu</span><span class="p">.</span><span class="na">famousfor</span><span class="p">();</span><span class="w"></span>
+<span class="n">Mu</span><span class="p">.</span><span class="na">location</span><span class="p">();</span>
+<span class="n">Mu</span><span class="p">.</span><span class="na">famousfor</span><span class="p">();</span>
 <span class="w"> </span>
-<span class="n">G</span><span class="p">.</span><span class="na">location</span><span class="p">();</span><span class="w"></span>
-<span class="n">G</span><span class="p">.</span><span class="na">famousfor</span><span class="p">();</span><span class="w"></span>
+<span class="n">G</span><span class="p">.</span><span class="na">location</span><span class="p">();</span>
+<span class="n">G</span><span class="p">.</span><span class="na">famousfor</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span><span class="w">  </span>
 <span class="p">}</span><span class="w">  </span>
 </pre></div>
@@ -445,10 +642,10 @@ Mussoorie is in Uttarakhand
 It is Famous for education institutions
 Gulmarg is in J&amp;K
 It is Famous for skiing</p>
-</section>
-</section>
-<section id="example-of-run-time-polymorphism-in-java">
-<h3><strong>Example of run-time polymorphism in java</strong><a class="headerlink" href="#example-of-run-time-polymorphism-in-java" title="Permalink to this headline"></a></h3>
+</div>
+</div>
+<div class="section" id="example-of-run-time-polymorphism-in-java">
+<h3><strong>Example of run-time polymorphism in java</strong><a class="headerlink" href="#example-of-run-time-polymorphism-in-java" title="Permalink to this headline">¶</a></h3>
 <p>We will create two classes Car and Innova, Innova class will extend the car class and will override its run() method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>class Car 
 { 
@@ -492,9 +689,9 @@ c.run();
 <p><em><strong>The output of the following program will be :</strong></em></p>
 <p><em>125</em></p>
 <p><em>This clearly implies we can’t achieve Runtime polymorphism via data members. In short, a method is overridden, not the data members.</em></p>
-</section>
-<section id="runtime-polymorphism-with-multilevel-inheritance">
-<h3><strong>Runtime polymorphism with multilevel inheritance</strong><a class="headerlink" href="#runtime-polymorphism-with-multilevel-inheritance" title="Permalink to this headline"></a></h3>
+</div>
+<div class="section" id="runtime-polymorphism-with-multilevel-inheritance">
+<h3><strong>Runtime polymorphism with multilevel inheritance</strong><a class="headerlink" href="#runtime-polymorphism-with-multilevel-inheritance" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>class grandfather 
 { 
 void swim() 
@@ -575,70 +772,70 @@ f3.swim():
 <p><em>The snake sound- his,his</em></p>
 <p><em>The tiger sound- roooo,roooo</em></p>
 <p>We hope you got an idea about runtime and compile-time polymorphism.</p>
-</section>
-</section>
-<section id="polymorphic-subtypes">
-<h2><strong>Polymorphic Subtypes</strong><a class="headerlink" href="#polymorphic-subtypes" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+<div class="section" id="polymorphic-subtypes">
+<h2><strong>Polymorphic Subtypes</strong><a class="headerlink" href="#polymorphic-subtypes" title="Permalink to this headline">¶</a></h2>
 <p>Subtype basically means that a subtype can serve as another type’s subtype, sounds a bit complicated?</p>
 <p>Let’s understand this with the help of an example:</p>
 <p>Assuming we have to draw some arbitrary shapes, we can introduce a class named ‘shape’ with a draw() method. By overriding draw() with other subclasses such as circle, square, rectangle, trapezium, etc we will introduce an array of type ‘shape’ whose elements store references will refer to ‘shape’ subclass references. Next time, we will call draw(), all shapes instances draw () method will be called.</p>
 <p>This Subtype polymorphism generally relies on upcasting and late binding. A casting where you cast up the inheritance hierarchy from subtype to a supertype is termed upcasting.</p>
 <p>To call non-final instance methods we use late binding. In short, a compiler should not perform any argument checks, type checks, method calls, etc, and leave everything on the runtime.</p>
-</section>
-<section id="what-is-polymorphism-in-programming">
-<h2><strong>What is Polymorphism in Programming?</strong><a class="headerlink" href="#what-is-polymorphism-in-programming" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="what-is-polymorphism-in-programming">
+<h2><strong>What is Polymorphism in Programming?</strong><a class="headerlink" href="#what-is-polymorphism-in-programming" title="Permalink to this headline">¶</a></h2>
 <p>Polymorphism in programming is defined usage of a single symbol to represent multiple different types.</p>
-</section>
-<section id="what-is-polymorphism-variables">
-<h2><strong>What is Polymorphism Variables?</strong><a class="headerlink" href="#what-is-polymorphism-variables" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="what-is-polymorphism-variables">
+<h2><strong>What is Polymorphism Variables?</strong><a class="headerlink" href="#what-is-polymorphism-variables" title="Permalink to this headline">¶</a></h2>
 <p>A <strong>polymorphic variable</strong> is defined as a variable that can hold values of different types during the course of execution.</p>
-</section>
-<section id="why-use-polymorphism-in-java">
-<h2><strong>Why use Polymorphism in Java?</strong><a class="headerlink" href="#why-use-polymorphism-in-java" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="why-use-polymorphism-in-java">
+<h2><strong>Why use Polymorphism in Java?</strong><a class="headerlink" href="#why-use-polymorphism-in-java" title="Permalink to this headline">¶</a></h2>
 <p>Polymorphism in Java makes it possible to write a method that can correctly process lots of different types of functionalities that have the same name. We can also gain consistency in our code by using polymorphism.</p>
-<section id="advantages-of-polymorphism-in-java">
-<h3><strong>Advantages of Polymorphism in Java</strong><a class="headerlink" href="#advantages-of-polymorphism-in-java" title="Permalink to this headline"></a></h3>
-<ol class="simple">
-<li><p>It provides reusability to the code. The classes that are written, tested and implemented can be reused multiple times. Furthermore, it saves a lot of time for the coder. Also, the one can change the code without affecting the original code.</p></li>
-<li><p>A single variable can be used to store multiple data values. The value of a variable you inherit from the superclass into the subclass can be changed without changing that variable’s value in the superclass; or any other subclasses.</p></li>
-<li><p>With lesser lines of code, it becomes easier for the programmer to debug the code.</p></li>
+<div class="section" id="advantages-of-polymorphism-in-java">
+<h3><strong>Advantages of Polymorphism in Java</strong><a class="headerlink" href="#advantages-of-polymorphism-in-java" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>It provides reusability to the code. The classes that are written, tested and implemented can be reused multiple times. Furthermore, it saves a lot of time for the coder. Also, the one can change the code without affecting the original code.</li>
+<li>A single variable can be used to store multiple data values. The value of a variable you inherit from the superclass into the subclass can be changed without changing that variable’s value in the superclass; or any other subclasses.</li>
+<li>With lesser lines of code, it becomes easier for the programmer to debug the code.</li>
 </ol>
-</section>
-<section id="characteristics-of-polymorphism">
-<h3><strong>Characteristics of Polymorphism</strong><a class="headerlink" href="#characteristics-of-polymorphism" title="Permalink to this headline"></a></h3>
+</div>
+<div class="section" id="characteristics-of-polymorphism">
+<h3><strong>Characteristics of Polymorphism</strong><a class="headerlink" href="#characteristics-of-polymorphism" title="Permalink to this headline">¶</a></h3>
 <p>Polymorphism has many other characteristics other than Method Overloading and Method Overriding. They include:</p>
 <ul class="simple">
-<li><p>Coercion</p></li>
-<li><p>Internal Operator Overloading</p></li>
-<li><p>Polymorphic Variables or Parameters</p></li>
+<li>Coercion</li>
+<li>Internal Operator Overloading</li>
+<li>Polymorphic Variables or Parameters</li>
 </ul>
-<section id="coercion">
-<h4><strong>1. Coercion</strong><a class="headerlink" href="#coercion" title="Permalink to this headline"></a></h4>
+<div class="section" id="coercion">
+<h4><strong>1. Coercion</strong><a class="headerlink" href="#coercion" title="Permalink to this headline">¶</a></h4>
 <p>Coercion deals with implicitly converting one type of object into a new object of a different kind. Also, this is done automatically to prevent type errors in the code.</p>
 <p>Programming languages such as <a class="reference external" href="https://www.mygreatlearning.com/blog/learn-c-programming-online-for-free/">C</a>, java, etc support the conversion of value from one data type to another data type. Data type conversions are of two types, i.e., implicit and explicit.</p>
 <p>Implicit type conversion is automatically done in the program and this type of conversion is also termed coercion.</p>
 <p>For example, if an operand is an integer and another one is in float, the compiler implicitly converts the integer into float value to avoid type error.</p>
 <p><strong>Example :</strong></p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">coercion</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">coercion</span><span class="w"> </span><span class="p">{</span>
 <span class="w"> </span>
-<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">Double</span><span class="w"> </span><span class="n">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">7</span><span class="p">;</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">area</span><span class="p">);</span><span class="w"></span>
-<span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;happy&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
-<span class="n">String</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="o">+</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">word</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Double</span><span class="w"> </span><span class="n">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">7</span><span class="p">;</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">area</span><span class="p">);</span>
+<span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;happy&quot;</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="o">+</span><span class="n">x</span><span class="p">;</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">word</span><span class="p">);</span>
 <span class="w"> </span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
 <p>109.9
 happy5</p>
-</section>
-<section id="internal-operator-overloading">
-<h4><strong>2. Internal Operator Overloading</strong><a class="headerlink" href="#internal-operator-overloading" title="Permalink to this headline"></a></h4>
+</div>
+<div class="section" id="internal-operator-overloading">
+<h4><strong>2. Internal Operator Overloading</strong><a class="headerlink" href="#internal-operator-overloading" title="Permalink to this headline">¶</a></h4>
 <p>In Operator Overloading, an operator or symbol behaves in more ways than one depending upon the input context or the type of operands. It is a characteristic of static polymorphism. Although Java does not support user-defined operator overloading like C++, where the user can define how an operator works for different operands, there are few instances where Java internally overloads operators.</p>
 <p>Operator overloading is the concept of using the operator as per your choice. Therefore, an operator symbol or method name can be used as a ‘user-defined’ type as per the requirements.</p>
 <p>For example, ‘+’ can be used to perform the addition of numbers (same data type) or for concatenation of two or more strings.</p>
@@ -664,53 +861,53 @@ happy5</p>
 <p>happyworld
 15</p>
 <p>Similarly, operators like**! &amp;, and |** are also in the overload position for logical and bitwise operations. In both of these cases, the type of argument will decide how the operator will interpret.</p>
-</section>
-<section id="polymorphic-variables-or-parameters">
-<h4><strong>3. Polymorphic Variables or Parameters</strong><a class="headerlink" href="#polymorphic-variables-or-parameters" title="Permalink to this headline"></a></h4>
+</div>
+<div class="section" id="polymorphic-variables-or-parameters">
+<h4><strong>3. Polymorphic Variables or Parameters</strong><a class="headerlink" href="#polymorphic-variables-or-parameters" title="Permalink to this headline">¶</a></h4>
 <p>In Java, the object or instance variables represent the polymorphic variables. This is because any object variables of a class can have an IS-A relationship with their own classes and subclasses.</p>
 <p>The Polymorphic Variable is a variable that can hold values of different types during the time of execution.</p>
 <p>Parametric polymorphism specifies that while class declaration, a field name can associate with different types, and a method name can associate with different parameters and return types.</p>
 <p><strong>For example:</strong></p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Shape</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">()</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;A Shape.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kd">class</span> <span class="nc">Triangle</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Shape</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">()</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;I am a triangle.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kd">class</span> <span class="nc">Main</span><span class="p">{</span><span class="w"></span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="n">Shape</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span><span class="w"></span>
-<span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Shape</span><span class="p">();</span><span class="w"></span>
-<span class="n">obj</span><span class="p">.</span><span class="na">display</span><span class="p">();</span><span class="w"></span>
-<span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Triangle</span><span class="p">();</span><span class="w"></span>
-<span class="n">obj</span><span class="p">.</span><span class="na">display</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Shape</span>
+<span class="p">{</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;A Shape.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nc">Triangle</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Shape</span>
+<span class="p">{</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;I am a triangle.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nc">Main</span><span class="p">{</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">Shape</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span>
+<span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Shape</span><span class="p">();</span>
+<span class="n">obj</span><span class="p">.</span><span class="na">display</span><span class="p">();</span>
+<span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Triangle</span><span class="p">();</span>
+<span class="n">obj</span><span class="p">.</span><span class="na">display</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
 <p>A Shape.
 I am a triangle.</p>
 <p>Here, the obj object is a polymorphic variable. This is because the superclass’s same object refers to the parent class (Shape) and the child class (Triangle).</p>
-</section>
-</section>
-</section>
-<section id="problems-with-polymorphism">
-<h2><strong>Problems with Polymorphism</strong><a class="headerlink" href="#problems-with-polymorphism" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+</div>
+<div class="section" id="problems-with-polymorphism">
+<h2><strong>Problems with Polymorphism</strong><a class="headerlink" href="#problems-with-polymorphism" title="Permalink to this headline">¶</a></h2>
 <p>With lots of advantages, there are also a few disadvantages of polymorphism.</p>
 <ul class="simple">
-<li><p>Polymorphism is quite challenging while implementation.</p></li>
-<li><p>It tends to reduce the readability of the code.</p></li>
-<li><p>It raises some serious performance issues in real-time as well.</p></li>
+<li>Polymorphism is quite challenging while implementation.</li>
+<li>It tends to reduce the readability of the code.</li>
+<li>It raises some serious performance issues in real-time as well.</li>
 </ul>
 <p><strong>Type Identification During Downcasting</strong></p>
 <p>Downcasting is termed as casting to a child type or casting a common type to an individual type.</p>
@@ -730,14 +927,14 @@ I am a triangle.</p>
 <p>The fragility of inheritance will lead to broken codes even when all the criteria is met.</p>
 <p>This architectural problem is termed as a fragile base class problem in object-oriented programming systems and language.</p>
 <p>Basically, the reason for the fragile base problem is that the developer of the base class has no idea of the subclass design. There is no solution yet for this problem.</p>
-</section>
-<section id="conclusion">
-<h2><strong>Conclusion</strong><a class="headerlink" href="#conclusion" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="conclusion">
+<h2><strong>Conclusion</strong><a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <p>We hope you must have got a basic idea of polymorphism in Java and how we use it as well as problems related to them.</p>
 <hr class="docutils" />
 <p>End Of Topic</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -751,7 +948,7 @@ I am a triangle.</p>
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./javalang"
         },
         predefinedOutput: true
@@ -759,34 +956,358 @@ I am a triangle.</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-           </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="antvsmavenvsgradle.html" class="btn btn-neutral float-left" title="Ant Vs Maven Vs Gradle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="UnableToRunJarFiles.html" class="btn btn-neutral float-right" title="Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2022.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
         </div>
       </div>
-    </section>
+    </div>
   </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+  <div id="footer-row" class="row">
 
+    <div class="col-md-12">
+        <span title="Built on 2023-05-09" class="pull-right">&copy; Copyright 2023.
+        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0 and the
+        <a href="https://pypi.org/project/sphinx-sizzle-theme/"
+
+           title="0.1.1/6a5828d9 [2022-05-03T16:20:16]"
+
+        >Sizzle</a> theme.</span>
+    </div>
+
+  </div>
+</div>
+
+<div id="tooltips" class="hidden">
+</div>
+
+<script>
+$(document).ready(function() {
+  'use strict';
+  var $search = $('.search-query');
+
+  var $filter = $('#toc-filter-query');
+  var $toclist = $('.sidebar-toc > ul').find('li');
+
+  if ($toclist.length === 0) {
+    $toclist = $('.localtoc > ul').find('li');
+  }
+
+
+  var $nav = $('#nav');
+
+  //$('#whole-page').removeClass('hidden');
+  var nav_width = $nav.width();
+
+
+  var search_url = '../search.html';
+
+  function perform_search(e) {
+    var $elem;
+
+    if (e.type === 'keypress') {
+      $elem = $(e.target);
+    }
+    else if (e.type === 'click') {
+      $elem = $(e.target).parents('.input-group').find('input');
+    }
+    var q = $elem.val().trim();
+
+    if (q) {
+      var url = search_url + '?q=' + q + '&check_keywords=yes&area=default';
+
+      location.href = url;
+    }
+  }
+
+
+  function apply_filter() {
+    var s = $filter.val().trim().toLowerCase();
+
+    $toclist.find('a').removeClass('hidden');
+    $toclist.each(function() {
+      var $this = $(this);
+      var $link = $this.find('> a');
+      var t = $link.text().toLowerCase();
+      var show = t.indexOf(s) >= 0;
+
+      if (!show) {
+        $link.addClass('hidden');
+      }
+    });
+  }
+
+  $filter.on('keyup', function(e) {
+    apply_filter();
+  });
+
+
+
+  $search.on('keypress', function(e) {
+    if (e.which == 13) {
+      perform_search(e);
+    }
+  });
+  $search.parents('.input-group').find('.input-group-addon').on('click', perform_search);
+  $(document).on('click', '.summary .fa-caret-right', function(e) {
+    var $elem = $(e.target).parents('li');
+    var $next = $elem.next();
+    $elem.addClass('hidden');
+    $next.removeClass('hidden');
+  });
+  $(document).on('click', '.detail .fa-caret-down', function(e) {
+    var $elem = $(e.target).parents('li');
+    var $prev = $elem.prev();
+    $elem.addClass('hidden');
+    $prev.removeClass('hidden');
+  });
+
+  $('#content').on('click', function() {
+    $('#mnav').hide();
+  });
+
+  var counter = 0;
+  var timer = null;
+
+  function show_nav() {
+    $('#content').off('mousemove', track_mouse);
+    if (timer !== null) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    $nav.show();
+  }
+
+  function track_mouse(e) {
+    var x = e.clientX;
+
+    if (x < 15) {
+      ++counter;
+      if (timer === null) {
+        timer = setTimeout(show_nav, 2000);
+      }
+    }
+    else {
+      counter = 0;
+    }
+    if (counter >= 20) {
+      show_nav();
+    }
+  };
+
+  function hide_nav() {
+    $nav.hide();
+    counter = 0;
+    $('#content').on('mousemove', track_mouse);
+  }
+
+  $('.hidetoc').on('click', hide_nav);
+
+  $(document).on('keyup', function(e) {
+    if (e.ctrlKey) {
+      if (e.which == 37) {      // Ctrl+left arrow
+        hide_nav();
+      }
+      else if (e.which == 39) { // Ctrl+right arrow
+        show_nav();
+      }
+    }
+  });
+
+  $('.menu-toggle').on('click', function(e) {
+    $('#mnav').toggle();
+  });
+
+  function scroll_nav(frag) {
+    var sel = '#nav ' + (frag ? 'a[href="' + frag + '"]' : '.toctree-l1 a.current');
+
+    var $link = $(sel);
+
+    if ($link.length > 0) {
+      $link[0].scrollIntoView({block: 'center'});
+    }
+  }
+
+  // If the navigator is long, then the item we clicked on to get here might
+  // not be in view. Try to scroll it into the view - a slight delay is needed
+  // to get it to sync properly with other stuff going on (as the page has just
+  // loaded). Hence the setTimeout with a timeout of 0.
+
+  function do_scroll() {
+    scroll_nav(window.location.hash);
+  }
+
+  setTimeout(do_scroll, 0);
+
+  function adjust_size() {
+    // we need to set the height explicitly so that scrolling regions in the
+    // content area work properly.
+    var h = $('#page-content').height();
+
+    $('#nav, #content').height(h);
+    if ($('#nav').is(':visible')) {
+      $('#mnav').hide();
+    }
+  }
+
+  adjust_size();
+
+  $(window).on('resize', adjust_size);
+
+  function focus_content() {
+    $('#content').focus();  // so that keyboard can be used to scroll, etc.
+  }
+
+  setTimeout(focus_content, 150);
+
+  var sizzle = $(document).data('sizzle');
+
+  function make_tooltip(id, h, b) {
+    var $e = $('<div>').attr('id', id);
+    var $b = $('<div>').addClass('tc-body').html(b);
+
+    if (h) {
+      var $h = $('<div>').addClass('tc-heading').html(h);
+      $e.append($h);
+    }
+    $e.append($b);
+    return $e;
+  }
+
+  var default_tt_options = {
+    theme: ['tooltipster-light', 'tooltipster-light-customized'],
+    interactive: true,
+    maxWidth: 600,
+    contentCloning: true
+  };
+
+  function activate_tooltips() {
+    var $tt = $('.tt');
+
+    //console.log('tt links:', $tt.length);
+    $tt.tooltipster(default_tt_options);
+  }
+
+
+
+  function add_glossary_tooltips() {
+    var links = $('a');  // can qualify with .reference.internal
+    var glinks = {};
+    var pat = /(.*)\.html#(term-.*)$/;
+    var found = false;  // links in this document
+
+    $.each(links, function(i, link) {
+        var $link = $(link);
+        var href = $link.attr('href');
+        var m = href.match(pat);
+
+        if (m) {
+          var s = m[1].replace(/^(\.\.\/)+/, '');
+
+          if (s === sizzle.app_data.glossary.document) {
+            var k = m[2];
+
+            if (k in glinks) {
+              glinks[k].push($link);
+            }
+            else {
+              glinks[k] = [$link];
+            }
+            found = true;
+          }
+        }
+    });
+    if (found) {
+      var $t = $('#tooltips');
+      var data = sizzle.app_data.glossary.terms;
+
+      $.each(glinks, function(k, v) {
+        var d = data[k];
+
+        if (d) {  // as a sanity check
+          var s = 'tc-'+ k;
+          var $e = make_tooltip(s, d.term, d.defn);
+          $t.append($e);
+
+          $.each(v, function(i, link) {
+            link.addClass('tt').attr('data-tooltip-content', '#' + s);
+          });
+        }
+      });
+    }
+  }
+
+  if (sizzle.app_data && sizzle.app_data.glossary &&
+      sizzle.app_data.glossary.document) {
+    add_glossary_tooltips();
+  }
+
+
+
+
+  function add_custom_tooltips() {
+    if (!sizzle.app_data) {
+      return;
+    }
+
+    var info_tips = sizzle.app_data.custom_data['info-tips'] || {};
+
+    if ($.isEmptyObject(info_tips)) {
+      return;
+    }
+
+    var tt_options = $.extend({contentAsHTML: true}, default_tt_options);
+
+    $('.tc-info').each(function() {
+      var $elem = $(this).prev();
+      var classes = $elem.attr('class');
+      var m = /\btci-([\S]+)/.exec(classes);
+
+      if (m !== null) {
+        var key = m[1];
+
+        if (key in info_tips) {
+          var v = info_tips[key];
+          var tt = $elem.tooltipster(tt_options).tooltipster('content', v);
+        }
+      }
+    });
+  }
+
+  add_custom_tooltips();
+
+  setTimeout(activate_tooltips, 1000);
+
+
+  // Clipboard copy for code blocks with captions
+
+  $('.code-block-caption').each(function() {
+    var $cap = $(this);
+    var $btn = $('<span class="clip-copy"><span class="copied hidden">Copied!</span><i class="fa fa-clipboard" title="Copy contents"></i></span>');
+    var $code = $cap.parent().find('.highlight');
+
+    $cap.append($btn);
+    $btn.find('.fa-clipboard').data('clip-text', $code.text());
+  });
+
+  var clipboard = new ClipboardJS('.code-block-caption .fa-clipboard', {
+    'text': function(trigger) {
+      return $(trigger).data('clip-text');
+    }
+  });
+
+  clipboard.on('success', function(e) {
+    var $copied = $(e.trigger).prev();
+
+    $copied.removeClass('hidden');
+
+    setTimeout(function() {$copied.addClass('hidden'); }, 1000);
+  });
+
+  if (sizzle.on_load) {
+    sizzle.on_load.forEach(function(f) {
+      f();
+    });
+  }
+});
+</script>
 </body>
 </html>

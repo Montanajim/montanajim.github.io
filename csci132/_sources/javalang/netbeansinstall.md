@@ -26,6 +26,7 @@
 
    
 
+
 ## Set the Environmental Variables in Windows
 
    1. Depress the Windows Key and release then type ENV. This will open the window to change the environmental variables.
