@@ -16,6 +16,7 @@
 /*
  * Programmer: James Goudy
  * Project: IO_CSV_Demo Rev 2 20220630
+ * Updated: 9/2023
  */
 package com.company.my.j1_io_csv_demo_rev2;
 
@@ -73,21 +74,16 @@ class readCSV_BufferedReader {
 
         try {
 
-            // skip the header row        
-            br.readLine();
+            // skip the header row and use inputLine to
+            // get the column count
+            inputLine = br.readLine();
+            String[] inputArrary = inputLine.split(",");
+            numCols = inputArrary.length;
 
             // count rows
             while ((inputLine = br.readLine()) != null) {
                 numRows++;
             }
-
-            //reset buffered reader
-            createBufferedReader(this.filePath);
-
-            // calculate columns
-            inputLine = br.readLine();
-            String[] inputArrary = inputLine.split(",");
-            numCols = inputArrary.length;
 
             // optional prints to verify Rows and cols
             // System.out.println("Rows = " + numRows);
@@ -149,6 +145,7 @@ class readCSV_BufferedReader {
         return dataArray;
     }
 
+    // setters and getters
     public int getNumCols() {
         return numCols;
     }
@@ -156,7 +153,15 @@ class readCSV_BufferedReader {
     public int getNumRows() {
         return numRows;
     }
-       
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+    
 
 }  // end of class
 
