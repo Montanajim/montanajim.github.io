@@ -38,16 +38,16 @@ class MyStateLessWidget extends StatelessWidget {
         backgroundColor: Colors.indigo,
         body: ListView(padding: const EdgeInsets.all(5.0), children: [
           Column(
-              //CrossAxisAlignment start, end, center, stretch
+            //CrossAxisAlignment start, end, center, stretch
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Text("Happy Day"),
-                Text("The Beatles",
+                const Text("Happy Day"),
+                const Text("The Beatles",
                     style: TextStyle(color: Colors.lime, fontSize: 24.0)),
-                Divider(color: Colors.red, thickness: 9.00),
+                const Divider(color: Colors.red, thickness: 9.00),
                 MyRichText.allInfo("Bubba", "Smith", "Shepard", "Fido"),
                 MyRichText.allInfo("Suzy", "Jones", "Collie", "Lassie"),
-                Divider(color: Colors.red, thickness: 9.00),
+                const Divider(color: Colors.red, thickness: 9.00),
                 MyCard(
                     title: const Text("I Love Boats"),
                     icon: const Icon(
@@ -116,7 +116,7 @@ class MyStateLessWidget extends StatelessWidget {
                     )),
               ]) //end of column
         ]) //end of container
-        );
+    );
   }
 }
 
@@ -140,31 +140,31 @@ class MyRichText extends StatelessWidget {
         margin: const EdgeInsets.fromLTRB(50, 5, 0, 20),
         padding: const EdgeInsets.all(10.0),
         child: Column(
-            //crossAxisAlignment start, center, end, stretch
+          //crossAxisAlignment start, center, end, stretch
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               RichText(
                   text: TextSpan(children: <TextSpan>[
-                const TextSpan(
-                    text: 'Owner: ',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(text: _ownerFN + ' ' + _ownerLN)
-              ])), //end of Rich Text
+                    const TextSpan(
+                        text: 'Owner: ',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: _ownerFN + ' ' + _ownerLN)
+                  ])), //end of Rich Text
 
               RichText(
                   text: TextSpan(children: <TextSpan>[
-                const TextSpan(
-                    text: 'Dog Name: ',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(text: _dogName)
-              ])), //end of Rich Text
+                    const TextSpan(
+                        text: 'Dog Name: ',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: _dogName)
+                  ])), //end of Rich Text
               RichText(
                   text: TextSpan(children: <TextSpan>[
-                const TextSpan(
-                    text: 'Dog Breed: ',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(text: _dogBreed)
-              ])), //end of Rich Text
+                    const TextSpan(
+                        text: 'Dog Breed: ',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: _dogBreed)
+                  ])), //end of Rich Text
             ])); //end of container
   } //end of WidgetBuild
 }
@@ -176,8 +176,8 @@ class MyCard extends StatelessWidget {
   // constructor
   MyCard(
       {Key? key,
-      this.title = const Text(""),
-      this.icon = const Icon(Icons.ac_unit)})
+        this.title = const Text(""),
+        this.icon = const Icon(Icons.ac_unit)})
       : super(key: key);
 
   @override
@@ -190,7 +190,6 @@ class MyCard extends StatelessWidget {
                 child: Column(children: <Widget>[title, icon]))));
   }
 }
-
 ```
 
 <img src="./maimages/StatelessWidgets_ListView.png" style="zoom:80%;" />
