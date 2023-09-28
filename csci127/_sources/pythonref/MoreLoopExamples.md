@@ -28,7 +28,7 @@ In the examples below, note how the counter is being used to represent different
 
 
 
-```py
+```python
 # -*- coding: utf-8 -*-
 """
 Created on Fri Sep 22 11:44:03 2023
@@ -59,6 +59,9 @@ def loopDaysOfWeek():
     # with the number 0
 
     print("\nNUMBER\nLoop through the days of the week using numbers")
+
+    # Enter the number of days.  We are assuming the days start on
+    # a Sunday - day 0
 
     # numOfDays in a week starting at zero
     numOfDays = 6
@@ -92,6 +95,76 @@ def loopDaysOfWeek():
         elif (c == 6):
             print("c = " + str(c) + "\tSaturday")
             print("\t\tIt's the weekend")
+
+        # loop to the top of the list where c is increment to the next number
+
+
+def dayOfWeek():
+
+    # Find the day of the week
+    # where a number represents a day
+    #
+    # In this example we assume that the
+    # days start on Sunday
+    # If we entered 8 days, that should give the
+    # answer Sunday -  SU M T W R F SA SU - Note that
+    # the 8th day starts back on Sunday.
+    #
+    # 0  - Sunday
+    # 1  - Monday
+    # 2  - Tuesday
+    # 3  - Wednesday
+    # 4  - Thursday
+    # 5  - Frday
+    # 6  - Saturday
+
+    # If we do not give a starting number
+    # the for statement will the counter (c)
+    # with the number 0
+
+    print("\nNUMBER\nLoop through the days of the week using numbers")
+
+    # Enter the number of days.  We are assuming the days start on
+    # a Sunday - day 0
+
+    # numOfDays in a week starting at zero
+    numOfDays = int(input("Enter the numbers of days \n" +
+                          " assuming we are starting on Sunday: ")) - 1
+
+    # dividing the number by the 7, the remainder
+    # will give us the day of the week.
+    # In order to get the remainder, the modulus operator
+    # is used %
+
+    c = numOfDays % 7
+
+    if (c == 0):
+        print("c = " + str(c+1) + "\tSunday")
+        print("\t\tPicnic Day")
+
+    elif (c == 1):
+        print("c = " + str(c+1) + "\tMonday")
+        print("\t\tStart of Work Week")
+
+    elif (c == 2):
+        print("c = " + str(c+1) + "\tTuesday")
+        print("\t\t2nd day of work week")
+
+    elif (c == 3):
+        print("c = " + str(c+1) + "\tWednesday")
+        print("\t\tHump Day ")
+
+    elif (c == 4):
+        print("c = " + str(c+1) + "\tThursday")
+        print("\t\tTime to get things done")
+
+    elif (c == 5):
+        print("c = " + str(c+1) + "\tFriday")
+        print("\t\tLast day of the work week")
+
+    elif (c == 6):
+        print("c = " + str(c+1) + "\tSaturday")
+        print("\t\tIt's the weekend")
 
         # loop to the top of the list where c is increment to the next number
 
@@ -254,9 +327,10 @@ def menu():
     mnu = """
     LOOP EXAMPLES
     1. Days of week by number
-    2. Days of week by list
-    3. Roll a dice
-    4. Number Range with Countby (step)
+    2. Calculate day of the week
+    3. Days of week by list
+    4. Roll a dice
+    5. Number Range with Countby (step)
     """
 
     print(mnu)
@@ -266,10 +340,12 @@ def menu():
     if (choice == 1):
         loopDaysOfWeek()
     elif (choice == 2):
-        loopDaysOfWeek_List()
+        dayOfWeek()
     elif (choice == 3):
-        rolladice()
+        loopDaysOfWeek_List()
     elif (choice == 4):
+        rolladice()
+    elif (choice == 5):
         countby()
     else:
         print("That wasn't a choice")
@@ -290,8 +366,9 @@ def main():
             quit = input("Would you like to quit y/n : ")
 
         except Exception as e:
-            print("\n" + e)
+            print("\n" + str(e))
             print("\nYou had a error, please try again\n")
+            quit = input("\nWould you like to quit y/n : ")
 
     print("\n\nbye")
 
