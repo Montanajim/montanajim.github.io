@@ -2,6 +2,10 @@
 
 
 
+![](assets/input_pix.png)
+
+
+
 ```php+HTML
 <!DOCTYPE html>
 <html>
@@ -181,6 +185,3 @@
 </html>
 ```
 
-
-
-![](assets/input_pix.png)
