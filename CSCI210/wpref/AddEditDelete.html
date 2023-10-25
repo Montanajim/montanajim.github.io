@@ -59,7 +59,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="../app-data.js"></script>
 <link rel="index" title="Index" href="../genindex.html" />
 <link rel="search" title="Search" href="../search.html" />
-<link rel="prev" title="PDO With No Named Placeholders" href="PDONoPlaceHoldersExample.html" />
+<link rel="prev" title="Passwords" href="Passwords.html" />
 
 </head>
 <body class="full-height test">
@@ -105,7 +105,7 @@ const thebe_selector_output = ".output, .cell_output"
   <div class="prev-next">
     
       <div class="pull-left">
-        <a class="btn btn-default prev" href="PDONoPlaceHoldersExample.html" title="Previous chapter (PDO With No Named Placeholders)"><i class="fa fa-chevron-left mr-1em" aria-hidden="true"></i><span class="btn-text">PDO With No Named Placeholders</span></a>
+        <a class="btn btn-default prev" href="Passwords.html" title="Previous chapter (Passwords)"><i class="fa fa-chevron-left mr-1em" aria-hidden="true"></i><span class="btn-text">Passwords</span></a>
       </div>
     
     </div>
@@ -113,7 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
       </div>
       <div id="alt-hdr-right">
 
-        <a href="PDONoPlaceHoldersExample.html"><i class="fa fa-chevron-left mr-8"></i></a>
+        <a href="Passwords.html"><i class="fa fa-chevron-left mr-8"></i></a>
 
 
         <a href="../index.html"><i class="fa fa-home mr-8"></i></a>
@@ -170,10 +170,11 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="PDOConnections.html">PDO Connections</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="FirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDOFirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PDONoPlaceHoldersExample.html">PDO With No Named Placeholders</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="Passwords.html">Passwords</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#add-edit-delete">Add Edit Delete</a></li>
 </ul>
 
@@ -197,10 +198,11 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="PDOConnections.html">PDO Connections</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="FirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDOFirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PDONoPlaceHoldersExample.html">PDO With No Named Placeholders</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="Passwords.html">Passwords</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#add-edit-delete">Add Edit Delete</a></li>
 </ul>
 
@@ -332,407 +334,404 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="index-php">
 <h2><a class="toc-backref" href="#id3">index.php</a><a class="headerlink" href="#index-php" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-php+HTML notranslate"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;title&gt;Home Page&lt;/title&gt;
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">&lt;title&gt;Home Page&lt;/title&gt;</span>
 
 
-&lt;?php
-	require &#39;dbconnect.php&#39;;
+<span class="cp">&lt;?php</span>
+	<span class="k">require</span> <span class="s1">&#39;dbconnect.php&#39;</span><span class="p">;</span>
 	
-	echo $dbstatus;
+	<span class="k">echo</span> <span class="nv">$dbstatus</span><span class="p">;</span>
 	
-    // used for building the select statement
-	$sql_st = &quot;SELECT * &quot;.
-			&quot;FROM tbl_state &quot;.
-			&quot;ORDER BY 	st&quot;;
+    <span class="c1">// used for building the select statement</span>
+	<span class="nv">$sql_st</span> <span class="o">=</span> <span class="s2">&quot;SELECT * &quot;</span><span class="o">.</span>
+			<span class="s2">&quot;FROM tbl_state &quot;</span><span class="o">.</span>
+			<span class="s2">&quot;ORDER BY 	st&quot;</span><span class="p">;</span>
     
-	//retreive the states and store them ind $dataset_st
-	$dataset_st = $pdo-&gt;query($sql_st);
+	<span class="c1">//retreive the states and store them ind $dataset_st</span>
+	<span class="nv">$dataset_st</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql_st</span><span class="p">);</span>
 
-?&gt;
+<span class="cp">?&gt;</span>
 
-&lt;/head&gt;
-&lt;body&gt;
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
 
-	&lt;form method=&quot;POST&quot; action = &quot;Inputdata_DisplayData.php&quot;&gt;
-	&lt;table border=&quot;1&quot;&gt;
-		&lt;tr&gt;
-			&lt;td colspan=&quot;2&quot;&gt;Dog Information&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Dog Name
-            &lt;/td&gt;
-            &lt;td&gt;
-            &lt;input type=&quot;text&quot; name=&quot;dogname&quot; value=&quot;Barky&quot;&gt;
-            &lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Dog Breed
-            &lt;/td&gt;
-            &lt;td&gt;
-            &lt;input type=&quot;text&quot; name=&quot;dogbreed&quot; value=&quot;Mutt&quot;&gt;
-            &lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Owner First Name
-            &lt;/td&gt;
-            &lt;td&gt;
-            &lt;input type=&quot;text&quot; name=&quot;ownerfirstname&quot; value=&quot;Bubba&quot;&gt;
-            &lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Owner Last Name
-            &lt;/td&gt;
-            &lt;td&gt;
-            &lt;input type=&quot;text&quot; name=&quot;ownerlastname&quot; value=&quot;Smith&quot;&gt;
-            &lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;City
-            &lt;/td&gt;
-            &lt;td&gt;
-            &lt;input type=&quot;text&quot; name=&quot;city&quot; value=&quot;Chicago&quot;&gt;
-            &lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;State
-            &lt;/td&gt;
-            &lt;td&gt;
-            &lt;select name=&quot;st&quot;&gt;
-                &lt;?php
-                    while($row = $dataset_st-&gt;fetch())
-                    {
-                    echo(&#39;&lt;option value=&quot;&#39;.$row[&#39;st&#39;].&#39;&quot;&gt;&#39;.$row[&#39;st&#39;].&#39;&lt;/option&gt;&#39;);
-                    }
-                ?&gt;
-            &lt;/select&gt;
-            &lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;
-            &lt;/td&gt;
-            &lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;Enter&quot;&gt;
-            &lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/table&gt;
-	&lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-
+<span class="x">	&lt;form method=&quot;POST&quot; action = &quot;Inputdata_DisplayData.php&quot;&gt;</span>
+<span class="x">	&lt;table border=&quot;1&quot;&gt;</span>
+<span class="x">		&lt;tr&gt;</span>
+<span class="x">			&lt;td colspan=&quot;2&quot;&gt;Dog Information&lt;/td&gt;</span>
+<span class="x">		&lt;/tr&gt;</span>
+<span class="x">		&lt;tr&gt;</span>
+<span class="x">			&lt;td&gt;Dog Name</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">            &lt;td&gt;</span>
+<span class="x">            &lt;input type=&quot;text&quot; name=&quot;dogname&quot; value=&quot;Barky&quot;&gt;</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">		&lt;/tr&gt;</span>
+<span class="x">		&lt;tr&gt;</span>
+<span class="x">			&lt;td&gt;Dog Breed</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">            &lt;td&gt;</span>
+<span class="x">            &lt;input type=&quot;text&quot; name=&quot;dogbreed&quot; value=&quot;Mutt&quot;&gt;</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">		&lt;/tr&gt;</span>
+<span class="x">		&lt;tr&gt;</span>
+<span class="x">			&lt;td&gt;Owner First Name</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">            &lt;td&gt;</span>
+<span class="x">            &lt;input type=&quot;text&quot; name=&quot;ownerfirstname&quot; value=&quot;Bubba&quot;&gt;</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">		&lt;/tr&gt;</span>
+<span class="x">		&lt;tr&gt;</span>
+<span class="x">			&lt;td&gt;Owner Last Name</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">            &lt;td&gt;</span>
+<span class="x">            &lt;input type=&quot;text&quot; name=&quot;ownerlastname&quot; value=&quot;Smith&quot;&gt;</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">		&lt;/tr&gt;</span>
+<span class="x">		&lt;tr&gt;</span>
+<span class="x">			&lt;td&gt;City</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">            &lt;td&gt;</span>
+<span class="x">            &lt;input type=&quot;text&quot; name=&quot;city&quot; value=&quot;Chicago&quot;&gt;</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">		&lt;/tr&gt;</span>
+<span class="x">		&lt;tr&gt;</span>
+<span class="x">			&lt;td&gt;State</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">            &lt;td&gt;</span>
+<span class="x">            &lt;select name=&quot;st&quot;&gt;</span>
+<span class="x">                </span><span class="cp">&lt;?php</span>
+                    <span class="k">while</span><span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$dataset_st</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">())</span>
+                    <span class="p">{</span>
+                    <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;option value=&quot;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&quot;&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/option&gt;&#39;</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="cp">?&gt;</span>
+<span class="x">            &lt;/select&gt;</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">		&lt;/tr&gt;</span>
+<span class="x">		&lt;tr&gt;</span>
+<span class="x">			&lt;td&gt;</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">            &lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;Enter&quot;&gt;</span>
+<span class="x">            &lt;/td&gt;</span>
+<span class="x">		&lt;/tr&gt;</span>
+<span class="x">	&lt;/table&gt;</span>
+<span class="x">	&lt;/form&gt;</span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="inputdata-displaydata-php">
 <h2><a class="toc-backref" href="#id4">Inputdata_DisplayData.php</a><a class="headerlink" href="#inputdata-displaydata-php" title="Permalink to this heading">¶</a></h2>
 <p>Enter the data and confirm data entry</p>
-<div class="highlight-php+HTML notranslate"><div class="highlight"><pre><span></span>&lt;?php
-//Inputdata_DisplayData.php
-require &#39;dbconnect.php&#39;;
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="c1">//Inputdata_DisplayData.php</span>
+<span class="k">require</span> <span class="s1">&#39;dbconnect.php&#39;</span><span class="p">;</span>
 
-print_r($_POST);
-echo(&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;);
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
 
-try{
-// write insert sql statement
-$sql_insert = 	&quot;INSERT INTO tbl_doginfo1(&quot;
-			.&quot;dogname,&quot;
-			.&quot;dogbreed,&quot;
-			.&quot;ownerfirstname,&quot;
-			.&quot;ownerlastname,&quot;
-			.&quot;city,&quot;
-			.&quot;st)&quot;
-			.&quot;VALUES(&quot;
-			.&quot;:dogname,&quot;
-			.&quot;:dogbreed,&quot;
-			.&quot;:ownerfirstname,&quot;
-			.&quot;:ownerlastname,&quot;
-			.&quot;:city,&quot;
-			.&quot;:st)&quot;;
+<span class="k">try</span><span class="p">{</span>
+<span class="c1">// write insert sql statement</span>
+<span class="nv">$sql_insert</span> <span class="o">=</span> 	<span class="s2">&quot;INSERT INTO tbl_doginfo1(&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;dogname,&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;dogbreed,&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;ownerfirstname,&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;ownerlastname,&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;city,&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;st)&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;VALUES(&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;:dogname,&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;:dogbreed,&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;:ownerfirstname,&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;:ownerlastname,&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;:city,&quot;</span>
+			<span class="o">.</span><span class="s2">&quot;:st)&quot;</span><span class="p">;</span>
 
-// prepare the sql statement
-$sql_insert = $pdo-&gt;prepare($sql_insert);
+<span class="c1">// prepare the sql statement</span>
+<span class="nv">$sql_insert</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql_insert</span><span class="p">);</span>
 
-// sanitize the information
-$dogname = filter_var($_POST[&#39;dogname&#39;],FILTER_SANITIZE_STRING);
-$dogbreed = filter_var($_POST[&#39;dogbreed&#39;],FILTER_SANITIZE_STRING);
-$ownerfirstname = filter_var($_POST[&#39;ownerfirstname&#39;],FILTER_SANITIZE_STRING);
-$ownerlastname = filter_var($_POST[&#39;ownerlastname&#39;],FILTER_SANITIZE_STRING);
-$city = filter_var($_POST[&#39;city&#39;],FILTER_SANITIZE_STRING);
-$st = filter_var($_POST[&#39;st&#39;],FILTER_SANITIZE_STRING);
+<span class="c1">// sanitize the information</span>
+<span class="nv">$dogname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+<span class="nv">$dogbreed</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogbreed&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+<span class="nv">$ownerfirstname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;ownerfirstname&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+<span class="nv">$ownerlastname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;ownerlastname&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+<span class="nv">$city</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+<span class="nv">$st</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
 
-//bind variable name to placeholders
-$sql_insert-&gt;bindparam(&quot;:dogname&quot;,$dogname);
-$sql_insert-&gt;bindparam(&quot;:dogbreed&quot;,$dogbreed);
-$sql_insert-&gt;bindparam(&quot;:ownerfirstname&quot;,$ownerfirstname);
-$sql_insert-&gt;bindparam(&quot;:ownerlastname&quot;,$ownerlastname);
-$sql_insert-&gt;bindparam(&quot;:city&quot;,$city);
-$sql_insert-&gt;bindparam(&quot;:st&quot;,$st);
+<span class="c1">//bind variable name to placeholders</span>
+<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:dogname&quot;</span><span class="p">,</span><span class="nv">$dogname</span><span class="p">);</span>
+<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:dogbreed&quot;</span><span class="p">,</span><span class="nv">$dogbreed</span><span class="p">);</span>
+<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:ownerfirstname&quot;</span><span class="p">,</span><span class="nv">$ownerfirstname</span><span class="p">);</span>
+<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:ownerlastname&quot;</span><span class="p">,</span><span class="nv">$ownerlastname</span><span class="p">);</span>
+<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:city&quot;</span><span class="p">,</span><span class="nv">$city</span><span class="p">);</span>
+<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:st&quot;</span><span class="p">,</span><span class="nv">$st</span><span class="p">);</span>
     
-//--Alternative Method using an array
-/*
-$sql_params=array(&#39;:dogname&#39;=&gt; $dogname,
-                &#39;:dogbreed&#39; =&gt; $dogbreed,
-                &#39;:ownerfirstname&#39; =&gt; $ownerfirstname ,
-                &#39;:ownerlastname&#39; =&gt; $ownerlastname,
-                &#39;:city&#39; =&gt; $city,
-                &#39;:st&#39; =&gt; $st);
-        
-$sql_insert-&gt;execute($sql_params);
- */    
+<span class="c1">//--Alternative Method using an array</span>
+<span class="cm">/*</span>
+<span class="cm">$sql_params=array(&#39;:dogname&#39;=&gt; $dogname,</span>
+<span class="cm">                &#39;:dogbreed&#39; =&gt; $dogbreed,</span>
+<span class="cm">                &#39;:ownerfirstname&#39; =&gt; $ownerfirstname ,</span>
+<span class="cm">                &#39;:ownerlastname&#39; =&gt; $ownerlastname,</span>
+<span class="cm">                &#39;:city&#39; =&gt; $city,</span>
+<span class="cm">                &#39;:st&#39; =&gt; $st);</span>
+<span class="cm">        </span>
+<span class="cm">$sql_insert-&gt;execute($sql_params);</span>
+<span class="cm"> */</span>    
     
 
-//execute
-$sql_insert-&gt;execute();
+<span class="c1">//execute</span>
+<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
 
-echo(&quot;
-        &lt;h2&gt;Dog Infomation Confirmation&lt;/h2&gt;
-        Dog Name: $dogname&lt;br&gt;
-        Dog Breed: $dogbreed&lt;br&gt;
-        Owner First Name: $ownerfirstname&lt;br&gt;
-        Owner Last Name: $ownerlastname&lt;br&gt;
-        City: $city&lt;br&gt;
-        State: $st&lt;br&gt;
-    &quot;);
-}
-catch(PDOException $err)
-{
-	echo(&#39;&lt;h2&gt;Error&lt;/h2&gt;&#39;.
-		$err-&gt;getMessage()
-		);
+<span class="k">echo</span><span class="p">(</span><span class="s2">&quot;</span>
+<span class="s2">        &lt;h2&gt;Dog Infomation Confirmation&lt;/h2&gt;</span>
+<span class="s2">        Dog Name: </span><span class="si">$dogname</span><span class="s2">&lt;br&gt;</span>
+<span class="s2">        Dog Breed: </span><span class="si">$dogbreed</span><span class="s2">&lt;br&gt;</span>
+<span class="s2">        Owner First Name: </span><span class="si">$ownerfirstname</span><span class="s2">&lt;br&gt;</span>
+<span class="s2">        Owner Last Name: </span><span class="si">$ownerlastname</span><span class="s2">&lt;br&gt;</span>
+<span class="s2">        City: </span><span class="si">$city</span><span class="s2">&lt;br&gt;</span>
+<span class="s2">        State: </span><span class="si">$st</span><span class="s2">&lt;br&gt;</span>
+<span class="s2">    &quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">(</span><span class="nx">PDOException</span> <span class="nv">$err</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;h2&gt;Error&lt;/h2&gt;&#39;</span><span class="o">.</span>
+		<span class="nv">$err</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">()</span>
+		<span class="p">);</span>
 	
-}
-catch(Exception $e)
-{
-	echo(&#39;&lt;h2&gt;Error&lt;/h2&gt;&#39;.
-		$e-&gt;getMessage()
-		);
-}
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;h2&gt;Error&lt;/h2&gt;&#39;</span><span class="o">.</span>
+		<span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">()</span>
+		<span class="p">);</span>
+<span class="p">}</span>
 
-?&gt;
-
+<span class="cp">?&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="display-edit-php">
 <h2><a class="toc-backref" href="#id5">Display_Edit.php</a><a class="headerlink" href="#display-edit-php" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-php+HTML notranslate"><div class="highlight"><pre><span></span>&lt;?php
-require (&#39;./dbconnection.php&#39;);
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">require</span> <span class="p">(</span><span class="s1">&#39;./dbconnection.php&#39;</span><span class="p">);</span>
 
-if (isset($_POST)) {
+<span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">))</span> <span class="p">{</span>
     
-    if (!empty($_POST[&#39;action&#39;])) {
-        if ($_POST[&#39;action&#39;] === &#39;Delete&#39;) {
-            $dID = filter_var($_POST[&#39;dogid&#39;], FILTER_SANITIZE_STRING);
-            $sql_delete = &quot;DELETE FROM tbl_doginfo WHERE dogid = &quot; . $dID;
-            $pdo-&gt;exec($sql_delete);
-        }
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;Delete&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$dID</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogid&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+            <span class="nv">$sql_delete</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM tbl_doginfo WHERE dogid = &quot;</span> <span class="o">.</span> <span class="nv">$dID</span><span class="p">;</span>
+            <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">exec</span><span class="p">(</span><span class="nv">$sql_delete</span><span class="p">);</span>
+        <span class="p">}</span>
 
-      if ($_POST[&#39;action&#39;] === &#39;Edit&#39;)
-      {
-          //NOTE: you cannot send any output to the current page (Display_Edit.php
-          //You must go directly to the new page.
-          $_SESSION[&#39;dogEditID&#39;] = filter_var($_POST[&#39;dogid&#39;], FILTER_SANITIZE_NUMBER_INT);  
-          header(&quot;Location:edit_data.php&quot;);
-      }       
-   }
-}
-
-
-$sql_selectEdit = &quot;SELECT dogname, dogbreed, ownerfirstname, ownerlastname, city, st, dogid&quot;
-        . &quot; FROM tbl_doginfo &quot;
-        . &quot; ORDER BY dogname&quot;;
-
-$result_edit = $pdo-&gt;query($sql_selectEdit);
-?&gt;
-
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-&lt;?php
-include &#39;menu.php&#39;;
-?&gt;
+      <span class="k">if</span> <span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;Edit&#39;</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="c1">//NOTE: you cannot send any output to the current page (Display_Edit.php</span>
+          <span class="c1">//You must go directly to the new page.</span>
+          <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;dogEditID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogid&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_NUMBER_INT</span><span class="p">);</span>  
+          <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Location:edit_data.php&quot;</span><span class="p">);</span>
+      <span class="p">}</span>       
+   <span class="p">}</span>
+<span class="p">}</span>
 
 
-        &lt;table border=&quot;1&quot;&gt;
-            &lt;thead&gt;
-                &lt;tr&gt;
-                    &lt;th&gt;Dog Name&lt;/th&gt;
-                    &lt;th&gt;Dog Breed&lt;/th&gt;
-                    &lt;th&gt;First Name&lt;/th&gt;
-                    &lt;th&gt;Last Name&lt;/th&gt;
-                    &lt;th&gt;Owner First Name&lt;/th&gt;
-                    &lt;th&gt;Owner Last Name&lt;/th&gt;
-                    &lt;th&gt;Edit&lt;/th&gt;
-                &lt;/tr&gt;
-            &lt;/thead&gt;
-            &lt;tbody&gt;
-&lt;?php
-while ($row = $result_edit-&gt;fetch()) {
-    echo(&#39;&lt;tr&gt;&#39;
-    . &#39;&lt;td&gt;&#39; . $row[&#39;dogname&#39;] . &quot;&lt;/td&gt;&quot;
-    . &quot;&lt;td&gt;&quot; . $row[&#39;dogbreed&#39;] . &quot;&lt;/td&gt;&quot;
-    . &quot;&lt;td&gt;&quot; . $row[&#39;ownerfirstname&#39;] . &quot;&lt;/td&gt;&quot;
-    . &quot;&lt;td&gt;&quot; . $row[&#39;ownerlastname&#39;] . &quot;&lt;/td&gt;&quot;
-    . &quot;&lt;td&gt;&quot; . $row[&#39;city&#39;] . &quot;&lt;/td&gt;&quot;
-    . &quot;&lt;td&gt;&quot; . $row[&#39;st&#39;] . &quot;&lt;/td&gt;&quot;
-    . &#39;&lt;td&gt;&lt;form method=&quot;POST&quot; action=&quot;Display_Edit.php&quot; 
-    		onsubmit=&quot;return confirm(&#39;.&quot;&#39;&quot;.&#39;Are U Sure&#39;.&quot;&#39;)&quot;.&#39;&quot;&gt;
-    		&lt;input type=&quot;hidden&quot; name=&quot;dogid&quot; value=&quot;&#39;.$row[&#39;dogid&#39;].&#39;&quot;/&gt;&#39;
-    . &#39;&lt;input type=&quot;submit&quot; value=&quot;Edit&quot; name=&quot;action&quot; /&gt;&amp;nbsp;&amp;nbsp;&#39;
-    . &#39;&lt;input type=&quot;submit&quot; value=&quot;Delete&quot; name=&quot;action&quot;/&gt;&#39;
-    . &#39;&lt;/form&gt;&lt;/td&gt;&lt;/tr&gt;&#39;);
-}
-?&gt;
-            &lt;/tbody&gt;
-        &lt;/table&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
+<span class="nv">$sql_selectEdit</span> <span class="o">=</span> <span class="s2">&quot;SELECT dogname, dogbreed, ownerfirstname, ownerlastname, city, st, dogid&quot;</span>
+        <span class="o">.</span> <span class="s2">&quot; FROM tbl_doginfo &quot;</span>
+        <span class="o">.</span> <span class="s2">&quot; ORDER BY dogname&quot;</span><span class="p">;</span>
+
+<span class="nv">$result_edit</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql_selectEdit</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+
+<span class="x">&lt;html&gt;</span>
+<span class="x">    &lt;head&gt;</span>
+<span class="x">        &lt;title&gt;&lt;/title&gt;</span>
+<span class="x">    &lt;/head&gt;</span>
+<span class="x">    &lt;body&gt;</span>
+<span class="cp">&lt;?php</span>
+<span class="k">include</span> <span class="s1">&#39;menu.php&#39;</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+
+
+<span class="x">        &lt;table border=&quot;1&quot;&gt;</span>
+<span class="x">            &lt;thead&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;th&gt;Dog Name&lt;/th&gt;</span>
+<span class="x">                    &lt;th&gt;Dog Breed&lt;/th&gt;</span>
+<span class="x">                    &lt;th&gt;First Name&lt;/th&gt;</span>
+<span class="x">                    &lt;th&gt;Last Name&lt;/th&gt;</span>
+<span class="x">                    &lt;th&gt;Owner First Name&lt;/th&gt;</span>
+<span class="x">                    &lt;th&gt;Owner Last Name&lt;/th&gt;</span>
+<span class="x">                    &lt;th&gt;Edit&lt;/th&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
+<span class="x">            &lt;/thead&gt;</span>
+<span class="x">            &lt;tbody&gt;</span>
+<span class="cp">&lt;?php</span>
+<span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$result_edit</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;tr&gt;&#39;</span>
+    <span class="o">.</span> <span class="s1">&#39;&lt;td&gt;&#39;</span> <span class="o">.</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;&lt;/td&gt;&quot;</span>
+    <span class="o">.</span> <span class="s2">&quot;&lt;td&gt;&quot;</span> <span class="o">.</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;dogbreed&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;&lt;/td&gt;&quot;</span>
+    <span class="o">.</span> <span class="s2">&quot;&lt;td&gt;&quot;</span> <span class="o">.</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;ownerfirstname&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;&lt;/td&gt;&quot;</span>
+    <span class="o">.</span> <span class="s2">&quot;&lt;td&gt;&quot;</span> <span class="o">.</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;ownerlastname&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;&lt;/td&gt;&quot;</span>
+    <span class="o">.</span> <span class="s2">&quot;&lt;td&gt;&quot;</span> <span class="o">.</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;&lt;/td&gt;&quot;</span>
+    <span class="o">.</span> <span class="s2">&quot;&lt;td&gt;&quot;</span> <span class="o">.</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;&lt;/td&gt;&quot;</span>
+    <span class="o">.</span> <span class="s1">&#39;&lt;td&gt;&lt;form method=&quot;POST&quot; action=&quot;Display_Edit.php&quot; </span>
+<span class="s1">    		onsubmit=&quot;return confirm(&#39;</span><span class="o">.</span><span class="s2">&quot;&#39;&quot;</span><span class="o">.</span><span class="s1">&#39;Are U Sure&#39;</span><span class="o">.</span><span class="s2">&quot;&#39;)&quot;</span><span class="o">.</span><span class="s1">&#39;&quot;&gt;</span>
+<span class="s1">    		&lt;input type=&quot;hidden&quot; name=&quot;dogid&quot; value=&quot;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;dogid&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&quot;/&gt;&#39;</span>
+    <span class="o">.</span> <span class="s1">&#39;&lt;input type=&quot;submit&quot; value=&quot;Edit&quot; name=&quot;action&quot; /&gt;&amp;nbsp;&amp;nbsp;&#39;</span>
+    <span class="o">.</span> <span class="s1">&#39;&lt;input type=&quot;submit&quot; value=&quot;Delete&quot; name=&quot;action&quot;/&gt;&#39;</span>
+    <span class="o">.</span> <span class="s1">&#39;&lt;/form&gt;&lt;/td&gt;&lt;/tr&gt;&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+<span class="x">            &lt;/tbody&gt;</span>
+<span class="x">        &lt;/table&gt;</span>
+<span class="x">    &lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="edit-data-php">
 <h2><a class="toc-backref" href="#id6">Edit_data.php</a><a class="headerlink" href="#edit-data-php" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-php+HTML notranslate"><div class="highlight"><pre><span></span>&lt;?php
-require (&#39;./dbconnection.php&#39;);
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">require</span> <span class="p">(</span><span class="s1">&#39;./dbconnection.php&#39;</span><span class="p">);</span>
 
-if (!empty($_POST[&#39;dogname&#39;])) {
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">]))</span> <span class="p">{</span>
     
-    //write the sql statement with placehonders
-    $sql_edit = &quot;UPDATE  tbl_doginfo &quot;
-            . &quot;SET dogname = :dogname, &quot;
-            . &quot;dogbreed = :dogbreed, &quot;
-            . &quot;ownerfirstname = :ownerfirstname, &quot;
-            . &quot;ownerlastname = :ownerlastname, &quot;
-            . &quot;city = :city, &quot;
-            . &quot;st = :st  &quot;
-            . &quot;WHERE dogid = :dogid&quot;;
+    <span class="c1">//write the sql statement with placehonders</span>
+    <span class="nv">$sql_edit</span> <span class="o">=</span> <span class="s2">&quot;UPDATE  tbl_doginfo &quot;</span>
+            <span class="o">.</span> <span class="s2">&quot;SET dogname = :dogname, &quot;</span>
+            <span class="o">.</span> <span class="s2">&quot;dogbreed = :dogbreed, &quot;</span>
+            <span class="o">.</span> <span class="s2">&quot;ownerfirstname = :ownerfirstname, &quot;</span>
+            <span class="o">.</span> <span class="s2">&quot;ownerlastname = :ownerlastname, &quot;</span>
+            <span class="o">.</span> <span class="s2">&quot;city = :city, &quot;</span>
+            <span class="o">.</span> <span class="s2">&quot;st = :st  &quot;</span>
+            <span class="o">.</span> <span class="s2">&quot;WHERE dogid = :dogid&quot;</span><span class="p">;</span>
 
-    //prepare the squel statement
-    $sql_edit = $pdo-&gt;prepare($sql_edit);
-
-
-    //Sanitize Information
-    $dogname = filter_var($_POST[&#39;dogname&#39;], FILTER_SANITIZE_STRING);
-    $dogbreed = filter_var($_POST[&#39;dogbreed&#39;], FILTER_SANITIZE_STRING);
-    $ownerfirstname = filter_var($_POST[&#39;ownerfirstname&#39;], FILTER_SANITIZE_STRING);
-    $ownerlastname = filter_var($_POST[&#39;ownerlastname&#39;], FILTER_SANITIZE_STRING);
-    $city = filter_var($_POST[&#39;city&#39;], FILTER_SANITIZE_STRING);
-    $st = filter_var($_POST[&#39;st&#39;], FILTER_SANITIZE_STRING);
-    $dogid = filter_var($_POST[&#39;dogid&#39;], FILTER_SANITIZE_NUMBER_INT);
+    <span class="c1">//prepare the squel statement</span>
+    <span class="nv">$sql_edit</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql_edit</span><span class="p">);</span>
 
 
-    //bind parameters
-    $sql_edit-&gt;bindparam(&quot;:dogname&quot;, $dogname);
-    $sql_edit-&gt;bindparam(&quot;:dogbreed&quot;, $dogbreed);
-    $sql_edit-&gt;bindparam(&quot;:ownerfirstname&quot;, $ownerfirstname);
-    $sql_edit-&gt;bindparam(&quot;:ownerlastname&quot;, $ownerlastname);
-    $sql_edit-&gt;bindparam(&quot;:city&quot;, $city);
-    $sql_edit-&gt;bindparam(&quot;:st&quot;, $st);
-    $sql_edit-&gt;bindparam(&quot;:dogid&quot;, $dogid);
-
-//input data
-    $sqlh_edit-&gt;execute();
-
-//open display data page
-    header(&quot;Location: Display_Edit.php&quot;);
-}
+    <span class="c1">//Sanitize Information</span>
+    <span class="nv">$dogname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+    <span class="nv">$dogbreed</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogbreed&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+    <span class="nv">$ownerfirstname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;ownerfirstname&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+    <span class="nv">$ownerlastname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;ownerlastname&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+    <span class="nv">$city</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+    <span class="nv">$st</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+    <span class="nv">$dogid</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogid&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_NUMBER_INT</span><span class="p">);</span>
 
 
-$sql_editData = &quot;Select * &quot;
-        . &quot; From tbl_doginfo&quot;
-        . &quot; Where dogid=&quot;
-        . $_SESSION[&#39;dogEditID&#39;];
+    <span class="c1">//bind parameters</span>
+    <span class="nv">$sql_edit</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:dogname&quot;</span><span class="p">,</span> <span class="nv">$dogname</span><span class="p">);</span>
+    <span class="nv">$sql_edit</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:dogbreed&quot;</span><span class="p">,</span> <span class="nv">$dogbreed</span><span class="p">);</span>
+    <span class="nv">$sql_edit</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:ownerfirstname&quot;</span><span class="p">,</span> <span class="nv">$ownerfirstname</span><span class="p">);</span>
+    <span class="nv">$sql_edit</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:ownerlastname&quot;</span><span class="p">,</span> <span class="nv">$ownerlastname</span><span class="p">);</span>
+    <span class="nv">$sql_edit</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:city&quot;</span><span class="p">,</span> <span class="nv">$city</span><span class="p">);</span>
+    <span class="nv">$sql_edit</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:st&quot;</span><span class="p">,</span> <span class="nv">$st</span><span class="p">);</span>
+    <span class="nv">$sql_edit</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:dogid&quot;</span><span class="p">,</span> <span class="nv">$dogid</span><span class="p">);</span>
 
-$result_editData = $pdo-&gt;query($sql_editData);
+<span class="c1">//input data</span>
+    <span class="nv">$sqlh_edit</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
 
-$row_edit = $result_editData-&gt;fetch();
+<span class="c1">//open display data page</span>
+    <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Location: Display_Edit.php&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 
-//----States
-//Query to select states
-$sql_st = &quot;SELECT st &quot; .
-        &quot;FROM tbl_state &quot; .
-        &quot;Order by st&quot;;
 
-//execute the select query       
-$result_st = $pdo-&gt;query($sql_st);
-?&gt;
+<span class="nv">$sql_editData</span> <span class="o">=</span> <span class="s2">&quot;Select * &quot;</span>
+        <span class="o">.</span> <span class="s2">&quot; From tbl_doginfo&quot;</span>
+        <span class="o">.</span> <span class="s2">&quot; Where dogid=&quot;</span>
+        <span class="o">.</span> <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;dogEditID&#39;</span><span class="p">];</span>
 
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;UTF-8&quot;&gt;
-        &lt;title&gt;Edit Data&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;?php
-        include &#39;menu.php&#39;;
-        ?&gt;
+<span class="nv">$result_editData</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql_editData</span><span class="p">);</span>
 
-        &lt;h2&gt;Edit Data&lt;/h2&gt;
-        &lt;form method=&quot;POST&quot; action=&quot;edit_data.php&quot;  
-              onsubmit=&quot;return confirm(&#39;Are you sure you want to continue&#39;)&quot;&gt;
-            &lt;table border=&quot;1&quot;&gt;
-                &lt;thead&gt;
-                    &lt;tr&gt;
-                        &lt;th colspan=&quot;2&quot;&gt;Dog Information&lt;/th&gt;
-                    &lt;/tr&gt;
-                &lt;/thead&gt;
-                &lt;tbody&gt;
+<span class="nv">$row_edit</span> <span class="o">=</span> <span class="nv">$result_editData</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">();</span>
 
-                    &lt;tr&gt;
-                        &lt;td&gt;Dog Name&lt;/td&gt;
-                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;dogname&quot; 
-                                   value=&quot;&lt;?php echo $row_edit[&#39;dogname&#39;] ?&gt;&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;Dog Breed&lt;/td&gt;
-                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;dogbreed&quot; 
-                                   value=&quot;&lt;?php echo $row_edit[&#39;dogbreed&#39;] ?&gt;&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;Owner First Name&lt;/td&gt;
-                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;ownerfirstname&quot; 
-                               value=&quot;&lt;?php echo $row_edit[&#39;ownerfirstname&#39;] ?&gt;&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;Owner Last Name&lt;/td&gt;
-                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;ownerlastname&quot; 
-                                   value=&quot;&lt;?php echo $row_edit[&#39;ownerlastname&#39;] ?&gt;&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;City&lt;/td&gt;
-                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;city&quot; 
-                                   value=&quot;&lt;?php echo $row_edit[&#39;city&#39;] ?&gt;&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;ST&lt;/td&gt;
-                        &lt;td&gt;&lt;select name=&quot;st&quot; size=&quot;1&quot; width = 5&gt;
+<span class="c1">//----States</span>
+<span class="c1">//Query to select states</span>
+<span class="nv">$sql_st</span> <span class="o">=</span> <span class="s2">&quot;SELECT st &quot;</span> <span class="o">.</span>
+        <span class="s2">&quot;FROM tbl_state &quot;</span> <span class="o">.</span>
+        <span class="s2">&quot;Order by st&quot;</span><span class="p">;</span>
 
-                                &lt;?php
-                                while ($row = $result_st-&gt;fetch()) {
-                                    if ($row[&#39;st&#39;] === $row_edit[&#39;st&#39;]) {
-                                        echo(&#39;&lt;option value=&quot;&#39;.$row[&#39;st&#39;].&#39;&quot; selected&gt;&#39;.$row[&#39;st&#39;].&#39;&lt;/option&gt;&#39;);
-                                    } else {
-                                        echo(&#39;&lt;option value=&quot;&#39;.$row[&#39;st&#39;] . &#39;&quot;&gt;&#39;.$row[&#39;st&#39;].&#39;&lt;/option&gt;&#39;);
-                                    }
-                                }
-                                ?&gt;
-                            &lt;/select&gt;&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;Record Id: &lt;?php echo $row_edit[&#39;dogid&#39;] ?&gt;  
-                            &lt;input type=&quot;hidden&quot; name=&quot;dogid&quot; value=&quot;&lt;?php echo $row_edit[&#39;dogid&#39;] ?&gt; &quot;/&gt;&lt;/td&gt;
-                        &lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;Enter&quot;/&gt;&lt;/td&gt;
-                    &lt;/tr&gt;
-                &lt;/tbody&gt;
-            &lt;/table&gt;
-        &lt;/form&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
+<span class="c1">//execute the select query       </span>
+<span class="nv">$result_st</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql_st</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 
+<span class="x">&lt;html&gt;</span>
+<span class="x">    &lt;head&gt;</span>
+<span class="x">        &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<span class="x">        &lt;title&gt;Edit Data&lt;/title&gt;</span>
+<span class="x">    &lt;/head&gt;</span>
+<span class="x">    &lt;body&gt;</span>
+<span class="x">        </span><span class="cp">&lt;?php</span>
+        <span class="k">include</span> <span class="s1">&#39;menu.php&#39;</span><span class="p">;</span>
+        <span class="cp">?&gt;</span>
+
+<span class="x">        &lt;h2&gt;Edit Data&lt;/h2&gt;</span>
+<span class="x">        &lt;form method=&quot;POST&quot; action=&quot;edit_data.php&quot;  </span>
+<span class="x">              onsubmit=&quot;return confirm(&#39;Are you sure you want to continue&#39;)&quot;&gt;</span>
+<span class="x">            &lt;table border=&quot;1&quot;&gt;</span>
+<span class="x">                &lt;thead&gt;</span>
+<span class="x">                    &lt;tr&gt;</span>
+<span class="x">                        &lt;th colspan=&quot;2&quot;&gt;Dog Information&lt;/th&gt;</span>
+<span class="x">                    &lt;/tr&gt;</span>
+<span class="x">                &lt;/thead&gt;</span>
+<span class="x">                &lt;tbody&gt;</span>
+
+<span class="x">                    &lt;tr&gt;</span>
+<span class="x">                        &lt;td&gt;Dog Name&lt;/td&gt;</span>
+<span class="x">                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;dogname&quot; </span>
+<span class="x">                                   value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;</span>
+<span class="x">                    &lt;/tr&gt;</span>
+<span class="x">                    &lt;tr&gt;</span>
+<span class="x">                        &lt;td&gt;Dog Breed&lt;/td&gt;</span>
+<span class="x">                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;dogbreed&quot; </span>
+<span class="x">                                   value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;dogbreed&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;</span>
+<span class="x">                    &lt;/tr&gt;</span>
+<span class="x">                    &lt;tr&gt;</span>
+<span class="x">                        &lt;td&gt;Owner First Name&lt;/td&gt;</span>
+<span class="x">                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;ownerfirstname&quot; </span>
+<span class="x">                               value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;ownerfirstname&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;</span>
+<span class="x">                    &lt;/tr&gt;</span>
+<span class="x">                    &lt;tr&gt;</span>
+<span class="x">                        &lt;td&gt;Owner Last Name&lt;/td&gt;</span>
+<span class="x">                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;ownerlastname&quot; </span>
+<span class="x">                                   value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;ownerlastname&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;</span>
+<span class="x">                    &lt;/tr&gt;</span>
+<span class="x">                    &lt;tr&gt;</span>
+<span class="x">                        &lt;td&gt;City&lt;/td&gt;</span>
+<span class="x">                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;city&quot; </span>
+<span class="x">                                   value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;</span>
+<span class="x">                    &lt;/tr&gt;</span>
+<span class="x">                    &lt;tr&gt;</span>
+<span class="x">                        &lt;td&gt;ST&lt;/td&gt;</span>
+<span class="x">                        &lt;td&gt;&lt;select name=&quot;st&quot; size=&quot;1&quot; width = 5&gt;</span>
+
+<span class="x">                                </span><span class="cp">&lt;?php</span>
+                                <span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$result_st</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">())</span> <span class="p">{</span>
+                                    <span class="k">if</span> <span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">])</span> <span class="p">{</span>
+                                        <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;option value=&quot;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&quot; selected&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/option&gt;&#39;</span><span class="p">);</span>
+                                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                                        <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;option value=&quot;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/option&gt;&#39;</span><span class="p">);</span>
+                                    <span class="p">}</span>
+                                <span class="p">}</span>
+                                <span class="cp">?&gt;</span>
+<span class="x">                            &lt;/select&gt;&lt;/td&gt;</span>
+<span class="x">                    &lt;/tr&gt;</span>
+<span class="x">                    &lt;tr&gt;</span>
+<span class="x">                        &lt;td&gt;Record Id: </span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;dogid&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">  </span>
+<span class="x">                            &lt;input type=&quot;hidden&quot; name=&quot;dogid&quot; value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;dogid&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x"> &quot;/&gt;&lt;/td&gt;</span>
+<span class="x">                        &lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;Enter&quot;/&gt;&lt;/td&gt;</span>
+<span class="x">                    &lt;/tr&gt;</span>
+<span class="x">                &lt;/tbody&gt;</span>
+<span class="x">            &lt;/table&gt;</span>
+<span class="x">        &lt;/form&gt;</span>
+<span class="x">    &lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -775,7 +774,7 @@ $result_st = $pdo-&gt;query($sql_st);
   <div id="footer-row" class="row">
 
     <div class="col-md-12">
-        <span title="Built on 2023-10-11" class="pull-right">&copy; Copyright 2023 By James Goudy.
+        <span title="Built on 2023-10-24" class="pull-right">&copy; Copyright 2023 By James Goudy.
         Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 and the
         <a href="https://pypi.org/project/sphinx-sizzle-theme/"
 

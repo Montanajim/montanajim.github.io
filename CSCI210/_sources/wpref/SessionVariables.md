@@ -41,17 +41,25 @@ __die()__ is an alias for exit.
 
 ## Example Code
 
-```{mermaid}
-flowchart
-A[Home\nindex.php] --> B[Page 2\npage2.php]
-A --> C[Page 3\npage3.php]
-A --> D[Destroy\npage4.php]
-A --> E[Delete Managers and \nFirst Name\npage5.php]
+```mermaid
+flowchart TD
+    A[Home\nindex.php] --> B[Page 2\npage2.php]
+    A --> C[Page 3\npage3.php]
+    A --> D[Destroy\npage4.php]
+    A ---> E[Delete Managers and \nFirst Name\npage5.php]
 ```
+
+
+
+
+
+
+
+
 
 ### Home Page / index.php
 
-```php+HTML
+```php
 <!-- index.php -->
 <!DOCTYPE html>
 <html>

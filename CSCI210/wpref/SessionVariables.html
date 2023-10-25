@@ -176,10 +176,11 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="PDOConnections.html">PDO Connections</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="FirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDOFirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PDONoPlaceHoldersExample.html">PDO With No Named Placeholders</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="Passwords.html">Passwords</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AddEditDelete.html">Add Edit Delete</a></li>
 </ul>
 
@@ -203,10 +204,11 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="PDOConnections.html">PDO Connections</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="FirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDOFirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PDONoPlaceHoldersExample.html">PDO With No Named Placeholders</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="Passwords.html">Passwords</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AddEditDelete.html">Add Edit Delete</a></li>
 </ul>
 
@@ -244,93 +246,100 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="example-code">
 <h2>Example Code<a class="headerlink" href="#example-code" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>flowchart TD
+    A[Home\nindex.php] --&gt; B[Page 2\npage2.php]
+    A --&gt; C[Page 3\npage3.php]
+    A --&gt; D[Destroy\npage4.php]
+    A ---&gt; E[Delete Managers and \nFirst Name\npage5.php]
+</pre></div>
+</div>
 <div class="section" id="home-page-index-php">
 <h3>Home Page / index.php<a class="headerlink" href="#home-page-index-php" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-php+HTML notranslate"><div class="highlight"><pre><span></span>&lt;!-- index.php --&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;title&gt;Home Page&lt;/title&gt;
-	&lt;?php
-        // To session variable - session start
-        // has to be on every page you want to use a session variable
-        session_start();
-    ?&gt;
-&lt;/head&gt;
-&lt;body&gt;
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!-- index.php --&gt;</span>
+<span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">&lt;title&gt;Home Page&lt;/title&gt;</span>
+<span class="x">	</span><span class="cp">&lt;?php</span>
+        <span class="c1">// To session variable - session start</span>
+        <span class="c1">// has to be on every page you want to use a session variable</span>
+        <span class="nb">session_start</span><span class="p">();</span>
+    <span class="cp">?&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
 
-    &lt;?php
-        // assign a values a session variable
-        $_SESSION[&quot;firstName&quot;] = &quot;Bubba&quot;;
-        $_SESSION[&quot;lastName&quot;]  = &quot;Smith&quot;;
+<span class="x">    </span><span class="cp">&lt;?php</span>
+        <span class="c1">// assign a values a session variable</span>
+        <span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&quot;firstName&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Bubba&quot;</span><span class="p">;</span>
+        <span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&quot;lastName&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="s2">&quot;Smith&quot;</span><span class="p">;</span>
 
-        // array review
-        $myArray1 = array(&quot;Larry&quot;,&quot;Curly&quot;,&quot;Moe&quot;);
-        $myArray2 = array(	&quot;CEO&quot; =&gt; &quot;Sally&quot;,
-        					&quot;CIO&quot; =&gt; &quot;Jim&quot;,
-        					&quot;CFO&quot; =&gt; &quot;Suzy&quot;,
-        					&quot;CSO&quot; =&gt; &quot;Billy&quot;);
+        <span class="c1">// array review</span>
+        <span class="nv">$myArray1</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s2">&quot;Larry&quot;</span><span class="p">,</span><span class="s2">&quot;Curly&quot;</span><span class="p">,</span><span class="s2">&quot;Moe&quot;</span><span class="p">);</span>
+        <span class="nv">$myArray2</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>	<span class="s2">&quot;CEO&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Sally&quot;</span><span class="p">,</span>
+        					<span class="s2">&quot;CIO&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Jim&quot;</span><span class="p">,</span>
+        					<span class="s2">&quot;CFO&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Suzy&quot;</span><span class="p">,</span>
+        					<span class="s2">&quot;CSO&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Billy&quot;</span><span class="p">);</span>
 
-        // different ways to add an item to an array
-        array_push($myArray1,&quot;Shemp&quot;);
-        $myArray1[4] = &quot;Curly Joe&quot;;
-        $myArray1[count($myArray1)] = &quot;Jimbo&quot;;
-        $_SESSION[&quot;stooges&quot;] = $myArray1;
-        $_SESSION[&quot;managers&quot;] = $myArray2;	
-    ?&gt;
+        <span class="c1">// different ways to add an item to an array</span>
+        <span class="nb">array_push</span><span class="p">(</span><span class="nv">$myArray1</span><span class="p">,</span><span class="s2">&quot;Shemp&quot;</span><span class="p">);</span>
+        <span class="nv">$myArray1</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Curly Joe&quot;</span><span class="p">;</span>
+        <span class="nv">$myArray1</span><span class="p">[</span><span class="nb">count</span><span class="p">(</span><span class="nv">$myArray1</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;Jimbo&quot;</span><span class="p">;</span>
+        <span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&quot;stooges&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$myArray1</span><span class="p">;</span>
+        <span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&quot;managers&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$myArray2</span><span class="p">;</span>	
+    <span class="cp">?&gt;</span>
 
-&lt;h1&gt;Session Variables&lt;/h1&gt;
+<span class="x">&lt;h1&gt;Session Variables&lt;/h1&gt;</span>
 
-&lt;h2&gt;Session&lt;/h2&gt;
-    &lt;?php
-        echo(&#39;$_SESSION&lt;br&gt;&#39;);
-        print_r($_SESSION);
-        echo(&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;);
-        print_r($myArray1);
-        echo(&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;);
-        print_r($myArray2);
-        echo(&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;);
-        print_r($myArray1);
-        echo(&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;);
-        var_dump($_SESSION);
-        echo(&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;);
-    ?&gt;
+<span class="x">&lt;h2&gt;Session&lt;/h2&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;$_SESSION&lt;br&gt;&#39;</span><span class="p">);</span>
+        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">);</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$myArray1</span><span class="p">);</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$myArray2</span><span class="p">);</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$myArray1</span><span class="p">);</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+        <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">);</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+    <span class="cp">?&gt;</span>
 
-&lt;h2&gt;People&lt;/h2&gt;
+<span class="x">&lt;h2&gt;People&lt;/h2&gt;</span>
 
-    &lt;?php
-        // pull and individual 
-        echo($_SESSION[&quot;stooges&quot;][1].&quot;&lt;br&gt;&quot;);
-        echo($_SESSION[&quot;managers&quot;][&quot;CFO&quot;].&quot;&lt;br&gt;&quot;);
+<span class="x">    </span><span class="cp">&lt;?php</span>
+        <span class="c1">// pull and individual </span>
+        <span class="k">echo</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&quot;stooges&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+        <span class="k">echo</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&quot;managers&quot;</span><span class="p">][</span><span class="s2">&quot;CFO&quot;</span><span class="p">]</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
 
-        echo(&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;);
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
 
-        $outStooges =$_SESSION[&quot;stooges&quot;];
-        print_r($outStooges);
+        <span class="nv">$outStooges</span> <span class="o">=</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&quot;stooges&quot;</span><span class="p">];</span>
+        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$outStooges</span><span class="p">);</span>
 
-        echo(&quot;&lt;h3&gt;Stooges&lt;/h3&gt;&quot;);
-        for($i = 0; $i &lt; count($outStooges); $i++)
-        {
-            echo($outStooges[$i].&quot;&lt;br&gt;&quot;);
-        }
-        echo(&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;);
-        for($i = 0; $i &lt; count($_SESSION[&#39;stooges&#39;]); $i++)
-        {
-            echo($_SESSION[&quot;stooges&quot;][$i].&quot;&lt;br&gt;&quot;);
-        }
-    ?&gt;
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;h3&gt;Stooges&lt;/h3&gt;&quot;</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$outStooges</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">echo</span><span class="p">(</span><span class="nv">$outStooges</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;stooges&#39;</span><span class="p">]);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">echo</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&quot;stooges&quot;</span><span class="p">][</span><span class="nv">$i</span><span class="p">]</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="cp">?&gt;</span>
 
-&lt;br&gt;
-&lt;h2&gt;Pages&lt;/h2&gt;
-&lt;a href=&quot;index.php&quot;&gt;Home&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;page2.php&quot;&gt;Page 2&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;page3.php&quot;&gt;Page 3&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;page4.php&quot;&gt;Destroy&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;page5.php&quot;&gt;Delete managers and first Name&lt;/a&gt;&lt;br&gt;
+<span class="x">&lt;br&gt;</span>
+<span class="x">&lt;h2&gt;Pages&lt;/h2&gt;</span>
+<span class="x">&lt;a href=&quot;index.php&quot;&gt;Home&lt;/a&gt;&lt;br&gt;</span>
+<span class="x">&lt;a href=&quot;page2.php&quot;&gt;Page 2&lt;/a&gt;&lt;br&gt;</span>
+<span class="x">&lt;a href=&quot;page3.php&quot;&gt;Page 3&lt;/a&gt;&lt;br&gt;</span>
+<span class="x">&lt;a href=&quot;page4.php&quot;&gt;Destroy&lt;/a&gt;&lt;br&gt;</span>
+<span class="x">&lt;a href=&quot;page5.php&quot;&gt;Delete managers and first Name&lt;/a&gt;&lt;br&gt;</span>
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+<span class="x">&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
 </pre></div>
 </div>
 <div style="page-break-after: always; break-after: page;"></div>
@@ -485,7 +494,7 @@ const thebe_selector_output = ".output, .cell_output"
   <div id="footer-row" class="row">
 
     <div class="col-md-12">
-        <span title="Built on 2023-10-11" class="pull-right">&copy; Copyright 2023 By James Goudy.
+        <span title="Built on 2023-10-24" class="pull-right">&copy; Copyright 2023 By James Goudy.
         Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 and the
         <a href="https://pypi.org/project/sphinx-sizzle-theme/"
 

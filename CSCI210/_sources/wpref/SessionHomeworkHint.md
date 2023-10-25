@@ -6,7 +6,7 @@
 
 ## index.php
 
-```php+HTML
+```html
 <html>
 <head>
 <?php
@@ -51,7 +51,7 @@ session_start();
 
 ## page2.php
 
-```php+HTML
+```php
 <html>
 <head>
 <title>page2</title>

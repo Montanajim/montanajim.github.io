@@ -16,7 +16,6 @@
 ---
 
 ``` {mermaid}
-
 graph TD
 
 A[index.php]-->B[Inputdata_DisplayData.php]
@@ -142,7 +141,7 @@ try
 
 ## index.php
 
-```php+HTML
+```php
 <!DOCTYPE html>
 <html>
 <head>
@@ -242,7 +241,7 @@ Enter the data and confirm data entry
 
 
 
-```php+HTML
+```php
 <?php
 //Inputdata_DisplayData.php
 require 'dbconnect.php';
@@ -334,7 +333,7 @@ catch(Exception $e)
 
 ## Display_Edit.php
 
-```php+HTML
+```php
 <?php
 require ('./dbconnection.php');
 
@@ -415,7 +414,7 @@ while ($row = $result_edit->fetch()) {
 
 ## Edit_data.php
 
-```php+HTML
+```php
 <?php
 require ('./dbconnection.php');
 

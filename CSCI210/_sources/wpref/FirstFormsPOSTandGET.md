@@ -137,7 +137,7 @@ C --> C1[Form Results\nform2a.php]
 
 ### Results from Form1 - form1a.php
 
-```php+HTML
+```php
 <!-- form1a.php -->
 <html>
 <head>
@@ -213,7 +213,7 @@ C --> C1[Form Results\nform2a.php]
 
 ### Results - form2a.php
 
-```php+HTML
+```php
 <!-- form2a.php -->
 <html>
 <head>
@@ -248,7 +248,7 @@ C --> C1[Form Results\nform2a.php]
 
 ### Form and Results - _isset()_ and _empty_ - form3.php
 
-```php+HTML
+```php
 <!-- form3.php -->
 <!DOCTYPE html>
 <html>
@@ -321,7 +321,7 @@ C --> C1[Form Results\nform2a.php]
 
 This is the standard format for doing PHP pages with one page.
 
-```php+HTML
+```php
 <!-- form4.php -->
 
 <!DOCTYPE html>
