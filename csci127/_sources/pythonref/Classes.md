@@ -517,148 +517,178 @@ main()
 
 ```python
 
-# Remember - 7:45
-# finish with worker
-# try catch
-
+# trains
 """
 Train
-	id
-	engine
-	caboose
-	start
-	destination
-	traincars
-"""
+    id
+    engine
+    cabose
+    start       (location)
+    destination (location)
+    traincars
 
+"""
 import random
 
-class train:
+class Train:
 
-    #constructor
-    def __init__(self, a_trainid, a_start="Whitefish", a_destination=""):
+    # constructor
+    def __init__(self, a_trainid, a_start="Whitefish",a_destination=""):
         self.a_trainid = a_trainid
         self.a_start = a_start
         self.a_destination = a_destination
 
-        #list  hold our train cars
+        # create an empty list to hold train cars
         self.traincars = []
-    
-    
-        #add an engine to our train
+
+        # functions can be called within a constructor
+        # or any other function as well 
         self._addengine()
 
-
-    # ---- properties
+    # properties
     @property
     def trainid(self):
         return self.a_trainid
     @trainid.setter
-    def trainid(self, value):
+    def trainid(self,value):
         self.a_trainid = value
 
     @property
     def start(self):
-        return self.a_start
+        return self.a_startstart
     @start.setter
-    def start(self, value):
+    def start(self,value):
         self.a_start = value
 
- 
     @property
     def destination(self):
         return self.a_destination
     @destination.setter
-    def destination(self, value):
-        self.a_destination = value
+    def destination(self,value):
+        self.a_destination = value 
 
-
+            
     # add our methods
+
     def _addengine(self):
         self.traincars.append("engine")
 
     def addcar(self,value):
         self.traincars.append(value)
-
+    
     def addcaboose(self):
         self.traincars.append("caboose")
 
+    # print the train cars
     def printtrain(self):
-        print("\n" + self.trainid + " " + self.start + " to " + 
-              self.destination)
+        print("\n"+ self.a_trainid + "\t" + self.a_start + " to " + self.a_destination)
 
         for i in range(len(self.traincars)):
             print("\t" + self.traincars[i])
 
-        print("")
+        print()
 
-# ----------------------- end of class --------------------------------
+# ---------------- End Of Class ----------------------------------
 
+# *****************************************************************
+# program starts here
 
+# global variable to hold whole trains
 mytrains = []
 
-def printmytrains(alist):
+# create a function to create a train with random cars
+def createtrain(maxNumTrains, maxNumCars):
 
-    print(len(alist))
-    for i in range(len(alist)):
-        print(alist[i].printtrain())
-
-
-#create a method to create train with random cars
-def createtrain():
-
-    #create a list car types
+    # create a list car types
     cartypes = ["flat","box","tanker","passenger","ore"]
 
-    #create a list of towns
-    towns = ["Denver", "Seattle", "Missoula", "Kalispell",
-            "Whitefish", "Chicago","New York", "Clarksville"]
-
-    #randomly  pick a number to determine number of trains
-    rnd = random.randint(0,50)
-
-    #loop to create the trains
-    for i in range(rnd):
+    # create a list of towns
+    towns = ["Denver", "Seattle","Missoula", "Kalispell",
+             "Whitefish", "Chicago", "New York", "Ringling","Clarskville"]
     
-        rndtemp = random.randint(0,len(towns)-1)
-        astart = towns[rndtemp]
+    # randomly pick a number to determine the number of trains
+    rnd = random.randint(0,maxNumTrains)
 
-        rndtemp = random.randint(0,len(towns)-1)
-        adest = towns[rndtemp]
+    # loop to create the number of complete trains
+    for i in range(rnd):
+
+        # variables to hold the start and end towns
+        startTown   = ""
+        desTown     = ""
+
+        # this while statement is used to ensure
+        # that there will always be two different towns
+
+        # if the startTown and desTown are equivalent,
+        # the while loop runs. Note that the
+        # startTown and desTown start equivalent
+
+        while(startTown == desTown): 
+            # randomly going to pick a start town
+            rndtemp = random.randint(0,len(towns)-1)
+            startTown = towns[rndtemp]
+
+            # randomly going to pick a destination town
+            rndtemp = random.randint(0,len(towns)-1)
+            desTown = towns[rndtemp]
 
         # call the class to create a train
-        tx = train("T"+str(i),astart,adest)
+        tx = Train("T"+ str(i),startTown,desTown)
 
-        # add some random cars to our newly created train
-        randtemp = random.randint(0,25)
+        # randomly decide on how many train cars
+        rndtemp = random.randint(0,maxNumCars)
 
-        # add the cars to the train
-        for i in range(randtemp):
-            rndcar = random.randint(0,len(cartypes)-1)
+        # randomly add cars to the train
+        for i in range(rndtemp):
+            rndcar= random.randint(0,len(cartypes)-1)
             tx.addcar(cartypes[rndcar])
+
 
         tx.addcaboose()
 
+        # add train to the global variable
         mytrains.append(tx)
 
- 
+
+def printmytrains(alist):
+
+    # print the total number of trains
+    print(len(alist))
+
+    # iterate/loop the number of trains
+    for i in range(len(alist)):
+        alist[i].printtrain()
+
+        # this code will only show two trains at a time
+        # if the remainder == 0 show the input command
+        # example i = 4 | 4 / 2 = 0 with a remainder of 0
+        if((i % 2) == 0):
+            input("press any key to continue")
+
+
 
 def main():
     
-    train1 = train("ML11","Helena","Missoula")
-    for i in range(10):
-        train1.addcar("boxcar")
+    # create an individual train
+    train1 = Train("ML11","Helena","Missoula")
+
+    # add 10 box cars
+    for c  in range(10):
+        train1.addcar("box")
+    
     train1.addcaboose()
 
+    # print the train we just created
     train1.printtrain()
 
-    createtrains()
+    # create trains 
+    # each time this runs the trains will change
+    createtrain(15,8)
+
     printmytrains(mytrains)
 
 
 main()
-
-
 
 ```
 

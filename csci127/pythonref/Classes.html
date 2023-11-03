@@ -742,148 +742,178 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="example-4-trains">
 <h3>Example 4 - Trains<a class="headerlink" href="#example-4-trains" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="c1"># Remember - 7:45</span>
-<span class="c1"># finish with worker</span>
-<span class="c1"># try catch</span>
-
+<span class="c1"># trains</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Train</span>
-<span class="sd">	id</span>
-<span class="sd">	engine</span>
-<span class="sd">	caboose</span>
-<span class="sd">	start</span>
-<span class="sd">	destination</span>
-<span class="sd">	traincars</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    id</span>
+<span class="sd">    engine</span>
+<span class="sd">    cabose</span>
+<span class="sd">    start       (location)</span>
+<span class="sd">    destination (location)</span>
+<span class="sd">    traincars</span>
 
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">random</span>
 
-<span class="k">class</span> <span class="nc">train</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Train</span><span class="p">:</span>
 
-    <span class="c1">#constructor</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a_trainid</span><span class="p">,</span> <span class="n">a_start</span><span class="o">=</span><span class="s2">&quot;Whitefish&quot;</span><span class="p">,</span> <span class="n">a_destination</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="c1"># constructor</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a_trainid</span><span class="p">,</span> <span class="n">a_start</span><span class="o">=</span><span class="s2">&quot;Whitefish&quot;</span><span class="p">,</span><span class="n">a_destination</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">a_trainid</span> <span class="o">=</span> <span class="n">a_trainid</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">a_start</span> <span class="o">=</span> <span class="n">a_start</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">a_destination</span> <span class="o">=</span> <span class="n">a_destination</span>
 
-        <span class="c1">#list  hold our train cars</span>
+        <span class="c1"># create an empty list to hold train cars</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">traincars</span> <span class="o">=</span> <span class="p">[]</span>
-    
-    
-        <span class="c1">#add an engine to our train</span>
+
+        <span class="c1"># functions can be called within a constructor</span>
+        <span class="c1"># or any other function as well </span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_addengine</span><span class="p">()</span>
 
-
-    <span class="c1"># ---- properties</span>
+    <span class="c1"># properties</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">trainid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_trainid</span>
     <span class="nd">@trainid</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">trainid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">trainid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">a_trainid</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_start</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_startstart</span>
     <span class="nd">@start</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">a_start</span> <span class="o">=</span> <span class="n">value</span>
 
- 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">destination</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_destination</span>
     <span class="nd">@destination</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">destination</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">a_destination</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">def</span> <span class="nf">destination</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a_destination</span> <span class="o">=</span> <span class="n">value</span> 
 
-
+            
     <span class="c1"># add our methods</span>
+
     <span class="k">def</span> <span class="nf">_addengine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">traincars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;engine&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">addcar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">traincars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-
+    
     <span class="k">def</span> <span class="nf">addcaboose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">traincars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;caboose&quot;</span><span class="p">)</span>
 
+    <span class="c1"># print the train cars</span>
     <span class="k">def</span> <span class="nf">printtrain</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainid</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="s2">&quot; to &quot;</span> <span class="o">+</span> 
-              <span class="bp">self</span><span class="o">.</span><span class="n">destination</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_trainid</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_start</span> <span class="o">+</span> <span class="s2">&quot; to &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_destination</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">traincars</span><span class="p">)):</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">traincars</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
 
-<span class="c1"># ----------------------- end of class --------------------------------</span>
+<span class="c1"># ---------------- End Of Class ----------------------------------</span>
 
+<span class="c1"># *****************************************************************</span>
+<span class="c1"># program starts here</span>
 
+<span class="c1"># global variable to hold whole trains</span>
 <span class="n">mytrains</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">def</span> <span class="nf">printmytrains</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+<span class="c1"># create a function to create a train with random cars</span>
+<span class="k">def</span> <span class="nf">createtrain</span><span class="p">(</span><span class="n">maxNumTrains</span><span class="p">,</span> <span class="n">maxNumCars</span><span class="p">):</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">printtrain</span><span class="p">())</span>
-
-
-<span class="c1">#create a method to create train with random cars</span>
-<span class="k">def</span> <span class="nf">createtrain</span><span class="p">():</span>
-
-    <span class="c1">#create a list car types</span>
+    <span class="c1"># create a list car types</span>
     <span class="n">cartypes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;flat&quot;</span><span class="p">,</span><span class="s2">&quot;box&quot;</span><span class="p">,</span><span class="s2">&quot;tanker&quot;</span><span class="p">,</span><span class="s2">&quot;passenger&quot;</span><span class="p">,</span><span class="s2">&quot;ore&quot;</span><span class="p">]</span>
 
-    <span class="c1">#create a list of towns</span>
-    <span class="n">towns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Denver&quot;</span><span class="p">,</span> <span class="s2">&quot;Seattle&quot;</span><span class="p">,</span> <span class="s2">&quot;Missoula&quot;</span><span class="p">,</span> <span class="s2">&quot;Kalispell&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;Whitefish&quot;</span><span class="p">,</span> <span class="s2">&quot;Chicago&quot;</span><span class="p">,</span><span class="s2">&quot;New York&quot;</span><span class="p">,</span> <span class="s2">&quot;Clarksville&quot;</span><span class="p">]</span>
-
-    <span class="c1">#randomly  pick a number to determine number of trains</span>
-    <span class="n">rnd</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
-
-    <span class="c1">#loop to create the trains</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rnd</span><span class="p">):</span>
+    <span class="c1"># create a list of towns</span>
+    <span class="n">towns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Denver&quot;</span><span class="p">,</span> <span class="s2">&quot;Seattle&quot;</span><span class="p">,</span><span class="s2">&quot;Missoula&quot;</span><span class="p">,</span> <span class="s2">&quot;Kalispell&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Whitefish&quot;</span><span class="p">,</span> <span class="s2">&quot;Chicago&quot;</span><span class="p">,</span> <span class="s2">&quot;New York&quot;</span><span class="p">,</span> <span class="s2">&quot;Ringling&quot;</span><span class="p">,</span><span class="s2">&quot;Clarskville&quot;</span><span class="p">]</span>
     
-        <span class="n">rndtemp</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">towns</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">astart</span> <span class="o">=</span> <span class="n">towns</span><span class="p">[</span><span class="n">rndtemp</span><span class="p">]</span>
+    <span class="c1"># randomly pick a number to determine the number of trains</span>
+    <span class="n">rnd</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">maxNumTrains</span><span class="p">)</span>
 
-        <span class="n">rndtemp</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">towns</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">adest</span> <span class="o">=</span> <span class="n">towns</span><span class="p">[</span><span class="n">rndtemp</span><span class="p">]</span>
+    <span class="c1"># loop to create the number of complete trains</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rnd</span><span class="p">):</span>
+
+        <span class="c1"># variables to hold the start and end towns</span>
+        <span class="n">startTown</span>   <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">desTown</span>     <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="c1"># this while statement is used to ensure</span>
+        <span class="c1"># that there will always be two different towns</span>
+
+        <span class="c1"># if the startTown and desTown are equivalent,</span>
+        <span class="c1"># the while loop runs. Note that the</span>
+        <span class="c1"># startTown and desTown start equivalent</span>
+
+        <span class="k">while</span><span class="p">(</span><span class="n">startTown</span> <span class="o">==</span> <span class="n">desTown</span><span class="p">):</span> 
+            <span class="c1"># randomly going to pick a start town</span>
+            <span class="n">rndtemp</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">towns</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">startTown</span> <span class="o">=</span> <span class="n">towns</span><span class="p">[</span><span class="n">rndtemp</span><span class="p">]</span>
+
+            <span class="c1"># randomly going to pick a destination town</span>
+            <span class="n">rndtemp</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">towns</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">desTown</span> <span class="o">=</span> <span class="n">towns</span><span class="p">[</span><span class="n">rndtemp</span><span class="p">]</span>
 
         <span class="c1"># call the class to create a train</span>
-        <span class="n">tx</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">astart</span><span class="p">,</span><span class="n">adest</span><span class="p">)</span>
+        <span class="n">tx</span> <span class="o">=</span> <span class="n">Train</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">startTown</span><span class="p">,</span><span class="n">desTown</span><span class="p">)</span>
 
-        <span class="c1"># add some random cars to our newly created train</span>
-        <span class="n">randtemp</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+        <span class="c1"># randomly decide on how many train cars</span>
+        <span class="n">rndtemp</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">maxNumCars</span><span class="p">)</span>
 
-        <span class="c1"># add the cars to the train</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">randtemp</span><span class="p">):</span>
-            <span class="n">rndcar</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">cartypes</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># randomly add cars to the train</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rndtemp</span><span class="p">):</span>
+            <span class="n">rndcar</span><span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">cartypes</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">tx</span><span class="o">.</span><span class="n">addcar</span><span class="p">(</span><span class="n">cartypes</span><span class="p">[</span><span class="n">rndcar</span><span class="p">])</span>
+
 
         <span class="n">tx</span><span class="o">.</span><span class="n">addcaboose</span><span class="p">()</span>
 
+        <span class="c1"># add train to the global variable</span>
         <span class="n">mytrains</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tx</span><span class="p">)</span>
 
- 
+
+<span class="k">def</span> <span class="nf">printmytrains</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+
+    <span class="c1"># print the total number of trains</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">))</span>
+
+    <span class="c1"># iterate/loop the number of trains</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)):</span>
+        <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">printtrain</span><span class="p">()</span>
+
+        <span class="c1"># this code will only show two trains at a time</span>
+        <span class="c1"># if the remainder == 0 show the input command</span>
+        <span class="c1"># example i = 4 | 4 / 2 = 0 with a remainder of 0</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;press any key to continue&quot;</span><span class="p">)</span>
+
+
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     
-    <span class="n">train1</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="s2">&quot;ML11&quot;</span><span class="p">,</span><span class="s2">&quot;Helena&quot;</span><span class="p">,</span><span class="s2">&quot;Missoula&quot;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-        <span class="n">train1</span><span class="o">.</span><span class="n">addcar</span><span class="p">(</span><span class="s2">&quot;boxcar&quot;</span><span class="p">)</span>
+    <span class="c1"># create an individual train</span>
+    <span class="n">train1</span> <span class="o">=</span> <span class="n">Train</span><span class="p">(</span><span class="s2">&quot;ML11&quot;</span><span class="p">,</span><span class="s2">&quot;Helena&quot;</span><span class="p">,</span><span class="s2">&quot;Missoula&quot;</span><span class="p">)</span>
+
+    <span class="c1"># add 10 box cars</span>
+    <span class="k">for</span> <span class="n">c</span>  <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">train1</span><span class="o">.</span><span class="n">addcar</span><span class="p">(</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
+    
     <span class="n">train1</span><span class="o">.</span><span class="n">addcaboose</span><span class="p">()</span>
 
+    <span class="c1"># print the train we just created</span>
     <span class="n">train1</span><span class="o">.</span><span class="n">printtrain</span><span class="p">()</span>
 
-    <span class="n">createtrains</span><span class="p">()</span>
+    <span class="c1"># create trains </span>
+    <span class="c1"># each time this runs the trains will change</span>
+    <span class="n">createtrain</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+
     <span class="n">printmytrains</span><span class="p">(</span><span class="n">mytrains</span><span class="p">)</span>
 
 
 <span class="n">main</span><span class="p">()</span>
-
-
 
 </pre></div>
 </div>
@@ -919,7 +949,7 @@ const thebe_selector_output = ".output, .cell_output"
   <div id="footer-row" class="row">
 
     <div class="col-md-12">
-        <span title="Built on 2023-10-05" class="pull-right">&copy; Copyright 2023 By James Goudy.
+        <span title="Built on 2023-11-02" class="pull-right">&copy; Copyright 2023 By James Goudy.
         Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 and the
         <a href="https://pypi.org/project/sphinx-sizzle-theme/"
 
