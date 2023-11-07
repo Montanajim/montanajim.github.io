@@ -5,7 +5,6 @@
 This example incorporates three navigation methods: Top Tabs, Bottoms Tabs, and Side Drawer.
 
 ```dart
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,7 +25,7 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  late  int _selectedIndex = 0;
+  late int _selectedIndex = 0;
 
   String montanaCities = """
 Here are 5 cities Montana:
@@ -51,7 +50,7 @@ Here are 5 cities Colorado:
   String wyomingCities = """
 Here are 5 cities Wyoming:
 
-1.  Cheyne
+1.  Cheynne
 2.  Casper
 3.  Laramie
 4.  Gillette
@@ -85,8 +84,8 @@ Here are 5 cities Wyoming:
     );
   }
 
-  List<Widget> myContentWidgets(BuildContext content){
-    return <Widget>[myTab1(),myTab2(),myTab3()];
+  List<Widget> myContentWidgets(BuildContext content) {
+    return <Widget>[myTab1(), myTab2(), myTab3()];
   }
 
   @override
@@ -101,67 +100,79 @@ Here are 5 cities Wyoming:
     super.dispose();
   }
 
-void  _onBottomTap(int index){
-  setState(() {
-    _selectedIndex = index;
-    _tabController.index = index;
-  });
+  void _onBottomTap(int index) {
+    setState(() {
+      _selectedIndex = index;
+      _tabController.index = index;
+    });
+  }
 
-}
+  Drawer myDrawer(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: const EdgeInsets.fromLTRB(5, 45, 5, 5),
+        children: [
+          const SizedBox(
+              height: 100,
+              child: DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                  child: Text("States"))),
+          ListTile(
+            title: const Text("Montana"),
+            onTap: () {
+              _onBottomTap(0);
+            },
+          ),
+          ListTile(
+            title: const Text("Colorado"),
+            onTap: () {
+              _onBottomTap(1);
+            },
+          ),
+          ListTile(
+            title: const Text("Wyoming"),
+            onTap: () {
+              _onBottomTap(2);
+            },
+          ),
+        ],
+      ),
+    );
+  }
 
-Drawer myDrawer(BuildContext context){
-  return Drawer(
-    child: ListView(
-      padding:  const EdgeInsets.all(5),
-      children:  [
-        const SizedBox(
-          height: 100,
-          child:
-         DrawerHeader(
-
-          decoration: BoxDecoration(color: Colors.blue,),
-          child: Text("States"))),
-        ListTile(title: const Text("Montana"), onTap: (){_onBottomTap(0);},),
-        ListTile(title: const Text("Colorado"), onTap: (){_onBottomTap(1);},),
-        ListTile(title: const Text("Wyoming"), onTap: (){_onBottomTap(2);},),
+  BottomNavigationBar theBottomNavBar() {
+    return BottomNavigationBar(
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(icon: Icon(Icons.android), label: 'Montana'),
+        BottomNavigationBarItem(icon: Icon(Icons.android), label: 'Colorado'),
+        BottomNavigationBarItem(icon: Icon(Icons.android), label: 'Wyoming'),
       ],
-    ),
-  );
-}
-
-BottomNavigationBar theBottomNavBar(){
-  return BottomNavigationBar(
-    showSelectedLabels: true,
-    showUnselectedLabels: true,
-    items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon:Icon(Icons.android),label:'Montana'),
-        BottomNavigationBarItem(icon:Icon(Icons.android),label:'Colorado'),
-        BottomNavigationBarItem(icon:Icon(Icons.android),label:'Wyoming'),
-    ],
-    currentIndex: _selectedIndex,
-
-    onTap: _onBottomTap,);
-}
-
+      currentIndex: _selectedIndex,
+      onTap: _onBottomTap,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Top Drawer Bottom Nav"),
-          bottom: TabBar(
-            controller: _tabController,
-            tabs: topTabs,
-            indicatorColor: Colors.amber[800],
-            onTap: _onBottomTap,
-          ),
+      appBar: AppBar(
+        title: const Text("Top Drawer Bottom Nav"),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: topTabs,
+          indicatorColor: Colors.amber[800],
+          onTap: _onBottomTap,
         ),
-        drawer: myDrawer(context),
-        body: TabBarView(
-            controller: _tabController,
-            children: [myTab1(),myTab2(),myTab3()]),
-        bottomNavigationBar: theBottomNavBar(),
-            );
+      ),
+      drawer: myDrawer(context),
+      body: TabBarView(
+          controller: _tabController, children: [myTab1(), myTab2(), myTab3()]),
+      bottomNavigationBar: theBottomNavBar(),
+    );
   }
 }
 
