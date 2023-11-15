@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Python - Input / Output - Files And Folders</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha256-8uHMIn1ru0GS5KO+zf7Zccf8Uw12IA5DrdEcmMuWLFM=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/tooltipster.bundle.min.css" integrity="sha256-Qc4lCfqZWYaHF5hgEOFrYzSIX9Rrxk0NPHRac+08QeQ=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css" integrity="sha256-Wa1I4jhSXeWd3N6RhfPlkqr1WlT+zS3Vh2YGCg0129E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Code+Pro|Source+Sans+Pro|Source+Serif+Pro|Roboto|Roboto+Mono" rel="stylesheet">
+<link href="https://fonts.red-dove.com/iosevka-ss09-regular/webfont.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/sizzle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js" integrity="sha512-2V49R8ndaagCOnwmj8QnbT1Gz/rie17UouD9Re5WxbzRVUGoftCu5IuqqtAM9+UC3fwfHCSJR1hkzNQh/2wdtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js" integrity="sha256-v8akIv8SCqn5f3mbVB7vEWprIizxPh6oV0yhao/dbB4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        LINK_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: ''
+      };
+      $(document).data('sizzle', {on_load: []});
+    </script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../app-data.js"></script>
+<link rel="index" title="Index" href="../genindex.html" />
+<link rel="search" title="Search" href="../search.html" />
+<link rel="next" title="Tkinter" href="Tkinter.html" />
+<link rel="prev" title="NumPy / Arrays" href="numpy_ref.html" />
+
+</head>
+<body class="full-height test">
+<noscript>
+  <div>
+    <div id="noscript-message">JavaScript is not enabled. It is needed for this website to work.</div>
+  </div>
+</noscript>
+<div id="whole-page" class="container-fluid content full-height">
+  <div id="header-row" class="row">
+    <div id="header-container" class="col-md-12">
+      <div id="hdr-left">
+        <i class="fa fa-bars menu-toggle"></i>
+        
+<a href="../index.html" class="text-logo">CSCI 127</a>
+
+      </div>
+      <div id="hdr-centre" class="text-center stretch">
+        <h3 title="Input / Output - Files And Folders">Input / Output - Files And Folders</h3>
+        <h6>Input / Output - Files And Folders</h6>
+      </div>
+      <div id="hdr-search">
+        
+<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
+  <input type="text" class="form-control search-query" placeholder="Search docs ...">
+  <div class="input-group-addon">
+    <i class="fa fa-search"></i>
+  </div>
+</div>
+      </div>
+
+      <div id="hdr-index">
+        <a href="../genindex.html" class="btn btn-default" title="Go to the index"><i class="fa fa-list"></i></a>
+      </div>
+
+      <div id="hdr-source">
+        <a href="../_sources/pythonref/InputOutput.md" class="btn btn-default" title="See the source for this page"><i class="fa fa-code"></i></a>
+      </div>
+
+      <div id="hdr-right">
+        
+  
+  <div class="prev-next">
+    
+      <div class="pull-left">
+        <a class="btn btn-default prev" href="numpy_ref.html" title="Previous chapter (NumPy / Arrays)"><i class="fa fa-chevron-left mr-1em" aria-hidden="true"></i><span class="btn-text">NumPy / Arrays</span></a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default next" href="Tkinter.html" title="Next chapter (Tkinter)"><span class="btn-text">Tkinter</span>&nbsp;<i class="fa fa-chevron-right ml-1em" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  
+      </div>
+      <div id="alt-hdr-right">
+
+        <a href="numpy_ref.html"><i class="fa fa-chevron-left mr-8"></i></a>
+
+
+        <a href="../index.html"><i class="fa fa-home mr-8"></i></a>
+
+
+        <a href="../search.html"><i class="fa fa-search mr-8"></i></a>
+
+
+        <a href="../genindex.html"><i class="fa fa-list mr-8"></i></a>
+
+
+        <a href="Tkinter.html"><i class="fa fa-chevron-right"></i></a>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="content-row" class="row">
+    <div id="page-content" class="col-md-12 flex-col">
+      <div id="content-container">
+        <div id="nav">
+          
+  <div class="navsidebar">
+    <div id="sidebar-search">
+      
+<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
+  <input type="text" class="form-control search-query" placeholder="Search docs ...">
+  <div class="input-group-addon">
+    <i class="fa fa-search"></i>
+  </div>
+</div>
+    </div>
+      <div class="sidebar-block">
+        <div class="sidebar-tocheading">
+          <div class="pull-left">
+            <h2>Table Of Contents</h2>
+          </div>
+          <div class="pull-right" title="Hide this sidebar (hover at left edge to bring it back)"><i class="fa fa-chevron-left hidetoc"></i></div>
+        </div>
+        <div class="sidebar-toc">
+      
+          <div id="toc-filter" title="Type in here to show only matching topics">
+            <input class="form-control" id="toc-filter-query" placeholder="Filter by title ...">
+          </div>
+      
+        
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Readings.html">Readings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TheBasics.html">The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicsGettingStarted.html">Basics - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SecondProgram.html">Second Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTrees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToCreateAMenu.html">How To Create A Menu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NestedIfs.html">Nested Ifs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TryExcept.html">Try Except - Preventing Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Iteration.html">Iteration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MoreLoopExamples.html">More Loop Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TypewriterSimulation.html">Loops - Typewriter Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MenuShell.html">Menu Shell</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lists.html">Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classes.html">Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_ref.html">NumPy / Arrays</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#input-output-files-and-folders">Input / Output - Files And Folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tkinter.html">Tkinter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TicTacToe.html">Tic Tac Toe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Miscellany.html">Miscellany</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TheZenOfPython.html">The Zen of Python,</a></li>
+</ul>
+</li>
+</ul>
+
+  
+        </div>
+      </div>
+  </div>
+        </div>
+        <div id="content" tabindex="0" class="stretch">
+          <div id="mnav">
+            
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Readings.html">Readings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TheBasics.html">The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicsGettingStarted.html">Basics - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SecondProgram.html">Second Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTrees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToCreateAMenu.html">How To Create A Menu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NestedIfs.html">Nested Ifs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TryExcept.html">Try Except - Preventing Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Iteration.html">Iteration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MoreLoopExamples.html">More Loop Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TypewriterSimulation.html">Loops - Typewriter Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MenuShell.html">Menu Shell</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lists.html">Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classes.html">Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_ref.html">NumPy / Arrays</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#input-output-files-and-folders">Input / Output - Files And Folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tkinter.html">Tkinter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TicTacToe.html">Tic Tac Toe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Miscellany.html">Miscellany</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TheZenOfPython.html">The Zen of Python,</a></li>
+</ul>
+</li>
+</ul>
+
+  
+          </div>
+          <div class="body">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="input-output-files-and-folders">
+<h1>Input / Output - Files And Folders<a class="headerlink" href="#input-output-files-and-folders" title="Permalink to this heading">¶</a></h1>
+<p>File input/output (I/O) is the process of reading and writing data to files. This is a fundamental operation in computer science, as it allows programs to store data persistently and retrieve it later.</p>
+<p>There are two main types of file I/O:</p>
+<ul class="simple">
+<li><strong>Text file I/O:</strong> This type of I/O involves reading and writing text-based data. Text files are typically stored in plain text format, which means that they can be easily read and edited by humans.</li>
+<li><strong>Binary file I/O:</strong> This type of I/O involves reading and writing binary data. Binary files are typically used to store non-text data, such as images, audio, and video.</li>
+</ul>
+<p>File I/O is typically performed using the following steps:</p>
+<ol class="arabic simple">
+<li><strong>Open the file:</strong> This step creates a connection to the file and prepares it for reading or writing.</li>
+<li><strong>Read or write data:</strong> This step reads data from the file or writes data to the file.</li>
+<li><strong>Close the file:</strong> This step releases the connection to the file and closes it.</li>
+</ol>
+<p>Here is an example of how to read a text file using the Python programming language:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;file.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This code will read the contents of the file <code class="docutils literal notranslate"><span class="pre">file.txt</span></code> and print it to the console.</p>
+<p>Here is an example of how to write a text file using the Python programming language:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;file.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+  <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Hello, world!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This code will write the string <code class="docutils literal notranslate"><span class="pre">Hello,</span> <span class="pre">world!</span></code> to the file <code class="docutils literal notranslate"><span class="pre">file.txt</span></code>.</p>
+<p>File I/O is an important concept in computer science, as it allows programs to store data persistently and retrieve it later. File I/O is used in a wide variety of applications, including:</p>
+<ul class="simple">
+<li><strong>Saving and loading data:</strong> Programs can use file I/O to save data to files and load it later. This is useful for storing data that needs to be persisted across program runs.</li>
+<li><strong>Communicating with other programs:</strong> Programs can use file I/O to communicate with each other by exchanging data through files. This is useful for tasks such as sharing data or exchanging configuration settings.</li>
+<li><strong>Creating and modifying files:</strong> Programs can use file I/O to create and modify files. This is useful for tasks such as creating log files or generating reports.</li>
+</ul>
+<p>File I/O is a fundamental operation in computer science, and it is essential for any program that needs to store data persistently or communicate with other programs or systems.</p>
+<div class="section" id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on Wed Mar 30 10:47:56 2022</span>
+
+<span class="sd">@author: jgoudy</span>
+
+<span class="sd">James Goudy</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+
+
+<span class="c1"># All uservariables begin with x</span>
+
+<span class="c1"># globals</span>
+<span class="n">xDirName</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">xBasePath</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">xFilePath</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">makeDirectory</span><span class="p">():</span>
+    
+    <span class="c1"># tell the function to use the global variables</span>
+    
+    <span class="k">global</span> <span class="n">xDirName</span> 
+    <span class="k">global</span> <span class="n">xBasePath</span>
+    <span class="k">global</span> <span class="n">xFilePath</span>
+
+    
+    <span class="c1"># having a basename is helpful if </span>
+    <span class="c1"># you have to make multiple folders</span>
+    <span class="c1"># in a particualar folder</span>
+    
+    <span class="c1"># join the base with the directory name</span>
+    
+    <span class="n">xpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">xBasePath</span><span class="p">,</span><span class="n">xDirName</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;xpath: &quot;</span><span class="o">+</span> <span class="n">xpath</span><span class="p">)</span>
+    
+    <span class="c1"># make the directory</span>
+    
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">xpath</span><span class="p">)</span>
+    
+    <span class="c1"># Example of making directories</span>
+    <span class="c1"># xpath value is currently c:/z/zmyDir</span>
+    <span class="c1"># The following code will create a folder</span>
+    <span class="c1"># for each letter in the alphabet</span>
+    
+    <span class="n">xBasePath</span> <span class="o">=</span> <span class="n">xpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span>
+    
+    <span class="n">xletters</span> <span class="o">=</span> <span class="s2">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span>
+    
+    <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">xletters</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">((</span><span class="n">xBasePath</span> <span class="o">+</span> <span class="n">xx</span><span class="p">))</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="n">xBasePath</span><span class="p">)</span>
+    
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;1. Check if letter folders created.</span><span class="se">\n</span><span class="s2">Press enter to continue&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># note will will add projects </span>
+    <span class="c1"># to c:/z/zmyDir/misc/projects</span>
+    <span class="c1"># note we did not create a misc directory</span>
+    <span class="c1"># using makedirs will allow us to</span>
+    <span class="c1"># create the missing folder automatically</span>
+    
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;c:/z/zmyDir/misc/projects&quot;</span><span class="p">)</span>
+    
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;2. Check for the misc folder</span><span class="se">\n</span><span class="s2">Press enter to continue&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># check if directory exists</span>
+    
+    <span class="n">xstatus</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="s2">&quot;c:/z/zmyDir/misc/projects&quot;</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">xstatus</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Directory exists</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Directory does not exists&quot;</span><span class="p">)</span>
+    
+
+    <span class="n">xstatus</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="s2">&quot;c:/z/zmyDir/misc/bubba&quot;</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">xstatus</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Directory exists</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Directory does not exists&quot;</span><span class="p">)</span>
+        
+
+
+<span class="k">def</span> <span class="nf">addFile</span><span class="p">():</span>
+    
+    <span class="c1"># tell the function to use the global variables</span>
+
+    
+    <span class="k">global</span> <span class="n">xDirName</span> 
+    <span class="k">global</span> <span class="n">xBasePath</span>
+    <span class="k">global</span> <span class="n">xFilePath</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">xBasePath</span><span class="p">)</span>
+    
+    <span class="c1"># create file path</span>
+    
+    
+    <span class="n">xfilename</span> <span class="o">=</span> <span class="s2">&quot;xfile1.txt&quot;</span>
+    <span class="n">xpath</span> <span class="o">=</span> <span class="n">xBasePath</span><span class="o">+</span> <span class="s2">&quot;a/&quot;</span> <span class="o">+</span> <span class="n">xfilename</span>
+    
+    <span class="c1"># xpath = xpath + xfilename</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">xpath</span><span class="p">)</span>
+    
+    <span class="c1"># add a file to the &quot;a&quot; folder</span>
+    
+    <span class="c1"># &#39;w&#39; create a file - creates new file if it doesn&#39;t exist</span>
+    <span class="c1"># overwrites data if it does exist</span>
+    
+    <span class="n">xfw</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read Only (&#39;r&#39;): Open text file for reading. If the file does not exist, </span>
+<span class="sd">    raises I/O error. This is also the default mode in which</span>
+<span class="sd">    the file is opened.</span>
+
+<span class="sd">    Read and Write (&#39;r+&#39;): Open the file for reading and writing. </span>
+<span class="sd">    Raises I/O error if the file does not exist.</span>
+
+<span class="sd">    Write Only (&#39;w&#39;): Open the file for writing. </span>
+<span class="sd">    Existing data is truncated and over-written. </span>
+<span class="sd">    Creates the file if the file does not exist.</span>
+
+<span class="sd">    Write and Read (&#39;w+&#39;): Open the file for reading and writing. </span>
+<span class="sd">    Existing data is truncated and over-written. </span>
+
+<span class="sd">    Append Only (&#39;a&#39;): Open the file for writing. </span>
+<span class="sd">    The file is created if it does not exist.  </span>
+<span class="sd">    Data is added to the end of the file.</span>
+
+<span class="sd">    Append and Read (&#39;a+&#39;): Open the file for reading and writing. </span>
+<span class="sd">    The file is created if it does not exist. </span>
+<span class="sd">    Data is added to the end of the file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>  
+    
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;3. Check to see if file was created</span><span class="se">\n</span><span class="s2">Press enter to continue&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># write text to file</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">xfw</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. Sample text</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+    <span class="c1"># close the file when done writing</span>
+    <span class="n">xfw</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    
+    <span class="c1"># append to the file</span>
+    <span class="n">xfw</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># add some text to the end</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">xfw</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;z. ZZZ Sample text</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+    <span class="c1"># close the file when done writing</span>
+    <span class="n">xfw</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>    
+    
+    <span class="n">xFilePath</span> <span class="o">=</span> <span class="n">xpath</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;xxx: &quot;</span> <span class="o">+</span> <span class="n">xpath</span><span class="p">)</span>
+    
+    <span class="c1"># In order to use subprocess.Popen which opens the file directory</span>
+    <span class="c1"># the slashes have to be reversed</span>
+    <span class="n">xpath</span> <span class="o">=</span> <span class="n">swapSlash</span><span class="p">(</span><span class="n">xpath</span><span class="p">)</span>
+    
+    <span class="c1"># subprocess will open the operating system file explorer in windows</span>
+    <span class="c1"># c:/z/zmyDir/a/  </span>
+    <span class="c1"># subprocess.Popen(r&#39;explorer /select,&quot;C:\z\zmyDir\a\xfile1.txt&quot;&#39;)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;explorer /select,&quot;&#39;</span> <span class="o">+</span> <span class="n">xpath</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span> <span class="p">)</span>
+    
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;4. Exploer window opened</span><span class="se">\n</span><span class="s2">Press enter to continue&quot;</span><span class="p">)</span>
+    
+    
+<span class="k">def</span> <span class="nf">deleteFile</span><span class="p">():</span>
+
+    <span class="c1"># delete a file</span>
+      
+    <span class="c1"># tell the function to use the global variables</span>
+      
+    <span class="k">global</span> <span class="n">xFilePath</span>
+      
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete / remove : &quot;</span> <span class="o">+</span> <span class="n">xFilePath</span><span class="p">)</span>
+    
+    <span class="c1"># check if file exists and remove it</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">xFilePath</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">xFilePath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File could not be found and was not deleted&quot;</span><span class="p">)</span>
+
+    <span class="c1"># you can also use the os.unlink command as well to delete a file</span>
+    
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;5. Check if file was deleted</span><span class="se">\n</span><span class="s2">Press enter to continue&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">deleteFolders</span><span class="p">():</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    remove() throws an exception if the file doesn&#39;t exist, </span>
+<span class="sd">    while shutil. rmtree() doesn&#39;t care if the directory is empty or not.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="c1"># remove the &#39;a&#39; directory </span>
+    <span class="c1"># os.chmod(&#39;c:\\z\\zmyDir\\b&#39;, stat.S_IXOTH)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="s1">&#39;c:</span><span class="se">\\</span><span class="s1">z</span><span class="se">\\</span><span class="s1">zmyDir</span><span class="se">\\</span><span class="s1">b&#39;</span><span class="p">)</span>
+    
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;5a. Check if b folder was deleted</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
+          <span class="s2">&quot;Press enter to continue&quot;</span><span class="p">)</span>    
+    
+    <span class="c1"># remove all directories </span>
+    <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Delete all directories y/n : &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">xtemp</span> <span class="o">=</span> <span class="s2">&quot;c:</span><span class="se">\\</span><span class="s2">z</span><span class="se">\\</span><span class="s2">zmyDir</span><span class="se">\\</span><span class="s2">&quot;</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">xtemp</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok&quot;</span><span class="p">)</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+           <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> 
+    
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;5. Check if all created folders were deleted</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
+          <span class="s2">&quot;Press enter to continue&quot;</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">swapSlash</span><span class="p">(</span><span class="n">aString</span><span class="p">):</span>
+    
+    <span class="n">newString</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">aString</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="s2">&quot;/&quot;</span><span class="p">:</span>
+            <span class="n">newString</span> <span class="o">=</span> <span class="n">newString</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">newString</span> <span class="o">=</span> <span class="n">newString</span> <span class="o">+</span> <span class="n">l</span>
+            
+    <span class="c1"># print(newString)</span>
+    
+    <span class="k">return</span> <span class="n">newString</span>
+              
+    
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;working</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># access global variables</span>
+    
+    <span class="k">global</span> <span class="n">xDirName</span> 
+    <span class="k">global</span> <span class="n">xBasePath</span>
+    
+    
+    <span class="c1"># directory name variable</span>
+    
+    <span class="n">xDirName</span> <span class="o">=</span> <span class="s2">&quot;zmyDir&quot;</span>
+    
+    <span class="c1"># basename </span>
+    <span class="c1"># in this case make sure you have a </span>
+    <span class="c1"># z folder on your c drive</span>
+    
+    <span class="n">xBasePath</span> <span class="o">=</span> <span class="s2">&quot;c:/z/&quot;</span>
+
+    <span class="c1"># remove the example code if previous ran and still existing    </span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">xtemp</span> <span class="o">=</span> <span class="n">xBasePath</span><span class="o">+</span><span class="n">xDirName</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">xtemp</span><span class="p">)</span>
+        
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+         
+    
+    <span class="c1"># main program code</span>
+    
+    <span class="n">makeDirectory</span><span class="p">()</span>
+    
+    <span class="n">addFile</span><span class="p">()</span>
+    
+    <span class="n">deleteFile</span><span class="p">()</span>
+    
+    <span class="n">deleteFolders</span><span class="p">()</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">bye bye&quot;</span><span class="p">)</span>
+    
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./pythonref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer-row" class="row">
+
+    <div class="col-md-12">
+        <span title="Built on 2023-11-14" class="pull-right">&copy; Copyright 2023 By James Goudy.
+        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 and the
+        <a href="https://pypi.org/project/sphinx-sizzle-theme/"
+
+           title="0.1.2/b995f3ff [2023-05-05T11:28:10]"
+
+        >Sizzle</a> theme.</span>
+    </div>
+
+  </div>
+</div>
+
+<div id="tooltips" class="hidden">
+</div>
+
+<script>
+$(document).ready(function() {
+  'use strict';
+  var $search = $('.search-query');
+
+  var $filter = $('#toc-filter-query');
+  var $toclist = $('.sidebar-toc > ul').find('li');
+
+  if ($toclist.length === 0) {
+    $toclist = $('.localtoc > ul').find('li');
+  }
+
+
+  var $nav = $('#nav');
+
+  //$('#whole-page').removeClass('hidden');
+  var nav_width = $nav.width();
+
+
+  var search_url = '../search.html';
+
+  function perform_search(e) {
+    var $elem;
+
+    if (e.type === 'keypress') {
+      $elem = $(e.target);
+    }
+    else if (e.type === 'click') {
+      $elem = $(e.target).parents('.input-group').find('input');
+    }
+    var q = $elem.val().trim();
+
+    if (q) {
+      var url = search_url + '?q=' + q + '&check_keywords=yes&area=default';
+
+      location.href = url;
+    }
+  }
+
+
+  function apply_filter() {
+    var s = $filter.val().trim().toLowerCase();
+
+    $toclist.find('a').removeClass('hidden');
+    $toclist.each(function() {
+      var $this = $(this);
+      var $link = $this.find('> a');
+      var t = $link.text().toLowerCase();
+      var show = t.indexOf(s) >= 0;
+
+      if (!show) {
+        $link.addClass('hidden');
+      }
+    });
+  }
+
+  $filter.on('keyup', function(e) {
+    apply_filter();
+  });
+
+
+
+  $search.on('keypress', function(e) {
+    if (e.which == 13) {
+      perform_search(e);
+    }
+  });
+  $search.parents('.input-group').find('.input-group-addon').on('click', perform_search);
+  $(document).on('click', '.summary .fa-caret-right', function(e) {
+    var $elem = $(e.target).parents('li');
+    var $next = $elem.next();
+    $elem.addClass('hidden');
+    $next.removeClass('hidden');
+  });
+  $(document).on('click', '.detail .fa-caret-down', function(e) {
+    var $elem = $(e.target).parents('li');
+    var $prev = $elem.prev();
+    $elem.addClass('hidden');
+    $prev.removeClass('hidden');
+  });
+
+  $('#content').on('click', function() {
+    $('#mnav').hide();
+  });
+
+  var counter = 0;
+  var timer = null;
+
+  function show_nav() {
+    $('#content').off('mousemove', track_mouse);
+    if (timer !== null) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    $nav.show();
+  }
+
+  function track_mouse(e) {
+    var x = e.clientX;
+
+    if (x < 15) {
+      ++counter;
+      if (timer === null) {
+        timer = setTimeout(show_nav, 2000);
+      }
+    }
+    else {
+      counter = 0;
+    }
+    if (counter >= 20) {
+      show_nav();
+    }
+  };
+
+  function hide_nav() {
+    $nav.hide();
+    counter = 0;
+    $('#content').on('mousemove', track_mouse);
+  }
+
+  $('.hidetoc').on('click', hide_nav);
+
+  $(document).on('keyup', function(e) {
+    if (e.ctrlKey) {
+      if (e.which == 37) {      // Ctrl+left arrow
+        hide_nav();
+      }
+      else if (e.which == 39) { // Ctrl+right arrow
+        show_nav();
+      }
+    }
+  });
+
+  $('.menu-toggle').on('click', function(e) {
+    $('#mnav').toggle();
+  });
+
+  function scroll_nav(frag) {
+    var sel = '#nav ' + (frag ? 'a[href="' + frag + '"]' : '.toctree-l1 a.current');
+
+    var $link = $(sel);
+
+    if ($link.length > 0) {
+      $link[0].scrollIntoView({block: 'center'});
+    }
+  }
+
+  // If the navigator is long, then the item we clicked on to get here might
+  // not be in view. Try to scroll it into the view - a slight delay is needed
+  // to get it to sync properly with other stuff going on (as the page has just
+  // loaded). Hence the setTimeout with a timeout of 0.
+
+  function do_scroll() {
+    scroll_nav(window.location.hash);
+  }
+
+  setTimeout(do_scroll, 0);
+
+  function adjust_size() {
+    // we need to set the height explicitly so that scrolling regions in the
+    // content area work properly.
+    var h = $('#page-content').height();
+
+    $('#nav, #content').height(h);
+    if ($('#nav').is(':visible')) {
+      $('#mnav').hide();
+    }
+  }
+
+  adjust_size();
+
+  $(window).on('resize', adjust_size);
+
+  function focus_content() {
+    $('#content').focus();  // so that keyboard can be used to scroll, etc.
+  }
+
+  setTimeout(focus_content, 150);
+
+  var sizzle = $(document).data('sizzle');
+
+  function make_tooltip(id, h, b) {
+    var $e = $('<div>').attr('id', id);
+    var $b = $('<div>').addClass('tc-body').html(b);
+
+    if (h) {
+      var $h = $('<div>').addClass('tc-heading').html(h);
+      $e.append($h);
+    }
+    $e.append($b);
+    return $e;
+  }
+
+  var default_tt_options = {
+    theme: ['tooltipster-light', 'tooltipster-light-customized'],
+    interactive: true,
+    maxWidth: 600,
+    contentCloning: true
+  };
+
+  function activate_tooltips() {
+    var $tt = $('.tt');
+
+    //console.log('tt links:', $tt.length);
+    $tt.tooltipster(default_tt_options);
+  }
+
+
+
+  function add_glossary_tooltips() {
+    var links = $('a');  // can qualify with .reference.internal
+    var glinks = {};
+    var pat = /(.*)\.html#(term-.*)$/;
+    var found = false;  // links in this document
+
+    $.each(links, function(i, link) {
+        var $link = $(link);
+        var href = $link.attr('href');
+        var m = href.match(pat);
+
+        if (m) {
+          var s = m[1].replace(/^(\.\.\/)+/, '');
+
+          if (s === sizzle.app_data.glossary.document) {
+            var k = m[2];
+
+            if (k in glinks) {
+              glinks[k].push($link);
+            }
+            else {
+              glinks[k] = [$link];
+            }
+            found = true;
+          }
+        }
+    });
+    if (found) {
+      var $t = $('#tooltips');
+      var data = sizzle.app_data.glossary.terms;
+
+      $.each(glinks, function(k, v) {
+        var d = data[k];
+
+        if (d) {  // as a sanity check
+          var s = 'tc-'+ k;
+          var $e = make_tooltip(s, d.term, d.defn);
+          $t.append($e);
+
+          $.each(v, function(i, link) {
+            link.addClass('tt').attr('data-tooltip-content', '#' + s);
+          });
+        }
+      });
+    }
+  }
+
+  if (sizzle.app_data && sizzle.app_data.glossary &&
+      sizzle.app_data.glossary.document) {
+    add_glossary_tooltips();
+  }
+
+
+
+
+  function add_custom_tooltips() {
+    if (!sizzle.app_data) {
+      return;
+    }
+
+    var info_tips = sizzle.app_data.custom_data['info-tips'] || {};
+    var hover_tips = sizzle.app_data.custom_data['hovers'] || {};
+
+    if ($.isEmptyObject(info_tips) && $.isEmptyObject(hover_tips)) {
+      return;
+    }
+
+    var tt_options = $.extend({contentAsHTML: true}, default_tt_options);
+
+    if (!$.isEmptyObject(info_tips)) {
+      $('.tc-info').each(function() {
+        var $elem = $(this).prev();
+        var classes = $elem.attr('class');
+        var m = /\btci-([\S]+)/.exec(classes);
+
+        if (m !== null) {
+          var key = m[1];
+
+          if (key in info_tips) {
+            var v = info_tips[key];
+            var tt = $elem.tooltipster(tt_options).tooltipster('content', v);
+          }
+        }
+      });
+    }
+    if (!$.isEmptyObject(hover_tips)) {
+      var current_origin, current_instance;
+
+      var h_options = {
+        functionBefore: function(instance, helper) {
+          current_instance = instance;
+          current_origin = helper.origin;
+          //console.log('before', current_instance, current_origin);
+        },
+        functionAfter: function(instance, helper) {
+          current_instance = null;
+          current_origin = null;
+          //console.log('after', current_instance, current_origin);
+        }
+      };
+
+      var ht_options = $.extend(h_options, tt_options);
+      $('.hover').each(function() {
+        var $e = $(this);
+        var ref = $e.data('hoverref');
+
+        if (ref) {
+          var tip = hover_tips[ref];
+
+          if (tip) {
+            $e.tooltipster(ht_options).tooltipster('content', tip);
+            //if (/encrypt_and_sign/.test(ref)) { console.log(tip); }
+          }
+        }
+      });
+/*
+      $(document).on('click', '.hovertip a.hoverlink', function(e) {
+        if (!sizzle.app_data) {
+          return;
+        }
+        var $this = $(this);
+        var $content = $this.parent('.tooltipster-content');
+        var ref = $this.data('href');
+        var hover_tips = sizzle.app_data.custom_data['hovers'] || {};
+        var tip = hover_tips[ref];
+
+        if (tip && current_instance) {
+          current_instance.content(tip);
+        }
+
+      });
+ */
+    }
+  }
+
+  add_custom_tooltips();
+
+  setTimeout(activate_tooltips, 1000);
+
+
+  // Clipboard copy for code blocks with captions
+
+  $('.code-block-caption').each(function() {
+    var $cap = $(this);
+    var $btn = $('<span class="clip-copy"><span class="copied hidden">Copied!</span><i class="fa fa-clipboard" title="Copy contents"></i></span>');
+    var $code = $cap.parent().find('.highlight');
+
+    $cap.append($btn);
+    $btn.find('.fa-clipboard').data('clip-text', $code.text());
+  });
+
+  var clipboard = new ClipboardJS('.code-block-caption .fa-clipboard', {
+    'text': function(trigger) {
+      return $(trigger).data('clip-text');
+    }
+  });
+
+  clipboard.on('success', function(e) {
+    var $copied = $(e.trigger).prev();
+
+    $copied.removeClass('hidden');
+
+    setTimeout(function() {$copied.addClass('hidden'); }, 1000);
+  });
+
+  if (sizzle.on_load) {
+    sizzle.on_load.forEach(function(f) {
+      f();
+    });
+  }
+});
+</script>
+</body>
+</html>
