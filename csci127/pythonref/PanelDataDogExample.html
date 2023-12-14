@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Python - Panel Data - Dog Example</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha256-8uHMIn1ru0GS5KO+zf7Zccf8Uw12IA5DrdEcmMuWLFM=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/tooltipster.bundle.min.css" integrity="sha256-Qc4lCfqZWYaHF5hgEOFrYzSIX9Rrxk0NPHRac+08QeQ=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css" integrity="sha256-Wa1I4jhSXeWd3N6RhfPlkqr1WlT+zS3Vh2YGCg0129E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Code+Pro|Source+Sans+Pro|Source+Serif+Pro|Roboto|Roboto+Mono" rel="stylesheet">
+<link href="https://fonts.red-dove.com/iosevka-ss09-regular/webfont.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/sizzle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js" integrity="sha512-2V49R8ndaagCOnwmj8QnbT1Gz/rie17UouD9Re5WxbzRVUGoftCu5IuqqtAM9+UC3fwfHCSJR1hkzNQh/2wdtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js" integrity="sha256-v8akIv8SCqn5f3mbVB7vEWprIizxPh6oV0yhao/dbB4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        LINK_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: ''
+      };
+      $(document).data('sizzle', {on_load: []});
+    </script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../app-data.js"></script>
+<link rel="index" title="Index" href="../genindex.html" />
+<link rel="search" title="Search" href="../search.html" />
+<link rel="next" title="Input / Output - Files And Folders" href="InputOutput.html" />
+<link rel="prev" title="Pandas" href="PanelData.html" />
+
+</head>
+<body class="full-height test">
+<noscript>
+  <div>
+    <div id="noscript-message">JavaScript is not enabled. It is needed for this website to work.</div>
+  </div>
+</noscript>
+<div id="whole-page" class="container-fluid content full-height">
+  <div id="header-row" class="row">
+    <div id="header-container" class="col-md-12">
+      <div id="hdr-left">
+        <i class="fa fa-bars menu-toggle"></i>
+        
+<a href="../index.html" class="text-logo">CSCI 127</a>
+
+      </div>
+      <div id="hdr-centre" class="text-center stretch">
+        <h3 title="Panel Data - Dog Example">Panel Data - Dog Example</h3>
+        <h6>Panel Data - Dog Example</h6>
+      </div>
+      <div id="hdr-search">
+        
+<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
+  <input type="text" class="form-control search-query" placeholder="Search docs ...">
+  <div class="input-group-addon">
+    <i class="fa fa-search"></i>
+  </div>
+</div>
+      </div>
+
+      <div id="hdr-index">
+        <a href="../genindex.html" class="btn btn-default" title="Go to the index"><i class="fa fa-list"></i></a>
+      </div>
+
+      <div id="hdr-source">
+        <a href="../_sources/pythonref/PanelDataDogExample.md" class="btn btn-default" title="See the source for this page"><i class="fa fa-code"></i></a>
+      </div>
+
+      <div id="hdr-right">
+        
+  
+  <div class="prev-next">
+    
+      <div class="pull-left">
+        <a class="btn btn-default prev" href="PanelData.html" title="Previous chapter (Pandas)"><i class="fa fa-chevron-left mr-1em" aria-hidden="true"></i><span class="btn-text">Pandas</span></a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default next" href="InputOutput.html" title="Next chapter (Input / Output - Files And Folders)"><span class="btn-text">Input / Output - Files And Folders</span>&nbsp;<i class="fa fa-chevron-right ml-1em" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  
+      </div>
+      <div id="alt-hdr-right">
+
+        <a href="PanelData.html"><i class="fa fa-chevron-left mr-8"></i></a>
+
+
+        <a href="../index.html"><i class="fa fa-home mr-8"></i></a>
+
+
+        <a href="../search.html"><i class="fa fa-search mr-8"></i></a>
+
+
+        <a href="../genindex.html"><i class="fa fa-list mr-8"></i></a>
+
+
+        <a href="InputOutput.html"><i class="fa fa-chevron-right"></i></a>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="content-row" class="row">
+    <div id="page-content" class="col-md-12 flex-col">
+      <div id="content-container">
+        <div id="nav">
+          
+  <div class="navsidebar">
+    <div id="sidebar-search">
+      
+<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
+  <input type="text" class="form-control search-query" placeholder="Search docs ...">
+  <div class="input-group-addon">
+    <i class="fa fa-search"></i>
+  </div>
+</div>
+    </div>
+      <div class="sidebar-block">
+        <div class="sidebar-tocheading">
+          <div class="pull-left">
+            <h2>Table Of Contents</h2>
+          </div>
+          <div class="pull-right" title="Hide this sidebar (hover at left edge to bring it back)"><i class="fa fa-chevron-left hidetoc"></i></div>
+        </div>
+        <div class="sidebar-toc">
+      
+          <div id="toc-filter" title="Type in here to show only matching topics">
+            <input class="form-control" id="toc-filter-query" placeholder="Filter by title ...">
+          </div>
+      
+        
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Readings.html">Readings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TheBasics.html">The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicsGettingStarted.html">Basics - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SecondProgram.html">Second Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTrees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToCreateAMenu.html">How To Create A Menu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NestedIfs.html">Nested Ifs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TryExcept.html">Try Except - Preventing Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Iteration.html">Iteration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MoreLoopExamples.html">More Loop Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TypewriterSimulation.html">Loops - Typewriter Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MenuShell.html">Menu Shell</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lists.html">Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classes.html">Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_ref.html">NumPy / Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PanelData.html">Pandas</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#panel-data-dog-example">Panel Data - Dog Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InputOutput.html">Input / Output - Files And Folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tkinter.html">Tkinter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TicTacToe.html">Tic Tac Toe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Miscellany.html">Miscellany</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TheZenOfPython.html">The Zen of Python,</a></li>
+</ul>
+</li>
+</ul>
+
+  
+        </div>
+      </div>
+  </div>
+        </div>
+        <div id="content" tabindex="0" class="stretch">
+          <div id="mnav">
+            
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Readings.html">Readings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TheBasics.html">The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicsGettingStarted.html">Basics - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SecondProgram.html">Second Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTrees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToCreateAMenu.html">How To Create A Menu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NestedIfs.html">Nested Ifs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TryExcept.html">Try Except - Preventing Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Iteration.html">Iteration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MoreLoopExamples.html">More Loop Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TypewriterSimulation.html">Loops - Typewriter Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MenuShell.html">Menu Shell</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lists.html">Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classes.html">Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_ref.html">NumPy / Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PanelData.html">Pandas</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#panel-data-dog-example">Panel Data - Dog Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InputOutput.html">Input / Output - Files And Folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tkinter.html">Tkinter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TicTacToe.html">Tic Tac Toe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Miscellany.html">Miscellany</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TheZenOfPython.html">The Zen of Python,</a></li>
+</ul>
+</li>
+</ul>
+
+  
+          </div>
+          <div class="body">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="panel-data-dog-example">
+<h1>Panel Data - Dog Example<a class="headerlink" href="#panel-data-dog-example" title="Permalink to this heading">¶</a></h1>
+<p>Panel Data is a tool for handling mixed data types. Here is an example of some data involving dogs.</p>
+<div class="section" id="dog-data">
+<h2>Dog Data<a class="headerlink" href="#dog-data" title="Permalink to this heading">¶</a></h2>
+<table class="colwidths-auto">
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"></th>
+<th class="head">Owner</th>
+<th class="head">Breed</th>
+<th class="head">Dog Name</th>
+<th class="head">Height</th>
+<th class="head">Weight</th>
+<th class="head">Age</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Dog1</td>
+<td>Rowan</td>
+<td>Spaniel</td>
+<td>Ziggy</td>
+<td>23</td>
+<td>19</td>
+<td>9</td>
+</tr>
+<tr class="row-odd"><td>Dog2</td>
+<td>Amari</td>
+<td>Newfoundland</td>
+<td>Pepper</td>
+<td>17</td>
+<td>60</td>
+<td>6</td>
+</tr>
+<tr class="row-even"><td>Dog3</td>
+<td>Zev</td>
+<td>Afghan</td>
+<td>Finn</td>
+<td>29</td>
+<td>27</td>
+<td>14</td>
+</tr>
+<tr class="row-odd"><td>Dog4</td>
+<td>Juniper</td>
+<td>Mudi</td>
+<td>Willow</td>
+<td>35</td>
+<td>43</td>
+<td>10</td>
+</tr>
+<tr class="row-even"><td>Dog5</td>
+<td>Kai</td>
+<td>Borzoi</td>
+<td>Scout</td>
+<td>18</td>
+<td>14</td>
+<td>13</td>
+</tr>
+<tr class="row-odd"><td>Dog6</td>
+<td>Elodie</td>
+<td>Terrier</td>
+<td>Riley</td>
+<td>32</td>
+<td>31</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td>Dog7</td>
+<td>Silas</td>
+<td>Terrier</td>
+<td>Milo</td>
+<td>12</td>
+<td>46</td>
+<td>5</td>
+</tr>
+<tr class="row-odd"><td>Dog8</td>
+<td>Nova</td>
+<td>Leonberger</td>
+<td>Juniper</td>
+<td>30</td>
+<td>22</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>Dog9</td>
+<td>Emery</td>
+<td>Terrier</td>
+<td>Jasper</td>
+<td>11</td>
+<td>12</td>
+<td>3</td>
+</tr>
+<tr class="row-odd"><td>Dog10</td>
+<td>Clementine</td>
+<td>Spaniel</td>
+<td>Mochi</td>
+<td>26</td>
+<td>16</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="information-to-find">
+<h2>Information to find<a class="headerlink" href="#information-to-find" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li>find the dog that weighs the most (with attached data )</li>
+<li>find the dog that weighs the least  (with attached data )</li>
+<li>find the average dog weight</li>
+<li>find only max dog weight with no other information</li>
+<li>list the dog names</li>
+<li>list dog information based on a breed</li>
+</ul>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="source-code">
+<h3>Source Code<a class="headerlink" href="#source-code" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># examples of panel data</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="c1"># global variables</span>
+
+<span class="c1"># data</span>
+<span class="n">mydata</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;Rowan&#39;</span><span class="p">,</span> <span class="s1">&#39;Spaniel&#39;</span><span class="p">,</span> <span class="s1">&#39;Ziggy&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Amari&#39;</span><span class="p">,</span> <span class="s1">&#39;Newfoundland&#39;</span><span class="p">,</span> <span class="s1">&#39;Pepper&#39;</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Zev&#39;</span><span class="p">,</span> <span class="s1">&#39;Afghan&#39;</span><span class="p">,</span> <span class="s1">&#39;Finn&#39;</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Juniper&#39;</span><span class="p">,</span> <span class="s1">&#39;Mudi&#39;</span><span class="p">,</span> <span class="s1">&#39;Willow&#39;</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Kai&#39;</span><span class="p">,</span> <span class="s1">&#39;Borzoi&#39;</span><span class="p">,</span> <span class="s1">&#39;Scout&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Elodie&#39;</span><span class="p">,</span> <span class="s1">&#39;Terrier&#39;</span><span class="p">,</span> <span class="s1">&#39;Riley&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Silas&#39;</span><span class="p">,</span> <span class="s1">&#39;Terrier&#39;</span><span class="p">,</span> <span class="s1">&#39;Milo&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Nova&#39;</span><span class="p">,</span> <span class="s1">&#39;Leonberger&#39;</span><span class="p">,</span> <span class="s1">&#39;Juniper&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Emery&#39;</span><span class="p">,</span> <span class="s1">&#39;Terrier&#39;</span><span class="p">,</span> <span class="s1">&#39;Jasper&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Clementine&#39;</span><span class="p">,</span> <span class="s1">&#39;Spaniel&#39;</span><span class="p">,</span> <span class="s1">&#39;Mochi&#39;</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+    <span class="p">]</span>
+
+<span class="c1"># column headers</span>
+<span class="n">mycols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Owner&quot;</span><span class="p">,</span> <span class="s2">&quot;Breed&quot;</span><span class="p">,</span> <span class="s2">&quot;Dog Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Height&quot;</span><span class="p">,</span> <span class="s2">&quot;Weight&quot;</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">]</span>
+
+<span class="c1"># indexes / row headers</span>
+<span class="n">myindexes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Dog1&quot;</span><span class="p">,</span><span class="s2">&quot;Dog2&quot;</span><span class="p">,</span><span class="s2">&quot;Dog3&quot;</span><span class="p">,</span><span class="s2">&quot;Dog4&quot;</span><span class="p">,</span><span class="s2">&quot;Dog5&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Dog6&quot;</span><span class="p">,</span><span class="s2">&quot;Dog7&quot;</span><span class="p">,</span><span class="s2">&quot;Dog8&quot;</span><span class="p">,</span><span class="s2">&quot;Dog9&quot;</span><span class="p">,</span><span class="s2">&quot;Dog10&quot;</span><span class="p">]</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="c1"># -------------------------------------------------------------------------------------</span>
+
+<span class="k">def</span> <span class="nf">setupPanelData</span><span class="p">():</span>
+
+    <span class="k">global</span> <span class="n">df</span>
+
+    <span class="c1"># create a dataframe with just data</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mydata</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># add columns headers to the dataframe</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">mycols</span> 
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># add indexes / row titles to dataframe</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">myindexes</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># *** Alternative Method for Above ***************************</span>
+
+    <span class="c1"># create a dataframe with data, column headings </span>
+    <span class="c1"># and row indexes at once</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mydata</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">mycols</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">myindexes</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">dogWeights</span><span class="p">():</span>
+
+    <span class="c1"># This function demonstrates the various ways to get</span>
+    <span class="c1"># a dog weight.  NOTE the &quot;.idxmax()&quot; will bring</span>
+    <span class="c1"># the whole row</span>
+
+    <span class="c1"># find the dog that weighs the most</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Heaviest Dog&quot;</span><span class="p">)</span>
+    <span class="n">maxDogWeight</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max Dog Weight is </span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">maxDogWeight</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> weighs </span><span class="si">{}</span><span class="s2"> lbs&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">maxDogWeight</span><span class="p">[</span><span class="s1">&#39;Dog Name&#39;</span><span class="p">],</span> <span class="n">maxDogWeight</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]))</span>
+
+
+    <span class="c1"># find the dog that weighs the least</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Lightest Dog&quot;</span><span class="p">)</span>
+    <span class="n">minDogWeight</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimum Dog Weight is </span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">minDogWeight</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> weighs </span><span class="si">{}</span><span class="s2"> lbs&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">minDogWeight</span><span class="p">[</span><span class="s1">&#39;Dog Name&#39;</span><span class="p">],</span> <span class="n">minDogWeight</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]))</span>
+
+    <span class="c1"># find the average dog weight</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Average Dog Weight&quot;</span><span class="p">)</span>
+    <span class="n">meanDogWeight</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average dog weight is </span><span class="si">{}</span><span class="s2"> lbs&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">meanDogWeight</span><span class="p">))</span>
+
+    <span class="c1"># find only max dog weight with no other information</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">find only max dog weight with no other information&quot;</span><span class="p">)</span>
+    <span class="n">maxdw</span><span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The max dog weight is </span><span class="si">{}</span><span class="s2"> lbs</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">maxdw</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">listDogNames</span><span class="p">():</span>
+
+    <span class="c1"># list the dog names</span>
+    <span class="n">theDogNames</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Dog Name&#39;</span><span class="p">]</span>
+    <span class="c1"># print the dog names</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Dog Names: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">theDogNames</span><span class="p">)):</span>
+        
+        <span class="c1"># print 2 names per line</span>
+        <span class="k">if</span> <span class="p">(((</span><span class="n">c</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">c</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)):</span>
+            <span class="nb">print</span><span class="p">()</span>
+            
+		<span class="c1"># print the dog name</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">theDogNames</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">c</span><span class="p">]))</span>
+
+
+    <span class="nb">print</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">dogBreedInfo</span><span class="p">():</span>
+
+    <span class="c1"># list dog information based on a breed</span>
+    <span class="c1"># shape returns rows and columns</span>
+
+    <span class="c1"># List the dog breeds</span>
+    <span class="c1"># get the dog breeds from panel and store as list</span>
+    <span class="n">dgbreeds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Breed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+    <span class="n">dgbreeds</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="n">lastDog</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dgbreeds</span><span class="p">)):</span>
+        
+        <span class="c1"># the if statement prevents duplicate </span>
+        <span class="c1"># dogs from being printed - note</span>
+        <span class="c1"># the list has to be sorted</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">lastDog</span> <span class="o">!=</span> <span class="n">dgbreeds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dgbreeds</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="n">lastDog</span> <span class="o">=</span> <span class="n">dgbreeds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="c1"># ------------------------------------------------</span>
+
+    <span class="c1"># flag to see whether there was any matches</span>
+    <span class="n">notFoundCheck</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># note that if the user enters nothing - &quot;Afgan&quot; will be the default</span>
+    <span class="n">dbreed</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Enter the dog breed: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">&quot;Afghan&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You entered: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dbreed</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="c1"># get row and convert it to dictionary - keys and values </span>
+        <span class="n">rowInfo</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">rowInfo</span><span class="p">[</span><span class="s1">&#39;Breed&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">dbreed</span><span class="p">):</span>
+            <span class="n">notFoundCheck</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="c1"># the key and value</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">rowInfo</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> - </span><span class="si">{}</span><span class="s2"> | &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># check if nothing was found</span>
+    <span class="k">if</span> <span class="n">notFoundCheck</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Breed was not found</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">menu</span><span class="p">():</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please select an option:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. Dog Weights&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. List Dog Names&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. Dog Breed Info&quot;</span><span class="p">)</span>
+
+    <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your choice (1/2/3): &quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+        <span class="n">dogWeights</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span>
+        <span class="n">listDogNames</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span>
+        <span class="n">dogBreedInfo</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid choice. Please try again.&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    
+    <span class="n">setupPanelData</span><span class="p">()</span>
+
+    <span class="n">quit</span> <span class="o">=</span> <span class="s2">&quot;n&quot;</span>
+
+    <span class="k">while</span> <span class="n">quit</span> <span class="o">!=</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span>
+
+        <span class="n">menu</span><span class="p">()</span>
+        <span class="n">quit</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Would you like to quit y/n &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">bye</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="output">
+<h3>Output<a class="headerlink" href="#output" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+
+            <span class="mi">0</span>             <span class="mi">1</span>        <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>
+<span class="mi">0</span>       <span class="n">Rowan</span>       <span class="n">Spaniel</span>    <span class="n">Ziggy</span>  <span class="mi">23</span>  <span class="mi">19</span>   <span class="mi">9</span>
+<span class="mi">1</span>       <span class="n">Amari</span>  <span class="n">Newfoundland</span>   <span class="n">Pepper</span>  <span class="mi">17</span>  <span class="mi">60</span>   <span class="mi">6</span>
+<span class="mi">2</span>         <span class="n">Zev</span>        <span class="n">Afghan</span>     <span class="n">Finn</span>  <span class="mi">29</span>  <span class="mi">27</span>  <span class="mi">14</span>
+<span class="mi">3</span>     <span class="n">Juniper</span>          <span class="n">Mudi</span>   <span class="n">Willow</span>  <span class="mi">35</span>  <span class="mi">43</span>  <span class="mi">10</span>
+<span class="mi">4</span>         <span class="n">Kai</span>        <span class="n">Borzoi</span>    <span class="n">Scout</span>  <span class="mi">18</span>  <span class="mi">14</span>  <span class="mi">13</span>
+<span class="mi">5</span>      <span class="n">Elodie</span>       <span class="n">Terrier</span>    <span class="n">Riley</span>  <span class="mi">32</span>  <span class="mi">31</span>   <span class="mi">2</span>
+<span class="mi">6</span>       <span class="n">Silas</span>       <span class="n">Terrier</span>     <span class="n">Milo</span>  <span class="mi">12</span>  <span class="mi">46</span>   <span class="mi">5</span>
+<span class="mi">7</span>        <span class="n">Nova</span>    <span class="n">Leonberger</span>  <span class="n">Juniper</span>  <span class="mi">30</span>  <span class="mi">22</span>   <span class="mi">1</span>
+<span class="mi">8</span>       <span class="n">Emery</span>       <span class="n">Terrier</span>   <span class="n">Jasper</span>  <span class="mi">11</span>  <span class="mi">12</span>   <span class="mi">3</span>
+<span class="mi">9</span>  <span class="n">Clementine</span>       <span class="n">Spaniel</span>    <span class="n">Mochi</span>  <span class="mi">26</span>  <span class="mi">16</span>   <span class="mi">4</span>
+
+
+
+
+        <span class="n">Owner</span>         <span class="n">Breed</span> <span class="n">Dog</span> <span class="n">Name</span>  <span class="n">Height</span>  <span class="n">Weight</span>  <span class="n">Age</span>
+<span class="mi">0</span>       <span class="n">Rowan</span>       <span class="n">Spaniel</span>    <span class="n">Ziggy</span>      <span class="mi">23</span>      <span class="mi">19</span>    <span class="mi">9</span>
+<span class="mi">1</span>       <span class="n">Amari</span>  <span class="n">Newfoundland</span>   <span class="n">Pepper</span>      <span class="mi">17</span>      <span class="mi">60</span>    <span class="mi">6</span>
+<span class="mi">2</span>         <span class="n">Zev</span>        <span class="n">Afghan</span>     <span class="n">Finn</span>      <span class="mi">29</span>      <span class="mi">27</span>   <span class="mi">14</span>
+<span class="mi">3</span>     <span class="n">Juniper</span>          <span class="n">Mudi</span>   <span class="n">Willow</span>      <span class="mi">35</span>      <span class="mi">43</span>   <span class="mi">10</span>
+<span class="mi">4</span>         <span class="n">Kai</span>        <span class="n">Borzoi</span>    <span class="n">Scout</span>      <span class="mi">18</span>      <span class="mi">14</span>   <span class="mi">13</span>
+<span class="mi">5</span>      <span class="n">Elodie</span>       <span class="n">Terrier</span>    <span class="n">Riley</span>      <span class="mi">32</span>      <span class="mi">31</span>    <span class="mi">2</span>
+<span class="mi">6</span>       <span class="n">Silas</span>       <span class="n">Terrier</span>     <span class="n">Milo</span>      <span class="mi">12</span>      <span class="mi">46</span>    <span class="mi">5</span>
+<span class="mi">7</span>        <span class="n">Nova</span>    <span class="n">Leonberger</span>  <span class="n">Juniper</span>      <span class="mi">30</span>      <span class="mi">22</span>    <span class="mi">1</span>
+<span class="mi">8</span>       <span class="n">Emery</span>       <span class="n">Terrier</span>   <span class="n">Jasper</span>      <span class="mi">11</span>      <span class="mi">12</span>    <span class="mi">3</span>
+<span class="mi">9</span>  <span class="n">Clementine</span>       <span class="n">Spaniel</span>    <span class="n">Mochi</span>      <span class="mi">26</span>      <span class="mi">16</span>    <span class="mi">4</span>
+
+
+
+
+            <span class="n">Owner</span>         <span class="n">Breed</span> <span class="n">Dog</span> <span class="n">Name</span>  <span class="n">Height</span>  <span class="n">Weight</span>  <span class="n">Age</span>
+<span class="n">Dog1</span>        <span class="n">Rowan</span>       <span class="n">Spaniel</span>    <span class="n">Ziggy</span>      <span class="mi">23</span>      <span class="mi">19</span>    <span class="mi">9</span>
+<span class="n">Dog2</span>        <span class="n">Amari</span>  <span class="n">Newfoundland</span>   <span class="n">Pepper</span>      <span class="mi">17</span>      <span class="mi">60</span>    <span class="mi">6</span>
+<span class="n">Dog3</span>          <span class="n">Zev</span>        <span class="n">Afghan</span>     <span class="n">Finn</span>      <span class="mi">29</span>      <span class="mi">27</span>   <span class="mi">14</span>
+<span class="n">Dog4</span>      <span class="n">Juniper</span>          <span class="n">Mudi</span>   <span class="n">Willow</span>      <span class="mi">35</span>      <span class="mi">43</span>   <span class="mi">10</span>
+<span class="n">Dog5</span>          <span class="n">Kai</span>        <span class="n">Borzoi</span>    <span class="n">Scout</span>      <span class="mi">18</span>      <span class="mi">14</span>   <span class="mi">13</span>
+<span class="n">Dog6</span>       <span class="n">Elodie</span>       <span class="n">Terrier</span>    <span class="n">Riley</span>      <span class="mi">32</span>      <span class="mi">31</span>    <span class="mi">2</span>
+<span class="n">Dog7</span>        <span class="n">Silas</span>       <span class="n">Terrier</span>     <span class="n">Milo</span>      <span class="mi">12</span>      <span class="mi">46</span>    <span class="mi">5</span>
+<span class="n">Dog8</span>         <span class="n">Nova</span>    <span class="n">Leonberger</span>  <span class="n">Juniper</span>      <span class="mi">30</span>      <span class="mi">22</span>    <span class="mi">1</span>
+<span class="n">Dog9</span>        <span class="n">Emery</span>       <span class="n">Terrier</span>   <span class="n">Jasper</span>      <span class="mi">11</span>      <span class="mi">12</span>    <span class="mi">3</span>
+<span class="n">Dog10</span>  <span class="n">Clementine</span>       <span class="n">Spaniel</span>    <span class="n">Mochi</span>      <span class="mi">26</span>      <span class="mi">16</span>    <span class="mi">4</span>
+
+
+<span class="n">Please</span> <span class="n">select</span> <span class="n">an</span> <span class="n">option</span><span class="p">:</span>
+<span class="mf">1.</span> <span class="n">Dog</span> <span class="n">Weights</span>
+<span class="mf">2.</span> <span class="n">List</span> <span class="n">Dog</span> <span class="n">Names</span>
+<span class="mf">3.</span> <span class="n">Dog</span> <span class="n">Breed</span> <span class="n">Info</span>
+<span class="n">Enter</span> <span class="n">your</span> <span class="n">choice</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">):</span> <span class="mi">1</span>
+
+<span class="n">Heaviest</span> <span class="n">Dog</span>
+<span class="n">Max</span> <span class="n">Dog</span> <span class="n">Weight</span> <span class="ow">is</span>
+<span class="n">Owner</span>              <span class="n">Amari</span>
+<span class="n">Breed</span>       <span class="n">Newfoundland</span>
+<span class="n">Dog</span> <span class="n">Name</span>          <span class="n">Pepper</span>
+<span class="n">Height</span>                <span class="mi">17</span>
+<span class="n">Weight</span>                <span class="mi">60</span>
+<span class="n">Age</span>                    <span class="mi">6</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Dog2</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+
+<span class="n">Pepper</span> <span class="n">weighs</span> <span class="mi">60</span> <span class="n">lbs</span>
+
+<span class="n">Lightest</span> <span class="n">Dog</span>
+<span class="n">Minimum</span> <span class="n">Dog</span> <span class="n">Weight</span> <span class="ow">is</span>
+<span class="n">Owner</span>         <span class="n">Emery</span>
+<span class="n">Breed</span>       <span class="n">Terrier</span>
+<span class="n">Dog</span> <span class="n">Name</span>     <span class="n">Jasper</span>
+<span class="n">Height</span>           <span class="mi">11</span>
+<span class="n">Weight</span>           <span class="mi">12</span>
+<span class="n">Age</span>               <span class="mi">3</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Dog9</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+
+<span class="n">Jasper</span> <span class="n">weighs</span> <span class="mi">12</span> <span class="n">lbs</span>
+
+<span class="n">Average</span> <span class="n">Dog</span> <span class="n">Weight</span>
+<span class="n">The</span> <span class="n">average</span> <span class="n">dog</span> <span class="n">weight</span> <span class="ow">is</span> <span class="mf">29.0</span> <span class="n">lbs</span>
+
+<span class="n">find</span> <span class="n">only</span> <span class="nb">max</span> <span class="n">dog</span> <span class="n">weight</span> <span class="k">with</span> <span class="n">no</span> <span class="n">other</span> <span class="n">information</span>
+<span class="n">The</span> <span class="nb">max</span> <span class="n">dog</span> <span class="n">weight</span> <span class="ow">is</span> <span class="mi">60</span> <span class="n">lbs</span>
+
+<span class="n">Would</span> <span class="n">you</span> <span class="n">like</span> <span class="n">to</span> <span class="n">quit</span> <span class="n">y</span><span class="o">/</span><span class="n">n</span> <span class="n">n</span>
+<span class="n">Please</span> <span class="n">select</span> <span class="n">an</span> <span class="n">option</span><span class="p">:</span>
+<span class="mf">1.</span> <span class="n">Dog</span> <span class="n">Weights</span>
+<span class="mf">2.</span> <span class="n">List</span> <span class="n">Dog</span> <span class="n">Names</span>
+<span class="mf">3.</span> <span class="n">Dog</span> <span class="n">Breed</span> <span class="n">Info</span>
+<span class="n">Enter</span> <span class="n">your</span> <span class="n">choice</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">):</span> <span class="mi">2</span>
+
+<span class="n">Dog</span> <span class="n">Names</span><span class="p">:</span>
+<span class="n">Ziggy</span> <span class="n">Pepper</span>
+<span class="n">Finn</span> <span class="n">Willow</span>
+<span class="n">Scout</span> <span class="n">Riley</span>
+<span class="n">Milo</span> <span class="n">Juniper</span>
+<span class="n">Jasper</span> <span class="n">Mochi</span>
+<span class="n">Would</span> <span class="n">you</span> <span class="n">like</span> <span class="n">to</span> <span class="n">quit</span> <span class="n">y</span><span class="o">/</span><span class="n">n</span> <span class="n">n</span>
+<span class="n">Please</span> <span class="n">select</span> <span class="n">an</span> <span class="n">option</span><span class="p">:</span>
+<span class="mf">1.</span> <span class="n">Dog</span> <span class="n">Weights</span>
+<span class="mf">2.</span> <span class="n">List</span> <span class="n">Dog</span> <span class="n">Names</span>
+<span class="mf">3.</span> <span class="n">Dog</span> <span class="n">Breed</span> <span class="n">Info</span>
+<span class="n">Enter</span> <span class="n">your</span> <span class="n">choice</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">):</span> <span class="mi">3</span>
+
+<span class="n">Afghan</span>
+<span class="n">Borzoi</span>
+<span class="n">Leonberger</span>
+<span class="n">Mudi</span>
+<span class="n">Newfoundland</span>
+<span class="n">Spaniel</span>
+<span class="n">Terrier</span>
+
+<span class="n">Enter</span> <span class="n">the</span> <span class="n">dog</span> <span class="n">breed</span><span class="p">:</span>
+<span class="n">You</span> <span class="n">entered</span><span class="p">:</span> <span class="n">Afghan</span>
+<span class="n">Owner</span> <span class="o">-</span> <span class="n">Zev</span> <span class="o">|</span> <span class="n">Breed</span> <span class="o">-</span> <span class="n">Afghan</span> <span class="o">|</span> <span class="n">Dog</span> <span class="n">Name</span> <span class="o">-</span> <span class="n">Finn</span> <span class="o">|</span> <span class="n">Height</span> <span class="o">-</span> <span class="mi">29</span> <span class="o">|</span> <span class="n">Weight</span> <span class="o">-</span> <span class="mi">27</span> <span class="o">|</span> <span class="n">Age</span> <span class="o">-</span> <span class="mi">14</span> <span class="o">|</span>
+
+<span class="n">Would</span> <span class="n">you</span> <span class="n">like</span> <span class="n">to</span> <span class="n">quit</span> <span class="n">y</span><span class="o">/</span><span class="n">n</span> <span class="n">y</span>
+
+<span class="n">bye</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./pythonref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer-row" class="row">
+
+    <div class="col-md-12">
+        <span title="Built on 2023-12-13" class="pull-right">&copy; Copyright 2023 By James Goudy.
+        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 and the
+        <a href="https://pypi.org/project/sphinx-sizzle-theme/"
+
+           title="0.1.2/b995f3ff [2023-05-05T11:28:10]"
+
+        >Sizzle</a> theme.</span>
+    </div>
+
+  </div>
+</div>
+
+<div id="tooltips" class="hidden">
+</div>
+
+<script>
+$(document).ready(function() {
+  'use strict';
+  var $search = $('.search-query');
+
+  var $filter = $('#toc-filter-query');
+  var $toclist = $('.sidebar-toc > ul').find('li');
+
+  if ($toclist.length === 0) {
+    $toclist = $('.localtoc > ul').find('li');
+  }
+
+
+  var $nav = $('#nav');
+
+  //$('#whole-page').removeClass('hidden');
+  var nav_width = $nav.width();
+
+
+  var search_url = '../search.html';
+
+  function perform_search(e) {
+    var $elem;
+
+    if (e.type === 'keypress') {
+      $elem = $(e.target);
+    }
+    else if (e.type === 'click') {
+      $elem = $(e.target).parents('.input-group').find('input');
+    }
+    var q = $elem.val().trim();
+
+    if (q) {
+      var url = search_url + '?q=' + q + '&check_keywords=yes&area=default';
+
+      location.href = url;
+    }
+  }
+
+
+  function apply_filter() {
+    var s = $filter.val().trim().toLowerCase();
+
+    $toclist.find('a').removeClass('hidden');
+    $toclist.each(function() {
+      var $this = $(this);
+      var $link = $this.find('> a');
+      var t = $link.text().toLowerCase();
+      var show = t.indexOf(s) >= 0;
+
+      if (!show) {
+        $link.addClass('hidden');
+      }
+    });
+  }
+
+  $filter.on('keyup', function(e) {
+    apply_filter();
+  });
+
+
+
+  $search.on('keypress', function(e) {
+    if (e.which == 13) {
+      perform_search(e);
+    }
+  });
+  $search.parents('.input-group').find('.input-group-addon').on('click', perform_search);
+  $(document).on('click', '.summary .fa-caret-right', function(e) {
+    var $elem = $(e.target).parents('li');
+    var $next = $elem.next();
+    $elem.addClass('hidden');
+    $next.removeClass('hidden');
+  });
+  $(document).on('click', '.detail .fa-caret-down', function(e) {
+    var $elem = $(e.target).parents('li');
+    var $prev = $elem.prev();
+    $elem.addClass('hidden');
+    $prev.removeClass('hidden');
+  });
+
+  $('#content').on('click', function() {
+    $('#mnav').hide();
+  });
+
+  var counter = 0;
+  var timer = null;
+
+  function show_nav() {
+    $('#content').off('mousemove', track_mouse);
+    if (timer !== null) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    $nav.show();
+  }
+
+  function track_mouse(e) {
+    var x = e.clientX;
+
+    if (x < 15) {
+      ++counter;
+      if (timer === null) {
+        timer = setTimeout(show_nav, 2000);
+      }
+    }
+    else {
+      counter = 0;
+    }
+    if (counter >= 20) {
+      show_nav();
+    }
+  };
+
+  function hide_nav() {
+    $nav.hide();
+    counter = 0;
+    $('#content').on('mousemove', track_mouse);
+  }
+
+  $('.hidetoc').on('click', hide_nav);
+
+  $(document).on('keyup', function(e) {
+    if (e.ctrlKey) {
+      if (e.which == 37) {      // Ctrl+left arrow
+        hide_nav();
+      }
+      else if (e.which == 39) { // Ctrl+right arrow
+        show_nav();
+      }
+    }
+  });
+
+  $('.menu-toggle').on('click', function(e) {
+    $('#mnav').toggle();
+  });
+
+  function scroll_nav(frag) {
+    var sel = '#nav ' + (frag ? 'a[href="' + frag + '"]' : '.toctree-l1 a.current');
+
+    var $link = $(sel);
+
+    if ($link.length > 0) {
+      $link[0].scrollIntoView({block: 'center'});
+    }
+  }
+
+  // If the navigator is long, then the item we clicked on to get here might
+  // not be in view. Try to scroll it into the view - a slight delay is needed
+  // to get it to sync properly with other stuff going on (as the page has just
+  // loaded). Hence the setTimeout with a timeout of 0.
+
+  function do_scroll() {
+    scroll_nav(window.location.hash);
+  }
+
+  setTimeout(do_scroll, 0);
+
+  function adjust_size() {
+    // we need to set the height explicitly so that scrolling regions in the
+    // content area work properly.
+    var h = $('#page-content').height();
+
+    $('#nav, #content').height(h);
+    if ($('#nav').is(':visible')) {
+      $('#mnav').hide();
+    }
+  }
+
+  adjust_size();
+
+  $(window).on('resize', adjust_size);
+
+  function focus_content() {
+    $('#content').focus();  // so that keyboard can be used to scroll, etc.
+  }
+
+  setTimeout(focus_content, 150);
+
+  var sizzle = $(document).data('sizzle');
+
+  function make_tooltip(id, h, b) {
+    var $e = $('<div>').attr('id', id);
+    var $b = $('<div>').addClass('tc-body').html(b);
+
+    if (h) {
+      var $h = $('<div>').addClass('tc-heading').html(h);
+      $e.append($h);
+    }
+    $e.append($b);
+    return $e;
+  }
+
+  var default_tt_options = {
+    theme: ['tooltipster-light', 'tooltipster-light-customized'],
+    interactive: true,
+    maxWidth: 600,
+    contentCloning: true
+  };
+
+  function activate_tooltips() {
+    var $tt = $('.tt');
+
+    //console.log('tt links:', $tt.length);
+    $tt.tooltipster(default_tt_options);
+  }
+
+
+
+  function add_glossary_tooltips() {
+    var links = $('a');  // can qualify with .reference.internal
+    var glinks = {};
+    var pat = /(.*)\.html#(term-.*)$/;
+    var found = false;  // links in this document
+
+    $.each(links, function(i, link) {
+        var $link = $(link);
+        var href = $link.attr('href');
+        var m = href.match(pat);
+
+        if (m) {
+          var s = m[1].replace(/^(\.\.\/)+/, '');
+
+          if (s === sizzle.app_data.glossary.document) {
+            var k = m[2];
+
+            if (k in glinks) {
+              glinks[k].push($link);
+            }
+            else {
+              glinks[k] = [$link];
+            }
+            found = true;
+          }
+        }
+    });
+    if (found) {
+      var $t = $('#tooltips');
+      var data = sizzle.app_data.glossary.terms;
+
+      $.each(glinks, function(k, v) {
+        var d = data[k];
+
+        if (d) {  // as a sanity check
+          var s = 'tc-'+ k;
+          var $e = make_tooltip(s, d.term, d.defn);
+          $t.append($e);
+
+          $.each(v, function(i, link) {
+            link.addClass('tt').attr('data-tooltip-content', '#' + s);
+          });
+        }
+      });
+    }
+  }
+
+  if (sizzle.app_data && sizzle.app_data.glossary &&
+      sizzle.app_data.glossary.document) {
+    add_glossary_tooltips();
+  }
+
+
+
+
+  function add_custom_tooltips() {
+    if (!sizzle.app_data) {
+      return;
+    }
+
+    var info_tips = sizzle.app_data.custom_data['info-tips'] || {};
+    var hover_tips = sizzle.app_data.custom_data['hovers'] || {};
+
+    if ($.isEmptyObject(info_tips) && $.isEmptyObject(hover_tips)) {
+      return;
+    }
+
+    var tt_options = $.extend({contentAsHTML: true}, default_tt_options);
+
+    if (!$.isEmptyObject(info_tips)) {
+      $('.tc-info').each(function() {
+        var $elem = $(this).prev();
+        var classes = $elem.attr('class');
+        var m = /\btci-([\S]+)/.exec(classes);
+
+        if (m !== null) {
+          var key = m[1];
+
+          if (key in info_tips) {
+            var v = info_tips[key];
+            var tt = $elem.tooltipster(tt_options).tooltipster('content', v);
+          }
+        }
+      });
+    }
+    if (!$.isEmptyObject(hover_tips)) {
+      var current_origin, current_instance;
+
+      var h_options = {
+        functionBefore: function(instance, helper) {
+          current_instance = instance;
+          current_origin = helper.origin;
+          //console.log('before', current_instance, current_origin);
+        },
+        functionAfter: function(instance, helper) {
+          current_instance = null;
+          current_origin = null;
+          //console.log('after', current_instance, current_origin);
+        }
+      };
+
+      var ht_options = $.extend(h_options, tt_options);
+      $('.hover').each(function() {
+        var $e = $(this);
+        var ref = $e.data('hoverref');
+
+        if (ref) {
+          var tip = hover_tips[ref];
+
+          if (tip) {
+            $e.tooltipster(ht_options).tooltipster('content', tip);
+            //if (/encrypt_and_sign/.test(ref)) { console.log(tip); }
+          }
+        }
+      });
+/*
+      $(document).on('click', '.hovertip a.hoverlink', function(e) {
+        if (!sizzle.app_data) {
+          return;
+        }
+        var $this = $(this);
+        var $content = $this.parent('.tooltipster-content');
+        var ref = $this.data('href');
+        var hover_tips = sizzle.app_data.custom_data['hovers'] || {};
+        var tip = hover_tips[ref];
+
+        if (tip && current_instance) {
+          current_instance.content(tip);
+        }
+
+      });
+ */
+    }
+  }
+
+  add_custom_tooltips();
+
+  setTimeout(activate_tooltips, 1000);
+
+
+  // Clipboard copy for code blocks with captions
+
+  $('.code-block-caption').each(function() {
+    var $cap = $(this);
+    var $btn = $('<span class="clip-copy"><span class="copied hidden">Copied!</span><i class="fa fa-clipboard" title="Copy contents"></i></span>');
+    var $code = $cap.parent().find('.highlight');
+
+    $cap.append($btn);
+    $btn.find('.fa-clipboard').data('clip-text', $code.text());
+  });
+
+  var clipboard = new ClipboardJS('.code-block-caption .fa-clipboard', {
+    'text': function(trigger) {
+      return $(trigger).data('clip-text');
+    }
+  });
+
+  clipboard.on('success', function(e) {
+    var $copied = $(e.trigger).prev();
+
+    $copied.removeClass('hidden');
+
+    setTimeout(function() {$copied.addClass('hidden'); }, 1000);
+  });
+
+  if (sizzle.on_load) {
+    sizzle.on_load.forEach(function(f) {
+      f();
+    });
+  }
+});
+</script>
+</body>
+</html>
