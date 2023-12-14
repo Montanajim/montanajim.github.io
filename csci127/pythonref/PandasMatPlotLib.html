@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Python - Pandas and MatPlotLib</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha256-8uHMIn1ru0GS5KO+zf7Zccf8Uw12IA5DrdEcmMuWLFM=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/tooltipster.bundle.min.css" integrity="sha256-Qc4lCfqZWYaHF5hgEOFrYzSIX9Rrxk0NPHRac+08QeQ=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css" integrity="sha256-Wa1I4jhSXeWd3N6RhfPlkqr1WlT+zS3Vh2YGCg0129E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Code+Pro|Source+Sans+Pro|Source+Serif+Pro|Roboto|Roboto+Mono" rel="stylesheet">
+<link href="https://fonts.red-dove.com/iosevka-ss09-regular/webfont.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/sizzle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js" integrity="sha512-2V49R8ndaagCOnwmj8QnbT1Gz/rie17UouD9Re5WxbzRVUGoftCu5IuqqtAM9+UC3fwfHCSJR1hkzNQh/2wdtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js" integrity="sha256-v8akIv8SCqn5f3mbVB7vEWprIizxPh6oV0yhao/dbB4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        LINK_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: ''
+      };
+      $(document).data('sizzle', {on_load: []});
+    </script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../app-data.js"></script>
+<link rel="index" title="Index" href="../genindex.html" />
+<link rel="search" title="Search" href="../search.html" />
+<link rel="next" title="Panel Data - Dog Example" href="PanelDataDogExample.html" />
+<link rel="prev" title="Pandas" href="PanelData.html" />
+
+</head>
+<body class="full-height test">
+<noscript>
+  <div>
+    <div id="noscript-message">JavaScript is not enabled. It is needed for this website to work.</div>
+  </div>
+</noscript>
+<div id="whole-page" class="container-fluid content full-height">
+  <div id="header-row" class="row">
+    <div id="header-container" class="col-md-12">
+      <div id="hdr-left">
+        <i class="fa fa-bars menu-toggle"></i>
+        
+<a href="../index.html" class="text-logo">CSCI 127</a>
+
+      </div>
+      <div id="hdr-centre" class="text-center stretch">
+        <h3 title="Pandas and MatPlotLib">Pandas and MatPlotLib</h3>
+        <h6>Pandas and MatPlotLib</h6>
+      </div>
+      <div id="hdr-search">
+        
+<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
+  <input type="text" class="form-control search-query" placeholder="Search docs ...">
+  <div class="input-group-addon">
+    <i class="fa fa-search"></i>
+  </div>
+</div>
+      </div>
+
+      <div id="hdr-index">
+        <a href="../genindex.html" class="btn btn-default" title="Go to the index"><i class="fa fa-list"></i></a>
+      </div>
+
+      <div id="hdr-source">
+        <a href="../_sources/pythonref/PandasMatPlotLib.md" class="btn btn-default" title="See the source for this page"><i class="fa fa-code"></i></a>
+      </div>
+
+      <div id="hdr-right">
+        
+  
+  <div class="prev-next">
+    
+      <div class="pull-left">
+        <a class="btn btn-default prev" href="PanelData.html" title="Previous chapter (Pandas)"><i class="fa fa-chevron-left mr-1em" aria-hidden="true"></i><span class="btn-text">Pandas</span></a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default next" href="PanelDataDogExample.html" title="Next chapter (Panel Data - Dog Example)"><span class="btn-text">Panel Data - Dog Example</span>&nbsp;<i class="fa fa-chevron-right ml-1em" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  
+      </div>
+      <div id="alt-hdr-right">
+
+        <a href="PanelData.html"><i class="fa fa-chevron-left mr-8"></i></a>
+
+
+        <a href="../index.html"><i class="fa fa-home mr-8"></i></a>
+
+
+        <a href="../search.html"><i class="fa fa-search mr-8"></i></a>
+
+
+        <a href="../genindex.html"><i class="fa fa-list mr-8"></i></a>
+
+
+        <a href="PanelDataDogExample.html"><i class="fa fa-chevron-right"></i></a>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="content-row" class="row">
+    <div id="page-content" class="col-md-12 flex-col">
+      <div id="content-container">
+        <div id="nav">
+          
+  <div class="navsidebar">
+    <div id="sidebar-search">
+      
+<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
+  <input type="text" class="form-control search-query" placeholder="Search docs ...">
+  <div class="input-group-addon">
+    <i class="fa fa-search"></i>
+  </div>
+</div>
+    </div>
+      <div class="sidebar-block">
+        <div class="sidebar-tocheading">
+          <div class="pull-left">
+            <h2>Table Of Contents</h2>
+          </div>
+          <div class="pull-right" title="Hide this sidebar (hover at left edge to bring it back)"><i class="fa fa-chevron-left hidetoc"></i></div>
+        </div>
+        <div class="sidebar-toc">
+      
+          <div id="toc-filter" title="Type in here to show only matching topics">
+            <input class="form-control" id="toc-filter-query" placeholder="Filter by title ...">
+          </div>
+      
+        
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Readings.html">Readings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TheBasics.html">The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicsGettingStarted.html">Basics - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SecondProgram.html">Second Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTrees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToCreateAMenu.html">How To Create A Menu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NestedIfs.html">Nested Ifs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TryExcept.html">Try Except - Preventing Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Iteration.html">Iteration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MoreLoopExamples.html">More Loop Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TypewriterSimulation.html">Loops - Typewriter Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MenuShell.html">Menu Shell</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lists.html">Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classes.html">Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_ref.html">NumPy / Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PanelData.html">Pandas</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#pandas-and-matplotlib">Pandas and MatPlotLib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PanelDataDogExample.html">Panel Data - Dog Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InputOutput.html">Input / Output - Files And Folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tkinter.html">Tkinter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TicTacToe.html">Tic Tac Toe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Miscellany.html">Miscellany</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TheZenOfPython.html">The Zen of Python,</a></li>
+</ul>
+</li>
+</ul>
+
+  
+        </div>
+      </div>
+  </div>
+        </div>
+        <div id="content" tabindex="0" class="stretch">
+          <div id="mnav">
+            
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Readings.html">Readings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TheBasics.html">The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicsGettingStarted.html">Basics - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SecondProgram.html">Second Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTrees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToCreateAMenu.html">How To Create A Menu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NestedIfs.html">Nested Ifs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TryExcept.html">Try Except - Preventing Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Iteration.html">Iteration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MoreLoopExamples.html">More Loop Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TypewriterSimulation.html">Loops - Typewriter Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MenuShell.html">Menu Shell</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lists.html">Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classes.html">Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_ref.html">NumPy / Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PanelData.html">Pandas</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#pandas-and-matplotlib">Pandas and MatPlotLib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PanelDataDogExample.html">Panel Data - Dog Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InputOutput.html">Input / Output - Files And Folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tkinter.html">Tkinter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TicTacToe.html">Tic Tac Toe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Miscellany.html">Miscellany</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TheZenOfPython.html">The Zen of Python,</a></li>
+</ul>
+</li>
+</ul>
+
+  
+          </div>
+          <div class="body">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="pandas-and-matplotlib">
+<h1>Pandas and MatPlotLib<a class="headerlink" href="#pandas-and-matplotlib" title="Permalink to this heading">¶</a></h1>
+<p><strong>matplotlib.pyplot</strong>, often shortened to <code class="docutils literal notranslate"><span class="pre">plt</span></code>, is a submodule within the matplotlib library for Python. It provides a state-based, MATLAB-like interface for creating various data visualizations.</p>
+<p>Think of it as a toolset that allows you to take your numerical data and turn it into informative and visually appealing charts, graphs, and plots.</p>
+<p>Here are some key features of matplotlib.pyplot:</p>
+<ul class="simple">
+<li><strong>Simple and easy to use:</strong> pyplot offers a concise and intuitive syntax, making it accessible even for beginners in data visualization.</li>
+<li><strong>Extensive plotting capabilities:</strong> It supports a wide range of plot types, including line plots, bar charts, scatter plots, histograms, pie charts, and many more.</li>
+<li><strong>Customization options:</strong> You can fine-tune the visual elements of your plots, including colors, fonts, axes labels, and legends, to create professional-looking visualizations.</li>
+<li><strong>Object-oriented approach:</strong> While pyplot is state-based, it also offers object-oriented functionalities for more advanced customization and control over your plots.</li>
+</ul>
+<div class="section" id="sample-data">
+<h2>Sample Data<a class="headerlink" href="#sample-data" title="Permalink to this heading">¶</a></h2>
+<table class="colwidths-auto">
+<thead valign="bottom">
+<tr class="row-odd"><th class="text-center head"></th>
+<th class="text-center head">&nbsp;&nbsp;&nbsp;  Jan</th>
+<th class="text-center head">&nbsp;&nbsp;&nbsp;  Feb</th>
+<th class="text-center head">&nbsp;&nbsp;&nbsp;  Mar</th>
+<th class="text-center head">&nbsp;&nbsp;&nbsp;  Apr</th>
+<th class="text-center head">&nbsp;&nbsp;&nbsp;  May</th>
+<th class="text-center head">&nbsp;&nbsp;&nbsp;  Jun</th>
+<th class="text-center head">&nbsp;&nbsp;&nbsp;  Jul</th>
+<th class="text-center head">&nbsp;&nbsp;&nbsp;  Aug</th>
+<th class="text-center head">&nbsp;&nbsp;&nbsp;  Sep</th>
+<th class="text-center head">&nbsp;&nbsp;&nbsp;  Oct</th>
+<th class="text-center head">&nbsp;&nbsp;&nbsp;  Nov</th>
+<th class="text-center head">&nbsp;&nbsp;&nbsp;  Dec</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td class="text-center">&nbsp;&nbsp;&nbsp;Dept1</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  10</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  11</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  12</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  13</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  14</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  15</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp; 16</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  17</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  18</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  19</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  20</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  21</td>
+</tr>
+<tr class="row-odd"><td class="text-center">&nbsp;&nbsp;&nbsp;Dept2</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  20</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  21</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  22</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  23</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  24</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  25</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp; 26</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  27</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  28</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  29</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  30</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  31</td>
+</tr>
+<tr class="row-even"><td class="text-center">&nbsp;&nbsp;&nbsp;Dept3</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  30</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  31</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  32</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  33</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  34</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  35</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp; 36</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  37</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  38</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  39</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  40</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  41</td>
+</tr>
+<tr class="row-odd"><td class="text-center">&nbsp;&nbsp;&nbsp;Dept4</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  40</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  40</td>
+<td class="text-center">40</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  40</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  50</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  50</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp; 50</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  50</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp; 60</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  60</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  60</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  60</td>
+</tr>
+<tr class="row-even"><td class="text-center">&nbsp;&nbsp;&nbsp;Dept5</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  50</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  51</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  52</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  53</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  54</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  55</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp; 56</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  57</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  58</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  59</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  60</td>
+<td class="text-center">&nbsp;&nbsp;&nbsp;  61</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-Py notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on Fri Nov 6 11:27:09 2020</span>
+
+<span class="sd">@author: jgoudy</span>
+
+<span class="sd">This script demonstrates various ways to analyze and visualize data</span>
+<span class="sd">stored in a pandas DataFrame.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">Example1</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function analyzes and visualizes data in a pandas DataFrame.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Create a NumPy array with sample data.</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">41</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">]])</span>
+
+    <span class="c1"># Create a pandas DataFrame from the NumPy array.</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span>
+                      <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Dept1&#39;</span><span class="p">,</span> <span class="s1">&#39;Dept2&#39;</span><span class="p">,</span> <span class="s1">&#39;Dept3&#39;</span><span class="p">,</span> <span class="s1">&#39;Dept4&#39;</span><span class="p">,</span> <span class="s1">&#39;Dept5&#39;</span><span class="p">],</span>
+                      <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Jan&#39;</span><span class="p">,</span> <span class="s1">&#39;Feb&#39;</span><span class="p">,</span> <span class="s1">&#39;Mar&#39;</span><span class="p">,</span> <span class="s1">&#39;Apr&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;Jun&#39;</span><span class="p">,</span> <span class="s1">&#39;Jul&#39;</span><span class="p">,</span> 
+                               <span class="s1">&#39;Aug&#39;</span><span class="p">,</span> <span class="s1">&#39;Sep&#39;</span><span class="p">,</span> <span class="s1">&#39;Oct&#39;</span><span class="p">,</span> <span class="s1">&#39;Nov&#39;</span><span class="p">,</span> <span class="s1">&#39;Dec&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Print descriptive statistics of the DataFrame.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** df.describe ***&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Print the entire DataFrame.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** df ***&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Print the first 2 and last 2 rows of the DataFrame.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** df.head(2) ***&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** df.tail(2) ***&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Access specific columns.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** df[&#39;Mar&#39;] ***&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Mar&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Access specific columns and rows.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** df.loc[:,[&#39;Jan&#39;,&#39;Feb&#39;,&#39;Mar&#39;]] ***&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Jan&#39;</span><span class="p">,</span> <span class="s1">&#39;Feb&#39;</span><span class="p">,</span> <span class="s1">&#39;Mar&#39;</span><span class="p">]])</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Access specific row and columns.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Dept1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Jan&#39;</span><span class="p">,</span> <span class="s1">&#39;Feb&#39;</span><span class="p">,</span> <span class="s1">&#39;Mar&#39;</span><span class="p">]])</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Dept3&#39;</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Access multiple rows.</span>
+    <span class="nb">print</span><span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;Dept1&#39;</span><span class="p">,</span> <span class="s1">&#39;Dept3&#39;</span><span class="p">]]))</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Access specific element by position.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** select by position ***&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Modify element by position.</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">19</span>
+
+    <span class="c1"># Get the number of rows and columns.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Iterate through all elements and print them.</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Print the DataFrame transposed.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** Transposed DataFrame ***&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Verify the original DataFrame is unchanged.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** Original DataFrame ***&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Print the row and column indexes.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** Row indexes ***&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** Column indexes ***&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    
+    <span class="c1"># Start a new figure for plotting.</span>
+    <span class="c1"># plt.figure()</span>
+
+    <span class="c1"># Create a transposed DataFrame for easier bar graph plotting.</span>
+    <span class="n">dft</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c1"># Plot the bar graph from the transposed DataFrame.</span>
+    <span class="n">dft</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Add labels and title to the graph.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Units&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Graph 1&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Display the first graph.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Extract data for Department 1 from the transposed DataFrame.</span>
+    <span class="n">dft1</span> <span class="o">=</span> <span class="n">dft</span><span class="p">[</span><span class="s1">&#39;Dept1&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Plot a bar graph for Department 1 data.</span>
+    <span class="n">dft1</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+    <span class="c1"># Add labels and title to the graph.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Units&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Graph 2&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Display the second graph.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Extract data for Departments 1 and 2 from the transposed DataFrame.</span>
+    <span class="n">dft1</span> <span class="o">=</span> <span class="n">dft</span><span class="p">[</span><span class="s1">&#39;Dept1&#39;</span><span class="p">]</span>
+    <span class="n">dft2</span> <span class="o">=</span> <span class="n">dft</span><span class="p">[</span><span class="s1">&#39;Dept2&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Plot a bar graph for both Department 1 and 2 data.</span>
+    <span class="n">dft1</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+    <span class="n">dft2</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+    <span class="c1"># Add labels and title to the graph.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Units&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Graph 3&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Display the third graph.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Note: The following graphs have similar patterns with different data combinations.</span>
+
+    <span class="c1"># Extract data for Departments 1 and 3.</span>
+    <span class="n">dft1</span> <span class="o">=</span> <span class="n">dft</span><span class="p">[</span><span class="s1">&#39;Dept1&#39;</span><span class="p">]</span>
+    <span class="n">dft3</span> <span class="o">=</span> <span class="n">dft</span><span class="o">.</span><span class="n">Dept3</span>
+
+    <span class="c1"># Plot a bar graph for Department 1 with stacking and yellow color.</span>
+    <span class="n">dft1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Plot Department 2 without stacking.</span>
+    <span class="n">dft2</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+    <span class="c1"># Plot Department 3 with stacking and green color.</span>
+    <span class="n">dft3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Add labels and title to the graph.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Months&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Units&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Graph 4&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Display the sixth graph.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Additional graphs can be created following the same pattern </span>
+    <span class="c1"># with different data combinations and plot options.</span>
+
+    <span class="c1"># Close all open figures to avoid clutter.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+    <span class="c1"># This function serves as the entry point for the script.</span>
+    <span class="c1"># It calls the `Example1` function to analyze and visualize the data.</span>
+
+
+    <span class="c1"># Clear the terminal using platform-specific methods (may not work everywhere).</span>
+    <span class="c1"># _ = os.system(&#39;cls&#39;)</span>
+    <span class="c1"># ipx.get_ipython().magic(&#39;clear&#39;)</span>
+    <span class="c1"># ipx.get_ipython().magic(&#39;reset -f&#39;)</span>
+
+    <span class="c1"># Run the analysis and visualization function.</span>
+    <span class="n">Example1</span><span class="p">()</span>
+
+    <span class="c1"># end of program</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">bye</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Only run the `main` function if the script is executed directly.</span>
+    <span class="c1"># This prevents it from running when imported as a module.</span>
+    <span class="n">main</span><span class="p">()</span>
+
+    
+</pre></div>
+</div>
+</div>
+<div class="section" id="graphs">
+<h2>Graphs<a class="headerlink" href="#graphs" title="Permalink to this heading">¶</a></h2>
+<p><img alt="pandaplt_graph1" src="../_images/pandaplt_graph1-1702526208398-21-1702526211274-23.png" /></p>
+<p><img alt="pandaplt_graph2" src="../_images/pandaplt_graph2-1702526002333-5-1702526005250-7.png" /></p>
+<p><img alt="pandaplt_graph3" src="../_images/pandaplt_graph3-1702526067476-13.png" /></p>
+<p><img alt="pandaplt_graph4" src="../_images/pandaplt_graph4-1702526080756-15-1702526083483-17-1702526089042-19.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./pythonref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer-row" class="row">
+
+    <div class="col-md-12">
+        <span title="Built on 2023-12-13" class="pull-right">&copy; Copyright 2023 By James Goudy.
+        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 and the
+        <a href="https://pypi.org/project/sphinx-sizzle-theme/"
+
+           title="0.1.2/b995f3ff [2023-05-05T11:28:10]"
+
+        >Sizzle</a> theme.</span>
+    </div>
+
+  </div>
+</div>
+
+<div id="tooltips" class="hidden">
+</div>
+
+<script>
+$(document).ready(function() {
+  'use strict';
+  var $search = $('.search-query');
+
+  var $filter = $('#toc-filter-query');
+  var $toclist = $('.sidebar-toc > ul').find('li');
+
+  if ($toclist.length === 0) {
+    $toclist = $('.localtoc > ul').find('li');
+  }
+
+
+  var $nav = $('#nav');
+
+  //$('#whole-page').removeClass('hidden');
+  var nav_width = $nav.width();
+
+
+  var search_url = '../search.html';
+
+  function perform_search(e) {
+    var $elem;
+
+    if (e.type === 'keypress') {
+      $elem = $(e.target);
+    }
+    else if (e.type === 'click') {
+      $elem = $(e.target).parents('.input-group').find('input');
+    }
+    var q = $elem.val().trim();
+
+    if (q) {
+      var url = search_url + '?q=' + q + '&check_keywords=yes&area=default';
+
+      location.href = url;
+    }
+  }
+
+
+  function apply_filter() {
+    var s = $filter.val().trim().toLowerCase();
+
+    $toclist.find('a').removeClass('hidden');
+    $toclist.each(function() {
+      var $this = $(this);
+      var $link = $this.find('> a');
+      var t = $link.text().toLowerCase();
+      var show = t.indexOf(s) >= 0;
+
+      if (!show) {
+        $link.addClass('hidden');
+      }
+    });
+  }
+
+  $filter.on('keyup', function(e) {
+    apply_filter();
+  });
+
+
+
+  $search.on('keypress', function(e) {
+    if (e.which == 13) {
+      perform_search(e);
+    }
+  });
+  $search.parents('.input-group').find('.input-group-addon').on('click', perform_search);
+  $(document).on('click', '.summary .fa-caret-right', function(e) {
+    var $elem = $(e.target).parents('li');
+    var $next = $elem.next();
+    $elem.addClass('hidden');
+    $next.removeClass('hidden');
+  });
+  $(document).on('click', '.detail .fa-caret-down', function(e) {
+    var $elem = $(e.target).parents('li');
+    var $prev = $elem.prev();
+    $elem.addClass('hidden');
+    $prev.removeClass('hidden');
+  });
+
+  $('#content').on('click', function() {
+    $('#mnav').hide();
+  });
+
+  var counter = 0;
+  var timer = null;
+
+  function show_nav() {
+    $('#content').off('mousemove', track_mouse);
+    if (timer !== null) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    $nav.show();
+  }
+
+  function track_mouse(e) {
+    var x = e.clientX;
+
+    if (x < 15) {
+      ++counter;
+      if (timer === null) {
+        timer = setTimeout(show_nav, 2000);
+      }
+    }
+    else {
+      counter = 0;
+    }
+    if (counter >= 20) {
+      show_nav();
+    }
+  };
+
+  function hide_nav() {
+    $nav.hide();
+    counter = 0;
+    $('#content').on('mousemove', track_mouse);
+  }
+
+  $('.hidetoc').on('click', hide_nav);
+
+  $(document).on('keyup', function(e) {
+    if (e.ctrlKey) {
+      if (e.which == 37) {      // Ctrl+left arrow
+        hide_nav();
+      }
+      else if (e.which == 39) { // Ctrl+right arrow
+        show_nav();
+      }
+    }
+  });
+
+  $('.menu-toggle').on('click', function(e) {
+    $('#mnav').toggle();
+  });
+
+  function scroll_nav(frag) {
+    var sel = '#nav ' + (frag ? 'a[href="' + frag + '"]' : '.toctree-l1 a.current');
+
+    var $link = $(sel);
+
+    if ($link.length > 0) {
+      $link[0].scrollIntoView({block: 'center'});
+    }
+  }
+
+  // If the navigator is long, then the item we clicked on to get here might
+  // not be in view. Try to scroll it into the view - a slight delay is needed
+  // to get it to sync properly with other stuff going on (as the page has just
+  // loaded). Hence the setTimeout with a timeout of 0.
+
+  function do_scroll() {
+    scroll_nav(window.location.hash);
+  }
+
+  setTimeout(do_scroll, 0);
+
+  function adjust_size() {
+    // we need to set the height explicitly so that scrolling regions in the
+    // content area work properly.
+    var h = $('#page-content').height();
+
+    $('#nav, #content').height(h);
+    if ($('#nav').is(':visible')) {
+      $('#mnav').hide();
+    }
+  }
+
+  adjust_size();
+
+  $(window).on('resize', adjust_size);
+
+  function focus_content() {
+    $('#content').focus();  // so that keyboard can be used to scroll, etc.
+  }
+
+  setTimeout(focus_content, 150);
+
+  var sizzle = $(document).data('sizzle');
+
+  function make_tooltip(id, h, b) {
+    var $e = $('<div>').attr('id', id);
+    var $b = $('<div>').addClass('tc-body').html(b);
+
+    if (h) {
+      var $h = $('<div>').addClass('tc-heading').html(h);
+      $e.append($h);
+    }
+    $e.append($b);
+    return $e;
+  }
+
+  var default_tt_options = {
+    theme: ['tooltipster-light', 'tooltipster-light-customized'],
+    interactive: true,
+    maxWidth: 600,
+    contentCloning: true
+  };
+
+  function activate_tooltips() {
+    var $tt = $('.tt');
+
+    //console.log('tt links:', $tt.length);
+    $tt.tooltipster(default_tt_options);
+  }
+
+
+
+  function add_glossary_tooltips() {
+    var links = $('a');  // can qualify with .reference.internal
+    var glinks = {};
+    var pat = /(.*)\.html#(term-.*)$/;
+    var found = false;  // links in this document
+
+    $.each(links, function(i, link) {
+        var $link = $(link);
+        var href = $link.attr('href');
+        var m = href.match(pat);
+
+        if (m) {
+          var s = m[1].replace(/^(\.\.\/)+/, '');
+
+          if (s === sizzle.app_data.glossary.document) {
+            var k = m[2];
+
+            if (k in glinks) {
+              glinks[k].push($link);
+            }
+            else {
+              glinks[k] = [$link];
+            }
+            found = true;
+          }
+        }
+    });
+    if (found) {
+      var $t = $('#tooltips');
+      var data = sizzle.app_data.glossary.terms;
+
+      $.each(glinks, function(k, v) {
+        var d = data[k];
+
+        if (d) {  // as a sanity check
+          var s = 'tc-'+ k;
+          var $e = make_tooltip(s, d.term, d.defn);
+          $t.append($e);
+
+          $.each(v, function(i, link) {
+            link.addClass('tt').attr('data-tooltip-content', '#' + s);
+          });
+        }
+      });
+    }
+  }
+
+  if (sizzle.app_data && sizzle.app_data.glossary &&
+      sizzle.app_data.glossary.document) {
+    add_glossary_tooltips();
+  }
+
+
+
+
+  function add_custom_tooltips() {
+    if (!sizzle.app_data) {
+      return;
+    }
+
+    var info_tips = sizzle.app_data.custom_data['info-tips'] || {};
+    var hover_tips = sizzle.app_data.custom_data['hovers'] || {};
+
+    if ($.isEmptyObject(info_tips) && $.isEmptyObject(hover_tips)) {
+      return;
+    }
+
+    var tt_options = $.extend({contentAsHTML: true}, default_tt_options);
+
+    if (!$.isEmptyObject(info_tips)) {
+      $('.tc-info').each(function() {
+        var $elem = $(this).prev();
+        var classes = $elem.attr('class');
+        var m = /\btci-([\S]+)/.exec(classes);
+
+        if (m !== null) {
+          var key = m[1];
+
+          if (key in info_tips) {
+            var v = info_tips[key];
+            var tt = $elem.tooltipster(tt_options).tooltipster('content', v);
+          }
+        }
+      });
+    }
+    if (!$.isEmptyObject(hover_tips)) {
+      var current_origin, current_instance;
+
+      var h_options = {
+        functionBefore: function(instance, helper) {
+          current_instance = instance;
+          current_origin = helper.origin;
+          //console.log('before', current_instance, current_origin);
+        },
+        functionAfter: function(instance, helper) {
+          current_instance = null;
+          current_origin = null;
+          //console.log('after', current_instance, current_origin);
+        }
+      };
+
+      var ht_options = $.extend(h_options, tt_options);
+      $('.hover').each(function() {
+        var $e = $(this);
+        var ref = $e.data('hoverref');
+
+        if (ref) {
+          var tip = hover_tips[ref];
+
+          if (tip) {
+            $e.tooltipster(ht_options).tooltipster('content', tip);
+            //if (/encrypt_and_sign/.test(ref)) { console.log(tip); }
+          }
+        }
+      });
+/*
+      $(document).on('click', '.hovertip a.hoverlink', function(e) {
+        if (!sizzle.app_data) {
+          return;
+        }
+        var $this = $(this);
+        var $content = $this.parent('.tooltipster-content');
+        var ref = $this.data('href');
+        var hover_tips = sizzle.app_data.custom_data['hovers'] || {};
+        var tip = hover_tips[ref];
+
+        if (tip && current_instance) {
+          current_instance.content(tip);
+        }
+
+      });
+ */
+    }
+  }
+
+  add_custom_tooltips();
+
+  setTimeout(activate_tooltips, 1000);
+
+
+  // Clipboard copy for code blocks with captions
+
+  $('.code-block-caption').each(function() {
+    var $cap = $(this);
+    var $btn = $('<span class="clip-copy"><span class="copied hidden">Copied!</span><i class="fa fa-clipboard" title="Copy contents"></i></span>');
+    var $code = $cap.parent().find('.highlight');
+
+    $cap.append($btn);
+    $btn.find('.fa-clipboard').data('clip-text', $code.text());
+  });
+
+  var clipboard = new ClipboardJS('.code-block-caption .fa-clipboard', {
+    'text': function(trigger) {
+      return $(trigger).data('clip-text');
+    }
+  });
+
+  clipboard.on('success', function(e) {
+    var $copied = $(e.trigger).prev();
+
+    $copied.removeClass('hidden');
+
+    setTimeout(function() {$copied.addClass('hidden'); }, 1000);
+  });
+
+  if (sizzle.on_load) {
+    sizzle.on_load.forEach(function(f) {
+      f();
+    });
+  }
+});
+</script>
+</body>
+</html>
