@@ -1,5 +1,10 @@
 # Basics - Getting Started
 
+
+```{index} single: references
+```
+
+
 ## Concepts
 
 * Scripted language - does not compile to machine code
@@ -9,9 +14,21 @@
 
 
 
-## Explain comments
+## Expanded Comments
 
-**Triple quotes**  part of the program's documentation system
+**Triple quotes**  part of the program's documentation.  They allow you to have multi-lined comments
+```{index} single: Expanded Comments
+```
+
+````python
+```
+This is comment line 1
+This is comment line 2
+This is comment line 3
+etc
+```
+print("Comments are an essential part of programming")
+````
 
 
 
@@ -23,7 +40,8 @@
 - ​    others....
 
 Run in interactive mode
-
+```{index} single: Editors
+```
 
 
 ## Coding Format
@@ -34,6 +52,8 @@ Escape characters \n and \t
 
 Two or more physical lines may be joined 
 into logical lines using backslash characters (\)
+```{index} single: Coding Format
+```
 
 ## Variable names
 
@@ -41,6 +61,8 @@ into logical lines using backslash characters (\)
 - may contain the underscore
 - may contain numbers
 - case sensitive
+```{index} single: Variable Names
+```
 
 ## Lecture Code 
 

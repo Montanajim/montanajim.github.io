@@ -4,8 +4,6 @@
 
 ## Overview
 
-[toc]
-
 ---
 
 ## Definition
