@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
 <title>Algorithms - Binary Search Tree - Intro</title>
@@ -21,7 +22,7 @@
     <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
     <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js" integrity="sha512-2V49R8ndaagCOnwmj8QnbT1Gz/rie17UouD9Re5WxbzRVUGoftCu5IuqqtAM9+UC3fwfHCSJR1hkzNQh/2wdtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -39,23 +40,19 @@
       };
       $(document).data('sizzle', {on_load: []});
     </script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script src="../app-data.js"></script>
 <link rel="index" title="Index" href="../genindex.html" />
 <link rel="search" title="Search" href="../search.html" />
@@ -204,33 +201,33 @@ const thebe_selector_output = ".output, .cell_output"
           </div>
           <div class="body">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="binary-search-tree-intro">
-<h1>Binary Search Tree - Intro<a class="headerlink" href="#binary-search-tree-intro" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="background-information">
-<h2>Background Information<a class="headerlink" href="#background-information" title="Permalink to this heading">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="binary-search-tree-intro">
+<h1>Binary Search Tree - Intro<a class="headerlink" href="#binary-search-tree-intro" title="Link to this heading">¶</a></h1>
+<section id="background-information">
+<h2>Background Information<a class="headerlink" href="#background-information" title="Link to this heading">¶</a></h2>
 <p>A binary search tree (BST) is a special type of binary tree data structure used to efficiently store and access sorted data. It’s like a regular tree, but with additional rules that keep everything neatly organized:</p>
 <p><strong>Key features:</strong></p>
 <ul class="simple">
-<li><strong>Ordering:</strong> Each node in the tree has a value (key), and the key of a node is <strong>always greater than</strong> all the keys in its <strong>left subtree</strong> and <strong>less than</strong> all the keys in its <strong>right subtree</strong>. This creates a sorted order throughout the tree.</li>
-<li><strong>Efficient searching:</strong> Because of this ordering, you can very quickly search for specific values in the tree. Imagine searching a phone book - you wouldn’t start at the very beginning or end, but somewhere in the middle based on the last name. Similarly, in a BST, you can efficiently move left or right depending on the value you’re searching for, narrowing down the possibilities with each comparison.</li>
-<li><strong>Dynamic insertions and deletions:</strong> You can easily add new values (insert) or remove existing ones (delete) from the tree while maintaining the sorted order. The process involves comparing the new value with existing nodes and finding its appropriate place based on the ordering rule.</li>
+<li><p><strong>Ordering:</strong> Each node in the tree has a value (key), and the key of a node is <strong>always greater than</strong> all the keys in its <strong>left subtree</strong> and <strong>less than</strong> all the keys in its <strong>right subtree</strong>. This creates a sorted order throughout the tree.</p></li>
+<li><p><strong>Efficient searching:</strong> Because of this ordering, you can very quickly search for specific values in the tree. Imagine searching a phone book - you wouldn’t start at the very beginning or end, but somewhere in the middle based on the last name. Similarly, in a BST, you can efficiently move left or right depending on the value you’re searching for, narrowing down the possibilities with each comparison.</p></li>
+<li><p><strong>Dynamic insertions and deletions:</strong> You can easily add new values (insert) or remove existing ones (delete) from the tree while maintaining the sorted order. The process involves comparing the new value with existing nodes and finding its appropriate place based on the ordering rule.</p></li>
 </ul>
 <p><strong>Benefits of using BSTs:</strong></p>
 <ul class="simple">
-<li><strong>Fast search:</strong> Searching for elements in a balanced BST takes <strong>logarithmic time</strong> on average, which is significantly faster than searching an unsorted list.</li>
-<li><strong>Ordered access:</strong> You can easily traverse the tree in sorted order (e.g., for printing all elements in ascending order).</li>
-<li><strong>Efficient insertions and deletions:</strong> These operations can also be done in logarithmic time in balanced BSTs.</li>
+<li><p><strong>Fast search:</strong> Searching for elements in a balanced BST takes <strong>logarithmic time</strong> on average, which is significantly faster than searching an unsorted list.</p></li>
+<li><p><strong>Ordered access:</strong> You can easily traverse the tree in sorted order (e.g., for printing all elements in ascending order).</p></li>
+<li><p><strong>Efficient insertions and deletions:</strong> These operations can also be done in logarithmic time in balanced BSTs.</p></li>
 </ul>
 <p><strong>However, BSTs also have some drawbacks:</strong></p>
 <ul class="simple">
-<li><strong>Performance depends on balance:</strong> The efficiency of BST operations relies heavily on the tree’s balance. An unbalanced tree can perform much worse than a balanced one.</li>
-<li><strong>Not self-balancing:</strong> By default, BSTs are not self-balancing, meaning insertions and deletions can sometimes lead to imbalances. Special techniques are needed to maintain balance and ensure optimal performance.</li>
+<li><p><strong>Performance depends on balance:</strong> The efficiency of BST operations relies heavily on the tree’s balance. An unbalanced tree can perform much worse than a balanced one.</p></li>
+<li><p><strong>Not self-balancing:</strong> By default, BSTs are not self-balancing, meaning insertions and deletions can sometimes lead to imbalances. Special techniques are needed to maintain balance and ensure optimal performance.</p></li>
 </ul>
 <p>Overall, binary search trees are a powerful and versatile data structure for storing and managing sorted data efficiently. They offer fast search, insertion, and deletion operations, making them suitable for various applications like symbol tables, priority queues, and sorting algorithms.</p>
-</div>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -261,10 +258,10 @@ const thebe_selector_output = ".output, .cell_output"
 
     <div class="col-md-12">
         <span title="Built on 2024-02-07" class="pull-right">&copy; Copyright 2024.
-        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 and the
+        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6 and the
         <a href="https://pypi.org/project/sphinx-sizzle-theme/"
 
-           title="0.1.2/b995f3ff [2023-05-05T11:28:10]"
+           title="0.1.3/579ed3af [2023-08-31T22:56:32]"
 
         >Sizzle</a> theme.</span>
     </div>

@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
 <title>Algorithms - AVL Binary Search Tree</title>
@@ -21,7 +22,7 @@
     <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
     <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js" integrity="sha512-2V49R8ndaagCOnwmj8QnbT1Gz/rie17UouD9Re5WxbzRVUGoftCu5IuqqtAM9+UC3fwfHCSJR1hkzNQh/2wdtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -39,23 +40,19 @@
       };
       $(document).data('sizzle', {on_load: []});
     </script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script src="../app-data.js"></script>
 <link rel="index" title="Index" href="../genindex.html" />
 <link rel="search" title="Search" href="../search.html" />
@@ -204,83 +201,83 @@ const thebe_selector_output = ".output, .cell_output"
           </div>
           <div class="body">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="avl-binary-search-tree">
-<h1>AVL Binary Search Tree<a class="headerlink" href="#avl-binary-search-tree" title="Permalink to this heading">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="avl-binary-search-tree">
+<h1>AVL Binary Search Tree<a class="headerlink" href="#avl-binary-search-tree" title="Link to this heading">¶</a></h1>
 <p>The AVL binary search tree is named after its inventors, <em>Georgy Adelson-Velsky</em> and <em>Evgenii Landis</em>. Their names are combined to form the acronym “AVL”. They introduced the data structure in their 1962 paper “An algorithm for the organization of information”.</p>
 <p><strong>Key Concepts:</strong></p>
 <ul>
-<li><p class="first"><strong>Self-balancing Binary Search Tree (BST):</strong> A specialized BST that maintains a height difference of at most 1 between its left and right subtrees for every node. This ensures efficient search, insertion, and deletion operations with a time complexity of O(log n).</p>
-</li>
-<li><p class="first"><strong>Balance Factor:</strong> The difference between the heights of a node’s left and right subtrees (left height - right height). It’s used to determine if a node is imbalanced and requires rebalancing.</p>
-</li>
-<li><p class="first"><strong>Tree Rotations:</strong></p>
+<li><p><strong>Self-balancing Binary Search Tree (BST):</strong> A specialized BST that maintains a height difference of at most 1 between its left and right subtrees for every node. This ensures efficient search, insertion, and deletion operations with a time complexity of O(log n).</p></li>
+<li><p><strong>Balance Factor:</strong> The difference between the heights of a node’s left and right subtrees (left height - right height). It’s used to determine if a node is imbalanced and requires rebalancing.</p></li>
+<li><p><strong>Tree Rotations:</strong></p>
 <p>Operations used to restore balance in an AVL tree after insertions or deletions.</p>
 <p>There are four types:</p>
 <ul class="simple">
-<li><strong>Left Rotation:</strong> Pivots a node to the left, making its right child the new root.</li>
-<li><strong>Right Rotation:</strong> Pivots a node to the right, making its left child the new root.</li>
-<li><strong>Left-Right Rotation:</strong> A left rotation followed by a right rotation.</li>
-<li><strong>Right-Left Rotation:</strong> A right rotation followed by a left rotation.</li>
+<li><p><strong>Left Rotation:</strong> Pivots a node to the left, making its right child the new root.</p></li>
+<li><p><strong>Right Rotation:</strong> Pivots a node to the right, making its left child the new root.</p></li>
+<li><p><strong>Left-Right Rotation:</strong> A left rotation followed by a right rotation.</p></li>
+<li><p><strong>Right-Left Rotation:</strong> A right rotation followed by a left rotation.</p></li>
 </ul>
 </li>
 </ul>
 <p><strong>Key Properties:</strong></p>
 <ul class="simple">
-<li><strong>Height Balance:</strong> The height difference between subtrees is always -1, 0, or 1.</li>
-<li><strong>Average Case Time Complexity:</strong> O(log n) for search, insertion, and deletion.</li>
-<li><strong>Worst Case Time Complexity:</strong> O(log n) for search, insertion, and deletion (due to rebalancing).</li>
+<li><p><strong>Height Balance:</strong> The height difference between subtrees is always -1, 0, or 1.</p></li>
+<li><p><strong>Average Case Time Complexity:</strong> O(log n) for search, insertion, and deletion.</p></li>
+<li><p><strong>Worst Case Time Complexity:</strong> O(log n) for search, insertion, and deletion (due to rebalancing).</p></li>
 </ul>
 <p><strong>Advantages:</strong></p>
 <ul class="simple">
-<li><strong>Fast operations:</strong> Efficient for search, insertion, and deletion due to the balanced structure.</li>
-<li><strong>Guaranteed logarithmic time complexity:</strong> Ensures predictable performance even in worst-case scenarios.</li>
+<li><p><strong>Fast operations:</strong> Efficient for search, insertion, and deletion due to the balanced structure.</p></li>
+<li><p><strong>Guaranteed logarithmic time complexity:</strong> Ensures predictable performance even in worst-case scenarios.</p></li>
 </ul>
 <p><strong>Disadvantages:</strong></p>
 <ul class="simple">
-<li><strong>Rebalancing overhead:</strong> Rotations can add some overhead to insertions and deletions, making them slightly slower than simple BSTs in some cases.</li>
-<li><strong>Implementation complexity:</strong> More complex to implement than simple BSTs due to the rebalancing logic.</li>
+<li><p><strong>Rebalancing overhead:</strong> Rotations can add some overhead to insertions and deletions, making them slightly slower than simple BSTs in some cases.</p></li>
+<li><p><strong>Implementation complexity:</strong> More complex to implement than simple BSTs due to the rebalancing logic.</p></li>
 </ul>
 <p><strong>Common Use Cases:</strong></p>
 <ul class="simple">
-<li>Database applications</li>
-<li>File systems</li>
-<li>Network routing</li>
-<li>Memory management</li>
-<li>Caching algorithms</li>
+<li><p>Database applications</p></li>
+<li><p>File systems</p></li>
+<li><p>Network routing</p></li>
+<li><p>Memory management</p></li>
+<li><p>Caching algorithms</p></li>
 </ul>
 <p><strong>Additional Notes:</strong></p>
 <ul class="simple">
-<li>AVL trees are often compared to Red-Black trees, another self-balancing BST. While AVL trees maintain stricter balance, Red-Black trees have slightly faster insertion and deletion in some cases.</li>
+<li><p>AVL trees are often compared to Red-Black trees, another self-balancing BST. While AVL trees maintain stricter balance, Red-Black trees have slightly faster insertion and deletion in some cases.</p></li>
 </ul>
 <p><strong>Left Tree Rotations</strong></p>
 <ul class="simple">
-<li>To restore balance in an AVL tree when a node’s <strong>balance factor</strong> becomes <strong>-2</strong> (meaning its right subtree is two levels taller than its left subtree).</li>
-<li>This imbalance usually occurs after an insertion in the right subtree of the right child.</li>
+<li><p>To restore balance in an AVL tree when a node’s <strong>balance factor</strong> becomes <strong>-2</strong> (meaning its right subtree is two levels taller than its left subtree).</p></li>
+<li><p>This imbalance usually occurs after an insertion in the right subtree of the right child.</p></li>
 </ul>
 <p><strong>Steps:</strong></p>
 <ol class="arabic simple">
-<li><strong>Identify Imbalance:</strong> Find the imbalanced node (balance factor -2).</li>
-<li><strong>Pivot Node:</strong> The imbalanced node becomes the pivot point for the rotation.</li>
-<li><strong>New Subtree:</strong> The pivot node’s right child becomes the new root of the subtree.</li>
-<li>Link Adjustments:<ul>
-<li>The pivot node’s right child’s left subtree becomes the pivot node’s new right subtree.</li>
-<li>The parent of the pivot node (if any) is updated to point to the new root.</li>
+<li><p><strong>Identify Imbalance:</strong> Find the imbalanced node (balance factor -2).</p></li>
+<li><p><strong>Pivot Node:</strong> The imbalanced node becomes the pivot point for the rotation.</p></li>
+<li><p><strong>New Subtree:</strong> The pivot node’s right child becomes the new root of the subtree.</p></li>
+<li><p>Link Adjustments:</p>
+<ul class="simple">
+<li><p>The pivot node’s right child’s left subtree becomes the pivot node’s new right subtree.</p></li>
+<li><p>The parent of the pivot node (if any) is updated to point to the new root.</p></li>
 </ul>
 </li>
 </ol>
 <p><strong>Right Tree Rotations</strong></p>
 <ul class="simple">
-<li>To restore balance in an AVL tree when a node’s <strong>balance factor</strong> becomes <strong>+2</strong> (meaning its left subtree is two levels taller than its right subtree).</li>
-<li>This imbalance usually occurs after an insertion in the left subtree of the left child.</li>
+<li><p>To restore balance in an AVL tree when a node’s <strong>balance factor</strong> becomes <strong>+2</strong> (meaning its left subtree is two levels taller than its right subtree).</p></li>
+<li><p>This imbalance usually occurs after an insertion in the left subtree of the left child.</p></li>
 </ul>
 <p><strong>Steps:</strong></p>
 <ol class="arabic simple">
-<li><strong>Identify Imbalance:</strong> Find the imbalanced node (balance factor +2).</li>
-<li><strong>Pivot Node:</strong> The imbalanced node becomes the pivot point for the rotation.</li>
-<li><strong>New Subtree:</strong> The pivot node’s left child becomes the new root of the subtree.</li>
-<li>Link Adjustments:<ul>
-<li>The pivot node’s left child’s right subtree becomes the pivot node’s new left subtree.</li>
-<li>The parent of the pivot node (if any) is updated to point to the new root.</li>
+<li><p><strong>Identify Imbalance:</strong> Find the imbalanced node (balance factor +2).</p></li>
+<li><p><strong>Pivot Node:</strong> The imbalanced node becomes the pivot point for the rotation.</p></li>
+<li><p><strong>New Subtree:</strong> The pivot node’s left child becomes the new root of the subtree.</p></li>
+<li><p>Link Adjustments:</p>
+<ul class="simple">
+<li><p>The pivot node’s left child’s right subtree becomes the pivot node’s new left subtree.</p></li>
+<li><p>The parent of the pivot node (if any) is updated to point to the new root.</p></li>
 </ul>
 </li>
 </ol>
@@ -803,7 +800,7 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <hr class="docutils" />
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -834,10 +831,10 @@ const thebe_selector_output = ".output, .cell_output"
 
     <div class="col-md-12">
         <span title="Built on 2024-02-07" class="pull-right">&copy; Copyright 2024.
-        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 and the
+        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6 and the
         <a href="https://pypi.org/project/sphinx-sizzle-theme/"
 
-           title="0.1.2/b995f3ff [2023-05-05T11:28:10]"
+           title="0.1.3/579ed3af [2023-08-31T22:56:32]"
 
         >Sizzle</a> theme.</span>
     </div>

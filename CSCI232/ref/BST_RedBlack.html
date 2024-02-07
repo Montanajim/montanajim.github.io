@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
 <title>Algorithms - Red Black Tree</title>
@@ -21,7 +22,7 @@
     <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
     <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js" integrity="sha512-2V49R8ndaagCOnwmj8QnbT1Gz/rie17UouD9Re5WxbzRVUGoftCu5IuqqtAM9+UC3fwfHCSJR1hkzNQh/2wdtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -39,23 +40,19 @@
       };
       $(document).data('sizzle', {on_load: []});
     </script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script src="../app-data.js"></script>
 <link rel="index" title="Index" href="../genindex.html" />
 <link rel="search" title="Search" href="../search.html" />
@@ -204,105 +201,120 @@ const thebe_selector_output = ".output, .cell_output"
           </div>
           <div class="body">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="red-black-tree">
-<h1>Red Black Tree<a class="headerlink" href="#red-black-tree" title="Permalink to this heading">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="red-black-tree">
+<h1>Red Black Tree<a class="headerlink" href="#red-black-tree" title="Link to this heading">¶</a></h1>
 <p>A <strong>Red-Black Tree</strong> is a type of <strong>self-balancing binary search tree</strong> in computer science. Let’s delve into its fascinating properties:</p>
 <ol class="arabic simple">
-<li><strong>Structure and Color</strong>:<ul>
-<li>Each node in a Red-Black Tree has an extra bit that represents its color (either <strong>red</strong> or <strong>black</strong>).</li>
-<li>These color bits are used to ensure that the tree remains approximately balanced during insertions and deletions.</li>
-<li>The tree’s structure guarantees that operations like searching, insertion, and deletion complete within a known time.</li>
+<li><p><strong>Structure and Color</strong>:</p>
+<ul class="simple">
+<li><p>Each node in a Red-Black Tree has an extra bit that represents its color (either <strong>red</strong> or <strong>black</strong>).</p></li>
+<li><p>These color bits are used to ensure that the tree remains approximately balanced during insertions and deletions.</p></li>
+<li><p>The tree’s structure guarantees that operations like searching, insertion, and deletion complete within a known time.</p></li>
 </ul>
 </li>
-<li><strong>Properties of Red-Black Trees</strong>:<ul>
-<li><strong>Root Property</strong>: The root node is always black.</li>
-<li><strong>External Property</strong>: Every leaf (which is a NULL child of a node) is black.</li>
-<li><strong>Internal Property</strong>: The children of a red node are black. Thus, a red node’s possible parent is a black node.</li>
-<li><strong>Depth Property</strong>: All leaves have the same black depth.</li>
-<li><strong>Path Property</strong>: Every simple path from the root to a descendant leaf node contains the same number of black nodes.</li>
+<li><p><strong>Properties of Red-Black Trees</strong>:</p>
+<ul class="simple">
+<li><p><strong>Root Property</strong>: The root node is always black.</p></li>
+<li><p><strong>External Property</strong>: Every leaf (which is a NULL child of a node) is black.</p></li>
+<li><p><strong>Internal Property</strong>: The children of a red node are black. Thus, a red node’s possible parent is a black node.</p></li>
+<li><p><strong>Depth Property</strong>: All leaves have the same black depth.</p></li>
+<li><p><strong>Path Property</strong>: Every simple path from the root to a descendant leaf node contains the same number of black nodes.</p></li>
 </ul>
 </li>
-<li><strong>Why Red-Black Trees?</strong>:<ul>
-<li>Most Binary Search Tree (BST) operations (e.g., search, max, min, insert, delete) take O(h) time, where h is the height of the BST.</li>
-<li>If we ensure that the tree’s height remains O(log n) after every insertion and deletion, we guarantee an upper bound of O(log n) for all these operations.</li>
-<li>The height of a Red-Black tree is always O(log n), where n is the number of nodes in the tree.</li>
+<li><p><strong>Why Red-Black Trees?</strong>:</p>
+<ul class="simple">
+<li><p>Most Binary Search Tree (BST) operations (e.g., search, max, min, insert, delete) take O(h) time, where h is the height of the BST.</p></li>
+<li><p>If we ensure that the tree’s height remains O(log n) after every insertion and deletion, we guarantee an upper bound of O(log n) for all these operations.</p></li>
+<li><p>The height of a Red-Black tree is always O(log n), where n is the number of nodes in the tree.</p></li>
 </ul>
 </li>
 </ol>
-<div class="section" id="insertion-process">
-<h2>Insertion Process<a class="headerlink" href="#insertion-process" title="Permalink to this heading">¶</a></h2>
+<section id="insertion-process">
+<h2>Insertion Process<a class="headerlink" href="#insertion-process" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
-<li><strong>Initial Setup</strong>:<ul>
-<li>When inserting a new node, it is initially colored <strong>red</strong>.</li>
-<li>If the tree is empty, the new node becomes the <strong>root</strong> (colored <strong>black</strong>).</li>
-<li>Otherwise, we insert the node as a <strong>leaf</strong> (colored <strong>red</strong>).</li>
+<li><p><strong>Initial Setup</strong>:</p>
+<ul class="simple">
+<li><p>When inserting a new node, it is initially colored <strong>red</strong>.</p></li>
+<li><p>If the tree is empty, the new node becomes the <strong>root</strong> (colored <strong>black</strong>).</p></li>
+<li><p>Otherwise, we insert the node as a <strong>leaf</strong> (colored <strong>red</strong>).</p></li>
 </ul>
 </li>
-<li><strong>Insertion Algorithm</strong>:<ul>
-<li>Perform a standard <strong>BST insertion</strong> (similar to a regular binary search tree).</li>
-<li>Color the newly inserted nodes as <strong>RED</strong>.</li>
-<li>If the newly inserted node is the <strong>root</strong>, change its color to <strong>BLACK</strong> (increasing the black height of the tree by 1).</li>
+<li><p><strong>Insertion Algorithm</strong>:</p>
+<ul class="simple">
+<li><p>Perform a standard <strong>BST insertion</strong> (similar to a regular binary search tree).</p></li>
+<li><p>Color the newly inserted nodes as <strong>RED</strong>.</p></li>
+<li><p>If the newly inserted node is the <strong>root</strong>, change its color to <strong>BLACK</strong> (increasing the black height of the tree by 1).</p></li>
 </ul>
 </li>
-<li><strong>Balancing Steps</strong>:<ul>
-<li>If the parent of the newly inserted node is not BLACK and the node is not the root :<ul>
-<li>Case 1: If the uncle of the node is RED :<ul>
-<li>Change the color of the parent and uncle to <strong>BLACK</strong>.</li>
-<li>Change the color of the <strong>grandparent</strong> to <strong>RED</strong>.</li>
-<li>Repeat steps 2 and 3 for the new <strong>grandparent</strong>.</li>
+<li><p><strong>Balancing Steps</strong>:</p>
+<ul class="simple">
+<li><p>If the parent of the newly inserted node is not BLACK and the node is not the root :</p>
+<ul>
+<li><p>Case 1: If the uncle of the node is RED :</p>
+<ul>
+<li><p>Change the color of the parent and uncle to <strong>BLACK</strong>.</p></li>
+<li><p>Change the color of the <strong>grandparent</strong> to <strong>RED</strong>.</p></li>
+<li><p>Repeat steps 2 and 3 for the new <strong>grandparent</strong>.</p></li>
 </ul>
 </li>
-<li>Case 2: If the uncle is BLACK :<ul>
-<li>There are four possible configurations (similar to AVL Tree rotations):<ul>
-<li><strong>Left Left Case (LL rotation)</strong></li>
-<li><strong>Left Right Case (LR rotation)</strong></li>
-<li><strong>Right Right Case (RR rotation)</strong></li>
-<li><strong>Right Left Case (RL rotation)</strong></li>
+<li><p>Case 2: If the uncle is BLACK :</p>
+<ul>
+<li><p>There are four possible configurations (similar to AVL Tree rotations):</p>
+<ul>
+<li><p><strong>Left Left Case (LL rotation)</strong></p></li>
+<li><p><strong>Left Right Case (LR rotation)</strong></p></li>
+<li><p><strong>Right Right Case (RR rotation)</strong></p></li>
+<li><p><strong>Right Left Case (RL rotation)</strong></p></li>
 </ul>
 </li>
-<li>After these rotations, re-color according to the rotation case.</li>
+<li><p>After these rotations, re-color according to the rotation case.</p></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>Re-coloring after Rotations</strong>:<ul>
-<li>For <strong>Left Left Case</strong> and <strong>Right Right Case</strong>, swap colors of <strong>grandparent</strong> and <strong>parent</strong> after rotations.</li>
-<li>For <strong>Left Right Case</strong> and <strong>Right Left Case</strong>, swap colors of <strong>grandparent</strong> and <strong>inserted node</strong> after rotations.</li>
+<li><p><strong>Re-coloring after Rotations</strong>:</p>
+<ul class="simple">
+<li><p>For <strong>Left Left Case</strong> and <strong>Right Right Case</strong>, swap colors of <strong>grandparent</strong> and <strong>parent</strong> after rotations.</p></li>
+<li><p>For <strong>Left Right Case</strong> and <strong>Right Left Case</strong>, swap colors of <strong>grandparent</strong> and <strong>inserted node</strong> after rotations.</p></li>
 </ul>
 </li>
 </ol>
-</div>
-<div class="section" id="deletion-process">
-<h2>Deletion Process<a class="headerlink" href="#deletion-process" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="deletion-process">
+<h2>Deletion Process<a class="headerlink" href="#deletion-process" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
-<li><strong>Initial Setup</strong>:<ul>
-<li>When deleting a node, it can fall into three cases:<ul>
-<li>The node has <strong>no children</strong>: Simply remove it and update the parent node.</li>
-<li>The node has <strong>one child</strong>: Replace the node with its child.</li>
-<li>The node has <strong>two children</strong>: Replace the node with its <strong>in-order successor</strong>, which is the leftmost node in the right subtree.</li>
+<li><p><strong>Initial Setup</strong>:</p>
+<ul class="simple">
+<li><p>When deleting a node, it can fall into three cases:</p>
+<ul>
+<li><p>The node has <strong>no children</strong>: Simply remove it and update the parent node.</p></li>
+<li><p>The node has <strong>one child</strong>: Replace the node with its child.</p></li>
+<li><p>The node has <strong>two children</strong>: Replace the node with its <strong>in-order successor</strong>, which is the leftmost node in the right subtree.</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>Deletion Algorithm</strong>:<ul>
-<li>Perform a standard <strong>BST delete</strong> operation (similar to regular binary search tree deletion).</li>
-<li>Color the newly inserted nodes as <strong>RED</strong>.</li>
-<li>If the deleted node was <strong>BLACK</strong>, we introduce the concept of <strong>double black</strong> (marking the replacement child as double black).</li>
+<li><p><strong>Deletion Algorithm</strong>:</p>
+<ul class="simple">
+<li><p>Perform a standard <strong>BST delete</strong> operation (similar to regular binary search tree deletion).</p></li>
+<li><p>Color the newly inserted nodes as <strong>RED</strong>.</p></li>
+<li><p>If the deleted node was <strong>BLACK</strong>, we introduce the concept of <strong>double black</strong> (marking the replacement child as double black).</p></li>
 </ul>
 </li>
-<li><strong>Balancing Steps</strong>:<ul>
-<li>After deletion, the Red-Black Tree properties might be violated.</li>
-<li>To restore these properties, perform color changes and rotations similar to those during insertion, but with different conditions.</li>
-<li>The main goal is to convert the <strong>double black</strong> node back to a <strong>single black</strong> node.</li>
-<li>The cases for restructuring and recoloring are determined by the color of the <strong>sibling</strong> of the double black node.</li>
+<li><p><strong>Balancing Steps</strong>:</p>
+<ul class="simple">
+<li><p>After deletion, the Red-Black Tree properties might be violated.</p></li>
+<li><p>To restore these properties, perform color changes and rotations similar to those during insertion, but with different conditions.</p></li>
+<li><p>The main goal is to convert the <strong>double black</strong> node back to a <strong>single black</strong> node.</p></li>
+<li><p>The cases for restructuring and recoloring are determined by the color of the <strong>sibling</strong> of the double black node.</p></li>
 </ul>
 </li>
 </ol>
-</div>
-<div class="section" id="red-black-class">
-<h2>RED BLACK Class<a class="headerlink" href="#red-black-class" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="red-black-class">
+<h2>RED BLACK Class<a class="headerlink" href="#red-black-class" title="Link to this heading">¶</a></h2>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * To change this license header, choose License Headers in Project Properties.</span>
 <span class="cm"> * To change this template file, choose Tools | Templates</span>
@@ -961,8 +973,8 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -993,10 +1005,10 @@ const thebe_selector_output = ".output, .cell_output"
 
     <div class="col-md-12">
         <span title="Built on 2024-02-07" class="pull-right">&copy; Copyright 2024.
-        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 and the
+        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6 and the
         <a href="https://pypi.org/project/sphinx-sizzle-theme/"
 
-           title="0.1.2/b995f3ff [2023-05-05T11:28:10]"
+           title="0.1.3/579ed3af [2023-08-31T22:56:32]"
 
         >Sizzle</a> theme.</span>
     </div>
