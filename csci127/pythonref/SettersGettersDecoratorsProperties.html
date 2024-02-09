@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
 <title>Python - When to use Setters and Getters, Decorators, and Properties</title>
@@ -21,7 +22,7 @@
     <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
     <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js" integrity="sha512-2V49R8ndaagCOnwmj8QnbT1Gz/rie17UouD9Re5WxbzRVUGoftCu5IuqqtAM9+UC3fwfHCSJR1hkzNQh/2wdtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -39,23 +40,19 @@
       };
       $(document).data('sizzle', {on_load: []});
     </script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script src="../app-data.js"></script>
 <link rel="index" title="Index" href="../genindex.html" />
 <link rel="search" title="Search" href="../search.html" />
@@ -258,88 +255,91 @@ const thebe_selector_output = ".output, .cell_output"
           </div>
           <div class="body">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="when-to-use-setters-and-getters-decorators-and-properties">
-<h1>When to use Setters and Getters, Decorators, and Properties<a class="headerlink" href="#when-to-use-setters-and-getters-decorators-and-properties" title="Permalink to this heading">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="when-to-use-setters-and-getters-decorators-and-properties">
+<h1>When to use Setters and Getters, Decorators, and Properties<a class="headerlink" href="#when-to-use-setters-and-getters-decorators-and-properties" title="Link to this heading">¶</a></h1>
 <p><strong>Decorators:</strong></p>
 <ul class="simple">
-<li><strong>Definition:</strong> Functions that modify the behavior of other functions or classes.</li>
-<li><strong>Syntax:</strong> <code class="docutils literal notranslate"><span class="pre">&#64;decorator_name</span></code> above the function or class definition.</li>
-<li><strong>Purpose</strong>:<ul>
-<li>Add functionality before, after, or around function calls.</li>
-<li>Manage access to attributes.</li>
-<li>Enforce validation or restrictions.</li>
-<li>Implement caching or logging.</li>
-<li>Simplify code by automating repetitive tasks.</li>
+<li><p><strong>Definition:</strong> Functions that modify the behavior of other functions or classes.</p></li>
+<li><p><strong>Syntax:</strong> <code class="docutils literal notranslate"><span class="pre">&#64;decorator_name</span></code> above the function or class definition.</p></li>
+<li><p><strong>Purpose</strong>:</p>
+<ul>
+<li><p>Add functionality before, after, or around function calls.</p></li>
+<li><p>Manage access to attributes.</p></li>
+<li><p>Enforce validation or restrictions.</p></li>
+<li><p>Implement caching or logging.</p></li>
+<li><p>Simplify code by automating repetitive tasks.</p></li>
 </ul>
 </li>
 </ul>
 <p><strong>Getters and Setters (Traditional Approach):</strong></p>
 <ul class="simple">
-<li><strong>Definition:</strong> Methods that control access to class attributes.</li>
-<li><strong>Syntax:</strong> Explicit method calls (e.g., <code class="docutils literal notranslate"><span class="pre">object.get_attribute()</span></code>, <code class="docutils literal notranslate"><span class="pre">object.set_attribute(value)</span></code>).</li>
-<li><strong>Purpose</strong>:<ul>
-<li>Encapsulate data and protect its integrity.</li>
-<li>Perform validation or transformation on attribute values.</li>
-<li>Trigger side effects when attributes are accessed or modified.</li>
+<li><p><strong>Definition:</strong> Methods that control access to class attributes.</p></li>
+<li><p><strong>Syntax:</strong> Explicit method calls (e.g., <code class="docutils literal notranslate"><span class="pre">object.get_attribute()</span></code>, <code class="docutils literal notranslate"><span class="pre">object.set_attribute(value)</span></code>).</p></li>
+<li><p><strong>Purpose</strong>:</p>
+<ul>
+<li><p>Encapsulate data and protect its integrity.</p></li>
+<li><p>Perform validation or transformation on attribute values.</p></li>
+<li><p>Trigger side effects when attributes are accessed or modified.</p></li>
 </ul>
 </li>
 </ul>
 <p><strong>Properties (Pythonic Approach using Decorators):</strong></p>
 <ul class="simple">
-<li><strong>Definition:</strong> A way to create getters and setters using the <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> decorator.</li>
-<li><strong>Syntax:</strong> <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> for the getter, <code class="docutils literal notranslate"><span class="pre">&#64;attribute.setter</span></code> for the setter.</li>
-<li><strong>Advantages</strong>:<ul>
-<li>Cleaner syntax for accessing and modifying attributes (like regular attributes).</li>
-<li>Encapsulation and control over attribute access.</li>
-<li>Custom logic within getters and setters.</li>
+<li><p><strong>Definition:</strong> A way to create getters and setters using the <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> decorator.</p></li>
+<li><p><strong>Syntax:</strong> <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> for the getter, <code class="docutils literal notranslate"><span class="pre">&#64;attribute.setter</span></code> for the setter.</p></li>
+<li><p><strong>Advantages</strong>:</p>
+<ul>
+<li><p>Cleaner syntax for accessing and modifying attributes (like regular attributes).</p></li>
+<li><p>Encapsulation and control over attribute access.</p></li>
+<li><p>Custom logic within getters and setters.</p></li>
 </ul>
 </li>
 </ul>
 <p><strong>Comparison Table:</strong></p>
-<table class="colwidths-auto">
-<thead valign="bottom">
-<tr class="row-odd"><th class="text-left head">Feature</th>
-<th class="text-left head">Decorators</th>
-<th class="text-left head">Getters/Setters (Traditional)</th>
-<th class="text-left head">Properties</th>
+<table>
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature</p></th>
+<th class="head text-left"><p>Decorators</p></th>
+<th class="head text-left"><p>Getters/Setters (Traditional)</p></th>
+<th class="head text-left"><p>Properties</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td class="text-left">Syntax</td>
-<td class="text-left"><code class="docutils literal notranslate"><span class="pre">&#64;decorator</span></code></td>
-<td class="text-left">Explicit method calls</td>
-<td class="text-left"><code class="docutils literal notranslate"><span class="pre">&#64;property</span></code></td>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Syntax</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&#64;decorator</span></code></p></td>
+<td class="text-left"><p>Explicit method calls</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&#64;property</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left">Purpose</td>
-<td class="text-left">Modify <br />functions/classes</td>
-<td class="text-left">Control attribute access</td>
-<td class="text-left">Getters/setters <br />using decorators</td>
+<tr class="row-odd"><td class="text-left"><p>Purpose</p></td>
+<td class="text-left"><p>Modify <br />functions/classes</p></td>
+<td class="text-left"><p>Control attribute access</p></td>
+<td class="text-left"><p>Getters/setters <br />using decorators</p></td>
 </tr>
-<tr class="row-even"><td class="text-left">Flexibility</td>
-<td class="text-left">Broader range of <br />applications</td>
-<td class="text-left">Specific to attribute access</td>
-<td class="text-left">Focus on <br />attribute access</td>
+<tr class="row-even"><td class="text-left"><p>Flexibility</p></td>
+<td class="text-left"><p>Broader range of <br />applications</p></td>
+<td class="text-left"><p>Specific to attribute access</p></td>
+<td class="text-left"><p>Focus on <br />attribute access</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left">Readability&nbsp;&nbsp;</td>
-<td class="text-left">Depends on <br />decorator <br />complexity</td>
-<td class="text-left">Clearer separation <br />of concerns</td>
-<td class="text-left">Cleaner attribute access</td>
+<tr class="row-odd"><td class="text-left"><p>Readability  </p></td>
+<td class="text-left"><p>Depends on <br />decorator <br />complexity</p></td>
+<td class="text-left"><p>Clearer separation <br />of concerns</p></td>
+<td class="text-left"><p>Cleaner attribute access</p></td>
 </tr>
-<tr class="row-even"><td class="text-left">Pythonic <br />style</td>
-<td class="text-left">More Pythonic</td>
-<td class="text-left">Traditional approach</td>
-<td class="text-left">Pythonic approach</td>
+<tr class="row-even"><td class="text-left"><p>Pythonic <br />style</p></td>
+<td class="text-left"><p>More Pythonic</p></td>
+<td class="text-left"><p>Traditional approach</p></td>
+<td class="text-left"><p>Pythonic approach</p></td>
 </tr>
 </tbody>
 </table>
 <p><strong>When to Use Which:</strong></p>
 <ul class="simple">
-<li><strong>Decorators:</strong> For general-purpose function and class modification, not limited to attribute access.</li>
-<li><strong>Properties:</strong> For cleaner attribute access with encapsulation and custom logic.</li>
-<li><strong>Traditional getters/setters:</strong> For explicit method calls or specific coding conventions.</li>
+<li><p><strong>Decorators:</strong> For general-purpose function and class modification, not limited to attribute access.</p></li>
+<li><p><strong>Properties:</strong> For cleaner attribute access with encapsulation and custom logic.</p></li>
+<li><p><strong>Traditional getters/setters:</strong> For explicit method calls or specific coding conventions.</p></li>
 </ul>
 <p><strong>In general, properties are the preferred approach in Python due to their readability and Pythonic style. However, decorators offer more flexibility for broader use cases beyond attribute management.</strong></p>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -369,11 +369,11 @@ const thebe_selector_output = ".output, .cell_output"
   <div id="footer-row" class="row">
 
     <div class="col-md-12">
-        <span title="Built on 2024-01-09" class="pull-right">&copy; Copyright 2023 By James Goudy.
-        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 and the
+        <span title="Built on 2024-02-09" class="pull-right">&copy; Copyright 2024 By James Goudy.
+        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6 and the
         <a href="https://pypi.org/project/sphinx-sizzle-theme/"
 
-           title="0.1.2/b995f3ff [2023-05-05T11:28:10]"
+           title="0.1.3/579ed3af [2023-08-31T22:56:32]"
 
         >Sizzle</a> theme.</span>
     </div>
