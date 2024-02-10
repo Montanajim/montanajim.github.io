@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<title>JAVA II - Combo boxes</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha256-8uHMIn1ru0GS5KO+zf7Zccf8Uw12IA5DrdEcmMuWLFM=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/tooltipster.bundle.min.css" integrity="sha256-Qc4lCfqZWYaHF5hgEOFrYzSIX9Rrxk0NPHRac+08QeQ=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css" integrity="sha256-Wa1I4jhSXeWd3N6RhfPlkqr1WlT+zS3Vh2YGCg0129E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Code+Pro|Source+Sans+Pro|Source+Serif+Pro|Roboto|Roboto+Mono" rel="stylesheet">
+<link href="https://fonts.red-dove.com/iosevka-ss09-regular/webfont.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/sizzle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js" integrity="sha512-2V49R8ndaagCOnwmj8QnbT1Gz/rie17UouD9Re5WxbzRVUGoftCu5IuqqtAM9+UC3fwfHCSJR1hkzNQh/2wdtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js" integrity="sha256-v8akIv8SCqn5f3mbVB7vEWprIizxPh6oV0yhao/dbB4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        LINK_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: ''
+      };
+      $(document).data('sizzle', {on_load: []});
+    </script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../app-data.js"></script>
+<link rel="index" title="Index" href="../genindex.html" />
+<link rel="search" title="Search" href="../search.html" />
+<link rel="next" title="JAVA Automated Build Tools" href="JABT_JAVAAutomatedBuildTools.html" />
+<link rel="prev" title="First Form" href="FirstForm.html" />
+
+</head>
+<body class="full-height test">
+<noscript>
+  <div>
+    <div id="noscript-message">JavaScript is not enabled. It is needed for this website to work.</div>
+  </div>
+</noscript>
+<div id="whole-page" class="container-fluid content full-height">
+  <div id="header-row" class="row">
+    <div id="header-container" class="col-md-12">
+      <div id="hdr-left">
+        <i class="fa fa-bars menu-toggle"></i>
+        
+<a href="../index.html" class="text-logo">JAVA II</a>
+
+      </div>
+      <div id="hdr-centre" class="text-center stretch">
+        <h3 title="Combo boxes">Combo boxes</h3>
+        <h6>Combo boxes</h6>
+      </div>
+      <div id="hdr-search">
+        
+<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
+  <input type="text" class="form-control search-query" placeholder="Search docs ...">
+  <div class="input-group-addon">
+    <i class="fa fa-search"></i>
+  </div>
+</div>
+      </div>
+
+      <div id="hdr-index">
+        <a href="../genindex.html" class="btn btn-default" title="Go to the index"><i class="fa fa-list"></i></a>
+      </div>
+
+      <div id="hdr-source">
+        <a href="../_sources/ref/Comboboxes.md" class="btn btn-default" title="See the source for this page"><i class="fa fa-code"></i></a>
+      </div>
+
+      <div id="hdr-right">
+        
+  
+  <div class="prev-next">
+    
+      <div class="pull-left">
+        <a class="btn btn-default prev" href="FirstForm.html" title="Previous chapter (First Form)"><i class="fa fa-chevron-left mr-1em" aria-hidden="true"></i><span class="btn-text">First Form</span></a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default next" href="JABT_JAVAAutomatedBuildTools.html" title="Next chapter (JAVA Automated Build Tools)"><span class="btn-text">JAVA Automated Build Tools</span>&nbsp;<i class="fa fa-chevron-right ml-1em" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  
+      </div>
+      <div id="alt-hdr-right">
+
+        <a href="FirstForm.html"><i class="fa fa-chevron-left mr-8"></i></a>
+
+
+        <a href="../index.html"><i class="fa fa-home mr-8"></i></a>
+
+
+        <a href="../search.html"><i class="fa fa-search mr-8"></i></a>
+
+
+        <a href="../genindex.html"><i class="fa fa-list mr-8"></i></a>
+
+
+        <a href="JABT_JAVAAutomatedBuildTools.html"><i class="fa fa-chevron-right"></i></a>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="content-row" class="row">
+    <div id="page-content" class="col-md-12 flex-col">
+      <div id="content-container">
+        <div id="nav">
+          
+  <div class="navsidebar">
+    <div id="sidebar-search">
+      
+<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
+  <input type="text" class="form-control search-query" placeholder="Search docs ...">
+  <div class="input-group-addon">
+    <i class="fa fa-search"></i>
+  </div>
+</div>
+    </div>
+      <div class="sidebar-block">
+        <div class="sidebar-tocheading">
+          <div class="pull-left">
+            <h2>Table Of Contents</h2>
+          </div>
+          <div class="pull-right" title="Hide this sidebar (hover at left edge to bring it back)"><i class="fa fa-chevron-left hidetoc"></i></div>
+        </div>
+        <div class="sidebar-toc">
+      
+          <div id="toc-filter" title="Type in here to show only matching topics">
+            <input class="form-control" id="toc-filter-query" placeholder="Filter by title ...">
+          </div>
+      
+        
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="JAVABackgroundInformation.html">JAVA Background Information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FirstForm.html">First Form</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#combo-boxes">Combo boxes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JABT_JAVAAutomatedBuildTools.html">JAVA Automated Build Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaAnt.html">Java Ant: Build Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaMaven.html">Java Maven:  Build Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaGradle.html">Java Gradle: Build Automation</a></li>
+</ul>
+</li>
+</ul>
+
+  
+        </div>
+      </div>
+  </div>
+        </div>
+        <div id="content" tabindex="0" class="stretch">
+          <div id="mnav">
+            
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="JAVABackgroundInformation.html">JAVA Background Information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FirstForm.html">First Form</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#combo-boxes">Combo boxes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JABT_JAVAAutomatedBuildTools.html">JAVA Automated Build Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaAnt.html">Java Ant: Build Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaMaven.html">Java Maven:  Build Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaGradle.html">Java Gradle: Build Automation</a></li>
+</ul>
+</li>
+</ul>
+
+  
+          </div>
+          <div class="body">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="combo-boxes">
+<h1>Combo boxes<a class="headerlink" href="#combo-boxes" title="Link to this heading">¶</a></h1>
+<section id="major-properties-and-events">
+<h2>Major Properties and Events<a class="headerlink" href="#major-properties-and-events" title="Link to this heading">¶</a></h2>
+<p>Java combo boxes, also known as JComboBox in Swing is a versatile component that allow users to select a single item from a list. They offer a user-friendly way to present a set of options and improve data entry efficiency. Here are some of the major properties of a Java combo box:</p>
+<p><strong>Basic Properties:</strong></p>
+<ul>
+<li><p><strong>Items:</strong> The core property of a combo box is its list of items. You can add, remove, and modify items programmatically or through a visual editor.</p></li>
+<li><p><strong>Selected Item:</strong> The combo box always has a selected item, which is the currently chosen option displayed in the text field.</p>
+<p>Java combo box selected item</p>
+</li>
+<li><p><strong>Editable</strong>: You can configure the combo box to be editable or non-editable. In editable mode, users can type their own values, while non-editable mode restricts them to selecting from the predefined list.</p></li>
+<li><p><strong>Enabled:</strong> This property determines whether the combo box is interactable or disabled (grayed out).</p></li>
+</ul>
+<p><strong>Advanced Properties:</strong></p>
+<ul class="simple">
+<li><p><strong>Model:</strong> The combo box model manages the underlying data and presentation of the items. You can use different model implementations for more complex scenarios.</p></li>
+<li><p><strong>Renderer:</strong> The renderer controls how each item is displayed in the list. You can customize the appearance of the items using custom renderers.</p></li>
+<li><p><strong>Popup Visible:</strong> This property controls whether the dropdown list is currently visible. You can programmatically show or hide the list.</p></li>
+<li><p><strong>Maximum Row Count:</strong> This property limits the number of visible items in the dropdown list. If there are more items, a scrollbar appears.</p></li>
+</ul>
+<p><strong>Event Handling:</strong></p>
+<ul class="simple">
+<li><p><strong>Item Selection:</strong> When the user selects an item, a selection event is fired. You can listen to these events to react to user choices.</p></li>
+<li><p><strong>Action Events:</strong> In editable mode, typing Enter or clicking outside the text field triggers an action event. You can use this event to capture user input.</p></li>
+</ul>
+<p>These are just some of the major properties of Java combo boxes. By understanding and manipulating these properties, you can create flexible and user-friendly interfaces for your applications.</p>
+</section>
+<section id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Link to this heading">¶</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">Progam: First Form - Basic Calculator</span>
+
+<span class="cm">Function:   The purpose of the program is demostrate the</span>
+<span class="cm">            selection of a combobox, add items and subtract items,</span>
+<span class="cm">            of a combobox programmically</span>
+
+<span class="cm">Programmer: James Goudy ©2024</span>
+<span class="cm"> */</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">j2x_20_comboboxes</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Color</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionEvent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionListener</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.KeyEvent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.KeyListener</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JButton</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JComboBox</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JLabel</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JTextField</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">ComboBoxDemo</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">comedians</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Larry&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Curly&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Moe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Shemp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Curly Joe&quot;</span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">JFrame</span><span class="w"> </span><span class="n">Frame1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JFrame</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">JLabel</span><span class="w"> </span><span class="n">lblComedians</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">();</span>
+<span class="w">    </span><span class="n">JLabel</span><span class="w"> </span><span class="n">lblSelected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">JTextField</span><span class="w"> </span><span class="n">txtField</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JTextField</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">JButton</span><span class="w"> </span><span class="n">bttnRemoveSelected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">();</span>
+<span class="w">    </span><span class="n">JButton</span><span class="w"> </span><span class="n">bttnAddItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">();</span>
+<span class="w">    </span><span class="n">JButton</span><span class="w"> </span><span class="n">bttnRemoveLast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">//JComboBox comboBox  =   new JComboBox(comedians);</span>
+<span class="w">    </span><span class="n">JComboBox</span><span class="w"> </span><span class="n">comboBox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JComboBox</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">ComboBoxDemo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">lblFontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="n">f</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">xWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">125</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">aWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">Color</span><span class="w"> </span><span class="n">myColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="mi">249</span><span class="p">,</span><span class="w"> </span><span class="mi">246</span><span class="p">);</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">setUpTheJFrame</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="mi">550</span><span class="p">,</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Combobox Demo!&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">myColor</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">setupLabel</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">lblSelected</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Selected&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lblFontSize</span><span class="p">);</span>
+<span class="w">        </span><span class="n">setupLabel</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">lblComedians</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Comdians&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lblFontSize</span><span class="p">);</span>
+
+
+<span class="w">        </span><span class="n">setupCombo</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">comboBox</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">xWidth</span><span class="p">,</span><span class="w"> </span><span class="n">lblFontSize</span><span class="p">,</span><span class="w"> </span><span class="n">comedians</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">setupTextFields</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">txtField</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="n">xWidth</span><span class="p">,</span><span class="w"> </span><span class="n">lblFontSize</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">setTheButtons</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">bttnAddItem</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">aWidth</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Add Item&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">lblFontSize</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">setTheButtons</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">bttnRemoveSelected</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span>
+<span class="w">                </span><span class="n">aWidth</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Remove Selected&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lblFontSize</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">setTheButtons</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">bttnRemoveLast</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w"> </span><span class="n">aWidth</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Remove Last&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">lblFontSize</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Private method to configure the JFrame&#39;s visual </span>
+<span class="w">    </span><span class="c1">// and behavioral properties</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setUpTheJFrame</span><span class="p">(</span><span class="n">JFrame</span><span class="w"> </span><span class="n">jf1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">frameWidth</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">frameHeight</span><span class="p">,</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">frameTitle</span><span class="p">,</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="n">frameColor</span><span class="p">,</span><span class="kt">boolean</span><span class="w"> </span><span class="n">turnLayoutManagerOff</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// Set the initial dimensions of the JFrame&#39;s window</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">frameWidth</span><span class="p">,</span><span class="w"> </span><span class="n">frameHeight</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set the JFrame title</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">frameTitle</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Apply a custom background color to the content pane</span>
+<span class="w">        </span><span class="c1">// The content pane is the area where items are added to </span>
+<span class="w">        </span><span class="c1">// the frame</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">setBackground</span><span class="p">(</span><span class="n">frameColor</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Make the JFrame visible on the screen, </span>
+<span class="w">        </span><span class="c1">// allowing users to interact with it</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Center the JFrame on the user&#39;s screen for optimal visibility</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">setLocationRelativeTo</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Specify the program&#39;s termination behavior </span>
+<span class="w">        </span><span class="c1">// when the JFrame is closed</span>
+<span class="w">        </span><span class="c1">// Exit the program when the frame is closed</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Disable the default layout manager, allowing </span>
+<span class="w">        </span><span class="c1">// for manual component positioning</span>
+<span class="w">        </span><span class="c1">// Note: Manual layout can be more complex to manage</span>
+<span class="w">        </span><span class="c1">// disable the default layout manager</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">turnLayoutManagerOff</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">jf1</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupLabel</span><span class="p">(</span><span class="n">JFrame</span><span class="w"> </span><span class="n">jf1</span><span class="p">,</span><span class="w"> </span><span class="n">JLabel</span><span class="w"> </span><span class="n">lbl</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ypos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lblWidth</span><span class="p">,</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">theText</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">labelSize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Set the font size to 12 points</span>
+<span class="w">        </span><span class="c1">// NOTE: Have to do this before we add the text</span>
+<span class="w">        </span><span class="n">lbl</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="n">lbl</span><span class="p">.</span><span class="na">getFont</span><span class="p">().</span><span class="na">deriveFont</span><span class="p">(</span><span class="n">labelSize</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Set the preferred size of the label</span>
+<span class="w">        </span><span class="n">lbl</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">lblWidth</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">labelSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set the text content of the label</span>
+<span class="w">        </span><span class="n">lbl</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">theText</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Make the label visible</span>
+<span class="w">        </span><span class="n">lbl</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Position the label at coordinates (10, 10) within the window</span>
+<span class="w">        </span><span class="n">lbl</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="n">ypos</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Add the label to the window&#39;s content pane</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">lbl</span><span class="p">);</span><span class="w">  </span><span class="c1">// Assuming jf1 is the main window object</span>
+
+<span class="w">        </span><span class="c1">// Request the window to be redrawn, reflecting the added label</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupTextFields</span><span class="p">(</span><span class="n">JFrame</span><span class="w"> </span><span class="n">jf1</span><span class="p">,</span><span class="w"> </span><span class="n">JTextField</span><span class="w"> </span><span class="n">jtxt</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ypos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">tfWidth</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fsize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Set the font size to 12 points</span>
+<span class="w">        </span><span class="c1">// NOTE: Have to do this before we add the text</span>
+<span class="w">        </span><span class="n">jtxt</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="n">jtxt</span><span class="p">.</span><span class="na">getFont</span><span class="p">().</span><span class="na">deriveFont</span><span class="p">(</span><span class="n">fsize</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Set the preferred size of the label</span>
+<span class="w">        </span><span class="n">jtxt</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">tfWidth</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">fsize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set the text content of the label</span>
+<span class="w">        </span><span class="n">jtxt</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Make the label visible</span>
+<span class="w">        </span><span class="n">jtxt</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Position the label at coordinates (10, 10) within the window</span>
+<span class="w">        </span><span class="n">jtxt</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="n">ypos</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Add the label to the window&#39;s content pane</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">jtxt</span><span class="p">);</span><span class="w">  </span><span class="c1">// Assuming jf1 is the main window object</span>
+
+<span class="w">        </span><span class="c1">// Request the window to be redrawn, reflecting the added label</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupCombo</span><span class="p">(</span><span class="n">JFrame</span><span class="w"> </span><span class="n">jf1</span><span class="p">,</span><span class="w"> </span><span class="n">JComboBox</span><span class="w"> </span><span class="n">jcmbo</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ypos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cmboWidth</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">float</span><span class="w"> </span><span class="n">fsize</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">comboItems</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Set the font size to 12 points</span>
+<span class="w">        </span><span class="c1">// NOTE: Have to do this before we add the text</span>
+<span class="w">        </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="n">jcmbo</span><span class="p">.</span><span class="na">getFont</span><span class="p">().</span><span class="na">deriveFont</span><span class="p">(</span><span class="n">fsize</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Set the preferred size of the label</span>
+<span class="w">        </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">cmboWidth</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">fsize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set the text content of the label</span>
+<span class="w">        </span><span class="c1">//jcmbo.setText(&quot;0&quot;);</span>
+<span class="w">        </span><span class="c1">// Make the label visible</span>
+<span class="w">        </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">setEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Position the label at coordinates (10, 10) within the window</span>
+<span class="w">        </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="n">ypos</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// if the combo items were not null, add the array items to combo</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">comboItems</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">comboItems</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">addItem</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Add the label to the window&#39;s content pane</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">jcmbo</span><span class="p">);</span><span class="w">  </span><span class="c1">// Assuming jf1 is the main window object</span>
+
+<span class="w">        </span><span class="c1">// Request the window to be redrawn, reflecting the added label</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">lblSelected</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">jcmbo</span><span class="p">.</span><span class="na">getSelectedItem</span><span class="p">()));</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setTheButtons</span><span class="p">(</span><span class="n">JFrame</span><span class="w"> </span><span class="n">jf1</span><span class="p">,</span><span class="w"> </span><span class="n">JButton</span><span class="w"> </span><span class="n">bttnABttn</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ypos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">bttnWidth</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">bttnText</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fsize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// Set the font size to 12 points</span>
+<span class="w">        </span><span class="c1">// NOTE: Have to do this before we add the text</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">getFont</span><span class="p">().</span><span class="na">deriveFont</span><span class="p">(</span><span class="n">fsize</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Set the preferred size of the label</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">bttnWidth</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">fsize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set the text content of the label</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">bttnText</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Make the label visible</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Position the label at coordinates (xpos, ypos) within the window</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="n">ypos</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// This action listener listens for the mouse click</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="n">theButtonAction</span><span class="p">(</span><span class="n">bttnText</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// This key listener is for listening for the keyboard actions</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">addKeyListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">KeyListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="c1">// For Reference</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">keyTyped</span><span class="p">(</span><span class="n">KeyEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// listen only for the &quot;Enter&quot; key</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">keyPressed</span><span class="p">(</span><span class="n">KeyEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getKeyCode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">KeyEvent</span><span class="p">.</span><span class="na">VK_ENTER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">theButtonAction</span><span class="p">(</span><span class="n">bttnText</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// For Reference</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">keyReleased</span><span class="p">(</span><span class="n">KeyEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// Add the label to the window&#39;s content pane</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">bttnABttn</span><span class="p">);</span><span class="w">  </span><span class="c1">// Assuming jf1 is the main window object</span>
+
+<span class="w">        </span><span class="c1">// Request the window to be redrawn, reflecting the added label</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">theButtonAction</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">bttnText</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">bttnText</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;Add Item&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">String</span><span class="w"> </span><span class="n">xAddItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">                </span><span class="n">xAddItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">txtField</span><span class="p">.</span><span class="na">getText</span><span class="p">();</span>
+
+<span class="w">                </span><span class="c1">//check to see if the box is not empty</span>
+<span class="w">                </span><span class="c1">// NOTE: if you want to add it then alphabetize it,</span>
+<span class="w">                </span><span class="c1">// remove all of the items to an arraylist, sort the arraylist,</span>
+<span class="w">                </span><span class="c1">// remove all of the comboBox items, and then readd them</span>
+<span class="w">                </span><span class="c1">// back from the arraylist</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">xAddItem</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">comboBox</span><span class="p">.</span><span class="na">addItem</span><span class="p">(</span><span class="n">txtField</span><span class="p">.</span><span class="na">getText</span><span class="p">());</span>
+<span class="w">                    </span><span class="n">txtField</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;Remove Selected&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="p">{</span><span class="w">             </span>
+<span class="w">                </span><span class="n">comboBox</span><span class="p">.</span><span class="na">removeItemAt</span><span class="p">(</span><span class="n">comboBox</span><span class="p">.</span><span class="na">getSelectedIndex</span><span class="p">());</span>
+<span class="w">                </span><span class="n">comboBox</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;Remove Last&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="p">{</span>
+<span class="w">                </span><span class="n">comboBox</span><span class="p">.</span><span class="na">removeItemAt</span><span class="p">(</span><span class="n">comboBox</span><span class="p">.</span><span class="na">getItemCount</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">                </span><span class="n">comboBox</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Remove Last</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// End Of Class ------------------------------------------------</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">J2x_20_comboBoxes</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * @param args the command line arguments</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">ComboBoxDemo</span><span class="w"> </span><span class="n">myComboDemo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ComboBoxDemo</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer-row" class="row">
+
+    <div class="col-md-12">
+        <span title="Built on 2024-02-09" class="pull-right">&copy; Copyright 2024.
+        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6 and the
+        <a href="https://pypi.org/project/sphinx-sizzle-theme/"
+
+           title="0.1.3/579ed3af [2023-08-31T22:56:32]"
+
+        >Sizzle</a> theme.</span>
+    </div>
+
+  </div>
+</div>
+
+<div id="tooltips" class="hidden">
+</div>
+
+<script>
+$(document).ready(function() {
+  'use strict';
+  var $search = $('.search-query');
+
+  var $filter = $('#toc-filter-query');
+  var $toclist = $('.sidebar-toc > ul').find('li');
+
+  if ($toclist.length === 0) {
+    $toclist = $('.localtoc > ul').find('li');
+  }
+
+
+  var $nav = $('#nav');
+
+  //$('#whole-page').removeClass('hidden');
+  var nav_width = $nav.width();
+
+
+  var search_url = '../search.html';
+
+  function perform_search(e) {
+    var $elem;
+
+    if (e.type === 'keypress') {
+      $elem = $(e.target);
+    }
+    else if (e.type === 'click') {
+      $elem = $(e.target).parents('.input-group').find('input');
+    }
+    var q = $elem.val().trim();
+
+    if (q) {
+      var url = search_url + '?q=' + q + '&check_keywords=yes&area=default';
+
+      location.href = url;
+    }
+  }
+
+
+  function apply_filter() {
+    var s = $filter.val().trim().toLowerCase();
+
+    $toclist.find('a').removeClass('hidden');
+    $toclist.each(function() {
+      var $this = $(this);
+      var $link = $this.find('> a');
+      var t = $link.text().toLowerCase();
+      var show = t.indexOf(s) >= 0;
+
+      if (!show) {
+        $link.addClass('hidden');
+      }
+    });
+  }
+
+  $filter.on('keyup', function(e) {
+    apply_filter();
+  });
+
+
+
+  $search.on('keypress', function(e) {
+    if (e.which == 13) {
+      perform_search(e);
+    }
+  });
+  $search.parents('.input-group').find('.input-group-addon').on('click', perform_search);
+  $(document).on('click', '.summary .fa-caret-right', function(e) {
+    var $elem = $(e.target).parents('li');
+    var $next = $elem.next();
+    $elem.addClass('hidden');
+    $next.removeClass('hidden');
+  });
+  $(document).on('click', '.detail .fa-caret-down', function(e) {
+    var $elem = $(e.target).parents('li');
+    var $prev = $elem.prev();
+    $elem.addClass('hidden');
+    $prev.removeClass('hidden');
+  });
+
+  $('#content').on('click', function() {
+    $('#mnav').hide();
+  });
+
+  var counter = 0;
+  var timer = null;
+
+  function show_nav() {
+    $('#content').off('mousemove', track_mouse);
+    if (timer !== null) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    $nav.show();
+  }
+
+  function track_mouse(e) {
+    var x = e.clientX;
+
+    if (x < 15) {
+      ++counter;
+      if (timer === null) {
+        timer = setTimeout(show_nav, 2000);
+      }
+    }
+    else {
+      counter = 0;
+    }
+    if (counter >= 20) {
+      show_nav();
+    }
+  };
+
+  function hide_nav() {
+    $nav.hide();
+    counter = 0;
+    $('#content').on('mousemove', track_mouse);
+  }
+
+  $('.hidetoc').on('click', hide_nav);
+
+  $(document).on('keyup', function(e) {
+    if (e.ctrlKey) {
+      if (e.which == 37) {      // Ctrl+left arrow
+        hide_nav();
+      }
+      else if (e.which == 39) { // Ctrl+right arrow
+        show_nav();
+      }
+    }
+  });
+
+  $('.menu-toggle').on('click', function(e) {
+    $('#mnav').toggle();
+  });
+
+  function scroll_nav(frag) {
+    var sel = '#nav ' + (frag ? 'a[href="' + frag + '"]' : '.toctree-l1 a.current');
+
+    var $link = $(sel);
+
+    if ($link.length > 0) {
+      $link[0].scrollIntoView({block: 'center'});
+    }
+  }
+
+  // If the navigator is long, then the item we clicked on to get here might
+  // not be in view. Try to scroll it into the view - a slight delay is needed
+  // to get it to sync properly with other stuff going on (as the page has just
+  // loaded). Hence the setTimeout with a timeout of 0.
+
+  function do_scroll() {
+    scroll_nav(window.location.hash);
+  }
+
+  setTimeout(do_scroll, 0);
+
+  function adjust_size() {
+    // we need to set the height explicitly so that scrolling regions in the
+    // content area work properly.
+    var h = $('#page-content').height();
+
+    $('#nav, #content').height(h);
+    if ($('#nav').is(':visible')) {
+      $('#mnav').hide();
+    }
+  }
+
+  adjust_size();
+
+  $(window).on('resize', adjust_size);
+
+  function focus_content() {
+    $('#content').focus();  // so that keyboard can be used to scroll, etc.
+  }
+
+  setTimeout(focus_content, 150);
+
+  var sizzle = $(document).data('sizzle');
+
+  function make_tooltip(id, h, b) {
+    var $e = $('<div>').attr('id', id);
+    var $b = $('<div>').addClass('tc-body').html(b);
+
+    if (h) {
+      var $h = $('<div>').addClass('tc-heading').html(h);
+      $e.append($h);
+    }
+    $e.append($b);
+    return $e;
+  }
+
+  var default_tt_options = {
+    theme: ['tooltipster-light', 'tooltipster-light-customized'],
+    interactive: true,
+    maxWidth: 600,
+    contentCloning: true
+  };
+
+  function activate_tooltips() {
+    var $tt = $('.tt');
+
+    //console.log('tt links:', $tt.length);
+    $tt.tooltipster(default_tt_options);
+  }
+
+
+
+  function add_glossary_tooltips() {
+    var links = $('a');  // can qualify with .reference.internal
+    var glinks = {};
+    var pat = /(.*)\.html#(term-.*)$/;
+    var found = false;  // links in this document
+
+    $.each(links, function(i, link) {
+        var $link = $(link);
+        var href = $link.attr('href');
+        var m = href.match(pat);
+
+        if (m) {
+          var s = m[1].replace(/^(\.\.\/)+/, '');
+
+          if (s === sizzle.app_data.glossary.document) {
+            var k = m[2];
+
+            if (k in glinks) {
+              glinks[k].push($link);
+            }
+            else {
+              glinks[k] = [$link];
+            }
+            found = true;
+          }
+        }
+    });
+    if (found) {
+      var $t = $('#tooltips');
+      var data = sizzle.app_data.glossary.terms;
+
+      $.each(glinks, function(k, v) {
+        var d = data[k];
+
+        if (d) {  // as a sanity check
+          var s = 'tc-'+ k;
+          var $e = make_tooltip(s, d.term, d.defn);
+          $t.append($e);
+
+          $.each(v, function(i, link) {
+            link.addClass('tt').attr('data-tooltip-content', '#' + s);
+          });
+        }
+      });
+    }
+  }
+
+  if (sizzle.app_data && sizzle.app_data.glossary &&
+      sizzle.app_data.glossary.document) {
+    add_glossary_tooltips();
+  }
+
+
+
+
+  function add_custom_tooltips() {
+    if (!sizzle.app_data) {
+      return;
+    }
+
+    var info_tips = sizzle.app_data.custom_data['info-tips'] || {};
+    var hover_tips = sizzle.app_data.custom_data['hovers'] || {};
+
+    if ($.isEmptyObject(info_tips) && $.isEmptyObject(hover_tips)) {
+      return;
+    }
+
+    var tt_options = $.extend({contentAsHTML: true}, default_tt_options);
+
+    if (!$.isEmptyObject(info_tips)) {
+      $('.tc-info').each(function() {
+        var $elem = $(this).prev();
+        var classes = $elem.attr('class');
+        var m = /\btci-([\S]+)/.exec(classes);
+
+        if (m !== null) {
+          var key = m[1];
+
+          if (key in info_tips) {
+            var v = info_tips[key];
+            var tt = $elem.tooltipster(tt_options).tooltipster('content', v);
+          }
+        }
+      });
+    }
+    if (!$.isEmptyObject(hover_tips)) {
+      var current_origin, current_instance;
+
+      var h_options = {
+        functionBefore: function(instance, helper) {
+          current_instance = instance;
+          current_origin = helper.origin;
+          //console.log('before', current_instance, current_origin);
+        },
+        functionAfter: function(instance, helper) {
+          current_instance = null;
+          current_origin = null;
+          //console.log('after', current_instance, current_origin);
+        }
+      };
+
+      var ht_options = $.extend(h_options, tt_options);
+      $('.hover').each(function() {
+        var $e = $(this);
+        var ref = $e.data('hoverref');
+
+        if (ref) {
+          var tip = hover_tips[ref];
+
+          if (tip) {
+            $e.tooltipster(ht_options).tooltipster('content', tip);
+            //if (/encrypt_and_sign/.test(ref)) { console.log(tip); }
+          }
+        }
+      });
+/*
+      $(document).on('click', '.hovertip a.hoverlink', function(e) {
+        if (!sizzle.app_data) {
+          return;
+        }
+        var $this = $(this);
+        var $content = $this.parent('.tooltipster-content');
+        var ref = $this.data('href');
+        var hover_tips = sizzle.app_data.custom_data['hovers'] || {};
+        var tip = hover_tips[ref];
+
+        if (tip && current_instance) {
+          current_instance.content(tip);
+        }
+
+      });
+ */
+    }
+  }
+
+  add_custom_tooltips();
+
+  setTimeout(activate_tooltips, 1000);
+
+
+  // Clipboard copy for code blocks with captions
+
+  $('.code-block-caption').each(function() {
+    var $cap = $(this);
+    var $btn = $('<span class="clip-copy"><span class="copied hidden">Copied!</span><i class="fa fa-clipboard" title="Copy contents"></i></span>');
+    var $code = $cap.parent().find('.highlight');
+
+    $cap.append($btn);
+    $btn.find('.fa-clipboard').data('clip-text', $code.text());
+  });
+
+  var clipboard = new ClipboardJS('.code-block-caption .fa-clipboard', {
+    'text': function(trigger) {
+      return $(trigger).data('clip-text');
+    }
+  });
+
+  clipboard.on('success', function(e) {
+    var $copied = $(e.trigger).prev();
+
+    $copied.removeClass('hidden');
+
+    setTimeout(function() {$copied.addClass('hidden'); }, 1000);
+  });
+
+  if (sizzle.on_load) {
+    sizzle.on_load.forEach(function(f) {
+      f();
+    });
+  }
+});
+</script>
+</body>
+</html>
