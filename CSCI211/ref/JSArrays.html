@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'ref/JSArrays';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="If Statement" href="IfStatement.html" />
+    <link rel="prev" title="Loops" href="JSLoopsSwitch.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,7 +174,9 @@
 <li class="toctree-l1"><a class="reference internal" href="JSHistory.html">Short History Of JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="JSPlacement.html">JavaScript Placement</a></li>
 <li class="toctree-l1"><a class="reference internal" href="JSFourWaysOutput.html">Four Ways To Display Output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="IfStatement.html">If Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSIfStatement.html">If Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSLoopsSwitch.html">Loops</a></li>
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Arrays</a></li>
 </ul>
 
@@ -463,198 +465,200 @@ document.write(`
 </section>
 <section id="lecture-code">
 <h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Link to this heading">#</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nx">DOCTYPE</span><span class="w"> </span><span class="nx">html</span><span class="o">&gt;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>///
+&lt;!DOCTYPE html&gt;
 
-<span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
-<span class="w">    </span><span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">Arrays</span><span class="o">&lt;</span><span class="err">/title&gt;</span>
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Arrays&lt;/title&gt;
 
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+        &lt;script&gt;
 
-<span class="w">            </span><span class="kd">function</span><span class="w"> </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span><span class="w"> </span><span class="nx">tagId</span><span class="p">,</span><span class="w"> </span><span class="nx">heading</span><span class="p">)</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">arrayItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+            function printArray(array, tagId, heading)
+            {
+                var arrayItem = &quot;&quot;;
 
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">cntr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">cntr</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">cntr</span><span class="o">++</span><span class="p">)</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                    </span><span class="nx">arrayItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">arrayItem</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">array</span><span class="p">[</span><span class="nx">cntr</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
-<span class="w">                </span><span class="p">}</span>
+                for (var cntr = 0; cntr &lt; array.length; cntr++)
+                {
+                    arrayItem = arrayItem + array[cntr] + &quot;&lt;br&gt;&quot;;
+                }
 
-<span class="w">                </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">tagId</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span>
-<span class="w">                        </span><span class="s2">&quot;&lt;font color = &#39;blue&#39; &gt; &quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                        </span><span class="nx">heading</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                        </span><span class="s2">&quot;&lt;/font&gt;&lt;br&gt;&quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                        </span><span class="nx">arrayItem</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                        </span><span class="s2">&quot;&lt;hr&gt;&quot;</span><span class="p">;</span>
-<span class="w">            </span><span class="p">}</span>
-
-
-<span class="w">            </span><span class="kd">function</span><span class="w"> </span><span class="nx">arrayFindItem</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">)</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">found</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
-
-<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">found</span><span class="p">;</span>
-<span class="w">            </span><span class="p">}</span>
-
-<span class="w">        </span><span class="o">&lt;</span><span class="err">/script&gt;</span>
-
-<span class="w">    </span><span class="o">&lt;</span><span class="err">/head&gt;</span>
-<span class="w">    </span><span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
-
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p0&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p1&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p2&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p3&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p4&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p5&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p6&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p7&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p8&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p9&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p10&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p11&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p12&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p13&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p14&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p15&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p16&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;p17&quot;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
-
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-<span class="w">            </span><span class="c1">//create an array</span>
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">cities</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;New York&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Los Angles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Chicago&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Houston&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;Phoenix&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;San Diego&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Dallas&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Kalispell&quot;</span><span class="p">];</span>
-
-<span class="w">            </span><span class="c1">//print the array            </span>
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Array Contents&quot;</span><span class="p">);</span>
+                document.getElementById(tagId).innerHTML =
+                        &quot;&lt;font color = &#39;blue&#39; &gt; &quot; +
+                        heading +
+                        &quot;&lt;/font&gt;&lt;br&gt;&quot; +
+                        arrayItem +
+                        &quot;&lt;hr&gt;&quot;;
+            }
 
 
-<span class="w">            </span><span class="c1">//get individual elements of the array.   </span>
-<span class="w">            </span><span class="c1">//arrayName[element number]</span>
+            function arrayFindItem(array, value)
+            {
+                var found = array.indexOf(value);
 
-<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;p1&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span>
-<span class="w">                    </span><span class="nx">cities</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                    </span><span class="nx">cities</span><span class="p">[</span><span class="mf">2</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                    </span><span class="nx">cities</span><span class="p">[</span><span class="mf">4</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&quot;</span><span class="p">;</span>
+                return found;
+            }
 
-<span class="w">            </span><span class="c1">//Remove an array time from the back of the array</span>
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cities</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+        &lt;/script&gt;
 
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.pop() - remove from the end&quot;</span><span class="p">);</span>
+    &lt;/head&gt;
+    &lt;body&gt;
 
-<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+        &lt;p id=&quot;p0&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p1&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p2&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p3&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p4&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p5&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p6&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p7&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p8&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p9&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p10&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p11&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p12&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p13&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p14&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p15&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p16&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;p17&quot;&gt;&lt;/p&gt;
 
-<span class="w">            </span><span class="c1">//Add item to the end of the array using push</span>
-<span class="w">            </span><span class="nx">cities</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;Toledo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Big Fork&quot;</span><span class="p">);</span>
+        &lt;script&gt;
+            //create an array
+            var cities = [&quot;New York&quot;, &quot;Los Angles&quot;, &quot;Chicago&quot;, &quot;Houston&quot;,
+                &quot;Phoenix&quot;, &quot;San Diego&quot;, &quot;Dallas&quot;, &quot;Kalispell&quot;];
 
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.push() - add an item to the end&quot;</span><span class="p">);</span>
-
-<span class="w">            </span><span class="c1">//Sort the array</span>
-<span class="w">            </span><span class="nx">cities</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
-
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.sort() - sort the array&quot;</span><span class="p">);</span>
-
-<span class="w">            </span><span class="c1">//Reverse the array order</span>
-<span class="w">            </span><span class="nx">cities</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span>
-
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.reverse() - reverse the array&quot;</span><span class="p">);</span>
-
-<span class="w">            </span><span class="c1">//Shift  - remove the element - shift items to the left</span>
-<span class="w">            </span><span class="nx">cities</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
-
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p6&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="s2">&quot;.shift()- remove first and shift to the left&quot;</span><span class="p">);</span>
-
-<span class="w">            </span><span class="c1">//Unshift - put a new element in the first position</span>
-<span class="w">            </span><span class="nx">cities</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="s2">&quot;Las Vegas&quot;</span><span class="p">);</span>
-
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p7&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="s2">&quot;.unshift()- insert new item in the first position&quot;</span><span class="p">);</span>
-
-<span class="w">            </span><span class="c1">//Create a string using the join command</span>
-<span class="w">            </span><span class="c1">//Note whatever is between the &#39;&#39; is the delimiter</span>
-<span class="w">            </span><span class="c1">//you designate</span>
-
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">cityString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cities</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">);</span>
-
-<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;p8&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span>
-<span class="w">                    </span><span class="s2">&quot;&lt;font color=&#39;blue&#39;&gt;Join Example&lt;/font&gt;&lt;br&gt;&quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                    </span><span class="nx">cityString</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                    </span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&quot;</span><span class="p">;</span>
-
-<span class="w">            </span><span class="c1">//Create an array from a string</span>
-
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">myNames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Jim,Bob,George,Harry,Daryl,Daryl&quot;</span><span class="p">;</span>
-
-<span class="w">            </span><span class="c1">//split the string on the delimiter &quot;what&#39;s in the quotes&quot;</span>
-<span class="w">            </span><span class="c1">//and put it into an array</span>
-
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">arrNames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">myNames</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">);</span>
+            //print the array            
+            printArray(cities, &quot;p0&quot;, &quot;Array Contents&quot;);
 
 
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">arrNames</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p9&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="s2">&quot;.split()- split a string into an array&quot;</span><span class="p">);</span>
+            //get individual elements of the array.   
+            //arrayName[element number]
+
+            document.getElementById(&quot;p1&quot;).innerHTML =
+                    cities[0] + &quot;&lt;br&gt;&quot; +
+                    cities[2] + &quot;&lt;br&gt;&quot; +
+                    cities[4] + &quot;&lt;br&gt;&lt;hr&gt;&quot;;
+
+            //Remove an array time from the back of the array
+            var x = cities.pop();
+
+            printArray(cities, &quot;p2&quot;, &quot;.pop() - remove from the end&quot;);
+
+            console.log(x);
+
+            //Add item to the end of the array using push
+            cities.push(&quot;Toledo&quot;, &quot;Big Fork&quot;);
+
+            printArray(cities, &quot;p3&quot;, &quot;.push() - add an item to the end&quot;);
+
+            //Sort the array
+            cities.sort();
+
+            printArray(cities, &quot;p4&quot;, &quot;.sort() - sort the array&quot;);
+
+            //Reverse the array order
+            cities.reverse();
+
+            printArray(cities, &quot;p5&quot;, &quot;.reverse() - reverse the array&quot;);
+
+            //Shift  - remove the element - shift items to the left
+            cities.shift();
+
+            printArray(cities, &quot;p6&quot;,
+                    &quot;.shift()- remove first and shift to the left&quot;);
+
+            //Unshift - put a new element in the first position
+            cities.unshift(&quot;Las Vegas&quot;);
+
+            printArray(cities, &quot;p7&quot;,
+                    &quot;.unshift()- insert new item in the first position&quot;);
+
+            //Create a string using the join command
+            //Note whatever is between the &#39;&#39; is the delimiter
+            //you designate
+
+            var cityString = cities.join(&#39;*&#39;);
+
+            document.getElementById(&quot;p8&quot;).innerHTML =
+                    &quot;&lt;font color=&#39;blue&#39;&gt;Join Example&lt;/font&gt;&lt;br&gt;&quot; +
+                    cityString +
+                    &quot;&lt;br&gt;&lt;hr&gt;&quot;;
+
+            //Create an array from a string
+
+            var myNames = &quot;Jim,Bob,George,Harry,Daryl,Daryl&quot;;
+
+            //split the string on the delimiter &quot;what&#39;s in the quotes&quot;
+            //and put it into an array
+
+            var arrNames = myNames.split(&#39;,&#39;);
 
 
-<span class="w">            </span><span class="c1">//Splice - delete an element by index</span>
-<span class="w">            </span><span class="nx">cities</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+            printArray(arrNames, &quot;p9&quot;,
+                    &quot;.split()- split a string into an array&quot;);
 
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p10&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="s2">&quot;.splice()- delete one item by index&quot;</span><span class="p">);</span>
 
-<span class="w">            </span><span class="c1">//Splice command - insert items starting at a specific index</span>
-<span class="w">            </span><span class="nx">cities</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Dixon&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Whooville&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Helena&quot;</span><span class="p">);</span>
+            //Splice - delete an element by index
+            cities.splice(1, 1);
 
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p11&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="s2">&quot;.splice()- Insert Items at a specific index&quot;</span><span class="p">);</span>
+            printArray(cities, &quot;p10&quot;,
+                    &quot;.splice()- delete one item by index&quot;);
 
-<span class="w">            </span><span class="c1">//Splice command - delete and replace items</span>
-<span class="w">            </span><span class="nx">cities</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Billings&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Missoula&quot;</span><span class="p">);</span>
+            //Splice command - insert items starting at a specific index
+            cities.splice(1, 0, &quot;Dixon&quot;, &quot;Whooville&quot;, &quot;Helena&quot;);
 
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p12&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="s2">&quot;.splice()- Replace 2 items&quot;</span><span class="p">);</span>
+            printArray(cities, &quot;p11&quot;,
+                    &quot;.splice()- Insert Items at a specific index&quot;);
 
-<span class="w">            </span><span class="c1">//Slice copy of a port of the array as a string</span>
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">yy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cities</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span>
+            //Splice command - delete and replace items
+            cities.splice(1, 2, &quot;Billings&quot;, &quot;Missoula&quot;);
 
-<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;p13&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span>
-<span class="w">                    </span><span class="s2">&quot;&lt;font color=&#39;blue&#39;&gt;Slice Example&lt;/font&gt;&lt;br&gt; &quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                    </span><span class="nx">yy</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                    </span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&quot;</span><span class="p">;</span>
+            printArray(cities, &quot;p12&quot;,
+                    &quot;.splice()- Replace 2 items&quot;);
 
-<span class="w">            </span><span class="c1">//show the array</span>
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p14&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Show Array&quot;</span><span class="p">);</span>
+            //Slice copy of a port of the array as a string
+            var yy = cities.slice(2, 5);
 
-<span class="w">            </span><span class="c1">//find an item - found</span>
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">searchItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Chicago&quot;</span><span class="p">;</span>
+            document.getElementById(&quot;p13&quot;).innerHTML =
+                    &quot;&lt;font color=&#39;blue&#39;&gt;Slice Example&lt;/font&gt;&lt;br&gt; &quot; +
+                    yy +
+                    &quot;&lt;br&gt;&lt;hr&gt;&quot;;
 
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">foundStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">arrayFindItem</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="nx">searchItem</span><span class="p">);</span>
+            //show the array
+            printArray(cities, &quot;p14&quot;, &quot;Show Array&quot;);
 
-<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;p15&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span>
-<span class="w">                    </span><span class="s1">&#39;&lt;font color=&quot;blue&quot;&gt;Search Example - found returns &#39;</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                    </span><span class="s1">&#39;index&lt;/font&gt;&lt;br&gt;&#39;</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                    </span><span class="nx">foundStatus</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&amp;nbsp;&amp;nbsp;&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">cities</span><span class="p">[</span><span class="nx">foundStatus</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                    </span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&#39;</span><span class="p">;</span>
+            //find an item - found
+            var searchItem = &quot;Chicago&quot;;
 
-<span class="w">            </span><span class="c1">//find item - not found</span>
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">searchItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;HooBoo&quot;</span><span class="p">;</span>
+            var foundStatus = arrayFindItem(cities, searchItem);
 
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">foundStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">arrayFindItem</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="nx">searchItem</span><span class="p">);</span>
+            document.getElementById(&quot;p15&quot;).innerHTML =
+                    &#39;&lt;font color=&quot;blue&quot;&gt;Search Example - found returns &#39; +
+                    &#39;index&lt;/font&gt;&lt;br&gt;&#39; +
+                    foundStatus + &#39;&amp;nbsp;&amp;nbsp;&#39; + cities[foundStatus] +
+                    &#39;&lt;br&gt;&lt;hr&gt;&#39;;
 
-<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;p16&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span>
-<span class="w">                    </span><span class="s1">&#39;&lt;font color=&quot;blue&quot;&gt;Search Example - not found returns &#39;</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                    </span><span class="s1">&#39;a negative number&lt;/font&gt;&lt;br&gt;&#39;</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                    </span><span class="nx">foundStatus</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                    </span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&#39;</span><span class="p">;</span>
+            //find item - not found
+            var searchItem = &quot;HooBoo&quot;;
 
-<span class="w">            </span><span class="c1">//shorten the array</span>
-<span class="w">            </span><span class="nx">cities</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+            var foundStatus = arrayFindItem(cities, searchItem);
 
-<span class="w">            </span><span class="nx">printArray</span><span class="p">(</span><span class="nx">cities</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p17&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Length - Shorten The Array&quot;</span><span class="p">);</span>
+            document.getElementById(&quot;p16&quot;).innerHTML =
+                    &#39;&lt;font color=&quot;blue&quot;&gt;Search Example - not found returns &#39; +
+                    &#39;a negative number&lt;/font&gt;&lt;br&gt;&#39; +
+                    foundStatus +
+                    &#39;&lt;br&gt;&lt;hr&gt;&#39;;
 
-<span class="w">        </span><span class="o">&lt;</span><span class="err">/script&gt;</span>
-<span class="w">    </span><span class="o">&lt;</span><span class="err">/body&gt;</span>
-<span class="o">&lt;</span><span class="err">/html&gt;</span>
+            //shorten the array
+            cities.length = 2;
+
+            printArray(cities, &quot;p17&quot;, &quot;Length - Shorten The Array&quot;);
+
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+///
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -692,12 +696,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="IfStatement.html"
+       href="JSLoopsSwitch.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">If Statement</p>
+        <p class="prev-next-title">Loops</p>
       </div>
     </a>
 </div>

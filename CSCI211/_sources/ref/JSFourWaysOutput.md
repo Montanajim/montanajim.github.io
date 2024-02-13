@@ -60,7 +60,7 @@ there are **four primary ways** to display output:
   &lt;/script&gt;
 
      (Note: remove the comment when code is in production)
-     
+
 You can also skip the
 
      window
@@ -96,7 +96,8 @@ keyword, as it’s optional:
 
 ## Lecture Code
 
-```JavaScript
+```text
+/*
 <!DOCTYPE html>
 <!--
 Four ways to output information.
@@ -170,7 +171,7 @@ Example by James Goudy
         </script>
     </body>
 </html>
-
+*/
 
 ```
 

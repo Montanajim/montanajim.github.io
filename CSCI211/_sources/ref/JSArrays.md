@@ -122,7 +122,8 @@ A **JavaScript array** is a **special variable** that can hold more than one val
 
 ## Lecture Code
 
-```javascript
+```text
+///
 <!DOCTYPE html>
 
 <html>
@@ -315,8 +316,10 @@ A **JavaScript array** is a **special variable** that can hold more than one val
         </script>
     </body>
 </html>
-
+///
 ```
+
+
 
 ---
 
