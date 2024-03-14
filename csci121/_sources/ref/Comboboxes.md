@@ -190,7 +190,7 @@ class ComboBoxDemo {
         // Make the label visible
         jtxt.setVisible(true);
 
-        // Position the label at coordinates (10, 10) within the window
+        // Position the label at coordinates (xpos, ypos) within the window
         jtxt.setLocation(xpos, ypos);
 
         // Add the label to the window's content pane
