@@ -1,0 +1,834 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Form Validation &#8212; Client Side Programming</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/JSFormValidation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Onblur Form Validation" href="JSOnblurFormValidation.html" />
+    <link rel="prev" title="Importance of Form Validation" href="JSFormValidationWhy.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Client Side Programming</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Client Side Programming
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="JSIntro.html">JavaScript Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSHistory.html">Short History Of JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSPlacement.html">JavaScript Placement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSFourWaysOutput.html">Four Ways To Display Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSIfStatement.html">If Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSLoopsSwitch.html">Loops and Switch</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="JSArrays.html">Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSRandom.html">Random Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSClasses.html">JavaScript Classes</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="JSFormValidationWhy.html">Importance of Form Validation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Form Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JSOnblurFormValidation.html">Onblur Form Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JSEndOfMaterial.html">End Of Material</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/JSFormValidation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Form Validation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="form-validation">
+<h1>Form Validation<a class="headerlink" href="#form-validation" title="Link to this heading">#</a></h1>
+<p><em>This example uses a “flag” approach.</em></p>
+<section id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Link to this heading">#</a></h2>
+<p>index.html</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Form Validation Example<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">#</span><span class="nn">theContent</span><span class="p">{</span>
+<span class="w">                </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">                </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">px</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span><span class="w"> </span><span class="c">/* Combined margin properties */</span>
+<span class="w">                </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">bisque</span><span class="p">;</span>
+<span class="w">                </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">                </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="p">#</span><span class="nn">errorDiv</span><span class="p">{</span>
+<span class="w">                </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">khaki</span><span class="p">;</span>
+<span class="w">                </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">navy</span><span class="p">;</span>
+
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;theContent&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Form Validation Example<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">form</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;demo&quot;</span> <span class="na">onsubmit</span><span class="o">=</span><span class="s">&quot;return validateFormOnSubmit(this)&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;test.html&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">table</span> <span class="na">summary</span><span class="o">=</span><span class="s">&quot;Demonstration form&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;username&quot;</span><span class="p">&gt;</span>Your user name:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;35&quot;</span> <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>   
+                    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;pwd&quot;</span><span class="p">&gt;</span>Your password<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;pwd&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;35&quot;</span> <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;25&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>   
+                    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;email&quot;</span><span class="p">&gt;</span>Your email:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;35&quot;</span> <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;30&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>   
+                    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;phone&quot;</span><span class="p">&gt;</span>Your telephone number:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;phone&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;35&quot;</span> <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;25&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
+								<span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;(555) 555-5555&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>   
+                    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+                            <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;from&quot;</span><span class="p">&gt;</span>Where are you :<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;from&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;35&quot;</span> <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>   
+                    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span><span class="ni">&amp;nbsp;</span><span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;Submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Send&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span><span class="ni">&amp;nbsp;</span><span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span> 
+                <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span> 
+
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;errorDiv&quot;</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="cm">/*</span>
+<span class="cm">             * This is a main function that calls a series of subfunctions,</span>
+<span class="cm">             *  each of which checks a single form element for compliance. </span>
+<span class="cm">             *  If the element complies than sufunction returns an empty string.</span>
+<span class="cm">             *   Otherwise it returns a message describing the error and </span>
+<span class="cm">             *   highlight appropriate element with yellow.</span>
+<span class="cm">             */</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="kd">function</span><span class="w"> </span><span class="nx">validateFormOnSubmit</span><span class="p">(</span><span class="nx">theForm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">reason</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">                </span>
+<span class="w">                </span><span class="nx">reason</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">validateUsername</span><span class="p">(</span><span class="nx">theForm</span><span class="p">.</span><span class="nx">username</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">reason</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">validatePassword</span><span class="p">(</span><span class="nx">theForm</span><span class="p">.</span><span class="nx">pwd</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">reason</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">validateEmail</span><span class="p">(</span><span class="nx">theForm</span><span class="p">.</span><span class="nx">email</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">reason</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">validatePhone</span><span class="p">(</span><span class="nx">theForm</span><span class="p">.</span><span class="nx">phone</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">reason</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">reason</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">validateEmpty</span><span class="p">(</span><span class="nx">theForm</span><span class="p">.</span><span class="kr">from</span><span class="p">);</span>
+
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="nx">reason</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">reason</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;h2&gt;Errors&lt;/h2&gt;&lt;ul&gt;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">reason</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;&lt;/ul&gt;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;errorDiv&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">reason</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;errordiv&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="cm">/* *</span>
+<span class="cm">             * The function below checks if a required field has been left </span>
+<span class="cm">             * empty. If the required field is blank, </span>
+<span class="cm">             * we return the error string to the main function. </span>
+<span class="cm">             * If it’s not blank, the function returns an empty string.</span>
+<span class="cm">             */</span>
+
+<span class="w">            </span><span class="kd">function</span><span class="w"> </span><span class="nx">validateEmpty</span><span class="p">(</span><span class="nx">fld</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;The required field has not been filled in.&lt;/li&gt;&quot;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;White&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="cm">/* </span>
+<span class="cm">             *The function below checks if the user entered anything at all </span>
+<span class="cm">             *in the username field. If it’s not blank, we check the length of</span>
+<span class="cm">             * the string and permit only usernames that are between 5 and 15</span>
+<span class="cm">             *  characters. Next, we use the JavaScript </span>
+<span class="cm">             *  regular expression /\W/ to forbid illegal characters from </span>
+<span class="cm">             *  appearing in usernames. </span>
+<span class="cm">             *  We want to allow only letters, numbers and underscopes. </span>
+<span class="cm">            */</span>
+<span class="w">            </span><span class="kd">function</span><span class="w"> </span><span class="nx">validateUsername</span><span class="p">(</span><span class="nx">fld</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">illegalChars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/\W/</span><span class="p">;</span><span class="w"> </span><span class="c1">// allow letters, numbers, and underscores</span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;You didn&#39;t enter a username.&lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">15</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;The username is the wrong length.&lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">illegalChars</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;The username contains illegal characters.&lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;White&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="cm">/*</span>
+<span class="cm">            The function below checks the password field for blankness</span>
+<span class="cm">             and allow only letters and numbers - no underscopes this time. </span>
+<span class="cm">             So we should use a new regular expression to forbid underscopes. </span>
+<span class="cm">             This one /[\W_]/ allow only letters and numbers. </span>
+<span class="cm">             Next, we want to permit only passwords that contain letters </span>
+<span class="cm">             and at least one numeral. For that we use the seacrh() method and</span>
+<span class="cm">              two more regular expressions: /(a-z)+/ and /(0-9)/.</span>
+<span class="cm">            */</span>
+<span class="w">            </span><span class="kd">function</span><span class="w"> </span><span class="nx">validatePassword</span><span class="p">(</span><span class="nx">fld</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">illegalChars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/[\W_]/</span><span class="p">;</span><span class="w"> </span><span class="c1">// allow only letters and numbers </span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;You didn&#39;t enter a password.&lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">7</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">15</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;The password is the wrong length. &lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">illegalChars</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;The password contains illegal characters.&lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">((</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/(a-z)+/</span><span class="p">))</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/(0-9)+/</span><span class="p">))))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;The password must contain at least one numeral.&lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;White&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span>
+<span class="w">            </span>
+<span class="w">            </span><span class="c1">// ---------------------------------------------------------------------</span>
+<span class="w">            </span><span class="cm">/*</span>
+<span class="cm">             * Next we want to see if the email address the user entered </span>
+<span class="cm">             * is real. This means that the input data must contain at </span>
+<span class="cm">             * least an @ sign and a dot (.). Also, the @ must not be the </span>
+<span class="cm">             * first character of the email address, and the last dot must </span>
+<span class="cm">             * at least be one character after the @ sign.  At first we check</span>
+<span class="cm">             *  if the user entered anything at all in the email field. </span>
+<span class="cm">             *  Next, we use regular expression and the test() method to check </span>
+<span class="cm">             *  the field for a compliance. </span>
+<span class="cm">             *  Also we will use trim() function that will </span>
+<span class="cm">             *  trim leading whitespace off the string. </span>
+<span class="cm">             *  This won’t be perfect validation — it is possible to slip </span>
+<span class="cm">             *  not compliant addresses by it — but it&#39;s normally good enough.</span>
+<span class="cm">             * </span>
+<span class="cm">             */</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="kd">function</span><span class="w"> </span><span class="nx">trim</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\s+|\s+$/</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="kd">function</span><span class="w"> </span><span class="nx">validateEmail</span><span class="p">(</span><span class="nx">fld</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">tfld</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">trim</span><span class="p">(</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span><span class="w"> </span><span class="c1">// value of field with whitespace trimmed off</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">emailFilter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/^[^@]+@[^@.]+\.[^@]*\w\w$/</span><span class="p">;</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">illegalChars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/[\(\)\&lt;\&gt;\,\;\:\\\&quot;\[\]]/</span><span class="p">;</span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;You didn&#39;t enter an email address.&lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">emailFilter</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">tfld</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">//test email for illegal characters</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;Please enter a valid email address.&lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">illegalChars</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;The email address contains illegal characters.&lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;White&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">//---------------------------------------------------------------------</span>
+
+<span class="w">            </span><span class="cm">/*</span>
+<span class="cm">             * The function below checks if the phone number is valid. </span>
+<span class="cm">             * At first we use regular expression and the replace() method </span>
+<span class="cm">             * to clear out any spacer characters. Next, we use the </span>
+<span class="cm">             * isNaN() function to check if the phone number contain </span>
+<span class="cm">             * only numbers. At last we check the length of the string </span>
+<span class="cm">             * and permit only phone numbers with 10 digits.</span>
+<span class="cm">             * </span>
+<span class="cm">             */</span>
+
+<span class="w">            </span><span class="kd">function</span><span class="w"> </span><span class="nx">validatePhone</span><span class="p">(</span><span class="nx">fld</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">stripped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[\(\)\.\-\ ]/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stripped</span><span class="p">);</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">fld</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;You didn&#39;t enter a phone number.&lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">stripped</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stripped</span><span class="p">);</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;The phone number contains illegal characters.&lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">stripped</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">10</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;li&gt;The phone number is the wrong length. &quot;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                            </span><span class="s2">&quot;Make sure you included an area code.&lt;/li&gt;&quot;</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Yellow&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">				</span><span class="k">else</span>
+<span class="w">				</span><span class="p">{</span>
+<span class="w">					</span><span class="nx">fld</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;White&#39;</span><span class="p">;</span>
+<span class="w">				</span><span class="p">}</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>test.html</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>test success<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w">		</span><span class="p">#</span><span class="nn">theContent</span><span class="p">{</span>
+<span class="w">			</span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">			</span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">px</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span><span class="w"> </span><span class="c">/* Combined margin properties */</span>
+<span class="w">			</span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">bisque</span><span class="p">;</span>
+<span class="w">			</span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">			</span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;theContent&quot;</span><span class="p">&gt;</span>
+		<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Good test<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+		<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There was good form validation<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+	<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="explanation">
+<h2>Explanation<a class="headerlink" href="#explanation" title="Link to this heading">#</a></h2>
+<p>The code you provided is a basic HTML form with Javascript validation. Let’s break it down into sections:</p>
+<p><strong>HTML Structure:</strong></p>
+<ul>
+<li><p><strong>DOCTYPE declaration:</strong> This line specifies the document type as HTML.</p></li>
+<li><p><strong>HTML tag:</strong> This is the root element of the HTML document.</p></li>
+<li><p>Head section:</p>
+<p>This section contains meta information about the document.</p>
+<ul class="simple">
+<li><p><strong>Meta charset:</strong> This specifies the character encoding used in the document (UTF-8 in this case).</p></li>
+<li><p><strong>Meta viewport:</strong> This sets how the document should be scaled on different screen sizes (set to device width here).</p></li>
+<li><p><strong>Title:</strong> This defines the title of the webpage displayed on the browser tab.</p></li>
+</ul>
+</li>
+<li><p>Style section:</p>
+<p>This section contains CSS code that styles the HTML elements.</p>
+<ul class="simple">
+<li><p>In this case, styles are defined for two divs with ids <code class="docutils literal notranslate"><span class="pre">theContent</span></code> and <code class="docutils literal notranslate"><span class="pre">errorDiv</span></code>. The content div has a width of 50%, centered with margin, background color, padding, and text color. The error div has a background color and text color.</p></li>
+</ul>
+</li>
+<li><p>Body section:</p>
+<p>This section contains the visible content of the webpage.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Div</span></code> with <code class="docutils literal notranslate"><span class="pre">id</span></code> “theContent”</p>
+<p>: This div contains the form and the error message area.</p>
+<ul>
+<li><p><strong>Heading:</strong> This displays the title “Form Validation Example”.</p></li>
+<li><p>Form:</p>
+<p>This is the HTML form element that users will interact with to submit data.</p>
+<ul>
+<li><p>Form attributes:</p>
+<ul class="simple">
+<li><p>name: “demo” (specifies a name for the form)</p></li>
+<li><p>onsubmit: “return validateFormOnSubmit(this)” (calls the validateFormOnSubmit function when the form is submitted and prevents default form submission behavior).</p></li>
+<li><p>action: “test.html” (specifies the file where the form data will be submitted, but not used in this example since validation is done with Javascript).</p></li>
+</ul>
+</li>
+<li><p>Table:</p>
+<p>This creates a table layout for the form elements.</p>
+<ul class="simple">
+<li><p>Each row represents an input field and its label.</p></li>
+<li><p>Input elements have different types (<code class="docutils literal notranslate"><span class="pre">text</span></code>, <code class="docutils literal notranslate"><span class="pre">password</span></code>) and attributes like size, maxlength, and placeholder.</p></li>
+</ul>
+</li>
+<li><p><strong>Submit button:</strong> This button triggers the form submission when clicked.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Div</span></code> with <code class="docutils literal notranslate"><span class="pre">id</span></code> “errorDiv”: This div will be used to display any error messages from the form validation.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Script section:</p>
+<p>This section contains Javascript code that adds interactivity to the webpage.</p>
+<ul class="simple">
+<li><p>The script defines several functions for form validation:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">validateFormOnSubmit</span></code>: This function is called when the form is submitted. It calls other validation functions for each form element and builds an error message string if any errors are found. If there are errors, it displays them in the error div and prevents the form from being submitted. Otherwise, it clears the error div and allows form submission.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validateEmpty</span></code>: This function checks if a required field is empty. If empty, it sets the background color of the field to yellow and adds an error message to the error string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validateUsername</span></code>: This function checks the username field for validity. It checks for blank input, length restrictions, and illegal characters. It sets the background color of the field based on the validation result and adds an error message to the error string if needed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validatePassword</span></code>: This function checks the password field for validity. It checks for blank input, length restrictions, illegal characters, and presence of at least one numeral. It sets the background color of the field based on the validation result and adds an error message to the error string if needed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trim</span></code>: This function removes leading and trailing whitespace from a string (used in email validation).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validateEmail</span></code>: This function checks the email field for validity. It checks for blank input, format using a regular expression, and illegal characters. It sets the background color of the field based on the validation result and adds an error message to the error string if needed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validatePhone</span></code>: This function checks the phone number field for validity. It removes non-numeric characters, checks if the remaining string contains only numbers, and checks the length of the number. It sets the background color of the field based on the validation result and adds an error message to the error string if needed.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Overall, this code demonstrates a simple form with client-side validation using Javascript. When the user submits the form, the Javascript code validates each field and provides feedback to the user if there are any errors.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="JSFormValidationWhy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Importance of Form Validation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="JSOnblurFormValidation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Onblur Form Validation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -60,9 +60,9 @@ The `Person` class also has the following methods:
 - `setcity`: A setter method that sets the value of the `city` property.
 - `fullNameCity`: A method that returns the full name of the person and the city where they live.
 
+## Lecture Code
 
-
-```javascript
+```html
 <!DOCTYPE html>
 <html>
 <head>
