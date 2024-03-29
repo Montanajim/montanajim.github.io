@@ -13,10 +13,11 @@ index.html
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>Form Validation Example</title>
-
+        <!-- Programmer: James Goudy -->
+        
         <style>
             #theContent{
-                width: 50%;
+                width: 25%;
                 margin: 100px auto; /* Combined margin properties */
                 background-color: bisque;
                 padding: 40px;
@@ -38,26 +39,38 @@ index.html
             <table summary="Demonstration form">
                 <tbody>
                     <tr>
-                        <td><label for="username">Your user name:</label></td>
-                        <td><input name="username" size="35" maxlength="50" type="text"></td>
+                        <td><label for="username">Username:</label></td>
+                        <td><input  type="text" id="username" name="username" 
+                                    size="35" maxlength="50" ></td>
                     </tr>   
                     <tr>
-                        <td><label for="pwd">Your password</label></td>
-                        <td><input name="pwd" size="35" maxlength="25" type="password"></td>
+                        <td><label for="pwd">Password:</label></td>
+                        <td><input  type="password" id="pwd" name="pwd" 
+                                    size="35" maxlength="25" ></td>
                     </tr>   
                     <tr>
-                        <td><label for="email">Your email:</label></td>
-                        <td><input name="email" size="35" maxlength="30" type="text"></td>
-                    </tr>   
+                        <td><label for="email">Email:</label></td>
+                        <td><input  type="text" id="email" name="email" 
+                                    size="35" maxlength="30"
+                                    placeholder="xxx@domain.xxx"></td>
+                    </tr>
                     <tr>
-                        <td><label for="phone">Your telephone number:</label></td>
-                        <td><input name="phone" size="35" maxlength="25" type="text"
-								placeholder="(555) 555-5555"></td>
+                        <td><label for="altemail">Alternate email:</label></td>
+                        <td><input  type="text" id="altemail" name="altemail" 
+                                    size="35" maxlength="30" 
+                                    pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" 
+                                    placeholder="xxx@domain.xxx" required></td>
+                    </tr>    
+                    <tr>
+                        <td><label for="phone">Phone:</label></td>
+                        <td><input  type="text" id="phone" name="phone" size="35" 
+                                    maxlength="25" placeholder="(555) 555-5555"></td>
                     </tr>   
                     <tr>
                         <td>
                             <label for="from">Where are you :</label></td>
-                        <td><input name="from" size="35" maxlength="50" type="text"></td>
+                        <td><input  type="text" id="from" name="from" 
+                                    size="35" maxlength="50" ></td>
                     </tr>   
                     <tr>
                         <td>&nbsp;</td>
@@ -76,22 +89,25 @@ index.html
 
         <script>
             /*
-             * This is a main function that calls a series of subfunctions,
-             *  each of which checks a single form element for compliance. 
-             *  If the element complies than sufunction returns an empty string.
-             *   Otherwise it returns a message describing the error and 
-             *   highlight appropriate element with yellow.
+                This code defines a function that validates a form. 
+                The function breaks down the form validation into 
+                smaller functions, each of which checks 
+                a single form element. If an element is valid, 
+                the function checking it doesn't return any error message. 
+                Otherwise, it returns an error message 
+                describing the problem and highlights 
+                the element in yellow for the user to see.
              */
             
             function validateFormOnSubmit(theForm) {
-                var reason = "";
+                let reason = "";
 
                 
                 reason += validateUsername(theForm.username);
                 reason += validatePassword(theForm.pwd);
                 reason += validateEmail(theForm.email);
                 reason += validatePhone(theForm.phone);
-                reason = reason + validateEmpty(theForm.from);
+                reason += validateEmpty(theForm.from);
 
                 if(reason != "")
                 {
@@ -105,14 +121,14 @@ index.html
             }
 
             /* *
-             * The function below checks if a required field has been left 
-             * empty. If the required field is blank, 
-             * we return the error string to the main function. 
-             * If it’s not blank, the function returns an empty string.
+             The function below checks if a required field has been left 
+             empty. If the required field is blank, 
+             returned is the error string to the main function. 
+             If it is not blank, the function returns an empty string.
              */
 
             function validateEmpty(fld) {
-                var error = "";
+                let error = "";
 
                 if (fld.value.length == 0) {
                     fld.style.background = 'Yellow';
@@ -124,17 +140,16 @@ index.html
             }
 
             /* 
-             *The function below checks if the user entered anything at all 
-             *in the username field. If it’s not blank, we check the length of
-             * the string and permit only usernames that are between 5 and 15
-             *  characters. Next, we use the JavaScript 
-             *  regular expression /\W/ to forbid illegal characters from 
-             *  appearing in usernames. 
-             *  We want to allow only letters, numbers and underscopes. 
+            It first makes sure the username field isn't left empty. 
+            Then, it checks if the username's length is between 5 and 15 characters. 
+            If it passes those checks, it uses a special pattern 
+            (called a regular expression) to make sure the username 
+            only contains letters, numbers, and underscores. No other symbols or 
+            characters are allowed.
             */
             function validateUsername(fld) {
-                var error = "";
-                var illegalChars = /\W/; // allow letters, numbers, and underscores
+                let error = "";
+                let illegalChars = /\W/; // allow letters, numbers, and underscores
 
                 if (fld.value == "") {
                     fld.style.background = 'Yellow';
@@ -160,8 +175,8 @@ index.html
               two more regular expressions: /(a-z)+/ and /(0-9)/.
             */
             function validatePassword(fld) {
-                var error = "";
-                var illegalChars = /[\W_]/; // allow only letters and numbers 
+                let error = "";
+                let illegalChars = /[\W_]/; // allow only letters and numbers 
 
                 if (fld.value == "") {
                     fld.style.background = 'Yellow';
@@ -184,18 +199,21 @@ index.html
             
             // ---------------------------------------------------------------------
             /*
-             * Next we want to see if the email address the user entered 
-             * is real. This means that the input data must contain at 
-             * least an @ sign and a dot (.). Also, the @ must not be the 
-             * first character of the email address, and the last dot must 
-             * at least be one character after the @ sign.  At first we check
-             *  if the user entered anything at all in the email field. 
-             *  Next, we use regular expression and the test() method to check 
-             *  the field for a compliance. 
-             *  Also we will use trim() function that will 
-             *  trim leading whitespace off the string. 
-             *  This won’t be perfect validation — it is possible to slip 
-             *  not compliant addresses by it — but it's normally good enough.
+            "The following steps are undertaken to validate the user-provided email address:
+
+            1. Empty Field Check: An initial check is performed to determine if the user 
+            has entered any data in the email field.
+            
+            2. Regular Expression Validation: If the field is not empty, a regular expression is
+            employed in conjunction with the test() method to verify if the email address 
+            adheres to the following format:
+
+                    * Presence of an "@" symbol, but not as the leading character.
+                    * Presence of a dot (".") following the "@" symbol.
+
+            It is acknowledged that this validation approach has limitations. While it may not 
+            capture all non-compliant email addresses, it serves as a robust foundation for 
+            initial validation purposes."
              * 
              */
             
@@ -205,15 +223,17 @@ index.html
             }
 
             function validateEmail(fld) {
-                var error = "";
-                var tfld = trim(fld.value); // value of field with whitespace trimmed off
-                var emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/;
-                var illegalChars = /[\(\)\<\>\,\;\:\\\"\[\]]/;
+                let error = "";
+                // value of field with whitespace trimmed off
+                let tfld = trim(fld.value);
+                let emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/;
+                let illegalChars = /[\(\)\<\>\,\;\:\\\"\[\]]/;
 
                 if (fld.value == "") {
                     fld.style.background = 'Yellow';
                     error = "<li>You didn't enter an email address.</li>";
-                } else if (!emailFilter.test(tfld)) { //test email for illegal characters
+                } else if (!emailFilter.test(tfld)) {
+                    //test email for illegal characters
                     fld.style.background = 'Yellow';
                     error = "<li>Please enter a valid email address.</li>";
                 } else if (fld.value.match(illegalChars)) {
@@ -228,18 +248,17 @@ index.html
             //---------------------------------------------------------------------
 
             /*
-             * The function below checks if the phone number is valid. 
-             * At first we use regular expression and the replace() method 
-             * to clear out any spacer characters. Next, we use the 
-             * isNaN() function to check if the phone number contain 
-             * only numbers. At last we check the length of the string 
-             * and permit only phone numbers with 10 digits.
-             * 
+            1. Clear Spacer Characters: It uses replace() to remove any extra spaces
+               or characters that might be in the phone number.
+            2. Check for Numbers Only: It calls isNaN() to make sure the phone number 
+               contains only numbers, not letters or symbols.
+            3. Check Length: It verifies that the phone number has exactly 10 digits, 
+               as that's the standard length for many phone numbers.
              */
 
             function validatePhone(fld) {
-                var error = "";
-                var stripped = fld.value.replace(/[\(\)\.\-\ ]/g, '');
+                let error = "";
+                let stripped = fld.value.replace(/[\(\)\.\-\ ]/g, '');
                 console.log(stripped);
                 if (fld.value === "") {
                     error = "<li>You didn't enter a phone number.</li>";
@@ -274,7 +293,7 @@ test.html
 </head>
 	<style>
 		#theContent{
-			width: 50%;
+			width: 25%;
 			margin: 100px auto; /* Combined margin properties */
 			background-color: bisque;
 			padding: 40px;
@@ -334,8 +353,8 @@ The code you provided is a basic HTML form with Javascript validation. Let's bre
       - Form attributes:
 
         - name: "demo" (specifies a name for the form)
-        - onsubmit: "return validateFormOnSubmit(this)" (calls the validateFormOnSubmit function when the form is submitted and prevents default form submission behavior).
-        - action: "test.html" (specifies the file where the form data will be submitted, but not used in this example since validation is done with Javascript).
+        - `onsubmit: "return validateFormOnSubmit(this)"` (calls the validateFormOnSubmit function when the form is submitted and prevents default form submission behavior).
+        - `action: "test.html"`  (specifies the file where the form data will be submitted, but not used in this example since validation is done with Javascript).
 
       - Table:
 

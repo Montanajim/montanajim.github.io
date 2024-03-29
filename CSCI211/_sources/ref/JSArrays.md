@@ -122,21 +122,21 @@ A **JavaScript array** is a **special variable** that can hold more than one val
 
 ## Lecture Code
 
-```text
-///
+```html
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
         <title>Arrays</title>
 
         <script>
 
             function printArray(array, tagId, heading)
             {
-                var arrayItem = "";
+                let arrayItem = "";
 
-                for (var cntr = 0; cntr < array.length; cntr++)
+                for (let cntr = 0; cntr < array.length; cntr++)
                 {
                     arrayItem = arrayItem + array[cntr] + "<br>";
                 }
@@ -152,7 +152,7 @@ A **JavaScript array** is a **special variable** that can hold more than one val
 
             function arrayFindItem(array, value)
             {
-                var found = array.indexOf(value);
+                let found = array.indexOf(value);
 
                 return found;
             }
@@ -183,7 +183,7 @@ A **JavaScript array** is a **special variable** that can hold more than one val
 
         <script>
             //create an array
-            var cities = ["New York", "Los Angles", "Chicago", "Houston",
+            let cities = ["New York", "Los Angles", "Chicago", "Houston",
                 "Phoenix", "San Diego", "Dallas", "Kalispell"];
 
             //print the array            
@@ -199,7 +199,7 @@ A **JavaScript array** is a **special variable** that can hold more than one val
                     cities[4] + "<br><hr>";
 
             //Remove an array time from the back of the array
-            var x = cities.pop();
+            let x = cities.pop();
 
             printArray(cities, "p2", ".pop() - remove from the end");
 
@@ -236,7 +236,7 @@ A **JavaScript array** is a **special variable** that can hold more than one val
             //Note whatever is between the '' is the delimiter
             //you designate
 
-            var cityString = cities.join('*');
+            let cityString = cities.join('*');
 
             document.getElementById("p8").innerHTML =
                     "<font color='blue'>Join Example</font><br>" +
@@ -245,12 +245,12 @@ A **JavaScript array** is a **special variable** that can hold more than one val
 
             //Create an array from a string
 
-            var myNames = "Jim,Bob,George,Harry,Daryl,Daryl";
+            let myNames = "Jim,Bob,George,Harry,Daryl,Daryl";
 
             //split the string on the delimiter "what's in the quotes"
             //and put it into an array
 
-            var arrNames = myNames.split(',');
+            let arrNames = myNames.split(',');
 
 
             printArray(arrNames, "p9",
@@ -276,7 +276,7 @@ A **JavaScript array** is a **special variable** that can hold more than one val
                     ".splice()- Replace 2 items");
 
             //Slice copy of a port of the array as a string
-            var yy = cities.slice(2, 5);
+            let yy = cities.slice(2, 5);
 
             document.getElementById("p13").innerHTML =
                     "<font color='blue'>Slice Example</font><br> " +
@@ -287,9 +287,9 @@ A **JavaScript array** is a **special variable** that can hold more than one val
             printArray(cities, "p14", "Show Array");
 
             //find an item - found
-            var searchItem = "Chicago";
+            let searchItem = "Chicago";
 
-            var foundStatus = arrayFindItem(cities, searchItem);
+            let foundStatus = arrayFindItem(cities, searchItem);
 
             document.getElementById("p15").innerHTML =
                     '<font color="blue">Search Example - found returns ' +
@@ -298,9 +298,9 @@ A **JavaScript array** is a **special variable** that can hold more than one val
                     '<br><hr>';
 
             //find item - not found
-            var searchItem = "HooBoo";
+            searchItem = "HooBoo";
 
-            var foundStatus = arrayFindItem(cities, searchItem);
+            foundStatus = arrayFindItem(cities, searchItem);
 
             document.getElementById("p16").innerHTML =
                     '<font color="blue">Search Example - not found returns ' +
@@ -316,7 +316,7 @@ A **JavaScript array** is a **special variable** that can hold more than one val
         </script>
     </body>
 </html>
-///
+
 ```
 
 

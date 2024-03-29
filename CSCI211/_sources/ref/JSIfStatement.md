@@ -6,22 +6,14 @@ A **JavaScript `if` statement** is a fundamental construct that allows you to ma
 
 1. **Syntax**:
 
-   - The basic structure of an
-
-     ```javascript
-     if
-     ```
-
-     statement looks like this:
+   - The basic structure of an `if`  statement looks like this:
 
      ```javascript
      if (condition) {
         // Block of code to be executed if the condition is true
      }
      ```
-
      
-
    - The `condition` is an expression that evaluates to either `true` or `false`.
 
 1. **Execution Flow**:
@@ -182,6 +174,5 @@ A **JavaScript `if` statement** is a fundamental construct that allows you to ma
 </html>
 */
 ```
-
 ---
-
+End Of If Statement

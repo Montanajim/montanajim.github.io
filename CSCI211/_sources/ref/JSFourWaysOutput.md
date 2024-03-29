@@ -96,8 +96,7 @@ keyword, as it’s optional:
 
 ## Lecture Code
 
-```text
-/*
+```html
 <!DOCTYPE html>
 <!--
 Four ways to output information.
@@ -171,7 +170,6 @@ Example by James Goudy
         </script>
     </body>
 </html>
-*/
 
 ```
 

@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Objects By Class &#8212; Client Side Programming</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/JSObjectsByClass';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Objects By Function" href="JSObjectsByFunction.html" />
+    <link rel="prev" title="JavaScript Placement" href="JSObjectsWhy.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Client Side Programming</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Client Side Programming
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="JSIntro.html">JavaScript Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSHistory.html">Short History Of JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSPlacement.html">JavaScript Placement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSFourWaysOutput.html">Four Ways To Display Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSVariables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSIfStatement.html">If Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSLoopsSwitch.html">Loops and Switch</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="JSArrays.html">Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSRandom.html">Random Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="JSFormValidationWhy.html">Importance of Form Validation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="JSFormValidation.html">Form Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JSFormValidationOnBlur.html">Onblur Form Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JSObjectsWhy.html">JavaScript Placement</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Objects By Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSObjectsByFunction.html">Objects By Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSObjectsInheritance.html">Objects Inheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSEndOfMaterial.html">END</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/JSObjectsByClass.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Objects By Class</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explaination">Explaination</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="objects-by-class">
+<h1>Objects By Class<a class="headerlink" href="#objects-by-class" title="Link to this heading">#</a></h1>
+<p>JavaScript classes are a relatively new way to structure code using object-oriented programming (OOP) principles. While JavaScript itself is prototype-based, classes act like syntactic sugar on top of that foundation, making it easier for programmers coming from other OOP languages like Java or C++ to adapt.</p>
+<p>Here’s a breakdown of key concepts in JavaScript classes:</p>
+<ul class="simple">
+<li><p><strong>Structure:</strong> Classes are defined using the <code class="docutils literal notranslate"><span class="pre">class</span></code> keyword. Inside the class, you can define properties (like variables) and methods (like functions) that act on the data.</p></li>
+<li><p><strong>Constructors:</strong> A constructor is a special method called with the <code class="docutils literal notranslate"><span class="pre">new</span></code> keyword when creating a new object (called an instance) from the class. It’s typically used to initialize the object’s properties.</p></li>
+<li><p><strong>Inheritance:</strong> Classes can inherit properties and methods from other classes, promoting code reuse.</p></li>
+<li><p><strong>Encapsulation (sort of):</strong> While JavaScript doesn’t have strict public/private access modifiers like some languages, you can simulate encapsulation using conventions like starting property names with underscores to discourage direct modification outside the class.</p></li>
+</ul>
+<p>JavaScript introduced private members with the introduction of classes in ES6 (ECMAScript 2015).</p>
+<p>Here’s a breakdown of private members in JavaScript:</p>
+<p><strong>Declaring Private Members:</strong></p>
+<ul class="simple">
+<li><p>Private members are denoted using a hash (#) symbol before the property name.</p></li>
+<li><p>This creates a special kind of property that cannot be accessed directly outside of the class.</p></li>
+</ul>
+<p><strong>Benefits of Private Members:</strong></p>
+<ul class="simple">
+<li><p><strong>Encapsulation:</strong> Protects internal state of the object from unintentional modification.</p></li>
+<li><p><strong>Abstraction:</strong> Exposes only necessary functionalities through public methods.</p></li>
+<li><p><strong>Reduced naming conflicts:</strong> Protects private members from clashes with public names.</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p><strong>Accessibility:</strong> While private members are enforced by JavaScript, a determined developer can still access them through trickery. However, it’s generally not recommended practice.</p></li>
+<li><p><strong>Constructors:</strong> Constructors themselves cannot be private in JavaScript.</p></li>
+</ul>
+<p>Overall, JavaScript classes provide a familiar way to structure object-oriented code, making it easier to reason about complex applications and maintain larger codebases.</p>
+<p>Here are some resources to learn more about JavaScript classes:</p>
+<ul class="simple">
+<li><p>JavaScript Classes - MDN Web Docs: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class</a></p></li>
+<li><p>JavaScript Classes – How They Work with Use Case Example: <a class="reference external" href="https://www.freecodecamp.org/news/javascript-classes-tutorial/">https://www.freecodecamp.org/news/javascript-classes-tutorial/</a></p></li>
+</ul>
+<hr class="docutils" />
+<p>For the example below:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Person</span></code> class has the following constructor parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fname</span></code>: The first name of the person.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lname</span></code>: The last name of the person.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">city</span></code>: The city where the person lives.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">Person</span></code> class also has the following methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">getfname</span></code>: A getter method that returns the value of the <code class="docutils literal notranslate"><span class="pre">fname</span></code> property.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setfname</span></code>: A setter method that sets the value of the <code class="docutils literal notranslate"><span class="pre">fname</span></code> property.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getlname</span></code>: A getter method that returns the value of the <code class="docutils literal notranslate"><span class="pre">lname</span></code> property.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setlname</span></code>: A setter method that sets the value of the <code class="docutils literal notranslate"><span class="pre">lname</span></code> property.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getcity</span></code>: A getter method that returns the value of the <code class="docutils literal notranslate"><span class="pre">city</span></code> property.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setcity</span></code>: A setter method that sets the value of the <code class="docutils literal notranslate"><span class="pre">city</span></code> property.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fullNameCity</span></code>: A method that returns the full name of the person and the city where they live.</p></li>
+</ul>
+<section id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Link to this heading">#</a></h2>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Classes Objectes<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="c1">// Define a Person class to represent a person with first name, last name, and city</span>
+<span class="w">    </span><span class="kd">class</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="c1">// Constructor to initialize a Person object with given name and city</span>
+<span class="w">      </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">fname</span><span class="p">,</span><span class="w"> </span><span class="nx">lname</span><span class="p">,</span><span class="w"> </span><span class="nx">city</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fname</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">lname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lname</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">city</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">// Getters and Setters for accessing and modifying properties</span>
+<span class="w">      </span><span class="nx">get</span><span class="w"> </span><span class="nx">getfname</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">fname</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">set</span><span class="w"> </span><span class="nx">setfname</span><span class="p">(</span><span class="nx">fname</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fname</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">get</span><span class="w"> </span><span class="nx">getlname</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">lname</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">set</span><span class="w"> </span><span class="nx">setlname</span><span class="p">(</span><span class="nx">lname</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">lname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lname</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">get</span><span class="w"> </span><span class="nx">getcity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">city</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">set</span><span class="w"> </span><span class="nx">setcity</span><span class="p">(</span><span class="nx">city</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">city</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">// Method to return the full name of the person along with their city</span>
+<span class="w">      </span><span class="nx">fullNameCity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">fullName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">fname</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">lname</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">city</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">fullName</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Lists containing names and cities for random generation</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">firstList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;John&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Mary&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Abe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Jim&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Stanley&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Salley&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Ann&quot;</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Rodes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Smith&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Miller&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Jones&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Stucci&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Kindreck&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Patton&quot;</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">cityList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Kali&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Polson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Libby&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Whitefish&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Dayton&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Noxon&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Bozeman&quot;</span><span class="p">];</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">people</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">();</span><span class="w"> </span><span class="c1">// Array to store Person objects</span>
+
+<span class="w">    </span><span class="c1">// Function to generate a random integer between 0 (inclusive) and max (inclusive)</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">RandomIntMax</span><span class="p">(</span><span class="nx">max</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// + 1 to make the max inclusive</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nx">max</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Function to generate a random integer between min (inclusive) and max (inclusive)</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">RandomIntMinMax</span><span class="p">(</span><span class="nx">min</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// + 1 to make the max inclusive</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">((</span><span class="nx">max</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">min</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">min</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Function to create a specified number of Person objects with random names and cities</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">createPeople</span><span class="p">(</span><span class="nx">numPeople</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">test</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Temporary string for building output (not used in final version)</span>
+
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">numPeople</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">rfname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstList</span><span class="p">[</span><span class="nx">RandomIntMax</span><span class="p">(</span><span class="nx">firstList</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">)];</span><span class="w"> </span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">rlname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lastList</span><span class="p">[</span><span class="nx">RandomIntMax</span><span class="p">(</span><span class="nx">lastList</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">)];</span><span class="w"> </span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">rcity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cityList</span><span class="p">[</span><span class="nx">RandomIntMax</span><span class="p">(</span><span class="nx">cityList</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">)];</span><span class="w"> </span>
+
+<span class="w">        </span><span class="c1">// Uncomment these lines to display temporary output during person creation (for debugging purposes)</span>
+<span class="w">        </span><span class="c1">//test = test + (rfname + &quot; &quot; + rlname + &quot;, &quot; + rcity +&quot;\n&lt;br&gt;&quot;);</span>
+
+<span class="w">        </span><span class="nx">xperson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">rfname</span><span class="p">,</span><span class="w"> </span><span class="nx">rlname</span><span class="p">,</span><span class="w"> </span><span class="nx">rcity</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">people</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">xperson</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">// Uncomment this line to display temporary output after person creation (for debugging purposes)</span>
+<span class="w">      </span><span class="c1">//document.getElementById(&quot;test&quot;).innerHTML = test;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Function to display the full names and cities of all Person objects in the people array</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">displayPeople</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">strpeople</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">people</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">strpeople</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">strpeople</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">people</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">fname</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">people</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">lname</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">          </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">people</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">city</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;\n&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;test2&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">strpeople</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;test&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">hr</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;test2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  
+  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="nx">createPeople</span><span class="p">(</span><span class="mf">5</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">displayPeople</span><span class="p">();</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="explaination">
+<h2>Explaination<a class="headerlink" href="#explaination" title="Link to this heading">#</a></h2>
+<p>This code creates a webpage that allows users to generate a random list of people with names and city locations. Here’s a breakdown of the different sections:</p>
+<p><strong>HTML Structure (head and body):</strong></p>
+<ul>
+<li><p>Defines the document type (<code class="docutils literal notranslate"><span class="pre">&lt;!DOCTYPE</span> <span class="pre">html&gt;</span></code>)</p></li>
+<li><p>Sets the language to English (<code class="docutils literal notranslate"><span class="pre">&lt;html</span> <span class="pre">lang=&quot;en&quot;&gt;</span></code>)</p></li>
+<li><p>Creates the</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>section containing document metadata:</p>
+<ul class="simple">
+<li><p>Character encoding (<code class="docutils literal notranslate"><span class="pre">&lt;meta</span> <span class="pre">charset=&quot;utf-8&quot;&gt;</span></code>)</p></li>
+<li><p>Viewport configuration for responsive design (<code class="docutils literal notranslate"><span class="pre">&lt;meta</span> <span class="pre">name=&quot;viewport&quot;</span> <span class="pre">content=&quot;width=device-width&quot;&gt;</span></code>)</p></li>
+<li><p>Page title (<code class="docutils literal notranslate"><span class="pre">&lt;title&gt;Objects</span> <span class="pre">By</span> <span class="pre">Class&lt;/title&gt;</span></code>)</p></li>
+<li><p>Styles for the content area (<code class="docutils literal notranslate"><span class="pre">&lt;style&gt;...&lt;/style&gt;</span></code>)</p></li>
+</ul>
+</li>
+<li><p>Creates the</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>section containing the visible content:</p>
+<ul>
+<li><p>A styled content area (</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;theContent&quot;</span><span class="o">&gt;...&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>)</p>
+<ul>
+<li><p>Page heading (<code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;Objects</span> <span class="pre">By</span> <span class="pre">Class&lt;/h1&gt;</span></code>)</p></li>
+<li><p>Line break, horizontal rule, and another line break for separation</p></li>
+<li><p>User input for number of people (</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;...&lt;</span><span class="nb">input</span><span class="o">&gt;...&lt;</span><span class="n">button</span><span class="o">&gt;...</span>
+</pre></div>
+</div>
+<p>)</p>
+<ul class="simple">
+<li><p>Label (<code class="docutils literal notranslate"><span class="pre">&lt;label&gt;</span></code>) explains the input field</p></li>
+<li><p>Input field (<code class="docutils literal notranslate"><span class="pre">&lt;input&gt;</span></code>) allows users to enter a number between 0 and 25</p></li>
+<li><p>Button (<code class="docutils literal notranslate"><span class="pre">&lt;button&gt;</span></code>) triggers the <code class="docutils literal notranslate"><span class="pre">createPeople()</span></code> function on click</p></li>
+</ul>
+</li>
+<li><p>Paragraph element with an empty ID (<code class="docutils literal notranslate"><span class="pre">&lt;p</span> <span class="pre">id=&quot;ppl&quot;&gt;&lt;/p&gt;</span></code>) to display the generated list</p></li>
+<li><p>Link to another webpage (<code class="docutils literal notranslate"><span class="pre">&lt;a</span> <span class="pre">href=&quot;personObject.html&quot;&gt;Objects</span> <span class="pre">By</span> <span class="pre">Function&lt;/a&gt;</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>JavaScript Code (script):</strong></p>
+<ul>
+<li><p>Defines a</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Person</span>
+</pre></div>
+</div>
+<p>class to represent a person:</p>
+<ul class="simple">
+<li><p>Constructor (<code class="docutils literal notranslate"><span class="pre">constructor(fname,</span> <span class="pre">lname,</span> <span class="pre">city)</span></code>) initializes a new <code class="docutils literal notranslate"><span class="pre">Person</span></code> object with first name, last name, and city properties.</p></li>
+<li><p>Getter and setter methods for each property:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">getfname</span></code>, <code class="docutils literal notranslate"><span class="pre">setfname</span></code> for first name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getlname</span></code>, <code class="docutils literal notranslate"><span class="pre">setlname</span></code> for last name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getcity</span></code>, <code class="docutils literal notranslate"><span class="pre">setcity</span></code> for city</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fullNameCity()</span></code> method that returns the full name of the person with their city (e.g., John Smith, Kali)</p></li>
+</ul>
+</li>
+<li><p>Creates three lists containing names and locations for random generation:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">firstList</span></code>: Array of first names</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lastName</span></code>: Array of last names</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cityList</span></code>: Array of city names</p></li>
+</ul>
+</li>
+<li><p>Creates an empty array called <code class="docutils literal notranslate"><span class="pre">people</span></code> to store <code class="docutils literal notranslate"><span class="pre">Person</span></code> objects.</p></li>
+<li><p>Defines two helper functions for generating random integers:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RandomIntMax(max)</span></code> generates a random integer between 0 (inclusive) and <code class="docutils literal notranslate"><span class="pre">max</span></code> (inclusive).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RandomIntMinMax(min,</span> <span class="pre">max)</span></code> generates a random integer between <code class="docutils literal notranslate"><span class="pre">min</span></code> (inclusive) and <code class="docutils literal notranslate"><span class="pre">max</span></code> (inclusive).</p></li>
+</ul>
+</li>
+<li><p>Defines the</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">createPeople</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>function:</p>
+<ul>
+<li><p>Clears the <code class="docutils literal notranslate"><span class="pre">people</span></code> array (<code class="docutils literal notranslate"><span class="pre">people.length</span> <span class="pre">=</span> <span class="pre">0</span></code>).</p></li>
+<li><p>Gets the number of people entered by the user (<code class="docutils literal notranslate"><span class="pre">numPeople</span></code>).</p></li>
+<li><p>Limits the number of people to 25 if the user enters a higher value.</p></li>
+<li><p>Loops to create the specified number of</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Person</span>
+</pre></div>
+</div>
+<p>objects:</p>
+<ul class="simple">
+<li><p>Randomly selects first name, last name, and city from the respective lists.</p></li>
+<li><p>Creates a new <code class="docutils literal notranslate"><span class="pre">Person</span></code> object with the random names and city.</p></li>
+<li><p>Adds the new <code class="docutils literal notranslate"><span class="pre">Person</span></code> object to the <code class="docutils literal notranslate"><span class="pre">people</span></code> array.</p></li>
+</ul>
+</li>
+<li><p>Clears the user input field (<code class="docutils literal notranslate"><span class="pre">document.getElementById(&quot;numppl&quot;).value</span> <span class="pre">=</span> <span class="pre">&quot;&quot;</span></code>).</p></li>
+<li><p>Calls the <code class="docutils literal notranslate"><span class="pre">displayPeople()</span></code> function to show the generated list.</p></li>
+</ul>
+</li>
+<li><p>Defines the</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">displayPeople</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>function:</p>
+<ul>
+<li><p>Initializes an empty string (<code class="docutils literal notranslate"><span class="pre">strpeople</span></code>) to store the list.</p></li>
+<li><p>Loops through the</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">people</span>
+</pre></div>
+</div>
+<p>array:</p>
+<ul class="simple">
+<li><p>For each <code class="docutils literal notranslate"><span class="pre">Person</span></code> object, retrieves their full name and city using the <code class="docutils literal notranslate"><span class="pre">fullNameCity()</span></code> method.</p></li>
+<li><p>Appends the full name and city information to the <code class="docutils literal notranslate"><span class="pre">strpeople</span></code> string with line breaks for formatting.</p></li>
+</ul>
+</li>
+<li><p>Sets the content of the paragraph element with ID “ppl” to the generated list (<code class="docutils literal notranslate"><span class="pre">document.getElementById(&quot;ppl&quot;).innerHTML</span> <span class="pre">=</span> <span class="pre">strpeople</span></code>).</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Overall Functionality:</strong></p>
+<ol class="arabic simple">
+<li><p>When the webpage loads, the user sees a heading, input field for number of people, a button labeled “Enter”, and an empty paragraph area.</p></li>
+<li><p>The user enters a number between 0 and 25 (or keeps the default 0) and clicks the “Enter” button.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">createPeople()</span></code> function is triggered.</p></li>
+<li><p>The function generates the specified number of <code class="docutils literal notranslate"><span class="pre">Person</span></code> objects with random names and cities.</p></li>
+<li><p>It then displays the full name and city information of each person in the paragraph area with line breaks for better readability.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="JSObjectsWhy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">JavaScript Placement</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="JSObjectsByFunction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Objects By Function</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explaination">Explaination</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -153,8 +153,7 @@
 
 ## Lecture Code
 
-```text
-/*
+```html
 <!DOCTYPE html>
 <!--
 Loops, if's and switch examples
@@ -167,15 +166,15 @@ Loops, if's and switch examples
             function loops()
             {
                 //do loop
-                var dostring = "do1 ";
-                var cntr = 2;
+                let dostring = "do1 ";
+                let cntr = 2;
                 do {
                     dostring = dostring + "do" + cntr + " ";
                     cntr++;
                 } while (cntr <= 10);
 
                 //while loop
-                var whilestring = "while1 "
+                let whilestring = "while1 "
                 cntr = 1;
 
                 while (cntr <= 10)
@@ -185,8 +184,8 @@ Loops, if's and switch examples
                 }
 
                 //for loop
-                var forstring = "";
-                for (var i = 1; i <= 10; i++)
+                let forstring = "";
+                for (let i = 1; i <= 10; i++)
                 {
                     forstring = forstring + "for" + i + " ";
 
@@ -200,8 +199,8 @@ Loops, if's and switch examples
             function rbutton()
             {
                 //checking radio buttons with an if
-                var rbttns = document.getElementsByName("rbgroup1");
-                for (var i = 0; i < rbttns.length; i++)
+                let rbttns = document.getElementsByName("rbgroup1");
+                for (let i = 0; i < rbttns.length; i++)
                 {
                     if (rbttns[i].checked)
                     {
@@ -216,7 +215,7 @@ Loops, if's and switch examples
             function numrange()
             {
                 //example of an if
-                var x;
+                let x;
 
                 x = document.getElementById("nbox1").value;
 
@@ -264,7 +263,7 @@ Loops, if's and switch examples
             function switchexample()
             {
                 //Example of a switch
-                var x = document.getElementById('nbox2').value;
+                let x = document.getElementById('nbox2').value;
 
                 switch (x)
                 {
@@ -334,6 +333,5 @@ Loops, if's and switch examples
 
     </body>
 </html>
-*/
 ```
 

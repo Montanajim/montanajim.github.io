@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'ref/JSFourWaysOutput';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="If Statement" href="JSIfStatement.html" />
+    <link rel="next" title="Variables" href="JSVariables.html" />
     <link rel="prev" title="JavaScript Placement" href="JSPlacement.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -175,18 +175,22 @@
 <li class="toctree-l1"><a class="reference internal" href="JSHistory.html">Short History Of JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="JSPlacement.html">JavaScript Placement</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Four Ways To Display Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSVariables.html">Variables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="JSIfStatement.html">If Statement</a></li>
 <li class="toctree-l1"><a class="reference internal" href="JSLoopsSwitch.html">Loops and Switch</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="JSArrays.html">Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="JSRandom.html">Random Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="JSClasses.html">JavaScript Classes</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="JSFormValidationWhy.html">Importance of Form Validation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="JSFormValidation.html">Form Validation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="JSOnblurFormValidation.html">Onblur Form Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JSFormValidationOnBlur.html">Onblur Form Validation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="JSEndOfMaterial.html">End Of Material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSObjectsWhy.html">JavaScript Placement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSObjectsByClass.html">Objects By Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSObjectsByFunction.html">Objects By Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSObjectsInheritance.html">Objects Inheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JSEndOfMaterial.html">END</a></li>
 </ul>
 
     </div>
@@ -432,81 +436,79 @@ document.write(`
 </ol>
 <section id="lecture-code">
 <h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Link to this heading">#</a></h2>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/*
-&lt;!DOCTYPE html&gt;
-&lt;!--
-Four ways to output information.
-Example by James Goudy
---&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;Four Ways To Output&lt;/title&gt;
-        &lt;meta charset=&quot;UTF-8&quot;&gt;
-        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="cm">&lt;!--</span>
+<span class="cm">Four ways to output information.</span>
+<span class="cm">Example by James Goudy</span>
+<span class="cm">--&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Four Ways To Output<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
 
 
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;h1&gt;Four Ways To Output In JavaScript&lt;/h1&gt;
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Four Ways To Output In JavaScript<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
         
-        &lt;script&gt;
-            /*
-             * In this example, we cannont put the script here. The body
-             * runs top down.  Since our script examples writes to specific
-             * tags - at this moment in time or location of the code,
-             * the h3, p and span tags have not been created yet, 
-             * so the script would fail - not knowing where to put the tags..
-             */
-        &lt;/script&gt;
-        
-        
-        &lt;br&gt;
-        &lt;h3 id=&quot;myH3&quot;&gt;&lt;/h3&gt;
-        &lt;p id=&quot;myParagraph&quot;&gt;&lt;/p&gt;
-        &lt;p&gt;The message is the following: &quot;&lt;span id=&quot;mySpan&quot;&gt;&lt;/span&gt;&quot;&lt;/p&gt;
+        <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="cm">/*</span>
+<span class="cm">             * In this example, we cannont put the script here. The body</span>
+<span class="cm">             * runs top down.  Since our script examples writes to specific</span>
+<span class="cm">             * tags - at this moment in time or location of the code,</span>
+<span class="cm">             * the h3, p and span tags have not been created yet, </span>
+<span class="cm">             * so the script would fail - not knowing where to put the tags..</span>
+<span class="cm">             */</span>
+<span class="w">        </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
         
         
-        &lt;script&gt;
+        <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h3</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;myH3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;myParagraph&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The message is the following: &quot;<span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mySpan&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>&quot;<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+        
+        
+        <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
 
-            var myMessage = &quot;JavaSript is Fun!&quot;;
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">myMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;JavaSript is Fun!&quot;</span><span class="p">;</span>
 
-            //First way is by a popup window using alert            
-            alert(myMessage);
+<span class="w">            </span><span class="c1">//First way is by a popup window using alert            </span>
+<span class="w">            </span><span class="nx">alert</span><span class="p">(</span><span class="nx">myMessage</span><span class="p">);</span>
 
-            //Second way is by using document doc write.  
-            //NOTE: This way destroys html - use is with caution.
-            //It writes excatly where the physical location of the script
-            //tag is located in the html.
-            document.write(myMessage);
+<span class="w">            </span><span class="c1">//Second way is by using document doc write.  </span>
+<span class="w">            </span><span class="c1">//NOTE: This way destroys html - use is with caution.</span>
+<span class="w">            </span><span class="c1">//It writes excatly where the physical location of the script</span>
+<span class="w">            </span><span class="c1">//tag is located in the html.</span>
+<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">myMessage</span><span class="p">);</span>
 
-            //The third way is using innerHTML.  This puts the output
-            //in between two html tags like span, paragraph, headings, etc.
-            //NOTE: You have to identify the tag by id when usign innerHTML
-            document.getElementById(&quot;myH3&quot;).innerHTML = myMessage;
-            document.getElementById(&quot;myParagraph&quot;).innerHTML = myMessage;
-            document.getElementById(&quot;mySpan&quot;).innerHTML = myMessage;
-            
-            /*
-             * NOTE: innerHTML works with getElementByID. getElementByID
-             * identifies the exact tag to use with innerHTML. Also the 
-             * page runs top down.  With the script tag located here, the
-             * h3, p and span tags have already been created so the 
-             * script knows where to put the code.
-             */
+<span class="w">            </span><span class="c1">//The third way is using innerHTML.  This puts the output</span>
+<span class="w">            </span><span class="c1">//in between two html tags like span, paragraph, headings, etc.</span>
+<span class="w">            </span><span class="c1">//NOTE: You have to identify the tag by id when usign innerHTML</span>
+<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;myH3&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">myMessage</span><span class="p">;</span>
+<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;myParagraph&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">myMessage</span><span class="p">;</span>
+<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;mySpan&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">myMessage</span><span class="p">;</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="cm">/*</span>
+<span class="cm">             * NOTE: innerHTML works with getElementByID. getElementByID</span>
+<span class="cm">             * identifies the exact tag to use with innerHTML. Also the </span>
+<span class="cm">             * page runs top down.  With the script tag located here, the</span>
+<span class="cm">             * h3, p and span tags have already been created so the </span>
+<span class="cm">             * script knows where to put the code.</span>
+<span class="cm">             */</span>
 
-            
-            //The fourth way to output information is to the console.
-            //This is handy if you wish to test values, but not
-            //display them on the page. In most browsers you can bring
-            //the console up by clicking the F12 key and then clicking
-            //the console tab. 
-            
-            console.log(&quot;In order to read this you have to open the console&quot;);
+<span class="w">            </span>
+<span class="w">            </span><span class="c1">//The fourth way to output information is to the console.</span>
+<span class="w">            </span><span class="c1">//This is handy if you wish to test values, but not</span>
+<span class="w">            </span><span class="c1">//display them on the page. In most browsers you can bring</span>
+<span class="w">            </span><span class="c1">//the console up by clicking the F12 key and then clicking</span>
+<span class="w">            </span><span class="c1">//the console tab. </span>
+<span class="w">            </span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;In order to read this you have to open the console&quot;</span><span class="p">);</span>
 
-        &lt;/script&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-*/
+<span class="w">        </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -552,11 +554,11 @@ Example by James Goudy
       </div>
     </a>
     <a class="right-next"
-       href="JSIfStatement.html"
+       href="JSVariables.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">If Statement</p>
+        <p class="prev-next-title">Variables</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
