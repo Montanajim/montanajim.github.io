@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Binary Search Tree - Intro &#8212; Algorithms</title>
+    <title>Iterator &#8212; Algorithms</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/BST_Intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/Terms_Iterator';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Applications That Use Binary Trees" href="BST_Applications.html" />
-    <link rel="prev" title="Iterator" href="Terms_Iterator.html" />
+    <link rel="next" title="Binary Search Tree - Intro" href="BST_Intro.html" />
+    <link rel="prev" title="Serializable" href="Terms_Serializable.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -171,13 +171,13 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="Terms.html">Terms and Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Terms.html">Terms and Concepts</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Terms_Radix.html">Radix - Number Bases</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Terms_Serializable.html">Serializable</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Terms_Iterator.html">Iterator</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Iterator</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Binary Search Tree - Intro</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BST_Intro.html">Binary Search Tree - Intro</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="BST_Applications.html">Applications That Use Binary Trees</a></li>
 <li class="toctree-l2"><a class="reference internal" href="BST_Comparisons.html">Binary Tree Comparisons</a></li>
 <li class="toctree-l2"><a class="reference internal" href="BST_TreeTraversal.html">Tree Traversal</a></li>
@@ -250,7 +250,7 @@
       
       
       
-      <li><a href="../_sources/ref/BST_Intro.md" target="_blank"
+      <li><a href="../_sources/ref/Terms_Iterator.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -334,7 +334,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Binary Search Tree - Intro</h1>
+    <h1>Iterator</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -344,7 +344,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-information">Background Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-code">Example Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterator-vs-for-statement">Iterator vs For statement</a></li>
 </ul>
             </nav>
         </div>
@@ -356,32 +357,118 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="binary-search-tree-intro">
-<h1>Binary Search Tree - Intro<a class="headerlink" href="#binary-search-tree-intro" title="Link to this heading">#</a></h1>
-<section id="background-information">
-<h2>Background Information<a class="headerlink" href="#background-information" title="Link to this heading">#</a></h2>
-<p>A binary search tree (BST) is a special type of binary tree data structure used to efficiently store and access sorted data. It’s like a regular tree, but with additional rules that keep everything neatly organized:</p>
-<p><strong>Key features:</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="iterator">
+<h1>Iterator<a class="headerlink" href="#iterator" title="Link to this heading">#</a></h1>
+<p>In Java, an iterator is an interface that allows you to traverse elements in a collection one at a time. It provides a standardized way to loop through various collections like ArrayList, HashSet, and more, regardless of their underlying implementation.</p>
+<p>Here are some key points about iterators in Java:</p>
+<p><strong>Functionality:</strong></p>
 <ul class="simple">
-<li><p><strong>Ordering:</strong> Each node in the tree has a value (key), and the key of a node is <strong>always greater than</strong> all the keys in its <strong>left subtree</strong> and <strong>less than</strong> all the keys in its <strong>right subtree</strong>. This creates a sorted order throughout the tree.</p></li>
-<li><p><strong>Efficient searching:</strong> Because of this ordering, you can very quickly search for specific values in the tree. Imagine searching a phone book - you wouldn’t start at the very beginning or end, but somewhere in the middle based on the last name. Similarly, in a BST, you can efficiently move left or right depending on the value you’re searching for, narrowing down the possibilities with each comparison.</p></li>
-<li><p><strong>Dynamic insertions and deletions:</strong> You can easily add new values (insert) or remove existing ones (delete) from the tree while maintaining the sorted order. The process involves comparing the new value with existing nodes and finding its appropriate place based on the ordering rule.</p></li>
+<li><p><strong>Traversing Collections:</strong> Iterators act like a cursor that points to the current element in a collection. You can use the <code class="docutils literal notranslate"><span class="pre">hasNext()</span></code> method to check if there are more elements remaining, and <code class="docutils literal notranslate"><span class="pre">next()</span></code> to retrieve the next element in the iteration process.</p></li>
+<li><p><strong>Modification:</strong> Unlike the older <code class="docutils literal notranslate"><span class="pre">Enumeration</span></code> interface, iterators allow you to remove elements from the collection you’re iterating over using the <code class="docutils literal notranslate"><span class="pre">remove()</span></code> method. This maintains a safe and well-defined way to modify the collection during iteration.</p></li>
 </ul>
-<p><strong>Benefits of using BSTs:</strong></p>
+<p><strong>Benefits of Using Iterators:</strong></p>
 <ul class="simple">
-<li><p><strong>Fast search:</strong> Searching for elements in a balanced BST takes <strong>logarithmic time</strong> on average, which is significantly faster than searching an unsorted list.</p></li>
-<li><p><strong>Ordered access:</strong> You can easily traverse the tree in sorted order (e.g., for printing all elements in ascending order).</p></li>
-<li><p><strong>Efficient insertions and deletions:</strong> These operations can also be done in logarithmic time in balanced BSTs.</p></li>
+<li><p><strong>Universality:</strong>  Since most collection classes in Java implement the <code class="docutils literal notranslate"><span class="pre">Iterator</span></code> interface, you can use the same looping pattern to iterate through different collection types with consistent behavior.</p></li>
+<li><p><strong>Safe Removal:</strong> The <code class="docutils literal notranslate"><span class="pre">remove()</span></code> method allows for safe modification of the collection during iteration. This prevents issues like concurrent modification exceptions that can occur with other looping mechanisms.</p></li>
+<li><p><strong>Efficiency:</strong>  Iterators can be efficient, especially when dealing with large collections, as they retrieve elements on demand.</p></li>
 </ul>
-<p><strong>However, BSTs also have some drawbacks:</strong></p>
-<ul class="simple">
-<li><p><strong>Performance depends on balance:</strong> The efficiency of BST operations relies heavily on the tree’s balance. An unbalanced tree can perform much worse than a balanced one.</p></li>
-<li><p><strong>Not self-balancing:</strong> By default, BSTs are not self-balancing, meaning insertions and deletions can sometimes lead to imbalances. Special techniques are needed to maintain balance and ensure optimal performance.</p></li>
-</ul>
-<p>Overall, binary search trees are a powerful and versatile data structure for storing and managing sorted data efficiently. They offer fast search, insertion, and deletion operations, making them suitable for various applications like symbol tables, priority queues, and sorting algorithms.</p>
-</section>
-<div class="toctree-wrapper compound">
+<p><strong>Using an Iterator:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Import the Interface:</strong> You’ll typically need to import the <code class="docutils literal notranslate"><span class="pre">java.util.Iterator</span></code> interface at the beginning of your code.</p></li>
+<li><p><strong>Get an Iterator:</strong> Most collection classes provide an <code class="docutils literal notranslate"><span class="pre">iterator()</span></code> method that returns an iterator object specific to that collection.</p></li>
+<li><p><strong>Looping:</strong>  Use a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop to iterate through the collection. Inside the loop, call <code class="docutils literal notranslate"><span class="pre">hasNext()</span></code> to check for elements, and <code class="docutils literal notranslate"><span class="pre">next()</span></code> to access the current element.</p></li>
+<li><p><strong>Optional Removal:</strong> If needed, you can call <code class="docutils literal notranslate"><span class="pre">remove()</span></code> to remove the element you just accessed using <code class="docutils literal notranslate"><span class="pre">next()</span></code>. However, keep in mind that removing elements while iterating might have specific restrictions depending on the collection type.</p></li>
+</ol>
+<p>By understanding iterators, you can effectively process and manipulate elements within various collections in your Java programs.</p>
+<section id="example-code">
+<h2>Example Code<a class="headerlink" href="#example-code" title="Link to this heading">#</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Iterator</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">IteratorExample</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Create an ArrayList of names</span>
+<span class="w">    </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">names</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Alice&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">names</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">names</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Charlie&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Get an iterator for the ArrayList</span>
+<span class="w">    </span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">names</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Loop through the elements using hasNext() and next()</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Names in the ArrayList:&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+<span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="w">    </span>
+</pre></div>
 </div>
+</section>
+<section id="iterator-vs-for-statement">
+<h2>Iterator vs For statement<a class="headerlink" href="#iterator-vs-for-statement" title="Link to this heading">#</a></h2>
+<p>Both iterators and for statements are used for looping through collections in Java, but they have some key differences:</p>
+<p><strong>Focus:</strong></p>
+<ul class="simple">
+<li><p><strong>Iterator:</strong>  An iterator is an <strong>object</strong> that provides a way to access elements in a collection one at a time. It offers a more general-purpose approach to traversing various data structures.</p></li>
+<li><p><strong>For statement:</strong> A for statement is a <strong>syntactic construct</strong> specifically designed for looping through collections. It offers a concise and readable way to iterate, especially for simple forward iteration.</p></li>
+</ul>
+<p><strong>Functionality:</strong></p>
+<ul class="simple">
+<li><p><strong>Iterator:</strong>  Provides methods like <code class="docutils literal notranslate"><span class="pre">hasNext()</span></code> and <code class="docutils literal notranslate"><span class="pre">next()</span></code> for element access and checking. It also offers optional removal of elements with <code class="docutils literal notranslate"><span class="pre">remove()</span></code>.</p></li>
+<li><p><strong>For statement (for-each loop):</strong>  This type of for statement is specifically designed for iterating over collections. It automatically retrieves the next element and assigns it to a temporary variable within the loop. It doesn’t provide direct access to the current element’s index or removal functionality.</p></li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul class="simple">
+<li><p><strong>Iterator:</strong>  Use iterators when you need more control over the iteration process, such as removing elements during iteration or working with custom data structures that don’t have built-in for loop support.</p></li>
+<li><p><strong>For statement (for-each loop):</strong>  Use for-each loops for simple forward iteration through collections where you only need to access the elements themselves.  They are generally more concise and readable for these scenarios.</p></li>
+</ul>
+<p>Here’s a table summarizing the key differences:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Iterator</p></th>
+<th class="head"><p>For Statement (for-each loop)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Type</p></td>
+<td><p>Interface</p></td>
+<td><p>Syntactic construct</p></td>
+</tr>
+<tr class="row-odd"><td><p>Focus</p></td>
+<td><p>Traversing elements one by one</p></td>
+<td><p>Looping through collections</p></td>
+</tr>
+<tr class="row-even"><td><p>Functionality</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">hasNext()</span></code>, <code class="docutils literal notranslate"><span class="pre">next()</span></code>, <code class="docutils literal notranslate"><span class="pre">remove()</span></code></p></td>
+<td><p>Automatic element access</p></td>
+</tr>
+<tr class="row-odd"><td><p>Index access</p></td>
+<td><p>No direct access</p></td>
+<td><p>No access</p></td>
+</tr>
+<tr class="row-even"><td><p>Element modification</p></td>
+<td><p>Optional with <code class="docutils literal notranslate"><span class="pre">remove()</span></code></p></td>
+<td><p>Not possible</p></td>
+</tr>
+<tr class="row-odd"><td><p>Use cases</p></td>
+<td><p>More control, custom data structures</p></td>
+<td><p>Simple forward iteration</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Choosing Between Iterator and For Statement:</strong></p>
+<ul class="simple">
+<li><p>In most cases, for simple iteration through collections, the for-each loop is preferred due to its conciseness and readability.</p></li>
+<li><p>If you need more control over the iteration process, like removing elements or working with custom data structures, then iterators are the way to go.</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -415,20 +502,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Terms_Iterator.html"
+       href="Terms_Serializable.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Iterator</p>
+        <p class="prev-next-title">Serializable</p>
       </div>
     </a>
     <a class="right-next"
-       href="BST_Applications.html"
+       href="BST_Intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Applications That Use Binary Trees</p>
+        <p class="prev-next-title">Binary Search Tree - Intro</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -448,7 +535,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-information">Background Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-code">Example Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterator-vs-for-statement">Iterator vs For statement</a></li>
 </ul>
   </nav></div>
 

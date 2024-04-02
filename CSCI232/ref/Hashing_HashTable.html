@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Binary Search Tree - Intro &#8212; Algorithms</title>
+    <title>Hash Table &#8212; Algorithms</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/BST_Intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/Hashing_HashTable';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Applications That Use Binary Trees" href="BST_Applications.html" />
-    <link rel="prev" title="Iterator" href="Terms_Iterator.html" />
+    <link rel="next" title="Modulus Hash Function" href="Hashing_ModulusHashFunction.html" />
+    <link rel="prev" title="Red Black Tree" href="BST_RedBlack.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -177,7 +177,7 @@
 <li class="toctree-l2"><a class="reference internal" href="Terms_Iterator.html">Iterator</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Binary Search Tree - Intro</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BST_Intro.html">Binary Search Tree - Intro</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="BST_Applications.html">Applications That Use Binary Trees</a></li>
 <li class="toctree-l2"><a class="reference internal" href="BST_Comparisons.html">Binary Tree Comparisons</a></li>
 <li class="toctree-l2"><a class="reference internal" href="BST_TreeTraversal.html">Tree Traversal</a></li>
@@ -186,7 +186,7 @@
 <li class="toctree-l2"><a class="reference internal" href="BST_RedBlack.html">Red Black Tree</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Hash Table</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_ModulusHashFunction.html">Modulus Hash Function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_Chaining.html">Hash Tables - Chaining</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressing.html">Hash Table - Open Addressing</a></li>
@@ -250,7 +250,7 @@
       
       
       
-      <li><a href="../_sources/ref/BST_Intro.md" target="_blank"
+      <li><a href="../_sources/ref/Hashing_HashTable.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -321,9 +321,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -334,19 +332,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Binary Search Tree - Intro</h1>
+    <h1>Hash Table</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-information">Background Information</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -356,30 +346,82 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="binary-search-tree-intro">
-<h1>Binary Search Tree - Intro<a class="headerlink" href="#binary-search-tree-intro" title="Link to this heading">#</a></h1>
-<section id="background-information">
-<h2>Background Information<a class="headerlink" href="#background-information" title="Link to this heading">#</a></h2>
-<p>A binary search tree (BST) is a special type of binary tree data structure used to efficiently store and access sorted data. It’s like a regular tree, but with additional rules that keep everything neatly organized:</p>
-<p><strong>Key features:</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="hash-table">
+<h1>Hash Table<a class="headerlink" href="#hash-table" title="Link to this heading">#</a></h1>
+<p>A <strong>hash table</strong>, also known as a <strong>hash map</strong> or a <strong>hash set</strong>, is a fundamental data structure used in computer science. Let’s explore its key characteristics:</p>
+<p><img alt="img" src="https://www.bing.com/th?id=OSK.6fa166c5dd29edbde91335751b5ad93e&amp;pid=cdx&amp;w=259&amp;h=189&amp;c=7" /></p>
+<ol class="arabic simple">
+<li><p><strong>Purpose and Function</strong>:</p>
 <ul class="simple">
-<li><p><strong>Ordering:</strong> Each node in the tree has a value (key), and the key of a node is <strong>always greater than</strong> all the keys in its <strong>left subtree</strong> and <strong>less than</strong> all the keys in its <strong>right subtree</strong>. This creates a sorted order throughout the tree.</p></li>
-<li><p><strong>Efficient searching:</strong> Because of this ordering, you can very quickly search for specific values in the tree. Imagine searching a phone book - you wouldn’t start at the very beginning or end, but somewhere in the middle based on the last name. Similarly, in a BST, you can efficiently move left or right depending on the value you’re searching for, narrowing down the possibilities with each comparison.</p></li>
-<li><p><strong>Dynamic insertions and deletions:</strong> You can easily add new values (insert) or remove existing ones (delete) from the tree while maintaining the sorted order. The process involves comparing the new value with existing nodes and finding its appropriate place based on the ordering rule.</p></li>
+<li><p>A hash table is designed to efficiently <strong>associate keys with values</strong>.</p></li>
+<li><p>It allows you to store and retrieve data based on a unique <strong>key</strong>.</p></li>
+<li><p>The primary operation it supports is <strong>lookup</strong>: given a key (e.g., a person’s name), find the corresponding value (e.g., their telephone number).</p></li>
 </ul>
-<p><strong>Benefits of using BSTs:</strong></p>
+</li>
+<li><p><strong>How It Works</strong>:</p>
 <ul class="simple">
-<li><p><strong>Fast search:</strong> Searching for elements in a balanced BST takes <strong>logarithmic time</strong> on average, which is significantly faster than searching an unsorted list.</p></li>
-<li><p><strong>Ordered access:</strong> You can easily traverse the tree in sorted order (e.g., for printing all elements in ascending order).</p></li>
-<li><p><strong>Efficient insertions and deletions:</strong> These operations can also be done in logarithmic time in balanced BSTs.</p></li>
+<li><p>A hash table uses a <strong>hash function</strong> to compute an <strong>index</strong> (also called a <strong>hash code</strong>) into an array of <strong>buckets</strong> or <strong>slots</strong>.</p></li>
+<li><p>Each bucket can hold a value associated with a specific key.</p></li>
+<li><p>During a lookup, the key is hashed, and the resulting hash points to the bucket where the corresponding value is stored.</p></li>
+<li><p>Ideally, the hash function assigns each key to a <strong>unique bucket</strong>.</p></li>
+<li><p>However, most hash table designs use an <strong>imperfect hash function</strong>, which may cause <strong>hash collisions</strong> (where multiple keys map to the same bucket).</p></li>
+<li><p>Collisions are typically resolved using techniques like <strong>chaining</strong> or <strong>open addressing</strong>.</p></li>
 </ul>
-<p><strong>However, BSTs also have some drawbacks:</strong></p>
+</li>
+<li><p><strong>Time Complexity</strong>:</p>
 <ul class="simple">
-<li><p><strong>Performance depends on balance:</strong> The efficiency of BST operations relies heavily on the tree’s balance. An unbalanced tree can perform much worse than a balanced one.</p></li>
-<li><p><strong>Not self-balancing:</strong> By default, BSTs are not self-balancing, meaning insertions and deletions can sometimes lead to imbalances. Special techniques are needed to maintain balance and ensure optimal performance.</p></li>
+<li><p>In a well-designed hash table, the average time complexity for each lookup is <strong>independent of the number of elements</strong> stored.</p></li>
+<li><p>Many hash table implementations allow <strong>arbitrary insertions</strong> and <strong>deletions</strong> of key–value pairs at <strong>amortized constant average cost</strong> per operation.</p></li>
 </ul>
-<p>Overall, binary search trees are a powerful and versatile data structure for storing and managing sorted data efficiently. They offer fast search, insertion, and deletion operations, making them suitable for various applications like symbol tables, priority queues, and sorting algorithms.</p>
-</section>
+</li>
+<li><p><strong>Applications</strong>:</p>
+<ul class="simple">
+<li><p>Hash tables are widely used in various software applications:</p>
+<ul>
+<li><p><strong>Associative Arrays</strong>: Efficiently store key-value pairs.</p></li>
+<li><p><strong>Database Indexing</strong>: Speed up data retrieval.</p></li>
+<li><p><strong>Caches</strong>: Store frequently accessed data.</p></li>
+<li><p><strong>Sets</strong>: Implement sets with fast membership checks.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>History</strong>:</p>
+<ul class="simple">
+<li><p>The idea of hashing arose independently in different places.</p></li>
+<li><p>In 1953, Hans Peter Luhn proposed hashing with chaining.</p></li>
+<li><p>Gene Amdahl and others at IBM Research implemented hashing for the IBM 701 assembler.</p></li>
+<li><p>Hashing has become a fundamental tool in computer science.</p></li>
+</ul>
+</li>
+</ol>
+<p>In summary, hash tables provide a powerful way to organize and access data efficiently, making them essential for various programming tasks.</p>
+<hr class="docutils" />
+<p>A hash table, also known as a hash map or hash set, is a data structure that stores <strong>key-value pairs</strong> and allows <strong>fast retrieval</strong> based on the key. It uses a technique called <strong>hashing</strong> to achieve this efficiency.</p>
+<p>Here’s how it works:</p>
+<ol class="arabic simple">
+<li><p><strong>Keys and Values:</strong> You store data in the form of <strong>key-value pairs</strong>. The <strong>key</strong> acts like a unique identifier, and the <strong>value</strong> is the actual data you want to store.</p></li>
+<li><p><strong>Hash Function:</strong> The key is fed into a <strong>hash function</strong>. This function acts like a special code that transforms the key into a <strong>fixed-length index</strong> within an array. Ideally, different keys should map to different indexes, minimizing collisions (where multiple keys map to the same index).</p></li>
+<li><p><strong>Array and Buckets:</strong> The hash table uses an <strong>array</strong> to store the key-value pairs. Each element in the array, called a <strong>bucket</strong>, can hold one or more key-value pairs.</p></li>
+<li><p><strong>Accessing Data:</strong> To find a specific value, you provide its key. The key is hashed again, generating the same index as before. Then, the hash table searches the corresponding bucket in the array for the matching key-value pair.</p></li>
+</ol>
+<p><strong>Benefits of Hash Tables:</strong></p>
+<ul class="simple">
+<li><p><strong>Fast Lookup:</strong> Compared to searching a linear list, a hash table allows <strong>very fast retrieval</strong> of values based on their keys. This is because the key directly points to the location (bucket) of the data.</p></li>
+<li><p><strong>Efficient for Large Datasets:</strong> As the data size grows, the lookup time in a hash table remains relatively constant on average, making it efficient for handling large datasets.</p></li>
+</ul>
+<p><strong>However, it’s important to note:</strong></p>
+<ul class="simple">
+<li><p><strong>Collisions:</strong> Although hash functions aim to minimize collisions, they can still occur. When multiple keys map to the same index, additional steps are needed to resolve the collision and find the desired value.</p></li>
+<li><p><strong>Not Suitable for Ordered Data:</strong> Hash tables are not ideal when you need to access data in a specific order, as the order of elements is not preserved.</p></li>
+</ul>
+<p>Hash tables are widely used in various applications:</p>
+<ul class="simple">
+<li><p><strong>Caches:</strong> They are a common choice for implementing caches, where frequently accessed data is stored for quick retrieval.</p></li>
+<li><p><strong>Databases:</strong> They are used for indexing data in databases, allowing fast access based on specific criteria.</p></li>
+<li><p><strong>Programming Languages:</strong> Many programming languages use hash tables for implementing associative arrays and dictionaries, where data is accessed using keys.</p></li>
+</ul>
+<p>Overall, hash tables offer a <strong>powerful and efficient</strong> way to store and retrieve data based on keys, making them valuable tools in various computing scenarios.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -415,20 +457,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Terms_Iterator.html"
+       href="BST_RedBlack.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Iterator</p>
+        <p class="prev-next-title">Red Black Tree</p>
       </div>
     </a>
     <a class="right-next"
-       href="BST_Applications.html"
+       href="Hashing_ModulusHashFunction.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Applications That Use Binary Trees</p>
+        <p class="prev-next-title">Modulus Hash Function</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -439,20 +481,7 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-information">Background Information</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
