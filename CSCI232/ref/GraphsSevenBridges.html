@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Hash Tables - Chaining &#8212; Algorithms</title>
+    <title>Seven Bridges of Königsberg &#8212; Algorithms</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/Hashing_Chaining';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/GraphsSevenBridges';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Hash Table - Open Addressing" href="Hashing_OpenAddressing.html" />
-    <link rel="prev" title="Modulus Hash Function" href="Hashing_ModulusHashFunction.html" />
+    <link rel="next" title="Depth-First Search (DFS)" href="GraphsDFS.html" />
+    <link rel="prev" title="Graphs" href="Graphs.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -186,15 +186,15 @@
 <li class="toctree-l2"><a class="reference internal" href="BST_RedBlack.html">Red Black Tree</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_ModulusHashFunction.html">Modulus Hash Function</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Hash Tables - Chaining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_Chaining.html">Hash Tables - Chaining</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressing.html">Hash Table - Open Addressing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressingHashingCodeExamples.html">Java code for double hashing in a hash table:</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Graphs.html">Graphs</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="GraphsSevenBridges.html">Seven Bridges of Königsberg</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Graphs.html">Graphs</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Seven Bridges of Königsberg</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsDFS.html">Depth-First Search (DFS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsBFS.html">Breadth First</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsMazeSolverDFS.html">DSF - Maze Solving</a></li>
@@ -256,7 +256,7 @@
       
       
       
-      <li><a href="../_sources/ref/Hashing_Chaining.md" target="_blank"
+      <li><a href="../_sources/ref/GraphsSevenBridges.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -338,7 +338,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Hash Tables - Chaining</h1>
+    <h1>Seven Bridges of Königsberg</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -352,72 +352,58 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="hash-tables-chaining">
-<h1>Hash Tables - Chaining<a class="headerlink" href="#hash-tables-chaining" title="Link to this heading">#</a></h1>
-<p>In hash tables, <strong>chaining</strong> is a <strong>collision resolution technique</strong> used to address the issue of collisions. A collision occurs when two different keys map to the same index in the hash table’s internal array. Chaining provides a way to store these colliding elements efficiently.</p>
-<p>Here’s how chaining works:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="seven-bridges-of-konigsberg">
+<h1>Seven Bridges of Königsberg<a class="headerlink" href="#seven-bridges-of-konigsberg" title="Link to this heading">#</a></h1>
+<p>The <strong>Seven Bridges of Königsberg</strong> is a historically notable problem in mathematics that laid the foundations for graph theory and prefigured the idea of topology. Let’s delve into the details:</p>
 <ol class="arabic simple">
-<li><p><strong>Hash Function:</strong> Like other collision resolution techniques, chaining starts with a <strong>hash function</strong>. This function takes a key as input and generates a <strong>hash value</strong>, which is used as an index to access a specific location (bucket) in the hash table’s array.</p></li>
-<li><p><strong>Collision:</strong> If two different keys happen to have the same hash value, a collision occurs.</p></li>
-<li><p><strong>Linked List:</strong> Instead of overwriting the existing element at the collided index, chaining uses a <strong>linked list</strong>. This linked list is attached to the bucket in the hash table array.</p></li>
-<li><p><strong>Storing the Colliding Element:</strong> The colliding element is then added as a new node to the linked list attached to the collided bucket.</p></li>
-<li><p><strong>Searching and Accessing:</strong> When searching for a specific key, the hash function is used again to generate the index. Then, the linked list at that index is traversed to find the node containing the key-value pair you’re looking for. The process compares keys until the desired one is found.</p></li>
+<li><p><strong>The City of Königsberg</strong>:</p>
+<ul class="simple">
+<li><p>Königsberg (now Kaliningrad, Russia) was a city set on both sides of the Pregel River.</p></li>
+<li><p>It included two large islands: <strong>Kneiphof</strong> and <strong>Lomse</strong>.</p></li>
+<li><p>These islands were connected to each other and to the two mainland portions of the city by <strong>seven bridges</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>The Problem</strong>:</p>
+<ul class="simple">
+<li><p>The challenge was to find a walk through the city that would <strong>cross each bridge once and only once</strong>.</p></li>
+<li><p>The rules were strict:</p>
+<ul>
+<li><p>Solutions couldn’t involve reaching an island or mainland bank without using a bridge.</p></li>
+<li><p>Accessing any bridge without crossing to its other end was unacceptable.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Euler’s Insight</strong>:</p>
+<ul class="simple">
+<li><p><strong>Leonhard Euler</strong>, a brilliant mathematician, analyzed the problem.</p></li>
+<li><p>He realized that the choice of route inside each landmass (island or mainland) was irrelevant.</p></li>
+<li><p>The crucial aspect was the <strong>sequence of bridges crossed</strong>.</p></li>
+<li><p>Euler reformulated the problem in abstract terms, focusing only on the list of landmasses and the bridges connecting them.</p></li>
+</ul>
+</li>
+<li><p><strong>Graph Theory Approach</strong>:</p>
+<ul class="simple">
+<li><p>Euler replaced each landmass with an abstract “vertex” or node.</p></li>
+<li><p>Each bridge became an abstract connection or “edge” between vertices.</p></li>
+<li><p>The resulting mathematical structure is a <strong>graph</strong>.</p></li>
+<li><p>The shape of the graph could be distorted without changing its essence—only the number of edges between nodes mattered.</p></li>
+</ul>
+</li>
+<li><p><strong>Euler’s Solution</strong>:</p>
+<ul class="simple">
+<li><p>Euler observed that whenever one enters a vertex by a bridge, one must leave it by a bridge (except at the endpoints of the walk).</p></li>
+<li><p>If every bridge had been traversed exactly once, the number of bridges touching each landmass must be <strong>even</strong>.</p></li>
+<li><p>Euler proved that the problem had <strong>no solution</strong> because the number of bridges touching each landmass was <strong>odd</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Legacy</strong>:</p>
+<ul class="simple">
+<li><p>Euler’s negative resolution of the Seven Bridges problem laid the groundwork for graph theory.</p></li>
+<li><p>It also prefigured the concept of <strong>topology</strong>, which studies properties preserved under continuous deformations.</p></li>
+</ul>
+</li>
 </ol>
-<p><strong>Benefits of Chaining:</strong></p>
-<ul class="simple">
-<li><p><strong>Efficient for Handling Collisions:</strong> Chaining allows efficient handling of collisions, especially when the number of collisions is relatively low. Each bucket can hold multiple elements, preventing the need to re-hash and find a new location for the colliding element, which can be a costly operation.</p></li>
-<li><p><strong>Flexible:</strong> Chaining can dynamically adapt to varying numbers of collisions. As the data grows and more collisions occur, the linked lists attached to buckets simply grow longer.</p></li>
-</ul>
-<p><strong>Drawbacks of Chaining:</strong></p>
-<ul class="simple">
-<li><p><strong>Space Overhead:</strong> Chaining uses additional memory to store the linked lists, which can be a slight overhead compared to other techniques like separate chaining (using a separate array for each bucket).</p></li>
-<li><p><strong>Potential for Longer Lookup Times:</strong> In the worst case scenario, if too many elements collide and form very long linked lists, searching for a specific key can become slower as the entire list needs to be traversed.</p></li>
-</ul>
-<p><strong>Overall, chaining is a common and effective collision resolution technique used in hash tables. It provides a flexible and efficient way to handle collisions while keeping lookup times relatively fast in most cases.</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="n">Hash</span> <span class="n">Table</span> <span class="n">Array</span>   <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Node1</span><span class="p">(</span><span class="n">K1</span><span class="p">,</span> <span class="n">V1</span><span class="p">)</span> <span class="o">|</span> <span class="o">--&gt;</span> <span class="n">Linked</span> <span class="n">List</span> <span class="mi">1</span>
-<span class="o">|</span>                    <span class="o">|</span> <span class="o">--&gt;</span> <span class="n">Node2</span><span class="p">(</span><span class="n">K2</span><span class="p">,</span> <span class="n">V2</span><span class="p">)</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="kc">None</span>        <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Node3</span><span class="p">(</span><span class="n">K3</span><span class="p">,</span> <span class="n">V3</span><span class="p">)</span> <span class="o">|</span> <span class="o">--&gt;</span> <span class="n">Linked</span> <span class="n">List</span> <span class="mi">2</span>
-<span class="o">|</span>                    <span class="o">|</span> <span class="o">--&gt;</span> <span class="n">Node4</span><span class="p">(</span><span class="n">K4</span><span class="p">,</span> <span class="n">V4</span><span class="p">)</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Node5</span><span class="p">(</span><span class="n">K5</span><span class="p">,</span> <span class="n">V5</span><span class="p">)</span> <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="kc">None</span>        <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Node6</span><span class="p">(</span><span class="n">K6</span><span class="p">,</span> <span class="n">V6</span><span class="p">)</span> <span class="o">|</span> <span class="o">--&gt;</span> <span class="n">Linked</span> <span class="n">List</span> <span class="mi">3</span>
-<span class="o">|</span>                    <span class="o">|</span> <span class="o">--&gt;</span> <span class="n">Node7</span><span class="p">(</span><span class="n">K7</span><span class="p">,</span> <span class="n">V7</span><span class="p">)</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="kc">None</span>        <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Node8</span><span class="p">(</span><span class="n">K8</span><span class="p">,</span> <span class="n">V8</span><span class="p">)</span> <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="kc">None</span>        <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="kc">None</span>        <span class="o">|</span>
-<span class="o">+--------------------+</span>
-
-<span class="n">K</span><span class="p">:</span> <span class="n">Key</span>      <span class="n">V</span><span class="p">:</span> <span class="n">Value</span>
-</pre></div>
-</div>
-<p>This diagram represents a hash table with 10 buckets (index 0 to 9) and uses chaining for collision resolution. Here’s a breakdown of the elements:</p>
-<ul class="simple">
-<li><p><strong>Hash Table Array:</strong> This is the main array that stores the hash table entries. Each element in the array, called a bucket, can potentially hold a linked list of key-value pairs.</p></li>
-<li><p><strong>Linked Lists:</strong> Each bucket that experiences a collision has an attached linked list. This list stores the key-value pairs that collided at that index.</p></li>
-<li><p><strong>Nodes:</strong> Each node in the linked list represents a key-value pair (K1, V1) in the hash table.</p></li>
-<li><p><strong>Empty Buckets:</strong> Buckets without collisions have a value of <code class="docutils literal notranslate"><span class="pre">None</span></code> to indicate they are empty.</p></li>
-</ul>
-<p>For example:</p>
-<ul class="simple">
-<li><p>Key K1 and Key K2 collided and are stored in a linked list attached to bucket 0.</p></li>
-<li><p>Key K3 and Key K4 collided and are stored in a linked list attached to bucket 2.</p></li>
-<li><p>Keys K5, K6, K7, and K8 do not have collisions and are stored directly in their respective buckets (3, 5, and 7).</p></li>
-</ul>
-<p>This is a simplified example, and in practice, hash tables may use different data structures for linked lists and have more complex logic for handling collisions and ensuring efficient retrieval of key-value pairs.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -451,20 +437,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Hashing_ModulusHashFunction.html"
+       href="Graphs.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Modulus Hash Function</p>
+        <p class="prev-next-title">Graphs</p>
       </div>
     </a>
     <a class="right-next"
-       href="Hashing_OpenAddressing.html"
+       href="GraphsDFS.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Hash Table - Open Addressing</p>
+        <p class="prev-next-title">Depth-First Search (DFS)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

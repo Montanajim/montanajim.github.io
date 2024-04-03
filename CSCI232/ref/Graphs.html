@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Hash Tables - Chaining &#8212; Algorithms</title>
+    <title>Graphs &#8212; Algorithms</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/Hashing_Chaining';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/Graphs';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Hash Table - Open Addressing" href="Hashing_OpenAddressing.html" />
-    <link rel="prev" title="Modulus Hash Function" href="Hashing_ModulusHashFunction.html" />
+    <link rel="next" title="Seven Bridges of Königsberg" href="GraphsSevenBridges.html" />
+    <link rel="prev" title="Java code for double hashing in a hash table:" href="Hashing_OpenAddressingHashingCodeExamples.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -186,14 +186,14 @@
 <li class="toctree-l2"><a class="reference internal" href="BST_RedBlack.html">Red Black Tree</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_ModulusHashFunction.html">Modulus Hash Function</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Hash Tables - Chaining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_Chaining.html">Hash Tables - Chaining</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressing.html">Hash Table - Open Addressing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressingHashingCodeExamples.html">Java code for double hashing in a hash table:</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Graphs.html">Graphs</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Graphs</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="GraphsSevenBridges.html">Seven Bridges of Königsberg</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsDFS.html">Depth-First Search (DFS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsBFS.html">Breadth First</a></li>
@@ -256,7 +256,7 @@
       
       
       
-      <li><a href="../_sources/ref/Hashing_Chaining.md" target="_blank"
+      <li><a href="../_sources/ref/Graphs.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -338,7 +338,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Hash Tables - Chaining</h1>
+    <h1>Graphs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -352,72 +352,42 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="hash-tables-chaining">
-<h1>Hash Tables - Chaining<a class="headerlink" href="#hash-tables-chaining" title="Link to this heading">#</a></h1>
-<p>In hash tables, <strong>chaining</strong> is a <strong>collision resolution technique</strong> used to address the issue of collisions. A collision occurs when two different keys map to the same index in the hash table’s internal array. Chaining provides a way to store these colliding elements efficiently.</p>
-<p>Here’s how chaining works:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="graphs">
+<h1>Graphs<a class="headerlink" href="#graphs" title="Link to this heading">#</a></h1>
+<p>In computer science, a <strong>graph</strong> is an abstract representation of a set of objects, known as <strong>vertices</strong> or <strong>nodes</strong>, connected by a set of <strong>edges</strong>. Graphs offer a flexible way to depict relationships and interactions between different entities. <a class="reference external" href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/">They can be either <strong>directed</strong> (where edges have a specific direction) or <strong>undirected</strong> (where edges have no specific direction) </a><a class="reference external" href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/">1</a><a class="reference external" href="https://medium.com/&#64;MakeComputerScienceGreatAgain/graphs-in-computer-science-a-comprehensive-overview-of-an-essential-data-structure-20b6165a61b5">2</a>. Let’s delve deeper into the world of graphs:</p>
 <ol class="arabic simple">
-<li><p><strong>Hash Function:</strong> Like other collision resolution techniques, chaining starts with a <strong>hash function</strong>. This function takes a key as input and generates a <strong>hash value</strong>, which is used as an index to access a specific location (bucket) in the hash table’s array.</p></li>
-<li><p><strong>Collision:</strong> If two different keys happen to have the same hash value, a collision occurs.</p></li>
-<li><p><strong>Linked List:</strong> Instead of overwriting the existing element at the collided index, chaining uses a <strong>linked list</strong>. This linked list is attached to the bucket in the hash table array.</p></li>
-<li><p><strong>Storing the Colliding Element:</strong> The colliding element is then added as a new node to the linked list attached to the collided bucket.</p></li>
-<li><p><strong>Searching and Accessing:</strong> When searching for a specific key, the hash function is used again to generate the index. Then, the linked list at that index is traversed to find the node containing the key-value pair you’re looking for. The process compares keys until the desired one is found.</p></li>
+<li><p><strong>Graph Data Structure</strong>: A graph data structure consists of nodes (vertices) and edges. It’s used to represent relationships between different entities. <a class="reference external" href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/">Graph algorithms manipulate and analyze graphs, solving various problems like finding the shortest path or detecting cycles </a><a class="reference external" href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/">1</a>.</p></li>
+<li><p><strong>Types of Graphs</strong>:</p>
+<ul class="simple">
+<li><p><strong>Directed Graph (Digraph)</strong>: Edges have a specific direction, forming an ordered pair (u, v).</p></li>
+<li><p><strong>Undirected Graph</strong>: Edges have no specific direction, forming an unordered pair {u, v}.</p></li>
+<li><p><strong>Weighted Graph</strong>: Edges have associated weights (e.g., distances, costs).</p></li>
+<li><p><strong>Cyclic Graph</strong>: Contains cycles (closed loops).</p></li>
+<li><p><strong>Acyclic Graph</strong>: Has no cycles.</p></li>
+<li><p><strong>Connected Graph</strong>: Every pair of vertices is connected by a path.</p></li>
+<li><p><strong>Disconnected Graph</strong>: Contains isolated components.</p></li>
+<li><p><strong>Bipartite Graph</strong>: Vertices can be divided into two disjoint sets such that no edge connects vertices within the same set.</p></li>
+</ul>
+</li>
+<li><p><strong>Graph Algorithms</strong>:</p>
+<ul class="simple">
+<li><p><strong>Breadth-First Search (BFS)</strong>: Traverses the graph layer by layer.</p></li>
+<li><p><strong>Depth-First Search (DFS)</strong>: Explores as far as possible along each branch before backtracking.</p></li>
+<li><p><strong>Dijkstra’s Algorithm</strong>: Finds the shortest path in weighted graphs.</p></li>
+<li><p><strong>Minimum Spanning Tree (MST)</strong>: Connects all vertices with minimum total edge weight.</p></li>
+<li><p><strong>Topological Sorting</strong>: Orders vertices based on dependencies.</p></li>
+<li><p><strong>Articulation Points</strong>: Critical vertices in a connected graph.</p></li>
+<li><p><strong>Strongly Connected Components</strong>: Maximal strongly connected subgraphs.</p></li>
+<li><p><strong>Eulerian Path/Circuit</strong>: Visits each edge exactly once.</p></li>
+<li><p><strong>Bellman–Ford Algorithm</strong>: Detects negative cycles.</p></li>
+<li><p><strong>Transitive Closure</strong>: Determines reachability between vertices.</p></li>
+</ul>
+</li>
 </ol>
-<p><strong>Benefits of Chaining:</strong></p>
-<ul class="simple">
-<li><p><strong>Efficient for Handling Collisions:</strong> Chaining allows efficient handling of collisions, especially when the number of collisions is relatively low. Each bucket can hold multiple elements, preventing the need to re-hash and find a new location for the colliding element, which can be a costly operation.</p></li>
-<li><p><strong>Flexible:</strong> Chaining can dynamically adapt to varying numbers of collisions. As the data grows and more collisions occur, the linked lists attached to buckets simply grow longer.</p></li>
-</ul>
-<p><strong>Drawbacks of Chaining:</strong></p>
-<ul class="simple">
-<li><p><strong>Space Overhead:</strong> Chaining uses additional memory to store the linked lists, which can be a slight overhead compared to other techniques like separate chaining (using a separate array for each bucket).</p></li>
-<li><p><strong>Potential for Longer Lookup Times:</strong> In the worst case scenario, if too many elements collide and form very long linked lists, searching for a specific key can become slower as the entire list needs to be traversed.</p></li>
-</ul>
-<p><strong>Overall, chaining is a common and effective collision resolution technique used in hash tables. It provides a flexible and efficient way to handle collisions while keeping lookup times relatively fast in most cases.</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="n">Hash</span> <span class="n">Table</span> <span class="n">Array</span>   <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Node1</span><span class="p">(</span><span class="n">K1</span><span class="p">,</span> <span class="n">V1</span><span class="p">)</span> <span class="o">|</span> <span class="o">--&gt;</span> <span class="n">Linked</span> <span class="n">List</span> <span class="mi">1</span>
-<span class="o">|</span>                    <span class="o">|</span> <span class="o">--&gt;</span> <span class="n">Node2</span><span class="p">(</span><span class="n">K2</span><span class="p">,</span> <span class="n">V2</span><span class="p">)</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="kc">None</span>        <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Node3</span><span class="p">(</span><span class="n">K3</span><span class="p">,</span> <span class="n">V3</span><span class="p">)</span> <span class="o">|</span> <span class="o">--&gt;</span> <span class="n">Linked</span> <span class="n">List</span> <span class="mi">2</span>
-<span class="o">|</span>                    <span class="o">|</span> <span class="o">--&gt;</span> <span class="n">Node4</span><span class="p">(</span><span class="n">K4</span><span class="p">,</span> <span class="n">V4</span><span class="p">)</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Node5</span><span class="p">(</span><span class="n">K5</span><span class="p">,</span> <span class="n">V5</span><span class="p">)</span> <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="kc">None</span>        <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Node6</span><span class="p">(</span><span class="n">K6</span><span class="p">,</span> <span class="n">V6</span><span class="p">)</span> <span class="o">|</span> <span class="o">--&gt;</span> <span class="n">Linked</span> <span class="n">List</span> <span class="mi">3</span>
-<span class="o">|</span>                    <span class="o">|</span> <span class="o">--&gt;</span> <span class="n">Node7</span><span class="p">(</span><span class="n">K7</span><span class="p">,</span> <span class="n">V7</span><span class="p">)</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="kc">None</span>        <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Node8</span><span class="p">(</span><span class="n">K8</span><span class="p">,</span> <span class="n">V8</span><span class="p">)</span> <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="kc">None</span>        <span class="o">|</span>
-<span class="o">+--------------------+</span>
-<span class="o">|</span> <span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="kc">None</span>        <span class="o">|</span>
-<span class="o">+--------------------+</span>
-
-<span class="n">K</span><span class="p">:</span> <span class="n">Key</span>      <span class="n">V</span><span class="p">:</span> <span class="n">Value</span>
-</pre></div>
+<p>Graphs are everywhere in computer science, from social networks to algorithms. They provide a conceptual and computational framework for solving complex problems. So next time you encounter a network, think of it as a graph connecting nodes of information!</p>
+<p>​</p>
+<div class="toctree-wrapper compound">
 </div>
-<p>This diagram represents a hash table with 10 buckets (index 0 to 9) and uses chaining for collision resolution. Here’s a breakdown of the elements:</p>
-<ul class="simple">
-<li><p><strong>Hash Table Array:</strong> This is the main array that stores the hash table entries. Each element in the array, called a bucket, can potentially hold a linked list of key-value pairs.</p></li>
-<li><p><strong>Linked Lists:</strong> Each bucket that experiences a collision has an attached linked list. This list stores the key-value pairs that collided at that index.</p></li>
-<li><p><strong>Nodes:</strong> Each node in the linked list represents a key-value pair (K1, V1) in the hash table.</p></li>
-<li><p><strong>Empty Buckets:</strong> Buckets without collisions have a value of <code class="docutils literal notranslate"><span class="pre">None</span></code> to indicate they are empty.</p></li>
-</ul>
-<p>For example:</p>
-<ul class="simple">
-<li><p>Key K1 and Key K2 collided and are stored in a linked list attached to bucket 0.</p></li>
-<li><p>Key K3 and Key K4 collided and are stored in a linked list attached to bucket 2.</p></li>
-<li><p>Keys K5, K6, K7, and K8 do not have collisions and are stored directly in their respective buckets (3, 5, and 7).</p></li>
-</ul>
-<p>This is a simplified example, and in practice, hash tables may use different data structures for linked lists and have more complex logic for handling collisions and ensuring efficient retrieval of key-value pairs.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -451,20 +421,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Hashing_ModulusHashFunction.html"
+       href="Hashing_OpenAddressingHashingCodeExamples.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Modulus Hash Function</p>
+        <p class="prev-next-title">Java code for double hashing in a hash table:</p>
       </div>
     </a>
     <a class="right-next"
-       href="Hashing_OpenAddressing.html"
+       href="GraphsSevenBridges.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Hash Table - Open Addressing</p>
+        <p class="prev-next-title">Seven Bridges of Königsberg</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
