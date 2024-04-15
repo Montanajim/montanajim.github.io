@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Bounce &#8212; JAVA II</title>
+    <title>Bounce Balls Animation &#8212; JAVA II</title>
   
   
   
@@ -170,7 +170,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Menus.html">Menus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Comboboxes.html">Combo boxes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LettersvsDigits.html">Letters vs Digits</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bounce</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bounce Balls Animation</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="JABT_JAVAAutomatedBuildTools.html">JAVA Automated Build Tools</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="JABT_JavaAnt.html">Java Ant: Build Automation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="JABT_JavaMaven.html">Java Maven:  Build Automation</a></li>
@@ -315,7 +315,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Bounce</h1>
+    <h1>Bounce Balls Animation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -325,9 +325,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frame-1">Frame 1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frame-1-code">Frame 1 Code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ball">Ball</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-file">Project File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frame1-java">Frame1.java</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ball">BALL</a></li>
 </ul>
             </nav>
         </div>
@@ -339,17 +339,144 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="bounce">
-<h1>Bounce<a class="headerlink" href="#bounce" title="Link to this heading">#</a></h1>
-<p><img alt="Bounce3_Rev3" src="../_images/Bounce3_Rev3.gif" /></p>
-<section id="frame-1">
-<h2>Frame 1<a class="headerlink" href="#frame-1" title="Link to this heading">#</a></h2>
-<p><img alt="" src="../_images/Bounce_Frame1_Rev3.png" /></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="bounce-balls-animation">
+<h1>Bounce Balls Animation<a class="headerlink" href="#bounce-balls-animation" title="Link to this heading">#</a></h1>
+<img src="assets/Bounce_Rev24.gif" alt="2024-04-11_11-55-01" style="zoom: 67%;" />
+<p><strong>Initial Setup:</strong></p>
+<ul class="simple">
+<li><p>It imports necessary libraries for Swing components, random number generation, timers, and colors.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Frame1</span></code> class inherits from <code class="docutils literal notranslate"><span class="pre">javax.swing.JFrame</span></code> which represents the main window of the application.</p></li>
+</ul>
+<p><strong>Global Variables:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">panelTimer</span></code>: A timer object to control repainting of the panel where balls bounce.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TimerStatus</span></code>: Boolean flag to track if the timer is running.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RNG</span></code>: Instance of <code class="docutils literal notranslate"><span class="pre">Random</span></code> class to generate random values.</p></li>
+<li><p>Initial ball properties like <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">radius</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clockTick</span></code>: Time interval between timer ticks (in milliseconds).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alBalls</span></code>: An <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> to store bouncing ball objects.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RNG2</span></code>: Another random number generator (potentially for future use).</p></li>
+</ul>
+<p><strong>Constructor (<code class="docutils literal notranslate"><span class="pre">Frame1</span></code>):</strong></p>
+<ul class="simple">
+<li><p>Initializes the frame and sets its layout.</p></li>
+<li><p>Sets <code class="docutils literal notranslate"><span class="pre">TimerStatus</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code> initially.</p></li>
+<li><p>Creates another random number generator (<code class="docutils literal notranslate"><span class="pre">RNG2</span></code>).</p></li>
+<li><p>Positions the frame in the center of the screen.</p></li>
+</ul>
+<p><strong><code class="docutils literal notranslate"><span class="pre">PanelClock</span></code> method:</strong></p>
+<ul class="simple">
+<li><p>Creates a new <code class="docutils literal notranslate"><span class="pre">Timer</span></code> object with <code class="docutils literal notranslate"><span class="pre">clockTick</span></code> interval and an anonymous <code class="docutils literal notranslate"><span class="pre">ActionListener</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">actionPerformed</span></code> method of the listener iterates through <code class="docutils literal notranslate"><span class="pre">alBalls</span></code>, calling their <code class="docutils literal notranslate"><span class="pre">moveBall</span></code> method to update their positions.</p></li>
+<li><p>It then loops through all components in <code class="docutils literal notranslate"><span class="pre">jPanel1</span></code> (which should be the balls), retrieves their objects using casting, and sets their locations based on their <code class="docutils literal notranslate"><span class="pre">xpos</span></code> and <code class="docutils literal notranslate"><span class="pre">ypos</span></code> values in the <code class="docutils literal notranslate"><span class="pre">Ball</span></code> class.</p></li>
+<li><p>It repaints the panel (<code class="docutils literal notranslate"><span class="pre">jPanel1</span></code>) and reduces the timer delay to a smaller value (presumably for smoother animation).</p></li>
+<li><p>Finally, starts the timer.</p></li>
+</ul>
+<p><strong>Event Handlers:</strong></p>
+<ul>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jbttnAddBallActionPerformed</span>
+</pre></div>
+</div>
+<p>: triggered when the “Add Ball” button is clicked.</p>
+<ul class="simple">
+<li><p>Creates a new <code class="docutils literal notranslate"><span class="pre">Ball</span></code> object.</p></li>
+<li><p>Sets random ball properties like radius, speed, color, and initial position.</p></li>
+<li><p>Adds the ball to the <code class="docutils literal notranslate"><span class="pre">jPanel1</span></code> panel and the <code class="docutils literal notranslate"><span class="pre">alBalls</span></code> list.</p></li>
+<li><p>Starts the timer (<code class="docutils literal notranslate"><span class="pre">PanelClock</span></code>) if it’s not already running.</p></li>
+</ul>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jbttnDeleteBallActionPerformed</span>
+</pre></div>
+</div>
+<p>: triggered when the “Delete Ball” button is clicked.</p>
+<ul class="simple">
+<li><p>Tries to remove the first ball from <code class="docutils literal notranslate"><span class="pre">jPanel1</span></code> and <code class="docutils literal notranslate"><span class="pre">alBalls</span></code></p></li>
+<li><p>Repaints the panel.</p></li>
+</ul>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jbttnClearAllActionPerformed</span>
+</pre></div>
+</div>
+<p>: triggered when the “Clear All” button is clicked.</p>
+<ul class="simple">
+<li><p>Removes all components from <code class="docutils literal notranslate"><span class="pre">jPanel1</span></code>.</p></li>
+<li><p>Clears the <code class="docutils literal notranslate"><span class="pre">alBalls</span></code> list.</p></li>
+</ul>
+</li>
+</ul>
+<p>This code demonstrates how to create a simple bouncing ball animation with Swing. The balls update their positions based on random directions and repaint themselves within the panel.</p>
+<hr class="docutils" />
+<p><img alt="image-20240411111208708" src="../_images/image-20240411111208708-1712858934213-7.png" /></p>
+<div style="page-break-after:always"></div>
+<section id="project-file">
+<h2>Project File<a class="headerlink" href="#project-file" title="Link to this heading">#</a></h2>
+<p>J2_Bounce_Rev24.java</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">Project: Bounce</span>
+<span class="cm">Description: Animate Bouncing Balls</span>
+<span class="cm">Programmer: James Goudy</span>
+<span class="cm">Date: April, 2024</span>
+<span class="cm"> */</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">j2_bounce_rev24</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *</span>
+<span class="cm"> * @author jgoudy</span>
+<span class="cm"> */</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">J2_Bounce_Rev24</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * @param args the command line arguments</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Instatiate a new frame</span>
+<span class="w">        </span><span class="n">Frame1</span><span class="w"> </span><span class="n">myFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Frame1</span><span class="p">();</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">730</span><span class="p">,</span><span class="mi">575</span><span class="p">);</span>
+<span class="w">        </span>
+<span class="w">        </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="p">}</span><span class="cm">/*</span>
+<span class="cm">Project: Bounce</span>
+<span class="cm">Description: Animate Bouncing Balls</span>
+<span class="cm">Programmer: James Goudy</span>
+<span class="cm">Date: April, 2024</span>
+<span class="cm"> */</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">j2_bounce_rev24</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *</span>
+<span class="cm"> * @author jgoudy</span>
+<span class="cm"> */</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">J2_Bounce_Rev24</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * @param args the command line arguments</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Instatiate a new frame</span>
+<span class="w">        </span><span class="n">Frame1</span><span class="w"> </span><span class="n">myFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Frame1</span><span class="p">();</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">730</span><span class="p">,</span><span class="mi">575</span><span class="p">);</span>
+<span class="w">        </span>
+<span class="w">        </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div style="page-break-after:always"></div>
 </section>
-<section id="frame-1-code">
-<h2>Frame 1 Code<a class="headerlink" href="#frame-1-code" title="Link to this heading">#</a></h2>
-<p>Frame1.java</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">j2_bounce_rev3</span><span class="p">;</span>
+<section id="frame1-java">
+<h2>Frame1.java<a class="headerlink" href="#frame1-java" title="Link to this heading">#</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license</span>
+<span class="cm"> * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template</span>
+<span class="cm"> */</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">j2_bounce_rev24</span><span class="p">;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionEvent</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionListener</span><span class="p">;</span>
@@ -357,60 +484,72 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Random</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.Timer</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Color</span><span class="p">;</span>
-
-<span class="cm">/*</span>
-<span class="cm">Revised March 16th by James Goudy</span>
-<span class="cm"> */</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JComponent</span><span class="p">;</span>
 
 <span class="cm">/**</span>
 <span class="cm"> *</span>
 <span class="cm"> * @author jgoudy</span>
 <span class="cm"> */</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Frame1</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JFrame</span>
-<span class="p">{</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Frame1</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JFrame</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="c1">//Global variables</span>
-<span class="w">    </span><span class="n">Timer</span><span class="w"> </span><span class="n">PanelTimer</span><span class="p">;</span><span class="w">  </span><span class="c1">//this will control the repaint of the panel</span>
+<span class="w">    </span><span class="c1">// Global Variables</span>
+<span class="w">    </span><span class="n">Timer</span><span class="w"> </span><span class="n">panelTimer</span><span class="p">;</span><span class="w">  </span><span class="c1">//this will control the repaint of the panel</span>
 <span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">TimerStatus</span><span class="p">;</span>
-<span class="w">    </span><span class="n">Random</span><span class="w"> </span><span class="n">RNG</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="c1">//ball information</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">45</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="c1">//Timer Tick</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">clockTick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span>
-<span class="w">    </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Ball</span><span class="o">&gt;</span><span class="w"> </span><span class="n">alBalls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Random</span><span class="w"> </span><span class="n">RNG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Setup to show one can instantiate an object later</span>
 <span class="w">    </span><span class="n">Random</span><span class="w"> </span><span class="n">RNG2</span><span class="p">;</span>
 <span class="w">    </span>
-<span class="w">     </span><span class="kd">public</span><span class="w"> </span><span class="nf">Frame1</span><span class="p">()</span>
-<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// initial ball info</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Timer Tick</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">clockTick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Arraylist to hold the balls</span>
+<span class="w">    </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Ball</span><span class="o">&gt;</span><span class="w"> </span><span class="n">alBalls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span>
+
+
+<span class="w">    </span><span class="c1">// constructor</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Frame1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">initComponents</span><span class="p">();</span>
-<span class="w">        </span>
+
 <span class="w">        </span><span class="n">TimerStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="w">        </span>
+
 <span class="w">        </span><span class="n">RNG2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
+
 <span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setLocationRelativeTo</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="w">        </span>
+
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">PanelClock</span><span class="p">(){</span>
-<span class="w">        </span><span class="c1">//create the timer</span>
-<span class="w">        </span><span class="n">PanelTimer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Timer</span><span class="p">(</span><span class="n">clockTick</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span>
-<span class="w">        </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">PanelClock</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">panelTimer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Timer</span><span class="p">(</span><span class="n">clockTick</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nd">@Override</span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
-<span class="w">            </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Ball</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">alBalls</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">item</span><span class="p">.</span><span class="na">moveBall</span><span class="p">();</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">jPanel1</span><span class="p">.</span><span class="na">getComponentCount</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">Ball</span><span class="w"> </span><span class="n">js</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Ball</span><span class="p">)</span><span class="w"> </span><span class="n">jPanel1</span><span class="p">.</span><span class="na">getComponent</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">jPanel1</span><span class="p">.</span><span class="na">getComponent</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">setLocation</span><span class="p">(</span><span class="n">js</span><span class="p">.</span><span class="na">getXpos</span><span class="p">(),</span><span class="w"> </span><span class="n">js</span><span class="p">.</span><span class="na">ypos</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+
+
 <span class="w">                </span><span class="n">jPanel1</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
-<span class="w">                </span><span class="n">PanelTimer</span><span class="p">.</span><span class="na">setDelay</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
-<span class="w">                </span>
+<span class="w">                </span><span class="n">panelTimer</span><span class="p">.</span><span class="na">setDelay</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">});</span>
-<span class="w">    </span>
-<span class="w">        </span><span class="n">PanelTimer</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">panelTimer</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span>
 
 <span class="w">    </span><span class="cm">/**</span>
 <span class="cm">     * This method is called from within the constructor to initialize the form.</span>
@@ -419,13 +558,13 @@ document.write(`
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="c1">// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;                          </span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initComponents</span><span class="p">()</span>
-<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initComponents</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">        </span><span class="n">jPanel1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JPanel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">jLabel1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JLabel</span><span class="p">();</span>
 <span class="w">        </span><span class="n">jbttnAddBall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="p">();</span>
 <span class="w">        </span><span class="n">jbttnDeleteBall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="p">();</span>
-<span class="w">        </span><span class="n">jLabel1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JLabel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">jbttnClearAll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="p">();</span>
 
 <span class="w">        </span><span class="n">setDefaultCloseOperation</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">WindowConstants</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
 
@@ -435,170 +574,192 @@ document.write(`
 <span class="w">        </span><span class="n">jPanel1</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="n">jPanel1Layout</span><span class="p">);</span>
 <span class="w">        </span><span class="n">jPanel1Layout</span><span class="p">.</span><span class="na">setHorizontalGroup</span><span class="p">(</span>
 <span class="w">            </span><span class="n">jPanel1Layout</span><span class="p">.</span><span class="na">createParallelGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">LEADING</span><span class="p">)</span>
-<span class="w">            </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">571</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">591</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span>
 <span class="w">        </span><span class="p">);</span>
 <span class="w">        </span><span class="n">jPanel1Layout</span><span class="p">.</span><span class="na">setVerticalGroup</span><span class="p">(</span>
 <span class="w">            </span><span class="n">jPanel1Layout</span><span class="p">.</span><span class="na">createParallelGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">LEADING</span><span class="p">)</span>
-<span class="w">            </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">264</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">364</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span>
 <span class="w">        </span><span class="p">);</span>
 
+<span class="w">        </span><span class="n">jLabel1</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Font</span><span class="p">(</span><span class="s">&quot;Segoe UI&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">));</span><span class="w"> </span><span class="c1">// NOI18N</span>
+<span class="w">        </span><span class="n">jLabel1</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Bounce&quot;</span><span class="p">);</span>
+
 <span class="w">        </span><span class="n">jbttnAddBall</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Add Ball&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">jbttnAddBall</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionListener</span><span class="p">()</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span>
-<span class="w">            </span><span class="p">{</span>
+<span class="w">        </span><span class="n">jbttnAddBall</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="n">jbttnAddBallActionPerformed</span><span class="p">(</span><span class="n">evt</span><span class="p">);</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">});</span>
 
 <span class="w">        </span><span class="n">jbttnDeleteBall</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Delete Ball&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">jbttnDeleteBall</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionListener</span><span class="p">()</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span>
-<span class="w">            </span><span class="p">{</span>
+<span class="w">        </span><span class="n">jbttnDeleteBall</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="n">jbttnDeleteBallActionPerformed</span><span class="p">(</span><span class="n">evt</span><span class="p">);</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">});</span>
 
-<span class="w">        </span><span class="n">jLabel1</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Font</span><span class="p">(</span><span class="s">&quot;Segoe UI&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">));</span><span class="w"> </span><span class="c1">// NOI18N</span>
-<span class="w">        </span><span class="n">jLabel1</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Bounce Revision 3&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">jbttnClearAll</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Clear All&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">jbttnClearAll</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">jbttnClearAllActionPerformed</span><span class="p">(</span><span class="n">evt</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
 
 <span class="w">        </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="w"> </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">(</span><span class="n">getContentPane</span><span class="p">());</span>
 <span class="w">        </span><span class="n">getContentPane</span><span class="p">().</span><span class="na">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">);</span>
 <span class="w">        </span><span class="n">layout</span><span class="p">.</span><span class="na">setHorizontalGroup</span><span class="p">(</span>
 <span class="w">            </span><span class="n">layout</span><span class="p">.</span><span class="na">createParallelGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">LEADING</span><span class="p">)</span>
 <span class="w">            </span><span class="p">.</span><span class="na">addGroup</span><span class="p">(</span><span class="n">layout</span><span class="p">.</span><span class="na">createSequentialGroup</span><span class="p">()</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">41</span><span class="p">,</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w"> </span><span class="mi">41</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">62</span><span class="p">,</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w"> </span><span class="mi">62</span><span class="p">)</span>
 <span class="w">                </span><span class="p">.</span><span class="na">addGroup</span><span class="p">(</span><span class="n">layout</span><span class="p">.</span><span class="na">createParallelGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">LEADING</span><span class="p">)</span>
 <span class="w">                    </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jLabel1</span><span class="p">)</span>
 <span class="w">                    </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jPanel1</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">PREFERRED_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">DEFAULT_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">PREFERRED_SIZE</span><span class="p">)</span>
 <span class="w">                    </span><span class="p">.</span><span class="na">addGroup</span><span class="p">(</span><span class="n">layout</span><span class="p">.</span><span class="na">createSequentialGroup</span><span class="p">()</span>
-<span class="w">                        </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jbttnAddBall</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">PREFERRED_SIZE</span><span class="p">,</span><span class="w"> </span><span class="mi">82</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">PREFERRED_SIZE</span><span class="p">)</span>
-<span class="w">                        </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">)</span>
-<span class="w">                        </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jbttnDeleteBall</span><span class="p">)))</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addContainerGap</span><span class="p">(</span><span class="mi">36</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">))</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jbttnAddBall</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">PREFERRED_SIZE</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">PREFERRED_SIZE</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jbttnDeleteBall</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">PREFERRED_SIZE</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">PREFERRED_SIZE</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jbttnClearAll</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">PREFERRED_SIZE</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">PREFERRED_SIZE</span><span class="p">)))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addContainerGap</span><span class="p">(</span><span class="mi">69</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">))</span>
 <span class="w">        </span><span class="p">);</span>
 <span class="w">        </span><span class="n">layout</span><span class="p">.</span><span class="na">setVerticalGroup</span><span class="p">(</span>
 <span class="w">            </span><span class="n">layout</span><span class="p">.</span><span class="na">createParallelGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">LEADING</span><span class="p">)</span>
 <span class="w">            </span><span class="p">.</span><span class="na">addGroup</span><span class="p">(</span><span class="n">layout</span><span class="p">.</span><span class="na">createSequentialGroup</span><span class="p">()</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">22</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">)</span>
 <span class="w">                </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jLabel1</span><span class="p">)</span>
 <span class="w">                </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span>
 <span class="w">                </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jPanel1</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">PREFERRED_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">DEFAULT_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">PREFERRED_SIZE</span><span class="p">)</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w"> </span><span class="mi">26</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span>
 <span class="w">                </span><span class="p">.</span><span class="na">addGroup</span><span class="p">(</span><span class="n">layout</span><span class="p">.</span><span class="na">createParallelGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">BASELINE</span><span class="p">)</span>
 <span class="w">                    </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jbttnAddBall</span><span class="p">)</span>
-<span class="w">                    </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jbttnDeleteBall</span><span class="p">))</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addContainerGap</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">))</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jbttnDeleteBall</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jbttnClearAll</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addContainerGap</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">))</span>
 <span class="w">        </span><span class="p">);</span>
 
 <span class="w">        </span><span class="n">pack</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span><span class="c1">// &lt;/editor-fold&gt;                        </span>
 
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jbttnAddBallActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w">                                             </span>
-<span class="w">    </span><span class="p">{</span><span class="w">                                                 </span>
-<span class="w">        </span><span class="c1">//create a ball</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jbttnAddBallActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">                                             </span>
+
+<span class="w">        </span><span class="c1">// create a ball</span>
 <span class="w">        </span><span class="n">Ball</span><span class="w"> </span><span class="n">aball</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Ball</span><span class="p">();</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="c1">//ball characteristics</span>
+
+<span class="w">        </span><span class="c1">// ball characteristics</span>
 <span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-<span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setRadius</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="o">+</span><span class="mi">10</span><span class="p">);</span>
-<span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setSpeed</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="o">+</span><span class="mi">5</span><span class="p">);</span>
+<span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setRadius</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setBallspeed</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
 <span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setCompHeight</span><span class="p">(</span><span class="n">jPanel1</span><span class="p">.</span><span class="na">getHeight</span><span class="p">());</span>
 <span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setCompWidth</span><span class="p">(</span><span class="n">jPanel1</span><span class="p">.</span><span class="na">getWidth</span><span class="p">());</span>
-<span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setXpos</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setXpos</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+<span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setXpos</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setYpos</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setSlopeRun</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
 <span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setSlopeRise</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
 <span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setBallColor</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
-<span class="w">                </span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">256</span><span class="p">)));</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="c1">//area where we bounce the balls</span>
-<span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">jPanel1</span><span class="p">.</span><span class="na">getWidth</span><span class="p">(),</span><span class="w"> </span><span class="n">jPanel1</span><span class="p">.</span><span class="na">getHeight</span><span class="p">());</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="c1">//add the ball to the panel</span>
+<span class="w">                </span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span><span class="w"> </span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">256</span><span class="p">)));</span>
+
+<span class="w">        </span><span class="c1">// area where we bounce the balls</span>
+<span class="w">        </span><span class="c1">//aball.setSize(jPanel1.getWidth(), jPanel1.getHeight());</span>
+<span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">radius</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// add the ball to the panel</span>
 <span class="w">        </span><span class="n">jPanel1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">aball</span><span class="p">);</span>
 <span class="w">        </span><span class="n">alBalls</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">aball</span><span class="p">);</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="n">aball</span><span class="p">.</span><span class="na">startBall</span><span class="p">();</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">TimerStatus</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
-<span class="w">        </span><span class="p">{</span>
+
+<span class="w">       </span><span class="c1">// aball.startBall();</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">TimerStatus</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">PanelClock</span><span class="p">();</span>
 <span class="w">            </span><span class="n">TimerStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span><span class="w">                                            </span>
 
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jbttnDeleteBallActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w">                                                </span>
-<span class="w">    </span><span class="p">{</span><span class="w">                                                    </span>
-<span class="w">            </span><span class="c1">//jPanel1.remove(jPanel1.getComponentCount()-1);</span>
-<span class="w">            </span><span class="n">jPanel1</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">alBalls</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-<span class="w">            </span><span class="n">alBalls</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">alBalls</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w">        </span>
-<span class="w">            </span><span class="n">jPanel1</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jbttnDeleteBallActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">                                                </span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="c1">// uncomment to remove the last ball added</span>
+<span class="w">            </span><span class="c1">//    jPanel1.remove(jPanel1.getComponentCount() - 1);</span>
 <span class="w">            </span>
+<span class="w">            </span><span class="c1">// remove first ball added</span>
+<span class="w">            </span><span class="n">jPanel1</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">alBalls</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="w">            </span><span class="n">alBalls</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="n">jPanel1</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">}</span>
+
+
 <span class="w">    </span><span class="p">}</span><span class="w">                                               </span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jbttnClearAllActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">                                              </span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Remove all balls from the pannel</span>
+<span class="w">        </span><span class="n">jPanel1</span><span class="p">.</span><span class="na">removeAll</span><span class="p">();</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Reset the arraylist</span>
+<span class="w">        </span><span class="n">alBalls</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span>
+<span class="w">       </span>
+<span class="w">        </span>
+<span class="w">    </span><span class="p">}</span><span class="w">                                             </span>
 
 <span class="w">    </span><span class="cm">/**</span>
 <span class="cm">     * @param args the command line arguments</span>
 <span class="cm">     */</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">args</span><span class="o">[]</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">args</span><span class="o">[]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="cm">/* Set the Nimbus look and feel */</span>
 <span class="w">        </span><span class="c1">//&lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot; Look and feel setting code (optional) &quot;&gt;</span>
 <span class="w">        </span><span class="cm">/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.</span>
 <span class="cm">         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html </span>
 <span class="cm">         */</span>
-<span class="w">        </span><span class="k">try</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">UIManager</span><span class="p">.</span><span class="na">LookAndFeelInfo</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">UIManager</span><span class="p">.</span><span class="na">getInstalledLookAndFeels</span><span class="p">())</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Nimbus&quot;</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="na">getName</span><span class="p">()))</span>
-<span class="w">                </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">UIManager</span><span class="p">.</span><span class="na">LookAndFeelInfo</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">UIManager</span><span class="p">.</span><span class="na">getInstalledLookAndFeels</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Nimbus&quot;</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="na">getName</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">UIManager</span><span class="p">.</span><span class="na">setLookAndFeel</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="na">getClassName</span><span class="p">());</span>
 <span class="w">                    </span><span class="k">break</span><span class="p">;</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">ClassNotFoundException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span>
-<span class="w">        </span><span class="p">{</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">ClassNotFoundException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Logger</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">Frame1</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">()).</span><span class="na">log</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Level</span><span class="p">.</span><span class="na">SEVERE</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InstantiationException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span>
-<span class="w">        </span><span class="p">{</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InstantiationException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Logger</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">Frame1</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">()).</span><span class="na">log</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Level</span><span class="p">.</span><span class="na">SEVERE</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IllegalAccessException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span>
-<span class="w">        </span><span class="p">{</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IllegalAccessException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Logger</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">Frame1</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">()).</span><span class="na">log</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Level</span><span class="p">.</span><span class="na">SEVERE</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">UnsupportedLookAndFeelException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span>
-<span class="w">        </span><span class="p">{</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">UnsupportedLookAndFeelException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Logger</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">Frame1</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">()).</span><span class="na">log</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Level</span><span class="p">.</span><span class="na">SEVERE</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">        </span><span class="c1">//&lt;/editor-fold&gt;</span>
 
 <span class="w">        </span><span class="cm">/* Create and display the form */</span>
-<span class="w">        </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">EventQueue</span><span class="p">.</span><span class="na">invokeLater</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Runnable</span><span class="p">()</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span>
-<span class="w">            </span><span class="p">{</span>
+<span class="w">        </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">EventQueue</span><span class="p">.</span><span class="na">invokeLater</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Runnable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Frame1</span><span class="p">().</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">});</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="c1">// Variables declaration - do not modify                     </span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JLabel</span><span class="w"> </span><span class="n">jLabel1</span><span class="p">;</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JPanel</span><span class="w"> </span><span class="n">jPanel1</span><span class="p">;</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="w"> </span><span class="n">jbttnAddBall</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="w"> </span><span class="n">jbttnClearAll</span><span class="p">;</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="w"> </span><span class="n">jbttnDeleteBall</span><span class="p">;</span>
 <span class="w">    </span><span class="c1">// End of variables declaration                   </span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<div style="page-break-after:always"></div>
 </section>
-<hr class="docutils" />
 <section id="ball">
-<h2>Ball<a class="headerlink" href="#ball" title="Link to this heading">#</a></h2>
+<h2>BALL<a class="headerlink" href="#ball" title="Link to this heading">#</a></h2>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
-<span class="cm">Revised March 16th , 2021</span>
+<span class="cm">Bounce Balls</span>
+<span class="cm">Programmer: James Goudy</span>
+<span class="cm">Rev: April, 2024</span>
 <span class="cm"> */</span>
-<span class="kn">package</span><span class="w"> </span><span class="nn">j2_bounce_rev3</span><span class="p">;</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">j2_bounce_rev24</span><span class="p">;</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Color</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Graphics</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionEvent</span><span class="p">;</span>
@@ -613,166 +774,176 @@ document.write(`
 <span class="cm"> */</span>
 <span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Ball</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JComponent</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="c1">//private members</span>
-<span class="w">    </span><span class="c1">//Position of the ball</span>
+<span class="w">    </span><span class="c1">// private members</span>
+<span class="w">    </span><span class="c1">// position of the ball</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1">//direction of the ball</span>
+<span class="w">    </span><span class="c1">// direction of the ball - forward or backwards</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">xdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ydir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1">//size of the panel: note these are defaults</span>
+<span class="w">    </span><span class="c1">// size of the panel: these are going to be defaults</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">compWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">500</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">compHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">500</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1">//angle / direction of the balls</span>
+<span class="w">    </span><span class="c1">// angle of the ball</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">slopeRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">slopeRise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1">//speed</span>
+<span class="w">    </span><span class="c1">// speed</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ballspeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1">//radius of the ball</span>
+<span class="w">    </span><span class="c1">// radius of the ball</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1">//Timer</span>
+<span class="w">    </span><span class="c1">// Timer</span>
 <span class="w">    </span><span class="n">Timer</span><span class="w"> </span><span class="n">bTimer</span><span class="p">;</span>
-<span class="w">    </span>
-<span class="w">    </span><span class="c1">//ball color</span>
-<span class="w">    </span><span class="n">Color</span><span class="w"> </span><span class="n">ballColor</span><span class="p">;</span>
-<span class="w">    </span>
-<span class="w">    </span>
-<span class="w">     </span><span class="n">Random</span><span class="w"> </span><span class="n">RNG</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1">//Constructor</span>
+<span class="w">    </span><span class="c1">// ball color</span>
+<span class="w">    </span><span class="n">Color</span><span class="w"> </span><span class="n">ballColor</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Random</span><span class="w"> </span><span class="n">RNG</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">wasReversed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//-------------------------------------------------------</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Constructor</span>
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Ball</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="n">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">        </span><span class="n">ypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">        </span>
 <span class="w">        </span><span class="n">RNG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
-<span class="w">        </span>
 <span class="w">        </span><span class="n">ballColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">blue</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">//Here is where we draw the ball</span>
-<span class="w">    </span><span class="nd">@Override</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">paintComponent</span><span class="p">(</span><span class="n">Graphics</span><span class="w"> </span><span class="n">g</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">        </span><span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
-<span class="w">        </span><span class="n">g</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">ballColor</span><span class="p">);</span>
-<span class="w">        </span><span class="n">g</span><span class="p">.</span><span class="na">fillOval</span><span class="p">(</span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="n">ypos</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">);</span>
 
 <span class="w">    </span><span class="p">}</span>
 
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">startBall</span><span class="p">()</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">bclock</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">//setters</span>
-
-<span class="w">    </span><span class="c1">//set the compent panel width and height</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setCompWidth</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">cWidth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">compWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cWidth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setCompHeight</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">cHeight</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">compHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cHeight</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="c1">//--------------------------------------</span>
-
-
-<span class="w">    </span><span class="c1">//set the radius</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setRadius</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">Radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Radius</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="c1">//--------------------------------------</span>
-
-
-<span class="w">    </span><span class="c1">//Set the x and y position of the ball</span>
+<span class="w">    </span><span class="c1">// Setters</span>
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setXpos</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">xpos</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">       </span><span class="n">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xpos</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xpos</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setYpos</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ypos</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">       </span><span class="n">ypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ypos</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="c1">//--------------------------------------</span>
-
-
-<span class="w">    </span><span class="c1">//set the slope variables</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setSlopeRun</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">run</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">slopeRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">run</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">ypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ypos</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setSlopeRise</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">rise</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">       </span><span class="n">slopeRise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rise</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getXpos</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">xpos</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="c1">//--------------------------------------</span>
 
-<span class="w">    </span><span class="c1">//set the speed of the ball</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setSpeed</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">speed</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">ballspeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">speed</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getYPos</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ydir</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="c1">//-------------------------------------------------------</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setBallColor</span><span class="p">(</span><span class="n">Color</span><span class="w"> </span><span class="n">ballColor</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setCompWidth</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">compWidth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">compWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compWidth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">radius</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setCompHeight</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">compHeight</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">compHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compHeight</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">radius</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setSlopeRun</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slopeRun</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">slopeRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">slopeRun</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setSlopeRise</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slopeRise</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">slopeRise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">slopeRise</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getSlopeRise</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">slopeRise</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setBallspeed</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ballspeed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">ballspeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ballspeed</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setRadius</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setBallColor</span><span class="p">(</span><span class="n">Color</span><span class="w"> </span><span class="n">ballColor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">ballColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ballColor</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">   </span>
-<span class="w">    </span><span class="c1">//create a clock and start it</span>
-<span class="w">    </span><span class="c1">//NOte: It is the clock tick that moves the ball</span>
-<span class="w">    </span><span class="c1">//NOte: the frame will repaint the screen and show the</span>
-<span class="w">    </span><span class="c1">//      location of the ball</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">bclock</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">bTimer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Timer</span><span class="p">(</span><span class="n">ballspeed</span><span class="p">,</span>
-<span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//-------------------------------------------------------</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Draw the ball</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">paintComponent</span><span class="p">(</span><span class="n">Graphics</span><span class="w"> </span><span class="n">g</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
 
-<span class="w">            </span><span class="nd">@Override</span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">ae</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">g</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">white</span><span class="p">);</span>
 
-<span class="w">                </span><span class="c1">//Check whether the ball is</span>
-<span class="w">                </span><span class="c1">//passed the left or right side of the panel</span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">xpos</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">compWidth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">xdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xdir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="w">                    </span><span class="n">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compWidth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">xpos</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">xdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xdir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="w">                    </span><span class="n">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">                </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// un comment below to visualize the bounding box</span>
+<span class="w">        </span><span class="c1">//g.fillRect(0, 0, radius, radius);</span>
+<span class="w">        </span><span class="n">g</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">ballColor</span><span class="p">);</span>
+<span class="w">        </span><span class="n">g</span><span class="p">.</span><span class="na">fillOval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">//-------------------------------------------------------</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">moveBall</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">                </span><span class="c1">//Check whether the ball is</span>
-<span class="w">                </span><span class="c1">//passed  the top or bottom of the screen</span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ypos</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">compHeight</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">ydir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ydir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="w">                    </span><span class="n">ypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compHeight</span><span class="p">;</span>
-
-<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ypos</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">ydir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ydir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="w">                    </span><span class="n">ypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-
-<span class="w">                </span><span class="p">}</span>
-
-<span class="w">                </span><span class="c1">//increment the x and y position</span>
-<span class="w">                </span><span class="n">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xpos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">xdir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">slopeRun</span><span class="p">);</span>
-<span class="w">                </span><span class="n">ypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ypos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">ydir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">slopeRise</span><span class="p">);</span>
-<span class="w">                </span>
-<span class="w">                </span><span class="n">bTimer</span><span class="p">.</span><span class="na">setDelay</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// check for collision on the left and right of the panel</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">xpos</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">compWidth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">xdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xdir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="n">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compWidth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">xpos</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">xdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xdir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="n">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="p">);</span>
 
-<span class="w">        </span><span class="c1">//start the timer</span>
-<span class="w">        </span><span class="n">bTimer</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// check for collision on the top and bottom of the panel</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ypos</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">compHeight</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">ydir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ydir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="n">ypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compHeight</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ypos</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">ydir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ydir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="n">ypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">//System.out.println(radius);</span>
+<span class="w">        </span><span class="c1">// increment the x and y positions</span>
+<span class="w">        </span><span class="n">ypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ypos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">ydir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">slopeRise</span><span class="p">);</span>
+<span class="w">        </span><span class="n">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xpos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">xdir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">slopeRun</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// System.out.println(xpos + &quot; &quot; + ypos);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">//-------------------------------------------------------</span>
+<span class="w">    </span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">//--- USED IF COLLISION IS PROGRAMMED ON FRAME 1---------</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Used for collision if frame 1 is coded for collision</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">getWasReversed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">wasReversed</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setWasReversed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">wasReversed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">resetWasReversed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">wasReversed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">reverse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">xdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xdir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ydir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ydir</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
 <span class="w">    </span><span class="p">}</span>
 
 <span class="p">}</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 </section>
 </section>
 
@@ -840,9 +1011,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frame-1">Frame 1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frame-1-code">Frame 1 Code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ball">Ball</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-file">Project File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frame1-java">Frame1.java</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ball">BALL</a></li>
 </ul>
   </nav></div>
 

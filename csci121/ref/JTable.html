@@ -1,0 +1,969 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>JTable Component &#8212; JAVA II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/JTable';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">JAVA II</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="JAVABackgroundInformation.html">JAVA Background Information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FirstForm.html">First Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DisplayingText.html">Displaying Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RadioButtons.html">Radio Buttons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Menus.html">Menus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comboboxes.html">Combo boxes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LettersvsDigits.html">Letters vs Digits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bounce.html">Bounce Balls Animation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="JABT_JAVAAutomatedBuildTools.html">JAVA Automated Build Tools</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaAnt.html">Java Ant: Build Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaMaven.html">Java Maven:  Build Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaGradle.html">Java Gradle: Build Automation</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/JTable.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>JTable Component</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="jtable-component">
+<h1>JTable Component<a class="headerlink" href="#jtable-component" title="Link to this heading">#</a></h1>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> *</span>
+<span class="cm"> * https://docs.oracle.com/javase/tutorial/uiswing/components/table.html#simple</span>
+<span class="cm"> * https://www.javatpoint.com/java-jtable</span>
+<span class="cm"> * https://www.javatpoint.com/java-jtable</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> * //create table model with data</span>
+<span class="cm"> * DefaultTableModel model = new DefaultTableModel(data, columns) {</span>
+<span class="cm"> * @Override</span>
+<span class="cm"> * public boolean isCellEditable(int row, int column)</span>
+<span class="cm"> * {</span>
+<span class="cm"> * return false;</span>
+<span class="cm"> * }</span>
+<span class="cm"> * @Override</span>
+<span class="cm"> * public Class&lt;?&gt; getColumnClass(int columnIndex)</span>
+<span class="cm"> * {</span>
+<span class="cm"> * return columnClass[columnIndex];</span>
+<span class="cm"> * }</span>
+<span class="cm"> * };</span>
+<span class="cm"> *</span>
+<span class="cm"> * // https://codejava.net/java-se/swing/a-simple-jtable-example-for-display</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">j2_jtable_lecture</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Component</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionEvent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionListener</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.text.DecimalFormat</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Random</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.DefaultCellEditor</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JButton</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JComboBox</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JLabel</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JOptionPane</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JScrollPane</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JTable</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JTextField</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.ListSelectionModel</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.event.ListSelectionListener</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.event.TableModelEvent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.event.TableModelListener</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.table.DefaultTableModel</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.table.TableColumn</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.table.DefaultTableCellRenderer</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.text.NumberFormat</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.RowFilter</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.table.TableModel</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.table.TableRowSorter</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">NumberTableCellRenderer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">DefaultTableCellRenderer</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">NumberTableCellRenderer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">setHorizontalAlignment</span><span class="p">(</span><span class="n">JLabel</span><span class="p">.</span><span class="na">RIGHT</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="nf">getTableCellRendererComponent</span><span class="p">(</span><span class="n">JTable</span><span class="w"> </span><span class="n">table</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isSelected</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">hasFocus</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">column</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NumberFormat</span><span class="p">.</span><span class="na">getNumberInstance</span><span class="p">().</span><span class="na">format</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">ivalue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">value</span><span class="p">));</span>
+<span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;$&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">NumberFormat</span><span class="p">.</span><span class="na">getNumberInstance</span><span class="p">().</span><span class="na">format</span><span class="p">(</span><span class="n">ivalue</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">getTableCellRendererComponent</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">isSelected</span><span class="p">,</span>
+<span class="w">                </span><span class="n">hasFocus</span><span class="p">,</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">column</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Frame1</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JFrame</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">Random</span><span class="w"> </span><span class="n">RNG</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">    </span><span class="n">String</span><span class="o">[][]</span><span class="w"> </span><span class="n">mySampleData</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DefaultTableModel</span><span class="w"> </span><span class="n">model</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">JTable</span><span class="w"> </span><span class="n">myTable</span><span class="p">;</span>
+<span class="c1">//    ListSelectionListener mySelect;</span>
+<span class="c1">//    TableModelListener aa;</span>
+<span class="w">    </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">JTextField</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ALinputFields</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">myColNames</span>
+<span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s">&quot;First Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Last Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;City&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Salary&quot;</span>
+<span class="w">            </span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">City_Array</span>
+<span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s">&quot;Kalispell&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Polson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Whitefish&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Missoula&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Helena&quot;</span>
+<span class="w">            </span><span class="p">};</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Frame1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">initComponents</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span><span class="w"> </span><span class="mi">750</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setLocationRelativeTo</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">CreateSampleData</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">//setup data model</span>
+<span class="w">        </span><span class="n">setupDataModel</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// table setup </span>
+<span class="w">        </span><span class="n">SetUpMyTable</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// add the delete button</span>
+<span class="w">        </span><span class="n">addDeleteButton</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// add the add record</span>
+<span class="w">        </span><span class="n">setupAddRecord</span><span class="p">();</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupDataModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="w"> </span><span class="n">columnClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span>
+<span class="w">            </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">class</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="c1">//Setup the data model</span>
+<span class="w">        </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultTableModel</span><span class="p">(</span><span class="n">mySampleData</span><span class="p">,</span><span class="w"> </span><span class="n">myColNames</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isCellEditable</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">column</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="n">Class</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">getColumnClass</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">columnIndex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">columnClass</span><span class="o">[</span><span class="n">columnIndex</span><span class="o">]</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="n">myTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JTable</span><span class="p">(</span><span class="n">model</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetUpMyTable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// resize the columns automatically</span>
+<span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">setAutoResizeMode</span><span class="p">(</span><span class="n">JTable</span><span class="p">.</span><span class="na">AUTO_RESIZE_ALL_COLUMNS</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// set sorting by clicking column header</span>
+<span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">setAutoCreateRowSorter</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">setEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Selection Options</span>
+<span class="w">        </span><span class="c1">// ListSelectionModel.MULTIPLE_INTERVAL_SELECTION, </span>
+<span class="w">        </span><span class="c1">// ListSelectionModel.SINGLE_INTERVAL_SELECTION</span>
+<span class="w">        </span><span class="c1">// ListSelectionModel.SINGLE_SELECTION</span>
+<span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">setSelectionMode</span><span class="p">(</span><span class="n">ListSelectionModel</span><span class="p">.</span><span class="na">SINGLE_SELECTION</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Make the table editable</span>
+<span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">getModel</span><span class="p">().</span><span class="na">addTableModelListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TableModelListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">tableChanged</span><span class="p">(</span><span class="n">TableModelEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// for testing </span>
+<span class="w">                </span><span class="n">printArray</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="n">SetupCityDropDown</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">formatSalary</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">JScrollPane</span><span class="w"> </span><span class="n">myScrollPane</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JScrollPane</span><span class="p">(</span><span class="n">myTable</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myScrollPane</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myScrollPane</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myScrollPane</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">myScrollPane</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addDeleteButton</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">bwith</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">72</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">bheight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">22</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">jbttnDelete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">jbttnDelete</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Delete&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">jbttnDelete</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">jbttnDelete</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">bwith</span><span class="p">,</span><span class="w"> </span><span class="n">bheight</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">jbttnDelete</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">75</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">jbttnDelete</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">seldelete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getSelectedRow</span><span class="p">();</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myTable</span><span class="p">.</span><span class="na">getSelectedRow</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">model</span><span class="p">.</span><span class="na">removeRow</span><span class="p">(</span><span class="n">myTable</span><span class="p">.</span><span class="na">getSelectedRow</span><span class="p">());</span>
+
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">ee</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showMessageDialog</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">ee</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="n">myTable</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">jbttnDelete</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupAddRecord</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// Label variables</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">xl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">yl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">wl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">hl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="n">spacel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Textfield variables</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">inLabels</span>
+<span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="s">&quot;First Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Last Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;City&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Salary&quot;</span>
+<span class="w">                </span><span class="p">};</span>
+
+<span class="w">        </span><span class="c1">//</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">inLabels</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">tfLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">();</span>
+<span class="w">            </span><span class="n">tfLabel</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">wl</span><span class="p">,</span><span class="w"> </span><span class="n">hl</span><span class="p">);</span>
+<span class="w">            </span><span class="n">tfLabel</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">inLabels</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="w">            </span><span class="n">tfLabel</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">            </span><span class="n">tfLabel</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="w"> </span><span class="n">yl</span><span class="p">);</span>
+
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">tfInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JTextField</span><span class="p">();</span>
+<span class="w">            </span><span class="n">tfInput</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">);</span>
+<span class="w">            </span><span class="n">tfInput</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">inLabels</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="w">            </span><span class="n">tfInput</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">            </span><span class="n">tfInput</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">tfInput</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+
+<span class="w">            </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">tfInput</span><span class="p">);</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">tfInput</span><span class="p">);</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">tfLabel</span><span class="p">);</span>
+
+<span class="w">            </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">space</span><span class="p">;</span>
+<span class="w">            </span><span class="n">xl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">spacel</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">tfAdd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">();</span>
+<span class="w">        </span><span class="n">tfAdd</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">);</span>
+<span class="w">        </span><span class="n">tfAdd</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Add&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">tfAdd</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">tfAdd</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">tfAdd</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">addData</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Object</span><span class="o">[]</span><span class="w"> </span><span class="n">newData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[</span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>
+
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">newData</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">getText</span><span class="p">();</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="n">model</span><span class="p">.</span><span class="na">addRow</span><span class="p">(</span><span class="n">newData</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">tfAdd</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetupCityDropDown</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">TableColumn</span><span class="w"> </span><span class="n">cityColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getColumnModel</span><span class="p">().</span><span class="na">getColumn</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JComboBox</span><span class="w"> </span><span class="n">cityCombo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JComboBox</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">City_Array</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">cityCombo</span><span class="p">.</span><span class="na">addItem</span><span class="p">(</span><span class="n">City_Array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">cityColumn</span><span class="p">.</span><span class="na">setCellEditor</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCellEditor</span><span class="p">(</span><span class="n">cityCombo</span><span class="p">));</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">formatSalary</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DecimalFormat</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DecimalFormat</span><span class="p">(</span><span class="s">&quot;###,###,###&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">df</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="mi">111222333</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">getColumnModel</span><span class="p">().</span><span class="na">getColumn</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="na">setCellRenderer</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">NumberTableCellRenderer</span><span class="p">());</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">CreateSampleData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">FN</span><span class="p">,</span><span class="w"> </span><span class="n">LN</span><span class="p">,</span><span class="w"> </span><span class="n">City</span><span class="p">;</span>
+<span class="w">        </span><span class="n">RNG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">FN_Array</span>
+<span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Jim&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Jane&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Jody&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Jill&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Tom&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Steve&quot;</span>
+<span class="w">                </span><span class="p">};</span>
+<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">LN_Array</span>
+<span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="s">&quot;Rogers&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Smith&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Rodes&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s">&quot;Brady&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gravey&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Knucles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Heavers&quot;</span>
+<span class="w">                </span><span class="p">};</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">Salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">mySampleData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="o">[</span><span class="n">Rows</span><span class="o">][</span><span class="n">Cols</span><span class="o">]</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Rows</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="n">FN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FN_Array</span><span class="o">[</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">FN_Array</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="o">]</span><span class="p">;</span>
+<span class="w">            </span><span class="n">LN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LN_Array</span><span class="o">[</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">LN_Array</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="o">]</span><span class="p">;</span>
+<span class="w">            </span><span class="n">City</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">City_Array</span><span class="o">[</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">City_Array</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="o">]</span><span class="p">;</span>
+<span class="w">            </span><span class="n">Salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">500000</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">40000</span><span class="p">;</span>
+
+<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FN</span><span class="p">;</span>
+<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LN</span><span class="p">;</span>
+<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">City</span><span class="p">;</span>
+<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">Salary</span><span class="p">);</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     *</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">printArray</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;made it to pa&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">getRowCount</span><span class="p">();</span><span class="w"> </span><span class="n">r</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">getColumnCount</span><span class="p">();</span><span class="w"> </span><span class="n">c</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">//System.out.print(theArray[r][c] + &quot; &quot;);</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="na">getValueAt</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n---------------\n&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * This method is called from within the constructor to initialize the form.</span>
+<span class="cm">     * WARNING: Do NOT modify this code. The content of this method is always</span>
+<span class="cm">     * regenerated by the Form Editor.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;                          </span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initComponents</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">jButton1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="p">();</span>
+<span class="w">        </span><span class="n">jButton2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="p">();</span>
+<span class="w">        </span><span class="n">jMenuBar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenuBar</span><span class="p">();</span>
+<span class="w">        </span><span class="n">jMenu1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenu</span><span class="p">();</span>
+<span class="w">        </span><span class="n">jmnuPrint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenuItem</span><span class="p">();</span>
+<span class="w">        </span><span class="n">jmuQuit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenuItem</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">setDefaultCloseOperation</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">WindowConstants</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">jButton1</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;jButton1&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">jButton1</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">jButton1ActionPerformed</span><span class="p">(</span><span class="n">evt</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="n">jButton2</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;jButton2&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">jButton2</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">jButton2ActionPerformed</span><span class="p">(</span><span class="n">evt</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="n">jMenu1</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;File&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">jmnuPrint</span><span class="p">.</span><span class="na">setAccelerator</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">KeyStroke</span><span class="p">.</span><span class="na">getKeyStroke</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">KeyEvent</span><span class="p">.</span><span class="na">VK_P</span><span class="p">,</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">InputEvent</span><span class="p">.</span><span class="na">CTRL_DOWN_MASK</span><span class="p">));</span>
+<span class="w">        </span><span class="n">jmnuPrint</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Print&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">jmnuPrint</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">jmnuPrintActionPerformed</span><span class="p">(</span><span class="n">evt</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span><span class="n">jMenu1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">jmnuPrint</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">jmuQuit</span><span class="p">.</span><span class="na">setAccelerator</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">KeyStroke</span><span class="p">.</span><span class="na">getKeyStroke</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">KeyEvent</span><span class="p">.</span><span class="na">VK_Q</span><span class="p">,</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">InputEvent</span><span class="p">.</span><span class="na">CTRL_DOWN_MASK</span><span class="p">));</span>
+<span class="w">        </span><span class="n">jmuQuit</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Quit&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">jmuQuit</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">jmuQuitActionPerformed</span><span class="p">(</span><span class="n">evt</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span><span class="n">jMenu1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">jmuQuit</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">jMenuBar1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">jMenu1</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">setJMenuBar</span><span class="p">(</span><span class="n">jMenuBar1</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="w"> </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">(</span><span class="n">getContentPane</span><span class="p">());</span>
+<span class="w">        </span><span class="n">getContentPane</span><span class="p">().</span><span class="na">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">);</span>
+<span class="w">        </span><span class="n">layout</span><span class="p">.</span><span class="na">setHorizontalGroup</span><span class="p">(</span>
+<span class="w">            </span><span class="n">layout</span><span class="p">.</span><span class="na">createParallelGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">LEADING</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">addGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">TRAILING</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="p">.</span><span class="na">createSequentialGroup</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addContainerGap</span><span class="p">(</span><span class="mi">356</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jButton1</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jButton2</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">41</span><span class="p">,</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w"> </span><span class="mi">41</span><span class="p">))</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="n">layout</span><span class="p">.</span><span class="na">setVerticalGroup</span><span class="p">(</span>
+<span class="w">            </span><span class="n">layout</span><span class="p">.</span><span class="na">createParallelGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">LEADING</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">addGroup</span><span class="p">(</span><span class="n">layout</span><span class="p">.</span><span class="na">createSequentialGroup</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addContainerGap</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addGroup</span><span class="p">(</span><span class="n">layout</span><span class="p">.</span><span class="na">createParallelGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">BASELINE</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jButton1</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jButton2</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addContainerGap</span><span class="p">(</span><span class="mi">507</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">))</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">pack</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="c1">// &lt;/editor-fold&gt;                        </span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jmnuPrintActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w">                                          </span>
+<span class="w">    </span><span class="p">{</span><span class="w">                                              </span>
+
+<span class="w">        </span><span class="n">JFrame</span><span class="w"> </span><span class="n">myFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JFrame</span><span class="p">(</span><span class="s">&quot;Message Examples&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">setAlwaysOnTop</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">myTable</span><span class="p">.</span><span class="na">print</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;User Cancellent Printing&quot;</span><span class="p">);</span>
+
+<span class="w">                </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showMessageDialog</span><span class="p">(</span><span class="n">myFrame</span><span class="p">,</span>
+<span class="w">                        </span><span class="s">&quot;User Cancellent Printing&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s">&quot;User Cancelled Printing&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">ERROR_MESSAGE</span><span class="p">);</span>
+
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">print</span><span class="p">.</span><span class="na">PrinterException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showMessageDialog</span><span class="p">(</span><span class="n">myFrame</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">ex</span><span class="p">.</span><span class="na">getMessage</span><span class="p">(),</span>
+<span class="w">                    </span><span class="s">&quot;Printer Error&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">ERROR_MESSAGE</span><span class="p">);</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">}</span><span class="w">                                         </span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jmuQuitActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w">                                        </span>
+<span class="w">    </span><span class="p">{</span><span class="w">                                            </span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w">                                       </span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jButton1ActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">                                         </span>
+<span class="w">        </span>
+<span class="w">      </span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">filterText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Rogers&quot;</span><span class="p">;</span>
+<span class="w">        </span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">RowFilter</span><span class="o">&lt;</span><span class="n">DefaultTableModel</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">myRowFilter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RowFilter</span><span class="p">.</span><span class="na">regexFilter</span><span class="p">(</span><span class="n">filterText</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">TableRowSorter</span><span class="o">&lt;</span><span class="n">TableModel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sorter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TableRowSorter</span><span class="p">)</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getRowSorter</span><span class="p">();</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">sorter</span><span class="p">.</span><span class="na">setRowFilter</span><span class="p">(</span><span class="n">RowFilter</span><span class="p">.</span><span class="na">regexFilter</span><span class="p">(</span><span class="n">filterText</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+
+<span class="w">    </span><span class="p">}</span><span class="w">                                        </span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jButton2ActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">                                         </span>
+<span class="w">        </span><span class="n">TableRowSorter</span><span class="o">&lt;</span><span class="n">TableModel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sorter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TableRowSorter</span><span class="p">)</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getRowSorter</span><span class="p">();</span>
+<span class="w">        </span><span class="n">sorter</span><span class="p">.</span><span class="na">setRowFilter</span><span class="p">(</span><span class="n">RowFilter</span><span class="p">.</span><span class="na">regexFilter</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span><span class="w">                                        </span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * @param args the command line arguments</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">args</span><span class="o">[]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="cm">/*</span>
+<span class="cm">         * Set the Nimbus look and feel</span>
+<span class="cm">         */</span>
+<span class="w">        </span><span class="c1">//&lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot; Look and feel setting code (optional) &quot;&gt;</span>
+<span class="w">        </span><span class="cm">/*</span>
+<span class="cm">         * If Nimbus (introduced in Java SE 6) is not available, stay with the</span>
+<span class="cm">         * default look and feel.</span>
+<span class="cm">         * For details see</span>
+<span class="cm">         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html</span>
+<span class="cm">         */</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">UIManager</span><span class="p">.</span><span class="na">LookAndFeelInfo</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">UIManager</span><span class="p">.</span><span class="na">getInstalledLookAndFeels</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Nimbus&quot;</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="na">getName</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">UIManager</span><span class="p">.</span><span class="na">setLookAndFeel</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="na">getClassName</span><span class="p">());</span>
+<span class="w">                    </span><span class="k">break</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">ClassNotFoundException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Logger</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">Frame1</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">()).</span><span class="na">log</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Level</span><span class="p">.</span><span class="na">SEVERE</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InstantiationException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Logger</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">Frame1</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">()).</span><span class="na">log</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Level</span><span class="p">.</span><span class="na">SEVERE</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IllegalAccessException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Logger</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">Frame1</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">()).</span><span class="na">log</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Level</span><span class="p">.</span><span class="na">SEVERE</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">UnsupportedLookAndFeelException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Logger</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">Frame1</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">()).</span><span class="na">log</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">logging</span><span class="p">.</span><span class="na">Level</span><span class="p">.</span><span class="na">SEVERE</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">//&lt;/editor-fold&gt;</span>
+<span class="w">        </span><span class="c1">//&lt;/editor-fold&gt;</span>
+<span class="w">        </span><span class="c1">//&lt;/editor-fold&gt;</span>
+<span class="w">        </span><span class="c1">//&lt;/editor-fold&gt;</span>
+
+<span class="w">        </span><span class="cm">/*</span>
+<span class="cm">         * Create and display the form</span>
+<span class="cm">         */</span>
+<span class="w">        </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">EventQueue</span><span class="p">.</span><span class="na">invokeLater</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Runnable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Frame1</span><span class="p">().</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="c1">// Variables declaration - do not modify                     </span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="w"> </span><span class="n">jButton1</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="w"> </span><span class="n">jButton2</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenu</span><span class="w"> </span><span class="n">jMenu1</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenuBar</span><span class="w"> </span><span class="n">jMenuBar1</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenuItem</span><span class="w"> </span><span class="n">jmnuPrint</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenuItem</span><span class="w"> </span><span class="n">jmuQuit</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// End of variables declaration                   </span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
