@@ -8,12 +8,4 @@ James Goudy
 
 ```{tableofcontents}
 ```
-
-
-
-
-
-
-
-
-
+---

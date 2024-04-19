@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>JTable Component &#8212; JAVA II</title>
+    <title>JTable &#8212; JAVA II</title>
   
   
   
@@ -60,6 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'ref/JTable';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="JAVA Automated Build Tools" href="JABT_JAVAAutomatedBuildTools.html" />
+    <link rel="prev" title="Bounce Balls Animation" href="Bounce.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -121,8 +123,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -162,7 +162,7 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="JAVABackgroundInformation.html">JAVA Background Information</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FirstForm.html">First Form</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DisplayingText.html">Displaying Text</a></li>
@@ -171,6 +171,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Comboboxes.html">Combo boxes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LettersvsDigits.html">Letters vs Digits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bounce.html">Bounce Balls Animation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">JTable</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="JABT_JAVAAutomatedBuildTools.html">JAVA Automated Build Tools</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="JABT_JavaAnt.html">Java Ant: Build Automation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="JABT_JavaMaven.html">Java Maven:  Build Automation</a></li>
@@ -302,7 +303,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -313,11 +316,22 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>JTable Component</h1>
+    <h1>JTable</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code-explanation">Lecture Code Explanation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-numbertablecellrenderer">class NumberTableCellRenderer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-code">The Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finished-application">Finished Application</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -327,40 +341,144 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="jtable-component">
-<h1>JTable Component<a class="headerlink" href="#jtable-component" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="jtable">
+<h1>JTable<a class="headerlink" href="#jtable" title="Link to this heading">#</a></h1>
+<section id="lecture-code-explanation">
+<h2>Lecture Code Explanation<a class="headerlink" href="#lecture-code-explanation" title="Link to this heading">#</a></h2>
+<p>This code creates a graphical user interface (GUI) application that displays and allows editing of a sample data table. Here’s a breakdown of the code:</p>
+<p><strong>Class and Variables:</strong></p>
+<ul class="simple">
+<li><p>The code defines a class <code class="docutils literal notranslate"><span class="pre">Frame1</span></code> that extends <code class="docutils literal notranslate"><span class="pre">javax.swing.JFrame</span></code>. This means it creates a window with a frame border.</p></li>
+<li><p>Several variables are declared to store data used throughout the program:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">RNG</span></code>: A <code class="docutils literal notranslate"><span class="pre">Random</span></code> object for generating random data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rows</span></code> and <code class="docutils literal notranslate"><span class="pre">Cols</span></code>: Integers specifying the number of rows and columns in the data table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mySampleData</span></code>: A 2D String array to hold the sample data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code>: A <code class="docutils literal notranslate"><span class="pre">DefaultTableModel</span></code> object used as the data model for the JTable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">myTable</span></code>: A <code class="docutils literal notranslate"><span class="pre">JTable</span></code> object representing the data table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ALinputFields</span></code>: An <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> of <code class="docutils literal notranslate"><span class="pre">JTextField</span></code> objects used for adding new records.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">myColNames</span></code>: An array of Strings containing the column names for the table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">City_Array</span></code>: An array of Strings containing city names used in the program.</p></li>
+<li><p>Several other variables are used to store UI layout properties and references to UI components.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Data Creation:</strong></p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">CreateSampleData</span></code> method generates random sample data. It populates the <code class="docutils literal notranslate"><span class="pre">mySampleData</span></code> array with first names, last names, cities, salaries, and unique IDs.</p></li>
+</ul>
+<p><strong>GUI Setup:</strong></p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">initComponents</span></code> method (generated by the GUI builder) initializes the Swing components used in the frame.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Frame1</span></code>   constructor performs most of the application logic:</p>
+<ul>
+<li><p>Sets the frame size and location.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">CreateSampleData</span></code> to generate sample data.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">setupDataModel</span></code> to set up the data model for the table.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">SetUpMyTable</span></code> to configure and display the JTable.</p></li>
+<li><p>Calls other methods to add functionalities like:</p>
+<ul>
+<li><p>A label to display data from a selected row (<code class="docutils literal notranslate"><span class="pre">addDataLabel</span></code>).</p></li>
+<li><p>A button to delete a selected row (<code class="docutils literal notranslate"><span class="pre">addDeleteButton</span></code>).</p></li>
+<li><p>A search bar to filter data (<code class="docutils literal notranslate"><span class="pre">addSearch</span></code>).</p></li>
+<li><p>A checkbox to hide the ID column (<code class="docutils literal notranslate"><span class="pre">hideIDColumn</span></code>).</p></li>
+<li><p>Input fields and a button to add new records (<code class="docutils literal notranslate"><span class="pre">setupAddRecord</span></code>).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Table Configuration (<code class="docutils literal notranslate"><span class="pre">SetUpMyTable</span></code>):</strong></p>
+<ul class="simple">
+<li><p>This method configures the JTable’s behavior and appearance:</p>
+<ul>
+<li><p>Sets the table’s columns to automatically resize.</p></li>
+<li><p>Enables sorting by clicking column headers.</p></li>
+<li><p>Sets the table selection mode to single selection.</p></li>
+<li><p>Attaches listeners to the table for selection changes and cell edits.</p></li>
+<li><p>Makes the table editable.</p></li>
+<li><p>Sets a custom renderer for the salary column to format the numbers.</p></li>
+<li><p>Creates a scroll pane to hold the table and adds it to the frame.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Other Methods:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">setupDataModel</span></code>: Creates the data model for the JTable and specifies that all cells are editable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addDataLabel</span></code>: Creates and configures a label to display data from the selected row.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addDeleteButton</span></code>: Creates and configures a button to delete the selected row. It ensures deletion by ID to avoid errors.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addSearch</span></code>: Creates and configures a search bar to filter the table data based on user input.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filterRecords</span></code>: Filters the table data based on the text entered in the search bar.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hideIDColumn</span></code>: Creates and configures a checkbox to hide the ID column of the table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setupAddRecord</span></code>: Creates and configures input fields and a button to allow adding new records to the table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SetupCityDropDown</span></code>: Creates a dropdown menu in the city column to allow users to select pre-defined city names.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">formatSalary</span></code>: Sets a custom renderer for the salary column to format the numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">printArray</span></code>: Prints the contents of the data model to the console for debugging purposes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jmnuPrintActionPerformed</span></code>: Handles the action when the “Print” menu item is clicked. It attempts to print the JTable using the default printing functionality.</p></li>
+</ul>
+<p>Overall, this code demonstrates how to create a data table with functionalities like sorting, filtering, editing, adding new records, and basic printing using Swing components in Java.</p>
+</section>
+<hr class="docutils" />
+<section id="class-numbertablecellrenderer">
+<h2>class NumberTableCellRenderer<a class="headerlink" href="#class-numbertablecellrenderer" title="Link to this heading">#</a></h2>
+<p>This code defines a custom table cell renderer class named <code class="docutils literal notranslate"><span class="pre">NumberTableCellRenderer</span></code> that inherits from <code class="docutils literal notranslate"><span class="pre">DefaultTableCellRenderer</span></code>. It’s specifically designed to format table cell values as currency.</p>
+<p>Here’s a breakdown of the code:</p>
+<p><strong>Class Inheritance:</strong></p>
+<ul class="simple">
+<li><p>The class <code class="docutils literal notranslate"><span class="pre">NumberTableCellRenderer</span></code> extends <code class="docutils literal notranslate"><span class="pre">DefaultTableCellRenderer</span></code>. This means it inherits all the functionalities of the default renderer and can override specific methods to customize the rendering behavior.</p></li>
+</ul>
+<p><strong>Constructor (<code class="docutils literal notranslate"><span class="pre">NumberTableCellRenderer</span></code>):</strong></p>
+<ul class="simple">
+<li><p>The constructor sets the horizontal alignment of the text in the cell to right-aligned (<code class="docutils literal notranslate"><span class="pre">JLabel.RIGHT</span></code>). This is commonly used for displaying numeric values.</p></li>
+</ul>
+<p><strong>Method: <code class="docutils literal notranslate"><span class="pre">getTableCellRendererComponent</span></code>:</strong></p>
+<ul class="simple">
+<li><p>This is the most important method in a custom cell renderer. It’s called whenever a cell needs to be rendered in the table.</p></li>
+<li><p>It takes several arguments:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">table</span></code>: The JTable object.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The value of the object to be rendered in the cell.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">isSelected</span></code>: Whether the cell is currently selected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hasFocus</span></code>: Whether the cell has focus.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">row</span></code>: The row index of the cell.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">column</span></code>: The column index of the cell.</p></li>
+</ul>
+</li>
+<li><p>The method performs the following steps:</p>
+<ul>
+<li><p>Tries to format the value as currency:</p>
+<ul>
+<li><p>If the value is a <code class="docutils literal notranslate"><span class="pre">Number</span></code> object, it uses <code class="docutils literal notranslate"><span class="pre">NumberFormat.getNumberInstance().format(value)</span></code> to format it according to the current locale’s number formatting rules (e.g., commas for thousands separators).</p></li>
+<li><p>If the value is a <code class="docutils literal notranslate"><span class="pre">String</span></code>, it attempts to parse it as an integer using <code class="docutils literal notranslate"><span class="pre">Integer.parseInt(String.valueOf(value))</span></code>. Then, it prepends a dollar sign (“$”) and formats the integer value using <code class="docutils literal notranslate"><span class="pre">NumberFormat.getNumberInstance().format(ivalue)</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Calls the <code class="docutils literal notranslate"><span class="pre">super.getTableCellRendererComponent(...)</span></code> method. This is important because it retrieves the base renderer component and applies any customizations we made (like setting the alignment) on top of the default behavior.</p></li>
+<li><p>If any exception occurs during formatting (<code class="docutils literal notranslate"><span class="pre">catch</span> <span class="pre">(Exception</span> <span class="pre">ez)</span></code>), it returns <code class="docutils literal notranslate"><span class="pre">null</span></code>. This might indicate an issue with the data type or format, and the cell will likely be left blank.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Summary:</strong></p>
+<p>This custom renderer ensures that any numeric values displayed in the table are formatted as currency, improving readability and user experience.</p>
+<p><img alt="image-20240416152944097" src="../_images/image-20240416152944097-1713302990751-1.png" /></p>
+</section>
+<section id="the-code">
+<h2>The Code<a class="headerlink" href="#the-code" title="Link to this heading">#</a></h2>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
-<span class="cm"> *</span>
-<span class="cm"> * https://docs.oracle.com/javase/tutorial/uiswing/components/table.html#simple</span>
-<span class="cm"> * https://www.javatpoint.com/java-jtable</span>
-<span class="cm"> * https://www.javatpoint.com/java-jtable</span>
-<span class="cm"> *</span>
-<span class="cm"> *</span>
-<span class="cm"> * //create table model with data</span>
-<span class="cm"> * DefaultTableModel model = new DefaultTableModel(data, columns) {</span>
-<span class="cm"> * @Override</span>
-<span class="cm"> * public boolean isCellEditable(int row, int column)</span>
-<span class="cm"> * {</span>
-<span class="cm"> * return false;</span>
-<span class="cm"> * }</span>
-<span class="cm"> * @Override</span>
-<span class="cm"> * public Class&lt;?&gt; getColumnClass(int columnIndex)</span>
-<span class="cm"> * {</span>
-<span class="cm"> * return columnClass[columnIndex];</span>
-<span class="cm"> * }</span>
-<span class="cm"> * };</span>
-<span class="cm"> *</span>
-<span class="cm"> * // https://codejava.net/java-se/swing/a-simple-jtable-example-for-display</span>
-<span class="cm"> *</span>
-<span class="cm"> *</span>
-<span class="cm"> *</span>
+<span class="cm">Programmer: James Goudy</span>
+<span class="cm">Project: JTable</span>
+<span class="cm">Date: April 19, 2024</span>
+
+
 <span class="cm"> */</span>
-<span class="kn">package</span><span class="w"> </span><span class="nn">j2_jtable_lecture</span><span class="p">;</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">j2_jtable_lecture_rev24</span><span class="p">;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Component</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionEvent</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionListener</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">java.text.DecimalFormat</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.FocusEvent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.FocusListener</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.KeyEvent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.KeyListener</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Random</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.DefaultCellEditor</span><span class="p">;</span>
@@ -380,111 +498,172 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.table.TableColumn</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.table.DefaultTableCellRenderer</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.text.NumberFormat</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JCheckBox</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.RowFilter</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.event.ListSelectionEvent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.table.TableColumnModel</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.table.TableModel</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.table.TableRowSorter</span><span class="p">;</span>
 
 <span class="kd">class</span> <span class="nc">NumberTableCellRenderer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">DefaultTableCellRenderer</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">NumberTableCellRenderer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Align the text right-justified within the table cell</span>
 <span class="w">        </span><span class="n">setHorizontalAlignment</span><span class="p">(</span><span class="n">JLabel</span><span class="p">.</span><span class="na">RIGHT</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="nd">@Override</span>
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="nf">getTableCellRendererComponent</span><span class="p">(</span><span class="n">JTable</span><span class="w"> </span><span class="n">table</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
 <span class="w">            </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isSelected</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">hasFocus</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">column</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NumberFormat</span><span class="p">.</span><span class="na">getNumberInstance</span><span class="p">().</span><span class="na">format</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">ivalue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">value</span><span class="p">));</span>
-<span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;$&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">NumberFormat</span><span class="p">.</span><span class="na">getNumberInstance</span><span class="p">().</span><span class="na">format</span><span class="p">(</span><span class="n">ivalue</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">getTableCellRendererComponent</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">isSelected</span><span class="p">,</span>
-<span class="w">                </span><span class="n">hasFocus</span><span class="p">,</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">column</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
 
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Check if the value is already a Number object</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Use the default number formatter to format the value</span>
+<span class="w">                </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NumberFormat</span><span class="p">.</span><span class="na">getNumberInstance</span><span class="p">().</span><span class="na">format</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// If the value is a String, try to parse it to an integer</span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">intValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">value</span><span class="p">));</span>
+<span class="w">                </span><span class="c1">// Prepend a dollar sign ($) and format the integer value</span>
+<span class="w">                </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;$&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">NumberFormat</span><span class="p">.</span><span class="na">getNumberInstance</span><span class="p">().</span><span class="na">format</span><span class="p">(</span><span class="n">intValue</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// If the value isn&#39;t a Number or a parsable String, keep it as is</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// Call the superclass method to set other cell renderer properties</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">getTableCellRendererComponent</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">isSelected</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">hasFocus</span><span class="p">,</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">column</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Handle potential exceptions during conversion or formatting</span>
+<span class="w">            </span><span class="c1">// (e.g., NumberFormatException if the String cannot be parsed)</span>
+<span class="w">            </span><span class="c1">// In this case, return null to indicate an error</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="cm">/**</span>
-<span class="cm"> *</span>
-<span class="cm"> *</span>
-<span class="cm"> */</span>
 <span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Frame1</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JFrame</span><span class="w"> </span><span class="p">{</span>
 
+<span class="w">    </span><span class="c1">// Random number generator object</span>
 <span class="w">    </span><span class="n">Random</span><span class="w"> </span><span class="n">RNG</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Define number of rows and columns in the data table</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Create a 2D String array to hold the sample data</span>
 <span class="w">    </span><span class="n">String</span><span class="o">[][]</span><span class="w"> </span><span class="n">mySampleData</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Default table data model object</span>
 <span class="w">    </span><span class="n">DefaultTableModel</span><span class="w"> </span><span class="n">model</span><span class="p">;</span>
 
+<span class="w">    </span><span class="c1">// JTable object representing the data table</span>
 <span class="w">    </span><span class="n">JTable</span><span class="w"> </span><span class="n">myTable</span><span class="p">;</span>
-<span class="c1">//    ListSelectionListener mySelect;</span>
-<span class="c1">//    TableModelListener aa;</span>
+
+<span class="w">    </span><span class="c1">// ArrayList to store JTextField objects used for adding new records</span>
 <span class="w">    </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">JTextField</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ALinputFields</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">myColNames</span>
-<span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="s">&quot;First Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Last Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;City&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Salary&quot;</span>
-<span class="w">            </span><span class="p">};</span>
+<span class="w">    </span><span class="c1">// Define column names for the table</span>
+<span class="w">    </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">myColNames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s">&quot;First Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Last Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;City&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Salary&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ID&quot;</span>
+<span class="w">    </span><span class="p">};</span>
 
-<span class="w">    </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">City_Array</span>
-<span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="s">&quot;Kalispell&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Polson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Whitefish&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Missoula&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Helena&quot;</span>
-<span class="w">            </span><span class="p">};</span>
+<span class="w">    </span><span class="c1">// String array containing pre-defined city names</span>
+<span class="w">    </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">City_Array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s">&quot;Kalispell&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Polson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Whitefish&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Missoula&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Helena&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;Bozeman&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Chicago&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;New York&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Seatle&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Rock Island&quot;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// Text field for search functionality</span>
+<span class="w">    </span><span class="n">JTextField</span><span class="w"> </span><span class="n">jtfSearch</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// ListSelectionModel object to handle table selection</span>
+<span class="w">    </span><span class="n">ListSelectionModel</span><span class="w"> </span><span class="n">mySelectModel</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Label to display data from the selected row</span>
+<span class="w">    </span><span class="n">JLabel</span><span class="w"> </span><span class="n">jlblData</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Define initial Y positions for label components</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">RowLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Row1YPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">40</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Row2YPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">85</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Row3Ypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">115</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Row4yYpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Boolean flag to control ID column visibility</span>
+<span class="w">    </span><span class="n">Boolean</span><span class="w"> </span><span class="n">showIdCol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
 
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Frame1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Initialize Swing components using GUI builder (generated code)</span>
 <span class="w">        </span><span class="n">initComponents</span><span class="p">();</span>
 
+<span class="w">        </span><span class="c1">// Set frame size and location</span>
 <span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span><span class="w"> </span><span class="mi">750</span><span class="p">);</span>
 <span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setLocationRelativeTo</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Set Frame Title</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;JTable - Create, Read, Update, Delete&quot;</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">CreateSampleData</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// Generate random sample data</span>
+<span class="w">        </span><span class="n">createSampleData</span><span class="p">();</span>
 
-<span class="w">        </span><span class="c1">//setup data model</span>
+<span class="w">        </span><span class="c1">// Setup data model for the table</span>
 <span class="w">        </span><span class="n">setupDataModel</span><span class="p">();</span>
 
-<span class="w">        </span><span class="c1">// table setup </span>
+<span class="w">        </span><span class="c1">// Configure and display the JTable</span>
 <span class="w">        </span><span class="n">SetUpMyTable</span><span class="p">();</span>
 
-<span class="w">        </span><span class="c1">// add the delete button</span>
+<span class="w">        </span><span class="c1">// Add label to display data from selected row</span>
+<span class="w">        </span><span class="n">addDataLabel</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Add button to delete the selected row</span>
 <span class="w">        </span><span class="n">addDeleteButton</span><span class="p">();</span>
 
-<span class="w">        </span><span class="c1">// add the add record</span>
-<span class="w">        </span><span class="n">setupAddRecord</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// Add search functionality</span>
+<span class="w">        </span><span class="n">addSearch</span><span class="p">();</span>
 
+<span class="w">        </span><span class="c1">// Add checkbox to hide the ID column</span>
+<span class="w">        </span><span class="n">hideIDColumn</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Add functionality to add new records</span>
+<span class="w">        </span><span class="n">setupAddRecord</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupDataModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Define data types for each column</span>
 <span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="w"> </span><span class="n">columnClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span>
-<span class="w">            </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">class</span>
+<span class="w">            </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+<span class="w">            </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">class</span>
 <span class="w">        </span><span class="p">};</span>
 
-<span class="w">        </span><span class="c1">//Setup the data model</span>
+<span class="w">        </span><span class="c1">// Setup the data model with sample data and column names</span>
 <span class="w">        </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultTableModel</span><span class="p">(</span><span class="n">mySampleData</span><span class="p">,</span><span class="w"> </span><span class="n">myColNames</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nd">@Override</span>
 <span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isCellEditable</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">column</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Allow editing all cells</span>
 <span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 
 <span class="w">            </span><span class="nd">@Override</span>
 <span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="n">Class</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">getColumnClass</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">columnIndex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Return the corresponding data type for each column</span>
 <span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">columnClass</span><span class="o">[</span><span class="n">columnIndex</span><span class="o">]</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">};</span>
 
+<span class="w">        </span><span class="c1">// Create the JTable using the data model</span>
 <span class="w">        </span><span class="n">myTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JTable</span><span class="p">(</span><span class="n">model</span><span class="p">);</span>
-
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetUpMyTable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="c1">// resize the columns automatically</span>
+<span class="w">        </span><span class="c1">// Resize the columns automatically to fit their content</span>
 <span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">setAutoResizeMode</span><span class="p">(</span><span class="n">JTable</span><span class="p">.</span><span class="na">AUTO_RESIZE_ALL_COLUMNS</span><span class="p">);</span>
 
-<span class="w">        </span><span class="c1">// set sorting by clicking column header</span>
+<span class="w">        </span><span class="c1">// Enable sorting by clicking column headers</span>
 <span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">setAutoCreateRowSorter</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Make the table visible and enabled</span>
 <span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 <span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">setEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 
@@ -492,201 +671,499 @@ document.write(`
 <span class="w">        </span><span class="c1">// ListSelectionModel.MULTIPLE_INTERVAL_SELECTION, </span>
 <span class="w">        </span><span class="c1">// ListSelectionModel.SINGLE_INTERVAL_SELECTION</span>
 <span class="w">        </span><span class="c1">// ListSelectionModel.SINGLE_SELECTION</span>
+<span class="w">        </span><span class="c1">// Set the selection mode to single selection </span>
+<span class="w">        </span><span class="c1">// (only one row can be selected at a time)</span>
 <span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">setSelectionMode</span><span class="p">(</span><span class="n">ListSelectionModel</span><span class="p">.</span><span class="na">SINGLE_SELECTION</span><span class="p">);</span>
 
-<span class="w">        </span><span class="c1">// Make the table editable</span>
+<span class="w">        </span><span class="c1">// Get the ListSelectionModel object associated with the table</span>
+<span class="w">        </span><span class="n">ListSelectionModel</span><span class="w"> </span><span class="n">mySelectModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Add a listener for changes in row selection</span>
+<span class="w">        </span><span class="n">mySelectModel</span><span class="p">.</span><span class="na">addListSelectionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ListSelectionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">valueChanged</span><span class="p">(</span><span class="n">ListSelectionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="c1">// Check if the selection change has finished </span>
+<span class="w">                </span><span class="c1">// (prevents firing multiple times)</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">e</span><span class="p">.</span><span class="na">getValueIsAdjusting</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">selectedRow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getSelectedRow</span><span class="p">();</span>
+<span class="w">                    </span><span class="n">String</span><span class="w"> </span><span class="n">rowdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">                    </span><span class="c1">// If a row is selected, </span>
+<span class="w">                    </span><span class="c1">//build a string representation of its data</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">selectedRow</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Cols</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="n">rowdata</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getValueAt</span><span class="p">(</span><span class="n">selectedRow</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">)</span>
+<span class="w">                                    </span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="n">jlblData</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">rowdata</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// Add a listener for changes</span>
+<span class="w">        </span><span class="c1">// in the table model (for debugging purposes)</span>
 <span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">getModel</span><span class="p">().</span><span class="na">addTableModelListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TableModelListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nd">@Override</span>
 <span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">tableChanged</span><span class="p">(</span><span class="n">TableModelEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="c1">// for testing </span>
+<span class="w">                </span><span class="c1">// Print the current table data (for testing)</span>
 <span class="w">                </span><span class="n">printArray</span><span class="p">();</span>
 <span class="w">            </span><span class="p">}</span>
-
 <span class="w">        </span><span class="p">});</span>
 
-<span class="w">        </span><span class="n">SetupCityDropDown</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// Setup a dropdown menu for the &quot;City&quot; column</span>
+<span class="w">        </span><span class="n">setupCityDropDown</span><span class="p">();</span>
 
+<span class="w">        </span><span class="c1">// Format the &quot;Salary&quot; column to display currency</span>
 <span class="w">        </span><span class="n">formatSalary</span><span class="p">();</span>
 
+<span class="w">        </span><span class="c1">// Create a scroll pane to hold the table and add it to the frame</span>
 <span class="w">        </span><span class="n">JScrollPane</span><span class="w"> </span><span class="n">myScrollPane</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JScrollPane</span><span class="p">(</span><span class="n">myTable</span><span class="p">);</span>
-<span class="w">        </span><span class="n">myScrollPane</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myScrollPane</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">Row4yYpos</span><span class="p">);</span>
 <span class="w">        </span><span class="n">myScrollPane</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 <span class="w">        </span><span class="n">myScrollPane</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">);</span>
 <span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">myScrollPane</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addDataLabel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">lblWidth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Create and configure the label to display data from the selected row</span>
+<span class="w">        </span><span class="n">jlblData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">jlblData</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">lblWidth</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
+<span class="w">        </span><span class="n">jlblData</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">jlblData</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">Row3Ypos</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">jlblData</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addDeleteButton</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">bwith</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">72</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">bheight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">22</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Define button width and height</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">btnWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">btnHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">jbttnDelete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// Create a JButton for deleting the selected row</span>
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">btnDelete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">();</span>
 
-<span class="w">        </span><span class="n">jbttnDelete</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Delete&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">jbttnDelete</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-<span class="w">        </span><span class="n">jbttnDelete</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">bwith</span><span class="p">,</span><span class="w"> </span><span class="n">bheight</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Set button text and make it visible</span>
+<span class="w">        </span><span class="n">btnDelete</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Delete Selected&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">btnDelete</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">jbttnDelete</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">75</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Set button size and location</span>
+<span class="w">        </span><span class="n">btnDelete</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">btnWidth</span><span class="p">,</span><span class="w"> </span><span class="n">btnHeight</span><span class="p">);</span>
+<span class="w">        </span><span class="n">btnDelete</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">Row2YPos</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">jbttnDelete</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Add action listener to handle button clicks</span>
+<span class="w">        </span><span class="n">btnDelete</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nd">@Override</span>
 <span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">seldelete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getSelectedRow</span><span class="p">();</span>
-<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myTable</span><span class="p">.</span><span class="na">getSelectedRow</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="n">model</span><span class="p">.</span><span class="na">removeRow</span><span class="p">(</span><span class="n">myTable</span><span class="p">.</span><span class="na">getSelectedRow</span><span class="p">());</span>
 
+<span class="w">                    </span><span class="c1">// **Important:** Delete by a key </span>
+<span class="w">                    </span><span class="c1">// instead of selected row index</span>
+<span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">selectedRow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getSelectedRow</span><span class="p">();</span>
+
+<span class="w">                    </span><span class="c1">// Extract the unique key from the selected row </span>
+<span class="w">                    </span><span class="c1">// (assuming column 4 holds the key)</span>
+<span class="w">                    </span><span class="n">String</span><span class="w"> </span><span class="n">selectedKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getValueAt</span><span class="p">(</span><span class="n">selectedRow</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+<span class="w">                            </span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+
+<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Key to be deleted: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">selectedKey</span><span class="p">);</span>
+
+<span class="w">                    </span><span class="c1">// Loop through all rows in the table model</span>
+<span class="w">                    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">getRowCount</span><span class="p">();</span><span class="w"> </span><span class="n">row</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">String</span><span class="w"> </span><span class="n">currentKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">getValueAt</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">).</span><span class="na">toString</span><span class="p">();</span>
+
+<span class="w">                        </span><span class="c1">// Compare current row&#39;s key with the selected key</span>
+<span class="w">                        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentKey</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">selectedKey</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="c1">// If keys match, remove that row from the model</span>
+<span class="w">                            </span><span class="n">model</span><span class="p">.</span><span class="na">removeRow</span><span class="p">(</span><span class="n">row</span><span class="p">);</span>
+<span class="w">                            </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="c1">// Exit the loop after finding a match</span>
+<span class="w">                        </span><span class="p">}</span>
 <span class="w">                    </span><span class="p">}</span>
-<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">ee</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showMessageDialog</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">ee</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
 
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// Display an error message dialog if something goes wrong</span>
+<span class="w">                    </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showMessageDialog</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
 <span class="w">                </span><span class="p">}</span>
 
+<span class="w">                </span><span class="c1">// Refresh the table to reflect the changes</span>
 <span class="w">                </span><span class="n">myTable</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
-
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">});</span>
 
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">jbttnDelete</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Add the button to the frame</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">btnDelete</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addSearch</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// Define button width and height</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">btnWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">btnHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Create a label for the search bar</span>
+<span class="w">        </span><span class="n">JLabel</span><span class="w"> </span><span class="n">lblSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">lblSearch</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Search&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">lblSearch</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">lblSearch</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">btnWidth</span><span class="p">,</span><span class="w"> </span><span class="n">btnHeight</span><span class="p">);</span>
+<span class="w">        </span><span class="n">lblSearch</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">50</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">btnWidth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">Row2YPos</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Add the search label to the frame</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">lblSearch</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Create a text field for entering search terms</span>
+<span class="w">            </span><span class="n">jtfSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JTextField</span><span class="p">();</span>
+
+<span class="w">            </span><span class="c1">// Add a key listener to handle user input in the search bar</span>
+<span class="w">            </span><span class="n">jtfSearch</span><span class="p">.</span><span class="na">addKeyListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">KeyListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="nd">@Override</span>
+<span class="w">                </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">keyTyped</span><span class="p">(</span><span class="n">KeyEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// Trigger search filtering whenever a key is typed</span>
+<span class="w">                    </span><span class="n">filterRecords</span><span class="p">();</span>
+<span class="w">                    </span><span class="c1">// Request focus back to the search bar for usability</span>
+<span class="w">                    </span><span class="n">jtfSearch</span><span class="p">.</span><span class="na">requestFocus</span><span class="p">();</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="nd">@Override</span>
+<span class="w">                </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">keyPressed</span><span class="p">(</span><span class="n">KeyEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// Not currently used, but reserved for potential key </span>
+<span class="w">                    </span><span class="c1">// press functionality</span>
+<span class="w">                    </span><span class="c1">// Example: Handle &#39;Esc&#39; to clear search</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getKeyCode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">KeyEvent</span><span class="p">.</span><span class="na">VK_ESCAPE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">jtfSearch</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="w">                        </span><span class="n">filterRecords</span><span class="p">();</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="nd">@Override</span>
+<span class="w">                </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">keyReleased</span><span class="p">(</span><span class="n">KeyEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// Not currently used, but reserved </span>
+<span class="w">                    </span><span class="c1">// for potential key release functionality</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">});</span>
+
+<span class="w">            </span><span class="c1">// Set the size and location of the search text field</span>
+<span class="w">            </span><span class="n">jtfSearch</span><span class="p">.</span><span class="na">setSize</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">btnWidth</span><span class="p">),</span><span class="w"> </span><span class="n">btnHeight</span><span class="p">);</span>
+<span class="w">            </span><span class="n">jtfSearch</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">            </span><span class="n">jtfSearch</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">50</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="mf">1.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">btnWidth</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="n">Row2YPos</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Add the search text field to the frame</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">jtfSearch</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Handle any potential exceptions </span>
+<span class="w">            </span><span class="c1">// during search component creation (optional)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">filterRecords</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// Request focus back to the search bar for usability</span>
+<span class="w">        </span><span class="n">jtfSearch</span><span class="p">.</span><span class="na">requestFocus</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Get the current text from the search bar</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">filterText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jtfSearch</span><span class="p">.</span><span class="na">getText</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Get the table row sorter object</span>
+<span class="w">        </span><span class="n">TableRowSorter</span><span class="o">&lt;</span><span class="n">TableModel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sorter</span>
+<span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TableRowSorter</span><span class="p">)</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getRowSorter</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Create a regular expression filter based on the search text</span>
+<span class="w">        </span><span class="c1">// This filters columns 0, 1, and 2 (adjust based on your search needs)</span>
+<span class="w">        </span><span class="n">sorter</span><span class="p">.</span><span class="na">setRowFilter</span><span class="p">(</span><span class="n">RowFilter</span><span class="p">.</span><span class="na">regexFilter</span><span class="p">(</span><span class="n">filterText</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Refresh the table to reflect the filtered data</span>
+<span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">hideIDColumn</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// Define button width and height </span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">btnWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">btnHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Create a checkbox to allow hiding the ID column</span>
+<span class="w">        </span><span class="n">JCheckBox</span><span class="w"> </span><span class="n">chkHideID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JCheckBox</span><span class="p">(</span><span class="s">&quot;Hide ID Column&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">chkHideID</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">chkHideID</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">btnWidth</span><span class="p">,</span><span class="w"> </span><span class="n">btnHeight</span><span class="p">);</span>
+<span class="w">        </span><span class="n">chkHideID</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">420</span><span class="p">,</span><span class="w"> </span><span class="n">Row2YPos</span><span class="p">);</span><span class="w">  </span><span class="c1">// Adjust location as needed</span>
+
+<span class="w">        </span><span class="c1">// Add action listener to handle checkbox selection changes</span>
+<span class="w">        </span><span class="n">chkHideID</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Get the table column model</span>
+<span class="w">                </span><span class="n">TableColumnModel</span><span class="w"> </span><span class="n">colModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getColumnModel</span><span class="p">();</span>
+
+<span class="w">                </span><span class="c1">// Get the column object for the ID column</span>
+<span class="w">                </span><span class="n">TableColumn</span><span class="w"> </span><span class="n">colID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colModel</span><span class="p">.</span><span class="na">getColumn</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+
+<span class="w">                </span><span class="c1">// Set the column resizable</span>
+<span class="w">                </span><span class="n">colID</span><span class="p">.</span><span class="na">setResizable</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">                </span><span class="cm">/*</span>
+<span class="cm">                 * IMPORTANT: Set minimum, maximum, </span>
+<span class="cm">                 * and preferred width before calling setWidth</span>
+<span class="cm">                 * This ensures the column width changes </span>
+<span class="cm">                 * are applied correctly.</span>
+<span class="cm">                 */</span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">minWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">maxWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">chkHideID</span><span class="p">.</span><span class="na">isSelected</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// Hide the ID column by setting </span>
+<span class="w">                    </span><span class="c1">// its width to a minimal value</span>
+<span class="w">                    </span><span class="n">colID</span><span class="p">.</span><span class="na">setMinWidth</span><span class="p">(</span><span class="n">minWidth</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">colID</span><span class="p">.</span><span class="na">setMaxWidth</span><span class="p">(</span><span class="n">minWidth</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">colID</span><span class="p">.</span><span class="na">setPreferredWidth</span><span class="p">(</span><span class="n">minWidth</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">colID</span><span class="p">.</span><span class="na">setWidth</span><span class="p">(</span><span class="n">minWidth</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// Show the ID column by setting </span>
+<span class="w">                    </span><span class="c1">// its width to a reasonable value</span>
+<span class="w">                    </span><span class="n">colID</span><span class="p">.</span><span class="na">setMinWidth</span><span class="p">(</span><span class="n">maxWidth</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">colID</span><span class="p">.</span><span class="na">setMaxWidth</span><span class="p">(</span><span class="n">maxWidth</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">colID</span><span class="p">.</span><span class="na">setPreferredWidth</span><span class="p">(</span><span class="n">maxWidth</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">colID</span><span class="p">.</span><span class="na">setWidth</span><span class="p">(</span><span class="n">maxWidth</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="c1">// Refresh the table to reflect the changes</span>
+<span class="w">                </span><span class="n">myTable</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// Add the checkbox to the frame</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">chkHideID</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupAddRecord</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="c1">// Label variables</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">xl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">yl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">wl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">hl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="n">spacel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Define label positioning variables (x, y, width, height, spacing)</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">labelX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">labelY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RowLabel</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">labelWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">labelHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">labelSpacing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 
-<span class="w">        </span><span class="c1">// Textfield variables</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Define text field positioning variables</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">fieldX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">fieldY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Row1YPos</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">fieldWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">fieldHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">fieldSpacing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">inLabels</span>
-<span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="s">&quot;First Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Last Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;City&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Salary&quot;</span>
-<span class="w">                </span><span class="p">};</span>
+<span class="w">        </span><span class="c1">// Labels for each input field</span>
+<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">inputLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s">&quot;First Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Last Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;City&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Salary&quot;</span>
+<span class="w">        </span><span class="p">};</span>
 
-<span class="w">        </span><span class="c1">//</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">inLabels</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Create and position labels and text fields for each input</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">inputLabels</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">JLabel</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">();</span>
+<span class="w">            </span><span class="n">label</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">labelWidth</span><span class="p">,</span><span class="w"> </span><span class="n">labelHeight</span><span class="p">);</span>
+<span class="w">            </span><span class="n">label</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">inputLabels</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="w">            </span><span class="n">label</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">            </span><span class="n">label</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">labelX</span><span class="p">,</span><span class="w"> </span><span class="n">labelY</span><span class="p">);</span>
 
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">tfLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">();</span>
-<span class="w">            </span><span class="n">tfLabel</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">wl</span><span class="p">,</span><span class="w"> </span><span class="n">hl</span><span class="p">);</span>
-<span class="w">            </span><span class="n">tfLabel</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">inLabels</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
-<span class="w">            </span><span class="n">tfLabel</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-<span class="w">            </span><span class="n">tfLabel</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="w"> </span><span class="n">yl</span><span class="p">);</span>
+<span class="w">            </span><span class="n">JTextField</span><span class="w"> </span><span class="n">inputField</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JTextField</span><span class="p">();</span>
+<span class="w">            </span><span class="n">inputField</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">fieldWidth</span><span class="p">,</span><span class="w"> </span><span class="n">fieldHeight</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Initially set the text field value to an empty string</span>
+<span class="w">            </span><span class="n">inputField</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">inputField</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">            </span><span class="n">inputField</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">fieldX</span><span class="p">,</span><span class="w"> </span><span class="n">fieldY</span><span class="p">);</span>
 
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">tfInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JTextField</span><span class="p">();</span>
-<span class="w">            </span><span class="n">tfInput</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">);</span>
-<span class="w">            </span><span class="n">tfInput</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">inLabels</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
-<span class="w">            </span><span class="n">tfInput</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-<span class="w">            </span><span class="n">tfInput</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="n">tfInput</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Add the text field to an ArrayList for easier access later</span>
+<span class="w">            </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">inputField</span><span class="p">);</span>
 
-<span class="w">            </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">tfInput</span><span class="p">);</span>
-<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">tfInput</span><span class="p">);</span>
-<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">tfLabel</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Add the label and text field to the frame</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">label</span><span class="p">);</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">inputField</span><span class="p">);</span>
 
-<span class="w">            </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">space</span><span class="p">;</span>
-<span class="w">            </span><span class="n">xl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">spacel</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// Update positions for the next label and text field</span>
+<span class="w">            </span><span class="n">fieldX</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">fieldWidth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fieldSpacing</span><span class="p">;</span>
+<span class="w">            </span><span class="n">labelX</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">labelWidth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">labelSpacing</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">tfAdd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">();</span>
-<span class="w">        </span><span class="n">tfAdd</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">);</span>
-<span class="w">        </span><span class="n">tfAdd</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Add&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">tfAdd</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-<span class="w">        </span><span class="n">tfAdd</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Create and position the &quot;Add&quot; button</span>
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">btnAdd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">();</span>
+<span class="w">        </span><span class="n">btnAdd</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">fieldWidth</span><span class="p">,</span><span class="w"> </span><span class="n">fieldHeight</span><span class="p">);</span>
+<span class="w">        </span><span class="n">btnAdd</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Add&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">btnAdd</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">btnAdd</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">fieldX</span><span class="p">,</span><span class="w"> </span><span class="n">fieldY</span><span class="p">);</span><span class="w"> </span><span class="c1">// Use the last calculated positions</span>
 
-<span class="w">        </span><span class="n">tfAdd</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Add action listener to handle the &quot;Add&quot; button click</span>
+<span class="w">        </span><span class="n">btnAdd</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nd">@Override</span>
 <span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="n">addData</span><span class="p">();</span>
 <span class="w">            </span><span class="p">}</span>
 
 <span class="w">            </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">Object</span><span class="o">[]</span><span class="w"> </span><span class="n">newData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[</span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>
-
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">newData</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">getText</span><span class="p">();</span>
+<span class="w">                </span><span class="c1">// Check if the salary field contains a valid double value</span>
+<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">Double</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="na">getText</span><span class="p">());</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// Display error message and clear the salary field</span>
+<span class="w">                    </span><span class="n">jlblData</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Error: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">exception</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="w">                    </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="na">requestFocus</span><span class="p">();</span>
+<span class="w">                    </span><span class="k">return</span><span class="p">;</span><span class="w">  </span><span class="c1">// Exit the method if there&#39;s an error</span>
 <span class="w">                </span><span class="p">}</span>
 
-<span class="w">                </span><span class="n">model</span><span class="p">.</span><span class="na">addRow</span><span class="p">(</span><span class="n">newData</span><span class="p">);</span>
+<span class="w">                </span><span class="c1">// Check if all required fields </span>
+<span class="w">                </span><span class="c1">// (first name, last name, city) are filled</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="na">getText</span><span class="p">().</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">                        </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="na">getText</span><span class="p">().</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">                        </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="na">getText</span><span class="p">().</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                    </span><span class="c1">// Create a new object array to hold the data for the new row</span>
+<span class="w">                    </span><span class="c1">// Add space for the key</span>
+<span class="w">                    </span><span class="n">Object</span><span class="o">[]</span><span class="w"> </span><span class="n">newData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[</span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+
+<span class="w">                    </span><span class="c1">// Copy data from text fields into the new data array</span>
+<span class="w">                    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">newData</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">getText</span><span class="p">();</span>
+<span class="w">                    </span><span class="p">}</span>
+
+<span class="w">                    </span><span class="c1">// Generate a unique key for the new record</span>
+<span class="w">                    </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="na">toString</span><span class="p">()</span>
+<span class="w">                            </span><span class="o">+</span><span class="w"> </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="na">toString</span><span class="p">()</span>
+<span class="w">                            </span><span class="o">+</span><span class="w"> </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="na">toString</span><span class="p">());</span>
+
+<span class="w">                    </span><span class="c1">// Use a combination of hash and random number</span>
+<span class="w">                    </span><span class="c1">// This ensures a unique key incase there are duplicate</span>
+<span class="w">                    </span><span class="c1">// names and places</span>
+<span class="w">                    </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">hashCode</span><span class="p">()</span>
+<span class="w">                            </span><span class="o">+</span><span class="w"> </span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">()));</span>
+<span class="w">                    </span><span class="n">newData</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">;</span>
+
+<span class="w">                    </span><span class="c1">// Add the new row to the table model</span>
+<span class="w">                    </span><span class="n">model</span><span class="p">.</span><span class="na">addRow</span><span class="p">(</span><span class="n">newData</span><span class="p">);</span>
+
+<span class="w">                    </span><span class="c1">// Clear all text fields after adding the data</span>
+<span class="w">                    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">ALinputFields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="w">                    </span><span class="p">}</span>
+
+<span class="w">                    </span><span class="c1">// Display success message</span>
+<span class="w">                    </span><span class="n">jlblData</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Record Added&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">});</span>
-
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">tfAdd</span><span class="p">);</span>
-
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetupCityDropDown</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupCityDropDown</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
+<span class="w">        </span><span class="c1">// Get the &quot;City&quot; column from the table model</span>
+<span class="w">        </span><span class="c1">// Assuming &quot;City&quot; is at index 2</span>
 <span class="w">        </span><span class="n">TableColumn</span><span class="w"> </span><span class="n">cityColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getColumnModel</span><span class="p">().</span><span class="na">getColumn</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-<span class="w">        </span><span class="n">JComboBox</span><span class="w"> </span><span class="n">cityCombo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JComboBox</span><span class="p">();</span>
 
+<span class="w">        </span><span class="c1">// Create a combo box with city options</span>
+<span class="w">        </span><span class="n">JComboBox</span><span class="w"> </span><span class="n">cityCombo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JComboBox</span><span class="p">();</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">City_Array</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Add each city from the City_Array to the combo box</span>
 <span class="w">            </span><span class="n">cityCombo</span><span class="p">.</span><span class="na">addItem</span><span class="p">(</span><span class="n">City_Array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
 <span class="w">        </span><span class="p">}</span>
 
+<span class="w">        </span><span class="c1">// Set the cell editor for the &quot;City&quot; column to the combo box</span>
 <span class="w">        </span><span class="n">cityColumn</span><span class="p">.</span><span class="na">setCellEditor</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCellEditor</span><span class="p">(</span><span class="n">cityCombo</span><span class="p">));</span>
-
+<span class="w">        </span><span class="c1">// This allows users to select a city from the dropdown in that column</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">formatSalary</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">DecimalFormat</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DecimalFormat</span><span class="p">(</span><span class="s">&quot;###,###,###&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">df</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="mi">111222333</span><span class="p">);</span>
-<span class="w">        </span><span class="n">myTable</span><span class="p">.</span><span class="na">getColumnModel</span><span class="p">().</span><span class="na">getColumn</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="na">setCellRenderer</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">NumberTableCellRenderer</span><span class="p">());</span>
 
+<span class="w">        </span><span class="c1">// Get the &quot;Salary&quot; column from the table model</span>
+<span class="w">        </span><span class="c1">// Assuming &quot;Salary&quot; is at index 3</span>
+<span class="w">        </span><span class="n">TableColumn</span><span class="w"> </span><span class="n">salaryColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getColumnModel</span><span class="p">().</span><span class="na">getColumn</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set a cell renderer for the &quot;Salary&quot; column </span>
+<span class="w">        </span><span class="c1">// to display numbers in a specific format</span>
+<span class="w">        </span><span class="n">salaryColumn</span><span class="p">.</span><span class="na">setCellRenderer</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">NumberTableCellRenderer</span><span class="p">());</span>
+<span class="w">        </span><span class="c1">// This class typically formats numbers with commas for thousands separators.</span>
+
+<span class="w">        </span><span class="c1">// **Alternative way to format numbers (commented out):**</span>
+<span class="w">        </span><span class="c1">// DecimalFormat df = new DecimalFormat(&quot;###,###,###&quot;);</span>
+<span class="w">        </span><span class="c1">// df.format(111222333);</span>
+<span class="w">        </span><span class="c1">// You can use this approach if you need more control </span>
+<span class="w">        </span><span class="c1">// over the formatting (e.g., number of decimal places).</span>
+<span class="w">        </span><span class="c1">// This creates a DecimalFormat object with a specific pattern </span>
+<span class="w">        </span><span class="c1">// and then uses it to format a number.</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">CreateSampleData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">createSampleData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">FN</span><span class="p">,</span><span class="w"> </span><span class="n">LN</span><span class="p">,</span><span class="w"> </span><span class="n">City</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Declare variables for first name, last name, city, and salary</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">firstName</span><span class="p">,</span><span class="w"> </span><span class="n">lastName</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Create a Random object for generating random values</span>
 <span class="w">        </span><span class="n">RNG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
 
-<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">FN_Array</span>
-<span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Jim&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Jane&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Jody&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Jill&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Tom&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Steve&quot;</span>
-<span class="w">                </span><span class="p">};</span>
-<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">LN_Array</span>
-<span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="s">&quot;Rogers&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Smith&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Rodes&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="s">&quot;Brady&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gravey&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Knucles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Heavers&quot;</span>
-<span class="w">                </span><span class="p">};</span>
+<span class="w">        </span><span class="c1">// Define arrays for first names and last names</span>
+<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">firstNameArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Jim&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Jane&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Jody&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Jill&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Tom&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Steve&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;Sue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sara&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Dave&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Darla&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Deb&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Emily&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Joe&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;Brian&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Rodney&quot;</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">lastNameArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s">&quot;Rogers&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Smith&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Rodes&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;Brady&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gravey&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Knucles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Heavers&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;Harvey&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Brackman&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Graves&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Swanson&quot;</span>
+<span class="w">        </span><span class="p">};</span>
 
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">Salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-
+<span class="w">        </span><span class="c1">// Sort the city array (assuming it&#39;s already defined)</span>
+<span class="w">        </span><span class="c1">// Create a 2D String array to store sample data</span>
 <span class="w">        </span><span class="n">mySampleData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="o">[</span><span class="n">Rows</span><span class="o">][</span><span class="n">Cols</span><span class="o">]</span><span class="p">;</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Rows</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Fill the sample data array with random values</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Rows</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">            </span><span class="n">FN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FN_Array</span><span class="o">[</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">FN_Array</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="o">]</span><span class="p">;</span>
-<span class="w">            </span><span class="n">LN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LN_Array</span><span class="o">[</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">LN_Array</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="o">]</span><span class="p">;</span>
-<span class="w">            </span><span class="n">City</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">City_Array</span><span class="o">[</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">City_Array</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="o">]</span><span class="p">;</span>
-<span class="w">            </span><span class="n">Salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">500000</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">40000</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// Get random first name, last name, </span>
+<span class="w">            </span><span class="c1">// and city from their respective arrays</span>
+<span class="w">            </span><span class="n">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">firstNameArray</span><span class="o">[</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">firstNameArray</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="o">]</span><span class="p">;</span>
+<span class="w">            </span><span class="n">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lastNameArray</span><span class="o">[</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">lastNameArray</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="o">]</span><span class="p">;</span>
+<span class="w">            </span><span class="n">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">City_Array</span><span class="o">[</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">City_Array</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="o">]</span><span class="p">;</span>
 
-<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FN</span><span class="p">;</span>
-<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LN</span><span class="p">;</span>
-<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">City</span><span class="p">;</span>
-<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">Salary</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Generate a random salary between 40,000 and 499,999</span>
+<span class="w">            </span><span class="n">salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">500000</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">40000</span><span class="p">;</span>
 
+<span class="w">            </span><span class="c1">// Assign values to the corresponding columns </span>
+<span class="w">            </span><span class="c1">// in the sample data array</span>
+<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">firstName</span><span class="p">;</span>
+<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lastName</span><span class="p">;</span>
+<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">city</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// Convert salary to string</span>
+<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">salary</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Generate a unique key for the data row</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span>
+<span class="w">                    </span><span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">firstName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lastName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">city</span><span class="p">).</span><span class="na">hashCode</span><span class="p">()</span>
+<span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">()));</span>
+<span class="w">            </span><span class="n">mySampleData</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="mi">4</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
-
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="cm">/**</span>
-<span class="cm">     *</span>
+<span class="cm">     * This method prints the contents of the table model to the console.</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">printArray</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;made it to pa&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">getRowCount</span><span class="p">();</span><span class="w"> </span><span class="n">r</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">getColumnCount</span><span class="p">();</span><span class="w"> </span><span class="n">c</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="c1">//System.out.print(theArray[r][c] + &quot; &quot;);</span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="na">getValueAt</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
 
+<span class="w">        </span><span class="c1">// Loop through all rows and columns of the table model</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">getRowCount</span><span class="p">();</span><span class="w"> </span><span class="n">row</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">getColumnCount</span><span class="p">();</span><span class="w"> </span><span class="n">col</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Get the value at the current row and column from the model</span>
+<span class="w">                </span><span class="n">Object</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">getValueAt</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">);</span>
+<span class="w">                </span><span class="c1">// Print the value with a space separator</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="c1">// Print a new line after each row</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
 <span class="w">        </span><span class="p">}</span>
 
+<span class="w">        </span><span class="c1">// Print a separator line for readability</span>
 <span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n---------------\n&quot;</span><span class="p">);</span>
-
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="cm">/**</span>
@@ -695,31 +1172,15 @@ document.write(`
 <span class="cm">     * regenerated by the Form Editor.</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="c1">// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;                          </span>
+<span class="w">    </span><span class="c1">// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initComponents</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="n">jButton1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="p">();</span>
-<span class="w">        </span><span class="n">jButton2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="p">();</span>
 <span class="w">        </span><span class="n">jMenuBar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenuBar</span><span class="p">();</span>
 <span class="w">        </span><span class="n">jMenu1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenu</span><span class="p">();</span>
 <span class="w">        </span><span class="n">jmnuPrint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenuItem</span><span class="p">();</span>
 <span class="w">        </span><span class="n">jmuQuit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenuItem</span><span class="p">();</span>
 
 <span class="w">        </span><span class="n">setDefaultCloseOperation</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">WindowConstants</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
-
-<span class="w">        </span><span class="n">jButton1</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;jButton1&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">jButton1</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">jButton1ActionPerformed</span><span class="p">(</span><span class="n">evt</span><span class="p">);</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">});</span>
-
-<span class="w">        </span><span class="n">jButton2</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;jButton2&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">jButton2</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">jButton2ActionPerformed</span><span class="p">(</span><span class="n">evt</span><span class="p">);</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">});</span>
 
 <span class="w">        </span><span class="n">jMenu1</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;File&quot;</span><span class="p">);</span>
 
@@ -749,75 +1210,54 @@ document.write(`
 <span class="w">        </span><span class="n">getContentPane</span><span class="p">().</span><span class="na">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">);</span>
 <span class="w">        </span><span class="n">layout</span><span class="p">.</span><span class="na">setHorizontalGroup</span><span class="p">(</span>
 <span class="w">            </span><span class="n">layout</span><span class="p">.</span><span class="na">createParallelGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">LEADING</span><span class="p">)</span>
-<span class="w">            </span><span class="p">.</span><span class="na">addGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">TRAILING</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="p">.</span><span class="na">createSequentialGroup</span><span class="p">()</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addContainerGap</span><span class="p">(</span><span class="mi">356</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jButton1</span><span class="p">)</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jButton2</span><span class="p">)</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">41</span><span class="p">,</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w"> </span><span class="mi">41</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">565</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span>
 <span class="w">        </span><span class="p">);</span>
 <span class="w">        </span><span class="n">layout</span><span class="p">.</span><span class="na">setVerticalGroup</span><span class="p">(</span>
 <span class="w">            </span><span class="n">layout</span><span class="p">.</span><span class="na">createParallelGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">LEADING</span><span class="p">)</span>
-<span class="w">            </span><span class="p">.</span><span class="na">addGroup</span><span class="p">(</span><span class="n">layout</span><span class="p">.</span><span class="na">createSequentialGroup</span><span class="p">()</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addContainerGap</span><span class="p">()</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addGroup</span><span class="p">(</span><span class="n">layout</span><span class="p">.</span><span class="na">createParallelGroup</span><span class="p">(</span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">GroupLayout</span><span class="p">.</span><span class="na">Alignment</span><span class="p">.</span><span class="na">BASELINE</span><span class="p">)</span>
-<span class="w">                    </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jButton1</span><span class="p">)</span>
-<span class="w">                    </span><span class="p">.</span><span class="na">addComponent</span><span class="p">(</span><span class="n">jButton2</span><span class="p">))</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addContainerGap</span><span class="p">(</span><span class="mi">507</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">addGap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">536</span><span class="p">,</span><span class="w"> </span><span class="n">Short</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span>
 <span class="w">        </span><span class="p">);</span>
 
 <span class="w">        </span><span class="n">pack</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span><span class="c1">// &lt;/editor-fold&gt;                        </span>
+<span class="w">    </span><span class="p">}</span><span class="c1">// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
 
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jmnuPrintActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w">                                          </span>
-<span class="w">    </span><span class="p">{</span><span class="w">                                              </span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jmnuPrintActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="c1">//GEN-FIRST:event_jmnuPrintActionPerformed</span>
+<span class="w">    </span><span class="p">{</span><span class="c1">//GEN-HEADEREND:event_jmnuPrintActionPerformed</span>
 
-<span class="w">        </span><span class="n">JFrame</span><span class="w"> </span><span class="n">myFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JFrame</span><span class="p">(</span><span class="s">&quot;Message Examples&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Create a JFrame window with the title &quot;Printing&quot;</span>
+<span class="w">        </span><span class="n">JFrame</span><span class="w"> </span><span class="n">myFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JFrame</span><span class="p">(</span><span class="s">&quot;Printing&quot;</span><span class="p">);</span>
 
+<span class="w">        </span><span class="c1">// Set the frame to always stay on top of other windows</span>
 <span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">setAlwaysOnTop</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 
 <span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Attempt to print the table using the table&#39;s print method</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">myTable</span><span class="p">.</span><span class="na">print</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;User Cancellent Printing&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="c1">// Printing was cancelled by the user</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;User Cancelled Printing&quot;</span><span class="p">);</span>
 
+<span class="w">                </span><span class="c1">// Display an error message dialog to the user</span>
 <span class="w">                </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showMessageDialog</span><span class="p">(</span><span class="n">myFrame</span><span class="p">,</span>
-<span class="w">                        </span><span class="s">&quot;User Cancellent Printing&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s">&quot;User Cancelled Printing&quot;</span><span class="p">,</span>
 <span class="w">                        </span><span class="s">&quot;User Cancelled Printing&quot;</span><span class="p">,</span>
 <span class="w">                        </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">ERROR_MESSAGE</span><span class="p">);</span>
-
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">print</span><span class="p">.</span><span class="na">PrinterException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// An exception occurred during printing</span>
+<span class="w">            </span><span class="c1">// Display an error message dialog with the exception message</span>
 <span class="w">            </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showMessageDialog</span><span class="p">(</span><span class="n">myFrame</span><span class="p">,</span>
 <span class="w">                    </span><span class="n">ex</span><span class="p">.</span><span class="na">getMessage</span><span class="p">(),</span>
 <span class="w">                    </span><span class="s">&quot;Printer Error&quot;</span><span class="p">,</span>
 <span class="w">                    </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">ERROR_MESSAGE</span><span class="p">);</span>
-
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w">                                         </span>
 
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jmuQuitActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w">                                        </span>
-<span class="w">    </span><span class="p">{</span><span class="w">                                            </span>
+<span class="w">    </span><span class="p">}</span><span class="c1">//GEN-LAST:event_jmnuPrintActionPerformed</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jmuQuitActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="c1">//GEN-FIRST:event_jmuQuitActionPerformed</span>
+<span class="w">    </span><span class="p">{</span><span class="c1">//GEN-HEADEREND:event_jmuQuitActionPerformed</span>
+<span class="w">        </span><span class="c1">// Terminate the program with a successful exit code (0)</span>
 <span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span><span class="w">                                       </span>
-
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jButton1ActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">                                         </span>
-<span class="w">        </span>
-<span class="w">      </span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">filterText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Rogers&quot;</span><span class="p">;</span>
-<span class="w">        </span>
-<span class="w">        </span>
-<span class="w">        </span><span class="n">RowFilter</span><span class="o">&lt;</span><span class="n">DefaultTableModel</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">myRowFilter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RowFilter</span><span class="p">.</span><span class="na">regexFilter</span><span class="p">(</span><span class="n">filterText</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">        </span><span class="n">TableRowSorter</span><span class="o">&lt;</span><span class="n">TableModel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sorter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TableRowSorter</span><span class="p">)</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getRowSorter</span><span class="p">();</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="n">sorter</span><span class="p">.</span><span class="na">setRowFilter</span><span class="p">(</span><span class="n">RowFilter</span><span class="p">.</span><span class="na">regexFilter</span><span class="p">(</span><span class="n">filterText</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
-
-<span class="w">    </span><span class="p">}</span><span class="w">                                        </span>
-
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">jButton2ActionPerformed</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">event</span><span class="p">.</span><span class="na">ActionEvent</span><span class="w"> </span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">                                         </span>
-<span class="w">        </span><span class="n">TableRowSorter</span><span class="o">&lt;</span><span class="n">TableModel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sorter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TableRowSorter</span><span class="p">)</span><span class="w"> </span><span class="n">myTable</span><span class="p">.</span><span class="na">getRowSorter</span><span class="p">();</span>
-<span class="w">        </span><span class="n">sorter</span><span class="p">.</span><span class="na">setRowFilter</span><span class="p">(</span><span class="n">RowFilter</span><span class="p">.</span><span class="na">regexFilter</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
-<span class="w">    </span><span class="p">}</span><span class="w">                                        </span>
+<span class="w">    </span><span class="p">}</span><span class="c1">//GEN-LAST:event_jmuQuitActionPerformed</span>
 
 <span class="w">    </span><span class="cm">/**</span>
 <span class="cm">     * @param args the command line arguments</span>
@@ -853,6 +1293,10 @@ document.write(`
 <span class="w">        </span><span class="c1">//&lt;/editor-fold&gt;</span>
 <span class="w">        </span><span class="c1">//&lt;/editor-fold&gt;</span>
 <span class="w">        </span><span class="c1">//&lt;/editor-fold&gt;</span>
+<span class="w">        </span><span class="c1">//&lt;/editor-fold&gt;</span>
+<span class="w">        </span><span class="c1">//&lt;/editor-fold&gt;</span>
+<span class="w">        </span><span class="c1">//&lt;/editor-fold&gt;</span>
+<span class="w">        </span><span class="c1">//&lt;/editor-fold&gt;</span>
 
 <span class="w">        </span><span class="cm">/*</span>
 <span class="cm">         * Create and display the form</span>
@@ -865,17 +1309,22 @@ document.write(`
 <span class="w">    </span><span class="p">}</span>
 
 
-<span class="w">    </span><span class="c1">// Variables declaration - do not modify                     </span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="w"> </span><span class="n">jButton1</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JButton</span><span class="w"> </span><span class="n">jButton2</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Variables declaration - do not modify//GEN-BEGIN:variables</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenu</span><span class="w"> </span><span class="n">jMenu1</span><span class="p">;</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenuBar</span><span class="w"> </span><span class="n">jMenuBar1</span><span class="p">;</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenuItem</span><span class="w"> </span><span class="n">jmnuPrint</span><span class="p">;</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">javax</span><span class="p">.</span><span class="na">swing</span><span class="p">.</span><span class="na">JMenuItem</span><span class="w"> </span><span class="n">jmuQuit</span><span class="p">;</span>
-<span class="w">    </span><span class="c1">// End of variables declaration                   </span>
+<span class="w">    </span><span class="c1">// End of variables declaration//GEN-END:variables</span>
+
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
+<section id="finished-application">
+<h2>Finished Application<a class="headerlink" href="#finished-application" title="Link to this heading">#</a></h2>
+<p><img alt="image-20240419134810913" src="../_images/image-20240419134810913-1713556095150-1.png" /></p>
+<hr class="docutils" />
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -908,6 +1357,24 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Bounce.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Bounce Balls Animation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="JABT_JAVAAutomatedBuildTools.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">JAVA Automated Build Tools</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -915,7 +1382,23 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code-explanation">Lecture Code Explanation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-numbertablecellrenderer">class NumberTableCellRenderer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-code">The Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finished-application">Finished Application</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
