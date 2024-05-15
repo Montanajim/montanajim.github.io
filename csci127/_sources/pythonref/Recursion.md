@@ -1,23 +1,6 @@
 #  Recursion
 
 
-## Topics
-
-[Explanation](##Explanation)
-
-[Drawbacks To Recursion](##Drawbacks-To-Recursion)
-
-[Example 1  Bottles Of Beer](##Example-1-Bottles-Of-Beer)
-
-[Example 2  Sum Of List](##Example-2-Sum-Of-List)
-
-[Example 3   Sierpiński triangle](##Example-3-Sierpiński-triangle)
-
-[Example 4  Tree](##Example-4-Tree)
-
-[Example 5  Recursion / Loop / Voice - BOB](##Example-5-Recursion-/-Loop-/-Voice-BOB)
-
-
 
 ## Explanation
 

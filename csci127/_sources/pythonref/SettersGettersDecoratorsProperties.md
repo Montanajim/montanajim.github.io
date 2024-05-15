@@ -47,10 +47,10 @@
 | Feature              | Decorators                                  | Getters/Setters (Traditional)        | Properties                             |
 | :------------------- | :------------------------------------------ | :----------------------------------- | :------------------------------------- |
 | Syntax               | `@decorator`                                | Explicit method calls                | `@property`                            |
-| Purpose              | Modify <br />functions/classes              | Control attribute access             | Getters/setters <br />using decorators |
-| Flexibility          | Broader range of <br />applications         | Specific to attribute access         | Focus on <br />attribute access        |
-| Readability&nbsp;&nbsp;          | Depends on <br />decorator <br />complexity | Clearer separation <br />of concerns | Cleaner attribute access               |
-| Pythonic <br />style | More Pythonic                               | Traditional approach                 | Pythonic approach                      |
+| Purpose              | Modify functions/classes        | Control attribute access             | Getters/setters  using decorators |
+| Flexibility          | Broader range of applications         | Specific to attribute access         | Focus on attribute access        |
+| Readability&nbsp;&nbsp;          | Depends on decorator complexity | Clearer separation of concerns | Cleaner attribute access               |
+| Pythonic style | More Pythonic                               | Traditional approach                 | Pythonic approach                      |
 
 
 

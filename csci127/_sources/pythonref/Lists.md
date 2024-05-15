@@ -2,10 +2,6 @@
 
 
 
-## Overview
-
----
-
 ## Definition
 
 >**List**: A collection of data values where each value is identified by an index. It is mutable (values can be modified). The values that make up the list are called elements.   
@@ -14,7 +10,11 @@
 
 ---
 
-## Lecture Code
+
+
+## Code
+
+
 
 ### Example 1 - The fundamentals
 
@@ -36,7 +36,7 @@ def ListExample():
     ccc = 3
     ddd = 4
     eee = 5
-    
+
     # or written as a list 
     mynums1  = [1,2,3,4,5]
     print(mynums1)
@@ -288,9 +288,6 @@ main()
 
 ```
 
-[Top](##Overview)
-
-
 
 ### Example 2 -  Passing and Returning Lists via Functions
 
@@ -356,7 +353,7 @@ def main():
 main()
 ```
 
-[Top](##Overview)
+
 
 ### Pick Data From A List
 
@@ -405,7 +402,7 @@ def main():
 main()
 ```
 
-[Top](##Overview)
+
 
 ### Generate Random Numbers
 
@@ -442,7 +439,7 @@ def main():
 main()
 ```
 
-[Top](##Overview)
+
 
 ### Split Columns Into Lists
 
@@ -600,6 +597,4 @@ main()
 
 
 ```
-
-[Top](##Overview)
 

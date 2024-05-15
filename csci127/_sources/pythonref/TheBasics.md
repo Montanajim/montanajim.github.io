@@ -8,18 +8,6 @@ _Python_ - is an interpreted, object-oriented, high-level programming language w
 
 
 
-## Where is Python used?
-
-* Artificial Intelligence and Machine Learning
-* Data Analytics
-* Game Programming
-* Applications
-* Web Development
-* Finance
-* Sciences
-
-
-
 ## Editors
 
 - [Idle](https://www.python.org/downloads/) 
@@ -47,6 +35,12 @@ print ("hello world")
 - Two or more physical lines may be joined  into logical lines using backslash characters (\\)
 
 ## Variables
+
+
+
+> The purpose of a variable is to store one value.  This could be a string, integer, float, Boolean, char, or object. 
+
+
 
 __Variable names__
 
