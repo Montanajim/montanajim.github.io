@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Itertools &#8212; CSCI 127</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/Itertools';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Recursion" href="Recursion.html" />
+    <link rel="prev" title="Menu Shell" href="MenuShell.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CSCI 127</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to CSCI 127 Joy and Beauty of Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readings.html">Readings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TheBasics.html">The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicsGettingStarted.html">Basics - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SecondProgram.html">Second Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTrees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToCreateAMenu.html">How To Create A Menu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NestedIfs.html">Nested Ifs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TryExcept.html">Try Except - Preventing Errors</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Iteration.html">Iteration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="MoreLoopExamples.html">More Loop Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TypewriterSimulation.html">Loops - Typewriter Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MenuShell.html">Menu Shell</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Itertools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lists.html">Lists</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Classes.html">Classes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Decorators.html">Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Properties.html">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SettersGettersDecoratorsProperties.html">When to use Setters and Getters, Decorators, and Properties</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_ref.html">NumPy / Arrays</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="PanelData.html">Pandas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="PandasMatPlotLib.html">Pandas and MatPlotLib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PanelDataDogExample.html">Panel Data - Dog Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="InputOutput.html">Input / Output - Files And Folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tkinter.html">Tkinter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TicTacToe.html">Tic Tac Toe</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Miscellany.html">Miscellany</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="TheZenOfPython.html">The Zen of Python,</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CompilePyInstaller.html">Compile Python To Executable - PyInstaller</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/pythonref/Itertools.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Itertools</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concept">Concept</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#itertools-library">Itertools Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">Code</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="itertools">
+<h1>Itertools<a class="headerlink" href="#itertools" title="Link to this heading">#</a></h1>
+<section id="key-points">
+<h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>itertools:</strong>  A module providing functions for creating efficient iterators for various tasks.</p></li>
+<li><p><strong>count([start[, step]])</strong>: Creates an infinite iterator that starts at a specified value and increments by a specified step (defaults to 1).</p></li>
+<li><p><strong>cycle(p)</strong>: Creates an infinite iterator that endlessly repeats the elements from an iterable.</p></li>
+<li><p><strong>permutations(iterable, r=None)</strong>: Generates all possible arrangements (permutations) of elements from an iterable, with a specified length if provided. (Order does matter.)</p></li>
+<li><p><strong>combinations(iterable, r)</strong>: Generates all possible combinations of elements from an iterable, with a specified length. (Order doesn’t matter unlike permutations)</p></li>
+<li><p><strong>accumulate(p[, func])</strong>: Applies a function (default is addition) cumulatively to elements in an iterable, yielding the sums at each step.</p></li>
+<li><p><strong>filterfalse(predicate, sequence)</strong>: Creates an iterator that filters out elements from an iterable based on a predicate function (keeps elements that return False).</p></li>
+<li><p><strong>lru_cache(maxsize=128, typed=False)</strong>: Creates a function decorator that caches the results of the function based on the arguments (Least Recently Used cache with size limit).</p></li>
+<li><p><strong>batched(p, n)</strong>: Creates an iterator that yields fixed-size chunks of elements from an iterable.</p></li>
+</ul>
+</section>
+<section id="concept">
+<h2>Concept<a class="headerlink" href="#concept" title="Link to this heading">#</a></h2>
+<p>In computer programming, an iterable is essentially a container that holds elements and allows you to access them one by one in a specific order.  Think of it like a box with items you can take out, one at a time.</p>
+<p>Here’s a breakdown of what iterables are and how they work:</p>
+<ul class="simple">
+<li><p><strong>Usable with loops:</strong> The key feature of iterables is that you can use them in ‘for’ loops to process elements efficiently. The loop automatically iterates over the iterable, retrieving each element on each pass.</p></li>
+<li><p><strong>Examples:</strong> Common examples of iterables include lists, tuples, strings, sets, and dictionaries (in some languages).</p></li>
+<li><p><strong>Behind the scenes:</strong>  Iterables typically implement a special method (often named <code class="docutils literal notranslate"><span class="pre">__iter__</span></code>) that creates an iterator object. This iterator keeps track of the current position within the iterable and provides access to elements one at a time.</p></li>
+</ul>
+<p>Here’s an analogy: Imagine a bookshelf (iterable) containing books (elements). You can’t grab all the books at once, but you can go through them one by one (iteration) using a ladder (iterator) to reach each book on the shelf.</p>
+<p>Iterables are fundamental for processing sequences of data in programming and form the backbone of many powerful techniques.</p>
+</section>
+<section id="itertools-library">
+<h2>Itertools Library<a class="headerlink" href="#itertools-library" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">itertools</span></code> module in Python is a toolbox specifically designed to work with iterables. It provides functions that create new iterators based on existing iterables.  These new iterators can perform various manipulations on the original data in a memory-efficient way.</p>
+<p>Here is a sample of how they work. This is the accumulate function. Note that it returns an  iterator.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">itertools.accumulate()</span></code> function in Python is a powerful tool for performing cumulative operations on iterables. It creates an iterator that yields the sum (by default) or any other function applied cumulatively to the elements of the iterable.</p>
+<p>Here’s a breakdown of how <code class="docutils literal notranslate"><span class="pre">itertools.accumulate()</span></code> works:</p>
+<ul class="simple">
+<li><p><strong>Cumulative Operations:</strong> It applies a function to successive elements of the iterable, keeping track of a running total. This total is then yielded by the iterator at each step.</p></li>
+<li><p><strong>Default Behavior (Sum):</strong> If you don’t provide a custom function, <code class="docutils literal notranslate"><span class="pre">accumulate()</span></code> performs addition by default. This is useful for calculating running sums, like finding the total sales up to a certain point in a list.</p></li>
+<li><p><strong>Custom Functions:</strong> You can provide a custom function to <code class="docutils literal notranslate"><span class="pre">accumulate()</span></code> to perform different cumulative operations. This function should take two arguments: the current accumulated value and the next element from the iterable. The function’s return value becomes the new accumulated value for the next iteration.</p></li>
+</ul>
+<p>Here are some key points to remember about <code class="docutils literal notranslate"><span class="pre">itertools.accumulate()</span></code>:</p>
+<ul class="simple">
+<li><p><em><strong>Returns an Iterator:</strong> It’s important to note that <code class="docutils literal notranslate"><span class="pre">accumulate()</span></code> returns an iterator, not a list. This means the elements are generated on-demand, saving memory compared to creating a new list to store all the results.</em></p></li>
+<li><p><strong>Optional Initial Value (Python 3.8+):</strong> In Python versions 3.8 and later, you can specify an initial value using the <code class="docutils literal notranslate"><span class="pre">initial</span></code> argument. This value will be prepended to the beginning of the accumulated results.</p></li>
+</ul>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://docs.python.org/3.12/library/itertools.html#">https://docs.python.org/3.12/library/itertools.html#</a></p>
+<p>Note there are more itertools listed  in the official document</p>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Itertools </span>
+<span class="sd">Programmer: James Goudy</span>
+<span class="sd">Date: 07/19/2024</span>
+
+<span class="sd">This script demonstrates various functionalities from the itertools library in Python.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Import libraries</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># Function to generate a count loop (runs indefinitely)</span>
+<span class="k">def</span> <span class="nf">iter_count</span><span class="p">():</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  This function demonstrates the itertools.count() function</span>
+<span class="sd">  which generates an unending sequence of numbers.</span>
+
+<span class="sd">  Parameters:</span>
+<span class="sd">      None</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      None (prints the sequence to the console)</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Count Example&quot;</span><span class="p">)</span>
+
+  <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">stop</span> <span class="o">=</span> <span class="mi">500</span>
+  <span class="n">step</span> <span class="o">=</span> <span class="mi">100</span>
+
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="c1"># Break the loop when reaching the stop value</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">stop</span><span class="p">:</span>
+      <span class="k">break</span>
+
+<span class="c1"># Function to cycle through elements in a list repeatedly</span>
+<span class="k">def</span> <span class="nf">iter_cycle</span><span class="p">():</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  This function demonstrates the itertools.cycle() function</span>
+<span class="sd">  which iterates through a list repeatedly.</span>
+
+<span class="sd">  Parameters:</span>
+<span class="sd">      None</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      None (prints the cycled elements to the console)</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Cycle Example&quot;</span><span class="p">)</span>
+
+  <span class="n">cntr</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+  <span class="n">myList2</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;AA&quot;</span><span class="p">,</span> <span class="s2">&quot;BB&quot;</span><span class="p">,</span> <span class="s2">&quot;CC&quot;</span><span class="p">,</span> <span class="s2">&quot;DD&quot;</span><span class="p">]</span>
+  <span class="n">repeatCycle</span> <span class="o">=</span> <span class="mi">2</span>
+
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">myList</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">cntr</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Break the cycle after a specified number of repetitions</span>
+    <span class="k">if</span> <span class="n">cntr</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">repeatCycle</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">myList</span><span class="p">)):</span>
+      <span class="k">break</span>
+
+  <span class="n">cntr</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nb">print</span><span class="p">()</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">myList2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">cntr</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Break the cycle after a specified number of repetitions</span>
+    <span class="k">if</span> <span class="n">cntr</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">repeatCycle</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">myList</span><span class="p">)):</span>
+      <span class="k">break</span>
+
+<span class="c1"># Function to generate permutations (ordered arrangements)</span>
+<span class="k">def</span> <span class="nf">iter_permutations</span><span class="p">():</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  This function demonstrates the itertools.permutations() function</span>
+<span class="sd">  which generates all possible ordered arrangements (permutations) of elements.</span>
+
+<span class="sd">  Parameters:</span>
+<span class="sd">      None</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      None (prints the permutations to the console)</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Permutation Example&quot;</span><span class="p">)</span>
+
+  <span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+  <span class="k">for</span> <span class="n">prm</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">myList</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">prm</span><span class="p">)</span>
+
+<span class="c1"># Function to generate combinations (unordered arrangements)</span>
+<span class="k">def</span> <span class="nf">iter_combinations</span><span class="p">():</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  This function demonstrates the itertools.combinations() function</span>
+<span class="sd">  which generates all possible unordered arrangements (combinations) of elements.</span>
+
+<span class="sd">  Parameters:</span>
+<span class="sd">      None</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      None (prints the combinations to the console)</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Combinations Example&quot;</span><span class="p">)</span>
+
+  <span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+  <span class="n">combLen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">myList</span><span class="p">)</span>
+
+  <span class="k">for</span> <span class="n">cSize</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">combLen</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Combination size = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cSize</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">prm</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">myList</span><span class="p">,</span> <span class="n">cSize</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">prm</span><span class="p">)</span>
+
+<span class="c1"># Function to calculate accumulated sums</span>
+<span class="k">def</span> <span class="nf">iter_accumulate</span><span class="p">():</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  This function demonstrates the itertools.accumulate() function</span>
+<span class="sd">  which returns a sequence of partial sums.</span>
+
+<span class="sd">  Parameters:</span>
+<span class="sd">      None</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      None (prints the accumulated sums to the console)</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Accumulation Example&quot;</span><span class="p">)</span>
+
+  <span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data is - </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">myList</span><span class="p">))</span>
+
+  <span class="c1"># Rolling total using accumulate</span>
+  <span class="n">myAcc</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">myList</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">myAcc</span><span class="p">))</span>
+
+  <span class="c1"># Iterate through each item in the accumulated sequence</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Iterate through </span><span class="se">\n</span><span class="s2">each item in Acc&quot;</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">myList</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;item is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Multiple instead of add&quot;</span><span class="p">)</span>
+  <span class="n">myAcc</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">myList</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">myAcc</span><span class="p">))</span>
+
+<span class="c1"># --------------------------------------------------</span>
+<span class="c1"># Filter out data based on a specific criteria</span>
+
+<span class="c1"># Helper function for iter_filterfalse</span>
+<span class="k">def</span> <span class="nf">divByTwo</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  This function checks if a number is odd (not divisible by 2). </span>
+<span class="sd">  It&#39;s a helper function used by iter_filterfalse.</span>
+
+<span class="sd">  Parameters:</span>
+<span class="sd">      a (int): The number to check</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      bool: True if the number is odd, False otherwise</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">iter_filterfalse</span><span class="p">():</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  This function demonstrates the itertools.filterfalse() function</span>
+<span class="sd">  which filters out elements based on a condition.</span>
+
+<span class="sd">  Parameters:</span>
+<span class="sd">      None</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      None (prints the filtered elements to the console)</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+  <span class="c1"># Filter out odd numbers (elements not divisible by 2) using divByTwo function</span>
+  <span class="n">evenNums</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">filterfalse</span><span class="p">(</span><span class="n">divByTwo</span><span class="p">,</span> <span class="n">myList</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Evens&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">evenNums</span><span class="p">))</span>
+
+  <span class="c1"># Filter out even numbers (elements divisible by 2) using lambda function</span>
+  <span class="n">evenNums</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">filterfalse</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span><span class="p">,</span> <span class="n">myList</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Evens&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">evenNums</span><span class="p">))</span>
+
+<span class="c1"># --------------------------------------------------</span>
+
+<span class="c1"># ---------- leave recursion in cache --------------</span>
+
+<span class="k">global</span> <span class="n">countFastSteps</span>
+<span class="k">global</span> <span class="n">countSlowSteps</span>
+
+<span class="n">countFastSteps</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">countSlowSteps</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">fibfast</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  This function calculates the nth Fibonacci number using recursion </span>
+<span class="sd">  with memoization (lru_cache) for efficiency.</span>
+
+<span class="sd">  Parameters:</span>
+<span class="sd">      n (int): The index of the Fibonacci number to calculate</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      int: The nth Fibonacci number</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">global</span> <span class="n">countFastSteps</span>
+  <span class="n">countFastSteps</span> <span class="o">=</span> <span class="n">countFastSteps</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="k">return</span> <span class="n">fibfast</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibfast</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">fibslow</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  This function calculates the nth Fibonacci number using recursion </span>
+<span class="sd">  without memoization (slower approach).</span>
+
+<span class="sd">  Parameters:</span>
+<span class="sd">      n (int): The index of the Fibonacci number to calculate</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      int: The nth Fibonacci number</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">global</span> <span class="n">countSlowSteps</span>
+  <span class="n">countSlowSteps</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="k">return</span> <span class="n">fibslow</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibslow</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">lru_cache_example</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  This function demonstrates the performance improvement of memoization (lru_cache)</span>
+<span class="sd">  by comparing the number of function calls needed to calculate the nth Fibonacci number </span>
+<span class="sd">  with and without memoization.</span>
+
+<span class="sd">  Parameters:</span>
+<span class="sd">      i (int): The index of the Fibonacci number to calculate</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      None (prints the number of function calls to the console)</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="c1"># Initialize variables globally to avoid errors</span>
+  <span class="k">global</span> <span class="n">countSlowSteps</span>
+  <span class="k">global</span> <span class="n">countFastSteps</span>
+  <span class="n">countSlowSteps</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">countFastSteps</span> <span class="o">=</span> <span class="mi">0</span>
+
+  <span class="n">fibfast</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="n">fibslow</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="n">countFastSteps</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;With lru_cache total function steps: &#39;</span><span class="p">,</span> <span class="n">countFastSteps</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Without lru_cache total function steps: &#39;</span><span class="p">,</span> <span class="n">countSlowSteps</span><span class="p">)</span>
+
+<span class="c1"># --------------------------------------------------</span>
+
+<span class="k">def</span> <span class="nf">itr_batch</span><span class="p">():</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  This function demonstrates the itertools.batched() function</span>
+<span class="sd">  which groups elements from an iterable into fixed-size chunks.</span>
+
+<span class="sd">  Parameters:</span>
+<span class="sd">      None</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      None (prints the batched elements and manipulates them to the console)</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Batch Process&quot;</span><span class="p">)</span>
+
+  <span class="c1"># Create a list of numbers</span>
+  <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">]</span>
+
+  <span class="c1"># Use itertools.batched() to group elements in the list into chunks of size 4</span>
+  <span class="k">for</span> <span class="n">batch_item</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">batched</span><span class="p">(</span><span class="n">my_list</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="c1"># Convert the batched item (generator) to a list and print it</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">batch_item</span><span class="p">))</span>  <span class="c1"># Print the batched elements</span>
+
+    <span class="c1"># Loop through each item within the current batch</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">batch_item</span><span class="p">:</span>
+      <span class="c1"># Multiply the item by 10 and print it with a space</span>
+      <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="c1"># Add a newline and separator after processing each batch</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">---</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+  <span class="c1"># Define a multi-line string containing a quote</span>
+  <span class="n">quote</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">  Never argue with stupid people, </span>
+<span class="s2">  they will drag you down to their level </span>
+<span class="s2">  and beat you with experience. - Mark Twain</span>
+<span class="s2">  &quot;&quot;&quot;</span>
+
+  <span class="c1"># Use itertools.batched() again to group characters in the quote into chunks of size 7</span>
+  <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">batched</span><span class="p">(</span><span class="n">quote</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+    <span class="c1"># Print each chunk of the quote</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+    <span class="n">iter_count</span><span class="p">()</span>
+
+    <span class="n">iter_cycle</span><span class="p">()</span>
+
+    <span class="n">iter_permutations</span><span class="p">()</span>
+
+    <span class="n">iter_combinations</span><span class="p">()</span>
+
+    <span class="n">iter_accumulate</span><span class="p">()</span>
+
+    <span class="n">iter_filterfalse</span><span class="p">()</span>
+
+    <span class="n">lru_cache_example</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+
+    <span class="n">itr_batch</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">bye</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">main</span><span class="p">()</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Count Example</span>
+<span class="sd">0</span>
+<span class="sd">100</span>
+<span class="sd">200</span>
+<span class="sd">300</span>
+<span class="sd">400</span>
+<span class="sd">500</span>
+
+<span class="sd">Cycle Example</span>
+<span class="sd">10</span>
+<span class="sd">20</span>
+<span class="sd">30</span>
+<span class="sd">40</span>
+<span class="sd">10</span>
+<span class="sd">20</span>
+<span class="sd">30</span>
+<span class="sd">40</span>
+
+<span class="sd">AA</span>
+<span class="sd">BB</span>
+<span class="sd">CC</span>
+<span class="sd">DD</span>
+<span class="sd">AA</span>
+<span class="sd">BB</span>
+<span class="sd">CC</span>
+<span class="sd">DD</span>
+
+<span class="sd">Permutation Example</span>
+<span class="sd">(1, 2, 3)</span>
+<span class="sd">(1, 3, 2)</span>
+<span class="sd">(2, 1, 3)</span>
+<span class="sd">(2, 3, 1)</span>
+<span class="sd">(3, 1, 2)</span>
+<span class="sd">(3, 2, 1)</span>
+
+<span class="sd">Combinations Example</span>
+
+<span class="sd">Combination size = 1</span>
+<span class="sd">(1,)</span>
+<span class="sd">(2,)</span>
+<span class="sd">(3,)</span>
+<span class="sd">(4,)</span>
+
+<span class="sd">Combination size = 2</span>
+<span class="sd">(1, 2)</span>
+<span class="sd">(1, 3)</span>
+<span class="sd">(1, 4)</span>
+<span class="sd">(2, 3)</span>
+<span class="sd">(2, 4)</span>
+<span class="sd">(3, 4)</span>
+
+<span class="sd">Combination size = 3</span>
+<span class="sd">(1, 2, 3)</span>
+<span class="sd">(1, 2, 4)</span>
+<span class="sd">(1, 3, 4)</span>
+<span class="sd">(2, 3, 4)</span>
+
+<span class="sd">Combination size = 4</span>
+<span class="sd">(1, 2, 3, 4)</span>
+
+<span class="sd">Accumulation Example</span>
+<span class="sd">Data is - [2, 4, 5, 10]</span>
+<span class="sd">[2, 6, 11, 21]</span>
+
+<span class="sd">Iterate through</span>
+<span class="sd">each item in Acc</span>
+<span class="sd">item is 2</span>
+<span class="sd">item is 6</span>
+<span class="sd">item is 11</span>
+<span class="sd">item is 21</span>
+
+<span class="sd">Multiple instead of add</span>
+<span class="sd">[2, 8, 40, 400]</span>
+<span class="sd">Evens [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span>
+<span class="sd">Evens [2, 4, 6, 8, 10]</span>
+<span class="sd">26</span>
+<span class="sd">With lru_cache total function steps:  26</span>
+<span class="sd">Without lru_cache total function steps:  242785</span>
+
+<span class="sd">Batch Process</span>
+<span class="sd">[1, 2, 3, 4]</span>
+<span class="sd">10 20 30 40</span>
+<span class="sd">---</span>
+
+<span class="sd">[5, 6, 7, 8]</span>
+<span class="sd">50 60 70 80</span>
+<span class="sd">---</span>
+
+<span class="sd">[9, 10, 11, 12]</span>
+<span class="sd">90 100 110 120</span>
+<span class="sd">---</span>
+
+<span class="sd">[13, 14, 15, 16]</span>
+<span class="sd">130 140 150 160</span>
+<span class="sd">---</span>
+
+<span class="sd">[17]</span>
+<span class="sd">170</span>
+<span class="sd">---</span>
+
+<span class="sd">(&#39;\n&#39;, &#39; &#39;, &#39; &#39;, &#39;N&#39;, &#39;e&#39;, &#39;v&#39;, &#39;e&#39;)</span>
+<span class="sd">(&#39;r&#39;, &#39; &#39;, &#39;a&#39;, &#39;r&#39;, &#39;g&#39;, &#39;u&#39;, &#39;e&#39;)</span>
+<span class="sd">(&#39; &#39;, &#39;w&#39;, &#39;i&#39;, &#39;t&#39;, &#39;h&#39;, &#39; &#39;, &#39;s&#39;)</span>
+<span class="sd">(&#39;t&#39;, &#39;u&#39;, &#39;p&#39;, &#39;i&#39;, &#39;d&#39;, &#39; &#39;, &#39;p&#39;)</span>
+<span class="sd">(&#39;e&#39;, &#39;o&#39;, &#39;p&#39;, &#39;l&#39;, &#39;e&#39;, &#39;,&#39;, &#39; &#39;)</span>
+<span class="sd">(&#39;\n&#39;, &#39; &#39;, &#39; &#39;, &#39;t&#39;, &#39;h&#39;, &#39;e&#39;, &#39;y&#39;)</span>
+<span class="sd">(&#39; &#39;, &#39;w&#39;, &#39;i&#39;, &#39;l&#39;, &#39;l&#39;, &#39; &#39;, &#39;d&#39;)</span>
+<span class="sd">(&#39;r&#39;, &#39;a&#39;, &#39;g&#39;, &#39; &#39;, &#39;y&#39;, &#39;o&#39;, &#39;u&#39;)</span>
+<span class="sd">(&#39; &#39;, &#39;d&#39;, &#39;o&#39;, &#39;w&#39;, &#39;n&#39;, &#39; &#39;, &#39;t&#39;)</span>
+<span class="sd">(&#39;o&#39;, &#39; &#39;, &#39;t&#39;, &#39;h&#39;, &#39;e&#39;, &#39;i&#39;, &#39;r&#39;)</span>
+<span class="sd">(&#39; &#39;, &#39;l&#39;, &#39;e&#39;, &#39;v&#39;, &#39;e&#39;, &#39;l&#39;, &#39; &#39;)</span>
+<span class="sd">(&#39;\n&#39;, &#39; &#39;, &#39; &#39;, &#39;a&#39;, &#39;n&#39;, &#39;d&#39;, &#39; &#39;)</span>
+<span class="sd">(&#39;b&#39;, &#39;e&#39;, &#39;a&#39;, &#39;t&#39;, &#39; &#39;, &#39;y&#39;, &#39;o&#39;)</span>
+<span class="sd">(&#39;u&#39;, &#39; &#39;, &#39;w&#39;, &#39;i&#39;, &#39;t&#39;, &#39;h&#39;, &#39; &#39;)</span>
+<span class="sd">(&#39;e&#39;, &#39;x&#39;, &#39;p&#39;, &#39;e&#39;, &#39;r&#39;, &#39;i&#39;, &#39;e&#39;)</span>
+<span class="sd">(&#39;n&#39;, &#39;c&#39;, &#39;e&#39;, &#39;.&#39;, &#39; &#39;, &#39;-&#39;, &#39; &#39;)</span>
+<span class="sd">(&#39;M&#39;, &#39;a&#39;, &#39;r&#39;, &#39;k&#39;, &#39; &#39;, &#39;T&#39;, &#39;w&#39;)</span>
+<span class="sd">(&#39;a&#39;, &#39;i&#39;, &#39;n&#39;, &#39;\n&#39;, &#39; &#39;, &#39; &#39;)</span>
+
+
+<span class="sd">bye</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./pythonref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="MenuShell.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Menu Shell</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Recursion.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Recursion</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concept">Concept</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#itertools-library">Itertools Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">Code</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 By James Goudy.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
