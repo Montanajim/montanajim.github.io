@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Miscellany &#8212; CSCI 127</title>
+    <title>Serialization &#8212; CSCI 127</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/Miscellany';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/Serialization';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Built-in Variable __name__" href="BuiltinVariable_Name.html" />
-    <link rel="prev" title="Serialization - Pickle - Function" href="Serialization_Pickle_Function.html" />
+    <link rel="next" title="Serialization - JSON" href="Serialization_JSON.html" />
+    <link rel="prev" title="Tic Tac Toe" href="TicTacToe.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -211,13 +211,13 @@
 <li class="toctree-l1"><a class="reference internal" href="InputOutput.html">Input / Output - Files And Folders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tkinter.html">Tkinter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TicTacToe.html">Tic Tac Toe</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Serialization.html">Serialization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Serialization</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Serialization_JSON.html">Serialization - JSON</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Data.html">Serialization - Pickle - Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Function.html">Serialization - Pickle - Function</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Miscellany</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Miscellany.html">Miscellany</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="BuiltinVariable_Name.html">Built-in Variable  <code class="docutils literal notranslate"><span class="pre">__name__</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="TheZenOfPython.html">The Zen of Python,</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CompilePyInstaller.html">Compile Python To Executable - PyInstaller</a></li>
@@ -277,7 +277,7 @@
       
       
       
-      <li><a href="../_sources/pythonref/Miscellany.md" target="_blank"
+      <li><a href="../_sources/pythonref/Serialization.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -348,7 +348,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -359,11 +361,23 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Miscellany</h1>
+    <h1>Serialization</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization-types">Serialization Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format-types">Format Types</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -373,8 +387,122 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="miscellany">
-<h1>Miscellany<a class="headerlink" href="#miscellany" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="serialization">
+<h1>Serialization<a class="headerlink" href="#serialization" title="Link to this heading">#</a></h1>
+<section id="definition">
+<h2>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h2>
+<p>Serialization is the process of transforming data structures or objects into a format that can be:</p>
+<ul class="simple">
+<li><p>Stored  (e.g., files in databases or storage devices)</p></li>
+<li><p>Transmitted (e.g., data streams over networks)</p></li>
+</ul>
+<p>This format allows for reconstruction of the data later, potentially even in a different computer environment.  The resulting data, after serialization, is typically a sequence of bytes.</p>
+<p>There’s a companion process called <strong>deserialization</strong>, which is essentially the opposite. It takes the serialized byte stream and recreates the original data structure or object. Serialization and deserialization work together to make data portable and usable across different systems.</p>
+</section>
+<section id="serialization-types">
+<h2>Serialization Types<a class="headerlink" href="#serialization-types" title="Link to this heading">#</a></h2>
+<p>There are several major forms of serialization used in Python, each with its own advantages and purposes:</p>
+<ol class="arabic simple">
+<li><p><strong>Pickle:</strong> This is the built-in standard library for serialization in Python. It’s very powerful and can handle most native data types, including custom classes, objects and functions. The serialized data is in a binary format, making it compact but not human-readable.  <strong>Use pickle when:</strong></p>
+<ul class="simple">
+<li><p>You need to serialize complex Python objects for internal use within your application.</p></li>
+<li><p>Speed and efficiency are a priority.</p></li>
+</ul>
+</li>
+<li><p><strong>JSON (JavaScript Object Notation):</strong>  This is a popular text-based format based on key-value pairs. It’s human-readable and language-agnostic, making it a good choice for data exchange between different programming languages and systems. JSON can handle most basic data types like dictionaries, lists, strings, and numbers. <strong>Use JSON when:</strong></p>
+<ul class="simple">
+<li><p>You need to exchange data with other applications or APIs.</p></li>
+<li><p>Human-readability of the serialized data is important.</p></li>
+</ul>
+</li>
+<li><p><strong>XML (Extensible Markup Language):</strong>  Another text-based format with a hierarchical structure using tags. It’s more verbose than JSON but offers more flexibility for complex data structures. XML is widely used for data interchange and configuration files. <strong>Use XML when:</strong></p>
+<ul class="simple">
+<li><p>You need to exchange data with systems that specifically require XML format.</p></li>
+<li><p>You need a more structured format for complex data hierarchies.</p></li>
+</ul>
+</li>
+<li><p><strong>YAML (YAML Ain’t Markup Language):</strong>  A human-readable data serialization format similar to JSON but with a simpler syntax. It’s a good compromise between readability and compactness.  <strong>Use YAML when:</strong></p>
+<ul class="simple">
+<li><p>You want a more concise text-based format compared to XML.</p></li>
+<li><p>You prioritize human-readability while maintaining some structure for configuration files.</p></li>
+</ul>
+</li>
+<li><p><strong>CSV (Comma-Separated Values):</strong>  A simple text format where data is stored in rows and columns, separated by commas. It’s lightweight and easy to parse, but limited to basic data types. <strong>Use CSV when:</strong></p>
+<ul class="simple">
+<li><p>You need a very simple format for exchanging tabular data.</p></li>
+<li><p>Compatibility with spreadsheet software is important.</p></li>
+</ul>
+</li>
+<li><p><strong>HDF5 (Hierarchical Data Format):</strong> This format is specifically designed for storing large datasets, especially scientific data with complex structures. It offers efficient storage for multi-dimensional arrays, large matrices, and other scientific data types. HDF5 files can also store metadata along with the data itself.  <strong>Use HDF5 when:</strong></p>
+<ul class="simple">
+<li><p>You’re working with large scientific datasets with complex structures.</p></li>
+<li><p>Efficient storage and retrieval of multi-dimensional data is crucial.</p></li>
+<li><p>You need to store metadata alongside your data.</p></li>
+<li></li>
+</ul>
+</li>
+</ol>
+<p>The choice of serialization format depends on your specific needs. Consider factors like:</p>
+<ul class="simple">
+<li><p><strong>Data types:</strong>  Can the format handle the data structures you need to serialize?</p></li>
+<li><p><strong>Readability:</strong>  Do you need the serialized data to be human-readable?</p></li>
+<li><p><strong>Interoperability:</strong>  Will the data be exchanged with other systems?</p></li>
+<li><p><strong>Performance:</strong>  How important is serialization speed and efficiency?</p></li>
+</ul>
+<section id="format-types">
+<h3>Format Types<a class="headerlink" href="#format-types" title="Link to this heading">#</a></h3>
+<p>Here’s a table summarizing the key points:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Advantages</p></th>
+<th class="head"><p>Disadvantages</p></th>
+<th class="head"><p>Use Cases</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Pickle</p></td>
+<td><p>Built-in Python library</p></td>
+<td><p>Powerful, handles complex objects</p></td>
+<td><p>Binary, not human-readable</p></td>
+<td><p>Internal data exchange</p></td>
+</tr>
+<tr class="row-odd"><td><p>JSON</p></td>
+<td><p>Text-based, key-value pairs</p></td>
+<td><p>Human-readable, language-agnostic</p></td>
+<td><p>Limited data types</p></td>
+<td><p>Data exchange between applications/APIs</p></td>
+</tr>
+<tr class="row-even"><td><p>XML</p></td>
+<td><p>Text-based, hierarchical structure</p></td>
+<td><p>Flexible for complex data</p></td>
+<td><p>Verbose compared to JSON</p></td>
+<td><p>Data interchange, configuration files</p></td>
+</tr>
+<tr class="row-odd"><td><p>YAML</p></td>
+<td><p>Human-readable data format</p></td>
+<td><p>Concise syntax compared to XML</p></td>
+<td><p>Less common than JSON/XML</p></td>
+<td><p>Configuration files</p></td>
+</tr>
+<tr class="row-even"><td><p>CSV</p></td>
+<td><p>Simple text format, comma-separated values</p></td>
+<td><p>Lightweight, easy to parse</p></td>
+<td><p>Limited to basic data types</p></td>
+<td><p>Tabular data exchange, spreadsheet compatibility</p></td>
+</tr>
+<tr class="row-odd"><td><p>HDF5</p></td>
+<td><p>Designed for large scientific datasets</p></td>
+<td><p>Efficient storage, multi-dimensional arrays, metadata<br /><br />Can also be used across different languages including C++ and Java</p></td>
+<td><p>More complex setup compared to simpler formats</p></td>
+<td><p>Scientific computing, large data analysis</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -410,20 +538,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Serialization_Pickle_Function.html"
+       href="TicTacToe.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Serialization - Pickle - Function</p>
+        <p class="prev-next-title">Tic Tac Toe</p>
       </div>
     </a>
     <a class="right-next"
-       href="BuiltinVariable_Name.html"
+       href="Serialization_JSON.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Built-in Variable  <code class="docutils literal notranslate"><span class="pre">__name__</span></code></p>
+        <p class="prev-next-title">Serialization - JSON</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -433,6 +561,25 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization-types">Serialization Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format-types">Format Types</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

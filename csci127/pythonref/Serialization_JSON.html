@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Miscellany &#8212; CSCI 127</title>
+    <title>Serialization - JSON &#8212; CSCI 127</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/Miscellany';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/Serialization_JSON';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Built-in Variable __name__" href="BuiltinVariable_Name.html" />
-    <link rel="prev" title="Serialization - Pickle - Function" href="Serialization_Pickle_Function.html" />
+    <link rel="next" title="Serialization - Pickle - Data" href="Serialization_Pickle_Data.html" />
+    <link rel="prev" title="Serialization" href="Serialization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -211,13 +211,13 @@
 <li class="toctree-l1"><a class="reference internal" href="InputOutput.html">Input / Output - Files And Folders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tkinter.html">Tkinter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TicTacToe.html">Tic Tac Toe</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Serialization.html">Serialization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Serialization_JSON.html">Serialization - JSON</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Serialization.html">Serialization</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Serialization - JSON</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Data.html">Serialization - Pickle - Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Function.html">Serialization - Pickle - Function</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Miscellany</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Miscellany.html">Miscellany</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="BuiltinVariable_Name.html">Built-in Variable  <code class="docutils literal notranslate"><span class="pre">__name__</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="TheZenOfPython.html">The Zen of Python,</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CompilePyInstaller.html">Compile Python To Executable - PyInstaller</a></li>
@@ -277,7 +277,7 @@
       
       
       
-      <li><a href="../_sources/pythonref/Miscellany.md" target="_blank"
+      <li><a href="../_sources/pythonref/Serialization_JSON.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -348,7 +348,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -359,11 +361,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Miscellany</h1>
+    <h1>Serialization - JSON</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -373,10 +383,85 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="miscellany">
-<h1>Miscellany<a class="headerlink" href="#miscellany" title="Link to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="serialization-json">
+<h1>Serialization - JSON<a class="headerlink" href="#serialization-json" title="Link to this heading">#</a></h1>
+<section id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># Define a class to represent a person with name, city, state</span>
+<span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">name</span>   <span class="o">=</span> <span class="n">name</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">city</span>   <span class="o">=</span> <span class="n">city</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">state</span>  <span class="o">=</span> <span class="n">state</span>
+
+<span class="c1"># Function to serialize a list of people to JSON</span>
+<span class="k">def</span> <span class="nf">serialize_to_json</span><span class="p">(</span><span class="n">people</span><span class="p">):</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">person</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">person</span><span class="o">.</span><span class="n">city</span><span class="p">,</span><span class="s2">&quot;state&quot;</span><span class="p">:</span><span class="n">person</span><span class="o">.</span><span class="n">state</span><span class="p">})</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;people.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># Function to deserialize JSON data back to a list of people</span>
+<span class="k">def</span> <span class="nf">deserialize_from_json</span><span class="p">():</span>
+  <span class="n">people</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;people.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+      <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+      <span class="n">people</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Person</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">],</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]))</span>
+  <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: &#39;people.json&#39; file not found.&quot;</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">people</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+  <span class="c1"># Example usage</span>
+  <span class="n">people</span> <span class="o">=</span> <span class="p">[</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span>    <span class="s2">&quot;Albany&quot;</span><span class="p">,</span>   <span class="s2">&quot;AL&quot;</span><span class="p">),</span> 
+            <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span>      <span class="s2">&quot;Boston&quot;</span><span class="p">,</span> <span class="s2">&quot;MT&quot;</span><span class="p">),</span>
+            <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Charlie&quot;</span><span class="p">,</span>  <span class="s2">&quot;Chico&quot;</span><span class="p">,</span>  <span class="s2">&quot;IL&quot;</span><span class="p">),</span>
+            <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Gwen&quot;</span><span class="p">,</span>     <span class="s2">&quot;Gaines&quot;</span><span class="p">,</span>  <span class="s2">&quot;GA&quot;</span><span class="p">),</span>
+            <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">,</span>    <span class="s2">&quot;Jordon&quot;</span><span class="p">,</span>   <span class="s2">&quot;MT&quot;</span><span class="p">)]</span>
+
+
+  <span class="n">serialize_to_json</span><span class="p">(</span><span class="n">people</span><span class="p">)</span>
+
+  <span class="n">deserialized_people</span> <span class="o">=</span> <span class="n">deserialize_from_json</span><span class="p">()</span>
+
+  <span class="c1"># Print the deserialized data</span>
+  <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">deserialized_people</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Name: </span><span class="si">{</span><span class="n">person</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, &quot;</span> <span class="o">+</span>   
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="si">{</span><span class="n">person</span><span class="o">.</span><span class="n">city</span><span class="si">}</span><span class="s2">, &quot;</span> <span class="o">+</span> 
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t\t</span><span class="si">{</span><span class="n">person</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">main</span><span class="p">()</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">JSON FILE</span>
+<span class="sd">people.json</span>
+<span class="sd">(Note the output below has been prettified for readablity)</span>
+
+<span class="sd">[</span>
+<span class="sd">{&quot;name&quot;: &quot;Alice&quot;, &quot;city&quot;: &quot;Albany&quot;, &quot;state&quot;: &quot;AL&quot;}, </span>
+<span class="sd">{&quot;name&quot;: &quot;Bob&quot;, &quot;city&quot;: &quot;Boston&quot;, &quot;state&quot;: &quot;MT&quot;}, </span>
+<span class="sd">{&quot;name&quot;: &quot;Charlie&quot;, &quot;city&quot;: &quot;Chico&quot;, &quot;state&quot;: &quot;IL&quot;}, </span>
+<span class="sd">{&quot;name&quot;: &quot;Gwen&quot;, &quot;city&quot;: &quot;Gaines&quot;, &quot;state&quot;: &quot;GA&quot;}, </span>
+<span class="sd">{&quot;name&quot;: &quot;James&quot;, &quot;city&quot;: &quot;Jordon&quot;, &quot;state&quot;: &quot;MT&quot;}</span>
+<span class="sd">]</span>
+
+<span class="sd">-----------</span>
+<span class="sd">Output</span>
+<span class="sd">Name: Alice,    Albany,         AL</span>
+<span class="sd">Name: Bob,      Boston,         MT</span>
+<span class="sd">Name: Charlie,  Chico,          IL</span>
+<span class="sd">Name: Gwen,     Gaines,         GA</span>
+<span class="sd">Name: James,    Jordon,         MT</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -410,20 +495,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Serialization_Pickle_Function.html"
+       href="Serialization.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Serialization - Pickle - Function</p>
+        <p class="prev-next-title">Serialization</p>
       </div>
     </a>
     <a class="right-next"
-       href="BuiltinVariable_Name.html"
+       href="Serialization_Pickle_Data.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Built-in Variable  <code class="docutils literal notranslate"><span class="pre">__name__</span></code></p>
+        <p class="prev-next-title">Serialization - Pickle - Data</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -433,6 +518,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
