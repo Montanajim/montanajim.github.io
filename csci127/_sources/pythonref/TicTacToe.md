@@ -6,6 +6,7 @@
 
 ```python
 """
+Programmer: James Goudy
 
 Homage To The Panda
 
@@ -151,12 +152,6 @@ def main():
 
         choice = input("Would you like quit? y/n ").lower()
         resetVariables()
-
-    # userTurn()
-
-    # for c in range(3):
-    #    computerTurn()
-
 
 main()
 

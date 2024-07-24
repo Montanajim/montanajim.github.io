@@ -17,17 +17,17 @@
 ## Expanded Comments
 
 **Triple quotes**  part of the program's documentation.  They allow you to have multi-lined comments
-```{index} single: Expanded Comments
-```
 
 ````python
-```
+
+"""
 This is comment line 1
 This is comment line 2
 This is comment line 3
 etc
-```
+"""
 print("Comments are an essential part of programming")
+
 ````
 
 

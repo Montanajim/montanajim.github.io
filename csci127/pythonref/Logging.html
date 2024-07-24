@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Readings &#8212; CSCI 127</title>
+    <title>Logging &#8212; CSCI 127</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/Readings';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/Logging';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The Basics" href="TheBasics.html" />
-    <link rel="prev" title="Introduction" href="Introduction.html" />
+    <link rel="next" title="Decision Trees" href="DecisionTrees.html" />
+    <link rel="prev" title="Debugger" href="Debugger.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,13 +175,13 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Readings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readings.html">Readings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TheBasics.html">The Basics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BasicsGettingStarted.html">Basics - Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SecondProgram.html">Second Program</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Debugger.html">Debugger</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Logging.html">Logging</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Logging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DecisionTrees.html">Decision Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HowToCreateAMenu.html">How To Create A Menu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="NestedIfs.html">Nested Ifs</a></li>
@@ -270,7 +270,7 @@
       
       
       
-      <li><a href="../_sources/pythonref/Readings.md" target="_blank"
+      <li><a href="../_sources/pythonref/Logging.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -354,7 +354,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Readings</h1>
+    <h1>Logging</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -364,8 +364,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basics">The Basics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-logging-and-log-files">Python Logging and Log Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logging-levels">Logging Levels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-mode">Run Mode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
 </ul>
             </nav>
         </div>
@@ -377,21 +379,169 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="readings">
-<h1>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h1>
-<p>These are reading links to online textbooks and other material.</p>
-<section id="the-basics">
-<h2>The Basics<a class="headerlink" href="#the-basics" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://runestone.academy/ns/books/published/thinkcspy/GeneralIntro/toctree.html">Chapter 1 - thinkcspy</a></p>
-<p><a class="reference external" href="https://runestone.academy/runestone/books/published/thinkcspy/SimplePythonData/toctree.html">Chapter 2 - thinkcspy</a></p>
-<p><a class="reference external" href="https://www.geeksforgeeks.org/top-10-programming-languages-to-learn-in-2022/">Top 10 Programming Languages to Learn in 2022</a></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="logging">
+<h1>Logging<a class="headerlink" href="#logging" title="Link to this heading">#</a></h1>
+<section id="python-logging-and-log-files">
+<h2>Python Logging and Log Files<a class="headerlink" href="#python-logging-and-log-files" title="Link to this heading">#</a></h2>
+<p>Python logging provides a structured way to record events and messages within your application. These messages are typically written to log files, but can also be directed to other destinations. Here’s a breakdown of the concepts:</p>
+<p><strong>Logging:</strong></p>
+<ul class="simple">
+<li><p><strong>Purpose:</strong>  Logging allows you to track the execution of your program, pinpoint errors, analyze application behavior, and gain insights into user interactions.</p></li>
+<li><p>Benefits:</p>
+<ul>
+<li><p><strong>Debugging:</strong> Logs provide a detailed trail of what happened during program execution, aiding in identifying the source of errors.</p></li>
+<li><p><strong>Monitoring:</strong> Logs help you understand how your application behaves under different conditions and identify potential issues before they become critical.</p></li>
+<li><p><strong>Auditing:</strong> Logs can be used to track user activity and maintain an audit trail for security purposes.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Log Files:</strong></p>
+<ul>
+<li><p><strong>Destination:</strong> Log messages are typically written to text files, although they can also be sent to network sockets, email, or other destinations.</p></li>
+<li><p>Content:</p>
+<p>Log files contain information about the logged messages,</p>
+<p>including:</p>
+<ul class="simple">
+<li><p><strong>Level:</strong> The severity level of the message (debug, info, warning, error, critical).</p></li>
+<li><p><strong>Timestamp:</strong> The date and time the message was logged.</p></li>
+<li><p><strong>Logger Name:</strong> The name of the module or component that generated the message.</p></li>
+<li><p><strong>Message:</strong> The actual content of the message you logged.</p></li>
+</ul>
+</li>
+<li><p>Benefits:</p>
+<ul class="simple">
+<li><p><strong>Centralized Monitoring:</strong> Logs provide a centralized location to track application activity from a single source.</p></li>
+<li><p><strong>Persistence:</strong> Logged information persists even after the program terminates, allowing for historical analysis.</p></li>
+<li><p><strong>Customization:</strong> You can configure logging to capture specific types of information relevant to your needs.</p></li>
+</ul>
+</li>
+</ul>
+<p>​	More information at: <a class="reference external" href="https://docs.python.org/3/howto/logging.html">https://docs.python.org/3/howto/logging.html</a></p>
 </section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://runestone.academy/ns/books/published/thinkcspy/PythonModules/toctree.html">Chapter 5 - Modules - thinkcspy</a></p>
-<p><a class="reference external" href="https://runestone.academy/ns/books/published/thinkcspy/Functions/toctree.html">Chapter 6 - Functions - thinkcspy</a></p>
-<hr class="docutils" />
-<p>End Of Topic</p>
+<section id="logging-levels">
+<h2>Logging Levels<a class="headerlink" href="#logging-levels" title="Link to this heading">#</a></h2>
+<p>The logging levels in Python’s <code class="docutils literal notranslate"><span class="pre">logging</span></code> module define the severity of a message. They are used to categorize log messages and control which ones get recorded based on their importance. Here’s a breakdown of the levels and their typical uses:</p>
+<ul class="simple">
+<li><p><strong>DEBUG (10):</strong> These are detailed, low-level messages intended for diagnosing issues during development. They might include variable values, function calls, or internal program flow. You’d typically only enable DEBUG logging when actively debugging a specific problem.</p></li>
+<li><p><strong>INFO (20):</strong> Informational messages that confirm expected behavior. These are useful for tracking the general progress of your application and monitoring its state. Examples include successful logins, database connections established, or configuration settings loaded.</p></li>
+<li><p><strong>WARNING (30):</strong> These indicate potential problems or unexpected conditions. WARNING messages don’t necessarily mean there’s a critical issue, but they deserve attention. Examples include low disk space, invalid user input, or resource limitations.</p></li>
+<li><p><strong>ERROR (40):</strong> These indicate serious errors that may have prevented the application from performing some functionality.  They typically require intervention to fix. Examples include failing to connect to a database, encountering unexpected exceptions, or data validation errors.</p></li>
+<li><p><strong>CRITICAL (50):</strong> Critical messages indicate a severe error that likely caused the application to crash or become unusable. These are high-priority issues requiring immediate attention. Examples include critical system failures, data corruption, or security breaches.</p></li>
+</ul>
+<p>Here’s a general guideline for choosing the appropriate level:</p>
+<ul class="simple">
+<li><p>Use DEBUG for detailed troubleshooting information.</p></li>
+<li><p>Use INFO for normal application events.</p></li>
+<li><p>Use WARNING for potential issues that may become problems later.</p></li>
+<li><p>Use ERROR for serious errors that prevent functionality.</p></li>
+<li><p>Use CRITICAL for system crashes or unrecoverable situations.</p></li>
+</ul>
+<p>By effectively using logging levels, you can create a log file that is informative and helps you identify and fix problems efficiently.</p>
+</section>
+<section id="run-mode">
+<h2>Run Mode<a class="headerlink" href="#run-mode" title="Link to this heading">#</a></h2>
+<p>In Python, there’s no specific “run mode” required to create log files using the <code class="docutils literal notranslate"><span class="pre">logging</span></code> module.  Your program can generate log files as long as the logging configuration is set up and the program runs to execute the logging statements.</p>
+<p>Here’s why:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">logging</span></code> module operates within your Python program itself. It doesn’t rely on external factors like a development environment or specific execution mode.</p></li>
+<li><p>As long as your program reaches the lines of code where you call logging methods (like <code class="docutils literal notranslate"><span class="pre">debug</span></code>, <code class="docutils literal notranslate"><span class="pre">info</span></code>, etc.), corresponding log messages will be generated based on your configuration.</p></li>
+<li><p>This configuration typically happens using <code class="docutils literal notranslate"><span class="pre">basicConfig</span></code> or a more advanced logging configuration file. This setup defines where the logs go (often a file) and the level of detail captured (debug, info, etc.).</p></li>
+</ul>
+<p>Therefore, you can create log files regardless of whether you’re running your program from the command line, within an IDE, or even embedded within another application. As long as the program executes the logging statements, logs will be generated based on your configuration.</p>
+<blockquote>
+<div><p>[!NOTE]</p>
+<p>VSCode seems to be the exception.  The Log file will only create  when ran from the debug mode.</p>
+</div></blockquote>
+</section>
+<section id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Programmer: James Goudy</span>
+<span class="sd">Logging lecture code</span>
+
+<span class="sd">NOTE: for the log file to run in VSCODE,</span>
+<span class="sd"> the program needs to run in logging mode</span>
+
+<span class="sd">If the program runs from the command prompt,</span>
+<span class="sd">it will create the log files</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+
+<span class="k">def</span> <span class="nf">setupLogging</span><span class="p">():</span>
+    <span class="c1"># setup logging file with force=True to overwrite existing handlers</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;myLogfile.log&#39;</span><span class="p">,</span>
+                        <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+                        <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1">:</span><span class="si">%(levelname)s</span><span class="s1">:</span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">levelMessages</span><span class="p">():</span>
+
+    <span class="k">global</span> <span class="n">logger</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+    <span class="c1"># demo logging messages</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;A debug message&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;An info message&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;An warning message&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;An error message&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;A critical message&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">example1</span><span class="p">():</span>
+
+    <span class="n">num1</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">num2</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">example2</span><span class="p">():</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;i = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">setupLogging</span><span class="p">()</span>
+
+    <span class="n">levelMessages</span><span class="p">()</span>
+
+    <span class="n">example1</span><span class="p">()</span>
+
+    <span class="n">example2</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bye&quot;</span><span class="p">)</span>
+
+<span class="n">main</span><span class="p">()</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Output:</span>
+<span class="sd">2024-07-23 18:42:39,485:DEBUG:A debug message</span>
+<span class="sd">2024-07-23 18:42:39,487:INFO:An info message</span>
+<span class="sd">2024-07-23 18:42:39,487:WARNING:An warning message</span>
+<span class="sd">2024-07-23 18:42:39,488:ERROR:An error message</span>
+<span class="sd">2024-07-23 18:42:39,488:CRITICAL:A critical message</span>
+<span class="sd">2024-07-23 18:42:39,488:CRITICAL:division by zero</span>
+<span class="sd">2024-07-23 18:42:39,488:INFO:i = 0</span>
+<span class="sd">2024-07-23 18:42:39,488:INFO:i = 1</span>
+<span class="sd">2024-07-23 18:42:39,488:INFO:i = 2</span>
+<span class="sd">2024-07-23 18:42:39,489:INFO:i = 3</span>
+<span class="sd">2024-07-23 18:42:39,489:INFO:i = 4</span>
+<span class="sd">2024-07-23 18:42:39,489:INFO:i = 5</span>
+<span class="sd">2024-07-23 18:42:39,489:INFO:i = 6</span>
+<span class="sd">2024-07-23 18:42:39,489:INFO:i = 7</span>
+<span class="sd">2024-07-23 18:42:39,489:INFO:i = 8</span>
+<span class="sd">2024-07-23 18:42:39,490:INFO:i = 9</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -426,20 +576,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Introduction.html"
+       href="Debugger.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Introduction</p>
+        <p class="prev-next-title">Debugger</p>
       </div>
     </a>
     <a class="right-next"
-       href="TheBasics.html"
+       href="DecisionTrees.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The Basics</p>
+        <p class="prev-next-title">Decision Trees</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -459,8 +609,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basics">The Basics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-logging-and-log-files">Python Logging and Log Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logging-levels">Logging Levels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-mode">Run Mode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
 </ul>
   </nav></div>
 

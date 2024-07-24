@@ -1,4 +1,4 @@
-## Comparing and Contrasting NumPy Arrays and Panel Data DataFrames in Python
+# Comparing and Contrasting NumPy Arrays and Panel Data DataFrames
 
 Both NumPy arrays and panel data dataframes are essential tools for data manipulation and analysis in Python, but they serve distinct purposes and have different strengths and limitations. Here's a comparison:
 
