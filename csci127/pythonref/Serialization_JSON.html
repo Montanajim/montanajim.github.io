@@ -215,6 +215,8 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Serialization - JSON</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Data.html">Serialization - Pickle - Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Function.html">Serialization - Pickle - Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Security.html">Serialization - Pickle -  Security Implications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Serialization_HDF5.html">Serialization HDF5</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="Miscellany.html">Miscellany</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -371,7 +373,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-json-serialization">Why Use JSON Serialization?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-it-work">How Does It Work?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-summary">Code Summary</a></li>
 </ul>
             </nav>
         </div>
@@ -385,6 +393,33 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="serialization-json">
 <h1>Serialization - JSON<a class="headerlink" href="#serialization-json" title="Link to this heading">#</a></h1>
+<p><strong>JSON serialization</strong> is the process of converting complex data structures, like objects or arrays, into a simple text format called JSON (JavaScript Object Notation). This text-based representation is easy to store, transmit, and parse.</p>
+<section id="why-use-json-serialization">
+<h2>Why Use JSON Serialization?<a class="headerlink" href="#why-use-json-serialization" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Data Exchange:</strong> It’s widely used for data interchange between different systems and applications.</p></li>
+<li><p><strong>Data Storage:</strong> JSON files can be used to store data persistently.</p></li>
+<li><p><strong>Data Transmission:</strong> It’s efficient for sending data over networks.</p></li>
+<li><p><strong>Readability:</strong> JSON is human-readable, making it easy to inspect and debug.</p></li>
+</ul>
+</section>
+<section id="how-does-it-work">
+<h2>How Does It Work?<a class="headerlink" href="#how-does-it-work" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Data Structure:</strong> You have a complex data structure, like an object with properties and values.</p></li>
+<li><p><strong>Serialization:</strong> A serializer converts this data structure into a JSON string. This string adheres to specific JSON syntax rules.</p></li>
+<li><p><strong>Transmission or Storage:</strong> The JSON string can be sent over a network or stored in a file.</p></li>
+<li><p><strong>Deserialization:</strong> When you need to use the data again, a deserializer converts the JSON string back into its original data structure.</p></li>
+</ol>
+<section id="key-points">
+<h3>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>JSON is a lightweight data-interchange format.</p></li>
+<li><p>Serialization converts data to JSON, deserialization converts JSON back to data.</p></li>
+<li><p>Widely used in web applications, APIs, and data storage.</p></li>
+</ul>
+</section>
+</section>
 <section id="lecture-code">
 <h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -462,6 +497,39 @@ document.write(`
 </pre></div>
 </div>
 </section>
+<section id="code-summary">
+<h2>Code Summary<a class="headerlink" href="#code-summary" title="Link to this heading">#</a></h2>
+<p><strong>Person Class:</strong></p>
+<ul class="simple">
+<li><p>Defines a <code class="docutils literal notranslate"><span class="pre">Person</span></code> class with attributes <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">city</span></code>, and <code class="docutils literal notranslate"><span class="pre">state</span></code>.</p></li>
+</ul>
+<p><strong><code class="docutils literal notranslate"><span class="pre">serialize_to_json</span></code> Function:</strong></p>
+<ul class="simple">
+<li><p>Takes a list of <code class="docutils literal notranslate"><span class="pre">Person</span></code> objects as input.</p></li>
+<li><p>Iterates through the list, creating dictionaries for each person with their attributes as key-value pairs.</p></li>
+<li><p>Creates a list <code class="docutils literal notranslate"><span class="pre">data</span></code> containing these dictionaries.</p></li>
+<li><p>Opens a file named “people.json” in write mode (<code class="docutils literal notranslate"><span class="pre">&quot;w&quot;</span></code>).</p></li>
+<li><p>Uses <code class="docutils literal notranslate"><span class="pre">json.dump</span></code> to convert the <code class="docutils literal notranslate"><span class="pre">data</span></code> list to a JSON string and write it to the file.</p></li>
+</ul>
+<p><strong><code class="docutils literal notranslate"><span class="pre">deserialize_from_json</span></code> Function:</strong></p>
+<ul class="simple">
+<li><p>Initializes an empty list <code class="docutils literal notranslate"><span class="pre">people</span></code> to store deserialized <code class="docutils literal notranslate"><span class="pre">Person</span></code> objects.</p></li>
+<li><p>Tries to open “people.json” in read mode (<code class="docutils literal notranslate"><span class="pre">&quot;r&quot;</span></code>).</p></li>
+<li><p>If successful, uses <code class="docutils literal notranslate"><span class="pre">json.load</span></code> to read the JSON data from the file and store it as a list in <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p></li>
+<li><p>Iterates through the <code class="docutils literal notranslate"><span class="pre">data</span></code> list (containing dictionaries).</p></li>
+<li><p>For each dictionary, creates a new <code class="docutils literal notranslate"><span class="pre">Person</span></code> object using the values for “name”, “city”, and “state”.</p></li>
+<li><p>Appends the created <code class="docutils literal notranslate"><span class="pre">Person</span></code> object to the <code class="docutils literal notranslate"><span class="pre">people</span></code> list.</p></li>
+<li><p>If the file is not found, it catches a <code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code> and prints an error message.</p></li>
+<li><p>Finally, returns the list of deserialized <code class="docutils literal notranslate"><span class="pre">Person</span></code> objects.</p></li>
+</ul>
+<p><strong><code class="docutils literal notranslate"><span class="pre">main</span></code> Function:</strong></p>
+<ul class="simple">
+<li><p>Creates a sample list of <code class="docutils literal notranslate"><span class="pre">Person</span></code> objects with names, cities, and states.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">serialize_to_json</span></code> to convert this list to JSON and store it in “people.json”.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">deserialize_from_json</span></code> to read the data back from “people.json” and get a list of deserialized <code class="docutils literal notranslate"><span class="pre">Person</span></code> objects.</p></li>
+<li><p>Prints the information of each deserialized person (name, city, state) in a formatted way.</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -528,7 +596,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-json-serialization">Why Use JSON Serialization?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-it-work">How Does It Work?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-summary">Code Summary</a></li>
 </ul>
   </nav></div>
 

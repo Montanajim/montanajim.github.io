@@ -8,6 +8,29 @@ A __Function__ is a segment of code that can be "called" upon and run repeatedly
 
 
 
+**A function is a block of organized, reusable code that is used to perform a specific task.** It helps to break down a complex problem into smaller, manageable functions.
+
+### Structure of a Function
+
+```python
+def function_name(parameters):
+  """Docstring: Explains what the function does"""
+  # Function body
+  return value  # Optional
+```
+
+ Use code [with caution.]()
+
+- **`def`**: Keyword to define a function.
+- **`function_name`**: The name you give to the function.
+- **`parameters`**: Optional input values for the function.
+- **`docstring`**: Optional string explaining the function's purpose.
+- **`return`**: Optional keyword to return a value from the function.
+
+
+
+
+
 ```python
 # The code pattern of a function
 def functionName(input):

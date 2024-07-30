@@ -2,6 +2,12 @@
 
 
 
+## Making Decisions in Your Code
+
+**If statements** are fundamental to programming logic. They allow your code to make decisions based on specific conditions. If a condition is true, a block of code is executed; otherwise, it is skipped.
+
+
+
 ```python
 """
 

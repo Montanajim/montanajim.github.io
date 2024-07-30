@@ -4,7 +4,7 @@
 
 ## Definition
 
->**List**: A collection of data values where each value is identified by an index. It is mutable (values can be modified). The values that make up the list are called elements.   
+>**List**: A collection of data values where each value is identified by an index. It is mutable (values can be modified). The values that make up the list are called elements.   A data value can be a value, a list, a dictionary, and object, etc.
 >
 >Designated by the square brackets [ ] 
 

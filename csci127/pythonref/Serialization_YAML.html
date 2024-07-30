@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Serialization - Pickle - Function &#8212; CSCI 127</title>
+    <title>Serialization - YAML &#8212; CSCI 127</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/Serialization_Pickle_Function';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/Serialization_YAML';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Serialization - Pickle - Security Implications" href="Serialization_Pickle_Security.html" />
-    <link rel="prev" title="Serialization - Pickle - Data" href="Serialization_Pickle_Data.html" />
+    <link rel="next" title="Miscellany" href="Miscellany.html" />
+    <link rel="prev" title="Serialization - XML" href="Serialization_XML.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -212,11 +212,16 @@
 <li class="toctree-l1"><a class="reference internal" href="Tkinter.html">Tkinter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TicTacToe.html">Tic Tac Toe</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Serialization.html">Serialization</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Serialization_CSV.html">Serialization - CSV</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="Serialization_JSON.html">Serialization - JSON</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Data.html">Serialization - Pickle - Data</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Serialization - Pickle - Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Function.html">Serialization - Pickle - Function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Security.html">Serialization - Pickle -  Security Implications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Serialization_HDF5.html">Serialization HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Serialization_XML.html">Serialization - XML</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Serialization - YAML</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="Miscellany.html">Miscellany</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -279,7 +284,7 @@
       
       
       
-      <li><a href="../_sources/pythonref/Serialization_Pickle_Function.md" target="_blank"
+      <li><a href="../_sources/pythonref/Serialization_YAML.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -363,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Serialization - Pickle - Function</h1>
+    <h1>Serialization - YAML</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -373,7 +378,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pickle-function-demo-code">Pickle Function Demo Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-is-it-used">How is it used?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-example-writing-and-reading-a-yaml-file">Python Example: Writing and Reading a YAML File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation:</a></li>
 </ul>
             </nav>
         </div>
@@ -385,94 +392,180 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="serialization-pickle-function">
-<h1>Serialization - Pickle - Function<a class="headerlink" href="#serialization-pickle-function" title="Link to this heading">#</a></h1>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>ONLY UNPICKLE FILES FROM A TRUSTED SOURCE. MALICOUS CODE CAN BE EXECUTED IN THE RECONSTRUCTION PROCESS</p>
-</div>
-<div class="admonition caution">
-<p class="admonition-title">Caution</p>
-<p>Pickling functions is done by reference and not the code itself. If other modules are involved, problems could arise. Also since it doesn’t actually read the code, the <strong>marshal</strong> library must be used. Marshal.load will actually read the function code.</p>
-</div>
-<section id="pickle-function-demo-code">
-<h2>Pickle Function Demo Code<a class="headerlink" href="#pickle-function-demo-code" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="serialization-yaml">
+<h1>Serialization - YAML<a class="headerlink" href="#serialization-yaml" title="Link to this heading">#</a></h1>
+<p><strong>YAML</strong> stands for <strong>YAML Ain’t Markup Language</strong> (originally Yet Another Markup Language). It’s a data serialization language designed to be human-readable and easy to understand. Think of it as a way to store structured information in a text file, similar to JSON or XML, but with a more intuitive syntax.</p>
+<section id="how-is-it-used">
+<h2>How is it used?<a class="headerlink" href="#how-is-it-used" title="Link to this heading">#</a></h2>
+<p>YAML files are commonly used for:</p>
+<ul>
+<li><p>Configuration files:</p>
+<p>YAML’s readability makes it ideal for storing application settings, database connections, and other configuration parameters.</p>
+</li>
+<li><p>Data serialization:</p>
+<p>You can use YAML to store complex data structures like lists, dictionaries, and objects in a portable format.</p>
+</li>
+<li><p>Document formats:</p>
+<p>YAML can be used to represent structured documents, such as those used in content management systems or data exchange formats.</p>
+</li>
+</ul>
+<p><strong>Key advantages of YAML:</strong></p>
+<ul>
+<li><p>Readability:</p>
+<p>YAML’s syntax is designed to be human-friendly, making it easy to write, read, and modify.</p>
+</li>
+<li><p>Flexibility:</p>
+<p>It supports various data types, including scalars, sequences, mappings, and more complex structures.</p>
+</li>
+<li><p>Simplicity:</p>
+<p>YAML’s syntax is relatively straightforward compared to other serialization formats.</p>
+</li>
+</ul>
+</section>
+<section id="python-example-writing-and-reading-a-yaml-file">
+<h2>Python Example: Writing and Reading a YAML File<a class="headerlink" href="#python-example-writing-and-reading-a-yaml-file" title="Link to this heading">#</a></h2>
+<p><strong>Prerequisites:</strong></p>
+<ul class="simple">
+<li><p>Python installed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pyyaml</span></code> library installed (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pyyaml</span></code>)</p></li>
+</ul>
+<p>Python</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Programmer: James Goudy</span>
+<span class="sd">Project: yaml demo</span>
 
-<span class="sd">***</span>
-<span class="sd">Pickling functions are NOT reccomended,</span>
-<span class="sd">espcially if they require other modules.</span>
+<span class="sd">&#39;&#39;&#39;</span>
 
-<span class="sd">Pickling functions does it by reference</span>
-<span class="sd">and not the code itself.</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
 
-<span class="sd">To get around that, using the marshal</span>
-<span class="sd">library (loads) will read the actual code.</span>
-<span class="sd">***</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">write_yaml_file</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Writes data to a YAML file.</span>
 
-<span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">import</span> <span class="nn">marshal</span>
-<span class="kn">import</span> <span class="nn">types</span>
-
-<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  Adds two numbers </span>
-<span class="sd">  and returns the sum.</span>
+<span class="sd">  Args:</span>
+<span class="sd">    data: The data to be written.</span>
+<span class="sd">    filename: The name of the YAML file.</span>
 <span class="sd">  &quot;&quot;&quot;</span>
-  <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
 
-<span class="k">def</span> <span class="nf">pickle_add_func</span><span class="p">():</span>
-  
-  <span class="c1"># reads the actual add function code</span>
-  <span class="c1"># and turns it into bytecode</span>
-  <span class="n">mybytecode</span> <span class="o">=</span> <span class="n">marshal</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">add</span><span class="o">.</span><span class="vm">__code__</span><span class="p">)</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">yaml_file</span><span class="p">:</span>
+    <span class="n">yaml_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Demographics&#39;</span><span class="p">)</span>
+    <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">yaml_file</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">yaml_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-  <span class="c1"># write the bytecode to a binary file</span>
-  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;add.pickle&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
-    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">mybytecode</span><span class="p">,</span><span class="n">outfile</span><span class="p">)</span>
-  <span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+  <span class="c1"># NOTE: if more items are created in stages</span>
+  <span class="c1"># calling the file the next time to add items,</span>
+  <span class="c1"># use the &#39;a&#39; attribute. &#39;w&#39; first time, &#39;a&#39; next time on</span>
 
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Function Pickled&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_yaml_file</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Reads data from a YAML file.</span>
 
-<span class="k">def</span> <span class="nf">de_pickle_add_func</span><span class="p">():</span>
-  
-  <span class="c1"># read the file contents</span>
-  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;add.pickle&#39;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
-    <span class="n">mypickledata</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-  <span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="sd">  Args:</span>
+<span class="sd">    filename: The name of the YAML file.</span>
 
-  <span class="c1"># unpickle contents to bytecode / binary</span>
-  <span class="n">mybytecode</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">mypickledata</span><span class="p">)</span>
+<span class="sd">  Returns:</span>
+<span class="sd">    The data loaded from the YAML file.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">yaml_file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">yaml_file</span><span class="p">)</span>
+    <span class="n">yaml_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+  <span class="k">return</span> <span class="n">data</span>
 
-  <span class="c1"># get the code marshel bytecode object</span>
-  <span class="n">mycode</span> <span class="o">=</span> <span class="n">marshal</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">mybytecode</span><span class="p">)</span>
-
-  <span class="c1"># create the new function</span>
-  <span class="n">newAdd</span> <span class="o">=</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">(</span><span class="n">mycode</span><span class="p">,</span><span class="nb">globals</span><span class="p">())</span>
-
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Function </span><span class="se">\&#39;</span><span class="s2">Depickled</span><span class="se">\&#39;</span><span class="s2">&quot;</span><span class="p">)</span>
-  <span class="n">ans</span> <span class="o">=</span> <span class="n">newAdd</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
-
-  <span class="nb">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+  <span class="c1"># creating embedded dictionaries</span>
+  <span class="n">uk_c</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;UK&#39;</span><span class="p">:[</span><span class="s1">&#39;London&#39;</span><span class="p">,</span><span class="s1">&#39;Bath&#39;</span><span class="p">,</span><span class="s1">&#39;York&#39;</span><span class="p">]}</span>
+  <span class="n">fr_c</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;FR&#39;</span><span class="p">:[</span><span class="s1">&#39;Paris&#39;</span><span class="p">,</span><span class="s1">&#39;Lyon&#39;</span><span class="p">,</span><span class="s1">&#39;Nice&#39;</span><span class="p">,</span><span class="s1">&#39;Metz&#39;</span><span class="p">]}</span>
+  <span class="n">travel_c</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;travel&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">uk_c</span><span class="p">,</span><span class="n">fr_c</span><span class="p">,</span><span class="s1">&#39;GR&#39;</span><span class="p">]}</span>
 
-  <span class="n">pickle_add_func</span><span class="p">()</span>
-  
+  <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Jimbo&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="s1">&#39;New York&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hobbies&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;reading&#39;</span><span class="p">,</span> <span class="s1">&#39;coding&#39;</span><span class="p">,</span> <span class="n">travel_c</span><span class="p">,</span><span class="s1">&#39;cooking&#39;</span><span class="p">]</span>
+  <span class="p">}</span>
 
-  <span class="n">de_pickle_add_func</span><span class="p">()</span>
+  <span class="c1"># Write data to a YAML file</span>
+  <span class="n">yaml_file</span> <span class="o">=</span> <span class="s1">&#39;data.yaml&#39;</span>
+  <span class="n">write_yaml_file</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">yaml_file</span><span class="p">)</span>
 
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bye&quot;</span><span class="p">)</span>
+  <span class="c1"># Read data from the YAML file</span>
+  <span class="n">loaded_data</span> <span class="o">=</span> <span class="n">read_yaml_file</span><span class="p">(</span><span class="n">yaml_file</span><span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">All Data</span><span class="se">\n</span><span class="s1">Note the embedded dictionaries&#39;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">loaded_data</span><span class="p">)</span>
+
+<span class="c1">#   show the progression on how</span>
+<span class="c1">#   to access a specific city</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">All hobbies&#39;</span><span class="p">)</span>
+  <span class="n">td</span> <span class="o">=</span> <span class="n">loaded_data</span><span class="p">[</span><span class="s1">&#39;hobbies&#39;</span><span class="p">]</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">td</span><span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">All Travel Data&#39;</span><span class="p">)</span>
+  <span class="n">td</span> <span class="o">=</span> <span class="n">loaded_data</span><span class="p">[</span><span class="s1">&#39;hobbies&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">td</span><span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">All Travel Countries&#39;</span><span class="p">)</span>
+  <span class="n">td</span> <span class="o">=</span> <span class="n">loaded_data</span><span class="p">[</span><span class="s1">&#39;hobbies&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;travel&#39;</span><span class="p">]</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">td</span><span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">All French Items (dictionary)&#39;</span><span class="p">)</span>
+  <span class="n">td</span> <span class="o">=</span> <span class="n">loaded_data</span><span class="p">[</span><span class="s1">&#39;hobbies&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;travel&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">td</span><span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">All French Cities&#39;</span><span class="p">)</span>
+  <span class="n">td</span> <span class="o">=</span> <span class="n">loaded_data</span><span class="p">[</span><span class="s1">&#39;hobbies&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;travel&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;FR&#39;</span><span class="p">]</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">td</span><span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">French City of Lyon&#39;</span><span class="p">)</span>
+  <span class="n">td</span> <span class="o">=</span> <span class="n">loaded_data</span><span class="p">[</span><span class="s1">&#39;hobbies&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;travel&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;FR&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">td</span><span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> yaml bye</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="n">main</span><span class="p">()</span>
 
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Output file</span>
 
+<span class="sd"># Demographicsage: 30</span>
+<span class="sd">city: New York</span>
+<span class="sd">hobbies:</span>
+<span class="sd">- reading</span>
+<span class="sd">- coding</span>
+<span class="sd">- travel:</span>
+<span class="sd">  - UK:</span>
+<span class="sd">    - London</span>
+<span class="sd">    - Bath</span>
+<span class="sd">    - York</span>
+<span class="sd">  - FR:</span>
+<span class="sd">    - Paris</span>
+<span class="sd">    - Lyon</span>
+<span class="sd">    - Nice</span>
+<span class="sd">    - Metz</span>
+<span class="sd">  - GR</span>
+<span class="sd">- cooking</span>
+<span class="sd">name: Jimbo</span>
+<span class="sd">&#39;&#39;&#39;</span>
 
 </pre></div>
 </div>
+</section>
+<section id="explanation">
+<h2>Explanation:<a class="headerlink" href="#explanation" title="Link to this heading">#</a></h2>
+<p>This Python program demonstrates how to use the <code class="docutils literal notranslate"><span class="pre">yaml</span></code> library to read and write data to a YAML file.</p>
+<p><strong>Key functionalities:</strong></p>
+<ul class="simple">
+<li><p>Defines two functions:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">write_yaml_file</span></code>: Writes data to a YAML file in a human-readable format.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read_yaml_file</span></code>: Reads data from a YAML file and returns it as a Python object.</p></li>
+</ul>
+</li>
+<li><p><strong>Creates a sample data structure:</strong> A Python dictionary containing various data types, including nested dictionaries.</p></li>
+<li><p><strong>Writes the data to a YAML file:</strong> Uses the <code class="docutils literal notranslate"><span class="pre">write_yaml_file</span></code> function to create a YAML file named ‘data.yaml’.</p></li>
+<li><p><strong>Reads the data from the YAML file:</strong> Uses the <code class="docutils literal notranslate"><span class="pre">read_yaml_file</span></code> function to load the YAML data into a Python object.</p></li>
+<li><p><strong>Demonstrates data access:</strong> Shows how to access different parts of the loaded data, including nested dictionaries, to illustrate how to work with YAML data in Python.</p></li>
+</ul>
 </section>
 </section>
 
@@ -507,20 +600,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Serialization_Pickle_Data.html"
+       href="Serialization_XML.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Serialization - Pickle - Data</p>
+        <p class="prev-next-title">Serialization - XML</p>
       </div>
     </a>
     <a class="right-next"
-       href="Serialization_Pickle_Security.html"
+       href="Miscellany.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Serialization - Pickle -  Security Implications</p>
+        <p class="prev-next-title">Miscellany</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -540,7 +633,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pickle-function-demo-code">Pickle Function Demo Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-is-it-used">How is it used?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-example-writing-and-reading-a-yaml-file">Python Example: Writing and Reading a YAML File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation:</a></li>
 </ul>
   </nav></div>
 

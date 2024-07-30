@@ -17,6 +17,10 @@
 
 
 
+## Lecture Code
+
+
+
 ```py
 class Person:
    """Represents a person with a first and last name."""

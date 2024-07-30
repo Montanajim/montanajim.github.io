@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Serialization - Pickle - Function &#8212; CSCI 127</title>
+    <title>Serialization - Pickle - Security Implications &#8212; CSCI 127</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/Serialization_Pickle_Function';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/Serialization_Pickle_Security';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Serialization - Pickle - Security Implications" href="Serialization_Pickle_Security.html" />
-    <link rel="prev" title="Serialization - Pickle - Data" href="Serialization_Pickle_Data.html" />
+    <link rel="next" title="Serialization HDF5" href="Serialization_HDF5.html" />
+    <link rel="prev" title="Serialization - Pickle - Function" href="Serialization_Pickle_Function.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -214,8 +214,8 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Serialization.html">Serialization</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Serialization_JSON.html">Serialization - JSON</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Data.html">Serialization - Pickle - Data</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Serialization - Pickle - Function</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Security.html">Serialization - Pickle -  Security Implications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Serialization_Pickle_Function.html">Serialization - Pickle - Function</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Serialization - Pickle -  Security Implications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Serialization_HDF5.html">Serialization HDF5</a></li>
 </ul>
 </details></li>
@@ -279,7 +279,7 @@
       
       
       
-      <li><a href="../_sources/pythonref/Serialization_Pickle_Function.md" target="_blank"
+      <li><a href="../_sources/pythonref/Serialization_Pickle_Security.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -363,7 +363,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Serialization - Pickle - Function</h1>
+    <h1>Serialization - Pickle -  Security Implications</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -373,7 +373,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pickle-function-demo-code">Pickle Function Demo Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-pickle-enables-code-execution">How Pickle Enables Code Execution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attack-scenarios">Attack Scenarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mitigating-risks">Mitigating Risks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-examples">Real-World Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
             </nav>
         </div>
@@ -385,94 +389,54 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="serialization-pickle-function">
-<h1>Serialization - Pickle - Function<a class="headerlink" href="#serialization-pickle-function" title="Link to this heading">#</a></h1>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>ONLY UNPICKLE FILES FROM A TRUSTED SOURCE. MALICOUS CODE CAN BE EXECUTED IN THE RECONSTRUCTION PROCESS</p>
-</div>
-<div class="admonition caution">
-<p class="admonition-title">Caution</p>
-<p>Pickling functions is done by reference and not the code itself. If other modules are involved, problems could arise. Also since it doesn’t actually read the code, the <strong>marshal</strong> library must be used. Marshal.load will actually read the function code.</p>
-</div>
-<section id="pickle-function-demo-code">
-<h2>Pickle Function Demo Code<a class="headerlink" href="#pickle-function-demo-code" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Programmer: James Goudy</span>
-
-<span class="sd">***</span>
-<span class="sd">Pickling functions are NOT reccomended,</span>
-<span class="sd">espcially if they require other modules.</span>
-
-<span class="sd">Pickling functions does it by reference</span>
-<span class="sd">and not the code itself.</span>
-
-<span class="sd">To get around that, using the marshal</span>
-<span class="sd">library (loads) will read the actual code.</span>
-<span class="sd">***</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">import</span> <span class="nn">marshal</span>
-<span class="kn">import</span> <span class="nn">types</span>
-
-<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  Adds two numbers </span>
-<span class="sd">  and returns the sum.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
-
-<span class="k">def</span> <span class="nf">pickle_add_func</span><span class="p">():</span>
-  
-  <span class="c1"># reads the actual add function code</span>
-  <span class="c1"># and turns it into bytecode</span>
-  <span class="n">mybytecode</span> <span class="o">=</span> <span class="n">marshal</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">add</span><span class="o">.</span><span class="vm">__code__</span><span class="p">)</span>
-
-  <span class="c1"># write the bytecode to a binary file</span>
-  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;add.pickle&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
-    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">mybytecode</span><span class="p">,</span><span class="n">outfile</span><span class="p">)</span>
-  <span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Function Pickled&quot;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">de_pickle_add_func</span><span class="p">():</span>
-  
-  <span class="c1"># read the file contents</span>
-  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;add.pickle&#39;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
-    <span class="n">mypickledata</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-  <span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-  <span class="c1"># unpickle contents to bytecode / binary</span>
-  <span class="n">mybytecode</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">mypickledata</span><span class="p">)</span>
-
-  <span class="c1"># get the code marshel bytecode object</span>
-  <span class="n">mycode</span> <span class="o">=</span> <span class="n">marshal</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">mybytecode</span><span class="p">)</span>
-
-  <span class="c1"># create the new function</span>
-  <span class="n">newAdd</span> <span class="o">=</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">(</span><span class="n">mycode</span><span class="p">,</span><span class="nb">globals</span><span class="p">())</span>
-
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Function </span><span class="se">\&#39;</span><span class="s2">Depickled</span><span class="se">\&#39;</span><span class="s2">&quot;</span><span class="p">)</span>
-  <span class="n">ans</span> <span class="o">=</span> <span class="n">newAdd</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
-
-  <span class="nb">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-
-  <span class="n">pickle_add_func</span><span class="p">()</span>
-  
-
-  <span class="n">de_pickle_add_func</span><span class="p">()</span>
-
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bye&quot;</span><span class="p">)</span>
-
-<span class="n">main</span><span class="p">()</span>
-
-
-
-</pre></div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="serialization-pickle-security-implications">
+<h1>Serialization - Pickle -  Security Implications<a class="headerlink" href="#serialization-pickle-security-implications" title="Link to this heading">#</a></h1>
+<p>Pickle, while convenient for serializing Python objects, comes with significant security risks. The core issue lies in its ability to reconstruct arbitrary code.</p>
+<section id="how-pickle-enables-code-execution">
+<h2>How Pickle Enables Code Execution<a class="headerlink" href="#how-pickle-enables-code-execution" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><strong>Object Reconstruction:</strong></p>
+<p>When unpickling, Python essentially executes code to recreate the original object.</p>
+</li>
+<li><p><strong>Malicious Objects:</strong></p>
+<p>A carefully crafted pickle file can contain code disguised as object data.</p>
+<p>When unpickled, this code is executed, potentially giving an attacker control over the system.</p>
+</li>
+<li><p><strong>Code Injection:</strong> This vulnerability is often referred to as “pickle injection” or “unpickling vulnerabilities”.</p></li>
+</ul>
+</section>
+<section id="attack-scenarios">
+<h2>Attack Scenarios<a class="headerlink" href="#attack-scenarios" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><strong>Remote Code Execution (RCE):</strong> An attacker can send a malicious pickle file to a vulnerable application, leading to arbitrary code execution on the target system.</p></li>
+<li><p><strong>Data Theft:</strong> Malicious code within a pickle file can steal sensitive information.</p></li>
+<li><p>Denial of Service (DoS):</p>
+<p>A crafted pickle file can consume excessive resources, leading to a DoS attack.</p>
+</li>
+</ul>
+</section>
+<section id="mitigating-risks">
+<h2>Mitigating Risks<a class="headerlink" href="#mitigating-risks" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><strong>Never Unpickle Untrusted Data:</strong> This is the most crucial rule. Only unpickle data from trusted sources.</p></li>
+<li><p><strong>Input Validation:</strong> If you must unpickle user-provided data, implement strict validation to prevent malicious code injection.</p></li>
+<li><p><strong>Use Alternative Serialization Formats:</strong> For data exchange, consider safer options like JSON or XML.</p></li>
+<li><p><strong>Consider Custom Picklers:</strong></p>
+<p>For specific use cases, you can create custom picklers with more control over the serialization process.</p>
+</li>
+<li><p><strong>Security Audits:</strong> Regularly review your code for potential pickle-related vulnerabilities.</p></li>
+</ul>
+</section>
+<section id="real-world-examples">
+<h2>Real-World Examples<a class="headerlink" href="#real-world-examples" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Cloud Services:</strong> Several cloud services have experienced security incidents due to pickle-related vulnerabilities.</p></li>
+<li><p><strong>Open-Source Projects:</strong> Many open-source projects have had to address pickle-related security issues.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Pickle is a powerful tool for serializing Python objects, but its security implications cannot be ignored. By understanding the risks and implementing appropriate safeguards, you can significantly reduce the chances of exploitation.</p>
 </section>
 </section>
 
@@ -507,20 +471,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Serialization_Pickle_Data.html"
+       href="Serialization_Pickle_Function.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Serialization - Pickle - Data</p>
+        <p class="prev-next-title">Serialization - Pickle - Function</p>
       </div>
     </a>
     <a class="right-next"
-       href="Serialization_Pickle_Security.html"
+       href="Serialization_HDF5.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Serialization - Pickle -  Security Implications</p>
+        <p class="prev-next-title">Serialization HDF5</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -540,7 +504,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pickle-function-demo-code">Pickle Function Demo Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-pickle-enables-code-execution">How Pickle Enables Code Execution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attack-scenarios">Attack Scenarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mitigating-risks">Mitigating Risks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-examples">Real-World Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
   </nav></div>
 

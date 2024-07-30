@@ -1,16 +1,13 @@
 # Serialization - Pickle - Function
 
 
-> [!WARNING]
->
-> ONLY UNPICKLE FILES FROM A TRUSTED SOURCE. MALICOUS CODE CAN BE EXECUTED IN THE RECONSTRUCTION PROCESS
+```{Danger}
+ONLY UNPICKLE FILES FROM A TRUSTED SOURCE. MALICOUS CODE CAN BE EXECUTED IN THE RECONSTRUCTION PROCESS
+```
 
-
-
-> [!CAUTION]
->
-> Pickling functions is done by reference and not the code itself. If other modules are involved, problems could arise. Also since it doesn't actually read the code, the **marshal** library must be used. Marshal.load will actually read the function code.
-
+```{Caution}
+Pickling functions is done by reference and not the code itself. If other modules are involved, problems could arise. Also since it doesn't actually read the code, the **marshal** library must be used. Marshal.load will actually read the function code.
+```
 
 
 ## Pickle Function Demo Code

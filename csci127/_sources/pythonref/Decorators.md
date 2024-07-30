@@ -23,11 +23,7 @@ Applying a decorator:
 
 
 
-
-
 **Remember:**
-
-
 
 - Decorators are functions that take another function as an argument and return a modified version of that function.
 - They provide a powerful way to add functionality to existing functions without modifying their code directly.

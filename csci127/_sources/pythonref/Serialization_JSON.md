@@ -2,6 +2,30 @@
 
 
 
+**JSON serialization** is the process of converting complex data structures, like objects or arrays, into a simple text format called JSON (JavaScript Object Notation). This text-based representation is easy to store, transmit, and parse.
+
+## Why Use JSON Serialization?
+
+- **Data Exchange:** It's widely used for data interchange between different systems and applications.
+- **Data Storage:** JSON files can be used to store data persistently.
+- **Data Transmission:** It's efficient for sending data over networks.
+- **Readability:** JSON is human-readable, making it easy to inspect and debug.
+
+## How Does It Work?
+
+1. **Data Structure:** You have a complex data structure, like an object with properties and values.
+1. **Serialization:** A serializer converts this data structure into a JSON string. This string adheres to specific JSON syntax rules.
+1. **Transmission or Storage:** The JSON string can be sent over a network or stored in a file.
+1. **Deserialization:** When you need to use the data again, a deserializer converts the JSON string back into its original data structure.
+
+### Key Points
+
+- JSON is a lightweight data-interchange format.
+- Serialization converts data to JSON, deserialization converts JSON back to data.
+- Widely used in web applications, APIs, and data storage.
+
+
+
 ## Lecture Code
 
 ```python
@@ -79,3 +103,36 @@ Name: James,    Jordon,         MT
 '''
 ```
 
+
+
+##  Code Summary
+
+**Person Class:**
+
+- Defines a `Person` class with attributes `name`, `city`, and `state`.
+
+**`serialize_to_json` Function:**
+
+- Takes a list of `Person` objects as input.
+- Iterates through the list, creating dictionaries for each person with their attributes as key-value pairs.
+- Creates a list `data` containing these dictionaries.
+- Opens a file named "people.json" in write mode (`"w"`).
+- Uses `json.dump` to convert the `data` list to a JSON string and write it to the file.
+
+**`deserialize_from_json` Function:**
+
+- Initializes an empty list `people` to store deserialized `Person` objects.
+- Tries to open "people.json" in read mode (`"r"`).
+- If successful, uses `json.load` to read the JSON data from the file and store it as a list in `data`.
+- Iterates through the `data` list (containing dictionaries).
+- For each dictionary, creates a new `Person` object using the values for "name", "city", and "state".
+- Appends the created `Person` object to the `people` list.
+- If the file is not found, it catches a `FileNotFoundError` and prints an error message.
+- Finally, returns the list of deserialized `Person` objects.
+
+**`main` Function:**
+
+- Creates a sample list of `Person` objects with names, cities, and states.
+- Calls `serialize_to_json` to convert this list to JSON and store it in "people.json".
+- Calls `deserialize_from_json` to read the data back from "people.json" and get a list of deserialized `Person` objects.
+- Prints the information of each deserialized person (name, city, state) in a formatted way.
