@@ -1,0 +1,660 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Coordinate System and Spaces &#8212; CSCI 208 - Class Materials</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/CoordinateSystemSpaces';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Directory Structure" href="DirectoryStructure.html" />
+    <link rel="prev" title="Tools and Editors" href="ToolsEditors.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CSCI 208 - Class Materials</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="UeInterface.html">Unreal Editor Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UeTerminology.html">Unreal Engine Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ToolsEditors.html">Tools and Editors</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Coordinate System and Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DirectoryStructure.html">Directory Structure</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/CoordinateSystemSpaces.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Coordinate System and Spaces</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-system">Coordinate System</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#axes">Axes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transform-and-control-axes">Transform and Control Axes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-information">More Information</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-spaces">Coordinate Spaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#world-space">World Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-space">Local Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#screen-space">Screen Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uv-space">UV Space</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="coordinate-system-and-spaces">
+<h1>Coordinate System and Spaces<a class="headerlink" href="#coordinate-system-and-spaces" title="Link to this heading">#</a></h1>
+<p>Introduction to the coordinate system and different coordinate spaces.</p>
+<p><img alt="Coordinate System and Spaces" src="https://dev.epicgames.com/community/api/documentation/image/49acbe53-d49c-4d58-bade-ffb462125ece?resizing_type=fit&amp;width=1920" /></p>
+<section id="coordinate-system">
+<h2>Coordinate System<a class="headerlink" href="#coordinate-system" title="Link to this heading">#</a></h2>
+<p>Unreal Engine (UE) uses the <a class="reference external" href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system">Cartesian coordinate system</a> to represent positions in three-dimensional <a class="reference external" href="https://en.wikipedia.org/wiki/Euclidean_space">Euclidean space</a>. In the Unreal Editor the coordinate system is left-handed and uses a Z-up axis. Points are determined by their position along three coordinate axes: the X-axis, Y-axis, and Z-axis. These coordinate values set the position of actors and the direction they face for your project. There are a variety of different ways that these axes can be oriented in relation to one another. The orientation and values of the axes depend on the type of coordinate space you are in.</p>
+<p>If you are importing assets from other software such as Maya, Houdini, ZBrush, Blender, or 3ds Max, you must be aware of the handedness and orientation of the coordinate system used in Unreal Engine. Other software systems use different up-axes and handedness that you might need to take into consideration.</p>
+<p><img alt="Unreal Coordinate Axes" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/898284a0-be00-412e-becb-fb82b3644f44/coordinate-axes.gif" /></p>
+<p>Three-dimensional cartesian coordinate system with the origin and coordinate axes.</p>
+<section id="axes">
+<h3>Axes<a class="headerlink" href="#axes" title="Link to this heading">#</a></h3>
+<p>In the Unreal Editor, and all illustrations in this documentation section, the following colors are associated with the coordinate axes:</p>
+<ul class="simple">
+<li><p>X-axis: Red</p></li>
+<li><p>Y-axis: Green</p></li>
+<li><p>Z-axis: Blue</p></li>
+</ul>
+<p>UE’s Z-up, left-handed coordinate system is defined as follows:</p>
+<ul class="simple">
+<li><p>The Z-axis determines how far up and down along a vertical line an actor is located.</p>
+<ul>
+<li><p>Positive values are upwards.</p></li>
+</ul>
+</li>
+<li><p>The Y-axis determines how far to the left or right an actor is located.</p>
+<ul>
+<li><p>Positive values are to the right.</p></li>
+</ul>
+</li>
+<li><p>The X-axis determines how far forward or backward an actor is located.</p>
+<ul>
+<li><p>Positive values are forward.</p></li>
+</ul>
+</li>
+</ul>
+<p>There is a special point in the coordinate system known as the origin. The origin is where the coordinate axes intersect and is represented by the point with coordinates (0, 0, 0). To learn more about the origin and how it’s used to set a point’s location, see the gif above and this page’s <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/coordinate-system-and-spaces-in-unreal-engine#coordinatespaces">Coordinate Space</a> section.</p>
+<p>You can use the Orthographic Viewports to visualize the direction of the axes and set coordinate values. To learn more, see <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/using-editor-viewports-in-unreal-engine">Using Editor Viewports</a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><img alt="View Perspective" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/08b69405-760e-4bbf-9078-57042418a96e/02-view-perspective.png" /></p></th>
+<th class="head"><p><img alt="View Front" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/99c7fdc2-3f37-44eb-a93d-1afe160491f9/03-view-front.png" /></p></th>
+<th class="head"><p><img alt="View Side" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/6754bf71-128f-4b69-8233-c0ff93fd633a/04-view-side.png" /></p></th>
+<th class="head"><p><img alt="View Top" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/0ada962a-8614-4e64-968c-3a1404e02fb1/05-view-top.png" /></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Perspective (3D)</p></td>
+<td><p>Front (X-Axis)</p></td>
+<td><p>Side (Y-Axis)</p></td>
+<td><p>Top (Z-Axis)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>UE is referred to as a left-handed coordinate system because the cross product and the coordinate axes follow the left-hand rule and Z-up because positive values along the Z-axis are located in the upward direction.</p>
+<p>To illustrate, you could point your left index finger in the direction of the positive X-axis. Then point your left middle finger in the direction of the positive Y-axis. Now, the positive Z-axis points in the direction of your thumb. The following image shows what this looks like:</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/859d350d-2e81-4dfa-8421-162dd28064cf/left-hand-rule.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/859d350d-2e81-4dfa-8421-162dd28064cf/left-hand-rule.png" /></a></p>
+<p>Left-hand rule for the cross product of vectors.</p>
+<p>The three coordinate-axes are also sometimes referred to as the:</p>
+<ul class="simple">
+<li><p>X-axis: abscissa</p></li>
+<li><p>Y-axis: ordinate</p></li>
+<li><p>Z-axis: applicate</p></li>
+</ul>
+<p>To locate the point (2, 1, -3) in UE coordinate space, follow these steps:</p>
+<ul class="simple">
+<li><p>Measure 2 unit steps along the positive X-axis.</p></li>
+<li><p>Measure 1 unit step along the positive Y-axis.</p></li>
+<li><p>Measure 3 unit steps along the negative Z-axis.</p></li>
+</ul>
+<p>The following video illustrates this process step-by-step:</p>
+<ul class="simple">
+<li><p>Travel 2 units forward in the positive X direction.</p></li>
+<li><p>Travel 1 unit right in the positive Y direction.</p></li>
+<li><p>Travel 3 units down in the negative Z direction.</p></li>
+</ul>
+<p>For more information about units in UE, see the <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/units-of-measurement-in-unreal-engine">Units of Measurement</a> documentation.</p>
+<p><img alt="Locate Point in 3D Space" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/313f2f33-756f-49ac-83cc-e4cf0493f613/locate-point.gif" /></p>
+<p>Steps to locate the point (2, 1, -3) in Unreal’s coordinate system.</p>
+</section>
+<section id="transform-and-control-axes">
+<h3>Transform and Control Axes<a class="headerlink" href="#transform-and-control-axes" title="Link to this heading">#</a></h3>
+<p>The following image is a scene from the Third Person Template included with Unreal Engine. The selected object in the center of the scene is located at the origin of world space. In the lower left-hand corner of the Viewports in the Unreal Editor is a gizmo icon depicting the positive direction of the axes relative to the direction you are viewing. You can use this to visualize the coordinate system in Unreal Engine.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/9c89ddd5-fadf-47d7-96da-411eb32fb7e1/world-origin.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/9c89ddd5-fadf-47d7-96da-411eb32fb7e1/world-origin.png" /></a></p>
+<p>Unreal Engine scene with gizmo indicating an object’s position in world space.</p>
+<p>The transformation gizmo in the center of the scene is positioned with the same orientation as the gizmo icon in the bottom-left corner of the Viewport. The matching orientation is because you are viewing the selected actor in world space. In addition, the transformation controls in the editor are color-coordinated to match the axes.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><img alt="Trans Widget" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/2e7670a0-07b1-45db-90ab-30351724dc8d/07-le-trans-widget.png" /></p></th>
+<th class="head"><p><img alt="Transform Rotate" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/d16b6fad-d8b3-4ad6-b0b5-4952967af34e/08-transform-rotate.png" /></p></th>
+<th class="head"><p><img alt="Trans Scale Widget" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/e75218f8-6876-455b-8e01-238d03bee34c/09-le-trans-scalewidget.png" /></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Move Tool (W)</p></td>
+<td><p>Rotate Tool (E)</p></td>
+<td><p>Scale Tool (R)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The image above represents the common transform gizmos in the Level Editor. However, additional specialized gizmos exist in the various editors and level modes.</p>
+<p>To learn more about using the various controls for adjusting the position of actors, including the pivot point, see <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/transforming-actors-in-unreal-engine">Transforming Actors</a>.</p>
+</section>
+<section id="more-information">
+<h3>More Information<a class="headerlink" href="#more-information" title="Link to this heading">#</a></h3>
+<p>For more information about coordinate systems, see the following resources:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mathworld.wolfram.com/CoordinateSystem.html">Wolfram MathWorld - Coordinate System</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Coordinate_system">Wikipedia - Coordinate System</a></p></li>
+</ul>
+</section>
+</section>
+<section id="coordinate-spaces">
+<h2>Coordinate Spaces<a class="headerlink" href="#coordinate-spaces" title="Link to this heading">#</a></h2>
+<p>Each coordinate space has its own coordinate system and origin. The intersection of the axes equals the origin point of that particular coordinate space, which is represented by the coordinates (0,0,0) within that coordinate space’s coordinate system. The values of the axes increase or decrease based on the origin and direction of the transformation.</p>
+<section id="world-space">
+<h3>World Space<a class="headerlink" href="#world-space" title="Link to this heading">#</a></h3>
+<p><strong>World space</strong> is the coordinate system used for your entire level. Its origin is the center of the scene (the world grid). This coordinate system is fixed - you cannot transform it. Use world space to translate or rotate an object in absolute units relative to the level’s origin and scale relative to the entire level.</p>
+<p>The image below shows what happens when you select the blue cube. The coordinate axis gizmo is now located at the pivot point of the cube. The coordinate axes of the gizmo are still pointing in the same direction as the coordinate axes for world space. You can see this in two different ways.</p>
+<ul class="simple">
+<li><p>One way is by noticing that the coordinate axes of the gizmo centered on the blue cube point in the same directions as the coordinate axes in the lower left-hand corner.</p></li>
+<li><p>Another, simpler way is the globe icon near the top-right corner of the Viewport indicates that you are viewing this object with respect to world space.</p></li>
+</ul>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/a724afc9-da3e-48d4-a4b9-e2c7e832fbf8/world-cube.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/a724afc9-da3e-48d4-a4b9-e2c7e832fbf8/world-cube.png" /></a></p>
+<p>View the blue cube with respect to world space.</p>
+</section>
+<section id="local-space">
+<h3>Local Space<a class="headerlink" href="#local-space" title="Link to this heading">#</a></h3>
+<p><strong>Local space</strong> is the coordinate system relative to the <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/components-in-unreal-engine">scene component</a> to which the actor is attached. The space is also known as object space. Every actor has a local space coordinate system within a scene relative to the actor’s pivot point. An actor’s pivot point is where the three local coordinate axes for the actor intersect and represent the origin of local space. Use local space to translate or rotate an object relative to its parent.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><img alt="Transform with respect to world space." src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/194d3ec6-a07a-440d-bd9b-413393bcb3d8/world-gif.gif" /></p></th>
+<th class="head"><p><img alt="Transform with respect to local space." src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/4d09abfa-6aa7-427a-93aa-74dcbd4cc123/local-gif.gif" /></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Transform tools align themselves to the world grid.</p></td>
+<td><p>Transform tools align themselves to the rotation of the selected actor.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If you click on the globe icon in the upper right corner, the gizmo centered on the blue cube changes, and the globe icon changes to a cube icon with axes. This icon indicates that you are viewing the object with respect to local space. Now, the X- and Y- coordinate axes of the gizmo centered on the blue cube do not point in the same directions as those in the lower left-hand corner.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/0a7c1714-eaeb-4d95-97fa-c80abd71ca18/local-cube.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/0a7c1714-eaeb-4d95-97fa-c80abd71ca18/local-cube.png" /></a></p>
+<p>View the blue cube with respect to local space.</p>
+<p>To temporarily change the location of an actor’s pivot, choose from the following:</p>
+<ul class="simple">
+<li><p><strong>Middle-click</strong> on the sphere in the center point of the translation gizmo and drag to move the pivot.</p></li>
+<li><p>Hover the cursor over where you want to set the pivot point on an actor and use the shortcut <strong>ALT + MMB</strong> (Middle Mouse Button).</p></li>
+</ul>
+<p>You can permanently change the pivot point from the following:</p>
+<ul class="simple">
+<li><p>Perform one of the actions above and then right-click the actor and select <strong>Pivot &gt; Set as Pivot Offset</strong>.</p></li>
+<li><p>The <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/edit-pivot-tool-in-unreal-engine">Edit Pivot tool</a>.</p></li>
+</ul>
+<p>To learn more about adjusting pivot points, see <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/transforming-actors-in-unreal-engine">Transforming Actors</a>.</p>
+</section>
+<section id="screen-space">
+<h3>Screen Space<a class="headerlink" href="#screen-space" title="Link to this heading">#</a></h3>
+<p><strong>Screen space</strong> is the projection of the three-dimensional world space onto the two-dimensional screen that constitutes the player’s vision. You can pull screen space coordinates from specific cameras in your scene.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/744e6cd9-a704-4c14-b8c7-ba17f5e61231/screen-space.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/744e6cd9-a704-4c14-b8c7-ba17f5e61231/screen-space.png" /></a></p>
+<p>Play in Editor (PIE) session of the Third Person Template</p>
+<p>To help visualize the placement of actors in screen space, pilot the cameras or pawns in your scene. To pilot, right-click the object and select <strong>Pilot</strong>.</p>
+</section>
+<section id="uv-space">
+<h3>UV Space<a class="headerlink" href="#uv-space" title="Link to this heading">#</a></h3>
+<p>UVs are a parameterization (U,V) of a 3D surface mesh into a normalized (0-1) 2D space. In other words, they represent coordinates in 2D space that translate to vertices on your 3D model. The space is represented horizontally as U and vertically as V, thus the name UV coordinates. Also known as 2D or texture coordinates.</p>
+<p>The <strong>2D Viewport</strong> of the <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/uv-editor-in-unreal-engine">UV Editor</a> (pictured below) represents the UV space for displaying your UV map. It is the primary Viewport for unwrapping and packing UVs. The space is also known as 2D or texture space.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/d3929f68-3404-45d8-b877-8caebf04c850/uv-grid.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/d3929f68-3404-45d8-b877-8caebf04c850/uv-grid.png" /></a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ToolsEditors.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tools and Editors</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="DirectoryStructure.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Directory Structure</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-system">Coordinate System</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#axes">Axes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transform-and-control-axes">Transform and Control Axes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-information">More Information</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-spaces">Coordinate Spaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#world-space">World Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-space">Local Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#screen-space">Screen Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uv-space">UV Space</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
