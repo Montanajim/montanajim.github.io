@@ -103,6 +103,36 @@ foreach($asscArray as $xkey => $xvalue)
 }
 echo("</table>");
 
+// **********************************************************
+echo("Create and associate array Example 2");
+
+$capitals = array(  "myKey" =>  "myvalue",
+                    "MT"    =>  "Helena",
+                    "ID"    =>  "Boise",
+                    "WY"    =>  "Cheynne",
+                    "IL"    =>  "Springfield");
+echo("<br><br>");
+
+var_dump($capitals,$aan);
+echo("<br><br>");
+
+// Add to the array
+$capitals["WA"] = "Seattle";
+
+print_r($capitals);
+
+// put in a table
+echo('<table border="2">');
+foreach($capitals as $key => $value)
+{
+    echo("<tr><td>".$key."</td><td>".$value."</td></tr>");
+}
+echo('</table>');
+
+echo("<br><br><hr><br><br>");
+
+
+// **********************************************************
 
 //--------- Create A Two Dimensional Array ------------------------------------------
 $product  = array(array("S6E",1250,6),
@@ -263,3 +293,56 @@ echo ("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>");
 
 ```
 
+
+
+## Summary of Code
+
+
+
+The `if` statement in the provided code is used to check if the variable `$arrayName` is an array. Here's a breakdown of its purpose:
+
+**Purpose:**
+
+- To verify the data type of the variable `$arrayName`.
+- To ensure that subsequent operations on the variable are performed correctly based on its type.
+
+**Logic:**
+
+- The `is_array($arrayName)` function is used to determine if `$arrayName` is an array.
+- If the function returns `true`, it means `$arrayName` is indeed an array. In this case, the code within the `if` block is executed, which prints the message " is an array" to the output.
+- If the function returns `false`, it means `$arrayName` is not an array. In this case, the code within the `else` block is executed, which prints the message " is not an array" to the output.
+
+**Array Creation and Access:**
+
+- **Indexed arrays:** Created using the `array()` keyword and accessed by their numeric index.
+- **Associative arrays:** Created using key-value pairs and accessed by their keys.
+- **Multidimensional arrays:** Created by nesting arrays within each other and accessed using multiple indexes.
+
+**Array Functions:**
+
+- `count()`: Returns the number of elements in an array.
+
+- `is_array()`: Checks if a variable is an array.
+
+- `sort()`: Sorts an array in ascending order.
+
+- `rsort()`: Sorts an array in descending order.
+
+- `asort()` : Sorts an associative  array by value in ascending order.
+
+- `arsort()`: Sorts an associative array by value in descending order.
+
+- `ksort()`  : Sorts an associative  array by key in ascending order.
+
+- `krsort()`: Sorts an associative array by key in descending order.
+
+**Array Traversal:**
+
+- `for` loops: Used to iterate over indexed arrays.
+- `foreach` loops: Used to iterate over associative arrays.
+
+**Array Output:**
+
+- `echo` and `print`: Used to print array elements.
+- `var_dump()`: Prints detailed information about an array, including its data type and values.
+- `print_r()`: Prints a human-readable representation of an array.
