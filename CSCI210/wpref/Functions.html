@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PHP Basics &#8212; Web Programming</title>
+    <title>Functions &#8212; Web Programming</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'wpref/PHPBasics';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'wpref/Functions';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Loops and If" href="LoopIf.html" />
-    <link rel="prev" title="PHP Introduction" href="PHPIntroduction.html" />
+    <link rel="next" title="First Forms - POST and GET" href="FirstFormsPOSTandGET.html" />
+    <link rel="prev" title="PHP Arrays" href="phparrays.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,10 +175,10 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="PHPIntroduction.html">PHP Introduction</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">PHP Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PHPBasics.html">PHP Basics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LoopIf.html">Loops and If</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phparrays.html">PHP Arrays</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FirstFormsPOSTandGET.html">First Forms - POST and GET</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HTMLInputFieldReview.html">HTML Input Field Review</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="SessionVariables.html">Session Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -248,7 +248,7 @@
       
       
       
-      <li><a href="../_sources/wpref/PHPBasics.md" target="_blank"
+      <li><a href="../_sources/wpref/Functions.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -332,7 +332,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>PHP Basics</h1>
+    <h1>Functions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -342,14 +342,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-out">Starting out</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax">Syntax</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constant">Constant</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-scope-local">Variable Scope - Local</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-scope-global">Variable Scope - Global</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-scope-static">Variable Scope - Static</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-breakdown-and-comments">Code Breakdown and Comments</a></li>
 </ul>
             </nav>
         </div>
@@ -361,133 +354,162 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="php-basics">
-<h1>PHP Basics<a class="headerlink" href="#php-basics" title="Link to this heading">#</a></h1>
-<section id="starting-out">
-<h2>Starting out<a class="headerlink" href="#starting-out" title="Link to this heading">#</a></h2>
-<p>PHP files are run on the server. In Apache the are usually placed in a folder within the HTDOCS folder.</p>
-<p>PHP code is placed between the</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x"> </span><span class="cp">&lt;?php</span>
-
-   <span class="o">....</span>
-
-  <span class="cp">?&gt;</span>
-</pre></div>
-</div>
-<p>This can be placed anywhere - in the head or body and multiple times</p>
-</section>
-<section id="syntax">
-<h2>Syntax<a class="headerlink" href="#syntax" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h1>
+<section id="code-breakdown-and-comments">
+<h2>Code Breakdown and Comments<a class="headerlink" href="#code-breakdown-and-comments" title="Link to this heading">#</a></h2>
+<p><strong>Purpose:</strong> This PHP code demonstrates various programming concepts, including functions, loops, and conditional statements.</p>
+<p><strong>Functions:</strong></p>
 <ul class="simple">
-<li><p>Statements end with ;</p></li>
-<li><p>PHP statements, key words, classes etc are NOT case sensitive</p></li>
-<li><p>Variables <strong><em>are</em></strong> case sensitive</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">myfunc1()</span></code>:</strong> A simple function that prints “Func1” to the page</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">add2($n1,</span> <span class="pre">$n2)</span></code>:</strong> Takes two numbers as input, adds them together, and returns the sum.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">loops()</span></code>:</strong> A function that demonstrates different types of loops (while, do-while) and conditional statements.</p></li>
 </ul>
-</section>
-<section id="comments">
-<h2>Comments<a class="headerlink" href="#comments" title="Link to this heading">#</a></h2>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">//  single line</span>
-<span class="x"># single line</span>
-<span class="x">    </span>
-<span class="x">/* multiple line</span>
-<span class="x">Comments</span>
-<span class="x">*/</span>
-</pre></div>
-</div>
-</section>
-<section id="variables">
-<h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
-<ul>
-<li><p>Start with $</p></li>
-<li><p>Followed by a letter or underscore</p></li>
-<li><p>Cannot start with a number</p></li>
-<li><p>Variables are case sensitive</p></li>
-<li><p>No special characters except for underscore _</p></li>
-<li><p>Variables are created  when a value is assigned to it</p></li>
-<li><p>VARIABLES ARE LOOSELY TYPE</p>
+<p><strong>Variables:</strong></p>
 <ul class="simple">
-<li><p>They can hold anything</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">$n1</span></code>, <code class="docutils literal notranslate"><span class="pre">$n2</span></code>:</strong> Used in the <code class="docutils literal notranslate"><span class="pre">add2()</span></code> function to store the input numbers.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">$sum</span></code>:</strong> Stores the calculated sum in the <code class="docutils literal notranslate"><span class="pre">add2()</span></code> function.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">$run</span></code>, <code class="docutils literal notranslate"><span class="pre">$cntr</span></code>, <code class="docutils literal notranslate"><span class="pre">$stop</span></code>, <code class="docutils literal notranslate"><span class="pre">$status</span></code>:</strong> Variables used in the <code class="docutils literal notranslate"><span class="pre">loops()</span></code> function for loop control, counting, and status tracking.</p></li>
 </ul>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">$salary = 20000;</span>
-<span class="x">$_salary = 1000000;</span>
-</pre></div>
-</div>
+<p><strong>Loops:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">while</span></code> loop:</strong> Continues to execute as long as a given condition is true.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">do-while</span></code> loop:</strong> Executes at least once, then continues as long as a given condition is true.</p></li>
+</ul>
+<p><strong>Conditional Statements:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">if-else</span></code> statements:</strong> Used to make decisions based on conditions.</p></li>
+</ul>
+<p><strong>Code Breakdown:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Function Definitions:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">myfunc1()</span></code> is defined to print a message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add2()</span></code> takes two numbers, adds them, and returns the result.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loops()</span></code> demonstrates different loop types and conditional logic.</p></li>
+</ul>
 </li>
+<li><p><strong>Main Execution:</strong></p>
+<ul class="simple">
+<li><p>Calls the <code class="docutils literal notranslate"><span class="pre">myfunc1()</span></code> function.</p></li>
+<li><p>Calculates the sum using <code class="docutils literal notranslate"><span class="pre">add2()</span></code> and prints the result.</p></li>
+<li><p>Calls the <code class="docutils literal notranslate"><span class="pre">loops()</span></code> function to demonstrate loop and conditional concepts.</p></li>
 </ul>
-</section>
-<section id="constant">
-<h2>Constant<a class="headerlink" href="#constant" title="Link to this heading">#</a></h2>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">//Note constants do not use $ and the convention is to use all caps</span>
-<span class="x">//use the define command</span>
+</li>
+</ol>
+<p><strong>Comments within <code class="docutils literal notranslate"><span class="pre">loops()</span></code>:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">while</span></code> loop:</strong> Demonstrates a basic <code class="docutils literal notranslate"><span class="pre">while</span></code> loop with a counter and a stopping condition.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">while</span></code> loop with <code class="docutils literal notranslate"><span class="pre">if</span></code>:</strong> Shows how to use an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement inside a loop to break out of the loop based on a condition.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">do-while</span></code> loop:</strong> Demonstrates a <code class="docutils literal notranslate"><span class="pre">do-while</span></code> loop that executes at least once.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">if-else</span></code> statements:</strong> Shows how to use <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statements to check conditions and set a status based on the result.</p></li>
+</ul>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!doctype html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">    &lt;head&gt;</span>
+<span class="x">        &lt;title&gt;functions&lt;/title&gt;</span>
 
-<span class="x">        define(&#39;PI&#39;, 3.1415);</span>
-<span class="x">        define(&#39;CODEGURU&#39;, &quot;Jim Goudy&quot;);</span>
-</pre></div>
-</div>
-</section>
-<section id="variable-scope-local">
-<h2>Variable Scope - Local<a class="headerlink" href="#variable-scope-local" title="Link to this heading">#</a></h2>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
- <span class="c1">// The variable can only be accessed within the function   </span>
-    
-<span class="k">function</span> <span class="nf">myfunc</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="nv">$x</span><span class="o">=</span><span class="mi">42</span><span class="p">;</span> 			<span class="c1">//local scope</span>
-	<span class="k">echo</span> <span class="p">(</span><span class="nx">“This</span> <span class="nx">is</span> <span class="nx">value</span> <span class="nx">x</span> <span class="nx">is</span> <span class="nv">$x”</span><span class="p">);</span>	<span class="c1">//note that the variable is within the string</span>
-<span class="p">}</span>
+<span class="x">        </span><span class="cp">&lt;?php</span>
+        
+        <span class="k">function</span> <span class="nf">myfunc1</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;br&gt;Func1&lt;br&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
 
-<span class="nx">myfunc</span><span class="p">();</span>
-<span class="cp">?&gt;</span>
-</pre></div>
-</div>
-</section>
-<section id="variable-scope-global">
-<h2>Variable Scope - Global<a class="headerlink" href="#variable-scope-global" title="Link to this heading">#</a></h2>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-<span class="c1">// The variable can only be accessed from outside the function</span>
+        <span class="k">function</span> <span class="nf">add2</span><span class="p">(</span><span class="nv">$n1</span><span class="p">,</span><span class="nv">$n2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nv">$sum</span> <span class="o">=</span> <span class="nv">$n1</span> <span class="o">+</span> <span class="nv">$n2</span><span class="p">;</span>
 
-<span class="c1">//global scope</span>
-<span class="nv">$x</span><span class="o">=</span><span class="mi">42</span><span class="p">;</span> 				
+            <span class="k">return</span> <span class="nv">$sum</span><span class="p">;</span>
+        <span class="p">}</span>
 
-<span class="k">function</span> <span class="nf">myfunc</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="c1">//note that the variable is within the string</span>
-	<span class="k">echo</span> <span class="nx">“This</span> <span class="nx">is</span> <span class="nx">value</span> <span class="nx">x</span> <span class="nx">is</span> <span class="nv">$x”</span><span class="p">;</span>	
-<span class="p">}</span>
+        <span class="k">function</span> <span class="nf">loops</span><span class="p">()</span>
+        <span class="p">{</span>
+            
+            <span class="nv">$run</span> <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
 
-<span class="nx">myfunc</span><span class="p">();</span>
-<span class="cp">?&gt;</span>
+            <span class="nv">$cntr</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="nv">$stop</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
 
-<span class="x">Global is also a keyword - supervariable</span>
-</pre></div>
-</div>
-</section>
-<section id="variable-scope-static">
-<h2>Variable Scope - Static<a class="headerlink" href="#variable-scope-static" title="Link to this heading">#</a></h2>
-<p>The variable will retain its value after it’s been called by a function.</p>
-<p>Usually when a function is called the variables are cleared and reinitialized</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+            <span class="c1">// Example of a while loop</span>
+            <span class="k">while</span><span class="p">(</span><span class="nv">$cntr</span> <span class="o">&lt;</span> <span class="nv">$stop</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">echo</span><span class="p">(</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;. Item&quot;</span><span class="o">.</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+                <span class="nv">$cntr</span> <span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+			<span class="c1">// excample of while loop using</span>
+            <span class="c1">// a boolean and if statement</span>
+            <span class="nv">$cntr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="nv">$run</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">echo</span><span class="p">(</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;. Item 22 &quot;</span><span class="o">.</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+                <span class="nv">$cntr</span> <span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
 
-<span class="k">function</span> <span class="nf">myfunc2</span><span class="p">()</span>
+                <span class="k">if</span><span class="p">(</span><span class="nv">$cntr</span> <span class="o">==</span> <span class="nv">$stop</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="nv">$run</span><span class="o">=</span><span class="k">FALSE</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
 
-<span class="p">{</span>
+            <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+            <span class="c1">// Example of do loop - always runs once</span>
+            <span class="nv">$cntr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">do</span><span class="p">{</span>
+                <span class="k">echo</span><span class="p">(</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;.  Item Do&quot;</span><span class="o">.</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+                <span class="nv">$cntr</span> <span class="o">+=</span><span class="mi">1</span><span class="p">;</span>  
+            <span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="nv">$cntr</span> <span class="o">&lt;</span> <span class="nv">$stop</span><span class="p">);</span>
+        
 
- <span class="k">static</span> <span class="nv">$xx</span><span class="o">=</span><span class="mi">42</span><span class="p">;</span>  <span class="c1">//local scope</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&lt;h2&gt;Status If&lt;/h2&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
 
- <span class="k">echo</span> <span class="nx">“This</span> <span class="nx">is</span> <span class="nx">value</span> <span class="nx">x</span> <span class="nx">is</span> <span class="nv">$x”</span><span class="p">;</span> <span class="c1">//note that the variable is within the string</span>
+        <span class="nv">$cntr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nv">$status</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+        <span class="nv">$run</span> <span class="o">=</span> <span class="k">True</span><span class="p">;</span>
 
-<span class="nv">$xx</span> <span class="o">=</span> <span class="nv">$xx</span> <span class="o">+</span> <span class="mi">100</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="nv">$run</span><span class="p">)</span>
+        <span class="p">{</span>
 
-<span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;This is value x is </span><span class="si">$xx</span><span class="s2">&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+			<span class="c1">// example of else if statement</span>
+            <span class="k">if</span><span class="p">(</span><span class="nv">$cntr</span> <span class="o">==</span> <span class="nv">$stop</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="nv">$run</span><span class="o">=</span><span class="k">FALSE</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">((</span><span class="nv">$cntr</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="nv">$status</span> <span class="o">=</span> <span class="s2">&quot;Even&quot;</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span><span class="p">{</span>
+                <span class="nv">$status</span> <span class="o">=</span> <span class="s2">&quot;Odd&quot;</span><span class="p">;</span>
+            <span class="p">}</span>
 
-<span class="p">}</span>
+            <span class="k">echo</span><span class="p">(</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;. Item 22 &quot;</span><span class="o">.</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="nv">$status</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+            <span class="nv">$cntr</span> <span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="cp">?&gt;</span>
+<span class="x">        </span>
+<span class="x">    &lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
+        
+        <span class="nx">myfunc1</span><span class="p">();</span>
 
-<span class="nx">myfunc2</span><span class="p">();</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+    <span class="cp">?&gt;</span>
+<span class="x">    &lt;h2&gt;Sum Example - 60 + 40&lt;/h2&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span> 
+        <span class="nv">$x</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+        <span class="nv">$xx</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+        <span class="nv">$total</span> <span class="o">=</span> <span class="nx">add2</span><span class="p">(</span><span class="nv">$x</span><span class="p">,</span><span class="nv">$xx</span><span class="p">);</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;The sum = &quot;</span><span class="o">.</span><span class="nv">$total</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
 
-<span class="nx">myfunc2</span><span class="p">();</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
 
-<span class="cp">?&gt;</span>
-<span class="x">    </span>
+        <span class="nx">loops</span><span class="p">();</span>
+    <span class="cp">?&gt;</span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -524,20 +546,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="PHPIntroduction.html"
+       href="phparrays.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">PHP Introduction</p>
+        <p class="prev-next-title">PHP Arrays</p>
       </div>
     </a>
     <a class="right-next"
-       href="LoopIf.html"
+       href="FirstFormsPOSTandGET.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Loops and If</p>
+        <p class="prev-next-title">First Forms - POST and GET</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -557,14 +579,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-out">Starting out</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax">Syntax</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constant">Constant</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-scope-local">Variable Scope - Local</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-scope-global">Variable Scope - Global</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-scope-static">Variable Scope - Static</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-breakdown-and-comments">Code Breakdown and Comments</a></li>
 </ul>
   </nav></div>
 

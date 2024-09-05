@@ -151,7 +151,7 @@ flowchart TD
 
 ### Page 2 / page2.php
 
-```php+HTML
+```php
 <!-- "page2.php -->
 <!DOCTYPE html>
 <html>
@@ -206,7 +206,7 @@ flowchart TD
 
 ### Page 3 / page3.php
 
-```php+HTML
+```php
 <?php
     // start session variables
     // needed on every page that accesses the session variable

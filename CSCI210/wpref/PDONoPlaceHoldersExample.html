@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -52,7 +52,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -176,7 +176,9 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="PHPIntroduction.html">PHP Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="PHPBasics.html">PHP Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LoopIf.html">Loops and If</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phparrays.html">PHP Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FirstFormsPOSTandGET.html">First Forms - POST and GET</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HTMLInputFieldReview.html">HTML Input Field Review</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="SessionVariables.html">Session Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -345,188 +347,188 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="pdo-with-no-named-placeholders">
 <h1>PDO With No Named Placeholders<a class="headerlink" href="#pdo-with-no-named-placeholders" title="Link to this heading">#</a></h1>
 <p>This example shows how to use SQL with no named placeholders.</p>
-<div class="highlight-php+HTML notranslate"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;title&gt;function example&lt;/title&gt;
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">&lt;title&gt;function example&lt;/title&gt;</span>
 
-	&lt;!-- css styling --&gt;
-	&lt;style&gt;
-		#div1{
-			background-color:cornsilk;
-			width:65%;
-			margin-left:auto;
-			margin-right:auto;
-		}
-	&lt;/style&gt;
+<span class="x">	&lt;!-- css styling --&gt;</span>
+<span class="x">	&lt;style&gt;</span>
+<span class="x">		#div1{</span>
+<span class="x">			background-color:cornsilk;</span>
+<span class="x">			width:65%;</span>
+<span class="x">			margin-left:auto;</span>
+<span class="x">			margin-right:auto;</span>
+<span class="x">		}</span>
+<span class="x">	&lt;/style&gt;</span>
 
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;?php
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
 
-        //database connection
-        function newDB(){
-            //returns a database object
-            return new PDO(&#39;mysql:host=127.0.0.1;dbname=wp_cars&#39;,&#39;root&#39;,&#39;&#39;);
-        }
+        <span class="c1">//database connection</span>
+        <span class="k">function</span> <span class="nf">newDB</span><span class="p">(){</span>
+            <span class="c1">//returns a database object</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s1">&#39;mysql:host=127.0.0.1;dbname=wp_cars&#39;</span><span class="p">,</span><span class="s1">&#39;root&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
 
-        function pdoInsert(){
+        <span class="k">function</span> <span class="nf">pdoInsert</span><span class="p">(){</span>
 
-            // open new datbase connection
-            $pdo = newDB();
+            <span class="c1">// open new datbase connection</span>
+            <span class="nv">$pdo</span> <span class="o">=</span> <span class="nx">newDB</span><span class="p">();</span>
 
-            // instantiate variables
-            // remember the don&#39;t come into existance
-            // until a value has been assigned to them
+            <span class="c1">// instantiate variables</span>
+            <span class="c1">// remember the don&#39;t come into existance</span>
+            <span class="c1">// until a value has been assigned to them</span>
 
-            $ownerFN 	= &quot;Bubba&quot;;
-            $ownerLN	= &quot;Smith&quot;;
-            $make		= &quot;Scion&quot;;
-            $model		= &quot;XB&quot;;
-            $carYear	= rand(2000,2012);
-            $color		= &quot;Blue&quot;;
+            <span class="nv">$ownerFN</span> 	<span class="o">=</span> <span class="s2">&quot;Bubba&quot;</span><span class="p">;</span>
+            <span class="nv">$ownerLN</span>	<span class="o">=</span> <span class="s2">&quot;Smith&quot;</span><span class="p">;</span>
+            <span class="nv">$make</span>		<span class="o">=</span> <span class="s2">&quot;Scion&quot;</span><span class="p">;</span>
+            <span class="nv">$model</span>		<span class="o">=</span> <span class="s2">&quot;XB&quot;</span><span class="p">;</span>
+            <span class="nv">$carYear</span>	<span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span><span class="mi">2012</span><span class="p">);</span>
+            <span class="nv">$color</span>		<span class="o">=</span> <span class="s2">&quot;Blue&quot;</span><span class="p">;</span>
 
-            try
-            {
-                // SQL Statement
-                $sql_stmt = &quot;INSERT INTO tbl_car(OwnerFN,OwnerLN,make,model,carYear,color) 
-                        VALUES (?,?,?,?,?,?)&quot;;
+            <span class="k">try</span>
+            <span class="p">{</span>
+                <span class="c1">// SQL Statement</span>
+                <span class="nv">$sql_stmt</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO tbl_car(OwnerFN,OwnerLN,make,model,carYear,color) </span>
+<span class="s2">                        VALUES (?,?,?,?,?,?)&quot;</span><span class="p">;</span>
 
-                // prepare
-                $pdo = $pdo-&gt;prepare($sql_stmt);
+                <span class="c1">// prepare</span>
+                <span class="nv">$pdo</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql_stmt</span><span class="p">);</span>
 
-                // bind our parameters
-                $pdo-&gt;bindParam(1,$ownerFN);
-                $pdo-&gt;bindParam(2,$ownerLN);
-                $pdo-&gt;bindParam(3,$make);
-                $pdo-&gt;bindParam(4,$model);
-                $pdo-&gt;bindParam(5,$carYear);
-                $pdo-&gt;bindParam(6,$color);
+                <span class="c1">// bind our parameters</span>
+                <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nv">$ownerFN</span><span class="p">);</span>
+                <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="nv">$ownerLN</span><span class="p">);</span>
+                <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="nv">$make</span><span class="p">);</span>
+                <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="nv">$model</span><span class="p">);</span>
+                <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="nv">$carYear</span><span class="p">);</span>
+                <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="nv">$color</span><span class="p">);</span>
 
-                // generate some database
-                // normally where you assign $_POST variable
-                // which has been sanitized to variable
+                <span class="c1">// generate some database</span>
+                <span class="c1">// normally where you assign $_POST variable</span>
+                <span class="c1">// which has been sanitized to variable</span>
 
-                // for this example auto generate some database
+                <span class="c1">// for this example auto generate some database</span>
 
-                $numRecs = rand(5,10);
+                <span class="nv">$numRecs</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
 
-                for($i = 0; $i &lt; $numRecs; $i++)
-                {
-                    $arn 		= rand(0,1000);
+                <span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$numRecs</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="nv">$arn</span> 		<span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>
 
-                    // normally the $_POST variable is 
-                    // sanitized and assigned a local variable
+                    <span class="c1">// normally the $_POST variable is </span>
+                    <span class="c1">// sanitized and assigned a local variable</span>
 
-                    // $ownerFN = filter_var($_POST[&#39;ownerFN&#39;],FILTER_SANITIZE_STRING);
+                    <span class="c1">// $ownerFN = filter_var($_POST[&#39;ownerFN&#39;],FILTER_SANITIZE_STRING);</span>
 
-                    $ownerFN 	= &quot;Bubba&quot;.$arn;
-                    $ownerLN 	= &quot;Smith&quot;.$arn;
-                    $make 		= &quot;Ford&quot;.$arn;
-                    $model 		= &quot;Mach E&quot;.$arn;
-                    $carYear 	= rand(2020,2024);
-                    $color 		= &quot;red&quot;;
+                    <span class="nv">$ownerFN</span> 	<span class="o">=</span> <span class="s2">&quot;Bubba&quot;</span><span class="o">.</span><span class="nv">$arn</span><span class="p">;</span>
+                    <span class="nv">$ownerLN</span> 	<span class="o">=</span> <span class="s2">&quot;Smith&quot;</span><span class="o">.</span><span class="nv">$arn</span><span class="p">;</span>
+                    <span class="nv">$make</span> 		<span class="o">=</span> <span class="s2">&quot;Ford&quot;</span><span class="o">.</span><span class="nv">$arn</span><span class="p">;</span>
+                    <span class="nv">$model</span> 		<span class="o">=</span> <span class="s2">&quot;Mach E&quot;</span><span class="o">.</span><span class="nv">$arn</span><span class="p">;</span>
+                    <span class="nv">$carYear</span> 	<span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">2024</span><span class="p">);</span>
+                    <span class="nv">$color</span> 		<span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">;</span>
 
-                    // since the variables are already bound
-                    // we can just call execute()
+                    <span class="c1">// since the variables are already bound</span>
+                    <span class="c1">// we can just call execute()</span>
 
-                    $pdo-&gt;execute();
-                }
+                    <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+                <span class="p">}</span>
 
-            }
-            catch(PDOException $epdo)
-            {
-                // In production, errors be redirect to an error page
-                echo($pdo-&gt;getMessage());
-            }
+            <span class="p">}</span>
+            <span class="k">catch</span><span class="p">(</span><span class="nx">PDOException</span> <span class="nv">$epdo</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// In production, errors be redirect to an error page</span>
+                <span class="k">echo</span><span class="p">(</span><span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+            <span class="p">}</span>
 
-            // always closse our connection
-            $pdo = null;
-        }
+            <span class="c1">// always closse our connection</span>
+            <span class="nv">$pdo</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        function printCarTable(){
+        <span class="k">function</span> <span class="nf">printCarTable</span><span class="p">(){</span>
             
-            echo(&#39;
-            &lt;div id=&quot;div1&quot;&gt;
-            &lt;h1&gt;Car Table&lt;/h1&gt;
-            &lt;a href=&quot;default.php&quot;&gt;
-                &lt;button type=&quot;Button&quot;&gt;Refresh&lt;/button&gt;
-                &lt;/a&gt;&lt;br&gt;&lt;br&gt;
-            &lt;table border=&quot;1&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;Owner FN&lt;/td&gt;
-                    &lt;td&gt;Owner LN&lt;/td&gt;
-                    &lt;td&gt;Make&lt;/td&gt;
-                    &lt;td&gt;Model&lt;/td&gt;
-                    &lt;td&gt;Car Year&lt;/td&gt;
-                    &lt;td&gt;Color&lt;/td&gt;
-                    &lt;td&gt;Car ID&lt;/td&gt;				
-                &lt;/tr&gt;
-            &#39;);
+            <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;</span>
+<span class="s1">            &lt;div id=&quot;div1&quot;&gt;</span>
+<span class="s1">            &lt;h1&gt;Car Table&lt;/h1&gt;</span>
+<span class="s1">            &lt;a href=&quot;default.php&quot;&gt;</span>
+<span class="s1">                &lt;button type=&quot;Button&quot;&gt;Refresh&lt;/button&gt;</span>
+<span class="s1">                &lt;/a&gt;&lt;br&gt;&lt;br&gt;</span>
+<span class="s1">            &lt;table border=&quot;1&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;</span>
+<span class="s1">                &lt;tr&gt;</span>
+<span class="s1">                    &lt;td&gt;Owner FN&lt;/td&gt;</span>
+<span class="s1">                    &lt;td&gt;Owner LN&lt;/td&gt;</span>
+<span class="s1">                    &lt;td&gt;Make&lt;/td&gt;</span>
+<span class="s1">                    &lt;td&gt;Model&lt;/td&gt;</span>
+<span class="s1">                    &lt;td&gt;Car Year&lt;/td&gt;</span>
+<span class="s1">                    &lt;td&gt;Color&lt;/td&gt;</span>
+<span class="s1">                    &lt;td&gt;Car ID&lt;/td&gt;				</span>
+<span class="s1">                &lt;/tr&gt;</span>
+<span class="s1">            &#39;</span><span class="p">);</span>
 
-            // create a database connection
-            $pdo = newDB();
+            <span class="c1">// create a database connection</span>
+            <span class="nv">$pdo</span> <span class="o">=</span> <span class="nx">newDB</span><span class="p">();</span>
 
-            // setup our SQL
-            $sql = &quot;SELECT * FROM tbl_car&quot;;
+            <span class="c1">// setup our SQL</span>
+            <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM tbl_car&quot;</span><span class="p">;</span>
 
-            // executing the SQL - bring down the data
-            $dataSet = $pdo-&gt;query($sql);
+            <span class="c1">// executing the SQL - bring down the data</span>
+            <span class="nv">$dataSet</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
 
-            // iterate through each dataSet row
-            foreach($dataSet as $row)
-            {
-                echo(&#39;&lt;tr&gt;&#39;);
-                echo(&#39;&lt;td&gt;&#39;.$row[&#39;OwnerFN&#39;].&#39;&lt;/td&gt;&#39;.
-                        &#39;&lt;td&gt;&#39;.$row[&#39;OwnerLN&#39;].&#39;&lt;/td&gt;&#39;.
-                        &#39;&lt;td&gt;&#39;.$row[&#39;Make&#39;].&#39;&lt;/td&gt;&#39;.
-                        &#39;&lt;td&gt;&#39;.$row[&#39;Model&#39;].&#39;&lt;/td&gt;&#39;.
-                        &#39;&lt;td&gt;&#39;.$row[&#39;CarYear&#39;].&#39;&lt;/td&gt;&#39;.
-                        &#39;&lt;td&gt;&#39;.$row[&#39;Color&#39;].&#39;&lt;/td&gt;&#39;.
-                        &#39;&lt;td&gt;&#39;.$row[&#39;Car_Id&#39;].&#39;&lt;/td&gt;&#39;				
-                    );
-                echo(&#39;&lt;/tr&gt;&#39;);
+            <span class="c1">// iterate through each dataSet row</span>
+            <span class="k">foreach</span><span class="p">(</span><span class="nv">$dataSet</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;tr&gt;&#39;</span><span class="p">);</span>
+                <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;td&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;OwnerFN&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/td&gt;&#39;</span><span class="o">.</span>
+                        <span class="s1">&#39;&lt;td&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;OwnerLN&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/td&gt;&#39;</span><span class="o">.</span>
+                        <span class="s1">&#39;&lt;td&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;Make&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/td&gt;&#39;</span><span class="o">.</span>
+                        <span class="s1">&#39;&lt;td&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;Model&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/td&gt;&#39;</span><span class="o">.</span>
+                        <span class="s1">&#39;&lt;td&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;CarYear&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/td&gt;&#39;</span><span class="o">.</span>
+                        <span class="s1">&#39;&lt;td&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;Color&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/td&gt;&#39;</span><span class="o">.</span>
+                        <span class="s1">&#39;&lt;td&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;Car_Id&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/td&gt;&#39;</span>				
+                    <span class="p">);</span>
+                <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;/tr&gt;&#39;</span><span class="p">);</span>
 
-            }
+            <span class="p">}</span>
 
-            echo(&#39;&lt;/table&gt;
-            &lt;br&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&#39;);
+            <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;/table&gt;</span>
+<span class="s1">            &lt;br&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
 
-            // close the db connection
-            $pdo = null;
+            <span class="c1">// close the db connection</span>
+            <span class="nv">$pdo</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
 
-        }
+        <span class="p">}</span>
 
 
-        function clearDB()
-        {
-            try
-            {
-                // create new database connection
-                $pdo = newDB();
+        <span class="k">function</span> <span class="nf">clearDB</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">try</span>
+            <span class="p">{</span>
+                <span class="c1">// create new database connection</span>
+                <span class="nv">$pdo</span> <span class="o">=</span> <span class="nx">newDB</span><span class="p">();</span>
 
-                // execute the truncate SQL command
-                $pdo-&gt;exec(&quot;TRUNCATE TABLE tbl_car&quot;);
+                <span class="c1">// execute the truncate SQL command</span>
+                <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">exec</span><span class="p">(</span><span class="s2">&quot;TRUNCATE TABLE tbl_car&quot;</span><span class="p">);</span>
 
-            }
-            catch(PDOException $epdo)
-            {
-                // In production, errors be redirect to an error page
-                echo(&quot;Error&lt;br&gt;&quot;.$epdo-&gt;getMessage());
-            }
+            <span class="p">}</span>
+            <span class="k">catch</span><span class="p">(</span><span class="nx">PDOException</span> <span class="nv">$epdo</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// In production, errors be redirect to an error page</span>
+                <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;Error&lt;br&gt;&quot;</span><span class="o">.</span><span class="nv">$epdo</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+            <span class="p">}</span>
 
-            $pdo = null;
-        }
+            <span class="nv">$pdo</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        // function calls
+        <span class="c1">// function calls</span>
 
-        clearDB();
-        pdoInsert();
-        printCarTable();
+        <span class="nx">clearDB</span><span class="p">();</span>
+        <span class="nx">pdoInsert</span><span class="p">();</span>
+        <span class="nx">printCarTable</span><span class="p">();</span>
 
-    ?&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+    <span class="cp">?&gt;</span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
 </pre></div>
 </div>
 </section>

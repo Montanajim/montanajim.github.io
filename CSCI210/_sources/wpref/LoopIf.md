@@ -4,7 +4,7 @@
 
 ## Example code
 
-```php+HTML
+```php
 <?php
 
 echo "hello php";

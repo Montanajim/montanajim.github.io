@@ -2,7 +2,7 @@
 
 This example shows how to use SQL with no named placeholders.
 
-```php+HTML
+```php
 <!DOCTYPE html>
 <html>
 <head>

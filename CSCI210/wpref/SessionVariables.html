@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -52,7 +52,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -176,7 +176,9 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="PHPIntroduction.html">PHP Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="PHPBasics.html">PHP Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LoopIf.html">Loops and If</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phparrays.html">PHP Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FirstFormsPOSTandGET.html">First Forms - POST and GET</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HTMLInputFieldReview.html">HTML Input Field Review</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Session Variables</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -492,72 +494,72 @@ document.write(`
 </section>
 <section id="page-2-page2-php">
 <h3>Page 2 / page2.php<a class="headerlink" href="#page-2-page2-php" title="Link to this heading">#</a></h3>
-<div class="highlight-php+HTML notranslate"><div class="highlight"><pre><span></span>&lt;!-- &quot;page2.php --&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;title&gt;Page 2&lt;/title&gt;
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!-- &quot;page2.php --&gt;</span>
+<span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">&lt;title&gt;Page 2&lt;/title&gt;</span>
 
-    &lt;?php
-    	// start session variables
-    	// needed on every page that accesses the session variable
-		session_start();
-	?&gt;
+<span class="x">    </span><span class="cp">&lt;?php</span>
+    	<span class="c1">// start session variables</span>
+    	<span class="c1">// needed on every page that accesses the session variable</span>
+		<span class="nb">session_start</span><span class="p">();</span>
+	<span class="cp">?&gt;</span>
 
-&lt;/head&gt;
-&lt;body&gt;
-&lt;h1&gt;Page 2&lt;/h1&gt;
-    &lt;?php
-    	// purpose here is to show that
-    	// information stored in the session variable can be 
-    	// accessed on different web pages
-        echo($_SESSION[&quot;stooges&quot;][1].&quot;&lt;br&gt;&quot;);
-        echo($_SESSION[&quot;managers&quot;][&quot;CFO&quot;].&quot;&lt;br&gt;&quot;);
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">&lt;h1&gt;Page 2&lt;/h1&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
+    	<span class="c1">// purpose here is to show that</span>
+    	<span class="c1">// information stored in the session variable can be </span>
+    	<span class="c1">// accessed on different web pages</span>
+        <span class="k">echo</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&quot;stooges&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+        <span class="k">echo</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&quot;managers&quot;</span><span class="p">][</span><span class="s2">&quot;CFO&quot;</span><span class="p">]</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
 
-        echo(&quot;&lt;br&gt;&lt;hr&lt;br&gt;&quot;);
-    	// print the key and the value
-        echo(&quot;&lt;h2&gt;Managers&lt;/h2&gt;&quot;);
-        foreach($_SESSION[&quot;managers&quot;] as $key =&gt; $value){
-            echo(&quot;Title: &quot;.$key.&quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&quot;.$value.&quot;&lt;br&gt;&quot;);
-        }
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&lt;br&gt;&quot;</span><span class="p">);</span>
+    	<span class="c1">// print the key and the value</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;h2&gt;Managers&lt;/h2&gt;&quot;</span><span class="p">);</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&quot;managers&quot;</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="p">){</span>
+            <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;Title: &quot;</span><span class="o">.</span><span class="nv">$key</span><span class="o">.</span><span class="s2">&quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&quot;</span><span class="o">.</span><span class="nv">$value</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
 
-    ?&gt;
+    <span class="cp">?&gt;</span>
 
-&lt;br&gt;
-&lt;h2&gt;Pages&lt;/h2&gt;
-&lt;a href=&quot;index.php&quot;&gt;Home&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;page2.php&quot;&gt;Page 2&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;page3.php&quot;&gt;Page 3&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;page4.php&quot;&gt;Destroy&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;page5.php&quot;&gt;Delete managers and first Name&lt;/a&gt;&lt;br&gt;
+<span class="x">&lt;br&gt;</span>
+<span class="x">&lt;h2&gt;Pages&lt;/h2&gt;</span>
+<span class="x">&lt;a href=&quot;index.php&quot;&gt;Home&lt;/a&gt;&lt;br&gt;</span>
+<span class="x">&lt;a href=&quot;page2.php&quot;&gt;Page 2&lt;/a&gt;&lt;br&gt;</span>
+<span class="x">&lt;a href=&quot;page3.php&quot;&gt;Page 3&lt;/a&gt;&lt;br&gt;</span>
+<span class="x">&lt;a href=&quot;page4.php&quot;&gt;Destroy&lt;/a&gt;&lt;br&gt;</span>
+<span class="x">&lt;a href=&quot;page5.php&quot;&gt;Delete managers and first Name&lt;/a&gt;&lt;br&gt;</span>
 
-&lt;br&gt;&lt;hr&gt;&lt;br&gt;
-    &lt;?php
-    	// show the whole session variable
-    	print_r($_SESSION);
-    ?&gt;
-&lt;br&gt;&lt;br&gt;
+<span class="x">&lt;br&gt;&lt;hr&gt;&lt;br&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
+    	<span class="c1">// show the whole session variable</span>
+    	<span class="nb">print_r</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">);</span>
+    <span class="cp">?&gt;</span>
+<span class="x">&lt;br&gt;&lt;br&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
 </pre></div>
 </div>
 <div style="page-break-after: always; break-after: page;"></div>
 </section>
 <section id="page-3-page3-php">
 <h3>Page 3 / page3.php<a class="headerlink" href="#page-3-page3-php" title="Link to this heading">#</a></h3>
-<div class="highlight-php+HTML notranslate"><div class="highlight"><pre><span></span>&lt;?php
-    // start session variables
-    // needed on every page that accesses the session variable
-    session_start();
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+    <span class="c1">// start session variables</span>
+    <span class="c1">// needed on every page that accesses the session variable</span>
+    <span class="nb">session_start</span><span class="p">();</span>
 
-	// delete the entire session variable and all of its data
-    session_destroy();
+	<span class="c1">// delete the entire session variable and all of its data</span>
+    <span class="nb">session_destroy</span><span class="p">();</span>
 
-	// link to page 2 to show that the data was deleted
-    echo(&#39;&lt;br&gt;&lt;a href=&quot;page2.php&quot;&gt;Page 2&lt;/a&gt;&#39;);
+	<span class="c1">// link to page 2 to show that the data was deleted</span>
+    <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;a href=&quot;page2.php&quot;&gt;Page 2&lt;/a&gt;&#39;</span><span class="p">);</span>
 
-?&gt;
+<span class="cp">?&gt;</span>
 </pre></div>
 </div>
 </section>

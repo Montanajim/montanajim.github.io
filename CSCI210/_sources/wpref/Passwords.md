@@ -311,7 +311,7 @@ echo('
 
 ## Form
 
-```html
+```php
 <?php
 
 	if(isset($_SESSION['logerr_message'] ))

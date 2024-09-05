@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -52,7 +52,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -176,7 +176,9 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="PHPIntroduction.html">PHP Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="PHPBasics.html">PHP Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LoopIf.html">Loops and If</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phparrays.html">PHP Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FirstFormsPOSTandGET.html">First Forms - POST and GET</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">HTML Input Field Review</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="SessionVariables.html">Session Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -345,182 +347,182 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="html-input-field-review">
 <h1>HTML Input Field Review<a class="headerlink" href="#html-input-field-review" title="Link to this heading">#</a></h1>
 <p><img alt="" src="../_images/input_pix.png" /></p>
-<div class="highlight-php+HTML notranslate"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;Input Review&lt;/title&gt;
-        &lt;style&gt;
-            .center {
-                    margin: auto;
-                    width: 50%;
-                    }
-        &lt;/style&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;div id=&quot;div1&quot; class=&quot;center&quot;&gt;        
-        &lt;h1&gt;Input Review&lt;/h1&gt;
-        Sample Form
-        &lt;form action=&quot;inputreview.php&quot; method=&quot;POST&quot;&gt;
-            &lt;table border=&quot;1&quot;&gt;                
-                    &lt;!--
-                    Text input box allows a user to enter text.
-                    type=&quot;text&quot;
-                    placeholder - this show &quot;sample&quot; text
-                    name - used to submit a form element to the server
-                    id - used to uniquely identify any element in the html page. 
-                        The id attribute is used with JavaScript and CSS. 
-                    required - used to check if a field is &quot;blank&quot;    
-                    pattern - checks to see if data fits a regex pattern
-                    title - is the help text for when a pattern fails
-                    maxlength - this is the total length the value is
-                                allow to have. A length of 2 only allows
-                                the value to be 2 characters long
-                    size - this is the display size of the input field
-                    --&gt;
-                &lt;tr&gt; 
-                    &lt;td&gt;Text Input&lt;/td&gt;
-                    &lt;td&gt;&lt;input type=&quot;text&quot; 
-                        name=&quot;text1&quot; id=&quot;text1&quot;
-                        placeholder=&quot;Enter full name&quot; 
-                        &gt;
-                        &lt;label for=&quot;text1&quot;&gt;Full Name&lt;/label
-                        &lt;/td&gt;
-                &lt;/tr&gt;
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">    &lt;head&gt;</span>
+<span class="x">        &lt;title&gt;Input Review&lt;/title&gt;</span>
+<span class="x">        &lt;style&gt;</span>
+<span class="x">            .center {</span>
+<span class="x">                    margin: auto;</span>
+<span class="x">                    width: 50%;</span>
+<span class="x">                    }</span>
+<span class="x">        &lt;/style&gt;</span>
+<span class="x">    &lt;/head&gt;</span>
+<span class="x">    &lt;body&gt;</span>
+<span class="x">        &lt;div id=&quot;div1&quot; class=&quot;center&quot;&gt;        </span>
+<span class="x">        &lt;h1&gt;Input Review&lt;/h1&gt;</span>
+<span class="x">        Sample Form</span>
+<span class="x">        &lt;form action=&quot;inputreview.php&quot; method=&quot;POST&quot;&gt;</span>
+<span class="x">            &lt;table border=&quot;1&quot;&gt;                </span>
+<span class="x">                    &lt;!--</span>
+<span class="x">                    Text input box allows a user to enter text.</span>
+<span class="x">                    type=&quot;text&quot;</span>
+<span class="x">                    placeholder - this show &quot;sample&quot; text</span>
+<span class="x">                    name - used to submit a form element to the server</span>
+<span class="x">                    id - used to uniquely identify any element in the html page. </span>
+<span class="x">                        The id attribute is used with JavaScript and CSS. </span>
+<span class="x">                    required - used to check if a field is &quot;blank&quot;    </span>
+<span class="x">                    pattern - checks to see if data fits a regex pattern</span>
+<span class="x">                    title - is the help text for when a pattern fails</span>
+<span class="x">                    maxlength - this is the total length the value is</span>
+<span class="x">                                allow to have. A length of 2 only allows</span>
+<span class="x">                                the value to be 2 characters long</span>
+<span class="x">                    size - this is the display size of the input field</span>
+<span class="x">                    --&gt;</span>
+<span class="x">                &lt;tr&gt; </span>
+<span class="x">                    &lt;td&gt;Text Input&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;input type=&quot;text&quot; </span>
+<span class="x">                        name=&quot;text1&quot; id=&quot;text1&quot;</span>
+<span class="x">                        placeholder=&quot;Enter full name&quot; </span>
+<span class="x">                        &gt;</span>
+<span class="x">                        &lt;label for=&quot;text1&quot;&gt;Full Name&lt;/label</span>
+<span class="x">                        &lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
 
-                    &lt;!--
-                    Tel input box allows a user to enter phone number.
-                    type=&quot;tel&quot;
-                    placeholder - this show &quot;sample&quot; text
-                    name - used to submit a form element to the server
-                    id - used to uniquely identify any element in the html page. 
-                         The id attribute is used with JavaScript and CSS. 
-                    required - used to check if a field is &quot;blank&quot;    
-                    pattern - checks to see if data fits a regex pattern for a phone number
-                    title - is the help text for when a pattern fails
-                    --&gt;
-                &lt;tr&gt;
-                &lt;td&gt;Tel Input&lt;/td&gt;
-                    &lt;td&gt;&lt;input type=&quot;tel&quot; 
-                        name=&quot;tel1&quot; id=&quot;tel1&quot;
-                        placeholder=&quot;555-555-5555&quot; 
-                        pattern=&quot;[0-9]{3}-[0-9]{3}-[0-9]{4}&quot;
-                        title= &quot;Please enter a phone number as shown by the demo&quot;
-                        &gt;
-                    &lt;/td&gt;
-                &lt;/tr&gt;
+<span class="x">                    &lt;!--</span>
+<span class="x">                    Tel input box allows a user to enter phone number.</span>
+<span class="x">                    type=&quot;tel&quot;</span>
+<span class="x">                    placeholder - this show &quot;sample&quot; text</span>
+<span class="x">                    name - used to submit a form element to the server</span>
+<span class="x">                    id - used to uniquely identify any element in the html page. </span>
+<span class="x">                         The id attribute is used with JavaScript and CSS. </span>
+<span class="x">                    required - used to check if a field is &quot;blank&quot;    </span>
+<span class="x">                    pattern - checks to see if data fits a regex pattern for a phone number</span>
+<span class="x">                    title - is the help text for when a pattern fails</span>
+<span class="x">                    --&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                &lt;td&gt;Tel Input&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;input type=&quot;tel&quot; </span>
+<span class="x">                        name=&quot;tel1&quot; id=&quot;tel1&quot;</span>
+<span class="x">                        placeholder=&quot;555-555-5555&quot; </span>
+<span class="x">                        pattern=&quot;[0-9]{3}-[0-9]{3}-[0-9]{4}&quot;</span>
+<span class="x">                        title= &quot;Please enter a phone number as shown by the demo&quot;</span>
+<span class="x">                        &gt;</span>
+<span class="x">                    &lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
 
-                    &lt;!--
-                    Text input box allows a user to enter text.
-                    type=&quot;text&quot;
-                    placeholder - this show &quot;sample&quot; text
-                    name - used to submit a form element to the server
-                    id - used to uniquely identify any element in the html page. 
-                        The id attribute is used with JavaScript and CSS. 
-                    required - used to check if a field is &quot;blank&quot;    
-                    pattern - checks to see if data fits a regex pattern
-                    title - is the help text for when a pattern fails
-                    maxlength - this is the total length the value is
-                                allow to have. A length of 2 only allows
-                                the value to be 2 characters long
-                    size - this is the display size of the input field
-                    --&gt;
+<span class="x">                    &lt;!--</span>
+<span class="x">                    Text input box allows a user to enter text.</span>
+<span class="x">                    type=&quot;text&quot;</span>
+<span class="x">                    placeholder - this show &quot;sample&quot; text</span>
+<span class="x">                    name - used to submit a form element to the server</span>
+<span class="x">                    id - used to uniquely identify any element in the html page. </span>
+<span class="x">                        The id attribute is used with JavaScript and CSS. </span>
+<span class="x">                    required - used to check if a field is &quot;blank&quot;    </span>
+<span class="x">                    pattern - checks to see if data fits a regex pattern</span>
+<span class="x">                    title - is the help text for when a pattern fails</span>
+<span class="x">                    maxlength - this is the total length the value is</span>
+<span class="x">                                allow to have. A length of 2 only allows</span>
+<span class="x">                                the value to be 2 characters long</span>
+<span class="x">                    size - this is the display size of the input field</span>
+<span class="x">                    --&gt;</span>
 
-                &lt;tr&gt;
-                    &lt;td&gt;Text Input / Size and Length&lt;/td&gt;
-                    &lt;td&gt;&lt;input type=&quot;text&quot; 
-                        name=&quot;text2&quot; id=&quot;text2&quot;
-                        maxlength=&quot;2&quot;
-                        size= &quot;5&quot;
-                        value=&quot;&quot;
-                        required&gt;&lt;/td&gt;
-                &lt;/tr&gt;
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;Text Input / Size and Length&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;input type=&quot;text&quot; </span>
+<span class="x">                        name=&quot;text2&quot; id=&quot;text2&quot;</span>
+<span class="x">                        maxlength=&quot;2&quot;</span>
+<span class="x">                        size= &quot;5&quot;</span>
+<span class="x">                        value=&quot;&quot;</span>
+<span class="x">                        required&gt;&lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
 
-                &lt;!--
-                Drop Down Fields
-                name - used to submit a form element to the server
-                id - used to uniquely identify any element in the html page. 
-                    The id attribute is used with JavaScript and CSS. 
-                size - is the number of rows to on the dropdown form
-                the &lt;option value&gt; tag is used to set the drop down values
-                --&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;Title&lt;/td&gt;
-                    &lt;td&gt;
-                        &lt;select name=&quot;title&quot; id=&quot;title&quot; size=&quot;2&quot; &gt;
-                            &lt;option value=&quot;Mr.&quot; &gt;Mr.&lt;/option&gt;
-                            &lt;option value=&quot;Mrs.&quot;&gt;Mrs.&lt;/option&gt;
-                            &lt;option value=&quot;Ms.&quot; selected&gt;Ms.&lt;/option&gt;
-                            &lt;option value=&quot;Dr.&quot;&gt;Dr.&lt;/option&gt;
-                        &lt;/select&gt;
-                    &lt;/td&gt;
-                &lt;/tr&gt;
+<span class="x">                &lt;!--</span>
+<span class="x">                Drop Down Fields</span>
+<span class="x">                name - used to submit a form element to the server</span>
+<span class="x">                id - used to uniquely identify any element in the html page. </span>
+<span class="x">                    The id attribute is used with JavaScript and CSS. </span>
+<span class="x">                size - is the number of rows to on the dropdown form</span>
+<span class="x">                the &lt;option value&gt; tag is used to set the drop down values</span>
+<span class="x">                --&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;Title&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;</span>
+<span class="x">                        &lt;select name=&quot;title&quot; id=&quot;title&quot; size=&quot;2&quot; &gt;</span>
+<span class="x">                            &lt;option value=&quot;Mr.&quot; &gt;Mr.&lt;/option&gt;</span>
+<span class="x">                            &lt;option value=&quot;Mrs.&quot;&gt;Mrs.&lt;/option&gt;</span>
+<span class="x">                            &lt;option value=&quot;Ms.&quot; selected&gt;Ms.&lt;/option&gt;</span>
+<span class="x">                            &lt;option value=&quot;Dr.&quot;&gt;Dr.&lt;/option&gt;</span>
+<span class="x">                        &lt;/select&gt;</span>
+<span class="x">                    &lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
 
-                &lt;!--
-                Radio Buttons
-                Radio buttons can have unique id&#39;s.  However, in order to group the buttons
-                so only one button is selected per group, the same group name is used
-                in the &quot;name&quot; attribute.  Below is an example of two groups - rtitle1 and
-                rtitle2
-                --&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;Radio&lt;/td&gt;
-                    &lt;td&gt;
-                        &lt;input type=&quot;radio&quot; value=&quot;Mr&quot; id=&quot;rd1&quot; name=&quot;rtitle1&quot;&gt;
-                        &lt;label for=&quot;rd1&quot;&gt;Mr&lt;/label&gt;&lt;br&gt;
-                        
-                        &lt;input type=&quot;radio&quot; value=&quot;Mrs&quot; id=&quot;rd2&quot; name=&quot;rtitle1&quot;&gt;
-                        &lt;label for=&quot;rd2&quot;&gt;Mrs&lt;/label&gt;&lt;br&gt;
+<span class="x">                &lt;!--</span>
+<span class="x">                Radio Buttons</span>
+<span class="x">                Radio buttons can have unique id&#39;s.  However, in order to group the buttons</span>
+<span class="x">                so only one button is selected per group, the same group name is used</span>
+<span class="x">                in the &quot;name&quot; attribute.  Below is an example of two groups - rtitle1 and</span>
+<span class="x">                rtitle2</span>
+<span class="x">                --&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;Radio&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;</span>
+<span class="x">                        &lt;input type=&quot;radio&quot; value=&quot;Mr&quot; id=&quot;rd1&quot; name=&quot;rtitle1&quot;&gt;</span>
+<span class="x">                        &lt;label for=&quot;rd1&quot;&gt;Mr&lt;/label&gt;&lt;br&gt;</span>
+<span class="x">                        </span>
+<span class="x">                        &lt;input type=&quot;radio&quot; value=&quot;Mrs&quot; id=&quot;rd2&quot; name=&quot;rtitle1&quot;&gt;</span>
+<span class="x">                        &lt;label for=&quot;rd2&quot;&gt;Mrs&lt;/label&gt;&lt;br&gt;</span>
 
-                        &lt;input type=&quot;radio&quot; value=&quot;Ms&quot; id=&quot;rd3&quot; name=&quot;rtitle2&quot;&gt;
-                        &lt;label for=&quot;rd3&quot;&gt;Ms&lt;/label&gt;&lt;br&gt;
-                        
-                        &lt;input type=&quot;radio&quot; value=&quot;Dr&quot; id=&quot;rd4&quot; name=&quot;rtitle2&quot;&gt;
-                        &lt;label for=&quot;rd4&quot;&gt;Dr&lt;/label&gt;&lt;br&gt;
+<span class="x">                        &lt;input type=&quot;radio&quot; value=&quot;Ms&quot; id=&quot;rd3&quot; name=&quot;rtitle2&quot;&gt;</span>
+<span class="x">                        &lt;label for=&quot;rd3&quot;&gt;Ms&lt;/label&gt;&lt;br&gt;</span>
+<span class="x">                        </span>
+<span class="x">                        &lt;input type=&quot;radio&quot; value=&quot;Dr&quot; id=&quot;rd4&quot; name=&quot;rtitle2&quot;&gt;</span>
+<span class="x">                        &lt;label for=&quot;rd4&quot;&gt;Dr&lt;/label&gt;&lt;br&gt;</span>
 
-                        &lt;/td&gt;
-                &lt;/tr&gt;
+<span class="x">                        &lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
 
-                &lt;!--
-                Checkbox will evaluate to the value of &quot;on&quot; when checked.
-                --&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;Billing Address&lt;/td&gt;
-                    &lt;td&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ba&quot; name=&quot;ba&quot;&gt;&lt;label for=&quot;ba&quot;&gt;Same as billing&lt;/label&gt;&lt;/td&gt;
-                &lt;/tr&gt;
+<span class="x">                &lt;!--</span>
+<span class="x">                Checkbox will evaluate to the value of &quot;on&quot; when checked.</span>
+<span class="x">                --&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;Billing Address&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ba&quot; name=&quot;ba&quot;&gt;&lt;label for=&quot;ba&quot;&gt;Same as billing&lt;/label&gt;&lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
 
-                &lt;!--
-                Email will check to see if there is an @ sign in the text
-                --&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;Email&lt;/td&gt;
-                    &lt;td&gt;&lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot;&gt;&lt;/td&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;input type=&quot;submit&quot;&lt;/td&gt;
-                &lt;/tr&gt;
+<span class="x">                &lt;!--</span>
+<span class="x">                Email will check to see if there is an @ sign in the text</span>
+<span class="x">                --&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;Email&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot;&gt;&lt;/td&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;input type=&quot;submit&quot;&lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
 
-                &lt;tr&gt;
-                    &lt;td&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;/td&gt;
-                &lt;/tr&gt;
-            &lt;/table&gt;
-        &lt;/form&gt;
-&lt;/div&gt;
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
+<span class="x">            &lt;/table&gt;</span>
+<span class="x">        &lt;/form&gt;</span>
+<span class="x">&lt;/div&gt;</span>
 
-        &lt;br&gt;&lt;hr&gt;&lt;br&gt;
+<span class="x">        &lt;br&gt;&lt;hr&gt;&lt;br&gt;</span>
 
-        &lt;?php
-            if(!empty($_POST[&#39;text1&#39;]))
-            {
-                print_r($_POST);
+<span class="x">        </span><span class="cp">&lt;?php</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;text1&#39;</span><span class="p">]))</span>
+            <span class="p">{</span>
+                <span class="nb">print_r</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">);</span>
 
-                echo(&quot;&lt;br&gt;&lt;br&gt;Text  box says: &quot; . $_POST[&#39;text1&#39;]);
+                <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;br&gt;Text  box says: &quot;</span> <span class="o">.</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;text1&#39;</span><span class="p">]);</span>
 
-            }
+            <span class="p">}</span>
 
-        ?&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
+        <span class="cp">?&gt;</span>
+<span class="x">    &lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
 </pre></div>
 </div>
 </section>

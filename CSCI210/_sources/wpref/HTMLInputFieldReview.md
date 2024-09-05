@@ -6,7 +6,7 @@
 
 
 
-```php+HTML
+```php
 <!DOCTYPE html>
 <html>
     <head>

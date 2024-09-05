@@ -199,7 +199,7 @@ source for page(AIBRDJG)
 
 ### Code Example
 
-```php+HTML
+```php
 <!DOCTYPE html>
 <html>
 <head>
