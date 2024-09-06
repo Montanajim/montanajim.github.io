@@ -103,7 +103,7 @@ it will create the log files
 
 
 import logging
-
+logger = logging.getLogger(__name__)
 
 def setupLogging():
     # setup logging file with force=True to overwrite existing handlers
@@ -114,10 +114,6 @@ def setupLogging():
 
 
 def levelMessages():
-
-    global logger
-    logger = logging.getLogger(__name__)
-
 
     # demo logging messages
     logger.debug("A debug message")

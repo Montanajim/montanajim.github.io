@@ -6,7 +6,7 @@
 
 
 
-### How is it used?
+## How is it used?
 
 YAML files are commonly used for:
 

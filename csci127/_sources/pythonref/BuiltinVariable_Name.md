@@ -86,3 +86,7 @@ Hello, Friend!
 ```
 
 The `__name__` check ensures the greeting functionality is only executed when running the script directly, not when imported as a module.
+
+
+
+> In Short: It Allows You to Execute Code When the File Runs as a Script, but Not When It’s Imported as a Module
