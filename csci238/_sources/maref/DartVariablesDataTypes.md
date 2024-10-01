@@ -15,7 +15,7 @@
 
 
 
-``` {admonitions}Variables
+``` {admonition}Variables
   *Ifinitial values are not declared
   then the intial value is null*
 

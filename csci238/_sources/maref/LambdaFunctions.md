@@ -12,6 +12,31 @@
 
 
 
+**Key Points:**
+
+- **Lambda Functions:** The code demonstrates the use of lambda functions, which are concise anonymous functions often used for inline expressions.
+- **List/Array:** It creates a list of numbers and performs various operations on it.
+- **Function Calls:** Functions are called to print the numbers and calculate their sum.
+- **Output:** The program prints the numbers, their sum using both traditional and lambda functions, and a final "Bye bye" message.
+
+**Code Breakdown:**
+
+1. **Lambda Function Definition:**
+   - `num Sum3Lambda(num xx, yy, zz) => (xx + yy + zz);` defines a lambda function that takes three numbers as input and returns their sum. The arrow (`=>`) syntax is used to concisely define the function body.
+1. **Traditional Function Definition:**
+   - `void printNums(var alist) { ... }` defines a traditional function that takes a list as input and prints its elements using a `for` loop.
+1. **Main Function:**
+   - The `main` function is the entry point of the program.
+   - It creates a list of numbers.
+   - Calls the `printNums` function to print the numbers using a traditional function.
+   - Uses the `forEach` method with a lambda function to print the numbers concisely.
+   - Calculates and prints the sum of the first three numbers using both `Sum3` and `Sum3Lambda` functions.
+   - Prints a final "Bye bye" message.
+
+
+
+
+
 ```dart
 import 'dart:io';
 
