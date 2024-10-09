@@ -1,0 +1,682 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Landscape Technical Guide &#8212; CSCI 208 - Class Materials</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/LandscapeTechnicalGuide';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CSCI 208 - Class Materials</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="UeInterface.html">Unreal Editor Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UeTerminology.html">Unreal Engine Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ToolsEditors.html">Tools and Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CoordinateSystemSpaces.html">Coordinate System and Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DirectoryStructure.html">Directory Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GrassQuickStart.html">Grass Quick Start</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/LandscapeTechnicalGuide.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Landscape Technical Guide</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#landscape-components">Landscape Components</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-sections">Component Sections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#landscape-component-ui">Landscape Component UI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-heightmap-dimensions">Calculating Heightmap Dimensions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">Example 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-heightmap-z-scale">Calculating Heightmap Z Scale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-landscape-sizes">Recommended Landscape Sizes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-raw-format-heightmaps">Importing RAW Format Heightmaps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-debug-mode">Layer Debug Mode</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="landscape-technical-guide">
+<h1>Landscape Technical Guide<a class="headerlink" href="#landscape-technical-guide" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/landscape-technical-guide-in-unreal-engine">https://dev.epicgames.com/documentation/en-us/unreal-engine/landscape-technical-guide-in-unreal-engine</a></p>
+<p>Understanding the construction and dimensions of Landscape Outdoor Terrain.</p>
+<p><img alt="Landscape Technical Guide" src="https://dev.epicgames.com/community/api/documentation/image/897566c2-1a1a-48a3-9dcf-51ec69526450?resizing_type=fit&amp;width=1920" /></p>
+<p>Striking the balance between beauty and performance when creating a Landscape in Unreal Engine can be a challenge. When building a Landscape, it is important to understand how the Landscape Actor is constructed and what dimensions provide the best performance. Valid dimensions for Landscape heightmaps are not always obvious when getting started. Being able to determine which heightmap dimensions are valid and which are optimal requires a thorough understanding of the underlying architecture of the Landscape, which are covered on this page.</p>
+<section id="landscape-components">
+<h2>Landscape Components<a class="headerlink" href="#landscape-components" title="Link to this heading">#</a></h2>
+<p>Landscapes are divided into multiple Landscape Components, which are Unreal Engine’s base unit for rendering, visibility calculations, and collision. All of the Landscape Components in a Landscape are the same size and are always square. The size of the Landscape Component is decided when the Landscape is created and depends on the Landscape’s size and detail.</p>
+<p>Each Landscape Component’s height data is stored in a single texture. Because of this, the texture’s size must be a power-of-two number of vertices. The shared row of vertices along the edge of two neighboring Landscape Components is duplicated and stored in each one. For this reason, it makes sense to think about the number of 4-sided polygons (quads) in each Landscape Component.</p>
+<p>The illustration below shows a very simple Landscape (outlined in green) that contains four Landscape Components. Each is made up of a single quad and one has been separated to show how the vertices where the Landscape Components meet are duplicated.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/c331ec44-9139-403b-891f-02a99652f6a9/landscape-tech-components.jpg"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/c331ec44-9139-403b-891f-02a99652f6a9/landscape-tech-components.jpg" /></a></p>
+<p>A Landscape made of four Landscape Components</p>
+</section>
+<section id="component-sections">
+<h2>Component Sections<a class="headerlink" href="#component-sections" title="Link to this heading">#</a></h2>
+<p>Components can optionally be divided into either 1 or 4 (2x2) subsections to increase the resolution of the Landscape. These subsections are the base unit of Landscape LOD calculation.</p>
+<p>Using 4 (2x2) subsections gives you the same size heightmap as using four times as many Landscape Components with only one subsection each, but using fewer Landscape Components gives better performance.</p>
+<p>The size of each section (in number of vertices) must be a power of two value (with a maximum of 256x256) so that different LOD levels can be stored in the mipmaps of the texture. This will lead to the number of quads in a Landscape Component in each direction (x or y) either being a power of two value minus 1 (if 1 section per Landscape Component) or a power of two value minus 2 (if 4 sections per Landscape Component).</p>
+<p>The illustration below shows an individual Landscape Component (outlined in green) that contains four sections. Each section is made up of 9 (3x3) quads. Again, you can see that the vertices where the sections meet are duplicated.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/8ee278ba-c437-42ff-96f1-d7f4b0e123e2/landscape-tech-component-sections.jpg"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/8ee278ba-c437-42ff-96f1-d7f4b0e123e2/landscape-tech-component-sections.jpg" /></a></p>
+<p>A Landscape Component containing four subsections.</p>
+</section>
+<section id="landscape-component-ui">
+<h2>Landscape Component UI<a class="headerlink" href="#landscape-component-ui" title="Link to this heading">#</a></h2>
+<p>A Landscape Actor is color-coded to make it easier to identify each type of Landscape Component. The edges of the Landscape are highlighted in yellow, the edge of each component is in light green, section edges (if set to 2x2 sections) are in medium green, and the individual Landscape quads are in dark green.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/b6226d8e-32e4-44db-9bf5-8afbcec4d70d/landscape-tech-wireframe.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/b6226d8e-32e4-44db-9bf5-8afbcec4d70d/landscape-tech-wireframe.png" /></a></p>
+<p>A new Landscape being created in the Viewport showing the UI colors.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Color</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Yellow</strong></p></td>
+<td><p>Landscape Actor Edge</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Light Green</strong></p></td>
+<td><p>Landscape Component Edge</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Medium Green</strong></p></td>
+<td><p>Landscape Section Edge</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Dark Green</strong></p></td>
+<td><p>Landscape Individual Quad</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading">#</a></h2>
+<p>The choice of Landscape Component size compared to the total number of Landscape Components is a performance trade-off. Smaller Landscape Component sizes facilitate quicker LOD transitions and the occlusion of more terrain, but the smaller size also means you will need more Landscape Components.</p>
+<p>Each Landscape Component has a render-thread CPU processing cost and each section is a draw call, so try to keep these numbers to a minimum. For the largest Landscapes, Epic recommends a maximum of 1024 Landscape Components.</p>
+</section>
+<section id="calculating-heightmap-dimensions">
+<h2>Calculating Heightmap Dimensions<a class="headerlink" href="#calculating-heightmap-dimensions" title="Link to this heading">#</a></h2>
+<p>To create a system that can accommodate very large terrain sizes and still be efficient in terms of memory and performance, the architecture applies restrictions on the dimensions of the heightmap. These restrictions are described below. This means that some dimensions are valid and others are not.</p>
+<p>The dimensions for a Landscape are based on the number of quads in each section, the number of sections in each Landscape Component, and the total number of Landscape Components in the Landscape. Once you determine the number of total Components and the resolution of each one, you can calculate the dimensions of the Landscape as a whole using the formula below:</p>
+<p>(A<em>Quads + 1, B</em>Quads + 1)</p>
+<p>A and B are the number of Landscape Components in each direction, and Quads is the number of quads per Landscape Component.</p>
+<p>Below are two different examples of using this formula.</p>
+<section id="example-1">
+<h3>Example 1<a class="headerlink" href="#example-1" title="Link to this heading">#</a></h3>
+<p>If you start with a Landscape Component consisting of a single subsection that contains 64x64 vertices, then the Landscape Component size is 63x63 quads. If your Landscape has10x10 of these Landscape Components, then you have 630x630 quads total in your Landscape. To import the heights for this Landscape, you need a heightmap of 631x631 vertices, because there is always one more row of vertices than there are quads (think of a 1x1 quad - it needs 4 vertices). Therefore, 631x631 is a valid Landscape size.</p>
+</section>
+<section id="example-2">
+<h3>Example 2<a class="headerlink" href="#example-2" title="Link to this heading">#</a></h3>
+<p>If you have a Landscape Component divided into 4 subsections, each of which is made up of 64x64 vertices, that leads to 63x63 quads per section and 126x126 quads per Landscape Component. If you have 32x32 of these components, you get 126 * 32 = 4032 quads total in each direction. Therefore, the total Landscape will be 4033x4033 vertices.</p>
+<p>These examples focus on square Landscapes. However, you can create Landscapes that are not square. Assuming 63 quads per Component, you could have any Landscape of AxB Components with a total size in vertices of (A<em>63+1 , B</em>63+1).</p>
+</section>
+</section>
+<section id="calculating-heightmap-z-scale">
+<h2>Calculating Heightmap Z Scale<a class="headerlink" href="#calculating-heightmap-z-scale" title="Link to this heading">#</a></h2>
+<p>Unreal Engine calculates your heightmap’s height by using values between -256 and 255.992, stored with 16-bit precision. The calculated height is then multiplied by the Z scale value that you input when you import the heightmap data. For example, a Z scale value of 1 results in a maximum height of roughly 256 cm and a maximum depth of -256 cm. Therefore, at the default Z scale value of 100, your height values will be between 256 m and -256 m.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/fae07000-7a7e-411d-858a-cafc6413ed79/landscape-tech-import.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/fae07000-7a7e-411d-858a-cafc6413ed79/landscape-tech-import.png" /></a></p>
+<p>Adjusting the Z scale during the import process.</p>
+<p>Calculating a custom height requires the use of a ratio to convert your custom height value into the -256 to 256 range that Unreal Engine uses. Since the height range is a total of 512 units (-256 to 0 is 256 units and 0 to 256 is another 256 units), the ratio is 1/512 or 0.001953125.</p>
+<p>You apply this by first converting your measurement to centimeters and then multiplying by the ratio.</p>
+<p>Here is an example:</p>
+<p>To represent Mauna Kea, the highest peak in Hawaii at 4207m, in an Unreal Engine Level:</p>
+<ol class="arabic simple">
+<li><p>Start by multiplying 4207 by 100 to convert the height into centimeters. This equals 420,700 cm.</p></li>
+<li><p>Next, multiply this new value by the ratio: 420,700 multiplied by 0.001953125 equals 821.6796875‬.</p></li>
+<li><p>This gives you a Z scale value of 821.6796875‬ and results in a heightmap that will go from -210,350 cm to 210,350 cm.</p></li>
+</ol>
+<p>This process will give you the exact height of the mountain with no room for values below sea level. If you would like some additional space in your Landscape’s height, adjust your initial height accordingly. To use the same example, Mauna Kea also extends 5761 m below sea level. This would give a total height to start with of 9968 m.</p>
+</section>
+<section id="recommended-landscape-sizes">
+<h2>Recommended Landscape Sizes<a class="headerlink" href="#recommended-landscape-sizes" title="Link to this heading">#</a></h2>
+<p>Below is a list of recommended Landscape sizes that maximize the area while minimizing the number of Landscape Components.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Overall size (vertices)</p></th>
+<th class="head"><p>Quads / section</p></th>
+<th class="head"><p>Sections / Component</p></th>
+<th class="head"><p>Landscape Component size</p></th>
+<th class="head"><p>Total Landscape Components</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>8129 x 8129</p></td>
+<td><p>127</p></td>
+<td><p>4 (2x2)</p></td>
+<td><p>254x254</p></td>
+<td><p>1024 (32x32)</p></td>
+</tr>
+<tr class="row-odd"><td><p>4033 x 4033</p></td>
+<td><p>63</p></td>
+<td><p>4 (2x2)</p></td>
+<td><p>126x126</p></td>
+<td><p>1024 (32x32)</p></td>
+</tr>
+<tr class="row-even"><td><p>2017 x 2017</p></td>
+<td><p>63</p></td>
+<td><p>4 (2x2)</p></td>
+<td><p>126x126</p></td>
+<td><p>256 (16x16)</p></td>
+</tr>
+<tr class="row-odd"><td><p>1009 x 1009</p></td>
+<td><p>63</p></td>
+<td><p>4 (2x2)</p></td>
+<td><p>126x126</p></td>
+<td><p>64 (8x8)</p></td>
+</tr>
+<tr class="row-even"><td><p>1009 x 1009</p></td>
+<td><p>63</p></td>
+<td><p>1</p></td>
+<td><p>63x63</p></td>
+<td><p>256 (16x16)</p></td>
+</tr>
+<tr class="row-odd"><td><p>505 x 505</p></td>
+<td><p>63</p></td>
+<td><p>4 (2x2)</p></td>
+<td><p>126x126</p></td>
+<td><p>16 (4x4)</p></td>
+</tr>
+<tr class="row-even"><td><p>505 x 505</p></td>
+<td><p>63</p></td>
+<td><p>1</p></td>
+<td><p>63x63</p></td>
+<td><p>64 (8x8)</p></td>
+</tr>
+<tr class="row-odd"><td><p>253 x 253</p></td>
+<td><p>63</p></td>
+<td><p>4 (2x2)</p></td>
+<td><p>126x126</p></td>
+<td><p>4 (2x2)</p></td>
+</tr>
+<tr class="row-even"><td><p>253 x 253</p></td>
+<td><p>63</p></td>
+<td><p>1</p></td>
+<td><p>63x63</p></td>
+<td><p>16 (4x4)</p></td>
+</tr>
+<tr class="row-odd"><td><p>127 x 127</p></td>
+<td><p>63</p></td>
+<td><p>4 (2x2)</p></td>
+<td><p>126x126</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>127 x 127</p></td>
+<td><p>63</p></td>
+<td><p>1</p></td>
+<td><p>63x63</p></td>
+<td><p>4 (2x2)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="importing-raw-format-heightmaps">
+<h2>Importing RAW Format Heightmaps<a class="headerlink" href="#importing-raw-format-heightmaps" title="Link to this heading">#</a></h2>
+<p>Unreal Engine supports importing heightmap images using the following formats:</p>
+<ul class="simple">
+<li><p>16-bit grayscale PNG</p></li>
+<li><p>8-bit grayscale r8</p></li>
+<li><p>16-bit grayscale r16</p></li>
+</ul>
+<p>These formats are preferred because the bit depth is known and they are assumed to be square.</p>
+<p>Heightmap data can also be imported using the .raw format using a separate JSON file. This file is used to define the width, height, and bit depth of your heightmap.</p>
+<p>To import a .raw heightmap file, use the process below:</p>
+<ol class="arabic simple">
+<li><p>Create a new .JSON file located in the same folder as your heightmap.</p></li>
+<li><p>Name the file the exact same name as your heightmap.</p></li>
+<li><p>Add the following script to your file:</p></li>
+</ol>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>
+<span class="w">        </span><span class="n">json</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">        </span><span class="s">&quot;width&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;height&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span>
+<span class="w">      	 </span><span class="s">&quot;bbp&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">8</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w"> </span>
+</pre></div>
+</div>
+<p>In the above example, the script tells the engine that the heightmap with the same name is 1024 x 1024 and has a bit depth of 8. For more information on importing heightmaps, see <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/importing-and-exporting-landscape-heightmaps-in-unreal-engine">Importing and Exporting Landscape Heightmaps</a>.</p>
+</section>
+<section id="layer-debug-mode">
+<h2>Layer Debug Mode<a class="headerlink" href="#layer-debug-mode" title="Link to this heading">#</a></h2>
+<p>Enabling Layer Debug mode toggles the visibility of specific layer weights on the Landscape in the viewport. Toggle the Layer Debug mode from the viewport menu: go to <strong>View &gt; Landscape Visualizers</strong>.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/a5fbb4b7-8cf6-4019-a4f4-77a50e10bd3d/landscape-tech-visualizers.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/a5fbb4b7-8cf6-4019-a4f4-77a50e10bd3d/landscape-tech-visualizers.png" /></a></p>
+<p>Enabling the Landscape Debug visualizer</p>
+<p>When Layer Debug Visualizer is enabled, you can select individual color channels for each of the target layers in the list.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/ec82e342-ebfa-4614-9a96-caf822567785/landscape-tech-channels.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/ec82e342-ebfa-4614-9a96-caf822567785/landscape-tech-channels.png" /></a></p>
+<p>Using the Landscape Debug Visualizer to visualize your Landscape’s Paint Layers.</p>
+<p>Selecting a channel will apply a shader to the Landscape which shows the area of the selected target layer that is covered by that channel.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/ea6a0eaa-c9a5-4c3f-9371-c42849f36a82/landscape-tech-debug.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/ea6a0eaa-c9a5-4c3f-9371-c42849f36a82/landscape-tech-debug.png" /></a></p>
+<p>Landscape Debug Visualizer applied to a Landscape.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#landscape-components">Landscape Components</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-sections">Component Sections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#landscape-component-ui">Landscape Component UI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-heightmap-dimensions">Calculating Heightmap Dimensions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">Example 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-heightmap-z-scale">Calculating Heightmap Z Scale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-landscape-sizes">Recommended Landscape Sizes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-raw-format-heightmaps">Importing RAW Format Heightmaps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-debug-mode">Layer Debug Mode</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

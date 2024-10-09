@@ -1,0 +1,721 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Grass Quick Start &#8212; CSCI 208 - Class Materials</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/GrassQuickStart';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Directory Structure" href="DirectoryStructure.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CSCI 208 - Class Materials</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="UeInterface.html">Unreal Editor Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UeTerminology.html">Unreal Engine Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ToolsEditors.html">Tools and Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CoordinateSystemSpaces.html">Coordinate System and Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DirectoryStructure.html">Directory Structure</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Grass Quick Start</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/GrassQuickStart.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Grass Quick Start</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">1 - Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-level-setup">2 - Initial Level Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grass-tool-actor-creation-and-setup">3 - Grass Tool Actor Creation and Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#landscape-materials-and-the-grass-tool">4 - Landscape Materials and the Grass Tool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-grass-tools">5 - Using the Grass Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-your-own">6 - On Your Own</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="grass-quick-start">
+<h1>Grass Quick Start<a class="headerlink" href="#grass-quick-start" title="Link to this heading">#</a></h1>
+<p>Learn how to add Grass textures to a landscape.</p>
+<p><img alt="Grass Quick Start" src="https://dev.epicgames.com/community/api/documentation/image/f3985504-b0fd-4300-bc8a-1dae2e3dd380?resizing_type=fit&amp;width=1920" /></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this Quick Start guide, we will take a look at how you can set up and apply a grass texture to a landscape. Over the course of this Quick Start tutorial you will learn how to create, set up, and spawn static meshes to make your Landscape appear covered in thick grass. You will be introduced to key properties and settings that will help you shape your virtual grasslands to fit your project’s needs.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/8c29302d-e1db-4862-af6f-c744b88fea28/01-t-grass-intro.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/8c29302d-e1db-4862-af6f-c744b88fea28/01-t-grass-intro.png" /></a></p>
+<p>Click image for full size.</p>
+<p>You will also learn about the Actors and properties required for a grassy-looking result to function correctly and deliver the results you want. When you have completed this Quick Start, you will have a new level that should look similar to the image above.</p>
+<p>Currently, the Grass system will only work with the Landscape Terrain Actor. Trying to use the Grass system to spawn grass on any other Actor type will not work.</p>
+</section>
+<section id="prerequisites">
+<h2>1 - Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<p>Download the <strong>Open World Demo Collection</strong> content pack as some of the content from the collection will be used in the following Quick Start. Once the Open World Demo Collection is downloaded, add it to the project that you are using to follow along with this Quick Start by doing the following:</p>
+<ol class="arabic">
+<li><p>From the Epic Games Launcher in either the <strong>Learn</strong> or <strong>Marketplace</strong> tab, locate and then download the <strong>Open World Demo Collection</strong>.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/8094227b-76b5-4359-beab-22e0bf12c6bf/02-owdc-1.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/8094227b-76b5-4359-beab-22e0bf12c6bf/02-owdc-1.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>Go the the <strong>Library</strong> section of the launcher and under <strong>Vault</strong> section locate the Open World Demo Collection.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/e2c1a46e-cf67-43ee-9cc3-ca2d616c9d2c/03-owdc-2.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/e2c1a46e-cf67-43ee-9cc3-ca2d616c9d2c/03-owdc-2.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>Click on the <strong>Add to Project</strong> button.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/d0e3305c-e1de-4201-8ee3-f429a7e8e59c/04-add-to-project.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/d0e3305c-e1de-4201-8ee3-f429a7e8e59c/04-add-to-project.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>A list of projects that you can add this to will appear. Select the project that you are using to follow along with this Quick Start and then press the <strong>Add to Project</strong> button.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/b0961fb8-0a60-4c0c-81c6-896dd4328845/05-select-project.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/b0961fb8-0a60-4c0c-81c6-896dd4328845/05-select-project.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+</ol>
+</section>
+<section id="initial-level-setup">
+<h2>2 - Initial Level Setup<a class="headerlink" href="#initial-level-setup" title="Link to this heading">#</a></h2>
+<p>Now, we will create a new level and Landscape terrain so that we have something on which to apply the grass.</p>
+<ol class="arabic">
+<li><p>Create a new level that uses the blank <strong>Default</strong> template as a base.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/402737ac-513d-4141-b356-fa924dec85ea/06-t-new-level.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/402737ac-513d-4141-b356-fa924dec85ea/06-t-new-level.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>Add a new Landscape Actor to the level. In the Main Toolbar, click the <strong>Modes</strong> button, and select <strong>Landscape</strong> to display the Landscape panel and toolbar, and then click on the <strong>Create</strong> button.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/67717655-15e4-4823-ab21-52a2fe092869/07-create-landscape.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/67717655-15e4-4823-ab21-52a2fe092869/07-create-landscape.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>To help better show off the Grass Tool, we are going to add a some noise to our Landscape terrain so it is not completely flat. In the <strong>Landscape</strong> toolbar <strong>Sculpt</strong> tab, click <strong>Noise</strong> from the tool list. Set the Noise properties with the following values.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/da42f043-8e37-44d0-8de7-49f1ae78c427/08-t-sculpt-tool-settings.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/da42f043-8e37-44d0-8de7-49f1ae78c427/08-t-sculpt-tool-settings.png" /></a></p>
+<p>Click image for full size.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property Name</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Additional Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Brush Size</strong></p></td>
+<td><p>65536.0</p></td>
+<td><p>This gives us a brush that is big enough to effect the entire Landscape terrain at once.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Tool Strength</strong></p></td>
+<td><p>0.01</p></td>
+<td><p>Since we only want a very subtle effect, set the Tool Strength very low and add more intensity by painting more.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Noise Scale</strong></p></td>
+<td><p>256</p></td>
+<td><p>Making the Noise Scale bigger makes the noise look smoother and more natural when applied to the Landscape.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>Position the Landscape Brush in the viewport so that it covers the entire Landscape terrain. Click the Left Mouse Button <strong>3</strong> to <strong>4</strong> times to add some very subtle noise to the Landscape terrain.</p></li>
+<li><p>Exit Landscape mode. Click the <strong>Modes</strong> button, and choose <strong>Select</strong> to display the <strong>Place Actors</strong> panel.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/082ecc19-3009-437f-8ed2-23e8165a60e0/09-place-actors.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/082ecc19-3009-437f-8ed2-23e8165a60e0/09-place-actors.png" /></a></p>
+<p>Click image for full size.</p>
+<p>When completed, you should have something that looks similar to the following image.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/ff32f837-5e6d-430e-a37e-895b5d0beb6d/10-t-noise-on-landscape.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/ff32f837-5e6d-430e-a37e-895b5d0beb6d/10-t-noise-on-landscape.png" /></a></p>
+<p>Click image for full size.</p>
+<p>The Grass system works on a completely flat Landscape terrain. The above modification to the Landscape was done purely for artistic reasons, to help show the final result.</p>
+</li>
+</ol>
+</section>
+<section id="grass-tool-actor-creation-and-setup">
+<h2>3 - Grass Tool Actor Creation and Setup<a class="headerlink" href="#grass-tool-actor-creation-and-setup" title="Link to this heading">#</a></h2>
+<p>We will create the required Actors and Materials the Grass Tool needs to function correctly. We will continue to work with the the level that was created in the last step.</p>
+<ol class="arabic">
+<li><p>Create a Landscape Grass Type: <strong>right-click</strong> in the <strong>Content Browser</strong>. From the displayed context menu, go to <strong>Foliage</strong> &gt; <strong>Landscape Grass Type</strong> and name it <strong>Grass_00</strong>.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/e6ddd84c-7402-4e6e-b7d5-9fe13a189ba5/11-t-create-ls-grass.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/e6ddd84c-7402-4e6e-b7d5-9fe13a189ba5/11-t-create-ls-grass.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>Open up the Landscape Grass Type and add a new item to the <strong>Grass Varieties</strong> array: <strong>double-click</strong> on <strong>Landscape Grass Type</strong> and once opened, press the <strong>Plus</strong> icon that is to the right of the <strong>Grass Varieties</strong> name.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/b9cbc4ca-b839-4763-884d-88f40f71adad/12-t-add-new-gv.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/b9cbc4ca-b839-4763-884d-88f40f71adad/12-t-add-new-gv.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>Inside of the <strong>Landscape Grass Type</strong> Actor look for the <strong>Grass Mesh</strong> section, click on the input box that says <strong>None</strong> and enter <strong>SM_FieldGrass_01</strong> as the search term, then click on the <strong>SM_FieldGrass_01</strong> to load it as the <strong>Grass Mesh</strong>.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/77df16e0-e277-4177-b1ff-c62d8eda9775/13-t-set-grass-type.gif"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/77df16e0-e277-4177-b1ff-c62d8eda9775/13-t-set-grass-type.gif" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>With the Static Mesh added we need to set the following properties to ensure that we are spawning enough grass mesh and that those meshes are randomly rotated and aligned to the Landscape terrain.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/2ac45364-8bb1-4bfe-8371-0f9f062e5f80/14-t-grass-props.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/2ac45364-8bb1-4bfe-8371-0f9f062e5f80/14-t-grass-props.png" /></a></p>
+<p>Click image for full size.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property Name</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Additional Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Grass Density</strong></p></td>
+<td><p>400.0</p></td>
+<td><p>Because we want this to look like grass, we must spawn a lot of Static Meshes to make the Landscape appear densely covered in grass.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Use Grid</strong></p></td>
+<td><p>Enabled</p></td>
+<td><p>To make the Static Meshes look more naturally placed, this offset is their placement position.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Random Rotation</strong></p></td>
+<td><p>Enabled</p></td>
+<td><p>Giving the Static Meshes used for the plants and grasses a random rotation makes sure that the same side of the Static Mesh used is not seen all the time, adding to the visual variety of the scene.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Align to Surface</strong></p></td>
+<td><p>Enabled</p></td>
+<td><p>This makes sure that the Static Mesh used conforms to the surface of the Landscape terrain.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ol>
+</section>
+<section id="landscape-materials-and-the-grass-tool">
+<h2>4 - Landscape Materials and the Grass Tool<a class="headerlink" href="#landscape-materials-and-the-grass-tool" title="Link to this heading">#</a></h2>
+<p>Before we can begin to use the Grass Tools we first have to create a Material that can work with both the Landscape terrain and the <strong>Landscape Grass Type</strong>. We will cover how to set up this Material, as well as how to link it so that it will work with the Landscape Grass Type.</p>
+<p>If you would like to have a more in-depth look at how the Landscape terrain works in UE5, refer to the <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/landscape-outdoor-terrain-in-unreal-engine">Landscape</a> pages for more information.</p>
+<ol class="arabic">
+<li><p>Create a new Material for our Landscape Terrain by <strong>right-clicking</strong> in the <strong>Content Browser</strong>, then selecting the <strong>Material &amp; Textures</strong> option from the <strong>Create Basic Asset</strong> section, and name the new Material, <strong>MAT_GT_Grass</strong>.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/5e2ead98-470a-4c4d-add6-616cd05b091a/15-t-create-new-material.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/5e2ead98-470a-4c4d-add6-616cd05b091a/15-t-create-new-material.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>Open up the <strong>MAT_GT_Grass</strong> Material by <strong>double-clicking</strong> on the Material inside of the <strong>Content Browser</strong>, then add the following two Textures from the <strong>Open World Demo Collection</strong> to the Material Graph.</p>
+<ul class="simple">
+<li><p><strong>T_AlpinePatch001_D_alt_R</strong></p></li>
+<li><p><strong>T_GDC_Grass01_D_NoisyAlpha</strong></p></li>
+</ul>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/167f01d9-09f8-47d1-b8bc-fabdf3dfc309/16-t-added-textures.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/167f01d9-09f8-47d1-b8bc-fabdf3dfc309/16-t-added-textures.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>Using the <strong>Palette</strong> search function, search for the Material Expression nodes listed below. Once you locate a required Material Expression node, select it in the Palette and then drag it into the Material Graph.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Material Expression Name</p></th>
+<th class="head"><p>Amount</p></th>
+<th class="head"><p>Additional Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Landscape Layer Blend</strong></p></td>
+<td><p>1</p></td>
+<td><p>To make the Landscape terrain look more realistic you will often need to blend and paint multiple together or separately and that is what the Landscape Layer Blend allows you to do.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Landscape Layer Sample</strong></p></td>
+<td><p>1</p></td>
+<td><p>This Material Expression allows the Material and the Landscape to talk to one another to ensure the right Static Mesh is used whenever a certain Landscape layer is painted.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Landscape Grass Output</strong></p></td>
+<td><p>1</p></td>
+<td><p>This enables the Landscape terrain to be able to spawn the Grass Types based on the setup in the Landscape Material.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/5e078a9b-225d-4986-9fd1-0b4f87b5f622/17-t-add-material-nodes.gif"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/5e078a9b-225d-4986-9fd1-0b4f87b5f622/17-t-add-material-nodes.gif" /></a></p>
+<p>Click image for full size.</p>
+<p>If you are unfamiliar with how the UE5 Material Editor works or would just like more information about it, check the official <strong><a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-materials">Unreal Engine Material documentation</a></strong> for more information on all things related to Materials.</p>
+</li>
+<li><p>Select the <strong>Landscape Layer Blend</strong> node and under the <strong>Details</strong> panel in the <strong>Layers</strong> section and add two new Layers to it by clicking the <strong>Plus</strong> icon 2 times.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/2752c6c3-08e6-4a1e-88c3-4c494a5366ff/18-t-lb-add-2-layers.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/2752c6c3-08e6-4a1e-88c3-4c494a5366ff/18-t-lb-add-2-layers.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>Once 2 layers have been added, set the <strong>Layer Name</strong> of one to <strong>Grass</strong> and set the <strong>Layer Name</strong> of the other one to <strong>Rock</strong> also setting the <strong>Preview Weight</strong> to <strong>1.0</strong> for each.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/388d4ea4-8c2c-4bef-a3d5-d950d6b30a3f/19-t-ls-layer-blend-setup.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/388d4ea4-8c2c-4bef-a3d5-d950d6b30a3f/19-t-ls-layer-blend-setup.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>Connect the <strong>T_AlpinePatch001_D_alt_R</strong> Texture to the <strong>Layer Rock</strong> input on the <strong>Landscape Layer Blend</strong> node then connect the <strong>T_GDC_Grass01_D_NoisyAlpha</strong> to the <strong>Layer Grass</strong> input finally connect the <strong>Output</strong> of the <strong>Landscape Layer Blend</strong> node into the <strong>Base Color</strong> input on the Main Material Node, <strong>Mat_GT_Grass</strong>.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/a6f4339a-871d-4d48-9133-390cbb68f646/20-t-hook-up-textures.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/a6f4339a-871d-4d48-9133-390cbb68f646/20-t-hook-up-textures.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>In the <strong>Content Browser</strong>, select the <strong>Grass_00</strong> Landscape Grass Type that was created in the last step.</p></li>
+<li><p>In the <strong>Material</strong> under the <strong>Grass Type</strong> option, press the <strong>Arrow</strong> icon to load the Actor that is currently selected in the Content Browser.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/c4ebbacf-fab6-4e25-bd0e-0e73784a8b46/21-t-input-grass-type.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/c4ebbacf-fab6-4e25-bd0e-0e73784a8b46/21-t-input-grass-type.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>Select the <strong>Landscape Layer Sample</strong> node under the <strong>Parameter Name</strong> input <strong>Grass</strong> for the name and connect the Output from the <strong>Landscape Layer Sample</strong> to the input of the <strong>Landscape Grass Output</strong> node.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/0347fa2e-1586-43a2-857e-1783c977c677/22-t-llw-setup.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/0347fa2e-1586-43a2-857e-1783c977c677/22-t-llw-setup.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>When completed you should have a Material that looks like the following. As always, do not forget to press the <strong>Apply</strong> and <strong>Save</strong> buttons to compile and save the Material.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/6f0cc827-2143-4aa2-a44a-efc90213b581/23-t-final-material.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/6f0cc827-2143-4aa2-a44a-efc90213b581/23-t-final-material.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+</ol>
+</section>
+<section id="using-the-grass-tools">
+<h2>5 - Using the Grass Tools<a class="headerlink" href="#using-the-grass-tools" title="Link to this heading">#</a></h2>
+<p>In order to see the Grass system in action, we need to apply the Material that was created in the last step to the Landscape and then use the Landscape painting tools to define where we want the grass to be spawned. In the following section, we will go over how to apply our Material to the Landscape Terrain, then how to use the Landscape Painting Tools to define areas where grass should spawn. We will continue to work in the level that was created in the last step.</p>
+<ol class="arabic">
+<li><p>Select the Landscape Actor that was placed in the level by clicking on it in the viewport.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/94978993-38c2-48bf-bbf0-9c9edd442e35/24-t-selected-landscape.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/94978993-38c2-48bf-bbf0-9c9edd442e35/24-t-selected-landscape.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>Locate the <strong>MAT_GT_Grass</strong> Material in the <strong>Content Browser</strong> and click on it to select it.</p></li>
+<li><p>On the Landscape Terrain under the <strong>Details</strong> panel in the <strong>Landscape Material</strong> section, press the <strong>Arrow</strong> icon to apply the <strong>MAT_GT_Grass</strong> Material to the Landscape Terrain.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/c6840490-86db-494e-9e25-20ec2a2a32f8/25-t-apply-material.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/c6840490-86db-494e-9e25-20ec2a2a32f8/25-t-apply-material.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>In the <strong>Main Toolbar</strong>, click the <strong>Modes</strong> button, select <strong>Landscape</strong> mode. From the <strong>Landscape</strong> toolbar, click on the <strong>Paint</strong> tab to go into <strong>Paint</strong> mode.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/411e8a98-c24c-47d5-9e3c-184dc6944cb9/26-t-landscape-paint-mode.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/411e8a98-c24c-47d5-9e3c-184dc6944cb9/26-t-landscape-paint-mode.png" /></a></p>
+<p>Click image for full size.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/aad043f5-d9c4-4523-8bfc-51b67fd861d5/27-t-landscape-paint-mode-1.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/aad043f5-d9c4-4523-8bfc-51b67fd861d5/27-t-landscape-paint-mode-1.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>Under the <strong>Target Layers</strong> section, add a new <strong>Layer Info</strong> by pressing the <strong>Plus</strong> icon on the far right of the layer name.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/5fa510bf-7877-43f8-ac41-a89dc233e570/28-t-add-target-layers.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/5fa510bf-7877-43f8-ac41-a89dc233e570/28-t-add-target-layers.png" /></a></p>
+<p>Click image for full size.</p>
+</li>
+<li><p>When prompted, select the <strong>Weight-Blended Layer (normal)</strong> option, then select a location to save the new Layer Blend in the Content Browser. Make sure that you create <strong>Layer Info</strong> for both the Rock and the Grass.</p></li>
+<li><p>Select the <strong>Grass</strong> Target Layer, then hold down the <strong>Left Mouse Button</strong> inside the viewport to begin painting the Grass Material to the Landscape Terrain. For this step, try to completely cover the Landscape, giving you results that look like this.</p>
+<p><a class="reference external" href="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/2555563f-01cd-4db2-9222-fdca4c785147/29-t-painting-grass-2.png"><img alt="img" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/2555563f-01cd-4db2-9222-fdca4c785147/29-t-painting-grass-2.png" /></a></p>
+<p>Click image for full size.</p>
+<p>Depending on the power of your development PC, when you start to paint on the Landscape the editor might become unresponsive as the grass is spawned. This is normal behavior as the grass is dynamically spawned after you have finished painting. Turning down the <strong>Grass Density</strong> in the <strong>Landscape Grass Type</strong> while working, then putting it back up to the desired level when done, is a great way to help mitigate this as much as possible.</p>
+</li>
+<li><p>To remove grass from the Landscape Terrain, select the Rock Target Layer then inside of the viewport hold down the <strong>Left Mouse button</strong> to begin replacing the grass Texture with the rock Texture.</p>
+<iframe src="https://dev.epicgames.com/community/api/cms/videos/V_PpukpG/embed.html" style="box-sizing: border-box; border: 0px; top: 0px; left: 0px; width: 632.008px; height: 355.502px;"></iframe>
+<p>Adjusting the <strong>Brush Size</strong> and <strong>Tool Strength</strong> will help to better define how the grass is placed or removed while painting on the Landscape.</p>
+</li>
+</ol>
+</section>
+<section id="on-your-own">
+<h2>6 - On Your Own<a class="headerlink" href="#on-your-own" title="Link to this heading">#</a></h2>
+<p>Now that you have seen the power that the Grass tool offers, try using the tools listed below in conjunction with what you have just learned to make a level that looks like the following image:</p>
+<p><img alt="On Your Own" src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/a5231b3b-73c5-44ca-8799-35cf69c597a9/44-t-on-your-own.png" /></p>
+<ul class="simple">
+<li><p>Use the <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/procedural-foliage-tool-in-unreal-engine">Procedural Foliage Tool</a> Tool to make the Landscape look like it is densely covered in grass, flowers and bushes.</p></li>
+<li><p>Define the look and feel of the Landscape terrain using the <strong><a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/landscape-sculpt-mode-in-unreal-engine">Landscape Sculpt</a></strong> tools to add features such as hills, mountains and lakes.</p></li>
+<li><p>Give the surface of the Landscape more visual variety and detail by creating a <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/landscape-materials-in-unreal-engine">Landscape Material</a> that has multiple Textures that can be painted on the Landscape terrain.</p></li>
+<li><p>Adjust the <strong><a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/directional-lights-in-unreal-engine">Directional Light</a></strong> to make the level lighting resemble lighting that happens in the early morning or late afternoon.</p></li>
+<li><p>Set up the level lighting to use a completely dynamic based lighting solution that will make use of dynamic shadows as well as <strong><a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/distance-field-soft-shadows-in-unreal-engine">Ray Traced Distance Field Soft Shadows</a></strong>.</p></li>
+<li><p>Try using the <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/foliage-mode-in-unreal-engine">Foliage System</a> tools to remove or tweak the placement, rotation and scale of the Foliage meshes that are placed by the Procedural Foliage tool so that you can get the exact look you are going for.</p></li>
+<li><p>Show off your creation to others by using a <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/camera-actors-in-unreal-engine">Camera</a> in conjunction with <a class="reference external" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/real-time-compositing-with-sequencer-in-unreal-engine">Sequencer</a> to render out a video of your level for you to share with the world.</p></li>
+</ul>
+<p><a class="reference external" href="https://dev.epicgames.com/community/search?query=landscape">landscape</a>[building virtual worlds](<a class="reference external" href="https://dev.epicgames.com/community/search?query=building">https://dev.epicgames.com/community/search?query=building</a> virtual worlds)[open world](<a class="reference external" href="https://dev.epicgames.com/community/search?query=open">https://dev.epicgames.com/community/search?query=open</a> world)</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="DirectoryStructure.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Directory Structure</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">1 - Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-level-setup">2 - Initial Level Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grass-tool-actor-creation-and-setup">3 - Grass Tool Actor Creation and Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#landscape-materials-and-the-grass-tool">4 - Landscape Materials and the Grass Tool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-grass-tools">5 - Using the Grass Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-your-own">6 - On Your Own</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
