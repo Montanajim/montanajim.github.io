@@ -1,14 +1,27 @@
 # JSON  - Read  Local JSON File
 
-## Sections
+## Overview
 
-[Lecture Code](##Lecture \-Code)
+This Flutter program is a simple mobile application that loads and displays a list of movies from a local JSON file (`movies_array.json`). Here’s a brief overview:
 
-[YAML File](##YAML-FILE)
+1. **Main Structure**: 
+   - The app starts with a main widget (`MyApp`), which initializes the `Homepage` widget.
 
-[JSON File](##JSON)
+2. **Homepage Widget**:
+   - It contains the main functionality, managing the state of the app.
+   - It has a list called `_movies` to store the data fetched from the JSON file.
+   - A boolean variable, `buttonVisible`, controls the visibility of a button that loads the JSON data.
 
-[Screen Shots](##Screen-Shots)
+3. **Loading JSON Data**:
+   - The `readJson()` function is used to read the contents of the JSON file and update the `_movies` list.
+   - It uses `setState()` to refresh the UI, displaying the loaded movies and hiding the "Load Data" button.
+
+4. **User Interface**:
+   - The UI consists of an app bar, a "Load Data" button, and a list view to display movie data.
+   - The movies are displayed using `ListView.builder()`, which generates a list of `Card` widgets, each representing a movie.
+   
+
+This app demonstrates how to read local JSON data, manage state, and dynamically update the UI in a Flutter app.
 
 
 
@@ -16,32 +29,29 @@
 
 ```dart
 // fa22_json_movies
-
-/*
-
-*/
-
+// Flutter app to read and display movies from a JSON file
 
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 
 void main() {
+  // The main function serves as the entry point for the Flutter app
   runApp(const MaterialApp(
     home: MyApp(),
   ));
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Building the main structure of the app
     return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Movie List',
-        home: Homepage()
+      debugShowCheckedModeBanner: false, // Hides the debug banner
+      title: 'Movie List',
+      home: Homepage(),
     );
   }
 }
@@ -51,93 +61,94 @@ class Homepage extends StatefulWidget {
 
   @override
   HomepageState createState() => HomepageState();
-
 }
 
 class HomepageState extends State<Homepage> {
+  List _movies = []; // List to store movies fetched from JSON
+  bool buttonVisible = true; // Controls the visibility of the "Load Data" button
 
-  List _movies = [];
-  // This variable controls the visibility of the form
-  bool buttonVisible = true;
-
-
-// Fetch content from json file
+  // Function to fetch content from a JSON file
   Future<void> readJson() async {
-    final String response =
-    await rootBundle.loadString("assets/movies_array.json");
+    final String response = await rootBundle.loadString("assets/movies_array.json");
     final data = await json.decode(response);
 
     setState(() {
-      _movies = data;
-      // by setting it here, it will force a redraw of the screen
-      // and turn the control on or off
-      buttonVisible = false;
+      _movies = data; // Updates the list with data from JSON
+      buttonVisible = false; // Hides the "Load Data" button once data is loaded
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(centerTitle: true,
-            title: const Text("Read Json - Movies")),
-        body: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Visibility(
-                      visible: buttonVisible ,
-                      child:
-                          SizedBox(
-                              width: 100,
-                              child:
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("Read Json - Movies"), // Sets the title of the app bar
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Shows the "Load Data" button only if buttonVisible is true
+            Visibility(
+              visible: buttonVisible,
+              child: SizedBox(
+                width: 100,
+                child: ElevatedButton(
+                  onPressed: readJson, // Calls the readJson function when pressed
+                  child: const Text('Load Data'),
+                ),
+              ),
+            ),
+            // Displays the movie list if it's not empty
+            (_movies.isNotEmpty)
+                ? Expanded(
+                    child: Scrollbar(
+                      interactive: true,
+                      thumbVisibility: true,
+                      child: ListView.builder(
+                        itemCount: _movies.length,
+                        itemBuilder: (context, index) {
+                          // Creates a Card widget for each movie entry
+                          return Card(
+                            margin: const EdgeInsets.all(10),
+                            child: ListTile(
+                              leading: Text(_movies[index][0].toString()), // Movie rank
+                              title: Text(_movies[index][1]), // Movie title
+                              subtitle: Text(_movies[index][6]), // Movie genre
+                            ),
+                          );
 
-            ElevatedButton(
-            onPressed: readJson,
-            child: const Text('Load Data')))),
-        //Note this can also be written as an if else statement
-         (_movies.isNotEmpty)? Expanded(
-            child: Scrollbar(
-                    interactive: true,
-                    thumbVisibility: true,
-                    child:
-                  ListView.builder(
-                itemCount: _movies.length,
-                itemBuilder: (context, index) {
-                //Example with card
-                return
-                  Card(
-                          margin: const EdgeInsets.all(10),
-                          child: ListTile(
-                              leading: Text(_movies[index][0].toString()),
-                              title: Text(_movies[index][1]),
-                              subtitle: Text(_movies[index][6])
-                          ));
-
-                  // Example with a container
-                  // Column(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   children: [
-                  //       Text("${_movies[index][0]} Rank"),
-                  //       Text(_movies[index][1].toString()),
-                  //       Text(_movies[index][2].toString()),
-                  //       Text("Rating: ${_movies[index][3]}"),
-                  //       Text("Year: ${_movies[index][4]}"),
-                  //       Text("Genre: ${_movies[index][6]}"),
-                  //       const Divider(height: 10,thickness: 3, color: Colors.indigo)
-                  //  ],
-
-
-                }
-            )
-
-        )) : Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children:const [Text("")])
-        ]
-    )));
+                          // Alternative approach using a Container widget
+                          // Column(
+                          //   crossAxisAlignment: CrossAxisAlignment.start,
+                          //   children: [
+                          //     Text("${_movies[index][0]} Rank"),
+                          //     Text(_movies[index][1].toString()),
+                          //     Text(_movies[index][2].toString()),
+                          //     Text("Rating: ${_movies[index][3]}"),
+                          //     Text("Year: ${_movies[index][4]}"),
+                          //     Text("Genre: ${_movies[index][6]}"),
+                          //     const Divider(height: 10, thickness: 3, color: Colors.indigo)
+                          //   ],
+                          // );
+                        },
+                      ),
+                    ),
+                  )
+                : Column(
+                    // Placeholder column if movie list is empty
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [Text("")],
+                  ),
+          ],
+        ),
+      ),
+    );
   }
 }
+
 ```
 
 

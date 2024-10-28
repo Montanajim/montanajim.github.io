@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,6 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'maref/JSONReadLocalFile';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Read JSON From Webpage" href="ReadJSONFromWebpage.html" />
+    <link rel="prev" title="Datepicker and Timepicker" href="DatepickerTimepicker.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -174,7 +174,7 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mobile Apps With Flutter</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="DartAndroidStudio.html">Run your first Dart example<br/>  in Android Studio</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DartVariablesDataTypes.html">Dart Variables and Datatypes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LambdaFunctions.html">Lambda Functions</a></li>
@@ -192,7 +192,10 @@
 <li class="toctree-l1"><a class="reference internal" href="TabBar.html">Tab Bar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DrawerNav.html">Drawer Navigation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TopBottomDrawerNav.html">Top Bottom Drawer Navigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DatepickerTimepicker.html">Datepicker and Timepicker</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">JSON  - Read  Local JSON File</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReadJSONFromWebpage.html">Read JSON From Webpage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQFLITE_Reference.html">SQFLITE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="WebviewerWithURLInput.html">Webviewer With URL Input</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SwitchRev2.html">Switch Rev2</a></li>
 </ul>
@@ -347,7 +350,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sections">Sections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#yaml-file">YAML File</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#json">JSON</a></li>
@@ -370,42 +373,63 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="json-read-local-json-file">
 <h1>JSON  - Read  Local JSON File<a class="headerlink" href="#json-read-local-json-file" title="Link to this heading">#</a></h1>
-<section id="sections">
-<h2>Sections<a class="headerlink" href="#sections" title="Link to this heading">#</a></h2>
-<p>[Lecture Code](##Lecture -Code)</p>
-<p><a class="reference internal" href="##YAML-FILE"><span class="xref myst">YAML File</span></a></p>
-<p><a class="reference internal" href="##JSON"><span class="xref myst">JSON File</span></a></p>
-<p><a class="reference internal" href="##Screen-Shots"><span class="xref myst">Screen Shots</span></a></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>This Flutter program is a simple mobile application that loads and displays a list of movies from a local JSON file (<code class="docutils literal notranslate"><span class="pre">movies_array.json</span></code>). Here’s a brief overview:</p>
+<ol class="arabic simple">
+<li><p><strong>Main Structure</strong>:</p>
+<ul class="simple">
+<li><p>The app starts with a main widget (<code class="docutils literal notranslate"><span class="pre">MyApp</span></code>), which initializes the <code class="docutils literal notranslate"><span class="pre">Homepage</span></code> widget.</p></li>
+</ul>
+</li>
+<li><p><strong>Homepage Widget</strong>:</p>
+<ul class="simple">
+<li><p>It contains the main functionality, managing the state of the app.</p></li>
+<li><p>It has a list called <code class="docutils literal notranslate"><span class="pre">_movies</span></code> to store the data fetched from the JSON file.</p></li>
+<li><p>A boolean variable, <code class="docutils literal notranslate"><span class="pre">buttonVisible</span></code>, controls the visibility of a button that loads the JSON data.</p></li>
+</ul>
+</li>
+<li><p><strong>Loading JSON Data</strong>:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">readJson()</span></code> function is used to read the contents of the JSON file and update the <code class="docutils literal notranslate"><span class="pre">_movies</span></code> list.</p></li>
+<li><p>It uses <code class="docutils literal notranslate"><span class="pre">setState()</span></code> to refresh the UI, displaying the loaded movies and hiding the “Load Data” button.</p></li>
+</ul>
+</li>
+<li><p><strong>User Interface</strong>:</p>
+<ul class="simple">
+<li><p>The UI consists of an app bar, a “Load Data” button, and a list view to display movie data.</p></li>
+<li><p>The movies are displayed using <code class="docutils literal notranslate"><span class="pre">ListView.builder()</span></code>, which generates a list of <code class="docutils literal notranslate"><span class="pre">Card</span></code> widgets, each representing a movie.</p></li>
+</ul>
+</li>
+</ol>
+<p>This app demonstrates how to read local JSON data, manage state, and dynamically update the UI in a Flutter app.</p>
 </section>
 <section id="lecture-code">
 <h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Link to this heading">#</a></h2>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// fa22_json_movies</span>
-
-<span class="cm">/*</span>
-
-<span class="cm">*/</span>
-
+<span class="c1">// Flutter app to read and display movies from a JSON file</span>
 
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:convert&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/services.dart&#39;</span><span class="p">;</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// The main function serves as the entry point for the Flutter app</span>
 <span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MaterialApp</span><span class="p">(</span>
 <span class="w">    </span><span class="nl">home:</span><span class="w"> </span><span class="n">MyApp</span><span class="p">(),</span>
 <span class="w">  </span><span class="p">));</span>
 <span class="p">}</span>
-
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">MyApp</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatelessWidget</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">MyApp</span><span class="p">({</span><span class="n">Key</span><span class="o">?</span><span class="w"> </span><span class="n">key</span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">key:</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Building the main structure of the app</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">MaterialApp</span><span class="p">(</span>
-<span class="w">        </span><span class="nl">debugShowCheckedModeBanner:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s1">&#39;Movie List&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nl">home:</span><span class="w"> </span><span class="n">Homepage</span><span class="p">()</span>
+<span class="w">      </span><span class="nl">debugShowCheckedModeBanner:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// Hides the debug banner</span>
+<span class="w">      </span><span class="nl">title:</span><span class="w"> </span><span class="s1">&#39;Movie List&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">home:</span><span class="w"> </span><span class="n">Homepage</span><span class="p">(),</span>
 <span class="w">    </span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -415,91 +439,91 @@ document.write(`
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">HomepageState</span><span class="w"> </span><span class="n">createState</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">HomepageState</span><span class="p">();</span>
-
 <span class="p">}</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">HomepageState</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">State</span><span class="o">&lt;</span><span class="n">Homepage</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">List</span><span class="w"> </span><span class="n">_movies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span><span class="w"> </span><span class="c1">// List to store movies fetched from JSON</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">buttonVisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// Controls the visibility of the &quot;Load Data&quot; button</span>
 
-<span class="w">  </span><span class="n">List</span><span class="w"> </span><span class="n">_movies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-<span class="w">  </span><span class="c1">// This variable controls the visibility of the form</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">buttonVisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-
-
-<span class="c1">// Fetch content from json file</span>
+<span class="w">  </span><span class="c1">// Function to fetch content from a JSON file</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">readJson</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">rootBundle</span><span class="p">.</span><span class="n">loadString</span><span class="p">(</span><span class="s2">&quot;assets/movies_array.json&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">rootBundle</span><span class="p">.</span><span class="n">loadString</span><span class="p">(</span><span class="s2">&quot;assets/movies_array.json&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
 
 <span class="w">    </span><span class="n">setState</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">_movies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
-<span class="w">      </span><span class="c1">// by setting it here, it will force a redraw of the screen</span>
-<span class="w">      </span><span class="c1">// and turn the control on or off</span>
-<span class="w">      </span><span class="n">buttonVisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_movies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w"> </span><span class="c1">// Updates the list with data from JSON</span>
+<span class="w">      </span><span class="n">buttonVisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// Hides the &quot;Load Data&quot; button once data is loaded</span>
 <span class="w">    </span><span class="p">});</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Scaffold</span><span class="p">(</span>
-<span class="w">        </span><span class="nl">appBar:</span><span class="w"> </span><span class="n">AppBar</span><span class="p">(</span><span class="nl">centerTitle:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">            </span><span class="nl">title:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Read Json - Movies&quot;</span><span class="p">)),</span>
-<span class="w">        </span><span class="nl">body:</span><span class="w"> </span><span class="n">Padding</span><span class="p">(</span>
-<span class="w">            </span><span class="nl">padding:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">20</span><span class="p">),</span>
-<span class="w">            </span><span class="nl">child:</span><span class="w"> </span><span class="n">Column</span><span class="p">(</span>
-<span class="w">                </span><span class="nl">crossAxisAlignment:</span><span class="w"> </span><span class="n">CrossAxisAlignment</span><span class="p">.</span><span class="n">stretch</span><span class="p">,</span>
-<span class="w">                </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                  </span><span class="n">Visibility</span><span class="p">(</span>
-<span class="w">                      </span><span class="nl">visible:</span><span class="w"> </span><span class="n">buttonVisible</span><span class="w"> </span><span class="p">,</span>
-<span class="w">                      </span><span class="nl">child:</span>
-<span class="w">                          </span><span class="n">SizedBox</span><span class="p">(</span>
-<span class="w">                              </span><span class="nl">width:</span><span class="w"> </span><span class="m">100</span><span class="p">,</span>
-<span class="w">                              </span><span class="nl">child:</span>
+<span class="w">      </span><span class="nl">appBar:</span><span class="w"> </span><span class="n">AppBar</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">centerTitle:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Read Json - Movies&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1">// Sets the title of the app bar</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">      </span><span class="nl">body:</span><span class="w"> </span><span class="n">Padding</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">padding:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">20</span><span class="p">),</span>
+<span class="w">        </span><span class="nl">child:</span><span class="w"> </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">          </span><span class="nl">crossAxisAlignment:</span><span class="w"> </span><span class="n">CrossAxisAlignment</span><span class="p">.</span><span class="n">stretch</span><span class="p">,</span>
+<span class="w">          </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="c1">// Shows the &quot;Load Data&quot; button only if buttonVisible is true</span>
+<span class="w">            </span><span class="n">Visibility</span><span class="p">(</span>
+<span class="w">              </span><span class="nl">visible:</span><span class="w"> </span><span class="n">buttonVisible</span><span class="p">,</span>
+<span class="w">              </span><span class="nl">child:</span><span class="w"> </span><span class="n">SizedBox</span><span class="p">(</span>
+<span class="w">                </span><span class="nl">width:</span><span class="w"> </span><span class="m">100</span><span class="p">,</span>
+<span class="w">                </span><span class="nl">child:</span><span class="w"> </span><span class="n">ElevatedButton</span><span class="p">(</span>
+<span class="w">                  </span><span class="nl">onPressed:</span><span class="w"> </span><span class="n">readJson</span><span class="p">,</span><span class="w"> </span><span class="c1">// Calls the readJson function when pressed</span>
+<span class="w">                  </span><span class="nl">child:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Load Data&#39;</span><span class="p">),</span>
+<span class="w">                </span><span class="p">),</span>
+<span class="w">              </span><span class="p">),</span>
+<span class="w">            </span><span class="p">),</span>
+<span class="w">            </span><span class="c1">// Displays the movie list if it&#39;s not empty</span>
+<span class="w">            </span><span class="p">(</span><span class="n">_movies</span><span class="p">.</span><span class="n">isNotEmpty</span><span class="p">)</span>
+<span class="w">                </span><span class="o">?</span><span class="w"> </span><span class="n">Expanded</span><span class="p">(</span>
+<span class="w">                    </span><span class="nl">child:</span><span class="w"> </span><span class="n">Scrollbar</span><span class="p">(</span>
+<span class="w">                      </span><span class="nl">interactive:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                      </span><span class="nl">thumbVisibility:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                      </span><span class="nl">child:</span><span class="w"> </span><span class="n">ListView</span><span class="p">.</span><span class="n">builder</span><span class="p">(</span>
+<span class="w">                        </span><span class="nl">itemCount:</span><span class="w"> </span><span class="n">_movies</span><span class="p">.</span><span class="n">length</span><span class="p">,</span>
+<span class="w">                        </span><span class="nl">itemBuilder:</span><span class="w"> </span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                          </span><span class="c1">// Creates a Card widget for each movie entry</span>
+<span class="w">                          </span><span class="k">return</span><span class="w"> </span><span class="n">Card</span><span class="p">(</span>
+<span class="w">                            </span><span class="nl">margin:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">10</span><span class="p">),</span>
+<span class="w">                            </span><span class="nl">child:</span><span class="w"> </span><span class="n">ListTile</span><span class="p">(</span>
+<span class="w">                              </span><span class="nl">leading:</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">_movies</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="m">0</span><span class="p">].</span><span class="n">toString</span><span class="p">()),</span><span class="w"> </span><span class="c1">// Movie rank</span>
+<span class="w">                              </span><span class="nl">title:</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">_movies</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="m">1</span><span class="p">]),</span><span class="w"> </span><span class="c1">// Movie title</span>
+<span class="w">                              </span><span class="nl">subtitle:</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">_movies</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="m">6</span><span class="p">]),</span><span class="w"> </span><span class="c1">// Movie genre</span>
+<span class="w">                            </span><span class="p">),</span>
+<span class="w">                          </span><span class="p">);</span>
 
-<span class="w">            </span><span class="n">ElevatedButton</span><span class="p">(</span>
-<span class="w">            </span><span class="nl">onPressed:</span><span class="w"> </span><span class="n">readJson</span><span class="p">,</span>
-<span class="w">            </span><span class="nl">child:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Load Data&#39;</span><span class="p">)))),</span>
-<span class="w">        </span><span class="c1">//Note this can also be written as an if else statement</span>
-<span class="w">         </span><span class="p">(</span><span class="n">_movies</span><span class="p">.</span><span class="n">isNotEmpty</span><span class="p">)</span><span class="o">?</span><span class="w"> </span><span class="n">Expanded</span><span class="p">(</span>
-<span class="w">            </span><span class="nl">child:</span><span class="w"> </span><span class="n">Scrollbar</span><span class="p">(</span>
-<span class="w">                    </span><span class="nl">interactive:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">                    </span><span class="nl">thumbVisibility:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">                    </span><span class="nl">child:</span>
-<span class="w">                  </span><span class="n">ListView</span><span class="p">.</span><span class="n">builder</span><span class="p">(</span>
-<span class="w">                </span><span class="nl">itemCount:</span><span class="w"> </span><span class="n">_movies</span><span class="p">.</span><span class="n">length</span><span class="p">,</span>
-<span class="w">                </span><span class="nl">itemBuilder:</span><span class="w"> </span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="c1">//Example with card</span>
-<span class="w">                </span><span class="k">return</span>
-<span class="w">                  </span><span class="n">Card</span><span class="p">(</span>
-<span class="w">                          </span><span class="nl">margin:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">10</span><span class="p">),</span>
-<span class="w">                          </span><span class="nl">child:</span><span class="w"> </span><span class="n">ListTile</span><span class="p">(</span>
-<span class="w">                              </span><span class="nl">leading:</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">_movies</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="m">0</span><span class="p">].</span><span class="n">toString</span><span class="p">()),</span>
-<span class="w">                              </span><span class="nl">title:</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">_movies</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="m">1</span><span class="p">]),</span>
-<span class="w">                              </span><span class="nl">subtitle:</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">_movies</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="m">6</span><span class="p">])</span>
-<span class="w">                          </span><span class="p">));</span>
-
-<span class="w">                  </span><span class="c1">// Example with a container</span>
-<span class="w">                  </span><span class="c1">// Column(</span>
-<span class="w">                  </span><span class="c1">//   crossAxisAlignment: CrossAxisAlignment.start,</span>
-<span class="w">                  </span><span class="c1">//   children: [</span>
-<span class="w">                  </span><span class="c1">//       Text(&quot;${_movies[index][0]} Rank&quot;),</span>
-<span class="w">                  </span><span class="c1">//       Text(_movies[index][1].toString()),</span>
-<span class="w">                  </span><span class="c1">//       Text(_movies[index][2].toString()),</span>
-<span class="w">                  </span><span class="c1">//       Text(&quot;Rating: ${_movies[index][3]}&quot;),</span>
-<span class="w">                  </span><span class="c1">//       Text(&quot;Year: ${_movies[index][4]}&quot;),</span>
-<span class="w">                  </span><span class="c1">//       Text(&quot;Genre: ${_movies[index][6]}&quot;),</span>
-<span class="w">                  </span><span class="c1">//       const Divider(height: 10,thickness: 3, color: Colors.indigo)</span>
-<span class="w">                  </span><span class="c1">//  ],</span>
-
-
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">)</span>
-
-<span class="w">        </span><span class="p">))</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Column</span><span class="p">(</span>
-<span class="w">            </span><span class="nl">crossAxisAlignment:</span><span class="w"> </span><span class="n">CrossAxisAlignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="w">            </span><span class="nl">children:</span><span class="k">const</span><span class="w"> </span><span class="p">[</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)])</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">    </span><span class="p">)));</span>
+<span class="w">                          </span><span class="c1">// Alternative approach using a Container widget</span>
+<span class="w">                          </span><span class="c1">// Column(</span>
+<span class="w">                          </span><span class="c1">//   crossAxisAlignment: CrossAxisAlignment.start,</span>
+<span class="w">                          </span><span class="c1">//   children: [</span>
+<span class="w">                          </span><span class="c1">//     Text(&quot;${_movies[index][0]} Rank&quot;),</span>
+<span class="w">                          </span><span class="c1">//     Text(_movies[index][1].toString()),</span>
+<span class="w">                          </span><span class="c1">//     Text(_movies[index][2].toString()),</span>
+<span class="w">                          </span><span class="c1">//     Text(&quot;Rating: ${_movies[index][3]}&quot;),</span>
+<span class="w">                          </span><span class="c1">//     Text(&quot;Year: ${_movies[index][4]}&quot;),</span>
+<span class="w">                          </span><span class="c1">//     Text(&quot;Genre: ${_movies[index][6]}&quot;),</span>
+<span class="w">                          </span><span class="c1">//     const Divider(height: 10, thickness: 3, color: Colors.indigo)</span>
+<span class="w">                          </span><span class="c1">//   ],</span>
+<span class="w">                          </span><span class="c1">// );</span>
+<span class="w">                        </span><span class="p">},</span>
+<span class="w">                      </span><span class="p">),</span>
+<span class="w">                    </span><span class="p">),</span>
+<span class="w">                  </span><span class="p">)</span>
+<span class="w">                </span><span class="o">:</span><span class="w"> </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">                    </span><span class="c1">// Placeholder column if movie list is empty</span>
+<span class="w">                    </span><span class="nl">crossAxisAlignment:</span><span class="w"> </span><span class="n">CrossAxisAlignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="w">                    </span><span class="nl">children:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">[</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)],</span>
+<span class="w">                  </span><span class="p">),</span>
+<span class="w">          </span><span class="p">],</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -721,6 +745,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="DatepickerTimepicker.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Datepicker and Timepicker</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ReadJSONFromWebpage.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Read JSON From Webpage</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -737,7 +779,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sections">Sections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#yaml-file">YAML File</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#json">JSON</a></li>

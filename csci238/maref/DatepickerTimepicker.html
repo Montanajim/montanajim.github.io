@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Datepicker and Timepicker &#8212; Mobile Apps</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'maref/DatepickerTimepicker';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Read JSON From Webpage" href="ReadJSONFromWebpage.html" />
+    <link rel="prev" title="Top Bottom Drawer Navigation" href="TopBottomDrawerNav.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Mobile Apps</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Class Notes For CSCI 238
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mobile Apps With Flutter</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="DartAndroidStudio.html">Run your first Dart example<br/>  in Android Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DartVariablesDataTypes.html">Dart Variables and Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LambdaFunctions.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DartClasses.html">Dart Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Future.html">Future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InputOutput.html">Input Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StatelessWidgetsContainer.html">Stateless Widgets - Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StatelessWidgetsListView.html">Stateless Widgets - ListView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StatelessRoutes.html">Stateless Routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StatefulStatelessRoutes.html">Stateful and Stateless Routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Textfields.html">TextFields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RadioButtons.html">Radio Buttons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReadingATextFile.html">Reading A Text File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BottomNavigationBar.html">Bottom Navigation Bar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TabBar.html">Tab Bar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DrawerNav.html">Drawer Navigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TopBottomDrawerNav.html">Top Bottom Drawer Navigation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Datepicker and Timepicker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReadJSONFromWebpage.html">Read JSON From Webpage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQFLITE_Reference.html">SQFLITE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebviewerWithURLInput.html">Webviewer With URL Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SwitchRev2.html">Switch Rev2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Additional Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="AddingFonts.html">Adding Fonts</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/maref/DatepickerTimepicker.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Datepicker and Timepicker</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-code">The code</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="datepicker-and-timepicker">
+<h1>Datepicker and Timepicker<a class="headerlink" href="#datepicker-and-timepicker" title="Link to this heading">#</a></h1>
+<p>This Flutter code creates an app that allows users to select and display dates and times using pickers. Here’s a brief overview:</p>
+<ol class="arabic simple">
+<li><p><strong>Main Function</strong>: It initializes and runs the Flutter app, setting <code class="docutils literal notranslate"><span class="pre">MyHomePage</span></code> as the home widget.</p></li>
+<li><p><strong>MyHomePage Widget</strong>:</p>
+<ul class="simple">
+<li><p>This is a stateful widget that manages the state of the home page, which contains the UI and functionality for selecting dates and times.</p></li>
+<li><p>The state class, <code class="docutils literal notranslate"><span class="pre">_MyHomePageState</span></code>, contains variables to store selected date and time values, which are displayed as text.</p></li>
+</ul>
+</li>
+<li><p><strong>Date and Time Selection</strong>:</p>
+<ul class="simple">
+<li><p>Three buttons (<code class="docutils literal notranslate"><span class="pre">getDate()</span></code>, <code class="docutils literal notranslate"><span class="pre">getDate2()</span></code>, and <code class="docutils literal notranslate"><span class="pre">getTime()</span></code>) trigger date or time pickers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theDate()</span></code>: Opens a basic date picker dialog.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theDate2()</span></code>: Opens a date picker with an input mode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theTime()</span></code>: Opens a time picker with an input mode.</p></li>
+<li><p>The selected values update the display through the <code class="docutils literal notranslate"><span class="pre">setState()</span></code> method, ensuring the UI reflects changes.</p></li>
+</ul>
+</li>
+<li><p><strong>UI Layout</strong>:</p>
+<ul class="simple">
+<li><p>The layout consists of a vertical list that includes buttons to select dates and times and text widgets to display the selected values.</p></li>
+<li><p>The app’s interface uses a simple <code class="docutils literal notranslate"><span class="pre">Scaffold</span></code> with an app bar, buttons, and text fields within a <code class="docutils literal notranslate"><span class="pre">ListView</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+<p>This app demonstrates basic state management, UI layout, and date/time picker integration in Flutter.</p>
+<section id="the-code">
+<h2>The code<a class="headerlink" href="#the-code" title="Link to this heading">#</a></h2>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
+
+<span class="c1">// Main function to run the app</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MaterialApp</span><span class="p">(</span><span class="nl">home:</span><span class="w"> </span><span class="n">MyHomePage</span><span class="p">()));</span>
+<span class="p">}</span>
+
+<span class="c1">// Stateful widget to manage the home page</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyHomePage</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatefulWidget</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">MyHomePage</span><span class="p">({</span><span class="k">super</span><span class="p">.</span><span class="n">key</span><span class="p">});</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">State</span><span class="o">&lt;</span><span class="n">MyHomePage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">createState</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_MyHomePageState</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// State class for MyHomePage</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">_MyHomePageState</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">State</span><span class="o">&lt;</span><span class="n">MyHomePage</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Static variables to hold the current date and time</span>
+<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="n">DateTime</span><span class="w"> </span><span class="n">_date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">now</span><span class="p">();</span>
+<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="n">TimeOfDay</span><span class="w"> </span><span class="n">_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TimeOfDay</span><span class="p">.</span><span class="n">now</span><span class="p">();</span>
+
+<span class="w">  </span><span class="c1">// Strings to display the selected date and time in different formats</span>
+<span class="w">  </span><span class="kt">String</span><span class="w"> </span><span class="n">myDate1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">String</span><span class="w"> </span><span class="n">myDate2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">String</span><span class="w"> </span><span class="n">myTime1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Widget to display the &#39;Select Date&#39; button for the first date picker</span>
+<span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">getDate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ElevatedButton</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">style:</span><span class="w"> </span><span class="n">ElevatedButton</span><span class="p">.</span><span class="n">styleFrom</span><span class="p">(</span>
+<span class="w">            </span><span class="nl">shape:</span><span class="w"> </span><span class="n">RoundedRectangleBorder</span><span class="p">(</span>
+<span class="w">                </span><span class="nl">borderRadius:</span><span class="w"> </span><span class="n">BorderRadius</span><span class="p">.</span><span class="n">circular</span><span class="p">(</span><span class="m">10</span><span class="p">))),</span>
+<span class="w">        </span><span class="nl">onPressed:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">setState</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">theDate</span><span class="p">();</span><span class="w"> </span><span class="c1">// Calls the function to select the date</span>
+<span class="w">          </span><span class="p">});</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nl">child:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Select Date&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Function to show the first date picker dialog</span>
+<span class="w">  </span><span class="n">theDate</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kd">await</span><span class="w"> </span><span class="n">showDatePicker</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">context:</span><span class="w"> </span><span class="n">context</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">initialDate:</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">now</span><span class="p">(),</span>
+<span class="w">        </span><span class="nl">firstDate:</span><span class="w"> </span><span class="n">DateTime</span><span class="p">(</span><span class="m">2000</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">        </span><span class="nl">lastDate:</span><span class="w"> </span><span class="n">DateTime</span><span class="p">(</span><span class="m">3000</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)))</span><span class="o">!</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Updates the displayed date in &#39;myDate1&#39; after selection</span>
+<span class="w">    </span><span class="n">setState</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_date</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">myDate1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="n">_date</span><span class="p">.</span><span class="n">month</span><span class="si">}</span><span class="s2"> / </span><span class="si">${</span><span class="n">_date</span><span class="p">.</span><span class="n">day</span><span class="si">}</span><span class="s2"> / </span><span class="si">${</span><span class="n">_date</span><span class="p">.</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">myDate1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// -----------------------------------------------------------------------</span>
+
+<span class="w">  </span><span class="c1">// Widget to display the &#39;Select Date&#39; button for the second date picker</span>
+<span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">getDate2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ElevatedButton</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">style:</span><span class="w"> </span><span class="n">ElevatedButton</span><span class="p">.</span><span class="n">styleFrom</span><span class="p">(</span>
+<span class="w">            </span><span class="nl">shape:</span><span class="w"> </span><span class="n">RoundedRectangleBorder</span><span class="p">(</span>
+<span class="w">                </span><span class="nl">borderRadius:</span><span class="w"> </span><span class="n">BorderRadius</span><span class="p">.</span><span class="n">circular</span><span class="p">(</span><span class="m">10</span><span class="p">))),</span>
+<span class="w">        </span><span class="nl">onPressed:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">setState</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">theDate2</span><span class="p">();</span><span class="w"> </span><span class="c1">// Calls the function to select the date</span>
+<span class="w">          </span><span class="p">});</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nl">child:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Select Date&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Function to show the second date picker dialog (with input mode)</span>
+<span class="w">  </span><span class="n">theDate2</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kd">await</span><span class="w"> </span><span class="n">showDatePicker</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">context:</span><span class="w"> </span><span class="n">context</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">initialDate:</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">now</span><span class="p">(),</span>
+<span class="w">        </span><span class="nl">firstDate:</span><span class="w"> </span><span class="n">DateTime</span><span class="p">(</span><span class="m">2000</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">        </span><span class="nl">lastDate:</span><span class="w"> </span><span class="n">DateTime</span><span class="p">(</span><span class="m">3000</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">        </span><span class="nl">initialEntryMode:</span><span class="w"> </span><span class="n">DatePickerEntryMode</span><span class="p">.</span><span class="n">input</span><span class="p">))</span><span class="o">!</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Updates the displayed date in &#39;myDate2&#39; after selection</span>
+<span class="w">    </span><span class="n">setState</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_date</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">myDate2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="n">_date</span><span class="p">.</span><span class="n">month</span><span class="si">}</span><span class="s2"> / </span><span class="si">${</span><span class="n">_date</span><span class="p">.</span><span class="n">day</span><span class="si">}</span><span class="s2"> / </span><span class="si">${</span><span class="n">_date</span><span class="p">.</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">myDate2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Function to show the time picker dialog</span>
+<span class="w">  </span><span class="n">theTime</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kd">await</span><span class="w"> </span><span class="n">showTimePicker</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">context:</span><span class="w"> </span><span class="n">context</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">initialTime:</span><span class="w"> </span><span class="n">TimeOfDay</span><span class="p">.</span><span class="n">now</span><span class="p">(),</span>
+<span class="w">      </span><span class="nl">initialEntryMode:</span><span class="w"> </span><span class="n">TimePickerEntryMode</span><span class="p">.</span><span class="n">input</span><span class="p">,</span>
+<span class="w">    </span><span class="p">))</span><span class="o">!</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Updates the displayed time in &#39;myTime1&#39; after selection</span>
+<span class="w">    </span><span class="n">setState</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_date</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">myTime1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="n">_time</span><span class="p">.</span><span class="n">hourOfPeriod</span><span class="si">}</span><span class="s2"> : </span><span class="si">${</span><span class="p">(</span><span class="n">_time</span><span class="p">.</span><span class="n">minute</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;0${_time.minute</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_time</span><span class="p">.</span><span class="n">minute</span><span class="p">.</span><span class="n">toString</span><span class="p">()}</span><span class="n">$</span><span class="p">{</span><span class="n">_time</span><span class="p">.</span><span class="n">period</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;DayPeriod.pm&quot;</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot; pm&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot; am&quot;</span><span class="p">}</span><span class="s2">&quot;;</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">myTime1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// ---------------------------------------------------------------</span>
+
+<span class="w">  </span><span class="c1">// Widget to display the &#39;Select Time&#39; button</span>
+<span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">getTime</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ElevatedButton</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">style:</span><span class="w"> </span><span class="n">ElevatedButton</span><span class="p">.</span><span class="n">styleFrom</span><span class="p">(</span>
+<span class="w">            </span><span class="nl">shape:</span><span class="w"> </span><span class="n">RoundedRectangleBorder</span><span class="p">(</span>
+<span class="w">                </span><span class="nl">borderRadius:</span><span class="w"> </span><span class="n">BorderRadius</span><span class="p">.</span><span class="n">circular</span><span class="p">(</span><span class="m">10</span><span class="p">))),</span>
+<span class="w">        </span><span class="nl">onPressed:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">setState</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">theTime</span><span class="p">();</span><span class="w"> </span><span class="c1">// Calls the function to select the time</span>
+<span class="w">          </span><span class="p">});</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nl">child:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Select Time&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">appBar:</span><span class="w"> </span><span class="n">AppBar</span><span class="p">(</span><span class="nl">title:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Date Pickers&quot;</span><span class="p">)),</span>
+<span class="w">        </span><span class="nl">body:</span><span class="w"> </span><span class="n">ListView</span><span class="p">(</span>
+<span class="w">            </span><span class="nl">padding:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">20.0</span><span class="p">),</span>
+<span class="w">            </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">                  </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="c1">// Title text for the page</span>
+<span class="w">                    </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Time / Date Picker&#39;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">24</span><span class="p">,</span><span class="w"> </span><span class="nl">fontWeight:</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="n">bold</span><span class="p">)),</span>
+<span class="w">                    </span>
+<span class="w">                    </span><span class="c1">// First date picker button and display</span>
+<span class="w">                    </span><span class="n">getDate</span><span class="p">(),</span>
+<span class="w">                    </span><span class="n">Text</span><span class="p">(</span><span class="n">myDate1</span><span class="p">),</span>
+
+<span class="w">                    </span><span class="c1">// Second date picker button and display</span>
+<span class="w">                    </span><span class="n">getDate2</span><span class="p">(),</span>
+<span class="w">                    </span><span class="n">Text</span><span class="p">(</span><span class="n">myDate2</span><span class="p">),</span>
+
+<span class="w">                    </span><span class="c1">// Time picker button and display</span>
+<span class="w">                    </span><span class="n">getTime</span><span class="p">(),</span>
+<span class="w">                    </span><span class="n">Text</span><span class="p">(</span><span class="n">myTime1</span><span class="p">),</span>
+
+<span class="w">                    </span><span class="c1">// Display the raw date and time values</span>
+<span class="w">                    </span><span class="n">Text</span><span class="p">(</span><span class="n">_time</span><span class="p">.</span><span class="n">toString</span><span class="p">()),</span>
+<span class="w">                    </span><span class="n">Text</span><span class="p">(</span><span class="n">_date</span><span class="p">.</span><span class="n">toString</span><span class="p">())</span>
+<span class="w">                  </span><span class="p">])</span>
+<span class="w">            </span><span class="p">]));</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./maref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="TopBottomDrawerNav.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Top Bottom Drawer Navigation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ReadJSONFromWebpage.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Read JSON From Webpage</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-code">The code</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 By James Goudy.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
