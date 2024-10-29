@@ -1,368 +1,456 @@
+
 <!DOCTYPE html>
-<html lang="en-gb">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>CSCI 132 - Classes - Inheritance</title>
+<html lang="en" data-content_root="../" >
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha256-8uHMIn1ru0GS5KO+zf7Zccf8Uw12IA5DrdEcmMuWLFM=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/tooltipster.bundle.min.css" integrity="sha256-Qc4lCfqZWYaHF5hgEOFrYzSIX9Rrxk0NPHRac+08QeQ=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css" integrity="sha256-Wa1I4jhSXeWd3N6RhfPlkqr1WlT+zS3Vh2YGCg0129E=" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Code+Pro|Source+Sans+Pro|Source+Serif+Pro|Roboto|Roboto+Mono" rel="stylesheet">
-<link href="https://fonts.red-dove.com/iosevka-ss09-regular/webfont.css" rel="stylesheet">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/css/sizzle.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js" integrity="sha512-2V49R8ndaagCOnwmj8QnbT1Gz/rie17UouD9Re5WxbzRVUGoftCu5IuqqtAM9+UC3fwfHCSJR1hkzNQh/2wdtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js" integrity="sha256-v8akIv8SCqn5f3mbVB7vEWprIizxPh6oV0yhao/dbB4=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        LINK_SUFFIX: '.html',
-        HAS_SOURCE:  false,
-        SOURCELINK_SUFFIX: ''
-      };
-      $(document).data('sizzle', {on_load: []});
-    </script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <title>Classes - Inheritance &#8212; CSCI 132 Basic Data Structures</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'javalang/classesinheritance';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Abstract Classes" href="abstractclasses.html" />
+    <link rel="prev" title="Classes and Objects" href="classesandobjects.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CSCI 132 Basic Data Structures</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to CSCI 132
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Java Language</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="javalanguage.html">Java Language</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="netbeansinstall.html">NetBeans Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javaintro.html">JAVA Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javabasics.html">Java Basics</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="java_variable_lc.html">Variable Lecture Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firstprogram.html">First Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secondprogram.html">Second Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decisiontrees.html">Decision Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switchstatement.html">Switch Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringfunctions.html">String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numberformats.html">Number Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iterationloops.html">Iteration / Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptionhandling.html">Exception Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iofilefoldercreationdeletion.html">File, Folder - Creation and Deletion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ioreadcsvfile.html">IO Read CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arraylists.html">ArrayLists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overloading.html">Overloading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classesandobjects.html">Classes and Objects</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Classes  - Inheritance</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="abstractclasses.html">Abstract Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lambdafunctions.html">Lambda Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recursion.html">Recursion</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="regexmatches.html">Regex - Using Java Matches</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="referencereading.html">Reference Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="buildinglargejavaapplications.html">Building Large Java Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="antvsmavenvsgradle.html">Ant Vs Maven Vs Gradle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolymorphismInJavaWithExamples.html">Polymorphism in Java (With Examples)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnableToRunJarFiles.html">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/DataStructuresAndAlgorithms.html">Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/ArrayTechniques.html">Array Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayWarpAround.html">Array Warp Around</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayAddDeleteData.html">Array Add and Delete Data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/BigONotation.html">Big O Notation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ON_VisualizingBigONotation.html">Visualizing Big O notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/BigONotationExplained.html">Big O Notation - Explained</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/LinkedLists.html">Linked Lists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/SinglyLinkedListRev3.html">Singly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedList.html">Doubly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListSubClass.html">Doubly Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/CircularLinkedList.html">Circular Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListReadDataIntoLL.html">Reading Datafile Into Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListCSharp.html">C# Linked List Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListJava.html">Java Linked List Class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/StacksAndQueues.html">Stacks and Queues</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/StackUsingArrayOfObjects.html">Stack  - Using Array of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/QueueUsingArrayOfObjects.html">Queue  - Using Array Of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/PriorityQueue.html">Priority Queue</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/SortAlgorithms.html">Sorting Algorithms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/Sort_Bubble.html">Bubble Sort</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/javalang/classesinheritance.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="../app-data.js"></script>
-<link rel="index" title="Index" href="../genindex.html" />
-<link rel="search" title="Search" href="../search.html" />
-<link rel="next" title="Abstract Classes" href="abstractclasses.html" />
-<link rel="prev" title="Classes and Objects" href="classesandobjects.html" />
 
-</head>
-<body class="full-height test">
-<noscript>
-  <div>
-    <div id="noscript-message">JavaScript is not enabled. It is needed for this website to work.</div>
-  </div>
-</noscript>
-<div id="whole-page" class="container-fluid content full-height">
-  <div id="header-row" class="row">
-    <div id="header-container" class="col-md-12">
-      <div id="hdr-left">
-        <i class="fa fa-bars menu-toggle"></i>
-        
-<a href="../index.html" class="text-logo">CSCI 132 Basic Data Structures</a>
 
-      </div>
-      <div id="hdr-centre" class="text-center stretch">
-        <h3 title="Classes - Inheritance">Classes - Inheritance</h3>
-        <h6>Classes  - Inheritance</h6>
-      </div>
-      <div id="hdr-search">
-        
-<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
-  <input type="text" class="form-control search-query" placeholder="Search docs ...">
-  <div class="input-group-addon">
-    <i class="fa fa-search"></i>
-  </div>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
 </div>
-      </div>
-
-      <div id="hdr-index">
-        <a href="../genindex.html" class="btn btn-default" title="Go to the index"><i class="fa fa-list"></i></a>
-      </div>
-
-      <div id="hdr-source">
-        <a href="../_sources/javalang/classesinheritance.md" class="btn btn-default" title="See the source for this page"><i class="fa fa-code"></i></a>
-      </div>
-
-      <div id="hdr-right">
-        
-  
-  <div class="prev-next">
-    
-      <div class="pull-left">
-        <a class="btn btn-default prev" href="classesandobjects.html" title="Previous chapter (Classes and Objects)"><i class="fa fa-chevron-left mr-1em" aria-hidden="true"></i><span class="btn-text">Classes and Objects</span></a>
-      </div>
-    
-      <div class="pull-right">
-        <a class="btn btn-default next" href="abstractclasses.html" title="Next chapter (Abstract Classes)"><span class="btn-text">Abstract Classes</span>&nbsp;<i class="fa fa-chevron-right ml-1em" aria-hidden="true"></i></a>
-      </div>
-    </div>
-  
-      </div>
-      <div id="alt-hdr-right">
-
-        <a href="classesandobjects.html"><i class="fa fa-chevron-left mr-8"></i></a>
-
-
-        <a href="../index.html"><i class="fa fa-home mr-8"></i></a>
-
-
-        <a href="../search.html"><i class="fa fa-search mr-8"></i></a>
-
-
-        <a href="../genindex.html"><i class="fa fa-list mr-8"></i></a>
-
-
-        <a href="abstractclasses.html"><i class="fa fa-chevron-right"></i></a>
-
-      </div>
-    </div>
-  </div>
-
-  <div id="content-row" class="row">
-    <div id="page-content" class="col-md-12 flex-col">
-      <div id="content-container">
-        <div id="nav">
-          
-  <div class="navsidebar">
-    <div id="sidebar-search">
-      
-<div class="input-group" title="Enter something to search for and then either press Enter or click the magnifying glass">
-  <input type="text" class="form-control search-query" placeholder="Search docs ...">
-  <div class="input-group-addon">
-    <i class="fa fa-search"></i>
-  </div>
 </div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Classes  - Inheritance</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Classes  - Inheritance</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-ideas">Key Ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts">Concepts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
     </div>
-      <div class="sidebar-block">
-        <div class="sidebar-tocheading">
-          <div class="pull-left">
-            <h2>Table Of Contents</h2>
-          </div>
-          <div class="pull-right" title="Hide this sidebar (hover at left edge to bring it back)"><i class="fa fa-chevron-left hidetoc"></i></div>
-        </div>
-        <div class="sidebar-toc">
-      
-          <div id="toc-filter" title="Type in here to show only matching topics">
-            <input class="form-control" id="toc-filter-query" placeholder="Filter by title ...">
-          </div>
-      
-        
-  
-    <p class="caption" role="heading"><span class="caption-text">Java Language</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="javalanguage.html">Java Language</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="netbeansinstall.html">NetBeans Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="javaintro.html">JAVA Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="javabasics.html">Java Basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="javabasics.html#readings">Readings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="java_variable_lc.html">Variable Lecture Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="firstprogram.html">First Program</a></li>
-<li class="toctree-l2"><a class="reference internal" href="secondprogram.html">Second Program</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decisiontrees.html">Decision Trees</a></li>
-<li class="toctree-l2"><a class="reference internal" href="switchstatement.html">Switch Statement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stringfunctions.html">String Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="numberformats.html">Number Formats</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iterationloops.html">Iteration / Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exceptionhandling.html">Exception Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iofilefoldercreationdeletion.html">File, Folder - Creation and Deletion</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ioreadcsvfile.html">IO Read CSV File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arraylists.html">ArrayLists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overloading.html">Overloading</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classesandobjects.html">Classes and Objects</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#classes-inheritance">Classes  - Inheritance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="abstractclasses.html">Abstract Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lambdafunctions.html">Lambda Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l2"><a class="reference internal" href="recursion.html#videos">Videos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="regexmatches.html">Regex - Using Java Matches</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="referencereading.html">Reference Reading</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="buildinglargejavaapplications.html">Building Large Java Applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="antvsmavenvsgradle.html">Ant Vs Maven Vs Gradle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="PolymorphismInJavaWithExamples.html">Polymorphism in Java (With Examples)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="UnableToRunJarFiles.html">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
-</ul>
-</li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/DataStructuresAndAlgorithms.html#data-structures-and-algorithms">Data Structures and Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/ArrayTechniques.html#array-techniques">Array Techniques</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayWarpAround.html#array-warp-around">Array Warp Around</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayAddDeleteData.html#array-add-and-delete-data">Array Add and Delete Data</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/BigONotation.html#big-o-notation">Big O Notation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ON_VisualizingBigONotation.html#visualizing-big-o-notation">Visualizing Big O notation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/BigONotationExplained.html#big-o-notation-explained">Big O Notation - Explained</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/LinkedLists.html#linked-lists">Linked Lists</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/SinglyLinkedListRev3.html#singly-linked-list">Singly Linked List</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedList.html#doubly-linked-list">Doubly Linked List</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListSubClass.html#doubly-linked-list-links-as-sub-class">Doubly Linked List - Links as Sub Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/CircularLinkedList.html#circular-linked-list-links-as-sub-class">Circular Linked List - Links as Sub Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ReadingDatafileIntoLinkedList.html#reading-datafile-into-linked-list">Reading Datafile Into Linked List</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/StacksAndQueues.html#stacks-and-queues">Stacks and Queues</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/StackUsingArrayOfObjects.html#stack-using-array-of-objects">Stack  - Using Array of Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/QueueUsingArrayOfObjects.html#queue-using-array-of-objects">Queue  - Using Array Of Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/PriorityQueue.html#priority-queue">Priority Queue</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/SortAlgorithms.html#sorting-algorithms">Sorting Algorithms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/Sort_Bubble.html#bubble-sort">Bubble Sort</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/Sort_Bubble.html#performance">Performance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/end.html#end-of-section">End Of Section</a></li>
-</ul>
-</li>
-</ul>
+</div>
 
-  
-        </div>
-      </div>
-  </div>
-        </div>
-        <div id="content" tabindex="0" class="stretch">
-          <div id="mnav">
-            
-  
-    <p class="caption" role="heading"><span class="caption-text">Java Language</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="javalanguage.html">Java Language</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="netbeansinstall.html">NetBeans Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="javaintro.html">JAVA Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="javabasics.html">Java Basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="javabasics.html#readings">Readings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="java_variable_lc.html">Variable Lecture Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="firstprogram.html">First Program</a></li>
-<li class="toctree-l2"><a class="reference internal" href="secondprogram.html">Second Program</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decisiontrees.html">Decision Trees</a></li>
-<li class="toctree-l2"><a class="reference internal" href="switchstatement.html">Switch Statement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stringfunctions.html">String Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="numberformats.html">Number Formats</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iterationloops.html">Iteration / Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exceptionhandling.html">Exception Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iofilefoldercreationdeletion.html">File, Folder - Creation and Deletion</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ioreadcsvfile.html">IO Read CSV File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arraylists.html">ArrayLists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overloading.html">Overloading</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classesandobjects.html">Classes and Objects</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#classes-inheritance">Classes  - Inheritance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="abstractclasses.html">Abstract Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lambdafunctions.html">Lambda Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l2"><a class="reference internal" href="recursion.html#videos">Videos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="regexmatches.html">Regex - Using Java Matches</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="referencereading.html">Reference Reading</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="buildinglargejavaapplications.html">Building Large Java Applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="antvsmavenvsgradle.html">Ant Vs Maven Vs Gradle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="PolymorphismInJavaWithExamples.html">Polymorphism in Java (With Examples)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="UnableToRunJarFiles.html">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
-</ul>
-</li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/DataStructuresAndAlgorithms.html#data-structures-and-algorithms">Data Structures and Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/ArrayTechniques.html#array-techniques">Array Techniques</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayWarpAround.html#array-warp-around">Array Warp Around</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayAddDeleteData.html#array-add-and-delete-data">Array Add and Delete Data</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/BigONotation.html#big-o-notation">Big O Notation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ON_VisualizingBigONotation.html#visualizing-big-o-notation">Visualizing Big O notation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/BigONotationExplained.html#big-o-notation-explained">Big O Notation - Explained</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/LinkedLists.html#linked-lists">Linked Lists</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/SinglyLinkedListRev3.html#singly-linked-list">Singly Linked List</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedList.html#doubly-linked-list">Doubly Linked List</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListSubClass.html#doubly-linked-list-links-as-sub-class">Doubly Linked List - Links as Sub Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/CircularLinkedList.html#circular-linked-list-links-as-sub-class">Circular Linked List - Links as Sub Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ReadingDatafileIntoLinkedList.html#reading-datafile-into-linked-list">Reading Datafile Into Linked List</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/StacksAndQueues.html#stacks-and-queues">Stacks and Queues</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/StackUsingArrayOfObjects.html#stack-using-array-of-objects">Stack  - Using Array of Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/QueueUsingArrayOfObjects.html#queue-using-array-of-objects">Queue  - Using Array Of Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/PriorityQueue.html#priority-queue">Priority Queue</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../basicalgo/SortAlgorithms.html#sorting-algorithms">Sorting Algorithms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/Sort_Bubble.html#bubble-sort">Bubble Sort</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/Sort_Bubble.html#performance">Performance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../basicalgo/end.html#end-of-section">End Of Section</a></li>
-</ul>
-</li>
-</ul>
-
-  
-          </div>
-          <div class="body">
-            
-  <div class="tex2jax_ignore mathjax_ignore section" id="classes-inheritance">
-<h1>Classes  - Inheritance<a class="headerlink" href="#classes-inheritance" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="key-ideas">
-<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this heading">¶</a></h2>
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="classes-inheritance">
+<h1>Classes  - Inheritance<a class="headerlink" href="#classes-inheritance" title="Link to this heading">#</a></h1>
+<section id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li>Inheritance</li>
-<li><em>Multiple Classes</em></li>
+<li><p>Inheritance</p></li>
+<li><p><em>Multiple Classes</em></p></li>
 </ul>
-</div>
-<div class="section" id="readings">
-<h2>Readings<a class="headerlink" href="#readings" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="readings">
+<h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://books.trinket.io/thinkjava2/chapter14.html">https://books.trinket.io/thinkjava2/chapter14.html</a></p>
 <p><a class="reference external" href="https://www.geeksforgeeks.org/inheritance-in-java/">https://www.geeksforgeeks.org/inheritance-in-java/</a></p>
 <p><a class="reference external" href="https://www.mygreatlearning.com/blog/polymorphism-in-java/">https://www.mygreatlearning.com/blog/polymorphism-in-java/</a></p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="concepts">
-<h1>Concepts<a class="headerlink" href="#concepts" title="Permalink to this heading">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="concepts">
+<h1>Concepts<a class="headerlink" href="#concepts" title="Link to this heading">#</a></h1>
 <div class="admonition-definition admonition">
-<p class="first admonition-title">Definition</p>
-<p class="last"><strong>Inheritance</strong>  It is the ability in JAVA where <em>one</em> class is allowed to inherit the fields and methods of another class. It allows the programmer to build upon existing classes</p>
-</div>
-<div class="admonition-definition admonition">
-<p class="first admonition-title">Definition</p>
-<p class="last"><strong>Encapsulation</strong>  In object-oriented computer programming (OOP) languages, the notion of encapsulation (or OOP Encapsulation) refers to the bundling of data, along with the methods that operate on that data, into a single unit. Many programming languages use encapsulation frequently in the form of classes. By <a class="reference external" href="https://www.sumologic.com/glossary/encapsulation/#:~:text=What%20does%20encapsulation%20mean%3A%20In,in%20the%20form%20of%20classes.">Sumo Logic</a></p>
+<p class="admonition-title">Definition</p>
+<p><strong>Inheritance</strong>  It is the ability in JAVA where <em>one</em> class is allowed to inherit the fields and methods of another class. It allows the programmer to build upon existing classes</p>
 </div>
 <div class="admonition-definition admonition">
-<p class="first admonition-title">Definition</p>
-<p class="last"><strong>Polymorphism</strong> is the ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object.</p>
+<p class="admonition-title">Definition</p>
+<p><strong>Encapsulation</strong>  In object-oriented computer programming (OOP) languages, the notion of encapsulation (or OOP Encapsulation) refers to the bundling of data, along with the methods that operate on that data, into a single unit. Many programming languages use encapsulation frequently in the form of classes. By <a class="reference external" href="https://www.sumologic.com/glossary/encapsulation/#:~:text=What%20does%20encapsulation%20mean%3A%20In,in%20the%20form%20of%20classes.">Sumo Logic</a></p>
+</div>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p><strong>Polymorphism</strong> is the ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object.</p>
 </div>
 <p><a class="reference internal" href="PolymorphismInJavaWithExamples.html"><span class="doc std std-doc">See Reference Reading</span></a></p>
-<div class="section" id="lecture-code">
-<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Permalink to this heading">¶</a></h2>
+<section id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Link to this heading">#</a></h2>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Scanner</span><span class="p">;</span>
 
@@ -680,8 +768,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <hr class="docutils" />
 <p>End Of Topic</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -703,409 +791,112 @@ const thebe_selector_output = ".output, .cell_output"
     </script>
     <script>kernelName = 'python3'</script>
 
-          </div>
-        </div>
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="classesandobjects.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Classes and Objects</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="abstractclasses.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Abstract Classes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Classes  - Inheritance</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-ideas">Key Ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts">Concepts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
   </div>
-  <div id="footer-row" class="row">
-
-    <div class="col-md-12">
-        <span title="Built on 2023-09-14" class="pull-right">&copy; Copyright 2023.
-        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 and the
-        <a href="https://pypi.org/project/sphinx-sizzle-theme/"
-
-           title="0.1.2/b995f3ff [2023-05-05T11:28:10]"
-
-        >Sizzle</a> theme.</span>
-    </div>
-
-  </div>
-</div>
-
-<div id="tooltips" class="hidden">
-</div>
-
-<script>
-$(document).ready(function() {
-  'use strict';
-  var $search = $('.search-query');
-
-  var $filter = $('#toc-filter-query');
-  var $toclist = $('.sidebar-toc > ul').find('li');
-
-  if ($toclist.length === 0) {
-    $toclist = $('.localtoc > ul').find('li');
-  }
-
-
-  var $nav = $('#nav');
-
-  //$('#whole-page').removeClass('hidden');
-  var nav_width = $nav.width();
-
-
-  var search_url = '../search.html';
-
-  function perform_search(e) {
-    var $elem;
-
-    if (e.type === 'keypress') {
-      $elem = $(e.target);
-    }
-    else if (e.type === 'click') {
-      $elem = $(e.target).parents('.input-group').find('input');
-    }
-    var q = $elem.val().trim();
-
-    if (q) {
-      var url = search_url + '?q=' + q + '&check_keywords=yes&area=default';
-
-      location.href = url;
-    }
-  }
-
-
-  function apply_filter() {
-    var s = $filter.val().trim().toLowerCase();
-
-    $toclist.find('a').removeClass('hidden');
-    $toclist.each(function() {
-      var $this = $(this);
-      var $link = $this.find('> a');
-      var t = $link.text().toLowerCase();
-      var show = t.indexOf(s) >= 0;
-
-      if (!show) {
-        $link.addClass('hidden');
-      }
-    });
-  }
-
-  $filter.on('keyup', function(e) {
-    apply_filter();
-  });
-
-
-
-  $search.on('keypress', function(e) {
-    if (e.which == 13) {
-      perform_search(e);
-    }
-  });
-  $search.parents('.input-group').find('.input-group-addon').on('click', perform_search);
-  $(document).on('click', '.summary .fa-caret-right', function(e) {
-    var $elem = $(e.target).parents('li');
-    var $next = $elem.next();
-    $elem.addClass('hidden');
-    $next.removeClass('hidden');
-  });
-  $(document).on('click', '.detail .fa-caret-down', function(e) {
-    var $elem = $(e.target).parents('li');
-    var $prev = $elem.prev();
-    $elem.addClass('hidden');
-    $prev.removeClass('hidden');
-  });
-
-  $('#content').on('click', function() {
-    $('#mnav').hide();
-  });
-
-  var counter = 0;
-  var timer = null;
-
-  function show_nav() {
-    $('#content').off('mousemove', track_mouse);
-    if (timer !== null) {
-      clearTimeout(timer);
-      timer = null;
-    }
-    $nav.show();
-  }
-
-  function track_mouse(e) {
-    var x = e.clientX;
-
-    if (x < 15) {
-      ++counter;
-      if (timer === null) {
-        timer = setTimeout(show_nav, 2000);
-      }
-    }
-    else {
-      counter = 0;
-    }
-    if (counter >= 20) {
-      show_nav();
-    }
-  };
-
-  function hide_nav() {
-    $nav.hide();
-    counter = 0;
-    $('#content').on('mousemove', track_mouse);
-  }
-
-  $('.hidetoc').on('click', hide_nav);
-
-  $(document).on('keyup', function(e) {
-    if (e.ctrlKey) {
-      if (e.which == 37) {      // Ctrl+left arrow
-        hide_nav();
-      }
-      else if (e.which == 39) { // Ctrl+right arrow
-        show_nav();
-      }
-    }
-  });
-
-  $('.menu-toggle').on('click', function(e) {
-    $('#mnav').toggle();
-  });
-
-  function scroll_nav(frag) {
-    var sel = '#nav ' + (frag ? 'a[href="' + frag + '"]' : '.toctree-l1 a.current');
-
-    var $link = $(sel);
-
-    if ($link.length > 0) {
-      $link[0].scrollIntoView({block: 'center'});
-    }
-  }
-
-  // If the navigator is long, then the item we clicked on to get here might
-  // not be in view. Try to scroll it into the view - a slight delay is needed
-  // to get it to sync properly with other stuff going on (as the page has just
-  // loaded). Hence the setTimeout with a timeout of 0.
-
-  function do_scroll() {
-    scroll_nav(window.location.hash);
-  }
-
-  setTimeout(do_scroll, 0);
-
-  function adjust_size() {
-    // we need to set the height explicitly so that scrolling regions in the
-    // content area work properly.
-    var h = $('#page-content').height();
-
-    $('#nav, #content').height(h);
-    if ($('#nav').is(':visible')) {
-      $('#mnav').hide();
-    }
-  }
-
-  adjust_size();
-
-  $(window).on('resize', adjust_size);
-
-  function focus_content() {
-    $('#content').focus();  // so that keyboard can be used to scroll, etc.
-  }
-
-  setTimeout(focus_content, 150);
-
-  var sizzle = $(document).data('sizzle');
-
-  function make_tooltip(id, h, b) {
-    var $e = $('<div>').attr('id', id);
-    var $b = $('<div>').addClass('tc-body').html(b);
-
-    if (h) {
-      var $h = $('<div>').addClass('tc-heading').html(h);
-      $e.append($h);
-    }
-    $e.append($b);
-    return $e;
-  }
-
-  var default_tt_options = {
-    theme: ['tooltipster-light', 'tooltipster-light-customized'],
-    interactive: true,
-    maxWidth: 600,
-    contentCloning: true
-  };
-
-  function activate_tooltips() {
-    var $tt = $('.tt');
-
-    //console.log('tt links:', $tt.length);
-    $tt.tooltipster(default_tt_options);
-  }
-
-
-
-  function add_glossary_tooltips() {
-    var links = $('a');  // can qualify with .reference.internal
-    var glinks = {};
-    var pat = /(.*)\.html#(term-.*)$/;
-    var found = false;  // links in this document
-
-    $.each(links, function(i, link) {
-        var $link = $(link);
-        var href = $link.attr('href');
-        var m = href.match(pat);
-
-        if (m) {
-          var s = m[1].replace(/^(\.\.\/)+/, '');
-
-          if (s === sizzle.app_data.glossary.document) {
-            var k = m[2];
-
-            if (k in glinks) {
-              glinks[k].push($link);
-            }
-            else {
-              glinks[k] = [$link];
-            }
-            found = true;
-          }
-        }
-    });
-    if (found) {
-      var $t = $('#tooltips');
-      var data = sizzle.app_data.glossary.terms;
-
-      $.each(glinks, function(k, v) {
-        var d = data[k];
-
-        if (d) {  // as a sanity check
-          var s = 'tc-'+ k;
-          var $e = make_tooltip(s, d.term, d.defn);
-          $t.append($e);
-
-          $.each(v, function(i, link) {
-            link.addClass('tt').attr('data-tooltip-content', '#' + s);
-          });
-        }
-      });
-    }
-  }
-
-  if (sizzle.app_data && sizzle.app_data.glossary &&
-      sizzle.app_data.glossary.document) {
-    add_glossary_tooltips();
-  }
-
-
-
-
-  function add_custom_tooltips() {
-    if (!sizzle.app_data) {
-      return;
-    }
-
-    var info_tips = sizzle.app_data.custom_data['info-tips'] || {};
-    var hover_tips = sizzle.app_data.custom_data['hovers'] || {};
-
-    if ($.isEmptyObject(info_tips) && $.isEmptyObject(hover_tips)) {
-      return;
-    }
-
-    var tt_options = $.extend({contentAsHTML: true}, default_tt_options);
-
-    if (!$.isEmptyObject(info_tips)) {
-      $('.tc-info').each(function() {
-        var $elem = $(this).prev();
-        var classes = $elem.attr('class');
-        var m = /\btci-([\S]+)/.exec(classes);
-
-        if (m !== null) {
-          var key = m[1];
-
-          if (key in info_tips) {
-            var v = info_tips[key];
-            var tt = $elem.tooltipster(tt_options).tooltipster('content', v);
-          }
-        }
-      });
-    }
-    if (!$.isEmptyObject(hover_tips)) {
-      var current_origin, current_instance;
-
-      var h_options = {
-        functionBefore: function(instance, helper) {
-          current_instance = instance;
-          current_origin = helper.origin;
-          //console.log('before', current_instance, current_origin);
-        },
-        functionAfter: function(instance, helper) {
-          current_instance = null;
-          current_origin = null;
-          //console.log('after', current_instance, current_origin);
-        }
-      };
-
-      var ht_options = $.extend(h_options, tt_options);
-      $('.hover').each(function() {
-        var $e = $(this);
-        var ref = $e.data('hoverref');
-
-        if (ref) {
-          var tip = hover_tips[ref];
-
-          if (tip) {
-            $e.tooltipster(ht_options).tooltipster('content', tip);
-            //if (/encrypt_and_sign/.test(ref)) { console.log(tip); }
-          }
-        }
-      });
-/*
-      $(document).on('click', '.hovertip a.hoverlink', function(e) {
-        if (!sizzle.app_data) {
-          return;
-        }
-        var $this = $(this);
-        var $content = $this.parent('.tooltipster-content');
-        var ref = $this.data('href');
-        var hover_tips = sizzle.app_data.custom_data['hovers'] || {};
-        var tip = hover_tips[ref];
-
-        if (tip && current_instance) {
-          current_instance.content(tip);
-        }
-
-      });
- */
-    }
-  }
-
-  add_custom_tooltips();
-
-  setTimeout(activate_tooltips, 1000);
-
-
-  // Clipboard copy for code blocks with captions
-
-  $('.code-block-caption').each(function() {
-    var $cap = $(this);
-    var $btn = $('<span class="clip-copy"><span class="copied hidden">Copied!</span><i class="fa fa-clipboard" title="Copy contents"></i></span>');
-    var $code = $cap.parent().find('.highlight');
-
-    $cap.append($btn);
-    $btn.find('.fa-clipboard').data('clip-text', $code.text());
-  });
-
-  var clipboard = new ClipboardJS('.code-block-caption .fa-clipboard', {
-    'text': function(trigger) {
-      return $(trigger).data('clip-text');
-    }
-  });
-
-  clipboard.on('success', function(e) {
-    var $copied = $(e.trigger).prev();
-
-    $copied.removeClass('hidden');
-
-    setTimeout(function() {$copied.addClass('hidden'); }, 1000);
-  });
-
-  if (sizzle.on_load) {
-    sizzle.on_load.forEach(function(f) {
-      f();
-    });
-  }
-});
-</script>
-</body>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
 </html>

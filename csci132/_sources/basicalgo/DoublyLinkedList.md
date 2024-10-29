@@ -8,6 +8,24 @@
 
 
 
+A **doubly linked list** is a type of linked list in which each node contains three parts:
+
+1. **Data**: The value stored in the node.
+1. **Pointer to the next node**: A reference to the next node in the list.
+1. **Pointer to the previous node**: A reference to the previous node in the list.
+
+### Structure:
+
+- In a doubly linked list, each node is connected to both its next and previous nodes, creating a two-way linkage.
+- The first node (head) has its previous pointer set to `null`, and the last node (tail) has its next pointer set to `null`.
+
+### Benefits of a Doubly Linked List:
+
+- **Bidirectional Traversal**: You can easily traverse the list in both forward and backward directions.
+- **Efficient Deletion**: Insertion and deletion of nodes can be more efficient since you can easily access the previous node.
+
+
+
 ## Lecture Code
 
 ```java
@@ -16,53 +34,56 @@
  * Project: Doubly Linked List 
  */
 
-
+// Define a class representing each link/node in the doubly linked list
 class Link {
 
+    // Pointers for the first and last nodes in the list
     Link first = null;
     Link last = null;
 
-    // data
+    // Data stored in the node
     String city = null;
 
-    // link navigation
+    // Pointers for the next and previous nodes
     Link next = null;
     Link prev = null;
 
-    // constructor
+    // Constructor to initialize a node with the city name
     Link(String city) {
         this.city = city;
         this.next = null;
         this.prev = null;
     }
 
+    // Display the data of the current node
     public void displayNode() {
         System.out.print(city + " ");
     }
-} // end of link
+} // End of Link class
 
-
+// Define a class representing the doubly linked list itself
 class Doubly {
 
+    // References to the first and last nodes in the list
     Link first = null;
     Link last = null;
 
-    // constructor
+    // Constructor to initialize an empty doubly linked list
     public Doubly() {
-
         first = null;
         last = null;
     }
 
-    // add link at the beginning of the list
+    // Method to add a node at the beginning of the list
     public boolean addFirst(String city) {
         Link newLink = new Link(city);
 
+        // If list is empty, set first and last to the new node
         if (first == null) {
-            // if list is empty
             first = newLink;
             last = newLink;
         } else {
+            // Otherwise, update pointers for the new node and the current first node
             newLink.next = first;
             first.prev = newLink;
             first = newLink;
@@ -71,16 +92,16 @@ class Doubly {
         return true;
     }
 
-    // add link to the end of the list
+    // Method to add a node at the end of the list
     public boolean addLast(String city) {
-
         Link newLink = new Link(city);
 
+        // If list is empty, set first and last to the new node
         if (first == null) {
-            // if list is empty
             first = newLink;
             last = newLink;
         } else {
+            // Otherwise, update pointers for the new node and the current last node
             newLink.prev = last;
             last.next = newLink;
             last = newLink;
@@ -89,213 +110,196 @@ class Doubly {
         return true;
     }
 
+    // Method to find a city in the list
     public boolean findCity(String citySearch) {
 
+        // If list is empty, return false
         if (first == null) {
-
-            // if list is empty
             return false;
         } else {
             Link current = first;
 
+            // Traverse the list to search for the city
             while (current != null) {
                 if (current.city.equals(citySearch)) {
-                    return true;
+                    return true; // City found
                 }
                 current = current.next;
             }
 
-            return false;
+            return false; // City not found
         }
     }
 
+    // Method to insert a new node after a given city
     public boolean insertAfter(String citySearch, String insertCity) {
-
         Link newLink = new Link(insertCity);
 
+        // If list is empty, add the new node as the only node
         if (first == null) {
-
-            // list is empty - add the link
             first = newLink;
             last = newLink;
-
-            // NOTE: there is an option not to insert
-            // a link then the code above would be replaced
-            // with return false
         } else {
             Link current = first;
 
+            // Traverse the list to find the specified city
             while (current != null) {
                 if (current.city.equals(citySearch)) {
 
-                    // check if last link
+                    // If the city is the last node, update last
                     if (current.next == null) {
-                        // check if last link
                         current.next = newLink;
                         newLink.prev = current;
-
                         last = newLink;
-
                     } else {
+                        // Update pointers for inserting in the middle
                         newLink.next = current.next;
                         newLink.prev = current;
-
                         current.next.prev = newLink;
                         current.next = newLink;
                     }
 
-                    return true;
+                    return true; // City inserted
                 }
                 current = current.next;
-
             }
         }
 
-        return false;
-
+        return false; // City not found
     }
 
+    // Method to insert a new node before a given city
     public boolean insertBefore(String citySearch, String insertCity) {
-
         Link newLink = new Link(insertCity);
 
+        // If list is empty, add the new node as the only node
         if (first == null) {
-
-            // list is empty - add the link
             first = newLink;
             last = newLink;
-
-            // NOTE: there is an option not to insert
-            // a link then the code above would be replaced
-            // with return false
         } else {
             Link current = first;
 
+            // Traverse the list to find the specified city
             while (current != null) {
                 if (current.city.equals(citySearch)) {
 
-                    // check for first link
+                    // If the city is the first node, update first
                     if (current.prev == null) {
-                        // check if last link
                         current.prev = newLink;
                         newLink.next = current;
-
                         first = newLink;
-
                     } else {
+                        // Update pointers for inserting in the middle
                         newLink.next = current;
                         newLink.prev = current.prev;
-
                         current.prev.next = newLink;
                         current.prev = newLink;
                     }
 
-                    return true;
+                    return true; // City inserted
                 }
                 current = current.next;
-
             }
         }
 
-        return false;
+        return false; // City not found
     }
 
+    // Method to delete a node with a specified city
     public boolean deleteCity(String citySearch) {
 
+        // If list is empty, return false
         if (first == null) {
             return false;
         } else {
             Link current = first;
 
+            // Traverse the list to find the specified city
             while (current != null) {
                 if (current.city.equals(citySearch)) {
 
+                    // If the city is the first node
                     if (current.prev == null) {
-                        // first node
                         current.next.prev = null;
                         first = current.next;
                         current = null;
-                        return true;
+                        return true; // City deleted
                     } else if (current.next == null) {
-                        // last node
+                        // If the city is the last node
                         current.prev.next = null;
-                        last = current;
+                        last = current.prev;
                         current = null;
-                        return true;
+                        return true; // City deleted
                     } else {
-                        // a center node
+                        // If the city is in the middle
                         current.prev.next = current.next;
                         current.next.prev = current.prev;
                         current = null;
-
-                        return true;
+                        return true; // City deleted
                     }
                 }
                 current = current.next;
             }
 
-            return false;
+            return false; // City not found
         }
-    } //end of function
+    }
 
+    // Method to display the entire list
     public void displayList() {
         Link current = first;
 
         System.out.println("");
         while (current != null) {
-            current.displayNode();
-            current = current.next;
+            current.displayNode(); // Display each node
+            current = current.next; // Move to next node
         }
         System.out.println("");
-
     }
 }
 
+// Main class to demonstrate doubly linked list functionality
 public class DS_DoublyLinkedList {
 
+    // Create an instance of the Doubly linked list
     static Doubly dl = new Doubly();
 
+    // Method to search for a city
     public static void citySearch(String searchCity) {
-
-        // note that findCity returns a boolean
-        // so it can be used in an "if" statement
         if (dl.findCity(searchCity)) {
-            System.out.println("\n" + searchCity + " is in list");
+            System.out.println("\n" + searchCity + " is in the list");
         } else {
             System.out.println("\n" + searchCity + " not found");
         }
-
     }
 
+    // Method to delete a city
     public static void deleteCity(String searchCity) {
-
-        // note that findCity returns a boolean
-        // so it can be used in an "if" statement
         if (dl.deleteCity(searchCity)) {
             System.out.println(searchCity + " was deleted");
         } else {
             System.out.println(searchCity + " was NOT deleted");
         }
-
     }
 
+    // Main method to execute the program
     public static void main(String[] args) {
 
         String searchCity = "";
         String insertCity = "";
 
-        // insert data at front of list
+        // Insert data at the front of the list
         dl.addFirst("Kali");
         dl.addFirst("Polson");
         dl.addFirst("Missoula");
         dl.addFirst("Whitefish");
 
-        // insert data at end of list
+        // Insert data at the end of the list
         dl.addLast("Chicago");
         dl.addLast("Denver");
         dl.addLast("Sandiego");
 
-        dl.displayList();
+        dl.displayList(); // Display the list
 
         System.out.println("\n----- Find Examples------\n");
 
@@ -319,7 +323,7 @@ public class DS_DoublyLinkedList {
         searchCity = "Whitefish";
         deleteCity(searchCity);
 
-        dl.displayList();
+        dl.displayList(); // Display the list
 
         System.out.println("\n----- Insert Examples------\n");
 
@@ -331,7 +335,7 @@ public class DS_DoublyLinkedList {
         insertCity = "Boulder";
         dl.insertAfter(searchCity, insertCity);
 
-        dl.displayList();
+        dl.displayList(); // Display the list
 
         searchCity = "Chicago";
         insertCity = "Springfield";
@@ -341,7 +345,7 @@ public class DS_DoublyLinkedList {
         insertCity = "Libby";
         dl.insertBefore(searchCity, insertCity);
 
-        dl.displayList();
+        dl.displayList(); // Display the list
 
         System.out.println("\nbye");
     }

@@ -6,10 +6,6 @@
 
 [Singly Linked List](# Singly-Linked-List-Code)
 
-Si
-
-
-
 
 
 ```{admonition} Definition
@@ -17,8 +13,6 @@ Si
 ```
 
 
-
-(TernaryOperator)=
 
 ## Ternary Operator
 
