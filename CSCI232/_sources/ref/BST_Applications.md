@@ -1,4 +1,4 @@
-## Applications That Use Binary Trees
+# Applications That Use Binary Trees
 
 
 

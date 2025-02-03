@@ -146,7 +146,11 @@ This code snippet iterates through the unvisited neighbors of a vertex (`ux`) in
 Project: Dijkstra's Algorithm
 Programmer: James Goudy
  */
-package sp24_dijkstra;
+/*
+
+ */
+package ds_dijstraka_demo;
+
 
 class Dijkstra {
 
@@ -159,16 +163,14 @@ class Dijkstra {
         this.totalVertexes = totalVertexes;
     }
 
-    // Finds the unvisited vertex with 
-    //the minimum tentative distance from the source vertex
+    // Finds the unvisited vertex with the minimum tentative distance from the source vertex
     int minimumDistance(int distance[], boolean visited[]) {
         // Initialize minimum value
         int m = Integer.MAX_VALUE;
         int m_index = -1;
 
         for (int vx = 0; vx < totalVertexes; vx++) {
-        // Check if vertex is unvisited and has a tentative 
-        //distance less than or equal to current minimum
+            // Check if vertex is unvisited and has a tentative distance less than or equal to current minimum
             if (!visited[vx] && distance[vx] <= m) {
                 m = distance[vx];
                 m_index = vx;
@@ -180,9 +182,7 @@ class Dijkstra {
 
     // Utility function to print the calculated shortest distances
     void printSolution(int distance[], int n) {
-        System.out.println(String.format("The shortest distance from "+
-                                         "source %1$sth node\nto all of the"+
-                                         " other nodes are: \n", n));
+        System.out.println(String.format("The shortest distance from source %1$sth node\nto all of the other nodes are: \n", n));
 
         for (int i = 0; i < n; i++) {
             System.out.println(n + " To " + i + " the shortest distance is : " + distance[i]);
@@ -200,7 +200,7 @@ class Dijkstra {
         int distance[] = new int[totalVertexes];
         boolean visited[] = new boolean[totalVertexes];
 
-        // Initialize all distances as infinite (except the starting vertex)
+        // Initialize all distances as infinite (except the starting vertex which is 0)
         for (int j = 0; j < totalVertexes; j++) {
             distance[j] = Integer.MAX_VALUE;
         }
@@ -208,8 +208,7 @@ class Dijkstra {
 
         // Find shortest paths for all vertices iteratively
         for (int c = 0; c < totalVertexes - 1; c++) {
-            // Get the unvisited vertex with the minimum 
-            // tentative distance from the source vertex
+            // Get the unvisited vertex with the minimum tentative distance from the source vertex
             int ux = minimumDistance(distance, visited);
             visited[ux] = true; // Mark the vertex as visited
 
@@ -218,10 +217,8 @@ class Dijkstra {
                 // Check conditions to update tentative distance of the neighbor
                 if (!visited[vx] && graph[ux][vx] != -1 &&
                         distance[ux] + graph[ux][vx] != Integer.MAX_VALUE &&
-                        distance[ux] + graph[ux][vx] < distance[vx]) 
-                {
-                    // Update tentative distance
-                    distance[vx] = distance[ux] + graph[ux][vx];
+                        distance[ux] + graph[ux][vx] < distance[vx]) {
+                    distance[vx] = distance[ux] + graph[ux][vx]; // Update tentative distance
                 }
             }
         }
@@ -231,14 +228,16 @@ class Dijkstra {
     }
 }
 
-// ----------------------------------------------------
+
+
 
 ```
 
 <div style="page-break-after: always; break-after: page;"></div>
 
 ```java
-public class Sp24_dijkstra {
+public class DS_Dijstraka_Demo {
+
 
     public static void main(String[] args) {
         int graph[][] = new int[][]{
@@ -258,6 +257,7 @@ public class Sp24_dijkstra {
         
     }
     
+}    
 }
 ```
 
