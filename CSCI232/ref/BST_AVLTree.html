@@ -1,0 +1,1056 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>AVL Tree &#8212; Algorithms</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/BST_AVLTree';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Red Black Tree" href="BST_RedBlack.html" />
+    <link rel="prev" title="Binary Search Tree" href="BST_BinarySearchTree.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Algorithms</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    CSCI 232
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CSCI232_Intro.html">CSCI 232 Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Terms.html">Terms and Concepts</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Radix.html">Radix - Number Bases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Serializable.html">Serializable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Iterator.html">Iterator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="BST_Intro.html">Binary Search Tree - Intro</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="BST_Applications.html">Applications That Use Binary Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_Comparisons.html">Binary Tree Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_TreeTraversal.html">Tree Traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_Iterative_Recursion_Search.html">Demonstrate BST using iterative looping and recursion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_BinarySearchTree.html">Binary Search Tree</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">AVL Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_RedBlack.html">Red Black Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_ComparisionTable.html">BST AVL Red Black Tree Comparisons</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Serializable.html">Serializable</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_ModulusHashFunction.html">Modulus Hash Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_Chaining.html">Hash Tables - Chaining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressing.html">Hash Table - Open Addressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressingHashingCodeExamples.html">Java code for double hashing in a hash table:</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="SkipList.html">Skip List</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Graphs.html">Graphs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="GraphsSevenBridges.html">Seven Bridges of Königsberg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsDFS.html">Depth-First Search (DFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsBFS.html">Breadth First</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsMazeSolverDFS.html">DSF - Maze Solving</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="GraphsDijkstra.html">Dijkstra’s Algorithm</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="End.html">End</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/BST_AVLTree.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>AVL Tree</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-properties-and-balance-rules">Key Properties and Balance Rules</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-rotations">Single Rotations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#double-rotations">Double Rotations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-implementation-of-an-avl-tree">Java Implementation of an AVL Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-the-key-methods">Explanation of the Key Methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supplemental-note">Supplemental Note</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-t-extends-comparable-t-mean">What does <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">extends</span> <span class="pre">Comparable&lt;T&gt;</span></code> mean?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-the-comparable-interface-do">What does the <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> interface do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-t-extends-comparable-t">Summary of <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">extends</span> <span class="pre">Comparable&lt;T&gt;</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="avl-tree">
+<h1>AVL Tree<a class="headerlink" href="#avl-tree" title="Link to this heading">#</a></h1>
+<p><strong>AVL Tree Overview</strong></p>
+<p>An <strong>AVL (Adelson-Velsky and Landis) Tree</strong> is a type of self-balancing binary search tree. It is named after its inventors, <strong>Georgy Adelson-Velsky</strong> and <strong>Evgenii Landis</strong>, who introduced it in 1962.</p>
+<p>In a typical binary search tree, the key in each node is larger than all keys in its left subtree and smaller than all keys in its right subtree. While a standard binary search tree can degrade to a linked list in the worst case, an AVL tree enforces additional balance properties that prevent extreme imbalance.</p>
+<hr class="docutils" />
+<section id="key-properties-and-balance-rules">
+<h2>Key Properties and Balance Rules<a class="headerlink" href="#key-properties-and-balance-rules" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Balance Factor</strong>:
+For each node, the AVL tree tracks a balance factor defined as:</p>
+<p>balance(node)=height(node.left)−height(node.right)\text{balance}(node) = \text{height}(node.left) - \text{height}(node.right)</p>
+<p>In an AVL tree, the balance factor for any node must always be <strong>-1</strong>, <strong>0</strong>, or <strong>1</strong>.</p>
+</li>
+<li><p><strong>Height Constraint</strong>:
+The height of the left and right subtrees of any node differ by at most <strong>1</strong>. If the height difference exceeds 1, the tree performs rotations to restore balance.</p></li>
+<li><p><strong>Rotations</strong>:
+The four possible rotation cases occur after an insertion or deletion that breaks the balance:</p>
+<ul class="simple">
+<li><p><strong>Left-Left (LL) rotation</strong>: Performed when a node is inserted into the left subtree of the left child. Fixed by a single right rotation.</p></li>
+<li><p><strong>Right-Right (RR) rotation</strong>: Performed when a node is inserted into the right subtree of the right child. Fixed by a single left rotation.</p></li>
+<li><p><strong>Left-Right (LR) rotation</strong>: Performed when a node is inserted into the right subtree of the left child. Fixed by a left rotation on the left child, then a right rotation on the node.</p></li>
+<li><p><strong>Right-Left (RL) rotation</strong>: Performed when a node is inserted into the left subtree of the right child. Fixed by a right rotation on the right child, then a left rotation on the node.</p></li>
+</ul>
+</li>
+</ol>
+<section id="single-rotations">
+<h3>Single Rotations<a class="headerlink" href="#single-rotations" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Right Rotation</strong> (for an unbalanced node leaning left):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">y</span>                            <span class="n">x</span>
+   <span class="o">/</span> \                          <span class="o">/</span> \
+  <span class="n">x</span>   <span class="n">T3</span>       <span class="o">----&gt;</span>          <span class="n">T1</span>   <span class="n">y</span>
+ <span class="o">/</span> \                              <span class="o">/</span> \
+<span class="n">T1</span>  <span class="n">T2</span>                           <span class="n">T2</span>  <span class="n">T3</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Left Rotation</strong> (for an unbalanced node leaning right):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">y</span>                                <span class="n">x</span>
+ <span class="o">/</span> \                              <span class="o">/</span> \
+<span class="n">T1</span>  <span class="n">x</span>          <span class="o">----&gt;</span>            <span class="n">y</span>   <span class="n">T3</span>
+   <span class="o">/</span> \                          <span class="o">/</span> \
+  <span class="n">T2</span>  <span class="n">T3</span>                       <span class="n">T1</span>  <span class="n">T2</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="double-rotations">
+<h3>Double Rotations<a class="headerlink" href="#double-rotations" title="Link to this heading">#</a></h3>
+<p>When the subtree is not in a strictly left-left or right-right configuration but rather “zig-zag,” two rotations are performed in sequence. For instance, <strong>Left-Right</strong> rotation is effectively a left rotation on the left child, followed by a right rotation on the original node.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="java-implementation-of-an-avl-tree">
+<h2>Java Implementation of an AVL Tree<a class="headerlink" href="#java-implementation-of-an-avl-tree" title="Link to this heading">#</a></h2>
+<p>Below is a simple Java class that implements:</p>
+<ul class="simple">
+<li><p><strong>Insertion</strong></p></li>
+<li><p><strong>Deletion</strong></p></li>
+<li><p><strong>Search</strong></p></li>
+<li><p><strong>Traversals</strong>: In-order, Pre-order, Post-order</p></li>
+<li><p>A <strong>pretty print</strong> method to display the tree structure</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AVLTree</span><span class="o">&lt;</span><span class="n">T</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">T</span><span class="w"> </span><span class="n">key</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">Node</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">;</span>
+<span class="w">            </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">root</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="c1">// Utility Functions</span>
+<span class="w">    </span><span class="c1">// ------------------------</span>
+
+<span class="w">    </span><span class="c1">// Return the height of a node, or 0 if null</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">height</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">node</span><span class="p">.</span><span class="na">height</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Calculate the balance factor of a node</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getBalance</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">height</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">height</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Update the node&#39;s height based on children&#39;s heights</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateHeight</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">node</span><span class="p">.</span><span class="na">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">height</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">),</span><span class="w"> </span><span class="n">height</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="c1">// Rotations</span>
+<span class="w">    </span><span class="c1">// ------------------------</span>
+
+<span class="w">    </span><span class="c1">// Right rotate subtree rooted with y</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">rotateRight</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">T2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Perform rotation</span>
+<span class="w">        </span><span class="n">x</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="n">y</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T2</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Update heights</span>
+<span class="w">        </span><span class="n">updateHeight</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+<span class="w">        </span><span class="n">updateHeight</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// x becomes new root</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Left rotate subtree rooted with x</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">rotateLeft</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">T2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Perform rotation</span>
+<span class="w">        </span><span class="n">y</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="n">x</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T2</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Update heights</span>
+<span class="w">        </span><span class="n">updateHeight</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">        </span><span class="n">updateHeight</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// y becomes new root</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="c1">// Insertion</span>
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insertRec</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">insertRec</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. Perform the normal BST insertion</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">cmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cmp</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insertRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cmp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insertRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Duplicate keys not allowed or handle as desired</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 2. Update the height of the ancestor node</span>
+<span class="w">        </span><span class="n">updateHeight</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 3. Get the balance factor</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getBalance</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 4. If the node becomes unbalanced, then check the four cases</span>
+
+<span class="w">        </span><span class="c1">// Left Left Case</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">balance</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">.</span><span class="na">key</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">rotateRight</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Right Right Case</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">balance</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">.</span><span class="na">key</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">rotateLeft</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Left Right Case</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">balance</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">.</span><span class="na">key</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotateLeft</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">rotateRight</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Right Left Case</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">balance</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">.</span><span class="na">key</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotateRight</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">rotateLeft</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// return the (unchanged) node pointer</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="c1">// Deletion</span>
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deleteRec</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">deleteRec</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. Perform standard BST delete</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">cmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cmp</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deleteRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cmp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deleteRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Node with only one child or no child</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Node</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+<span class="w">                </span><span class="c1">// No child</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">temp</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// One child</span>
+<span class="w">                    </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Node with two children: get the inorder successor</span>
+<span class="w">                </span><span class="n">Node</span><span class="w"> </span><span class="n">successor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getMinValueNode</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="w">                </span><span class="c1">// Copy successor&#39;s data to this node</span>
+<span class="w">                </span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">successor</span><span class="p">.</span><span class="na">key</span><span class="p">;</span>
+<span class="w">                </span><span class="c1">// Delete the successor</span>
+<span class="w">                </span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deleteRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">successor</span><span class="p">.</span><span class="na">key</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// If the tree had only one node</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 2. Update height of the current node</span>
+<span class="w">        </span><span class="n">updateHeight</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 3. Get balance factor</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getBalance</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 4. Rebalance if needed</span>
+
+<span class="w">        </span><span class="c1">// Left Left Case</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">balance</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">getBalance</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">rotateRight</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Left Right Case</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">balance</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">getBalance</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotateLeft</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">rotateRight</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Right Right Case</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">balance</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">getBalance</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">rotateLeft</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Right Left Case</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">balance</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">getBalance</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotateRight</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">rotateLeft</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Helper function to find the node with the minimum key value</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">getMinValueNode</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="c1">// Search</span>
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">searchRec</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">searchRec</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">cmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cmp</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">searchRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cmp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">searchRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// cmp == 0, key found</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="c1">// Traversals</span>
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">inOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;InOrder: &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">inOrderRec</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">inOrderRec</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">inOrderRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">inOrderRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">preOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;PreOrder: &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">preOrderRec</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">preOrderRec</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">preOrderRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+<span class="w">        </span><span class="n">preOrderRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">postOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;PostOrder: &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">postOrderRec</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">postOrderRec</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">postOrderRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+<span class="w">        </span><span class="n">postOrderRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="c1">// Pretty Print (Tree Display)</span>
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">printTree</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printTreeRec</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">     * Traverses the tree in a rotated manner and prints branches to visualize</span>
+<span class="cm">     * the structure. The approach is to go right, then print current, then go left.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">printTreeRec</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">indent</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isRight</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// Print right subtree</span>
+<span class="w">        </span><span class="n">printTreeRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">indent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">isRight</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;     &quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot; |   &quot;</span><span class="p">),</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Print current node</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">indent</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isRight</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;└───&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;┌───&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Print left subtree</span>
+<span class="w">        </span><span class="n">printTreeRec</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span><span class="w"> </span><span class="n">indent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">isRight</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot; |   &quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;     &quot;</span><span class="p">),</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="c1">// Main (for demonstration)</span>
+<span class="w">    </span><span class="c1">// ------------------------</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">AVLTree</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AVLTree</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">values</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">tree</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">tree</span><span class="p">.</span><span class="na">printTree</span><span class="p">();</span>
+<span class="w">        </span><span class="n">tree</span><span class="p">.</span><span class="na">inOrder</span><span class="p">();</span>
+<span class="w">        </span><span class="n">tree</span><span class="p">.</span><span class="na">preOrder</span><span class="p">();</span>
+<span class="w">        </span><span class="n">tree</span><span class="p">.</span><span class="na">postOrder</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Search 25: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tree</span><span class="p">.</span><span class="na">search</span><span class="p">(</span><span class="mi">25</span><span class="p">));</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Search 15: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tree</span><span class="p">.</span><span class="na">search</span><span class="p">(</span><span class="mi">15</span><span class="p">));</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nDelete 20&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">tree</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="w">        </span><span class="n">tree</span><span class="p">.</span><span class="na">printTree</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="explanation-of-the-key-methods">
+<h3>Explanation of the Key Methods<a class="headerlink" href="#explanation-of-the-key-methods" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Node Class</strong>
+Each node stores:</p>
+<ul class="simple">
+<li><p>The key (generic type <code class="docutils literal notranslate"><span class="pre">T</span></code>).</p></li>
+<li><p>References to the left and right children.</p></li>
+<li><p>An integer <code class="docutils literal notranslate"><span class="pre">height</span></code> to aid in maintaining balance.</p></li>
+</ul>
+</li>
+<li><p><strong>Height and Balance Factor</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">height(node)</span></code>: returns the height of the node (with <code class="docutils literal notranslate"><span class="pre">null</span></code> as height 0).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getBalance(node)</span></code>: computes the difference in heights of the left and right subtrees.</p></li>
+</ul>
+</li>
+<li><p><strong>Insertion</strong></p>
+<ul class="simple">
+<li><p>Insert the new key as in a regular BST.</p></li>
+<li><p>Update the height of the ancestor nodes.</p></li>
+<li><p>Check the balance factor.</p></li>
+<li><p>Perform appropriate rotations if unbalanced.</p></li>
+</ul>
+</li>
+<li><p><strong>Deletion</strong></p>
+<ul class="simple">
+<li><p>Perform the usual BST deletion (case of no child, one child, or two children).</p></li>
+<li><p>Update the height and balance for nodes on the path back up.</p></li>
+<li><p>Fix any imbalance with the correct rotations.</p></li>
+</ul>
+</li>
+<li><p><strong>Search</strong>
+Standard BST search logic:</p>
+<ul class="simple">
+<li><p>Compare, traverse left or right, or return true if the key is found.</p></li>
+</ul>
+</li>
+<li><p><strong>Traversals</strong></p>
+<ul class="simple">
+<li><p><strong>In-order</strong>: left, node, right</p></li>
+<li><p><strong>Pre-order</strong>: node, left, right</p></li>
+<li><p><strong>Post-order</strong>: left, right, node</p></li>
+</ul>
+</li>
+<li><p><strong>Pretty Print</strong>
+A simple, recursive approach that prints the tree horizontally, showing child branches with ASCII symbols.</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>Time Complexity</strong></p>
+<ul class="simple">
+<li><p><strong>Insertion</strong>, <strong>Deletion</strong>, and <strong>Search</strong> each take <strong>O(log n)</strong> time on average because the AVL tree remains balanced (height is O(log⁡n)\mathcal{O}(\log n)).</p></li>
+</ul>
+<p>With this, you have a complete Java class demonstrating the core features of an AVL tree, along with helpful utility methods and a main routine for testing.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="supplemental-note">
+<h2>Supplemental Note<a class="headerlink" href="#supplemental-note" title="Link to this heading">#</a></h2>
+<p>Let’s break down the line of code in detail:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AVLTree</span><span class="o">&lt;</span><span class="n">T</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>This declaration defines a generic class named <code class="docutils literal notranslate"><span class="pre">AVLTree</span></code> which has a single type parameter, <code class="docutils literal notranslate"><span class="pre">T</span></code>. The part that might look complex at first glance is:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<section id="what-does-t-extends-comparable-t-mean">
+<h3>What does <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">extends</span> <span class="pre">Comparable&lt;T&gt;</span></code> mean?<a class="headerlink" href="#what-does-t-extends-comparable-t-mean" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Generic Type Parameter</strong>
+When you write <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">AVLTree&lt;T&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">T</span></code> is a generic type parameter. This allows the class <code class="docutils literal notranslate"><span class="pre">AVLTree</span></code> to work with <strong>any</strong> type without being tied to a specific class or interface.</p></li>
+<li><p><strong>Type Bound (<code class="docutils literal notranslate"><span class="pre">extends</span> <span class="pre">Comparable&lt;T&gt;</span></code>)</strong>
+By saying <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">extends</span> <span class="pre">Comparable&lt;T&gt;</span></code>, we’re adding a <strong>constraint</strong> on what <code class="docutils literal notranslate"><span class="pre">T</span></code> can be:</p>
+<ul class="simple">
+<li><p>It must be a type that implements the <code class="docutils literal notranslate"><span class="pre">Comparable&lt;T&gt;</span></code> interface.</p></li>
+<li><p>In other words, <code class="docutils literal notranslate"><span class="pre">T</span></code> must be able to compare itself to another object of the same type <code class="docutils literal notranslate"><span class="pre">T</span></code>.</p></li>
+</ul>
+<p>In Java, <code class="docutils literal notranslate"><span class="pre">extends</span></code> in a generic type context can mean either “extends (a superclass)” <strong>or</strong> “implements (an interface).” Since <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> is an interface, this part actually means “implements <code class="docutils literal notranslate"><span class="pre">Comparable&lt;T&gt;</span></code>.”</p>
+</li>
+<li><p><strong>Why do we need <code class="docutils literal notranslate"><span class="pre">Comparable&lt;T&gt;</span></code> in an AVL Tree?</strong>
+An AVL tree is a <strong>self-balancing binary search tree</strong>. For a binary search tree, we need to <strong>compare</strong> elements to decide:</p>
+<ul class="simple">
+<li><p>Where to insert a new node (go left if the new value is smaller, go right if it’s larger).</p></li>
+<li><p>How to traverse or search in the tree.</p></li>
+</ul>
+<p>Because we need to compare elements, the type <code class="docutils literal notranslate"><span class="pre">T</span></code> used in this tree must be <strong>comparable</strong>. That’s why the code requires <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">extends</span> <span class="pre">Comparable&lt;T&gt;</span></code>—so that each node’s value can be compared to another node’s value.</p>
+</li>
+</ol>
+</section>
+<section id="what-does-the-comparable-interface-do">
+<h3>What does the <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> interface do?<a class="headerlink" href="#what-does-the-comparable-interface-do" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Comparable&lt;T&gt;</span></code> is a built-in Java interface (from the <code class="docutils literal notranslate"><span class="pre">java.lang</span></code> package) that has a single method:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">compareTo</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">o</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Any class that implements <code class="docutils literal notranslate"><span class="pre">Comparable&lt;T&gt;</span></code> is expected to provide its own definition of the <code class="docutils literal notranslate"><span class="pre">compareTo(T</span> <span class="pre">o)</span></code> method. The <code class="docutils literal notranslate"><span class="pre">compareTo</span></code> method returns:</p>
+<ul class="simple">
+<li><p>A <strong>negative integer</strong> if the current object is “less than” the argument.</p></li>
+<li><p><strong>Zero</strong> if they are “equal.”</p></li>
+<li><p>A <strong>positive integer</strong> if the current object is “greater than” the argument.</p></li>
+</ul>
+<p>This enables sorting and ordering. In a data structure like an AVL tree, you rely on the <code class="docutils literal notranslate"><span class="pre">compareTo</span></code> method to decide how to place or find items.</p>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<p>For instance, Java’s built-in <code class="docutils literal notranslate"><span class="pre">String</span></code> class implements <code class="docutils literal notranslate"><span class="pre">Comparable&lt;String&gt;</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">String</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Comparable</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">CharSequence</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// Implementation details</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compareTo</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">anotherString</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// returns negative, 0, or positive</span>
+<span class="w">        </span><span class="c1">// based on lexicographical comparison</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>So if you create an <code class="docutils literal notranslate"><span class="pre">AVLTree&lt;String&gt;</span></code>, you know that you can compare <code class="docutils literal notranslate"><span class="pre">String</span></code> objects to decide their order in the tree.</p>
+<p>Similarly, Java’s built-in numeric types like <code class="docutils literal notranslate"><span class="pre">Integer</span></code> implement <code class="docutils literal notranslate"><span class="pre">Comparable&lt;Integer&gt;</span></code>, so <code class="docutils literal notranslate"><span class="pre">AVLTree&lt;Integer&gt;</span></code> would also work.</p>
+</section>
+<section id="summary-of-t-extends-comparable-t">
+<h3>Summary of <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">extends</span> <span class="pre">Comparable&lt;T&gt;</span></code><a class="headerlink" href="#summary-of-t-extends-comparable-t" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>It <strong>constrains</strong> the generic parameter <code class="docutils literal notranslate"><span class="pre">T</span></code> to types that implement <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> of themselves.</p></li>
+<li><p>It <strong>ensures</strong> that any instance of <code class="docutils literal notranslate"><span class="pre">AVLTree&lt;T&gt;</span></code> can compare its elements (<code class="docutils literal notranslate"><span class="pre">T</span></code> objects) with each other.</p></li>
+<li><p>It’s essential for data structures or algorithms that rely on comparing objects (e.g., sorting, searching, or balancing a tree).</p></li>
+</ul>
+<hr class="docutils" />
+<p>By using <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">extends</span> <span class="pre">Comparable&lt;T&gt;</span></code>, the <code class="docutils literal notranslate"><span class="pre">AVLTree</span></code> class is guaranteed that <code class="docutils literal notranslate"><span class="pre">T</span></code> has a <code class="docutils literal notranslate"><span class="pre">compareTo</span></code> method, making it possible to implement comparison-based logic correctly and safely within the tree’s operations.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="BST_BinarySearchTree.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Binary Search Tree</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="BST_RedBlack.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Red Black Tree</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-properties-and-balance-rules">Key Properties and Balance Rules</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-rotations">Single Rotations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#double-rotations">Double Rotations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-implementation-of-an-avl-tree">Java Implementation of an AVL Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-the-key-methods">Explanation of the Key Methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supplemental-note">Supplemental Note</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-t-extends-comparable-t-mean">What does <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">extends</span> <span class="pre">Comparable&lt;T&gt;</span></code> mean?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-the-comparable-interface-do">What does the <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> interface do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-t-extends-comparable-t">Summary of <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">extends</span> <span class="pre">Comparable&lt;T&gt;</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

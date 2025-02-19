@@ -54,6 +54,3 @@ Here are some examples of how these traversals are used in real life:
 - **Post-order:** Evaluating an arithmetic expression where leaves (operands) are processed before the operators, or calculating the size of a directory by first traversing all subdirectories.
 
   
-
----
-

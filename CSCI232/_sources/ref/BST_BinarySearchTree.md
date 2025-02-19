@@ -11,6 +11,7 @@ A binary search tree (BST) is a special type of binary tree data structure used 
 - **Ordering:** Each node in the tree has a value (key), and the key of a node is **always greater than** all the keys in its **left subtree** and **less than** all the keys in its **right subtree**. This creates a sorted order throughout the tree.
 - **Efficient searching:** Because of this ordering, you can very quickly search for specific values in the tree. Imagine searching a phone book - you wouldn't start at the very beginning or end, but somewhere in the middle based on the last name. Similarly, in a BST, you can efficiently move left or right depending on the value you're searching for, narrowing down the possibilities with each comparison.
 - **Dynamic insertions and deletions:** You can easily add new values (insert) or remove existing ones (delete) from the tree while maintaining the sorted order. The process involves comparing the new value with existing nodes and finding its appropriate place based on the ordering rule.
+- **No Duplicates**: Typically, BSTs do **not** allow duplicate values, although variations exist that permit duplicates with specific rules (e.g., storing duplicates in the left or right subtree).
 
 
 
