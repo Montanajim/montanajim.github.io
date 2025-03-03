@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Building Large Java Applications &#8212; CSCI 132 Basic Data Structures</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'javalang/buildinglargejavaapplications';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Ant Vs Maven Vs Gradle" href="antvsmavenvsgradle.html" />
+    <link rel="prev" title="Reference Reading" href="referencereading.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CSCI 132 Basic Data Structures</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to CSCI 132
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Java Language</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="javalanguage.html">Java Language</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="netbeansinstall.html">NetBeans Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javaintro.html">JAVA Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javabasics.html">Java Basics</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="java_variable_lc.html">Variable Lecture Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firstprogram.html">First Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secondprogram.html">Second Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decisiontrees.html">Decision Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switchstatement.html">Switch Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringfunctions.html">String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numberformats.html">Number Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iterationloops.html">Iteration / Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptionhandling.html">Exception Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iofilefoldercreationdeletion.html">File, Folder - Creation and Deletion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ioreadcsvfile.html">IO Read CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arraylists.html">ArrayLists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overloading.html">Overloading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classesandobjects.html">Classes and Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classesinheritance.html">Classes  - Inheritance</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="abstractclasses.html">Abstract Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lambdafunctions.html">Lambda Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recursion.html">Recursion</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="regexmatches.html">Regex - Using Java Matches</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="referencereading.html">Reference Reading</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Building Large Java Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="antvsmavenvsgradle.html">Ant Vs Maven Vs Gradle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolymorphismInJavaWithExamples.html">Polymorphism in Java (With Examples)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnableToRunJarFiles.html">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/DataStructuresAndAlgorithms.html">Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/ArrayTechniques.html">Array Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayWarpAround.html">Array Warp Around</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayAddDeleteData.html">Array Add and Delete Data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/BigONotation.html">Big O Notation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ON_VisualizingBigONotation.html">Visualizing Big O notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/BigONotationExplained.html">Big O Notation - Explained</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/LinkedLists.html">Linked Lists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/SinglyLinkedListRev3.html">Singly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedList.html">Doubly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListSubClass.html">Doubly Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/CircularLinkedList.html">Circular Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListReadDataIntoLL.html">Reading Datafile Into Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListCSharp.html">C# Linked List Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListJava.html">Java Linked List Class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/StacksAndQueues.html">Stacks and Queues</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/StackUsingArrayOfObjects.html">Stack  - Using Array of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/QueueUsingArrayOfObjects.html">Queue  - Using Array Of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/PriorityQueue.html">Priority Queue</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/SortAlgorithms.html">Sorting Algorithms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/Sort_Bubble.html">Bubble Sort</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/javalang/buildinglargejavaapplications.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Building Large Java Applications</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-applications">Java Applications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organizing-your-development-environment">Organizing Your Development Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-class-loading">Basics of Class Loading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bootstrap-classloader">The Bootstrap Classloader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classpaths">Classpaths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-classloaders-classpaths-and-related-topics">More on Classloaders, Classpaths, and Related Topics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-your-application">Building Your Application</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="building-large-java-applications">
+<h1>Building Large Java Applications<a class="headerlink" href="#building-large-java-applications" title="Link to this heading">#</a></h1>
+<p>Author:  <a class="reference external" href="https://cs.lmu.edu/~ray/notes/largejavaapps/">Ray Toal</a></p>
+<p>Real Java applications are made up of hundreds, or thousands, of classes. Designing and building an application of this size isn’t at all like building something tiny.</p>
+<p>CONTENTS</p>
+<p>Java Applications • Organizing Your Development Environment • Basics of Class Loading • Building Your Application</p>
+<section id="java-applications">
+<h2>Java Applications<a class="headerlink" href="#java-applications" title="Link to this heading">#</a></h2>
+<p>A Java application is made up of <strong>classes</strong> and <strong>resources</strong>. Resources can be videos, songs, images, text files, data files, etc. There can be thousands of classes and thousands of resource files in one application. Often you will write only some of the classes yourself, and simply use many classes written by others.</p>
+<p>There are three main types of Java applications:</p>
+<ul class="simple">
+<li><p>Native applications, which are stored on, and run directly on, the user’s desktop, laptop, or mobile device.</p></li>
+<li><p>Web applications, served by, and run mostly on, a web server.</p></li>
+<li><p>WebStart applications, which are stored on a server, but downloaded and run on demand.</p></li>
+</ul>
+<p>Generally, all of the classes and resources are zipped up into a single file. For client apps and webstart apps, this is a JAR file; for webapps this is a WAR file. Both jars and wars use the popular zip format (nice and portable). Note: with webstart apps, you actually need two files, since the JNLP file has to live outside the war.</p>
+</section>
+<section id="organizing-your-development-environment">
+<h2>Organizing Your Development Environment<a class="headerlink" href="#organizing-your-development-environment" title="Link to this heading">#</a></h2>
+<p>When dealing with large programs it is important that you keep your workspace organized. The following directory layout has become standard; you should follow it:</p>
+<p><img alt="projectlayout1" src="../_images/projectlayout1.png" /></p>
+<p>Why is this so great?</p>
+<ul class="simple">
+<li><p>Everything under <strong>target</strong> is “derived” and therefore does <em>not go into revision control</em>. For example you put your Java source code files under <strong>src/main/java</strong>. When these are compiled, the Java compiler places the resulting class files under <strong>target</strong>.</p></li>
+<li><p>Everything under <strong>src/main</strong> goes in your distributed application (you don’t bundle your tests in your app).</p></li>
+</ul>
+<p>Since you may have hundreds of Java source files, you need to group them into packages. Make sure the initial part of the package name follows the convention of using your “reversed” Internet domain (such as <strong>edu.lmu.cs</strong>. The folder structure of your application must mirror the package names! Here is an example to explain:</p>
+<p>Suppose we are writing a calculator web application. We would need Java classes for controllers, validators, and services, and perhaps some tests. Our project structure should be:</p>
+<p><img alt="projectlayout2.png" src="../_images/projectlayout2.png" /></p>
+<p>Of course a larger application might have many subpackages within an application, perhaps one per each functional subsystem of the project. And within each subsystem, we may need more than just <strong>controller</strong> and <strong>service</strong>; we might want separate packages for validators, domain classes, types, utility classes, factories, daos, property editors, etc.</p>
+<p>Now if we were building a client application, we would probably place imeages, scripts, movies and so on into the <strong>resources</strong> folder, but the convention is to structure these things under <strong>src/main/webapp</strong> as shown below. The <strong>resources</strong> folder does keep properties files and other run-time configuration files (e.g., Hibernate mapping files). To make the example interesting, we’ll assume that we are building our application using the Spring Framework.</p>
+<p><img alt="projectlayout3.png" src="../_images/projectlayout3.png" /></p>
+<p>Now let’s see how Java applications are built and run. (In doing so, we’ll see why the folder structure needs to match the package name structure.</p>
+</section>
+<section id="basics-of-class-loading">
+<h2>Basics of Class Loading<a class="headerlink" href="#basics-of-class-loading" title="Link to this heading">#</a></h2>
+<p>So all Java applications are made up of a bunch of classes, grouped into packages. But when an application is being compiled and run, how does the system find all the classes? It uses <strong>classloaders</strong> to find and load the classes (and other resources like images, movies, and properties files) that the program requires.</p>
+<p>The Java runtime starts with one classloader (the <em>bootstrap classloader</em>) that finds classes on the local filesystem. You can create your own classloaders to find classes from other places (such as over a network connection), to compose binary classfiles on the fly, or do things while loading classes (like decrypting them, verifying digital signatures, etc.). Classloaders are chained together so that each classloader except the bootstrap loader has a parent; if a classloader can’t find a class it asks its parent to find it.</p>
+<p>Every <code class="docutils literal notranslate"><span class="pre">Class</span></code> object contains a reference to the <code class="docutils literal notranslate"><span class="pre">ClassLoader</span></code> that defined it; you’ll sometimes see code that says</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">x</span><span class="o">.</span><span class="n">getClass</span><span class="p">()</span><span class="o">.</span><span class="n">getClassLoader</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="the-bootstrap-classloader">
+<h3>The Bootstrap Classloader<a class="headerlink" href="#the-bootstrap-classloader" title="Link to this heading">#</a></h3>
+<p>Unless you are doing fairly fancy stuff, you never have to tell a classloader to load a class; just mentioning a class is good enough. For example, the class A below refers to:</p>
+<ul class="simple">
+<li><p>other classes in the same package</p></li>
+<li><p>classes from other packages</p></li>
+<li><p>classes from a library written by someone else</p></li>
+<li><p>classes from the Java Core API</p></li>
+</ul>
+<p>src/main/java/edu/lmu/cs/scratch/A.java</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span> <span class="n">edu</span><span class="o">.</span><span class="n">lmu</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">scratch</span><span class="p">;</span>
+<span class="n">public</span> <span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="n">org</span><span class="o">.</span><span class="n">bouncycastle</span><span class="o">.</span><span class="n">crypto</span><span class="o">.</span><span class="n">BlockCipher</span> <span class="n">cipher</span> <span class="o">=</span>
+        <span class="n">new</span> <span class="n">com</span><span class="o">.</span><span class="n">citysearch</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">crypto</span><span class="o">.</span><span class="n">HagenRedmannTwofishEngine</span><span class="p">();</span>
+
+    <span class="n">void</span> <span class="n">m</span><span class="p">(</span><span class="nb">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">java</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">List</span> <span class="n">y</span> <span class="o">=</span> <span class="n">new</span> <span class="n">java</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">ArrayList</span><span class="p">();</span>
+        <span class="n">cipher</span><span class="o">.</span><span class="n">reset</span><span class="p">();</span>
+        <span class="n">B</span> <span class="n">b</span> <span class="o">=</span> <span class="n">new</span> <span class="n">B</span><span class="p">();</span>
+        <span class="n">edu</span><span class="o">.</span><span class="n">lmu</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">Complex</span> <span class="n">c</span><span class="p">;</span>
+        <span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;okay&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>src/main/java/edu/lmu/cs/scratch/B.java</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span> <span class="n">edu</span><span class="o">.</span><span class="n">lmu</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">scratch</span><span class="p">;</span>
+<span class="n">public</span> <span class="k">class</span> <span class="nc">B</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>src/main/java/edu/lmu/cs/math/Complex.java</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span> <span class="n">edu</span><span class="o">.</span><span class="n">lmu</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">math</span><span class="p">;</span>
+<span class="n">public</span> <span class="k">class</span> <span class="nc">Complex</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Class</span> <span class="n">body</span> <span class="n">goes</span> <span class="n">here</span><span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>So I’ve written classes A, B, and Complex myself, but these other classes (BlockCipher, HagenRedmannTwofishEngine, List, ArrayList, and System) already exist. But it doesn’t really matter who wrote them; what matters is the full class names. A classloader needs to find:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">edu</span><span class="o">.</span><span class="n">lmu</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">scratch</span><span class="o">.</span><span class="n">A</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">lmu</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">scratch</span><span class="o">.</span><span class="n">B</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">lmu</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">Complex</span>
+<span class="n">org</span><span class="o">.</span><span class="n">bouncycastle</span><span class="o">.</span><span class="n">crypto</span><span class="o">.</span><span class="n">BlockCipher</span>
+<span class="n">com</span><span class="o">.</span><span class="n">citysearch</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">crypto</span><span class="o">.</span><span class="n">HagenRedmannTwofishEngine</span>
+<span class="n">java</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">List</span>
+<span class="n">java</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">ArrayList</span>
+<span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">System</span>
+</pre></div>
+</div>
+<p>But how does the bootstrap class loader find all the classes? First, it turns the full class name into a filename — so the first class in the list above would correspond, on a Windows system, to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">edu</span>\<span class="n">lmu</span>\<span class="n">cs</span>\<span class="n">scratch</span>\<span class="n">A</span><span class="o">.</span><span class="k">class</span>
+</pre></div>
+</div>
+<p>(If you’re compiling, and the compiler can’t find that class, it will look for</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">edu</span>\<span class="n">lmu</span>\<span class="n">cs</span>\<span class="n">scratch</span>\<span class="n">A</span><span class="o">.</span><span class="n">java</span>
+</pre></div>
+</div>
+<p>and compile that for you!!! How sweet.)</p>
+<p>On almost every other system, the file names would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>edu/lmu/cs/scratch/A.class
+(or edu/lmu/cs/scratch/A.java)
+</pre></div>
+</div>
+<p><strong>Note:</strong> that filename is a <em>relative</em> path name! Relative to what? The bootstrap loader looks for it in this order:</p>
+<ol class="arabic simple">
+<li><p>The jar files in your JRE’s lib directory (rt.jar, jsse.jar, jce.jar, charsets.jar)</p></li>
+<li><p>The jar files in your <em>extensions directory</em> — by default this is the JRE’s lib/ext directory. You can dump your own jars in this directory, or tell your tool to use a different directory.</p></li>
+<li><p>Each entry in the current <em>classpath</em>, in order.</p></li>
+</ol>
+<p>Classpath? What’s that?</p>
+</section>
+<section id="classpaths">
+<h3>Classpaths<a class="headerlink" href="#classpaths" title="Link to this heading">#</a></h3>
+<p>A classpath is simply a list of directories and jar files. The bootstrap class loader searches a classpath when it looks for the classes (or source files) it needs, <strong>after searching the platform and extension locations</strong>.</p>
+<p>On Windows the classpath entries are separated with semicolons; on every other platform (I think) colons are used.</p>
+<p>Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">:</span>\<span class="n">homework</span>\<span class="n">stuff</span><span class="o">.</span><span class="n">jar</span><span class="p">;</span><span class="n">c</span><span class="p">:</span>\<span class="n">other</span>\<span class="n">crap</span><span class="p">;</span><span class="n">c</span><span class="p">:</span>\<span class="n">mylibs</span>\<span class="n">junit</span><span class="o">.</span><span class="n">jar</span>
+</pre></div>
+</div>
+<p>If you requested the class a.b.C from the bootstrap classloader, and that class was not found in rt.jar or in the extensions, it would look for, in this order:</p>
+<ol class="arabic simple">
+<li><p>a\b\C.class in c:\homework\stuff.jar</p></li>
+<li><p>c:\other\crap\a\b\C.class</p></li>
+<li><p>a\b\C.class in c:\mylibs\junit.jar</p></li>
+</ol>
+<p>Specify the classpath when invoking a tool, for example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">javac</span> <span class="o">-</span><span class="n">cp</span> <span class="n">c</span><span class="p">:</span>\<span class="n">homework</span>\<span class="n">stuff</span><span class="o">.</span><span class="n">jar</span><span class="p">;</span><span class="n">c</span><span class="p">:</span>\<span class="n">other</span>\<span class="n">crap</span><span class="p">;</span><span class="n">c</span><span class="p">:</span>\<span class="n">mylibs</span>\<span class="n">junit</span><span class="o">.</span><span class="n">jar</span> <span class="o">*.</span><span class="n">java</span>
+</pre></div>
+</div>
+<p>or, less flexibly, set the CLASSPATH environment variable (which may seem like a timesaver but can cause headaches). It’s suggested you leave this environment variable unset and use a specific classpath when you invoke a tool. If you really must know about this variable, consult Sun’s online docs.</p>
+</section>
+<section id="more-on-classloaders-classpaths-and-related-topics">
+<h3>More on Classloaders, Classpaths, and Related Topics<a class="headerlink" href="#more-on-classloaders-classpaths-and-related-topics" title="Link to this heading">#</a></h3>
+<p>See Sun’s documentation on <a class="reference external" href="http://java.sun.com/j2se/1.5.0/docs/tooldocs/findingclasses.html">How Classes are Found</a>.</p>
+<p>Also note: once you start writing your own classloaders or you start deploying applications with multiple classloaders, you’ll probably run into the case where a single class file is loaded by each classloader. Your application will think there are two distinct classes, and, well, some confusing things may start to happen. Just be aware.</p>
+</section>
+</section>
+<section id="building-your-application">
+<h2>Building Your Application<a class="headerlink" href="#building-your-application" title="Link to this heading">#</a></h2>
+<p>Developers should be familiar with all three main approaches to building applications</p>
+<ul>
+<li><p>Using Commandline Tools</p>
+<p>Everything you need to know is in <a class="reference external" href="http://java.sun.com/j2se/1.5.0/docs/tooldocs/index.html">Sun’s tool documentation</a>.</p>
+</li>
+<li><p>Using Build Files</p>
+<p>The defacto standard application for building Java applications is <a class="reference external" href="http://maven.apache.org/">Maven</a>. (You can also use <a class="reference external" href="http://ant.apache.org/">Ant</a>, which is older.)</p>
+</li>
+<li><p>Using IDEs</p>
+<p>Once you understand how to build applications the hard way, you’re ready to fire up an IDE and use a nice tool to construct classpaths for your projects. Some IDEs just let you drag and drop jar files and directories into a window. However you do it, you need to understand what a classpath is. Note that you can use maven and ant plugins for modern IDEs, too!</p>
+</li>
+</ul>
+<p>Experienced programmers will get the most benefit out of an IDE and a Maven plugin. Beginners should probably pay their dues by using the command line first. This gives you the best “sense” of how things fit together and are supposed to work, enabling you to work much more efficiently with IDEs and plugins when you finally start using them.</p>
+<hr class="docutils" />
+<p>End Of Topic</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./javalang"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="referencereading.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Reference Reading</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="antvsmavenvsgradle.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Ant Vs Maven Vs Gradle</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-applications">Java Applications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organizing-your-development-environment">Organizing Your Development Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-class-loading">Basics of Class Loading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bootstrap-classloader">The Bootstrap Classloader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classpaths">Classpaths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-classloaders-classpaths-and-related-topics">More on Classloaders, Classpaths, and Related Topics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-your-application">Building Your Application</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

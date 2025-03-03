@@ -1,0 +1,796 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IO Read Data File &#8212; CSCI 132&lt;br&gt;Basic Data Structures&lt;br&gt;Class Materials</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Arrays" href="arrays.html" />
+    <link rel="prev" title="File, Folder - Creation and Deletion" href="iofilefoldercreationdeletion.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">CSCI 132<br>Basic Data Structures<br>Class Materials</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to CSCI 132
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="javalanguage.html">
+   Java Language
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="netbeansinstall.html">
+     NetBeans Installation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="javaintro.html">
+     JAVA Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="javabasics.html">
+     Java Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="java_variable_lc.html">
+     Variable Lecture Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="firstprogram.html">
+     First Program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="secondprogram.html">
+     Second Program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="decisiontrees.html">
+     Decision Trees
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="switchstatement.html">
+     Switch Statement
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="stringfunctions.html">
+     String Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="numberformats.html">
+     Number Formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="iterationloops.html">
+     Iteration / Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="exceptionhandling.html">
+     Exception Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="iofilefoldercreationdeletion.html">
+     File, Folder - Creation and Deletion
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     IO Read Data File
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="arrays.html">
+     Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="arraylists.html">
+     ArrayLists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="overloading.html">
+     Overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classesandobjects.html">
+     Classes and Objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classesinheritance.html">
+     Classes  - Inheritance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="abstractclasses.html">
+     Abstract Classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lambdafunctions.html">
+     Lambda Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="recursion.html">
+     Recursion
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="referencereading.html">
+     Reference Reading
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="buildinglargejavaapplications.html">
+       Building Large Java Applications
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="antvsmavenvsgradle.html">
+       Ant Vs Maven Vs Gradle
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="PolymorphismInJavaWithExamples.html">
+       Polymorphism in Java (With Examples)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="end.html">
+     End Of Section
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../basicalgo/DataStructuresAndAlgorithms.html">
+   Data Structures and Algorithms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../basicalgo/ArrayTechniques.html">
+     Array Techniques
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../basicalgo/ArrayWarpAround.html">
+       Array Warp Around
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../basicalgo/ArrayAddDeleteData.html">
+       Array Add and Delete Data
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../basicalgo/BigONotation.html">
+     Big O Notation
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../basicalgo/ON_VisualizingBigONotation.html">
+       Visualizing Big O notation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../basicalgo/BigONotationExplained.html">
+       Big O Notation - Explained
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../basicalgo/LinkedLists.html">
+     Linked Lists
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../basicalgo/SinglyLinkedList.html">
+       Singly Linked List
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../basicalgo/SortAlgorithms.html">
+     Sorting Algorithms
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../basicalgo/Sort_Bubble.html">
+       Bubble Sort
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../basicalgo/end.html">
+     End Of Section
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/javalang/ioreaddatafile.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lecture-code">
+   Lecture Code
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>IO Read Data File</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lecture-code">
+   Lecture Code
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="io-read-data-file">
+<h1>IO Read Data File<a class="headerlink" href="#io-read-data-file" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Read a comma-separated file</p></li>
+</ul>
+</div>
+<div class="section" id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Programmer: James Goudy</span>
+<span class="cm"> * Project: IO_CSV_Demo Rev 2 20220630</span>
+<span class="cm"> */</span>
+<span class="kn">package</span> <span class="nn">com.company.my.j1_io_csv_demo_rev2</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileReader</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="p">;</span>
+
+
+<span class="cm">/**</span>
+<span class="cm"> *</span>
+<span class="cm"> * @author jgoudy</span>
+<span class="cm"> */</span>
+
+<span class="kd">class</span> <span class="nc">readCSV_BufferedReader</span> <span class="p">{</span>
+
+    <span class="n">BufferedReader</span> <span class="n">br</span><span class="p">;</span>
+    <span class="n">FileReader</span> <span class="n">fr</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">numCols</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">numRows</span><span class="p">;</span>
+
+
+    <span class="n">String</span> <span class="n">filePath</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">readCSV_BufferedReader</span><span class="p">(</span><span class="n">String</span> <span class="n">filePath</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">filePath</span> <span class="o">=</span> <span class="n">filePath</span><span class="p">;</span>
+
+        <span class="c1">// creating a buffered reader in its own function</span>
+        <span class="c1">// this will allow the resetting of the buffered reader</span>
+        <span class="n">createBufferedReader</span><span class="p">(</span><span class="n">filePath</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">createBufferedReader</span><span class="p">(</span><span class="n">String</span> <span class="n">thefilePath</span><span class="p">)</span> <span class="p">{</span>
+        
+        <span class="c1">// BufferedReader requires a try and catch</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="p">(</span><span class="k">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="n">thefilePath</span><span class="p">));</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">ex</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+
+  
+
+    
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">getArrayDimensions</span><span class="p">()</span> <span class="p">{</span>
+	
+        <span class="c1">// this function is used only for calculating the </span>
+        <span class="c1">// dimension of an array</span>
+        
+        <span class="n">String</span> <span class="n">inputLine</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+
+        <span class="k">try</span> <span class="p">{</span>
+
+            <span class="c1">// skip the header row        </span>
+            <span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">();</span>
+
+            <span class="c1">// count rows</span>
+            <span class="k">while</span> <span class="p">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">numRows</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">//reset buffered reader</span>
+            <span class="n">createBufferedReader</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">filePath</span><span class="p">);</span>
+
+            <span class="c1">// calculate columns</span>
+            <span class="n">inputLine</span> <span class="o">=</span> <span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">();</span>
+            <span class="n">String</span><span class="o">[]</span> <span class="n">inputArrary</span> <span class="o">=</span> <span class="n">inputLine</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">);</span>
+            <span class="n">numCols</span> <span class="o">=</span> <span class="n">inputArrary</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+
+            <span class="c1">// optional prints to verify Rows and cols</span>
+            <span class="c1">// System.out.println(&quot;Rows = &quot; + numRows);</span>
+            <span class="c1">// System.out.println(&quot;Cols = &quot; + numCols);</span>
+
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">ex</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span> 
+
+    <span class="kd">public</span> <span class="n">String</span><span class="o">[][]</span> <span class="nf">readDataIntoArray</span><span class="p">()</span> <span class="p">{</span>
+        
+        <span class="c1">// this function will return a 2 dimensional array</span>
+        <span class="c1">// not this can be modified to read in data and save </span>
+        <span class="c1">// it to a linked list.  In that case, all the dataArray</span>
+        <span class="c1">// code can be eliminated. One we still need to do the </span>
+        <span class="c1">// input array code.</span>
+        
+        
+        <span class="n">getArrayDimensions</span><span class="p">();</span>
+        
+        <span class="c1">// instantiate the new array</span>
+        <span class="n">String</span><span class="o">[][]</span> <span class="n">dataArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">numRows</span><span class="o">][</span><span class="n">numCols</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">inputLine</span><span class="p">;</span>
+        
+        <span class="kt">int</span> <span class="n">rowCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="c1">// reset buffered reader</span>
+        <span class="n">createBufferedReader</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">filePath</span><span class="p">);</span>
+
+        <span class="k">try</span> <span class="p">{</span>
+
+            <span class="c1">// skip the header row        </span>
+            <span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">();</span>
+
+            <span class="c1">// br.readline reads the input file line</span>
+            <span class="c1">// and stores it in inputline within the while statement</span>
+            
+            <span class="k">while</span> <span class="p">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="c1">// split the inputline into a string array</span>
+                <span class="n">String</span><span class="o">[]</span> <span class="n">inputArrary</span> <span class="o">=</span> <span class="n">inputLine</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">);</span>
+                
+                <span class="c1">// add the data from the inputArray to the dataArray</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">inputArrary</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">dataArray</span><span class="o">[</span><span class="n">rowCount</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">inputArrary</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+
+                <span class="n">rowCount</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">ex</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">dataArray</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getNumCols</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">numCols</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getNumRows</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">numRows</span><span class="p">;</span>
+    <span class="p">}</span>
+       
+
+<span class="p">}</span>  <span class="c1">// end of class</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">J1_IO_CSV_Demo_Rev2</span> <span class="p">{</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printArray</span><span class="p">(</span><span class="kt">int</span> <span class="n">rows</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cols</span><span class="p">)</span>
+    <span class="p">{</span>
+       <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">cols</span><span class="p">;</span> <span class="n">r</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">cols</span><span class="p">;</span> <span class="n">c</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">theArray</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">String</span><span class="o">[][]</span> <span class="n">theArray</span><span class="p">;</span>
+        
+        <span class="c1">// file location</span>
+        <span class="n">String</span> <span class="n">dataFile</span> <span class="o">=</span> <span class="s">&quot;c:\\z\\citydata.csv&quot;</span><span class="p">;</span>
+        
+        <span class="c1">// instantiate a new object</span>
+        <span class="n">readCSV_BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">readCSV_BufferedReader</span><span class="p">(</span><span class="n">dataFile</span><span class="p">);</span>
+        
+        
+        <span class="n">theArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">br</span><span class="p">.</span><span class="na">getNumRows</span><span class="p">()</span><span class="o">][</span><span class="n">br</span><span class="p">.</span><span class="na">getNumCols</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>
+        
+        <span class="k">try</span> <span class="p">{</span>
+           <span class="c1">// This will over write the current array</span>
+           <span class="c1">// with the returned array with the new dimensions</span>
+           <span class="n">theArray</span> <span class="o">=</span> <span class="n">br</span><span class="p">.</span><span class="na">readDataIntoArray</span><span class="p">();</span> 
+            
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+        <span class="p">}</span>
+        
+        <span class="c1">// print the array</span>
+        <span class="n">printArray</span><span class="p">(</span><span class="n">br</span><span class="p">.</span><span class="na">getNumRows</span><span class="p">(),</span><span class="n">br</span><span class="p">.</span><span class="na">br</span><span class="p">.</span><span class="na">getNumCols</span><span class="p">());</span>
+
+        <span class="c1">// exit</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nbye&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="cm">/*</span>
+<span class="cm"> citydata.csv</span>
+<span class="cm"> Key,Town,State,Population</span>
+<span class="cm"> 1,New York,New York,18713220</span>
+<span class="cm"> 2,Los Angeles,California,12750807</span>
+<span class="cm"> 3,Chicago,Illinois,8604203</span>
+<span class="cm"> 4,Miami,Florida,6445545</span>
+<span class="cm"> 5,Dallas,Texas,5743938</span>
+<span class="cm"> 6,Philadelphia,Pennsylvania,5649300</span>
+<span class="cm"> 7,Houston,Texas,5464251</span>
+<span class="cm"> 8,Atlanta,Georgia,5449398</span>
+<span class="cm"> 9,Washington,District of Columbia,5379184</span>
+<span class="cm"> 10,Boston,Massachusetts,4688346</span>
+<span class="cm"> 11,Phoenix,Arizona,4219697</span>
+<span class="cm"> 12,Seattle,Washington,3789215</span>
+<span class="cm"> 13,San Francisco,California,3592294</span>
+<span class="cm"> 14,Detroit,Michigan,3506126</span>
+<span class="cm"> 15,San Diego,California,3220118</span>
+<span class="cm"> 16,Minneapolis,Minnesota,2977172</span>
+<span class="cm"> 17,Tampa,Florida,2908063</span>
+<span class="cm"> 18,Denver,Colorado,2876625</span>
+<span class="cm"> 19,Brooklyn,New York,2559903</span>
+<span class="cm"> 20,Queens,New York,2230722</span>
+<span class="cm"> 21,Riverside,California,2107852</span>
+<span class="cm"> 22,Baltimore,Maryland,2106068</span>
+<span class="cm"> 23,Las Vegas,Nevada,2104198</span>
+<span class="cm"> 24,Portland,Oregon,2074775</span>
+<span class="cm"> 25,San Antonio,Texas,2049293</span>
+<span class="cm"> 26,St. Louis,Missouri,2024074</span>
+<span class="cm"> 27,Sacramento,California,1898019</span>
+<span class="cm"> 28,Orlando,Florida,1822394</span>
+<span class="cm"> 29,San Jose,California,1798103</span>
+<span class="cm"> 30,Cleveland,Ohio,1710093</span>
+<span class="cm"> 31,Pittsburgh,Pennsylvania,1703266</span>
+<span class="cm"> 32,Austin,Texas,1687311</span>
+<span class="cm"> 33,Cincinnati,Ohio,1662691</span>
+<span class="cm"> 34,Kansas City,Missouri,1636715</span>
+<span class="cm"> 35,Manhattan,New York,1628706</span>
+<span class="cm"> 36,Indianapolis,Indiana,1588961</span>
+<span class="cm"> 37,Columbus,Ohio,1562009</span>
+<span class="cm"> 38,Charlotte,North Carolina,1512923</span>
+<span class="cm"> 39,Virginia Beach,Virginia,1478868</span>
+<span class="cm"> 40,Bronx,New York,1418207</span>
+<span class="cm"> 41,Milwaukee,Wisconsin,1365787</span>
+<span class="cm"> 42,Providence,Rhode Island,1203230</span>
+<span class="cm"> 43,Jacksonville,Florida,1181496</span>
+<span class="cm"> 44,Salt Lake City,Utah,1098526</span>
+<span class="cm"> 45,Nashville,Tennessee,1081903</span>
+<span class="cm"> 46,Richmond,Virginia,1075798</span>
+<span class="cm"> 47,Memphis,Tennessee,1066967</span>
+<span class="cm"> 48,Raleigh,North Carolina,1038738</span>
+<span class="cm"> 49,New Orleans,Louisiana,1020886</span>
+<span class="cm"> 50,Louisville,Kentucky,1005654</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>End of Topic</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./javalang"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="iofilefoldercreationdeletion.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">File, Folder - Creation and Deletion</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="arrays.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Arrays</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By James Goudy<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
