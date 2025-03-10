@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Serializable &#8212; Algorithms</title>
+    <title>Serialization &#8212; Algorithms</title>
   
   
   
@@ -63,8 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'ref/Serializable';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Hash Table" href="Hashing_HashTable.html" />
-    <link rel="prev" title="Splay Trees" href="BST_SplayTrees_2025.html" />
+    <link rel="next" title="End" href="End.html" />
+    <link rel="prev" title="Dijkstra’s Algorithm" href="GraphsDijkstra.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -182,7 +182,6 @@
 <li class="toctree-l2"><a class="reference internal" href="BST_SplayTrees_2025.html">Splay Trees</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Serializable</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_ModulusHashFunction.html">Modulus Hash Function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_Chaining.html">Hash Tables - Chaining</a></li>
@@ -200,6 +199,7 @@
 <li class="toctree-l2"><a class="reference internal" href="GraphsDijkstra.html">Dijkstra’s Algorithm</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Serialization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="End.html">End</a></li>
 </ul>
 
@@ -334,7 +334,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Serializable</h1>
+    <h1>Serialization</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -348,28 +348,174 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="serializable">
-<h1>Serializable<a class="headerlink" href="#serializable" title="Link to this heading">#</a></h1>
-<p><strong>“Serializable”</strong> refers to a crucial concept related to data storage and transmission. Let me break it down for you:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="serialization">
+<h1>Serialization<a class="headerlink" href="#serialization" title="Link to this heading">#</a></h1>
+<ol class="arabic">
+<li><ul>
+<li><h3 class="rubric" id="definition-of-serialization"><strong>Definition of Serialization</strong></h3>
+<p>Serialization is the process of converting an object into a format that can be stored or transmitted and later reconstructed. This allows objects to be saved to a file, sent over a network, or stored in a database in a way that they can be reconstructed later.</p>
+<h3 class="rubric" id="uses-of-serialization"><strong>Uses of Serialization</strong></h3>
 <ol class="arabic simple">
-<li><p><strong>Serialization</strong>:</p>
+<li><p><strong>Persistence</strong> – Storing objects in a file or database for later retrieval.</p></li>
+<li><p><strong>Communication</strong> – Transmitting objects over a network (e.g., in distributed applications).</p></li>
+<li><p><strong>Caching</strong> – Storing objects in memory to speed up future access.</p></li>
+<li><p><strong>Deep Copying</strong> – Cloning objects by serializing and deserializing them.</p></li>
+<li><p><strong>Interoperability</strong> – Sharing data between different programming languages or systems.</p></li>
+</ol>
+<hr class="docutils" />
+<h3 class="rubric" id="example-in-java"><strong>Example in Java</strong></h3>
+<p>In Java, serialization is implemented using the <code class="docutils literal notranslate"><span class="pre">Serializable</span></code> interface.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.*</span><span class="p">;</span>
+
+<span class="c1">// Class that implements Serializable</span>
+<span class="kd">class</span> <span class="nc">Person</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">serialVersionUID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1L</span><span class="p">;</span><span class="w">  </span><span class="c1">// Ensure versioning compatibility</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Constructor</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Person</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Method to display object data</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Name: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, Age: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SerializationExample</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&quot;John&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Serialize the object</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fileOut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;person.ser&quot;</span><span class="p">);</span>
+<span class="w">             </span><span class="n">ObjectOutputStream</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectOutputStream</span><span class="p">(</span><span class="n">fileOut</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">out</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">person</span><span class="p">);</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Object serialized successfully.&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Deserialize the object</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">FileInputStream</span><span class="w"> </span><span class="n">fileIn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">&quot;person.ser&quot;</span><span class="p">);</span>
+<span class="w">             </span><span class="n">ObjectInputStream</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectInputStream</span><span class="p">(</span><span class="n">fileIn</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Person</span><span class="w"> </span><span class="n">deserializedPerson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Person</span><span class="p">)</span><span class="w"> </span><span class="n">in</span><span class="p">.</span><span class="na">readObject</span><span class="p">();</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Object deserialized successfully.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">deserializedPerson</span><span class="p">.</span><span class="na">display</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ClassNotFoundException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong></p>
+<ol class="arabic simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Person</span></code> class implements <code class="docutils literal notranslate"><span class="pre">Serializable</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ObjectOutputStream</span></code> writes the object to a file (<code class="docutils literal notranslate"><span class="pre">person.ser</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ObjectInputStream</span></code> reads the object back and restores it.</p></li>
+</ol>
+<hr class="docutils" />
+<h3 class="rubric" id="equivalent-example-in-python"><strong>Equivalent Example in Python</strong></h3>
+<p>In Python, <code class="docutils literal notranslate"><span class="pre">pickle</span></code> is commonly used for serialization.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+
+<span class="c1"># Class definition</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Name: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, Age: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Serialize object</span>
+<span class="n">person</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;person.pkl&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">person</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object serialized successfully.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Deserialize object</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;person.pkl&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">deserialized_person</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object deserialized successfully.&quot;</span><span class="p">)</span>
+    <span class="n">deserialized_person</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Key Differences:</strong></p>
 <ul class="simple">
-<li><p><strong>Definition</strong>: Serialization is the process of converting a data structure or object into a sequence of bits. These bits can then be stored in a file, memory buffer, or transmitted across a network connection.</p></li>
-<li><p><strong>Purpose</strong>: Serialization allows data to be saved persistently (e.g., onto a disk) or transmitted between different computer environments.</p></li>
-<li><p>Use Cases:</p>
-<ul>
-<li><p>Saving an object’s state to a file.</p></li>
-<li><p>Sending data over a network.</p></li>
-<li><p>Storing data in a database.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pickle.dump()</span></code> serializes the object.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pickle.load()</span></code> deserializes the object.</p></li>
 </ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Deserialization</strong>:</p>
+<hr class="docutils" />
+<h3 class="rubric" id="equivalent-example-in-c"><strong>Equivalent Example in C#</strong></h3>
+<p>In C#, <code class="docutils literal notranslate"><span class="pre">System.Runtime.Serialization</span></code> and <code class="docutils literal notranslate"><span class="pre">System.Xml.Serialization</span></code> are used.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.IO</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.Runtime.Serialization</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.Runtime.Serialization.Formatters.Binary</span><span class="p">;</span>
+
+<span class="na">[Serializable]</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Person</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Age</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nf">Person</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Display</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Name: {Name}, Age: {Age}&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SerializationExample</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Main</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&quot;John&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;person.dat&quot;</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Serialize object</span>
+<span class="w">        </span><span class="n">IFormatter</span><span class="w"> </span><span class="n">formatter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BinaryFormatter</span><span class="p">();</span>
+<span class="w">        </span><span class="k">using</span><span class="w"> </span><span class="p">(</span><span class="n">Stream</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileStream</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="w"> </span><span class="n">FileMode</span><span class="p">.</span><span class="n">Create</span><span class="p">,</span><span class="w"> </span><span class="n">FileAccess</span><span class="p">.</span><span class="n">Write</span><span class="p">,</span><span class="w"> </span><span class="n">FileShare</span><span class="p">.</span><span class="n">None</span><span class="p">))</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">formatter</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span><span class="w"> </span><span class="n">person</span><span class="p">);</span>
+<span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Object serialized successfully.&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Deserialize object</span>
+<span class="w">        </span><span class="k">using</span><span class="w"> </span><span class="p">(</span><span class="n">Stream</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileStream</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="w"> </span><span class="n">FileMode</span><span class="p">.</span><span class="n">Open</span><span class="p">,</span><span class="w"> </span><span class="n">FileAccess</span><span class="p">.</span><span class="n">Read</span><span class="p">,</span><span class="w"> </span><span class="n">FileShare</span><span class="p">.</span><span class="n">Read</span><span class="p">))</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Person</span><span class="w"> </span><span class="n">deserializedPerson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Person</span><span class="p">)</span><span class="n">formatter</span><span class="p">.</span><span class="n">Deserialize</span><span class="p">(</span><span class="n">stream</span><span class="p">);</span>
+<span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Object deserialized successfully.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">deserializedPerson</span><span class="p">.</span><span class="n">Display</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Key Differences:</strong></p>
 <ul class="simple">
-<li><p><strong>Definition</strong>: Deserialization is the reverse process. It involves reading data from a serialized format (e.g., from a file) and reconstructing an object with the same state.</p></li>
-<li><p><strong>Purpose</strong>: Deserialization allows us to recreate an object from its serialized form.</p></li>
-<li><p><strong>Example</strong>: Imagine saving a complex data structure (like an intricate graph or a user’s session data) by serializing the root object. Later, you can deserialize it to restore the original object.</p></li>
+<li><p>Uses <code class="docutils literal notranslate"><span class="pre">[Serializable]</span></code> attribute.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BinaryFormatter</span></code> is used for serialization and deserialization.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FileStream</span></code> handles writing and reading from a file.</p></li>
+</ul>
+<hr class="docutils" />
+<h3 class="rubric" id="summary"><strong>Summary</strong></h3>
+<ul class="simple">
+<li><p><strong>Java:</strong> Uses <code class="docutils literal notranslate"><span class="pre">Serializable</span></code> interface and <code class="docutils literal notranslate"><span class="pre">ObjectOutputStream</span></code>/<code class="docutils literal notranslate"><span class="pre">ObjectInputStream</span></code>.</p></li>
+<li><p><strong>Python:</strong> Uses <code class="docutils literal notranslate"><span class="pre">pickle.dump()</span></code> and <code class="docutils literal notranslate"><span class="pre">pickle.load()</span></code>.</p></li>
+<li><p><strong>C#:</strong> Uses <code class="docutils literal notranslate"><span class="pre">[Serializable]</span></code> attribute and <code class="docutils literal notranslate"><span class="pre">BinaryFormatter</span></code>.</p></li>
+</ul>
+<p>Each language has different serialization approaches but achieves the same goal—converting objects into a storable/transmittable format and reconstructing them later.</p>
+</li>
 </ul>
 </li>
 </ol>
@@ -406,20 +552,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="BST_SplayTrees_2025.html"
+       href="GraphsDijkstra.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Splay Trees</p>
+        <p class="prev-next-title">Dijkstra’s Algorithm</p>
       </div>
     </a>
     <a class="right-next"
-       href="Hashing_HashTable.html"
+       href="End.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Hash Table</p>
+        <p class="prev-next-title">End</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

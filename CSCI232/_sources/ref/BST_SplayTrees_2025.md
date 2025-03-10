@@ -12,7 +12,7 @@ A **splay tree** is a type of self-adjusting binary search tree (BST) where rece
 
 - The splay tree was introduced in **1985**.
 
-#### Major Uses:
+#### Major Uses: 
 
 - **Dynamic sets**: Splay trees are used to maintain a dynamic set of elements that can support a variety of search and update operations.
 - **Memory-efficient**: Since splay trees do not require additional space for balancing data like AVL trees or Red-Black trees, they can be more memory-efficient.
@@ -130,170 +130,240 @@ private Node splay(Node root, int value) {
 Sure! Here's the updated version of the Java program with comments and the inclusion of the rules for rotations:
 
 ```java
+package inst_splay_2025;
+
 class SplayTree {
+
     private Node root;
 
-    // Node class to represent each node in the tree
+    // Inner class representing a node in the splay tree
     class Node {
-        int data;  // Data stored in the node
-        Node left, right;  // Left and right child nodes
 
-        // Constructor to create a new node with the given value
-        public Node(int item) {
+        int data;
+        Node left, right;
+
+        public Node(int item)
+        {
             data = item;
             left = right = null;
         }
     }
 
-    // Insert function to add a new value into the splay tree
-    public void insert(int value) {
-        root = insertRec(root, value);  // Perform regular BST insertion
-        root = splay(root, value);  // Splay the tree to bring the inserted value to the root
+    // Inserts a value into the tree
+    public void insert(int value)
+    {
+        if (root == null) {
+            root = new Node(value);
+            return;
+        }
+
+        // Splay the tree to bring the value (or closest) to the root
+        root = splay(root, value);
+
+        // If the value already exists, no need to insert
+        if (root.data == value) {
+            return;
+        }
+
+        Node newNode = new Node(value);
+
+        // If the new value is smaller, make the new node root and adjust pointers
+        if (value < root.data) {
+            newNode.right = root;
+            newNode.left = root.left;
+            root.left = null;
+        } else { // If the new value is greater
+            newNode.left = root;
+            newNode.right = root.right;
+            root.right = null;
+        }
+
+        root = newNode; // Update root
     }
 
-    // Recursive helper function for insertion
-    private Node insertRec(Node root, int value) {
+    // Searches for a value in the tree
+    public boolean find(int value)
+    {
+        root = splay(root, value);
+        return (root != null && root.data == value);
+    }
+
+    // Deletes a node with the given value
+    public void delete(int value)
+    {
         if (root == null) {
-            root = new Node(value);  // Create a new node if the tree is empty
+            return;
+        }
+
+        // Splay the tree so that the value (or closest) is at the root
+        root = splay(root, value);
+
+        if (root.data != value) {
+            return; // If not found, do nothing
+        }
+        if (root.left == null) {
+            root = root.right;
+        } else {
+            Node temp = root;
+            // Splay the largest node in the left subtree to make it new root
+            root = splay(root.left, value);
+            root.right = temp.right;
+        }
+    }
+
+    // Right rotation (Zig rotation)
+    private Node rotateRight(Node root)
+    {
+        if (root == null || root.left == null) {
+            return root;
+        }
+        Node newRoot = root.left;
+        root.left = newRoot.right;
+        newRoot.right = root;
+        return newRoot;
+    }
+
+    // Left rotation (Zag rotation)
+    private Node rotateLeft(Node root)
+    {
+        if (root == null || root.right == null) {
+            return root;
+        }
+        Node newRoot = root.right;
+        root.right = newRoot.left;
+        newRoot.left = root;
+        return newRoot;
+    }
+
+    /*
+     * Splay Operation: Moves the given value to the root if present, or the closest value.
+     * 
+     * Splay tree follows these rules for rotations:
+     * 
+     * - Zig Rotation (Single Right): When the value is in the left child of the root.
+     * - Zag Rotation (Single Left): When the value is in the right child of the root.
+     * - Zig-Zig (Double Right Rotation): When the value is in the left child of the left child.
+     * - Zag-Zag (Double Left Rotation): When the value is in the right child of the right child.
+     * - Zig-Zag (Left-Right Rotation): When the value is in the right child of the left child.
+     * - Zag-Zig (Right-Left Rotation): When the value is in the left child of the right child.
+     */
+    private Node splay(Node root, int value)
+    {
+        if (root == null || root.data == value) {
             return root;
         }
 
-        // Follow the BST insertion rules
         if (value < root.data) {
-            root.left = insertRec(root.left, value);  // Insert in the left subtree
-        } else if (value > root.data) {
-            root.right = insertRec(root.right, value);  // Insert in the right subtree
-        }
+            if (root.left == null) {
+                return root;
+            }
 
-        return root;
-    }
-
-    // Find function to search for a value in the splay tree
-    public boolean find(int value) {
-        root = splay(root, value);  // Splay the tree to bring the searched node to the root
-        return (root != null && root.data == value);  // Return true if the node is found
-    }
-
-    // Delete function to remove a node from the splay tree
-    public void delete(int value) {
-        root = deleteRec(root, value);  // Perform regular BST deletion
-    }
-
-    // Recursive helper function for deletion
-    private Node deleteRec(Node root, int value) {
-        if (root == null) return root;  // If the root is null, return
-
-        // Search for the node to delete
-        if (value < root.data) {
-            root.left = deleteRec(root.left, value);  // Recursively search in the left subtree
-        } else if (value > root.data) {
-            root.right = deleteRec(root.right, value);  // Recursively search in the right subtree
-        } else {
-            // Node with the value found
-            if (root.left == null) return root.right;  // If the node has no left child, replace it with the right child
-            else if (root.right == null) return root.left;  // If the node has no right child, replace it with the left child
-        }
-
-        return root;  // Return the updated root
-    }
-
-    // Function to perform a right rotation on the tree (used during splaying)
-    private Node rotateRight(Node root) {
-        Node newRoot = root.left;  // Make the left child the new root
-        root.left = newRoot.right;  // Make the right child of the new root the left child of the old root
-        newRoot.right = root;  // Make the old root the right child of the new root
-        return newRoot;  // Return the new root
-    }
-
-    // Function to perform a left rotation on the tree (used during splaying)
-    private Node rotateLeft(Node root) {
-        Node newRoot = root.right;  // Make the right child the new root
-        root.right = newRoot.left;  // Make the left child of the new root the right child of the old root
-        newRoot.left = root;  // Make the old root the left child of the new root
-        return newRoot;  // Return the new root
-    }
-
-    // Splay function to bring the node with the given value to the root
-    private Node splay(Node root, int value) {
-        if (root == null || root.data == value) return root;  // If the root is null or the value is found, return the root
-
-        // The following part implements the three rules of rotation:
-
-        // 1. Zig: If the node is the child of the root (one-level deep), perform a single rotation.
-        if (value < root.data) {
-            if (root.left == null) return root;  // If the left child is null, no rotation is possible
+            // Zig-Zig case (left-left)
             if (value < root.left.data) {
-                // Zig-Zig: Perform a right rotation (two-level deep)
                 root.left.left = splay(root.left.left, value);
-                root = rotateRight(root);  // Rotate the root to the right
-            } else if (value > root.left.data) {
-                // Zig-Zag: Perform a left rotation on the left child and then a right rotation
+                root = rotateRight(root);
+            } // Zig-Zag case (left-right)
+            else if (value > root.left.data) {
                 root.left.right = splay(root.left.right, value);
                 if (root.left.right != null) {
-                    root.left = rotateLeft(root.left);  // Rotate the left child to the left
+                    root.left = rotateLeft(root.left);
                 }
             }
-            return (root.left == null) ? root : rotateRight(root);  // Return the rotated root
+
+            // Perform a final Zig rotation
+            return (root.left == null) ? root : rotateRight(root);
         } else {
-            if (root.right == null) return root;  // If the right child is null, no rotation is possible
+            if (root.right == null) {
+                return root;
+            }
+
+            // Zag-Zag case (right-right)
             if (value > root.right.data) {
-                // Zig-Zig: Perform a left rotation (two-level deep)
                 root.right.right = splay(root.right.right, value);
-                root = rotateLeft(root);  // Rotate the root to the left
-            } else if (value < root.right.data) {
-                // Zig-Zag: Perform a right rotation on the right child and then a left rotation
+                root = rotateLeft(root);
+            } // Zag-Zig case (right-left)
+            else if (value < root.right.data) {
                 root.right.left = splay(root.right.left, value);
                 if (root.right.left != null) {
-                    root.right = rotateRight(root.right);  // Rotate the right child to the right
+                    root.right = rotateRight(root.right);
                 }
             }
-            return (root.right == null) ? root : rotateLeft(root);  // Return the rotated root
+
+            // Perform a final Zag rotation
+            return (root.right == null) ? root : rotateLeft(root);
         }
     }
 
-    // Pretty print function to display the tree visually
-    public void prettyPrint(Node root, String indent) {
-        if (root == null) return;  // If the root is null, return
-
-        // Print the right subtree first with increased indentation
+    // Prints the tree structure
+    public void prettyPrint(Node root, String indent)
+    {
+        if (root == null) {
+            return;
+        }
         prettyPrint(root.right, indent + "   ");
-        System.out.println(indent + root.data);  // Print the current node
-        // Print the left subtree with increased indentation
+        System.out.println(indent + root.data);
         prettyPrint(root.left, indent + "   ");
     }
 
-    // Wrapper function to print the tree
-    public void printTree() {
-        prettyPrint(root, "");  // Call the prettyPrint function starting from the root
+    // Initiates tree printing
+    public void printTree()
+    {
+        prettyPrint(root, "");
     }
 }
 
+// Driver class to test the Splay Tree implementation
 public class Inst_splay_2025 {
-    
-    public static void main(String[] args) {
+
+    public static void main(String[] args)
+    {
         SplayTree tree = new SplayTree();
 
-        // Inserting values into the tree
         tree.insert(10);
         tree.insert(20);
+        tree.insert(5);
+        tree.insert(55);
+        tree.insert(60);
+        tree.insert(65);
+        tree.insert(70);
+        tree.insert(75);
         tree.insert(30);
         tree.insert(15);
+        tree.insert(25);
 
-        // Pretty print the tree after insertion
-        System.out.println("Tree after insertion:");
         tree.printTree();
+        System.out.println("\n----------------\n");
 
-        // Find a value in the tree and bring it to the root
         tree.find(20);
-        System.out.println("\nTree after finding 20:");
         tree.printTree();
+        System.out.println("\n----------------\n");
 
-        // Delete a value from the tree
+        tree.find(5);
+        tree.printTree();
+        System.out.println("\n----------------\n");
+
+        tree.find(65);
+        tree.printTree();
+        System.out.println("\n----------------\n");
+
         tree.delete(10);
-        System.out.println("\nTree after deleting 10:");
+        tree.printTree();
+        System.out.println("\n----------------\n");
+
+        tree.delete(30);
+        tree.printTree();
+        System.out.println("\n----------------\n");
+
+        tree.delete(15);
+        tree.printTree();
+        System.out.println("\n----------------\n");
+
+        tree.delete(5);
         tree.printTree();
     }
 }
+
+
 ```
 
 ### Explanation of Rotation Rules:
