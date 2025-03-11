@@ -16,12 +16,16 @@
 
 [CSCI 240 Databases & SQL](https://montanajim.github.io/csci240/intro.html)
 
+[JAVA Language Review](https://montanajim.github.io/CSCIJAVALang/intro.html)
 
+---
 
-```{tableofcontents}
-[CSCI Basic Data Structures](https://montanajim.github.io/csci132/intro.html)
-[CSCI 238 Mobile Apps](https://montanajim.github.io/csci238/intro.html)
-```
+<p>© <span id="year"></span> By James Goudy | JBook/Landingpage</p>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 
 
 
