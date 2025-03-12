@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Hash Table &#8212; Algorithms</title>
+    <title>Modulus Hash Function &#8212; Algorithms</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,11 +60,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/Hashing_HashTable';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/Hashing_ModulusHashFunction';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Understanding Hash Tables and Hash Functions*" href="Hashing_UnderstandingHashTables.html" />
-    <link rel="prev" title="Splay Trees" href="BST_SplayTrees_2025.html" />
+    <link rel="next" title="Hash Tables - Chaining" href="Hashing_Chaining.html" />
+    <link rel="prev" title="Understanding Hash Tables and Hash Functions*" href="Hashing_UnderstandingHashTables.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -182,9 +182,9 @@
 <li class="toctree-l2"><a class="reference internal" href="BST_SplayTrees_2025.html">Splay Trees</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Hash Table</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Hashing_UnderstandingHashTables.html"><em>Understanding Hash Tables and Hash Functions</em>*</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Hashing_ModulusHashFunction.html">Modulus Hash Function</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Modulus Hash Function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_Chaining.html">Hash Tables - Chaining</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressing.html">Hash Table - Open Addressing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressingHashingCodeExamples.html">Java code for double hashing in a hash table:</a></li>
@@ -261,7 +261,7 @@
       
       
       
-      <li><a href="../_sources/ref/Hashing_HashTable.md" target="_blank"
+      <li><a href="../_sources/ref/Hashing_ModulusHashFunction.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -335,7 +335,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Hash Table</h1>
+    <h1>Modulus Hash Function</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -349,84 +349,37 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="hash-table">
-<h1>Hash Table<a class="headerlink" href="#hash-table" title="Link to this heading">#</a></h1>
-<p>A <strong>hash table</strong>, also known as a <strong>hash map</strong> or a <strong>hash set</strong>, is a fundamental data structure used in computer science. Let’s explore its key characteristics:</p>
-<p><img alt="img" src="https://www.bing.com/th?id=OSK.6fa166c5dd29edbde91335751b5ad93e&amp;pid=cdx&amp;w=259&amp;h=189&amp;c=7" /></p>
-<ol class="arabic simple">
-<li><p><strong>Purpose and Function</strong>:</p>
-<ul class="simple">
-<li><p>A hash table is designed to efficiently <strong>associate keys with values</strong>.</p></li>
-<li><p>It allows you to store and retrieve data based on a unique <strong>key</strong>.</p></li>
-<li><p>The primary operation it supports is <strong>lookup</strong>: given a key (e.g., a person’s name), find the corresponding value (e.g., their telephone number).</p></li>
-</ul>
-</li>
-<li><p><strong>How It Works</strong>:</p>
-<ul class="simple">
-<li><p>A hash table uses a <strong>hash function</strong> to compute an <strong>index</strong> (also called a <strong>hash code</strong>) into an array of <strong>buckets</strong> or <strong>slots</strong>.</p></li>
-<li><p>Each bucket can hold a value associated with a specific key.</p></li>
-<li><p>During a lookup, the key is hashed, and the resulting hash points to the bucket where the corresponding value is stored.</p></li>
-<li><p>Ideally, the hash function assigns each key to a <strong>unique bucket</strong>.</p></li>
-<li><p>However, most hash table designs use an <strong>imperfect hash function</strong>, which may cause <strong>hash collisions</strong> (where multiple keys map to the same bucket).</p></li>
-<li><p>Collisions are typically resolved using techniques like <strong>chaining</strong> or <strong>open addressing</strong>.</p></li>
-</ul>
-</li>
-<li><p><strong>Time Complexity</strong>:</p>
-<ul class="simple">
-<li><p>In a well-designed hash table, the average time complexity for each lookup is <strong>independent of the number of elements</strong> stored.</p></li>
-<li><p>Many hash table implementations allow <strong>arbitrary insertions</strong> and <strong>deletions</strong> of key–value pairs at <strong>amortized constant average cost</strong> per operation.</p></li>
-</ul>
-</li>
-<li><p><strong>Applications</strong>:</p>
-<ul class="simple">
-<li><p>Hash tables are widely used in various software applications:</p>
-<ul>
-<li><p><strong>Associative Arrays</strong>: Efficiently store key-value pairs.</p></li>
-<li><p><strong>Database Indexing</strong>: Speed up data retrieval.</p></li>
-<li><p><strong>Caches</strong>: Store frequently accessed data.</p></li>
-<li><p><strong>Sets</strong>: Implement sets with fast membership checks.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>History</strong>:</p>
-<ul class="simple">
-<li><p>The idea of hashing arose independently in different places.</p></li>
-<li><p>In 1953, Hans Peter Luhn proposed hashing with chaining.</p></li>
-<li><p>Gene Amdahl and others at IBM Research implemented hashing for the IBM 701 assembler.</p></li>
-<li><p>Hashing has become a fundamental tool in computer science.</p></li>
-</ul>
-</li>
-</ol>
-<p>In summary, hash tables provide a powerful way to organize and access data efficiently, making them essential for various programming tasks.</p>
-<hr class="docutils" />
-<p>A hash table, also known as a hash map or hash set, is a data structure that stores <strong>key-value pairs</strong> and allows <strong>fast retrieval</strong> based on the key. It uses a technique called <strong>hashing</strong> to achieve this efficiency.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="modulus-hash-function">
+<h1>Modulus Hash Function<a class="headerlink" href="#modulus-hash-function" title="Link to this heading">#</a></h1>
+<p>Modulus hashing, also known as division hashing, is a <strong>simple and efficient</strong> technique for mapping data to a fixed-size range. It utilizes the <strong>modulo operation</strong> (denoted by <code class="docutils literal notranslate"><span class="pre">%</span></code>) to achieve this mapping.</p>
 <p>Here’s how it works:</p>
 <ol class="arabic simple">
-<li><p><strong>Keys and Values:</strong> You store data in the form of <strong>key-value pairs</strong>. The <strong>key</strong> acts like a unique identifier, and the <strong>value</strong> is the actual data you want to store.</p></li>
-<li><p><strong>Hash Function:</strong> The key is fed into a <strong>hash function</strong>. This function acts like a special code that transforms the key into a <strong>fixed-length index</strong> within an array. Ideally, different keys should map to different indexes, minimizing collisions (where multiple keys map to the same index).</p></li>
-<li><p><strong>Array and Buckets:</strong> The hash table uses an <strong>array</strong> to store the key-value pairs. Each element in the array, called a <strong>bucket</strong>, can hold one or more key-value pairs.</p></li>
-<li><p><strong>Accessing Data:</strong> To find a specific value, you provide its key. The key is hashed again, generating the same index as before. Then, the hash table searches the corresponding bucket in the array for the matching key-value pair.</p></li>
+<li><p><strong>Input:</strong> You have a piece of data like a number, a string, or any other information you want to map to a specific range.</p></li>
+<li><p><strong>Hash Function:</strong> The hash function in modulus hashing simply uses the <strong>modulo operation</strong> with a pre-defined <strong>modulus value</strong> (often denoted by <code class="docutils literal notranslate"><span class="pre">m</span></code>). The modulus value determines the size of the output range.</p></li>
+<li><p><strong>Output:</strong> The output is the <strong>remainder</strong> obtained when the data is divided by the modulus value. This remainder becomes the <strong>hash value</strong>, representing the data in the desired range (from 0 to <code class="docutils literal notranslate"><span class="pre">m-1</span></code>).</p></li>
 </ol>
-<p><strong>Benefits of Hash Tables:</strong></p>
+<p><strong>Example:</strong></p>
 <ul class="simple">
-<li><p><strong>Fast Lookup:</strong> Compared to searching a linear list, a hash table allows <strong>very fast retrieval</strong> of values based on their keys. This is because the key directly points to the location (bucket) of the data.</p></li>
-<li><p><strong>Efficient for Large Datasets:</strong> As the data size grows, the lookup time in a hash table remains relatively constant on average, making it efficient for handling large datasets.</p></li>
+<li><p>Let’s say you want to map the number <strong>23</strong> to a range of 0 to 4 (using a modulus value of <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">5</span></code>).</p></li>
+<li><p>Applying the modulo operation: <code class="docutils literal notranslate"><span class="pre">23</span> <span class="pre">%</span> <span class="pre">5</span> <span class="pre">=</span> <span class="pre">3</span></code>.</p></li>
+<li><p>Therefore, the hash value for 23 in this case is <strong>3</strong>.</p></li>
 </ul>
-<p><strong>However, it’s important to note:</strong></p>
+<p><strong>Benefits of Modulus Hashing:</strong></p>
 <ul class="simple">
-<li><p><strong>Collisions:</strong> Although hash functions aim to minimize collisions, they can still occur. When multiple keys map to the same index, additional steps are needed to resolve the collision and find the desired value.</p></li>
-<li><p><strong>Not Suitable for Ordered Data:</strong> Hash tables are not ideal when you need to access data in a specific order, as the order of elements is not preserved.</p></li>
+<li><p><strong>Simplicity:</strong> It is a <strong>very basic and easy-to-implement</strong> technique for generating hash values.</p></li>
+<li><p><strong>Efficiency:</strong> The modulo operation is usually a <strong>fast and efficient</strong> operation, making it suitable for situations where speed is crucial.</p></li>
 </ul>
-<p>Hash tables are widely used in various applications:</p>
+<p><strong>Limitations of Modulus Hashing:</strong></p>
 <ul class="simple">
-<li><p><strong>Caches:</strong> They are a common choice for implementing caches, where frequently accessed data is stored for quick retrieval.</p></li>
-<li><p><strong>Databases:</strong> They are used for indexing data in databases, allowing fast access based on specific criteria.</p></li>
-<li><p><strong>Programming Languages:</strong> Many programming languages use hash tables for implementing associative arrays and dictionaries, where data is accessed using keys.</p></li>
+<li><p><strong>Collision Prone:</strong> While simple, modulus hashing is susceptible to <strong>collisions</strong>. This occurs when different data points map to the same hash value. Collisions can lead to issues like incorrect data retrieval or insertion in hash tables.</p></li>
+<li><p><strong>Limited Distribution:</strong> The distribution of hash values highly depends on the chosen modulus value. A poorly chosen modulus can lead to uneven distribution, where some parts of the range receive more data than others, impacting efficiency.</p></li>
 </ul>
-<p>Overall, hash tables offer a <strong>powerful and efficient</strong> way to store and retrieve data based on keys, making them valuable tools in various computing scenarios.</p>
-<div class="toctree-wrapper compound">
-</div>
+<p><strong>Applications of Modulus Hashing:</strong></p>
+<ul class="simple">
+<li><p><strong>Hash Tables:</strong> While not ideal due to collision concerns, modulus hashing can be used in simple hash tables, especially when dealing with small datasets and the potential for collisions is low.</p></li>
+<li><p><strong>Load Balancing:</strong> It can be used in basic load balancing schemes to distribute tasks or requests across multiple servers by mapping them to a specific server based on the calculated hash value.</p></li>
+</ul>
+<p><strong>However, it’s important to remember that modulus hashing is not considered a cryptographically secure hashing function.</strong> It should not be used for security-sensitive applications, like password storage, where collisions can have serious consequences.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -460,20 +413,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="BST_SplayTrees_2025.html"
+       href="Hashing_UnderstandingHashTables.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Splay Trees</p>
+        <p class="prev-next-title"><em>Understanding Hash Tables and Hash Functions</em>*</p>
       </div>
     </a>
     <a class="right-next"
-       href="Hashing_UnderstandingHashTables.html"
+       href="Hashing_Chaining.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><em>Understanding Hash Tables and Hash Functions</em>*</p>
+        <p class="prev-next-title">Hash Tables - Chaining</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
