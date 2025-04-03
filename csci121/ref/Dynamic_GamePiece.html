@@ -1,0 +1,982 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Game Piece - Dynamically Adding Pieces to a Panel &#8212; JAVA II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/Dynamic_GamePiece';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bounce Balls Animation" href="Bounce.html" />
+    <link rel="prev" title="Building Swing Controls Via Code" href="BuildingSwingControlsViaCode.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">JAVA II</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="JAVABackgroundInformation.html">JAVA Background Information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FirstForm.html">First Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DisplayingText.html">Displaying Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RadioButtons.html">Radio Buttons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Menus.html">Menus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comboboxes_Rev1.html">Combo boxes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LettersvsDigits.html">Letters vs Digits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BuildingStrings.html">Building A String Using Combo, Lists, and Textfield</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="BuildingSwingControlsViaCode.html">Building Swing Controls Via Code</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Game Piece - Dynamically Adding Pieces to a Panel</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Bounce.html">Bounce Balls Animation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JTable.html">JTable</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="JABT_JAVAAutomatedBuildTools.html">JAVA Automated Build Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaAnt.html">Java Ant: Build Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaMaven.html">Java Maven:  Build Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaGradle.html">Java Gradle: Build Automation</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/Dynamic_GamePiece.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Game Piece - Dynamically Adding Pieces to a Panel</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="game-piece-dynamically-adding-pieces-to-a-panel">
+<h1>Game Piece - Dynamically Adding Pieces to a Panel<a class="headerlink" href="#game-piece-dynamically-adding-pieces-to-a-panel" title="Link to this heading">#</a></h1>
+<p><strong>Summary:</strong></p>
+<p>This Java code creates a graphical user interface (GUI) application using the Swing library. It demonstrates a custom component called <code class="docutils literal notranslate"><span class="pre">GamePiece</span></code>. The application displays a 4x4 grid of these <code class="docutils literal notranslate"><span class="pre">GamePiece</span></code> objects within a panel. Alongside the grid, there are control buttons that allow the user to randomly change the colors, text, or both, displayed on the game pieces, as well as a button to reset them to a default state.</p>
+<p><strong>Detailed Analysis:</strong></p>
+<ol class="arabic">
+<li><p><strong>GUI Setup (<code class="docutils literal notranslate"><span class="pre">J2x_Game_Piece_Demo</span></code> class):</strong></p>
+<ul>
+<li><p><strong>Components:</strong> It defines standard Swing components: a main window (<code class="docutils literal notranslate"><span class="pre">JFrame</span></code>), a panel (<code class="docutils literal notranslate"><span class="pre">JPanel</span></code>) to hold the game pieces, several buttons (<code class="docutils literal notranslate"><span class="pre">JButton</span></code>), and a label (<code class="docutils literal notranslate"><span class="pre">JLabel</span></code>).</p></li>
+<li><p>Data Storage:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">myAl</span></code>: An <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> to hold the 16 <code class="docutils literal notranslate"><span class="pre">GamePiece</span></code> objects.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">colorAl</span></code>: An <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> to store predefined <code class="docutils literal notranslate"><span class="pre">Color</span></code> objects.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">myWords</span></code>: A <code class="docutils literal notranslate"><span class="pre">String</span></code> array containing predefined words.</p></li>
+</ul>
+</li>
+<li><p>Functionality Variables:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RNG</span></code>: A <code class="docutils literal notranslate"><span class="pre">Random</span></code> object for generating random numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">myTimer</span></code>: A <code class="docutils literal notranslate"><span class="pre">Timer</span></code> object to create an animation-like effect when randomizing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xChoice</span></code>: An integer (<code class="docutils literal notranslate"><span class="pre">int</span></code>) that determines <em>what</em> the timer should randomize (1=colors, 2=words, 3=both).</p></li>
+</ul>
+</li>
+<li><p><strong>Layout:</strong> The code manually sets the size and position of the frame, panel, label, and buttons using absolute coordinates (<code class="docutils literal notranslate"><span class="pre">setSize</span></code>, <code class="docutils literal notranslate"><span class="pre">setLocation</span></code>).</p></li>
+<li><p>Initialization (<code class="docutils literal notranslate"><span class="pre">main</span></code>, <code class="docutils literal notranslate"><span class="pre">setupApp</span></code>, <code class="docutils literal notranslate"><span class="pre">setupFrame</span></code>, etc.):</p>
+<p>The</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">main</span>
+</pre></div>
+</div>
+<p>method calls</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setupApp</span>
+</pre></div>
+</div>
+<p>, which in turn calls helper methods to:</p>
+<ul class="simple">
+<li><p>Configure the main window (<code class="docutils literal notranslate"><span class="pre">setupFrame</span></code>).</p></li>
+<li><p>Configure the panel (<code class="docutils literal notranslate"><span class="pre">setupPanel</span></code>).</p></li>
+<li><p>Create and position the buttons, adding <code class="docutils literal notranslate"><span class="pre">ActionListener</span></code>s to them (<code class="docutils literal notranslate"><span class="pre">setupButtons</span></code>).</p></li>
+<li><p>Configure and position the label (<code class="docutils literal notranslate"><span class="pre">setupJLabel</span></code>).</p></li>
+<li><p>Create the 16 <code class="docutils literal notranslate"><span class="pre">GamePiece</span></code> instances, set their initial properties, add <code class="docutils literal notranslate"><span class="pre">MouseListener</span></code>s, and add them to the panel (<code class="docutils literal notranslate"><span class="pre">PieceSetup</span></code>).</p></li>
+<li><p>Populate the list of available colors (<code class="docutils literal notranslate"><span class="pre">colorSetup</span></code>).</p></li>
+<li><p>Initialize the <code class="docutils literal notranslate"><span class="pre">Timer</span></code> (<code class="docutils literal notranslate"><span class="pre">setupApp</span></code>).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">GamePiece</span></code> Class:</strong></p>
+<ul class="simple">
+<li><p><strong>Custom Component:</strong> This class extends <code class="docutils literal notranslate"><span class="pre">JComponent</span></code>, making it a custom drawable Swing component.</p></li>
+<li><p><strong>State:</strong> Each <code class="docutils literal notranslate"><span class="pre">GamePiece</span></code> has its own <code class="docutils literal notranslate"><span class="pre">pieceColor</span></code> (a <code class="docutils literal notranslate"><span class="pre">Color</span></code> object) and <code class="docutils literal notranslate"><span class="pre">letters</span></code> (a <code class="docutils literal notranslate"><span class="pre">String</span></code>).</p></li>
+<li><p><strong>Painting (<code class="docutils literal notranslate"><span class="pre">paintComponent</span></code>):</strong> This crucial method defines <em>how</em> a <code class="docutils literal notranslate"><span class="pre">GamePiece</span></code> looks. It draws a black rectangle as a border, then fills a slightly smaller rectangle inside with the <code class="docutils literal notranslate"><span class="pre">pieceColor</span></code>, and finally draws the <code class="docutils literal notranslate"><span class="pre">letters</span></code> string centered horizontally within the piece.</p></li>
+<li><p><strong>Getters/Setters:</strong> Provides methods (<code class="docutils literal notranslate"><span class="pre">getPieceColor</span></code>, <code class="docutils literal notranslate"><span class="pre">setPieceColor</span></code>, <code class="docutils literal notranslate"><span class="pre">getLetters</span></code>, <code class="docutils literal notranslate"><span class="pre">setLetters</span></code>) to access and modify the piece’s state. Importantly, the <code class="docutils literal notranslate"><span class="pre">set</span></code> methods call <code class="docutils literal notranslate"><span class="pre">repaint()</span></code> to ensure the component redraws itself whenever its color or text changes.</p></li>
+</ul>
+</li>
+<li><p><strong>Event Handling:</strong></p>
+<ul>
+<li><p>Mouse Events (<code class="docutils literal notranslate"><span class="pre">PieceSetup</span></code>):</p>
+<p>Each</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GamePiece</span>
+</pre></div>
+</div>
+<p>has a</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MouseListener</span>
+</pre></div>
+</div>
+<p>. When the mouse interacts with a piece:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mouseClicked</span></code>: Color changes to white.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mousePressed</span></code>: Color changes to red.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mouseReleased</span></code>: Color changes to white.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mouseEntered</span></code>: Color changes to light gray (hover effect).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mouseExited</span></code>: Color changes back to white.</p></li>
+</ul>
+</li>
+<li><p>Button Actions (<code class="docutils literal notranslate"><span class="pre">setupButtons</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">myBttnRndColors</span></code>, <code class="docutils literal notranslate"><span class="pre">myBttnRndWords</span></code>, <code class="docutils literal notranslate"><span class="pre">myBttnRndBoth</span></code>: These buttons set the <code class="docutils literal notranslate"><span class="pre">xChoice</span></code> variable accordingly (1, 2, or 3) and start the <code class="docutils literal notranslate"><span class="pre">myTimer</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">myBttnReset</span></code>: This button iterates through all <code class="docutils literal notranslate"><span class="pre">GamePiece</span></code>s in the <code class="docutils literal notranslate"><span class="pre">myAl</span></code> list and resets their text to “—-” and color to yellow.</p></li>
+</ul>
+</li>
+<li><p>Timer Action (<code class="docutils literal notranslate"><span class="pre">myActList</span></code>):</p>
+<ul>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">myTimer</span></code> is running, it fires an event every 40 milliseconds.</p></li>
+<li><p>The</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">actionPerformed</span>
+</pre></div>
+</div>
+<p>method checks</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xChoice</span>
+</pre></div>
+</div>
+<p>:</p>
+<ul class="simple">
+<li><p>If 1, it picks a random color and applies it to a random <code class="docutils literal notranslate"><span class="pre">GamePiece</span></code>.</p></li>
+<li><p>If 2, it picks a random word and applies it to a random <code class="docutils literal notranslate"><span class="pre">GamePiece</span></code>.</p></li>
+<li><p>If 3, it does both (random color to a random piece, random word to <em>another</em> random piece).</p></li>
+</ul>
+</li>
+<li><p>This happens repeatedly for 150 cycles (150 * 40ms = 6 seconds), creating a shuffling effect, after which the timer stops itself.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>In essence, the application displays a grid of interactive tiles (GamePieces) and provides controls to randomly shuffle their appearance (color and/or text) for a short duration or reset them.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">Eningeer: James Goudy</span>
+<span class="cm"> */</span>
+<span class="cm">/**</span>
+<span class="cm"> *</span>
+<span class="cm"> * @author Goudy</span>
+<span class="cm"> */</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">j2x_game_piece_demo</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Color</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Dimension</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Font</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Graphics</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionEvent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionListener</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.MouseEvent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.MouseListener</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Random</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.BorderFactory</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JButton</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JComponent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JLabel</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JPanel</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.Timer</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.border.Border</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">J2x_Game_Piece_Demo</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// Create GUI Components</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">JFrame</span><span class="w"> </span><span class="n">myFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JFrame</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">JPanel</span><span class="w"> </span><span class="n">myPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">JButton</span><span class="w"> </span><span class="n">myBttnRndColors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Random Colors&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">JButton</span><span class="w"> </span><span class="n">myBttnRndWords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Random Words&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">JButton</span><span class="w"> </span><span class="n">myBttnRndBoth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Random Both&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">JButton</span><span class="w"> </span><span class="n">myBttnReset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Reset&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">JLabel</span><span class="w"> </span><span class="n">myLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">(</span><span class="s">&quot;Game Pieces&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// ----------- Global Variables -------------------</span>
+<span class="w">    </span><span class="c1">//Arraylist to hold game pieces</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">GamePiece</span><span class="o">&gt;</span><span class="w"> </span><span class="n">myAl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">//Arraylist to hold colors</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Color</span><span class="o">&gt;</span><span class="w"> </span><span class="n">colorAl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">//Array to hold words</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">myWords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;DOG&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CAT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;COW&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PUP&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;JAR&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;STAR&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;YEP&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CAR&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;BOOK&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FLIP&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;****&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;####&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;SHOW&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SHOE&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SOCK&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BOAT&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;JET&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;RAIN&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TV&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;RADIO&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;?&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;DAISY&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ZIPPY&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;HIPPY&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TRIPPY&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FLUFFY&quot;</span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">//Random number generator</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">Random</span><span class="w"> </span><span class="n">RNG</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//Timer for shuffling colors and text</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">Timer</span><span class="w"> </span><span class="n">myTimer</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//choice for determine if text, colors or both are shuffled</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">xChoice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//create a dimension for the box</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">Dimension</span><span class="w"> </span><span class="n">myDim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Dimension</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// button placement and size</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">bttnxpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">500</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">bttnypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">bttnSpacing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">bttnLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">bttnHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//create an action listener</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">ActionListener</span><span class="w"> </span><span class="n">myActList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">//variable to hold random choice</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">//counter - the shuffles</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">cntr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="nd">@Override</span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">arg0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">xChoice</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span>
+<span class="w">                        </span><span class="c1">//random choice - colors</span>
+<span class="w">                        </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">colorAl</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+
+<span class="w">                        </span><span class="n">myAl</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">myAl</span><span class="p">.</span><span class="na">size</span><span class="p">())).</span>
+<span class="w">                                </span><span class="n">setPieceColor</span><span class="p">(</span><span class="n">colorAl</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">rc</span><span class="p">));</span>
+<span class="w">                        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span>
+<span class="w">                        </span><span class="c1">//random choice - worlds</span>
+<span class="w">                        </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">myWords</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+
+<span class="w">                        </span><span class="n">myAl</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">myAl</span><span class="p">.</span><span class="na">size</span><span class="p">())).</span>
+<span class="w">                                </span><span class="n">setLetters</span><span class="p">(</span><span class="n">myWords</span><span class="o">[</span><span class="n">rc</span><span class="o">]</span><span class="p">);</span>
+<span class="w">                        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span>
+<span class="w">                        </span><span class="c1">// random choice colors and words</span>
+<span class="w">                        </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">colorAl</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+
+<span class="w">                        </span><span class="n">myAl</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">myAl</span><span class="p">.</span><span class="na">size</span><span class="p">())).</span>
+<span class="w">                                </span><span class="n">setPieceColor</span><span class="p">(</span><span class="n">colorAl</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">rc</span><span class="p">));</span>
+
+<span class="w">                        </span><span class="c1">//random choice</span>
+<span class="w">                        </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">myWords</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+
+<span class="w">                        </span><span class="n">myAl</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">myAl</span><span class="p">.</span><span class="na">size</span><span class="p">())).</span>
+<span class="w">                                </span><span class="n">setLetters</span><span class="p">(</span><span class="n">myWords</span><span class="o">[</span><span class="n">rc</span><span class="o">]</span><span class="p">);</span>
+<span class="w">                        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">cntr</span><span class="o">++</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cntr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">150</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">myTimer</span><span class="p">.</span><span class="na">stop</span><span class="p">();</span>
+<span class="w">                </span><span class="n">cntr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">setupApp</span><span class="p">();</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// helper function to setup GUI</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupApp</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">RNG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">setupFrame</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">setupPanel</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">setupButtons</span><span class="p">();</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">setupJLabel</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">PieceSetup</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">colorSetup</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">//setup timer</span>
+<span class="w">        </span><span class="n">myTimer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Timer</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="n">myActList</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupFrame</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// frame size </span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">725</span><span class="p">,</span><span class="w"> </span><span class="mi">525</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// set location</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">setLocationRelativeTo</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// set visibility</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// set close action</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// layout manager</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// set title</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Game Pieces&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupPanel</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// set panel size</span>
+<span class="w">        </span><span class="n">myPanel</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">myDim</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// set visible</span>
+<span class="w">        </span><span class="n">myPanel</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// set location</span>
+<span class="w">        </span><span class="n">myPanel</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// set border</span>
+<span class="w">        </span><span class="n">Border</span><span class="w"> </span><span class="n">myPanelBorder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BorderFactory</span><span class="p">.</span><span class="na">createLineBorder</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">BLACK</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myPanel</span><span class="p">.</span><span class="na">setBorder</span><span class="p">(</span><span class="n">myPanelBorder</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">myPanel</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupButtons</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// set size</span>
+<span class="w">        </span><span class="n">myBttnRndColors</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">bttnLength</span><span class="p">,</span><span class="w"> </span><span class="n">bttnHeight</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myBttnRndWords</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">bttnLength</span><span class="p">,</span><span class="w"> </span><span class="n">bttnHeight</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myBttnRndBoth</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">bttnLength</span><span class="p">,</span><span class="w"> </span><span class="n">bttnHeight</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myBttnReset</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">bttnLength</span><span class="p">,</span><span class="w"> </span><span class="n">bttnHeight</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// set Visible</span>
+<span class="w">        </span><span class="n">myBttnRndColors</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myBttnRndWords</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myBttnRndBoth</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myBttnReset</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// set location</span>
+<span class="w">        </span><span class="n">myBttnRndColors</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">bttnxpos</span><span class="p">,</span><span class="w"> </span><span class="n">bttnypos</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bttnypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bttnypos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bttnHeight</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bttnSpacing</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">myBttnRndWords</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">bttnxpos</span><span class="p">,</span><span class="w"> </span><span class="n">bttnypos</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bttnypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bttnypos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bttnHeight</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bttnSpacing</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">myBttnRndBoth</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">bttnxpos</span><span class="p">,</span><span class="w"> </span><span class="n">bttnypos</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bttnypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bttnypos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bttnHeight</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bttnSpacing</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">myBttnReset</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">bttnxpos</span><span class="p">,</span><span class="w"> </span><span class="n">bttnypos</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bttnypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bttnypos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bttnHeight</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bttnSpacing</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// set actionlisteners</span>
+<span class="w">        </span><span class="n">myBttnRndColors</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="n">xChoice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="n">myTimer</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="n">myBttnRndWords</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="n">xChoice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">            </span><span class="n">myTimer</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="n">myBttnRndBoth</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="n">xChoice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">            </span><span class="n">myTimer</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="n">myBttnReset</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">cntr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">cntr</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">myAl</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"> </span><span class="n">cntr</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">myAl</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">cntr</span><span class="p">).</span><span class="na">setLetters</span><span class="p">(</span><span class="s">&quot;----&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="n">myAl</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">cntr</span><span class="p">).</span><span class="na">setPieceColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">yellow</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">myBttnRndColors</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">myBttnRndWords</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">myBttnRndBoth</span><span class="p">);</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">myBttnReset</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupJLabel</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// set text</span>
+<span class="w">        </span><span class="n">myLabel</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Game Pieces&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// set fontsize</span>
+<span class="w">        </span><span class="c1">// Sets the label&#39;s font to bold with size 24, </span>
+<span class="w">        </span><span class="c1">// retaining the original font name.</span>
+<span class="w">        </span><span class="c1">// Retrieves the current font name and </span>
+<span class="w">        </span><span class="c1">// creates a new Font object with updated style and size.</span>
+<span class="w">        </span><span class="n">myLabel</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Font</span><span class="p">(</span><span class="n">myLabel</span><span class="p">.</span><span class="na">getFont</span><span class="p">().</span><span class="na">getName</span><span class="p">(),</span><span class="w"> </span><span class="n">Font</span><span class="p">.</span><span class="na">BOLD</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// set size</span>
+<span class="w">        </span><span class="n">myLabel</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="n">myLabel</span><span class="p">.</span><span class="na">getFont</span><span class="p">().</span><span class="na">getSize</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// set visibility</span>
+<span class="w">        </span><span class="n">myLabel</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set position</span>
+<span class="w">        </span><span class="n">myLabel</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// add to frame</span>
+<span class="w">        </span><span class="n">myFrame</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">myLabel</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Piece Setup</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">PieceSetup</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">//setup the pieces</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="c1">//create a new gamepiece</span>
+<span class="w">            </span><span class="n">GamePiece</span><span class="w"> </span><span class="n">gp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GamePiece</span><span class="p">();</span>
+
+<span class="w">            </span><span class="c1">//set the location, size , visiblility and color</span>
+<span class="w">            </span><span class="n">gp</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">            </span><span class="n">gp</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">            </span><span class="n">gp</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">            </span><span class="n">gp</span><span class="p">.</span><span class="na">setPieceColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">black</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">//note what each of the mouse events are doing</span>
+<span class="w">            </span><span class="n">gp</span><span class="p">.</span><span class="na">addMouseListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">MouseListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nd">@Override</span>
+<span class="w">                </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mouseClicked</span><span class="p">(</span><span class="n">MouseEvent</span><span class="w"> </span><span class="n">arg0</span><span class="p">)</span>
+<span class="w">                </span><span class="p">{</span>
+
+<span class="w">                    </span><span class="n">gp</span><span class="p">.</span><span class="na">setPieceColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">white</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="nd">@Override</span>
+<span class="w">                </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mousePressed</span><span class="p">(</span><span class="n">MouseEvent</span><span class="w"> </span><span class="n">arg0</span><span class="p">)</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">gp</span><span class="p">.</span><span class="na">setPieceColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">red</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="nd">@Override</span>
+<span class="w">                </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mouseReleased</span><span class="p">(</span><span class="n">MouseEvent</span><span class="w"> </span><span class="n">arg0</span><span class="p">)</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">gp</span><span class="p">.</span><span class="na">setPieceColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">white</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="nd">@Override</span>
+<span class="w">                </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mouseEntered</span><span class="p">(</span><span class="n">MouseEvent</span><span class="w"> </span><span class="n">arg0</span><span class="p">)</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">gp</span><span class="p">.</span><span class="na">setPieceColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">lightGray</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="nd">@Override</span>
+<span class="w">                </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mouseExited</span><span class="p">(</span><span class="n">MouseEvent</span><span class="w"> </span><span class="n">arg0</span><span class="p">)</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">gp</span><span class="p">.</span><span class="na">setPieceColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">white</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">});</span>
+
+<span class="w">            </span><span class="c1">//add the gamepiec to the arraylist and then to the panel</span>
+<span class="w">            </span><span class="n">myAl</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">gp</span><span class="p">);</span>
+<span class="w">            </span><span class="n">myPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">gp</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">//increment x and y to the location of the next gamepiece</span>
+<span class="w">            </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">c</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="w">                </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">//refresh the panel</span>
+<span class="w">        </span><span class="n">myPanel</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">colorSetup</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">//add colors to the color arrraylist</span>
+<span class="w">        </span><span class="n">colorAl</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">blue</span><span class="p">);</span>
+<span class="w">        </span><span class="n">colorAl</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">cyan</span><span class="p">);</span>
+<span class="w">        </span><span class="n">colorAl</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">magenta</span><span class="p">);</span>
+<span class="w">        </span><span class="n">colorAl</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">red</span><span class="p">);</span>
+<span class="w">        </span><span class="n">colorAl</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">orange</span><span class="p">);</span>
+<span class="w">        </span><span class="n">colorAl</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">green</span><span class="p">);</span>
+<span class="w">        </span><span class="n">colorAl</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">yellow</span><span class="p">);</span>
+<span class="w">        </span><span class="n">colorAl</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">pink</span><span class="p">);</span>
+<span class="w">        </span><span class="n">colorAl</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">lightGray</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span><span class="w"> </span><span class="c1">// end of program  class</span>
+
+<span class="c1">// *************  GAME PIECE CLASS *****************</span>
+<span class="kd">class</span> <span class="nc">GamePiece</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JComponent</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">Color</span><span class="w"> </span><span class="n">pieceColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">white</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">letters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GP&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">GamePiece</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setForeground</span><span class="p">(</span><span class="n">pieceColor</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">paintComponent</span><span class="p">(</span><span class="n">Graphics</span><span class="w"> </span><span class="n">g</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">Font</span><span class="w"> </span><span class="n">myFont</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Font</span><span class="p">(</span><span class="s">&quot;Lucida Console&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Font</span><span class="p">.</span><span class="na">BOLD</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">//NOTE: ORDER IS EVERYTHING!</span>
+<span class="w">        </span><span class="n">g</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">black</span><span class="p">);</span>
+<span class="w">        </span><span class="n">g</span><span class="p">.</span><span class="na">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">g</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">pieceColor</span><span class="p">);</span>
+<span class="w">        </span><span class="n">g</span><span class="p">.</span><span class="na">fillRect</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="p">);</span>
+<span class="w">        </span><span class="n">g</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">black</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">g</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="n">myFont</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">//CENTER TEXT HORIZONTALLY</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="na">getFontMetrics</span><span class="p">().</span><span class="na">stringWidth</span><span class="p">(</span><span class="n">letters</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">        </span><span class="n">g</span><span class="p">.</span><span class="na">drawString</span><span class="p">(</span><span class="n">letters</span><span class="p">,</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">//SETTERS AND GETTERS</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="nf">getPieceColor</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">pieceColor</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setPieceColor</span><span class="p">(</span><span class="n">Color</span><span class="w"> </span><span class="n">pieceColor</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">pieceColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pieceColor</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getLetters</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">letters</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setLetters</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">letters</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">letters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">letters</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="BuildingSwingControlsViaCode.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Building Swing Controls Via Code</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Bounce.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bounce Balls Animation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

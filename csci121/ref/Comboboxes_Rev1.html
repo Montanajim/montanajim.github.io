@@ -1,0 +1,901 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Combo boxes &#8212; JAVA II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/Comboboxes_Rev1';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Letters vs Digits" href="LettersvsDigits.html" />
+    <link rel="prev" title="Menus" href="Menus.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">JAVA II</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="JAVABackgroundInformation.html">JAVA Background Information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FirstForm.html">First Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DisplayingText.html">Displaying Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RadioButtons.html">Radio Buttons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Menus.html">Menus</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Combo boxes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LettersvsDigits.html">Letters vs Digits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BuildingStrings.html">Building A String Using Combo, Lists, and Textfield</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bounce.html">Bounce Balls Animation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JTable.html">JTable</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="JABT_JAVAAutomatedBuildTools.html">JAVA Automated Build Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaAnt.html">Java Ant: Build Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaMaven.html">Java Maven:  Build Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JABT_JavaGradle.html">Java Gradle: Build Automation</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/Comboboxes_Rev1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Combo boxes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#major-properties-and-events">Major Properties and Events</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code-summary">Lecture Code Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="combo-boxes">
+<h1>Combo boxes<a class="headerlink" href="#combo-boxes" title="Link to this heading">#</a></h1>
+<section id="major-properties-and-events">
+<h2>Major Properties and Events<a class="headerlink" href="#major-properties-and-events" title="Link to this heading">#</a></h2>
+<p>JAVA combo boxes, also known as JComboBox in Swing is a versatile component that allow users to select a single item from a list. They offer a user-friendly way to present a set of options and improve data entry efficiency. Here are some of the major properties of a Java combo box:</p>
+<p><strong>Basic Properties:</strong></p>
+<ul>
+<li><p><strong>Items:</strong> The core property of a combo box is its list of items. You can add, remove, and modify items programmatically or through a visual editor.</p></li>
+<li><p><strong>Selected Item:</strong> The combo box always has a selected item, which is the currently chosen option displayed in the text field.</p>
+<p>Java combo box selected item</p>
+</li>
+<li><p><strong>Editable</strong>: You can configure the combo box to be editable or non-editable. In editable mode, users can type their own values, while non-editable mode restricts them to selecting from the predefined list.</p></li>
+<li><p><strong>Enabled:</strong> This property determines whether the combo box is interactable or disabled (grayed out).</p></li>
+</ul>
+<p><strong>Advanced Properties:</strong></p>
+<ul class="simple">
+<li><p><strong>Model:</strong> The combo box model manages the underlying data and presentation of the items. You can use different model implementations for more complex scenarios.</p></li>
+<li><p><strong>Renderer:</strong> The renderer controls how each item is displayed in the list. You can customize the appearance of the items using custom renderers.</p></li>
+<li><p><strong>Popup Visible:</strong> This property controls whether the dropdown list is currently visible. You can programmatically show or hide the list.</p></li>
+<li><p><strong>Maximum Row Count:</strong> This property limits the number of visible items in the dropdown list. If there are more items, a scrollbar appears.</p></li>
+</ul>
+<p><strong>Event Handling:</strong></p>
+<ul class="simple">
+<li><p><strong>Item Selection:</strong> When the user selects an item, a selection event is fired. You can listen to these events to react to user choices.</p></li>
+<li><p><strong>Action Events:</strong> In editable mode, typing Enter or clicking outside the text field triggers an action event. You can use this event to capture user input.</p></li>
+</ul>
+<p>These are just some of the major properties of Java combo boxes. By understanding and manipulating these properties, you can create flexible and user-friendly interfaces for your applications.</p>
+</section>
+<section id="lecture-code-summary">
+<h2>Lecture Code Summary<a class="headerlink" href="#lecture-code-summary" title="Link to this heading">#</a></h2>
+<p><strong>Overall Structure</strong></p>
+<ul class="simple">
+<li><p>The entry point is the <code class="docutils literal notranslate"><span class="pre">main</span></code> method in the <code class="docutils literal notranslate"><span class="pre">J2x_20_comboBoxes</span></code> class.</p></li>
+<li><p>Inside <code class="docutils literal notranslate"><span class="pre">main</span></code>, a <code class="docutils literal notranslate"><span class="pre">ComboBoxDemo</span></code> object is created. That object sets up the entire GUI in its constructor.</p></li>
+</ul>
+<p><strong>GUI Setup</strong>
+The GUI is built using Swing components (JFrame, JLabel, JTextField, JButton, JComboBox) and a manual (absolute) layout.</p>
+<ul>
+<li><p>Manual Layout</p>
+<p>: The code calls</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jf1</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">null</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>, which disables the default layout managers. Each component’s size and position are set explicitly via</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setSize</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>and</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setLocation</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>.</p>
+<ul class="simple">
+<li><p><strong>Pros</strong>: Direct control over positioning.</p></li>
+<li><p><strong>Cons</strong>: Not easily resizable or adaptive, and can be cumbersome if the UI must scale or localize.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Helper Methods</strong>
+The constructor for <code class="docutils literal notranslate"><span class="pre">ComboBoxDemo</span></code> calls various private methods, each dedicated to setting up a particular type of component. This is a clean approach for readability and code reuse:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">setUpTheJFrame(JFrame,</span> <span class="pre">int,</span> <span class="pre">int,</span> <span class="pre">String,</span> <span class="pre">Color,</span> <span class="pre">boolean)</span></code>
+Configures the <code class="docutils literal notranslate"><span class="pre">JFrame</span></code> size, title, background color, close operation, visibility, and layout.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setupLabel(...)</span></code>
+Creates and positions a <code class="docutils literal notranslate"><span class="pre">JLabel</span></code> with the desired text and font size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setupTextFields(...)</span></code>
+Creates a <code class="docutils literal notranslate"><span class="pre">JTextField</span></code>, positions it, and sets basic properties like font and visibility.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setupCombo(...)</span></code>
+Initializes the <code class="docutils literal notranslate"><span class="pre">JComboBox</span></code>. If a <code class="docutils literal notranslate"><span class="pre">String[]</span></code> is provided, all those items are added to it. It also attaches an <code class="docutils literal notranslate"><span class="pre">ActionListener</span></code> that updates <code class="docutils literal notranslate"><span class="pre">lblSelected</span></code> each time a new item is chosen.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setTheButtons(...)</span></code>
+Creates a <code class="docutils literal notranslate"><span class="pre">JButton</span></code> with the given text, size, and location. It then attaches both an <code class="docutils literal notranslate"><span class="pre">ActionListener</span></code> (listening for button clicks) and a <code class="docutils literal notranslate"><span class="pre">KeyListener</span></code> (listening for the Enter key), both of which call a shared handler method (<code class="docutils literal notranslate"><span class="pre">theButtonAction</span></code>).</p></li>
+</ul>
+<p><strong>Button Actions</strong>
+The <code class="docutils literal notranslate"><span class="pre">theButtonAction(String</span> <span class="pre">bttnText)</span></code> method handles all the button clicks (and the Enter key on the button). The parameter <code class="docutils literal notranslate"><span class="pre">bttnText</span></code> is matched against the button label to determine which operation to perform. Specifically:</p>
+<ul class="simple">
+<li><p><strong>“Add Item”</strong>
+Reads text from <code class="docutils literal notranslate"><span class="pre">txtField</span></code> and, if non-empty, appends it to the combo box (<code class="docutils literal notranslate"><span class="pre">comboBox.addItem(...)</span></code>).</p></li>
+<li><p><strong>“Remove Selected”</strong>
+Removes the currently selected item (<code class="docutils literal notranslate"><span class="pre">comboBox.removeItemAt(comboBox.getSelectedIndex())</span></code>).</p></li>
+<li><p><strong>“Remove Last”</strong>
+Removes the last item in the combo box (<code class="docutils literal notranslate"><span class="pre">comboBox.removeItemAt(comboBox.getItemCount()-1)</span></code>).</p></li>
+</ul>
+<p><img alt="combobox" src="../_images/combobox.png" /></p>
+</section>
+<section id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Link to this heading">#</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">Progam: Combo Box</span>
+
+<span class="cm">Function:   The purpose of the program is demostrate the</span>
+<span class="cm">            selection of a combobox, add items and subtract items,</span>
+<span class="cm">            of a combobox programmically</span>
+
+<span class="cm">Programmer: James Goudy ©2024</span>
+<span class="cm"> */</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">j2x_20_comboboxes</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Color</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionEvent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionListener</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.KeyEvent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.KeyListener</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JButton</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JComboBox</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JLabel</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JTextField</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Class ComboBoxDemo demonstrates a GUI with a ComboBox (drop-down list),</span>
+<span class="cm"> * including adding, removing selected, and removing the last item.</span>
+<span class="cm"> */</span>
+<span class="kd">class</span> <span class="nc">ComboBoxDemo</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// This array holds the initial set of comedian names for the combo box</span>
+<span class="w">    </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">comedians</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Larry&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Curly&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Moe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Shemp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Curly Joe&quot;</span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// Create a JFrame instance for the application window</span>
+<span class="w">    </span><span class="n">JFrame</span><span class="w"> </span><span class="n">Frame1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JFrame</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Label to prompt or describe the comedian list</span>
+<span class="w">    </span><span class="n">JLabel</span><span class="w"> </span><span class="n">lblComedians</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Label to display the currently selected item from the combo box</span>
+<span class="w">    </span><span class="n">JLabel</span><span class="w"> </span><span class="n">lblSelected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Text field for user to type a new item to add into the combo box</span>
+<span class="w">    </span><span class="n">JTextField</span><span class="w"> </span><span class="n">txtField</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JTextField</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Button to remove the currently selected item from the combo box</span>
+<span class="w">    </span><span class="n">JButton</span><span class="w"> </span><span class="n">bttnRemoveSelected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Button to add a new item from the text field to the combo box</span>
+<span class="w">    </span><span class="n">JButton</span><span class="w"> </span><span class="n">bttnAddItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Button to remove the last item in the combo box</span>
+<span class="w">    </span><span class="n">JButton</span><span class="w"> </span><span class="n">bttnRemoveLast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// JComboBox to display the set of comedians and any new items</span>
+<span class="w">    </span><span class="c1">// the user might add</span>
+<span class="w">    </span><span class="c1">//JComboBox comboBox  =   new JComboBox(comedians);</span>
+<span class="w">    </span><span class="n">JComboBox</span><span class="w"> </span><span class="n">comboBox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JComboBox</span><span class="p">();</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Constructor initializes and lays out all the GUI components.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">ComboBoxDemo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">lblFontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="n">f</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">xWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">125</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">aWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Define a custom background color</span>
+<span class="w">        </span><span class="n">Color</span><span class="w"> </span><span class="n">myColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="mi">249</span><span class="p">,</span><span class="w"> </span><span class="mi">246</span><span class="p">);</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Set up the JFrame with size, title, background, etc.</span>
+<span class="w">        </span><span class="n">setUpTheJFrame</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="mi">550</span><span class="p">,</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Combobox Demo!&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">myColor</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set up labels, combo box, text field, and buttons</span>
+<span class="w">        </span><span class="n">setupLabel</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">lblSelected</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Selected&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lblFontSize</span><span class="p">);</span>
+<span class="w">        </span><span class="n">setupLabel</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">lblComedians</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Comdians&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lblFontSize</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">setupCombo</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">comboBox</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">xWidth</span><span class="p">,</span><span class="w"> </span><span class="n">lblFontSize</span><span class="p">,</span><span class="w"> </span><span class="n">comedians</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">setupTextFields</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">txtField</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="n">xWidth</span><span class="p">,</span><span class="w"> </span><span class="n">lblFontSize</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">setTheButtons</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">bttnAddItem</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">aWidth</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Add Item&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">lblFontSize</span><span class="p">);</span>
+<span class="w">        </span><span class="n">setTheButtons</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">bttnRemoveSelected</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span>
+<span class="w">                </span><span class="n">aWidth</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Remove Selected&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lblFontSize</span><span class="p">);</span>
+<span class="w">        </span><span class="n">setTheButtons</span><span class="p">(</span><span class="n">Frame1</span><span class="p">,</span><span class="w"> </span><span class="n">bttnRemoveLast</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w"> </span><span class="n">aWidth</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Remove Last&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">lblFontSize</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Private method to configure the JFrame&#39;s visual </span>
+<span class="w">    </span><span class="c1">// and behavioral properties</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setUpTheJFrame</span><span class="p">(</span><span class="n">JFrame</span><span class="w"> </span><span class="n">jf1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">frameWidth</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">frameHeight</span><span class="p">,</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">frameTitle</span><span class="p">,</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="n">frameColor</span><span class="p">,</span><span class="kt">boolean</span><span class="w"> </span><span class="n">turnLayoutManagerOff</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// Set the initial dimensions of the JFrame&#39;s window</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">frameWidth</span><span class="p">,</span><span class="w"> </span><span class="n">frameHeight</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set the JFrame title</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">frameTitle</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Apply a custom background color to the content pane</span>
+<span class="w">        </span><span class="c1">// The content pane is the area where items are added to </span>
+<span class="w">        </span><span class="c1">// the frame</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">setBackground</span><span class="p">(</span><span class="n">frameColor</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Make the JFrame visible on the screen, </span>
+<span class="w">        </span><span class="c1">// allowing users to interact with it</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Center the JFrame on the user&#39;s screen for optimal visibility</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">setLocationRelativeTo</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Specify the program&#39;s termination behavior </span>
+<span class="w">        </span><span class="c1">// when the JFrame is closed</span>
+<span class="w">        </span><span class="c1">// Exit the program when the frame is closed</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Disable the default layout manager, allowing </span>
+<span class="w">        </span><span class="c1">// for manual component positioning</span>
+<span class="w">        </span><span class="c1">// Note: Manual layout can be more complex to manage</span>
+<span class="w">        </span><span class="c1">// disable the default layout manager</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">turnLayoutManagerOff</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">jf1</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Helper method to set up a JLabel with custom position,</span>
+<span class="cm">     * size, text, and font size.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupLabel</span><span class="p">(</span><span class="n">JFrame</span><span class="w"> </span><span class="n">jf1</span><span class="p">,</span><span class="w"> </span><span class="n">JLabel</span><span class="w"> </span><span class="n">lbl</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ypos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lblWidth</span><span class="p">,</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">theText</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">labelSize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Set the font size to 12 points</span>
+<span class="w">        </span><span class="c1">// NOTE: Have to do this before we add the text</span>
+<span class="w">        </span><span class="n">lbl</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="n">lbl</span><span class="p">.</span><span class="na">getFont</span><span class="p">().</span><span class="na">deriveFont</span><span class="p">(</span><span class="n">labelSize</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Set the preferred size of the label</span>
+<span class="w">        </span><span class="n">lbl</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">lblWidth</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">labelSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set the text content of the label</span>
+<span class="w">        </span><span class="n">lbl</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">theText</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Make the label visible</span>
+<span class="w">        </span><span class="n">lbl</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Position the label at coordinates (xpos, ypos) within the window</span>
+<span class="w">        </span><span class="n">lbl</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="n">ypos</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Add the label to the window&#39;s content pane</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">lbl</span><span class="p">);</span><span class="w">  </span><span class="c1">// Assuming jf1 is the main window object</span>
+
+<span class="w">        </span><span class="c1">// Request the window to be redrawn, reflecting the added label</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Helper method to set up a JTextField with the specified </span>
+<span class="cm">     * position, width, and font size.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupTextFields</span><span class="p">(</span><span class="n">JFrame</span><span class="w"> </span><span class="n">jf1</span><span class="p">,</span><span class="w"> </span><span class="n">JTextField</span><span class="w"> </span><span class="n">jtxt</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ypos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">tfWidth</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fsize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Set the font size to 12 points</span>
+<span class="w">        </span><span class="c1">// NOTE: Have to do this before we add the text</span>
+<span class="w">        </span><span class="n">jtxt</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="n">jtxt</span><span class="p">.</span><span class="na">getFont</span><span class="p">().</span><span class="na">deriveFont</span><span class="p">(</span><span class="n">fsize</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Set the preferred size of the label</span>
+<span class="w">        </span><span class="n">jtxt</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">tfWidth</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">fsize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set the text content of the label (empty by default)</span>
+<span class="w">        </span><span class="n">jtxt</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Make the text field visible</span>
+<span class="w">        </span><span class="n">jtxt</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Position the text field at coordinates (xpos, ypos)</span>
+<span class="w">        </span><span class="n">jtxt</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="n">ypos</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Add the text field to the window&#39;s content pane</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">jtxt</span><span class="p">);</span><span class="w">  </span><span class="c1">// Assuming jf1 is the main window object</span>
+
+<span class="w">        </span><span class="c1">// Request the window to be redrawn, reflecting the added text field</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Helper method to set up a JComboBox. It optionally populates </span>
+<span class="cm">     * items from a provided String array, sets font/size, and attaches </span>
+<span class="cm">     * a listener to update the selected label.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupCombo</span><span class="p">(</span><span class="n">JFrame</span><span class="w"> </span><span class="n">jf1</span><span class="p">,</span><span class="w"> </span><span class="n">JComboBox</span><span class="w"> </span><span class="n">jcmbo</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ypos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cmboWidth</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">float</span><span class="w"> </span><span class="n">fsize</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">comboItems</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Set the font size to 12 points</span>
+<span class="w">        </span><span class="c1">// NOTE: Have to do this before we add the text</span>
+<span class="w">        </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="n">jcmbo</span><span class="p">.</span><span class="na">getFont</span><span class="p">().</span><span class="na">deriveFont</span><span class="p">(</span><span class="n">fsize</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Set the preferred size of the label</span>
+<span class="w">        </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">cmboWidth</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">fsize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Make the combo box visible</span>
+<span class="w">        </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Enable the combo box so items can be selected</span>
+<span class="w">        </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">setEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Position the combo box at coordinates (xpos, ypos)</span>
+<span class="w">        </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="n">ypos</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// If the comboItems array is not null, add them all to the combo box</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">comboItems</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">comboItems</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">addItem</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Add the combo box to the window&#39;s content pane</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">jcmbo</span><span class="p">);</span><span class="w">  </span><span class="c1">// Assuming jf1 is the main window object</span>
+
+<span class="w">        </span><span class="c1">// Request the window to be redrawn, reflecting the added combo box</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Add an ActionListener to update the &quot;lblSelected&quot; label</span>
+<span class="w">        </span><span class="c1">// whenever a new item is chosen</span>
+<span class="w">        </span><span class="n">jcmbo</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">lblSelected</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">jcmbo</span><span class="p">.</span><span class="na">getSelectedItem</span><span class="p">()));</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Helper method to create a JButton, position it, set its text, </span>
+<span class="cm">     * attach an ActionListener and a KeyListener, and finally </span>
+<span class="cm">     * add it to the frame.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setTheButtons</span><span class="p">(</span><span class="n">JFrame</span><span class="w"> </span><span class="n">jf1</span><span class="p">,</span><span class="w"> </span><span class="n">JButton</span><span class="w"> </span><span class="n">bttnABttn</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ypos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">bttnWidth</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">bttnText</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fsize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// Set the font size to 12 points</span>
+<span class="w">        </span><span class="c1">// NOTE: Have to do this before we add the text</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">getFont</span><span class="p">().</span><span class="na">deriveFont</span><span class="p">(</span><span class="n">fsize</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Set the preferred size of the label</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="n">bttnWidth</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">fsize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set the text content of the button</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">bttnText</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Make the button visible</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Position the button at the specified coordinates</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="n">xpos</span><span class="p">,</span><span class="w"> </span><span class="n">ypos</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// This action listener listens for the mouse click</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="n">theButtonAction</span><span class="p">(</span><span class="n">bttnText</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// This key listener is for listening for the keyboard actions</span>
+<span class="w">        </span><span class="n">bttnABttn</span><span class="p">.</span><span class="na">addKeyListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">KeyListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="c1">// For Reference</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">keyTyped</span><span class="p">(</span><span class="n">KeyEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// No action needed here</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// listen only for the &quot;Enter&quot; key</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">keyPressed</span><span class="p">(</span><span class="n">KeyEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getKeyCode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">KeyEvent</span><span class="p">.</span><span class="na">VK_ENTER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">theButtonAction</span><span class="p">(</span><span class="n">bttnText</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// For Reference</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">keyReleased</span><span class="p">(</span><span class="n">KeyEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// No action needed here</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// Add the button to the window&#39;s content pane</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">bttnABttn</span><span class="p">);</span><span class="w">  </span><span class="c1">// Assuming jf1 is the main window object</span>
+
+<span class="w">        </span><span class="c1">// Request the window to be redrawn, reflecting the added button</span>
+<span class="w">        </span><span class="n">jf1</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * theButtonAction method decides what action to perform based on</span>
+<span class="cm">     * the text label of the clicked button.</span>
+<span class="cm">     * </span>
+<span class="cm">     * @param bttnText the button&#39;s text, used to identify the intended action</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">theButtonAction</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">bttnText</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">bttnText</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;Add Item&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">String</span><span class="w"> </span><span class="n">xAddItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">                </span><span class="n">xAddItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">txtField</span><span class="p">.</span><span class="na">getText</span><span class="p">();</span>
+
+<span class="w">                </span><span class="c1">//check to see if the box is not empty</span>
+<span class="w">                </span><span class="c1">// NOTE: if you want to add it then alphabetize it,</span>
+<span class="w">                </span><span class="c1">// remove all of the items to an arraylist, sort the arraylist,</span>
+<span class="w">                </span><span class="c1">// remove all of the comboBox items, and then readd them</span>
+<span class="w">                </span><span class="c1">// back from the arraylist</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">xAddItem</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">comboBox</span><span class="p">.</span><span class="na">addItem</span><span class="p">(</span><span class="n">txtField</span><span class="p">.</span><span class="na">getText</span><span class="p">());</span>
+<span class="w">                    </span><span class="n">txtField</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;Remove Selected&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Removes the currently selected item from the combo box</span>
+<span class="w">                </span><span class="n">comboBox</span><span class="p">.</span><span class="na">removeItemAt</span><span class="p">(</span><span class="n">comboBox</span><span class="p">.</span><span class="na">getSelectedIndex</span><span class="p">());</span>
+<span class="w">                </span><span class="n">comboBox</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;Remove Last&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Removes the last item in the combo box</span>
+<span class="w">                </span><span class="n">comboBox</span><span class="p">.</span><span class="na">removeItemAt</span><span class="p">(</span><span class="n">comboBox</span><span class="p">.</span><span class="na">getItemCount</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">                </span><span class="n">comboBox</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Remove Last</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// End Of Class ------------------------------------------------</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * J2x_20_comboBoxes is the main class containing the entry point of the program.</span>
+<span class="cm"> */</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">J2x_20_comboBoxes</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * @param args the command line arguments</span>
+<span class="cm">     * The main method creates an instance of ComboBoxDemo, which sets up the GUI.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">ComboBoxDemo</span><span class="w"> </span><span class="n">myComboDemo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ComboBoxDemo</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Updated: 2/20/2025</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Menus.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Menus</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="LettersvsDigits.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Letters vs Digits</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#major-properties-and-events">Major Properties and Events</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code-summary">Lecture Code Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

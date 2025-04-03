@@ -622,5 +622,3 @@ public class Ball extends JComponent {
 
 
 
----
-
