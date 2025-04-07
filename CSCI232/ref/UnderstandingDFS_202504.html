@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Graphs &#8212; Algorithms</title>
+    <title>Understanding Depth-First Search (DFS) &#8212; Algorithms</title>
   
   
   
@@ -60,11 +60,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/Graphs';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/UnderstandingDFS_202504';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Understanding Breadth-First Search (BFS)" href="UnderstandingBFS_202504.html" />
-    <link rel="prev" title="Skip List" href="SkipList.html" />
+    <link rel="next" title="Seven Bridges of Königsberg" href="GraphsSevenBridges.html" />
+    <link rel="prev" title="Understanding Breadth-First Search (BFS)" href="UnderstandingBFS_202504.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -191,9 +191,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="SkipList.html">Skip List</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Graphs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Graphs.html">Graphs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="UnderstandingBFS_202504.html">Understanding Breadth-First Search (BFS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="UnderstandingDFS_202504.html">Understanding Depth-First Search (DFS)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Understanding Depth-First Search (DFS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsSevenBridges.html">Seven Bridges of Königsberg</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsDFS.html">Depth-First Search (DFS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsBFS.html">Breadth First</a></li>
@@ -263,7 +263,7 @@
       
       
       
-      <li><a href="../_sources/ref/Graphs.md" target="_blank"
+      <li><a href="../_sources/ref/UnderstandingDFS_202504.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -337,7 +337,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Graphs</h1>
+    <h1>Understanding Depth-First Search (DFS)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -351,42 +351,215 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="graphs">
-<h1>Graphs<a class="headerlink" href="#graphs" title="Link to this heading">#</a></h1>
-<p>In computer science, a <strong>graph</strong> is an abstract representation of a set of objects, known as <strong>vertices</strong> or <strong>nodes</strong>, connected by a set of <strong>edges</strong>. Graphs offer a flexible way to depict relationships and interactions between different entities. <a class="reference external" href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/">They can be either <strong>directed</strong> (where edges have a specific direction) or <strong>undirected</strong> (where edges have no specific direction) </a><a class="reference external" href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/">1</a><a class="reference external" href="https://medium.com/&#64;MakeComputerScienceGreatAgain/graphs-in-computer-science-a-comprehensive-overview-of-an-essential-data-structure-20b6165a61b5">2</a>. Let’s delve deeper into the world of graphs:</p>
-<ol class="arabic simple">
-<li><p><strong>Graph Data Structure</strong>: A graph data structure consists of nodes (vertices) and edges. It’s used to represent relationships between different entities. <a class="reference external" href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/">Graph algorithms manipulate and analyze graphs, solving various problems like finding the shortest path or detecting cycles </a><a class="reference external" href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/">1</a>.</p></li>
-<li><p><strong>Types of Graphs</strong>:</p>
+  <section id="understanding-depth-first-search-dfs">
+<h1>Understanding Depth-First Search (DFS)<a class="headerlink" href="#understanding-depth-first-search-dfs" title="Link to this heading">#</a></h1>
+<p><strong>What is DFS?</strong></p>
+<p>Imagine exploring the same maze as before, but this time, instead of checking all paths at the current level, you pick one path and go as deep as possible until you hit a dead end. Then, you backtrack to the last branching point and try another path from there. You prioritize going deep down a single branch before exploring other branches.</p>
+<p>In technical terms, DFS is an algorithm for traversing or searching tree or graph data structures. It starts at a selected node (the source) and explores as far as possible along each branch before backtracking. It uses a stack (Last-In, First-Out) data structure or recursion to keep track of the next node to visit.</p>
+<p><strong>Why Use DFS?</strong></p>
+<p>DFS is particularly useful for several key tasks:</p>
 <ul class="simple">
-<li><p><strong>Directed Graph (Digraph)</strong>: Edges have a specific direction, forming an ordered pair (u, v).</p></li>
-<li><p><strong>Undirected Graph</strong>: Edges have no specific direction, forming an unordered pair {u, v}.</p></li>
-<li><p><strong>Weighted Graph</strong>: Edges have associated weights (e.g., distances, costs).</p></li>
-<li><p><strong>Cyclic Graph</strong>: Contains cycles (closed loops).</p></li>
-<li><p><strong>Acyclic Graph</strong>: Has no cycles.</p></li>
-<li><p><strong>Connected Graph</strong>: Every pair of vertices is connected by a path.</p></li>
-<li><p><strong>Disconnected Graph</strong>: Contains isolated components.</p></li>
-<li><p><strong>Bipartite Graph</strong>: Vertices can be divided into two disjoint sets such that no edge connects vertices within the same set.</p></li>
+<li><p><strong>Path Finding:</strong> DFS can be used to find if a path exists between two nodes. It explores each path until it finds the target or exhausts all possibilities.</p></li>
+<li><p><strong>Detecting Cycles:</strong> DFS can detect cycles in a graph. If you encounter a visited node that is still in the current recursion stack, it indicates a cycle.</p></li>
+<li><p><strong>Topological Sorting:</strong> For directed acyclic graphs (DAGs), DFS can be used to perform a topological sort, which orders the nodes such that for every directed edge from node A to node B, node A comes before node B in the ordering.</p></li>
+<li><p><strong>Finding Connected Components:</strong> Similar to BFS, DFS can be used to find all reachable nodes from a starting node and identify connected components in a graph.</p></li>
+<li><p><strong>Solving Puzzles:</strong> Many puzzles that involve exploring possibilities, like Sudoku solvers or finding a path through a maze, can be effectively solved using DFS.</p></li>
 </ul>
-</li>
-<li><p><strong>Graph Algorithms</strong>:</p>
+<p><strong>Real-Life Examples</strong></p>
+<p>DFS is used in various applications:</p>
 <ul class="simple">
-<li><p><strong>Breadth-First Search (BFS)</strong>: Traverses the graph layer by layer.</p></li>
-<li><p><strong>Depth-First Search (DFS)</strong>: Explores as far as possible along each branch before backtracking.</p></li>
-<li><p><strong>Dijkstra’s Algorithm</strong>: Finds the shortest path in weighted graphs.</p></li>
-<li><p><strong>Minimum Spanning Tree (MST)</strong>: Connects all vertices with minimum total edge weight.</p></li>
-<li><p><strong>Topological Sorting</strong>: Orders vertices based on dependencies.</p></li>
-<li><p><strong>Articulation Points</strong>: Critical vertices in a connected graph.</p></li>
-<li><p><strong>Strongly Connected Components</strong>: Maximal strongly connected subgraphs.</p></li>
-<li><p><strong>Eulerian Path/Circuit</strong>: Visits each edge exactly once.</p></li>
-<li><p><strong>Bellman–Ford Algorithm</strong>: Detects negative cycles.</p></li>
-<li><p><strong>Transitive Closure</strong>: Determines reachability between vertices.</p></li>
+<li><p><strong>Backtracking Algorithms:</strong> Many algorithms that involve trying out different possibilities and undoing choices if they don’t lead to a solution use DFS principles.</p></li>
+<li><p><strong>Compiler Design:</strong> DFS can be used in compilers for tasks like syntax analysis and semantic analysis.</p></li>
+<li><p><strong>File System Traversal:</strong> When you explore folders and subfolders on your computer, many operating systems use a form of DFS.</p></li>
+<li><p><strong>Network Analysis:</strong> Identifying dependencies or hierarchical structures in a network.</p></li>
 </ul>
-</li>
-</ol>
-<p>Graphs are everywhere in computer science, from social networks to algorithms. They provide a conceptual and computational framework for solving complex problems. So next time you encounter a network, think of it as a graph connecting nodes of information!</p>
-<p>​</p>
-<div class="toctree-wrapper compound">
+<p style="page-break-after: always;">&nbsp;</p>
+<p><strong>Code Example</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/*
+DEPTH FIRST
+Developer: James Goudy (Modified)
+ */
+package depthfirst_rev2504;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Stack;
+
+// Class representing a graph using adjacency lists
+class DFS {
+
+    // Total number of vertices in the graph
+    private int numVertices;
+
+    // Adjacency list to store edges
+    private List&lt;LinkedList&lt;Integer&gt;&gt; adjacencyList;
+
+    // Constructor to initialize the graph
+    public DFS(int vertices) {
+        this.numVertices = vertices;
+        this.adjacencyList = new ArrayList&lt;&gt;(vertices);
+
+        // Initialize each adjacency list for every vertex
+        for (int i = 0; i &lt; vertices; i++) {
+            this.adjacencyList.add(new LinkedList&lt;&gt;());
+        }
+    }
+
+    // Method to add an edge between two vertices
+    public void addEdge(int source, int destination) {
+
+        this.adjacencyList.get(source).add(destination);
+
+        // For an undirected graph
+        this.adjacencyList.get(destination).add(source);
+    }
+
+    // Method to perform Depth-First Search starting from a given vertex (Iterative)
+    public void performDFSIterative(int startVertex) {
+        boolean[] visited = new boolean[numVertices];
+        Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();
+
+        visited[startVertex] = true;
+        stack.push(startVertex);
+
+        System.out.println(&quot;Depth-First Search (Iterative) starting from vertex &quot;
+                + startVertex + &quot;:&quot;);
+
+        while (!stack.isEmpty()) {
+            int currentVertex = stack.pop();
+            System.out.print(currentVertex + &quot; &quot;);
+
+            for (int neighbor : this.adjacencyList.get(currentVertex)) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    stack.push(neighbor);
+                }
+            }
+        }
+        System.out.println();
+    }
+
+    // Method to perform Depth-First Search starting from a given vertex (Recursive)
+    public void performDFSRecursive(int startVertex) {
+        boolean[] visited = new boolean[numVertices];
+        System.out.println(&quot;Depth-First Search (Recursive) starting from vertex &quot;
+                + startVertex + &quot;:&quot;);
+        performDFSRecursiveUtil(startVertex, visited);
+        System.out.println();
+    }
+
+    private void performDFSRecursiveUtil(int vertex, boolean[] visited) {
+        visited[vertex] = true;
+        System.out.print(vertex + &quot; &quot;);
+
+        for (int neighbor : this.adjacencyList.get(vertex)) {
+            if (!visited[neighbor]) {
+                performDFSRecursiveUtil(neighbor, visited);
+            }
+        }
+    }
+}
+
+public class DepthFirst_Rev2504 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        DFS graph = new DFS(11);
+
+        graph.addEdge(0, 1);
+        graph.addEdge(0, 2);
+        graph.addEdge(1, 3);
+        graph.addEdge(2, 4);
+        graph.addEdge(4, 5);
+
+        graph.addEdge(0, 6);
+        graph.addEdge(0, 7);
+        graph.addEdge(7, 8);
+        graph.addEdge(7, 9);
+
+        graph.addEdge(9, 10);
+
+        graph.performDFSIterative(0);
+        graph.performDFSRecursive(0);
+
+        graph.performDFSIterative(6);
+        graph.performDFSRecursive(6);
+    }
+
+}
+
+/*
+ * Graph Map based on the addEdge calls:
+ *
+         0
+       /  /|\
+      /  / | \
+     1  2  6  7
+     |  |     / \
+     3  4    8   9
+        |        |
+        5        10
+
+Depth-First Search (Iterative) starting from vertex 0:
+0 7 9 10 8 6 2 4 5 1 3
+Depth-First Search (Recursive) starting from vertex 0:
+0 1 3 2 4 5 7 8 9 10 6
+Depth-First Search (Iterative) starting from vertex 6:
+6 0 7 9 10 8 2 4 5 1 3
+Depth-First Search (Recursive) starting from vertex 6:
+6 0 1 3 2 4 5 7 8 9 10
+*/
+</pre></div>
 </div>
+<p><strong>Code Analysis</strong></p>
+<p><strong>DFS Class:</strong> This class represents the graph itself, similar to the BFS class.</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">numVertices</span></code>:</strong> Stores the total number of vertices in the graph.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">adjacencyList</span></code>:</strong> The adjacency list representation of the graph.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">DFS(int</span> <span class="pre">vertices)</span></code> (Constructor):</strong> Initializes the graph with a specified number of vertices and creates empty adjacency lists.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">addEdge(int</span> <span class="pre">source,</span> <span class="pre">int</span> <span class="pre">destination)</span></code>:</strong> Adds an undirected edge between two vertices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">performDFSIterative(int</span> <span class="pre">startVertex)</span></code> Method:</p>
+<p>This method implements the iterative DFS algorithm.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">visited</span></code>:</strong> A boolean array to keep track of visited vertices.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">stack</span></code>:</strong> A <code class="docutils literal notranslate"><span class="pre">Stack</span></code> (LIFO - Last-In, First-Out) is used to store vertices to be visited. DFS relies on the LIFO nature of a stack to explore deeper first.</p></li>
+<li><p><strong>Initialization:</strong> The <code class="docutils literal notranslate"><span class="pre">startVertex</span></code> is marked as visited and pushed onto the stack.</p></li>
+<li><p><strong>Traversal Loop (<code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">(!stack.isEmpty())</span></code>):</strong> The loop continues as long as there are nodes in the stack to process.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">currentVertex</span> <span class="pre">=</span> <span class="pre">stack.pop()</span></code>:</strong> Removes the top vertex from the stack. This is the vertex currently being visited.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">System.out.print(currentVertex</span> <span class="pre">+</span> <span class="pre">&quot;</span> <span class="pre">&quot;);</span></code>:</strong> Prints the visited vertex.</p></li>
+<li><p><strong>Neighbor Exploration (<code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">(int</span> <span class="pre">neighbor</span> <span class="pre">:</span> <span class="pre">...)</span></code>):</strong> It iterates through all the neighbors of the <code class="docutils literal notranslate"><span class="pre">currentVertex</span></code>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(!visited[neighbor])</span></code>:</strong> Checks if the neighbor has already been visited.</p></li>
+<li><p><strong>Pushing to Stack:</strong> If the neighbor hasn’t been visited, it’s marked as visited and pushed onto the stack. This ensures that the algorithm explores the neighbors of the most recently added node first, going deeper into the graph.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">performDFSRecursive(int</span> <span class="pre">startVertex)</span></code> Method:</p>
+<p>This method initiates the recursive DFS.</p>
+<ul class="simple">
+<li><p>It creates a <code class="docutils literal notranslate"><span class="pre">visited</span></code> array and calls the helper method <code class="docutils literal notranslate"><span class="pre">performDFSRecursiveUtil</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">performDFSRecursiveUtil(int</span> <span class="pre">vertex,</span> <span class="pre">boolean[]</span> <span class="pre">visited)</span></code> Method:</p>
+<p>This is the recursive helper function.</p>
+<ul class="simple">
+<li><p>It marks the current <code class="docutils literal notranslate"><span class="pre">vertex</span></code> as visited and prints it.</p></li>
+<li><p>It then iterates through the neighbors of the current <code class="docutils literal notranslate"><span class="pre">vertex</span></code>.</p></li>
+<li><p>For each unvisited neighbor, it recursively calls <code class="docutils literal notranslate"><span class="pre">performDFSRecursiveUtil</span></code> on that neighbor, effectively exploring deeper down that path.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>DepthFirst_Rev2504 Class (Main Program):</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">main(String[]</span> <span class="pre">args)</span></code>:</strong> The entry point of the program.</p></li>
+<li><p>Creates a <code class="docutils literal notranslate"><span class="pre">DFS</span></code> graph object with 11 vertices.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">addEdge</span></code> multiple times to define the same graph connections as in the BFS example.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">performDFSIterative(0)</span></code> and <code class="docutils literal notranslate"><span class="pre">performDFSRecursive(0)</span></code> to run both iterative and recursive DFS starting from vertex 0.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">performDFSIterative(6)</span></code> and <code class="docutils literal notranslate"><span class="pre">performDFSRecursive(6)</span></code> to run both iterative and recursive DFS starting from vertex 6.</p></li>
+</ul>
+<p><strong>Output</strong></p>
+<p>The output shows the order in which the nodes are visited using both the iterative and recursive approaches of DFS, starting from different vertices. Notice how the traversal goes deep along one path before backtracking and exploring other paths, which is characteristic of Depth-First Search. The iterative and recursive approaches may result in slightly different traversal orders depending on the order in which neighbors are added to the stack or processed in the adjacency list.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -420,20 +593,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="SkipList.html"
+       href="UnderstandingBFS_202504.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Skip List</p>
+        <p class="prev-next-title">Understanding Breadth-First Search (BFS)</p>
       </div>
     </a>
     <a class="right-next"
-       href="UnderstandingBFS_202504.html"
+       href="GraphsSevenBridges.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Understanding Breadth-First Search (BFS)</p>
+        <p class="prev-next-title">Seven Bridges of Königsberg</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

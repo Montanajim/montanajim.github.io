@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Understanding Breadth-First Search (BFS) &#8212; Algorithms</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/UnderstandingBFS_202504';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Understanding Depth-First Search (DFS)" href="UnderstandingDFS_202504.html" />
+    <link rel="prev" title="Graphs" href="Graphs.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Algorithms</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    CSCI 232
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CSCI232_Intro.html">CSCI 232 Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Terms.html">Terms and Concepts</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Radix.html">Radix - Number Bases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Serializable.html">Serializable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Iterator.html">Iterator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BST_Intro.html">Binary Search Tree - Intro</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="BST_Applications.html">Applications That Use Binary Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_Comparisons.html">Binary Tree Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_TreeTraversal.html">Tree Traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_Iterative_Recursion_Search.html">Demonstrate BST using iterative looping and recursion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_BinarySearchTree.html">Binary Search Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_AVLTree.html">AVL Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_RedBlack.html">Red Black Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_ComparisionTable.html">BST AVL Red Black Tree Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_SplayTrees_2025.html">Splay Trees</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_UnderstandingHashTables.html"><em>Understanding Hash Tables and Hash Functions</em>*</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_ModulusHashFunction.html">Modulus Hash Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_Chaining.html">Hash Tables - Chaining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressing.html">Hash Table - Open Addressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressingHashingCodeExamples.html">Java code for double hashing in a hash table:</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="SkipList.html">Skip List</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Graphs.html">Graphs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Understanding Breadth-First Search (BFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnderstandingDFS_202504.html">Understanding Depth-First Search (DFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsSevenBridges.html">Seven Bridges of Königsberg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsDFS.html">Depth-First Search (DFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsBFS.html">Breadth First</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsMazeSolverDFS.html">DSF - Maze Solving</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="GraphsDijkstra.html">Dijkstra’s Algorithm</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Serializable.html">Serialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="End.html">End</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/UnderstandingBFS_202504.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Understanding Breadth-First Search (BFS)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-bfs">What is BFS?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-bfs">Why Use BFS?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-life-examples">Real-Life Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-analysis">Code Analysis</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="understanding-breadth-first-search-bfs">
+<h1>Understanding Breadth-First Search (BFS)<a class="headerlink" href="#understanding-breadth-first-search-bfs" title="Link to this heading">#</a></h1>
+<section id="what-is-bfs">
+<h2>What is BFS?<a class="headerlink" href="#what-is-bfs" title="Link to this heading">#</a></h2>
+<p>Imagine you’re exploring a maze. BFS is like exploring it level by level. You start at the entrance (the <em>source node</em>). First, you check all the paths directly connected to the entrance (one step away). Then, you explore all the paths that are two steps away from the entrance, then three steps away, and so on. You explore <em>broadly</em> before going <em>deeper</em> into any one path.</p>
+<p>In technical terms, BFS is an algorithm for traversing or searching tree or graph data structures. It starts at a selected node (the source) and explores all of the neighbor nodes at the present depth or level  prior to moving on to the nodes at the next depth level. It uses a queue (First-In, First-Out) data structure to keep track of the next node to visit.</p>
+</section>
+<section id="why-use-bfs">
+<h2>Why Use BFS?<a class="headerlink" href="#why-use-bfs" title="Link to this heading">#</a></h2>
+<p>BFS is particularly useful for a few key tasks:</p>
+<ol class="arabic simple">
+<li><p><strong>Finding the Shortest Path:</strong> In graphs where all edges have the same “cost” or weight (like in the maze example, where each step is equal), BFS is guaranteed to find the shortest path between the starting node and any other reachable node in terms of the number of edges.</p></li>
+<li><p><strong>Level Order Traversal:</strong> It naturally visits nodes level by level, which can be useful in hierarchical structures.</p></li>
+<li><p><strong>Connectivity Checking:</strong> You can use BFS to determine if a node is reachable from a starting node or to find all reachable nodes.</p></li>
+</ol>
+<section id="real-life-examples">
+<h3>Real-Life Examples<a class="headerlink" href="#real-life-examples" title="Link to this heading">#</a></h3>
+<p>BFS is used in many applications:</p>
+<ol class="arabic simple">
+<li><p><strong>Social Networks:</strong> Finding friends-of-friends. If you want to see all people within ‘X’ connections of you, BFS is a natural fit. It explores your direct friends (level 1), then their friends (level 2), and so on.</p></li>
+<li><p><strong>GPS Navigation:</strong> Finding the shortest route (in terms of number of turns or segments, not necessarily distance/time if roads have different speeds/lengths) between two points on a map.</p></li>
+<li><p><strong>Web Crawlers:</strong> Search engines use crawlers to discover web pages. A crawler might start at a seed page and use BFS to find all pages linked from it (level 1), then all pages linked from those pages (level 2), etc.</p></li>
+<li><p><strong>Network Broadcasting:</strong> Sending a message to all nodes in a network efficiently.</p></li>
+<li><p><strong>Finding Connected Components:</strong> Identifying groups of interconnected nodes in a graph.</p></li>
+</ol>
+<hr class="docutils" />
+<p style="page-break-after: always;">&nbsp;</p>
+## Code Example
+</section>
+<section id="code-analysis">
+<h3>Code Analysis<a class="headerlink" href="#code-analysis" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">BFS</span></code></strong> Class: This class represents the graph itself.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">numVertices</span></code>: Stores the total number of nodes (vertices) in the graph.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">adjacencyList</span></code>: This is the core data structure for storing the graph. It’s a <code class="docutils literal notranslate"><span class="pre">List</span></code> where each index corresponds to a vertex. The element at each index is a <code class="docutils literal notranslate"><span class="pre">LinkedList&lt;Integer&gt;</span></code> containing all the vertices directly connected to that vertex (its neighbors). This is called an <em>adjacency list representation</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BFS(int</span> <span class="pre">vertices)</span></code> (Constructor): Initializes the graph with a specific number of vertices and creates empty adjacency lists for each.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addEdge(int</span> <span class="pre">source,</span> <span class="pre">int</span> <span class="pre">destination)</span></code>: Adds a connection (an edge) between two vertices. Since it adds the destination to the source’s list <em>and</em> the source to the destination’s list, it creates an <em>undirected</em> edge (meaning the connection goes both ways).</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">performBFS(int</span> <span class="pre">startVertex)</span></code></strong> Method: This is where the BFS magic happens.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">visited</span></code>: A boolean array to keep track of which vertices have already been visited. This prevents infinite loops in graphs with cycles.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">queue</span></code>: A <code class="docutils literal notranslate"><span class="pre">Queue</span></code> (implemented using <code class="docutils literal notranslate"><span class="pre">LinkedList</span></code>) is used to store the vertices to be visited. BFS relies on the FIFO (First-In, First-Out) nature of a queue.</p></li>
+<li><p><strong>Initialization:</strong> The <code class="docutils literal notranslate"><span class="pre">startVertex</span></code> is marked as visited and added to the queue.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Traversal</span> <span class="pre">Loop</span> <span class="pre">(while</span> <span class="pre">(!queue.isEmpty()))</span></code></strong>: The loop continues as long as there are nodes in the queue waiting to be processed.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">currentVertex</span> <span class="pre">=</span> <span class="pre">queue.poll()</span></code>: Removes the next vertex from the front of the queue. This is the vertex currently being visited.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">System.out.print(currentVertex</span> <span class="pre">+</span> <span class="pre">&quot;</span> <span class="pre">&quot;);</span></code>: Prints the visited vertex.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Neighbor</span> <span class="pre">Exploration</span> <span class="pre">(for</span> <span class="pre">(int</span> <span class="pre">neighbor</span> <span class="pre">:</span> <span class="pre">...)):</span></code></strong> It iterates through all the neighbors of the <code class="docutils literal notranslate"><span class="pre">currentVertex</span></code> (obtained from the <code class="docutils literal notranslate"><span class="pre">adjacencyList</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(!visited[neighbor])</span></code>: Checks if the neighbor has already been visited.</p></li>
+<li><p><strong>Enqueueing:</strong> If the neighbor hasn’t been visited, it’s marked as <code class="docutils literal notranslate"><span class="pre">visited</span></code> and added to the <em>end</em> of the queue (<code class="docutils literal notranslate"><span class="pre">queue.offer(neighbor)</span></code>). This ensures that nodes at the current level are fully explored before moving to the next level.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">BreadthFirst_Rev2504</span></code></strong> Class (Main Program):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">main(String[]</span> <span class="pre">args)</span></code>: The entry point of the program.</p></li>
+<li><p>Creates a <code class="docutils literal notranslate"><span class="pre">BFS</span></code> graph object with 11 vertices.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">addEdge</span></code> multiple times to define the connections in the graph, matching the diagram in the comments.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">performBFS(0)</span></code> to run BFS starting from vertex 0.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">performBFS(6)</span></code> to run BFS starting from vertex 6, demonstrating how the traversal changes based on the starting point.</p></li>
+</ul>
+</li>
+</ol>
+<p>In essence, the code sets up a graph using adjacency lists and then implements the BFS algorithm using a queue and a visited array to explore the graph level by level, printing the nodes in the order they are visited.</p>
+<p style="page-break-after: always;">&nbsp;</p>
+```java
+/*
+BREADTH FIRST
+Developer: James Goudy
+ */
+package breadthfirst_rev2504a;
+<p>import java.util.LinkedList;
+import java.util.Queue;
+import java.util.List;
+import java.util.ArrayList;</p>
+<p>// Class representing a graph using adjacency lists
+class BFS {</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>// Total number of vertices in the graph
+private int numVertices;
+
+// Adjacency list to store edges
+private List&lt;LinkedList&lt;Integer&gt;&gt; adjacencyList;
+
+// Constructor to initialize the graph
+public BFS(int vertices) {
+    this.numVertices = vertices;
+    this.adjacencyList = new ArrayList&lt;&gt;(vertices);
+
+    // Initialize each adjacency list for every vertex
+    for (int i = 0; i &lt; vertices; i++) {
+        this.adjacencyList.add(new LinkedList&lt;&gt;());
+    }
+}
+
+// Method to add an edge between two vertices
+public void addEdge(int source, int destination) {
+
+    this.adjacencyList.get(source).add(destination);
+
+    // For an undirected graph
+    this.adjacencyList.get(destination).add(source);
+}
+
+// Method to perform Breadth-First Search starting from a given vertex (Iterative)
+public void performBFS(int startVertex) {
+
+    // Track visited vertices
+    boolean[] visited = new boolean[numVertices];
+
+    // Queue to maintain BFS traversal order
+    Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;();
+
+    // Mark start vertex as visited
+    visited[startVertex] = true;
+
+    // Add start vertex to the queue
+    queue.offer(startVertex);
+
+    System.out.println(&quot;Breadth-First Search (Iterative) starting from vertex &quot;
+                                        + startVertex + &quot;:&quot;);
+
+    // Continue BFS traversal until queue becomes empty
+    while (!queue.isEmpty()) {
+
+        // Dequeue vertex from the queue
+        int currentVertex = queue.poll();
+
+        // Print the current vertex
+        System.out.print(currentVertex + &quot; &quot;);
+
+        // Explore all adjacent vertices of the current vertex
+        for (int neighbor : this.adjacencyList.get(currentVertex)) {
+
+            // If neighbor is not visited yet
+            if (!visited[neighbor]) {
+
+                // Mark neighbor as visited
+                visited[neighbor] = true;
+
+                // Add neighbor to the queue
+                queue.offer(neighbor);
+            }
+        }
+    }
+
+    // Print newline after traversal completion
+    System.out.println();
+}
+
+// Method to perform Breadth-First Search starting from a given vertex (Recursive)
+public void performBFSRecursive(int startVertex) {
+    boolean[] visited = new boolean[numVertices];
+    Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;();
+
+    System.out.println(&quot;Breadth-First Search (Recursive) starting from vertex &quot;
+                                        + startVertex + &quot;:&quot;);
+
+    visited[startVertex] = true;
+    queue.offer(startVertex);
+    recursiveBFS(queue, visited);
+    System.out.println();
+}
+
+private void recursiveBFS(Queue&lt;Integer&gt; queue, boolean[] visited) {
+    if (queue.isEmpty()) {
+        return;
+    }
+
+    int currentVertex = queue.poll();
+    System.out.print(currentVertex + &quot; &quot;);
+
+    for (int neighbor : this.adjacencyList.get(currentVertex)) {
+        if (!visited[neighbor]) {
+            visited[neighbor] = true;
+            queue.offer(neighbor);
+        }
+    }
+    recursiveBFS(queue, visited);
+}
+</pre></div>
+</div>
+<p>}</p>
+<p>public class BreadthFirst_Rev2504a {</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/**
+ * @param args the command line arguments
+ */
+public static void main(String[] args)
+{
+    BFS graph = new BFS(11);
+
+    graph.addEdge(0, 1);
+    graph.addEdge(0, 2);
+    graph.addEdge(1, 3);
+    graph.addEdge(2, 4);
+    graph.addEdge(4, 5);
+
+    graph.addEdge(0, 6);
+    graph.addEdge(0, 7);
+    graph.addEdge(7, 8);
+    graph.addEdge(7, 9);
+
+    graph.addEdge(9, 10);
+
+    graph.performBFS(0);
+    graph.performBFSRecursive(0);
+
+    graph.performBFS(6);
+    graph.performBFSRecursive(6);
+}
+</pre></div>
+</div>
+<p>}</p>
+<p>/*</p>
+<ul>
+<li><p>Graph Map based on the addEdge calls:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+<p>/  /|<br />
+/  / | <br />
+1  2  6  7
+|  |    / <br />
+3  4   8   9
+|       |
+5        10</p>
+</li>
+</ul>
+<p>Breadth-First Search (Iterative) starting from vertex 0:
+0 1 2 6 7 3 4 8 9 5 10
+Breadth-First Search (Recursive) starting from vertex 0:
+0 1 2 6 7 3 4 8 9 5 10
+Breadth-First Search (Iterative) starting from vertex 6:
+6 0 1 2 7 3 4 8 9 5 10
+Breadth-First Search (Recursive) starting from vertex 6:
+6 0 1 2 7 3 4 8 9 5 10</p>
+<p>*/</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Graphs.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Graphs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="UnderstandingDFS_202504.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Understanding Depth-First Search (DFS)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-bfs">What is BFS?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-bfs">Why Use BFS?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-life-examples">Real-Life Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-analysis">Code Analysis</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
