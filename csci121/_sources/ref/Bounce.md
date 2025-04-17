@@ -568,7 +568,7 @@ public class Ball extends JComponent {
         // check for collision on the left and right of the panel
         if (xpos > compWidth) {
             xdir = xdir * -1;
-            xpos = compWidth - 1 - (RNG.nextInt(10));
+            xpos = compWidth - 1 - (radius);
         } else if (xpos < -1) {
             xdir = xdir * -1;
             xpos = 0 + (RNG.nextInt(10));
@@ -577,7 +577,7 @@ public class Ball extends JComponent {
         // check for collision on the top and bottom of the panel
         if (ypos > compHeight) {
             ydir = ydir * -1;
-            ypos = compHeight - 1 - (RNG.nextInt(10));
+            ypos = compHeight - 1 - (radius);
         } else if (ypos < -1) {
             ydir = ydir * -1;
             ypos = 0 + (RNG.nextInt(10));
