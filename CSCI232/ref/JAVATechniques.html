@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Seven Bridges of Königsberg &#8212; Algorithms</title>
+    <title>JAVA Techniques &#8212; Algorithms</title>
   
   
   
@@ -60,11 +60,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/GraphsSevenBridges';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/JAVATechniques';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Depth-First Search (DFS)" href="GraphsDFS.html" />
-    <link rel="prev" title="Understanding Depth-First Search (DFS)" href="UnderstandingDFS_202504.html" />
+    <link rel="next" title="Examples of Java’s HashMap, TreeMap, and LinkedHashMap" href="JavaHashMapTreeMapLinkedHashMap.html" />
+    <link rel="prev" title="Serialization" href="Serializable.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -191,11 +191,11 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="SkipList.html">Skip List</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="Graphs.html">Graphs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="Graphs.html">Graphs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="GraphsAnalysisOfBFSandDFS.html">A Comparative Analysis of Breadth-First Search and Depth-First Search Algorithms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="UnderstandingBFS_202504.html">Understanding Breadth-First Search (BFS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="UnderstandingDFS_202504.html">Understanding Depth-First Search (DFS)</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Seven Bridges of Königsberg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsSevenBridges.html">Seven Bridges of Königsberg</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsDFS.html">Depth-First Search (DFS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsBFS.html">Breadth First</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DFSStoredPaths.html">DFS - Stored Paths</a></li>
@@ -205,7 +205,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="Serializable.html">Serialization</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="JAVATechniques.html">JAVA Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">JAVA Techniques</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="JavaHashMapTreeMapLinkedHashMap.html">Examples of Java’s HashMap, TreeMap, and LinkedHashMap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="HashSetLinkedHashSetTreeSetComparision.html">HashSet, LinkedHashSet, and TreeSet Comparision</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ProgrammingToTheInterfacemd.html">Programming To The Interface, Not The Implementation”</a></li>
@@ -271,7 +271,7 @@
       
       
       
-      <li><a href="../_sources/ref/GraphsSevenBridges.md" target="_blank"
+      <li><a href="../_sources/ref/JAVATechniques.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -345,7 +345,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Seven Bridges of Königsberg</h1>
+    <h1>JAVA Techniques</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -359,58 +359,11 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="seven-bridges-of-konigsberg">
-<h1>Seven Bridges of Königsberg<a class="headerlink" href="#seven-bridges-of-konigsberg" title="Link to this heading">#</a></h1>
-<p>The <strong>Seven Bridges of Königsberg</strong> is a historically notable problem in mathematics that laid the foundations for graph theory and prefigured the idea of topology. Let’s delve into the details:</p>
-<ol class="arabic simple">
-<li><p><strong>The City of Königsberg</strong>:</p>
-<ul class="simple">
-<li><p>Königsberg (now Kaliningrad, Russia) was a city set on both sides of the Pregel River.</p></li>
-<li><p>It included two large islands: <strong>Kneiphof</strong> and <strong>Lomse</strong>.</p></li>
-<li><p>These islands were connected to each other and to the two mainland portions of the city by <strong>seven bridges</strong>.</p></li>
-</ul>
-</li>
-<li><p><strong>The Problem</strong>:</p>
-<ul class="simple">
-<li><p>The challenge was to find a walk through the city that would <strong>cross each bridge once and only once</strong>.</p></li>
-<li><p>The rules were strict:</p>
-<ul>
-<li><p>Solutions couldn’t involve reaching an island or mainland bank without using a bridge.</p></li>
-<li><p>Accessing any bridge without crossing to its other end was unacceptable.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Euler’s Insight</strong>:</p>
-<ul class="simple">
-<li><p><strong>Leonhard Euler</strong>, a brilliant mathematician, analyzed the problem.</p></li>
-<li><p>He realized that the choice of route inside each landmass (island or mainland) was irrelevant.</p></li>
-<li><p>The crucial aspect was the <strong>sequence of bridges crossed</strong>.</p></li>
-<li><p>Euler reformulated the problem in abstract terms, focusing only on the list of landmasses and the bridges connecting them.</p></li>
-</ul>
-</li>
-<li><p><strong>Graph Theory Approach</strong>:</p>
-<ul class="simple">
-<li><p>Euler replaced each landmass with an abstract “vertex” or node.</p></li>
-<li><p>Each bridge became an abstract connection or “edge” between vertices.</p></li>
-<li><p>The resulting mathematical structure is a <strong>graph</strong>.</p></li>
-<li><p>The shape of the graph could be distorted without changing its essence—only the number of edges between nodes mattered.</p></li>
-</ul>
-</li>
-<li><p><strong>Euler’s Solution</strong>:</p>
-<ul class="simple">
-<li><p>Euler observed that whenever one enters a vertex by a bridge, one must leave it by a bridge (except at the endpoints of the walk).</p></li>
-<li><p>If every bridge had been traversed exactly once, the number of bridges touching each landmass must be <strong>even</strong>.</p></li>
-<li><p>Euler proved that the problem had <strong>no solution</strong> because the number of bridges touching each landmass was <strong>odd</strong>.</p></li>
-</ul>
-</li>
-<li><p><strong>Legacy</strong>:</p>
-<ul class="simple">
-<li><p>Euler’s negative resolution of the Seven Bridges problem laid the groundwork for graph theory.</p></li>
-<li><p>It also prefigured the concept of <strong>topology</strong>, which studies properties preserved under continuous deformations.</p></li>
-</ul>
-</li>
-</ol>
+  <section class="tex2jax_ignore mathjax_ignore" id="java-techniques">
+<h1>JAVA Techniques<a class="headerlink" href="#java-techniques" title="Link to this heading">#</a></h1>
+<p>These are techniques specific to JAVA.</p>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -444,20 +397,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="UnderstandingDFS_202504.html"
+       href="Serializable.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Understanding Depth-First Search (DFS)</p>
+        <p class="prev-next-title">Serialization</p>
       </div>
     </a>
     <a class="right-next"
-       href="GraphsDFS.html"
+       href="JavaHashMapTreeMapLinkedHashMap.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Depth-First Search (DFS)</p>
+        <p class="prev-next-title">Examples of Java’s HashMap, TreeMap, and LinkedHashMap</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

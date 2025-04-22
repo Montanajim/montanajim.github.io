@@ -1,4 +1,4 @@
-## Understanding Depth-First Search (DFS)
+# Understanding Depth-First Search (DFS)
 
 **What is DFS?**
 
@@ -153,10 +153,10 @@ public class DepthFirst_Rev2504 {
 /*
  * Graph Map based on the addEdge calls:
  *
-         0
-       /  /|\
-      /  / | \
-     1  2  6  7
+           0
+       /  /| \
+      /  / |  \
+     1  2  6   7
      |  |     / \
      3  4    8   9
         |        |

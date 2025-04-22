@@ -1,6 +1,4 @@
-
-
-## Java code for double hashing in a hash table:
+# Java code for double hashing in a hash table:
 
 
 

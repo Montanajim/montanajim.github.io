@@ -1,0 +1,915 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>DFS - Stored Paths &#8212; Algorithms</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/DFSStoredPaths';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DSF - Maze Solving" href="GraphsMazeSolverDFS.html" />
+    <link rel="prev" title="Breadth First" href="GraphsBFS.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Algorithms</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    CSCI 232
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CSCI232_Intro.html">CSCI 232 Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Terms.html">Terms and Concepts</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Radix.html">Radix - Number Bases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Serializable.html">Serializable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Iterator.html">Iterator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BST_Intro.html">Binary Search Tree - Intro</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="BST_Applications.html">Applications That Use Binary Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_Comparisons.html">Binary Tree Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_TreeTraversal.html">Tree Traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_Iterative_Recursion_Search.html">Demonstrate BST using iterative looping and recursion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_BinarySearchTree.html">Binary Search Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_AVLTree.html">AVL Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_RedBlack.html">Red Black Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_ComparisionTable.html">BST AVL Red Black Tree Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_SplayTrees_2025.html">Splay Trees</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_UnderstandingHashTables.html"><em>Understanding Hash Tables and Hash Functions</em>*</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_ModulusHashFunction.html">Modulus Hash Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_Chaining.html">Hash Tables - Chaining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressing.html">Hash Table - Open Addressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressingHashingCodeExamples.html">Java code for double hashing in a hash table:</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="SkipList.html">Skip List</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Graphs.html">Graphs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="GraphsAnalysisOfBFSandDFS.html">A Comparative Analysis of Breadth-First Search and Depth-First Search Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnderstandingBFS_202504.html">Understanding Breadth-First Search (BFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnderstandingDFS_202504.html">Understanding Depth-First Search (DFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsSevenBridges.html">Seven Bridges of Königsberg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsDFS.html">Depth-First Search (DFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsBFS.html">Breadth First</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">DFS - Stored Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsMazeSolverDFS.html">DSF - Maze Solving</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="GraphsDijkstra.html">Dijkstra’s Algorithm</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Serializable.html">Serialization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="JAVATechniques.html">JAVA Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="JavaHashMapTreeMapLinkedHashMap.html">Examples of Java’s HashMap, TreeMap, and LinkedHashMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HashSetLinkedHashSetTreeSetComparision.html">HashSet, LinkedHashSet, and TreeSet Comparision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProgrammingToTheInterfacemd.html">Programming To The Interface, Not The Implementation”</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="End.html">End</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/DFSStoredPaths.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>DFS - Stored Paths</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="dfs-stored-paths">
+<h1>DFS - Stored Paths<a class="headerlink" href="#dfs-stored-paths" title="Link to this heading">#</a></h1>
+<p>This Java code defines a <code class="docutils literal notranslate"><span class="pre">DFS</span></code> class that implements Depth-First Search for an undirected graph represented using an adjacency list. It provides standard DFS traversal methods (both recursive and iterative) that print the visited node order, as well as specialized methods (also recursive and iterative) designed to find and store all possible paths starting from a given source vertex discovered during the DFS exploration. The <code class="docutils literal notranslate"><span class="pre">Main</span></code> class demonstrates how to create a graph, add edges, and utilize both the traversal and path-finding functionalities provided by the <code class="docutils literal notranslate"><span class="pre">DFS</span></code> class.</p>
+<p>Java</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Collections</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.HashMap</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.LinkedList</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Map</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Stack</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">DFS</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// Num Vertices</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">numVertices</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Adjacency list to store edges</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">adjencyList</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// List to store all paths found by the last DFS run</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">allPaths</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Constructor</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">DFS</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">vertices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">numVertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertices</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">adjencyList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">vertices</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">allPaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// Initialize the path list</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">vertices</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">adjencyList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Add edges (undirected graph)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addEdge</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">destination</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Ensure vertices are within bounds</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">source</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">numVertices</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">destination</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">destination</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">numVertices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Warning: Vertex index out of bounds. Edge not added.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">adjencyList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">source</span><span class="p">).</span><span class="na">add</span><span class="p">(</span><span class="n">destination</span><span class="p">);</span>
+<span class="w">        </span><span class="n">adjencyList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">destination</span><span class="p">).</span><span class="na">add</span><span class="p">(</span><span class="n">source</span><span class="p">);</span><span class="w"> </span><span class="c1">// For undirected graph</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// --- Recursive DFS Path Finding ---</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Finds all paths starting from startVertex using recursive DFS.</span>
+<span class="cm">     * Stores the paths in the allPaths list.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param startVertex The vertex to start the search from.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">findAllPathsRecursive</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">startVertex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">startVertex</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">startVertex</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">numVertices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error: Start vertex out of bounds.&quot;</span><span class="p">);</span>
+<span class="w">             </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">boolean</span><span class="o">[]</span><span class="w"> </span><span class="n">visited</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">boolean</span><span class="o">[</span><span class="n">numVertices</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">allPaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// Reset paths for new search</span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">currentPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nFinding all paths (Recursive DFS) starting from vertex &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">startVertex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">findAllPathsRecursiveUtil</span><span class="p">(</span><span class="n">startVertex</span><span class="p">,</span><span class="w"> </span><span class="n">visited</span><span class="p">,</span><span class="w"> </span><span class="n">currentPath</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Recursive helper function for DFS path finding.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param vertex      The current vertex being visited.</span>
+<span class="cm">     * @param visited     Array to keep track of visited nodes in the current recursion path.</span>
+<span class="cm">     * @param currentPath The path taken to reach the current vertex.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">findAllPathsRecursiveUtil</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">vertex</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="o">[]</span><span class="w"> </span><span class="n">visited</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">currentPath</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Mark the current node as visited and add it to the path</span>
+<span class="w">        </span><span class="n">visited</span><span class="o">[</span><span class="n">vertex</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="n">currentPath</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">vertex</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Store a copy of the current path</span>
+<span class="w">        </span><span class="c1">// This captures the path to the *current* vertex</span>
+<span class="w">        </span><span class="n">allPaths</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">currentPath</span><span class="p">));</span>
+<span class="w">        </span><span class="c1">// System.out.println(&quot;Path found: &quot; + currentPath); // Optional: print paths as they are found</span>
+
+<span class="w">        </span><span class="c1">// Recur for all adjacent vertices</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">neighbor</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">adjencyList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="o">[</span><span class="n">neighbor</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">findAllPathsRecursiveUtil</span><span class="p">(</span><span class="n">neighbor</span><span class="p">,</span><span class="w"> </span><span class="n">visited</span><span class="p">,</span><span class="w"> </span><span class="n">currentPath</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Backtrack: remove current vertex from path and mark as unvisited</span>
+<span class="w">        </span><span class="c1">// for other potential paths.</span>
+<span class="w">        </span><span class="n">currentPath</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">currentPath</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">visited</span><span class="o">[</span><span class="n">vertex</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="c1">// --- Iterative DFS Path Finding ---</span>
+
+<span class="w">     </span><span class="cm">/**</span>
+<span class="cm">      * Finds paths using iterative DFS and stores them.</span>
+<span class="cm">      * This version uses a stack storing pairs of (node, path_to_node).</span>
+<span class="cm">      * Note: The order of path discovery might differ from the recursive version.</span>
+<span class="cm">      *</span>
+<span class="cm">      * @param startVertex The vertex to start the search from.</span>
+<span class="cm">      */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">findAllPathsIterative</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">startVertex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">startVertex</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">startVertex</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">numVertices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error: Start vertex out of bounds.&quot;</span><span class="p">);</span>
+<span class="w">             </span><span class="k">return</span><span class="p">;</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">         </span><span class="k">this</span><span class="p">.</span><span class="na">allPaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// Reset paths</span>
+<span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nFinding all paths (Iterative DFS) starting from vertex &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">startVertex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="p">);</span>
+
+<span class="w">         </span><span class="c1">// Stack stores pairs: the node and the path to reach it</span>
+<span class="w">         </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+<span class="w">         </span><span class="c1">// Initial path contains only the start vertex</span>
+<span class="w">         </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">initialPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">         </span><span class="n">initialPath</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">startVertex</span><span class="p">);</span>
+<span class="w">         </span><span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Pair</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">startVertex</span><span class="p">,</span><span class="w"> </span><span class="n">initialPath</span><span class="p">));</span>
+
+<span class="w">         </span><span class="c1">// Keep track of visited nodes *globally* across different path explorations</span>
+<span class="w">         </span><span class="c1">// This prevents infinite loops in cyclic graphs and redundant processing.</span>
+<span class="w">         </span><span class="kt">boolean</span><span class="o">[]</span><span class="w"> </span><span class="n">globallyVisited</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">boolean</span><span class="o">[</span><span class="n">numVertices</span><span class="o">]</span><span class="p">;</span>
+
+
+<span class="w">         </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">stack</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">Pair</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">currentPair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stack</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+<span class="w">             </span><span class="kt">int</span><span class="w"> </span><span class="n">currentVertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentPair</span><span class="p">.</span><span class="na">getKey</span><span class="p">();</span>
+<span class="w">             </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">currentPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentPair</span><span class="p">.</span><span class="na">getValue</span><span class="p">();</span>
+
+<span class="w">             </span><span class="c1">// If we haven&#39;t processed this node *through this specific path expansion*</span>
+<span class="w">             </span><span class="c1">// Mark it visited *globally* only after processing its path.</span>
+<span class="w">             </span><span class="c1">// This allows finding different paths to the same node, but standard</span>
+<span class="w">             </span><span class="c1">// iterative DFS usually uses a simpler visited check.</span>
+<span class="w">             </span><span class="c1">// For simplicity matching the recursive intent, let&#39;s only proceed</span>
+<span class="w">             </span><span class="c1">// if the node hasn&#39;t been the *end* of a stored path yet.</span>
+<span class="w">             </span><span class="c1">// A better approach might be needed for complex path requirements.</span>
+
+<span class="w">             </span><span class="c1">// Store the path found to this vertex</span>
+<span class="w">             </span><span class="n">allPaths</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">currentPath</span><span class="p">));</span><span class="w"> </span><span class="c1">// Store a copy</span>
+<span class="w">             </span><span class="c1">// System.out.println(&quot;Path found: &quot; + currentPath); // Optional: print</span>
+
+
+<span class="w">             </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">globallyVisited</span><span class="o">[</span><span class="n">currentVertex</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                 </span><span class="n">globallyVisited</span><span class="o">[</span><span class="n">currentVertex</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// Mark globally visited</span>
+
+<span class="w">                  </span><span class="c1">// Explore neighbors</span>
+<span class="w">                 </span><span class="c1">// Iterate in reverse to mimic recursive DFS neighbor order more closely (optional)</span>
+<span class="w">                 </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adjencyList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
+<span class="w">                 </span><span class="c1">// Collections.reverse(neighbors); // Uncomment to push neighbors in reverse order</span>
+
+<span class="w">                 </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">neighbor</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                     </span><span class="c1">// Check if the neighbor is already in the *current* path to avoid cycles within a single path</span>
+<span class="w">                     </span><span class="kt">boolean</span><span class="w"> </span><span class="n">visitedInCurrentPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">                     </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">nodeInPath</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">currentPath</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nodeInPath</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">neighbor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                             </span><span class="n">visitedInCurrentPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">                             </span><span class="k">break</span><span class="p">;</span>
+<span class="w">                         </span><span class="p">}</span>
+<span class="w">                     </span><span class="p">}</span>
+
+<span class="w">                     </span><span class="c1">// If the neighbor hasn&#39;t been visited *in this specific path*</span>
+<span class="w">                     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">visitedInCurrentPath</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                         </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">newPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">currentPath</span><span class="p">);</span>
+<span class="w">                         </span><span class="n">newPath</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">neighbor</span><span class="p">);</span>
+<span class="w">                         </span><span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Pair</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">neighbor</span><span class="p">,</span><span class="w"> </span><span class="n">newPath</span><span class="p">));</span>
+<span class="w">                     </span><span class="p">}</span>
+<span class="w">                 </span><span class="p">}</span>
+<span class="w">                 </span><span class="c1">// Collections.reverse(neighbors); // Reverse back if reversed earlier</span>
+<span class="w">             </span><span class="p">}</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">     </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="c1">// --- Original Traversal Methods (for comparison/demonstration) ---</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Performs the original iterative DFS traversal, printing nodes as visited.</span>
+<span class="cm">     * Does not store paths.</span>
+<span class="cm">     * @param startVertex The vertex to start from.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">performDFSTraversalIterative</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">startVertex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">startVertex</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">startVertex</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">numVertices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error: Start vertex out of bounds.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">boolean</span><span class="o">[]</span><span class="w"> </span><span class="n">visited</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">boolean</span><span class="o">[</span><span class="n">numVertices</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stack</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// Use Stack&#39;s push/pop for LIFO (DFS)</span>
+
+<span class="w">        </span><span class="n">visited</span><span class="o">[</span><span class="n">startVertex</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">startVertex</span><span class="p">);</span><span class="w"> </span><span class="c1">// Push onto stack</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nDFS Traversal Order (Iterative): starting from &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">startVertex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">stack</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">currentVertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stack</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span><span class="w"> </span><span class="c1">// Pop from stack (LIFO)</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">currentVertex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Get neighbors and push unvisited ones onto the stack</span>
+<span class="w">            </span><span class="c1">// Process neighbors in natural order (or reverse to mimic recursion)</span>
+<span class="w">            </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adjencyList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
+<span class="w">             </span><span class="c1">// Collections.reverse(neighbors); // To more closely match typical recursive order</span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">neighbor</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="o">[</span><span class="n">neighbor</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">visited</span><span class="o">[</span><span class="n">neighbor</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">                    </span><span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">neighbor</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">             </span><span class="c1">// Collections.reverse(neighbors); // Reverse back if needed</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">     </span><span class="cm">/**</span>
+<span class="cm">     * Performs the original recursive DFS traversal, printing nodes as visited.</span>
+<span class="cm">     * Does not store paths.</span>
+<span class="cm">     * @param startVertex The vertex to start from.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">performDFSTraversalRecursive</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">startVertex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">startVertex</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">startVertex</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">numVertices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error: Start vertex out of bounds.&quot;</span><span class="p">);</span>
+<span class="w">             </span><span class="k">return</span><span class="p">;</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">boolean</span><span class="o">[]</span><span class="w"> </span><span class="n">visited</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">boolean</span><span class="o">[</span><span class="n">numVertices</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nDFS Traversal Order (Recursive) starting from vertex &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">startVertex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">performDFSTraversalRecursiveUtil</span><span class="p">(</span><span class="n">startVertex</span><span class="p">,</span><span class="w"> </span><span class="n">visited</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">performDFSTraversalRecursiveUtil</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">vertex</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="o">[]</span><span class="w"> </span><span class="n">visited</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">visited</span><span class="o">[</span><span class="n">vertex</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">vertex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">neighbor</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">adjencyList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">vertex</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="o">[</span><span class="n">neighbor</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">performDFSTraversalRecursiveUtil</span><span class="p">(</span><span class="n">neighbor</span><span class="p">,</span><span class="w"> </span><span class="n">visited</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// --- Utility ---</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Returns the list of paths found by the last pathfinding call.</span>
+<span class="cm">     * @return A list where each element is a list of integers representing a path.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">getAllPaths</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">allPaths</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">     </span><span class="cm">/**</span>
+<span class="cm">      * Prints all stored paths.</span>
+<span class="cm">      */</span>
+<span class="w">     </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">printAllPaths</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">allPaths</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">allPaths</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No paths have been generated or stored yet.&quot;</span><span class="p">);</span>
+<span class="w">             </span><span class="k">return</span><span class="p">;</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n--- Stored Paths ---&quot;</span><span class="p">);</span>
+<span class="w">         </span><span class="kt">int</span><span class="w"> </span><span class="n">pathNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">         </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">allPaths</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Path &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">pathNum</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">path</span><span class="p">);</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;--------------------&quot;</span><span class="p">);</span>
+<span class="w">     </span><span class="p">}</span>
+
+<span class="w">     </span><span class="c1">// Simple generic Pair class (or use javafx.util.Pair if available/allowed)</span>
+<span class="w">     </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Pair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="n">key</span><span class="p">;</span>
+<span class="w">         </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+
+<span class="w">         </span><span class="kd">public</span><span class="w"> </span><span class="nf">Pair</span><span class="p">(</span><span class="n">K</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="k">this</span><span class="p">.</span><span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">;</span>
+<span class="w">             </span><span class="k">this</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="w">         </span><span class="p">}</span>
+
+<span class="w">         </span><span class="kd">public</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="nf">getKey</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">key</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">         </span><span class="kd">public</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="nf">getValue</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">DFS</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DFS</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Build the graph</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span><span class="w"> </span><span class="c1">// 0 -&gt; 6</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w"> </span><span class="c1">// 0 -&gt; 7</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span><span class="w"> </span><span class="c1">// 7 -&gt; 8</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// 7 -&gt; 9</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"> </span><span class="c1">// 9 -&gt; 10</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">addEdge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">);</span><span class="w"> </span><span class="c1">// 5 -&gt; 11</span>
+
+<span class="w">        </span><span class="c1">// Print Adjacency List (for verification)</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;--- Adjacency List ---&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">graph</span><span class="p">.</span><span class="na">adjencyList</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Vertex &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">graph</span><span class="p">.</span><span class="na">adjencyList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;----------------------&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// --- Demonstrate Original Traversals ---</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">performDFSTraversalIterative</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">performDFSTraversalRecursive</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// --- Find and Store Paths (Recursive) ---</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">findAllPathsRecursive</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Print the paths found by the recursive method</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">printAllPaths</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// --- Find and Store Paths (Iterative) ---</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">.</span><span class="na">findAllPathsIterative</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">         </span><span class="c1">// Print the paths found by the iterative method</span>
+<span class="w">         </span><span class="c1">// Note: The order and exact paths might differ slightly depending on implementation details</span>
+<span class="w">         </span><span class="n">graph</span><span class="p">.</span><span class="na">printAllPaths</span><span class="p">();</span>
+
+<span class="w">         </span><span class="c1">// Example: Get paths and process them</span>
+<span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nAccessing paths manually after iterative search:&quot;</span><span class="p">);</span>
+<span class="w">         </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">storedPaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="p">.</span><span class="na">getAllPaths</span><span class="p">();</span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">storedPaths</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">storedPaths</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Total paths found: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">storedPaths</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;First path found: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">storedPaths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Last path found: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">storedPaths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">storedPaths</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This code defines a <code class="docutils literal notranslate"><span class="pre">DFS</span></code> class that represents a graph and provides methods for performing Depth-First Search (DFS) operations on it. It specifically includes implementations for:</p>
+<ol class="arabic simple">
+<li><p><strong>Standard DFS Traversal (Recursive &amp; Iterative):</strong> These methods visit nodes in DFS order and typically print them, primarily demonstrating the traversal algorithm itself.</p></li>
+<li><p><strong>Finding All Paths via DFS (Recursive &amp; Iterative):</strong> These are more complex methods designed to find and store <em>all</em> possible paths starting from a given vertex that can be discovered through a DFS exploration.</p></li>
+</ol>
+<p>Here’s a breakdown of the components:</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">DFS</span></code> Class:</strong></p>
+<ol class="arabic">
+<li><p><strong>Fields:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">numVertices</span></code>: An integer storing the number of vertices in the graph.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">adjencyList</span></code>: A <code class="docutils literal notranslate"><span class="pre">List&lt;LinkedList&lt;Integer&gt;&gt;</span></code>. This is the core graph representation using an <strong>adjacency list</strong>. The outer list has an index for each vertex (0 to <code class="docutils literal notranslate"><span class="pre">numVertices</span> <span class="pre">-</span> <span class="pre">1</span></code>). The <code class="docutils literal notranslate"><span class="pre">LinkedList</span></code> at each index <code class="docutils literal notranslate"><span class="pre">i</span></code> stores the vertices directly connected (adjacent) to vertex <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">allPaths</span></code>: A <code class="docutils literal notranslate"><span class="pre">List&lt;List&lt;Integer&gt;&gt;</span></code>. This list is used to store the results of the path-finding operations (<code class="docutils literal notranslate"><span class="pre">findAllPathsRecursive</span></code> or <code class="docutils literal notranslate"><span class="pre">findAllPathsIterative</span></code>). Each element within <code class="docutils literal notranslate"><span class="pre">allPaths</span></code> is itself a <code class="docutils literal notranslate"><span class="pre">List&lt;Integer&gt;</span></code> representing a single path found.</p></li>
+</ul>
+</li>
+<li><p><strong>Constructor (<code class="docutils literal notranslate"><span class="pre">DFS(int</span> <span class="pre">vertices)</span></code>):</strong></p>
+<ul class="simple">
+<li><p>Initializes the graph with a specified number of vertices.</p></li>
+<li><p>Creates the <code class="docutils literal notranslate"><span class="pre">adjencyList</span></code> structure, adding an empty <code class="docutils literal notranslate"><span class="pre">LinkedList</span></code> for each vertex.</p></li>
+<li><p>Initializes the <code class="docutils literal notranslate"><span class="pre">allPaths</span></code> list.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">addEdge(int</span> <span class="pre">source,</span> <span class="pre">int</span> <span class="pre">destination)</span></code>:</strong></p>
+<ul class="simple">
+<li><p>Adds an edge between the <code class="docutils literal notranslate"><span class="pre">source</span></code> vertex and the <code class="docutils literal notranslate"><span class="pre">destination</span></code> vertex.</p></li>
+<li><p>Includes basic error checking to ensure vertex indices are valid.</p></li>
+<li><p>Adds <code class="docutils literal notranslate"><span class="pre">destination</span></code> to <code class="docutils literal notranslate"><span class="pre">source</span></code>’s list and <code class="docutils literal notranslate"><span class="pre">source</span></code> to <code class="docutils literal notranslate"><span class="pre">destination</span></code>’s list. This makes the graph <strong>undirected</strong> (an edge exists in both directions).</p></li>
+</ul>
+</li>
+<li><p><strong>Recursive Path Finding (<code class="docutils literal notranslate"><span class="pre">findAllPathsRecursive</span></code> and <code class="docutils literal notranslate"><span class="pre">findAllPathsRecursiveUtil</span></code>):</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">findAllPathsRecursive(startVertex)</span></code>: The public method to initiate the search. It sets up a <code class="docutils literal notranslate"><span class="pre">visited</span></code> array (local to the current path exploration) and resets the <code class="docutils literal notranslate"><span class="pre">allPaths</span></code> list before calling the helper function.</p></li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">findAllPathsRecursiveUtil</span><span class="p">(</span><span class="n">vertex</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">currentPath</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>:</p>
+<ul class="simple">
+<li><p>This is the core recursive logic.</p></li>
+<li><p>It marks the current <code class="docutils literal notranslate"><span class="pre">vertex</span></code> as visited <em>for the current path exploration</em>.</p></li>
+<li><p>Adds the <code class="docutils literal notranslate"><span class="pre">vertex</span></code> to the <code class="docutils literal notranslate"><span class="pre">currentPath</span></code>.</p></li>
+<li><p><strong>Crucially:</strong> It adds a <em>copy</em> of the <code class="docutils literal notranslate"><span class="pre">currentPath</span></code> (up to the current <code class="docutils literal notranslate"><span class="pre">vertex</span></code>) to the <code class="docutils literal notranslate"><span class="pre">allPaths</span></code> list. This means every node encountered during the DFS becomes the end of a stored path.</p></li>
+<li><p>It iterates through the neighbors of the current <code class="docutils literal notranslate"><span class="pre">vertex</span></code>. If a neighbor hasn’t been visited <em>in the current recursive call stack</em>, it recursively calls itself for that neighbor.</p></li>
+<li><p><strong>Backtracking:</strong> After exploring all paths stemming from the current <code class="docutils literal notranslate"><span class="pre">vertex</span></code>, it removes the <code class="docutils literal notranslate"><span class="pre">vertex</span></code> from <code class="docutils literal notranslate"><span class="pre">currentPath</span></code> and marks it as unvisited (<code class="docutils literal notranslate"><span class="pre">visited[vertex]</span> <span class="pre">=</span> <span class="pre">false</span></code>). This is essential to allow the algorithm to explore <em>other</em> paths that might reach this <code class="docutils literal notranslate"><span class="pre">vertex</span></code> through a different sequence.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Iterative Path Finding (<code class="docutils literal notranslate"><span class="pre">findAllPathsIterative</span></code>):</strong></p>
+<ul>
+<li><p>This method attempts to find all paths using an iterative approach with a <code class="docutils literal notranslate"><span class="pre">Stack</span></code>.</p></li>
+<li><p>It uses a</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Stack</span>
+</pre></div>
+</div>
+<p>where each element is a</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Pair</span>
+</pre></div>
+</div>
+<p>containing:</p>
+<ul class="simple">
+<li><p>The current vertex (<code class="docutils literal notranslate"><span class="pre">Integer</span></code>).</p></li>
+<li><p>The path (<code class="docutils literal notranslate"><span class="pre">List&lt;Integer&gt;</span></code>) taken to reach that vertex.</p></li>
+</ul>
+</li>
+<li><p>It also uses a</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">globallyVisited</span>
+</pre></div>
+</div>
+<p>array. The logic here is slightly different from the recursive version’s</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">visited</span>
+</pre></div>
+</div>
+<p>array:</p>
+<ul class="simple">
+<li><p>It adds the path to <code class="docutils literal notranslate"><span class="pre">allPaths</span></code> <em>when</em> a <code class="docutils literal notranslate"><span class="pre">Pair</span></code> is popped from the stack.</p></li>
+<li><p>It checks <code class="docutils literal notranslate"><span class="pre">globallyVisited</span></code> <em>after</em> storing the path. If the node hasn’t been globally visited yet, it marks it and explores its neighbors.</p></li>
+<li><p>When exploring neighbors, it checks if the neighbor is already present in the <em>current specific path</em> (<code class="docutils literal notranslate"><span class="pre">visitedInCurrentPath</span></code> loop) to prevent cycles <em>within that single path</em>.</p></li>
+<li><p>If a neighbor is valid (not creating a cycle in the current path), a new path is created by extending the current one, and a new <code class="docutils literal notranslate"><span class="pre">Pair</span></code> is pushed onto the stack.</p></li>
+</ul>
+</li>
+<li><p><strong>Note:</strong> The use of <code class="docutils literal notranslate"><span class="pre">globallyVisited</span></code> prevents re-exploring <em>from</em> a node once <em>any</em> path ending there has been processed. This helps avoid infinite loops in cyclic graphs but might prune some paths compared to a pure recursive backtracking approach if the goal was <em>all simple paths</em>. The order of paths found might also differ from the recursive version due to stack LIFO order and neighbor processing order.</p></li>
+</ul>
+</li>
+<li><p><strong>Standard Traversal Methods (<code class="docutils literal notranslate"><span class="pre">performDFSTraversalIterative</span></code>, <code class="docutils literal notranslate"><span class="pre">performDFSTraversalRecursive</span></code>, <code class="docutils literal notranslate"><span class="pre">performDFSTraversalRecursiveUtil</span></code>):</strong></p>
+<ul class="simple">
+<li><p>These implement the more “standard” DFS algorithm where the goal is just to visit each reachable node once.</p></li>
+<li><p>They use a <code class="docutils literal notranslate"><span class="pre">visited</span></code> array to keep track of nodes already visited during the <em>entire</em> traversal.</p></li>
+<li><p>They print the vertex when it’s visited (recursive) or popped (iterative).</p></li>
+<li><p>They do <strong>not</strong> store paths.</p></li>
+</ul>
+</li>
+<li><p><strong>Utility Methods:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">getAllPaths()</span></code>: Returns the <code class="docutils literal notranslate"><span class="pre">allPaths</span></code> list (containing results from the last path-finding call).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">printAllPaths()</span></code>: Prints all the paths currently stored in the <code class="docutils literal notranslate"><span class="pre">allPaths</span></code> list in a readable format.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pair&lt;K,</span> <span class="pre">V&gt;</span></code>: A simple private static inner class to hold pairs of objects (used in the iterative path finding).</p></li>
+</ul>
+</li>
+</ol>
+<p><strong><code class="docutils literal notranslate"><span class="pre">Main</span></code> Class:</strong></p>
+<ul class="simple">
+<li><p>Creates an instance of the <code class="docutils literal notranslate"><span class="pre">DFS</span></code> graph with 12 vertices.</p></li>
+<li><p>Adds edges to define the graph structure.</p></li>
+<li><p>Prints the adjacency list to show the graph’s structure.</p></li>
+<li><p>Demonstrates the standard iterative and recursive DFS <em>traversals</em>, printing the order nodes are visited.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">findAllPathsRecursive(0)</span></code> to find paths starting from vertex 0 using recursion and prints the results.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">findAllPathsIterative(0)</span></code> to find paths starting from vertex 0 using iteration and prints those results.</p></li>
+<li><p>Shows how to retrieve the list of paths using <code class="docutils literal notranslate"><span class="pre">getAllPaths()</span></code> after a search.</p></li>
+</ul>
+<p>In essence, this code provides a robust <code class="docutils literal notranslate"><span class="pre">DFS</span></code> class for undirected graphs, offering both standard traversal and more complex path-finding capabilities, implemented recursively and iteratively.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="GraphsBFS.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Breadth First</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="GraphsMazeSolverDFS.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">DSF - Maze Solving</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

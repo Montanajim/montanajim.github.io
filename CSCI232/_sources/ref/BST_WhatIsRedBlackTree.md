@@ -1,12 +1,8 @@
-Below is a beginner-friendly explanation of Red-Black Trees, followed by simplified Java code snippets demonstrating how to search, insert, and delete nodes. Note that full-featured production code can be more elaborate, but this outline should help you grasp the fundamentals.
-
-------
-
-## What is a Red-Black Tree?
+# What is a Red-Black Tree?
 
 A Red-Black Tree is a type of self-balancing binary search tree. That means it stores data in a way similar to a Binary Search Tree (BST), but it also keeps itself “balanced” to ensure operations (insertion, deletion, search) generally happen in **O(log n)** time.
 
-### Key Properties
+## Key Properties
 
 1. **Red or Black Color**: Each node is either red or black.
 2. **Root is Black**: The root of the tree is always black.

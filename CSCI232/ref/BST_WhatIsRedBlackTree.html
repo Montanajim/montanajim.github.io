@@ -192,15 +192,25 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="SkipList.html">Skip List</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="Graphs.html">Graphs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="GraphsAnalysisOfBFSandDFS.html">A Comparative Analysis of Breadth-First Search and Depth-First Search Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnderstandingBFS_202504.html">Understanding Breadth-First Search (BFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnderstandingDFS_202504.html">Understanding Depth-First Search (DFS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsSevenBridges.html">Seven Bridges of Königsberg</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsDFS.html">Depth-First Search (DFS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsBFS.html">Breadth First</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFSStoredPaths.html">DFS - Stored Paths</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GraphsMazeSolverDFS.html">DSF - Maze Solving</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="GraphsDijkstra.html">Dijkstra’s Algorithm</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="Serializable.html">Serialization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="JAVATechniques.html">JAVA Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="JavaHashMapTreeMapLinkedHashMap.html">Examples of Java’s HashMap, TreeMap, and LinkedHashMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HashSetLinkedHashSetTreeSetComparision.html">HashSet, LinkedHashSet, and TreeSet Comparision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProgrammingToTheInterfacemd.html">Programming To The Interface, Not The Implementation”</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="End.html">End</a></li>
 </ul>
 
@@ -347,24 +357,20 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">What is a Red-Black Tree?</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-properties">Key Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-operations">High-Level Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-find">1. Search (Find)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insert">2. Insert</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">3. Delete</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-operations">High-Level Operations</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-find">1. Search (Find)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#insert">2. Insert</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">3. Delete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-red-black-tree-implementation-in-java">Sample Red-Black Tree Implementation in Java</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-definition">Node Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-important-methods">Explanation of Important Methods</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-red-black-tree-implementation-in-java">Sample Red-Black Tree Implementation in Java</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-definition">Node Definition</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-important-methods">Explanation of Important Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -375,9 +381,7 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p>Below is a beginner-friendly explanation of Red-Black Trees, followed by simplified Java code snippets demonstrating how to search, insert, and delete nodes. Note that full-featured production code can be more elaborate, but this outline should help you grasp the fundamentals.</p>
-<hr class="docutils" />
-<section id="what-is-a-red-black-tree">
+  <section class="tex2jax_ignore mathjax_ignore" id="what-is-a-red-black-tree">
 <h1>What is a Red-Black Tree?<a class="headerlink" href="#what-is-a-red-black-tree" title="Link to this heading">#</a></h1>
 <p>A Red-Black Tree is a type of self-balancing binary search tree. That means it stores data in a way similar to a Binary Search Tree (BST), but it also keeps itself “balanced” to ensure operations (insertion, deletion, search) generally happen in <strong>O(log n)</strong> time.</p>
 <section id="key-properties">
@@ -390,13 +394,12 @@
 <li><p><strong>Same Number of Black Nodes</strong>: Every path from a given node down to any of its descendant null leaves has the same number of black nodes.</p></li>
 </ol>
 <p>These rules ensure that no path in the tree is disproportionately longer than any other, thus balancing the tree height.</p>
+</section>
 <hr class="docutils" />
-</section>
-</section>
 <section id="high-level-operations">
-<h1>High-Level Operations<a class="headerlink" href="#high-level-operations" title="Link to this heading">#</a></h1>
+<h2>High-Level Operations<a class="headerlink" href="#high-level-operations" title="Link to this heading">#</a></h2>
 <section id="search-find">
-<h2>1. Search (Find)<a class="headerlink" href="#search-find" title="Link to this heading">#</a></h2>
+<h3>1. Search (Find)<a class="headerlink" href="#search-find" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>Idea</p>
 <p>: Just like a regular Binary Search Tree.</p>
@@ -409,7 +412,7 @@
 </ul>
 </section>
 <section id="insert">
-<h2>2. Insert<a class="headerlink" href="#insert" title="Link to this heading">#</a></h2>
+<h3>2. Insert<a class="headerlink" href="#insert" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>BST Insert</strong>: Insert the new node like you would in a normal BST (ignoring color).</p></li>
 <li><p><strong>Color the Node Red</strong>: New nodes are typically inserted as <strong>red</strong>.</p></li>
@@ -417,19 +420,19 @@
 </ol>
 </section>
 <section id="delete">
-<h2>3. Delete<a class="headerlink" href="#delete" title="Link to this heading">#</a></h2>
+<h3>3. Delete<a class="headerlink" href="#delete" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>BST Delete</strong>: Find the node, remove it in a BST-like fashion (replace with successor if it has two children, etc.).</p></li>
 <li><p><strong>Fix Violations</strong>: Removing a black node can disrupt the black-depth property. So, we fix the tree by performing rotations or color changes until the properties are restored.</p></li>
 </ol>
+</section>
+</section>
 <hr class="docutils" />
-</section>
-</section>
 <section id="sample-red-black-tree-implementation-in-java">
-<h1>Sample Red-Black Tree Implementation in Java<a class="headerlink" href="#sample-red-black-tree-implementation-in-java" title="Link to this heading">#</a></h1>
+<h2>Sample Red-Black Tree Implementation in Java<a class="headerlink" href="#sample-red-black-tree-implementation-in-java" title="Link to this heading">#</a></h2>
 <p>Below is a <strong>simplified</strong> version of a Red-Black Tree implementation. This example demonstrates the main structure of the code and the core methods (<code class="docutils literal notranslate"><span class="pre">search</span></code>, <code class="docutils literal notranslate"><span class="pre">insert</span></code>, <code class="docutils literal notranslate"><span class="pre">delete</span></code>). In practice, you might have additional helper methods and thorough edge-case handling.</p>
 <section id="node-definition">
-<h2>Node Definition<a class="headerlink" href="#node-definition" title="Link to this heading">#</a></h2>
+<h3>Node Definition<a class="headerlink" href="#node-definition" title="Link to this heading">#</a></h3>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RedBlackTree</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="p">{</span>
@@ -805,7 +808,7 @@
 </div>
 </section>
 <section id="explanation-of-important-methods">
-<h2>Explanation of Important Methods<a class="headerlink" href="#explanation-of-important-methods" title="Link to this heading">#</a></h2>
+<h3>Explanation of Important Methods<a class="headerlink" href="#explanation-of-important-methods" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">search(int</span> <span class="pre">key)</span></code></strong>: Standard BST search. Repeatedly compares the <code class="docutils literal notranslate"><span class="pre">key</span></code> to the current node’s <code class="docutils literal notranslate"><span class="pre">key</span></code> and travels left or right.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">insert(int</span> <span class="pre">key)</span></code></strong>:</p>
@@ -829,17 +832,18 @@
 </ul>
 </li>
 </ol>
+</section>
+</section>
 <hr class="docutils" />
-</section>
-</section>
 <section id="summary">
-<h1>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h1>
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Red-Black Tree</strong> keeps insertion, deletion, and search efficient by maintaining additional color and balancing rules.</p></li>
 <li><p><strong>Color and Rotations</strong>: By assigning red/black colors and performing rotations, the tree ensures that no path is more than twice as long as any other path, giving us good performance.</p></li>
 <li><p><strong>Implementation</strong>: The sample code covers the basic steps. In practice, detailed edge-case handling is crucial, but the patterns of “insert → fixInsert” and “delete → fixDelete” are the core of maintaining Red-Black properties.</p></li>
 </ul>
 <p>This should give you a strong introductory understanding of how Red-Black Trees function, how they maintain balance, and how their primary operations can be implemented in Java.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -889,24 +893,20 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">What is a Red-Black Tree?</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-properties">Key Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-operations">High-Level Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-find">1. Search (Find)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insert">2. Insert</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">3. Delete</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-operations">High-Level Operations</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-find">1. Search (Find)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#insert">2. Insert</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">3. Delete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-red-black-tree-implementation-in-java">Sample Red-Black Tree Implementation in Java</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-definition">Node Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-important-methods">Explanation of Important Methods</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-red-black-tree-implementation-in-java">Sample Red-Black Tree Implementation in Java</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-definition">Node Definition</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-important-methods">Explanation of Important Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>

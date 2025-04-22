@@ -1,0 +1,718 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>HashSet, LinkedHashSet, and TreeSet Comparision &#8212; Algorithms</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/HashSetLinkedHashSetTreeSetComparision';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Programming To The Interface, Not The Implementation”" href="ProgrammingToTheInterfacemd.html" />
+    <link rel="prev" title="Examples of Java’s HashMap, TreeMap, and LinkedHashMap" href="JavaHashMapTreeMapLinkedHashMap.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Algorithms</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    CSCI 232
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CSCI232_Intro.html">CSCI 232 Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Terms.html">Terms and Concepts</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Radix.html">Radix - Number Bases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Serializable.html">Serializable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Iterator.html">Iterator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BST_Intro.html">Binary Search Tree - Intro</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="BST_Applications.html">Applications That Use Binary Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_Comparisons.html">Binary Tree Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_TreeTraversal.html">Tree Traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_Iterative_Recursion_Search.html">Demonstrate BST using iterative looping and recursion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_BinarySearchTree.html">Binary Search Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_AVLTree.html">AVL Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_RedBlack.html">Red Black Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_ComparisionTable.html">BST AVL Red Black Tree Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_SplayTrees_2025.html">Splay Trees</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_UnderstandingHashTables.html"><em>Understanding Hash Tables and Hash Functions</em>*</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_ModulusHashFunction.html">Modulus Hash Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_Chaining.html">Hash Tables - Chaining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressing.html">Hash Table - Open Addressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressingHashingCodeExamples.html">Java code for double hashing in a hash table:</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="SkipList.html">Skip List</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Graphs.html">Graphs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="GraphsAnalysisOfBFSandDFS.html">A Comparative Analysis of Breadth-First Search and Depth-First Search Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnderstandingBFS_202504.html">Understanding Breadth-First Search (BFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnderstandingDFS_202504.html">Understanding Depth-First Search (DFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsSevenBridges.html">Seven Bridges of Königsberg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsDFS.html">Depth-First Search (DFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsBFS.html">Breadth First</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFSStoredPaths.html">DFS - Stored Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsMazeSolverDFS.html">DSF - Maze Solving</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="GraphsDijkstra.html">Dijkstra’s Algorithm</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Serializable.html">Serialization</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="JAVATechniques.html">JAVA Techniques</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="JavaHashMapTreeMapLinkedHashMap.html">Examples of Java’s HashMap, TreeMap, and LinkedHashMap</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">HashSet, LinkedHashSet, and TreeSet Comparision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProgrammingToTheInterfacemd.html">Programming To The Interface, Not The Implementation”</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="End.html">End</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/HashSetLinkedHashSetTreeSetComparision.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>HashSet, LinkedHashSet, and TreeSet Comparision</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hashset-linkedhashset-and-treeset-comparision">
+<h1>HashSet, LinkedHashSet, and TreeSet Comparision<a class="headerlink" href="#hashset-linkedhashset-and-treeset-comparision" title="Link to this heading">#</a></h1>
+<p>Comparison of <code class="docutils literal notranslate"><span class="pre">HashSet</span></code>, <code class="docutils literal notranslate"><span class="pre">LinkedHashSet</span></code>, and <code class="docutils literal notranslate"><span class="pre">TreeSet</span></code> in Java. These are all implementations of the <code class="docutils literal notranslate"><span class="pre">Set</span></code> interface, meaning they store unique elements. Their main differences lie in their internal implementation, element ordering, performance characteristics, and handling of null values.</p>
+<p><strong>Core Similarity:</strong></p>
+<ul class="simple">
+<li><p><strong>Implement <code class="docutils literal notranslate"><span class="pre">Set</span></code> Interface:</strong> All three classes implement the <code class="docutils literal notranslate"><span class="pre">java.util.Set</span></code> interface.</p></li>
+<li><p><strong>Store Unique Elements:</strong> They do not allow duplicate elements. Adding an element that is already present (according to the <code class="docutils literal notranslate"><span class="pre">equals()</span></code> method) has no effect.</p></li>
+</ul>
+<p><strong>Key Differences:</strong></p>
+<p>Here’s a table summarizing the main distinctions:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Feature</strong></p></th>
+<th class="head"><p><strong>HashSet</strong></p></th>
+<th class="head"><p><strong>LinkedHashSet</strong></p></th>
+<th class="head"><p><strong>TreeSet</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Underlying Structure</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HashMap</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LinkedHashMap</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TreeMap</span></code> (Red-Black Tree)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Ordering</strong></p></td>
+<td><p>Unordered</p></td>
+<td><p>Insertion Order</p></td>
+<td><p>Sorted Order (Natural or Custom)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Performance (Avg)</strong></p></td>
+<td><p>O(1) for <code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">remove</span></code>, <code class="docutils literal notranslate"><span class="pre">contains</span></code></p></td>
+<td><p>O(1) for <code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">remove</span></code>, <code class="docutils literal notranslate"><span class="pre">contains</span></code> (slightly higher constant factor than HashSet)</p></td>
+<td><p>O(logn) for <code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">remove</span></code>, <code class="docutils literal notranslate"><span class="pre">contains</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Iteration Performance</strong></p></td>
+<td><p>Proportional to capacity + size</p></td>
+<td><p>Proportional to size</p></td>
+<td><p>Proportional to size (O(n) total)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Null Elements</strong></p></td>
+<td><p>Allows one <code class="docutils literal notranslate"><span class="pre">null</span></code> element</p></td>
+<td><p>Allows one <code class="docutils literal notranslate"><span class="pre">null</span></code> element</p></td>
+<td><p>Does <em>not</em> allow <code class="docutils literal notranslate"><span class="pre">null</span></code> elements (by default)¹</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Interfaces Implemented</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Set</span></code>, <code class="docutils literal notranslate"><span class="pre">Cloneable</span></code>, <code class="docutils literal notranslate"><span class="pre">Serializable</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Set</span></code>, <code class="docutils literal notranslate"><span class="pre">Cloneable</span></code>, <code class="docutils literal notranslate"><span class="pre">Serializable</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Set</span></code>, <code class="docutils literal notranslate"><span class="pre">NavigableSet</span></code>, <code class="docutils literal notranslate"><span class="pre">SortedSet</span></code>, <code class="docutils literal notranslate"><span class="pre">Cloneable</span></code>, <code class="docutils literal notranslate"><span class="pre">Serializable</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Key Requirement</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">hashCode()</span></code> and <code class="docutils literal notranslate"><span class="pre">equals()</span></code> must be consistent</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">hashCode()</span></code> and <code class="docutils literal notranslate"><span class="pre">equals()</span></code> must be consistent</p></td>
+<td><p>Elements must be mutually comparable (implement <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> or use a <code class="docutils literal notranslate"><span class="pre">Comparator</span></code>)²</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Detailed Explanations:</strong></p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">HashSet</span></code></strong></p>
+<ul class="simple">
+<li><p><strong>Implementation:</strong> Uses a <code class="docutils literal notranslate"><span class="pre">HashMap</span></code> internally. The elements you add to the <code class="docutils literal notranslate"><span class="pre">HashSet</span></code> become the keys in the underlying <code class="docutils literal notranslate"><span class="pre">HashMap</span></code>, and a dummy <code class="docutils literal notranslate"><span class="pre">Object</span></code> is used as the value.</p></li>
+<li><p><strong>Ordering:</strong> It makes no guarantees about the iteration order of the elements. The order might even change over time as more elements are added and the internal hash table is resized.</p></li>
+<li><p><strong>Performance:</strong> Offers the best average-case performance (O(1)) for basic operations (<code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">remove</span></code>, <code class="docutils literal notranslate"><span class="pre">contains</span></code>), assuming the hash function disperses elements properly among the buckets. However, iteration performance depends on both the number of elements (size) and the hash table’s capacity.</p></li>
+<li><p><strong>Nulls:</strong> Allows one <code class="docutils literal notranslate"><span class="pre">null</span></code> element.</p></li>
+<li><p><strong>Use Case:</strong> Best choice when you need a general-purpose <code class="docutils literal notranslate"><span class="pre">Set</span></code>, don’t care about the order of elements, and want the fastest performance for adding, removing, and checking for presence.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">LinkedHashSet</span></code></strong></p>
+<ul class="simple">
+<li><p><strong>Implementation:</strong> It’s a subclass of <code class="docutils literal notranslate"><span class="pre">HashSet</span></code>. Internally, it uses a <code class="docutils literal notranslate"><span class="pre">LinkedHashMap</span></code> (which maintains both a hash table like <code class="docutils literal notranslate"><span class="pre">HashMap</span></code> and a doubly-linked list connecting the elements).</p></li>
+<li><p><strong>Ordering:</strong> Maintains the insertion order of elements. When you iterate over a <code class="docutils literal notranslate"><span class="pre">LinkedHashSet</span></code>, the elements appear in the order they were added.</p></li>
+<li><p><strong>Performance:</strong> Offers the same O(1) average-case performance for <code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">remove</span></code>, and <code class="docutils literal notranslate"><span class="pre">contains</span></code> as <code class="docutils literal notranslate"><span class="pre">HashSet</span></code>, although with a slightly higher constant overhead due to maintaining the linked list. Iteration performance is better than <code class="docutils literal notranslate"><span class="pre">HashSet</span></code> in typical scenarios because it only depends on the number of elements (size), not the capacity.</p></li>
+<li><p><strong>Nulls:</strong> Allows one <code class="docutils literal notranslate"><span class="pre">null</span></code> element.</p></li>
+<li><p><strong>Use Case:</strong> Ideal when you need the uniqueness of a <code class="docutils literal notranslate"><span class="pre">Set</span></code> but also need to maintain the order in which elements were inserted. Useful for creating predictable sequences or caches where insertion order matters.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">TreeSet</span></code></strong></p>
+<ul class="simple">
+<li><p><strong>Implementation:</strong> Uses a <code class="docutils literal notranslate"><span class="pre">TreeMap</span></code> internally, which is based on a Red-Black Tree data structure.</p></li>
+<li><p><strong>Ordering:</strong> Keeps elements sorted according to their <em>natural ordering</em> (if the elements implement the <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> interface) or according to a <code class="docutils literal notranslate"><span class="pre">Comparator</span></code> provided when the <code class="docutils literal notranslate"><span class="pre">TreeSet</span></code> is created.</p></li>
+<li><p><strong>Performance:</strong> Offers O(logn) performance for <code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">remove</span></code>, and <code class="docutils literal notranslate"><span class="pre">contains</span></code> operations due to the balanced tree structure. Iteration is efficient (O(n) for the whole set).</p></li>
+<li><p><strong>Nulls:</strong> ¹ Does <strong>not</strong> allow <code class="docutils literal notranslate"><span class="pre">null</span></code> elements by default because <code class="docutils literal notranslate"><span class="pre">null</span></code> cannot be compared to other elements using natural ordering (it would cause a <code class="docutils literal notranslate"><span class="pre">NullPointerException</span></code>). If you use a <code class="docutils literal notranslate"><span class="pre">Comparator</span></code> that explicitly handles <code class="docutils literal notranslate"><span class="pre">null</span></code>, you <em>might</em> be able to store one, but it’s generally not recommended.</p></li>
+<li><p><strong>Interfaces:</strong> Implements <code class="docutils literal notranslate"><span class="pre">NavigableSet</span></code> and <code class="docutils literal notranslate"><span class="pre">SortedSet</span></code>, providing additional methods for navigation (e.g., <code class="docutils literal notranslate"><span class="pre">first()</span></code>, <code class="docutils literal notranslate"><span class="pre">last()</span></code>, <code class="docutils literal notranslate"><span class="pre">headSet()</span></code>, <code class="docutils literal notranslate"><span class="pre">tailSet()</span></code>, <code class="docutils literal notranslate"><span class="pre">ceiling()</span></code>, <code class="docutils literal notranslate"><span class="pre">floor()</span></code>).</p></li>
+<li><p><strong>Requirements:</strong> ² Elements added must be <em>mutually comparable</em>. This usually means they must all implement the <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> interface, or you must supply a suitable <code class="docutils literal notranslate"><span class="pre">Comparator</span></code>. Adding non-comparable elements (or elements of incompatible types) will result in a <code class="docutils literal notranslate"><span class="pre">ClassCastException</span></code>.</p></li>
+<li><p><strong>Use Case:</strong> The go-to choice when you need a <code class="docutils literal notranslate"><span class="pre">Set</span></code> that automatically keeps elements sorted, or when you need the navigational capabilities provided by the <code class="docutils literal notranslate"><span class="pre">SortedSet</span></code> and <code class="docutils literal notranslate"><span class="pre">NavigableSet</span></code> interfaces.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>When to Use Which:</strong></p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">HashSet</span></code> if: You need maximum speed and don’t care about element order.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">LinkedHashSet</span></code> if: You need the performance benefits of hashing but also need to maintain the order of insertion.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">TreeSet</span></code> if: You need elements to be kept in a sorted order (either natural or custom) or require navigational methods.</p></li>
+</ul>
+<p>By understanding these differences, you can choose the most appropriate <code class="docutils literal notranslate"><span class="pre">Set</span></code> implementation for your specific needs in Java.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">Developer: James Goudy </span>
+<span class="cm">Project HashSet, LinkedHashSet, TreeSet - Demo </span>
+
+<span class="cm">Sets - can only contain unique values </span>
+
+
+<span class="cm"> */</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">java_sets</span><span class="p">;</span><span class="w"> </span><span class="c1">// Declares the package name for this Java file</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *</span>
+<span class="cm"> * @author jgoudy </span>
+<span class="cm"> */</span>
+<span class="c1">// Import statements for necessary Java utility classes</span>
+
+
+<span class="c1">// Imports the HashSet class, which implements the Set interface </span>
+<span class="c1">// using a hash table (no guaranteed order)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.HashSet</span><span class="p">;</span>
+
+<span class="c1">// Imports the LinkedHashSet class, which maintains insertion order</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.LinkedHashSet</span><span class="p">;</span>
+
+<span class="c1">// Imports the Set interface, the base interface for all set collections</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Set</span><span class="p">;</span>
+
+<span class="c1">// Imports the TreeSet class, which stores elements </span>
+<span class="c1">// in a sorted order (natural ordering or by Comparator)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.TreeSet</span><span class="p">;</span>
+
+<span class="c1">// Public class definition named Java_Sets</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Java_Sets</span><span class="w"> </span><span class="p">{</span>
+
+
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">    Notice how easy it is to switch between the different sets. </span>
+<span class="cm">    Difference being is how order is being stored/not stored pending </span>
+<span class="cm">    the algorithm </span>
+<span class="cm">    </span>
+<span class="cm">    */</span>
+<span class="w">    </span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// The main method, the entry point of the Java application</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// Declare a variable &#39;mySet&#39; of type Set that can hold String objects. </span>
+<span class="w">        </span><span class="c1">// This uses the interface type, allowing different </span>
+<span class="w">        </span><span class="c1">// implementations to be assigned later.</span>
+<span class="w">        </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mySet</span><span class="p">;</span><span class="w"> </span>
+<span class="w">        </span>
+
+<span class="w">        </span><span class="c1">// Initialize a String array &#39;myData&#39; with some sample data, </span>
+<span class="w">        </span><span class="c1">// including duplicate values.</span>
+<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">myData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="s">&quot;AA.&quot;</span><span class="p">,</span><span class="s">&quot;BB&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;DD&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BB&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;EE.&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                           </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FF&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="s">&quot;BB&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GG&quot;</span><span class="p">,</span><span class="s">&quot;EE&quot;</span><span class="p">};</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// --------------- HashSet Demonstration -----------------------------------      </span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Instantiate &#39;mySet&#39; as a new HashSet. </span>
+<span class="w">        </span><span class="c1">// HashSet does not guarantee any specific order of elements.</span>
+<span class="w">        </span><span class="n">mySet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Loop through each &#39;value&#39; in the &#39;myData&#39; array</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">myData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="c1">// Add the &#39;value&#39; to the HashSet. If the value is already present,</span>
+<span class="w">            </span><span class="c1">// add() returns false and </span>
+<span class="w">            </span><span class="c1">// the set remains unchanged (ensuring uniqueness).</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="n">mySet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Print a header indicating the output is from the HashSet</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nHashset - no guarantee of order&quot;</span><span class="p">);</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Loop through each &#39;value&#39; currently in the HashSet</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">mySet</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Print the value followed by a space. The order is unpredictable.</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Print newlines for better formatting in the console output</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span>
+
+<span class="w">        </span><span class="c1">// --------------- LinkedHashSet Demonstration -----------------------</span>
+<span class="w">        </span><span class="c1">// Re-instantiate &#39;mySet&#39; as a new LinkedHashSet. </span>
+<span class="w">        </span><span class="c1">// LinkedHashSet maintains the order in which elements were inserted.</span>
+<span class="w">        </span><span class="n">mySet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LinkedHashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span>
+
+<span class="w">        </span><span class="c1">// Loop through each &#39;value&#39; in the &#39;myData&#39; array again</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">myData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Add the &#39;value&#39; to the LinkedHashSet. </span>
+<span class="w">            </span><span class="c1">// Duplicates are ignored. Insertion order is preserved.</span>
+<span class="w">            </span><span class="n">mySet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Print a header indicating the output is from the LinkedHashSet and </span>
+<span class="w">        </span><span class="c1">// its characteristic (Insertion Order)</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nLinkedSet - Insertion Order&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Loop through each &#39;value&#39; currently in the LinkedHashSet</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">mySet</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="c1">// Print the value followed by a space. </span>
+<span class="w">            </span><span class="c1">// The order will match the insertion sequence </span>
+<span class="w">            </span><span class="c1">// of unique elements from myData.</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// Print newlines for formatting</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span>
+
+<span class="w">        </span><span class="c1">// ------------------ TreeSet Demonstration --------------------------</span>
+<span class="w">        </span><span class="c1">// Re-instantiate &#39;mySet&#39; as a new TreeSet. </span>
+<span class="w">        </span><span class="c1">// TreeSet stores elements in a sorted order </span>
+<span class="w">        </span><span class="c1">// (natural alphabetical order for Strings).</span>
+<span class="w">        </span><span class="n">mySet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TreeSet</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span>
+
+<span class="w">        </span><span class="c1">// Loop through each &#39;value&#39; in the &#39;myData&#39; array once more</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">myData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="c1">// Add the &#39;value&#39; to the TreeSet. </span>
+<span class="w">            </span><span class="c1">// Duplicates are ignored. </span>
+<span class="w">            </span><span class="c1">//Elements are automatically sorted upon insertion.</span>
+<span class="w">            </span><span class="n">mySet</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Print a header indicating the output is from the TreeSet and </span>
+<span class="w">        </span><span class="c1">// its sorting mechanism (based on Red-Black Tree, </span>
+<span class="w">        </span><span class="c1">// resulting in sorted order)</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nTreeSet - Items put in order based &quot;</span>
+<span class="w">                           </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;on Red Black Tree&quot;</span><span class="p">);</span>
+<span class="w">        </span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Loop through each &#39;value&#39; currently in the TreeSet</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">mySet</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Print the value followed by a space. </span>
+<span class="w">            </span><span class="c1">// The order will be alphabetical.</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Print newlines for formatting</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">);</span><span class="w"> </span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// End of the main method</span>
+
+<span class="p">}</span><span class="w"> </span><span class="c1">// End of the Java_Sets class</span>
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="JavaHashMapTreeMapLinkedHashMap.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Examples of Java’s HashMap, TreeMap, and LinkedHashMap</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ProgrammingToTheInterfacemd.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Programming To The Interface, Not The Implementation”</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
