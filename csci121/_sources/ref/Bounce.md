@@ -577,7 +577,7 @@ public class Ball extends JComponent {
         // check for collision on the top and bottom of the panel
         if (ypos > compHeight) {
             ydir = ydir * -1;
-            ypos = compHeight - 1 - (radius);
+            ypos = compHeight - 1 - (radiu);
         } else if (ypos < -1) {
             ydir = ydir * -1;
             ypos = 0 + (RNG.nextInt(10));
