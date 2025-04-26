@@ -1,7 +1,5 @@
 # Threading
 
-
-
 In computing, a **process** is an instance of a computer program that is being executed. Each process has its own memory space. **Threading**, in the context of Java (and other programming languages), is a way to achieve **concurrency** *within* a single process.
 
 Think of a process like a workshop.
@@ -155,7 +153,6 @@ public class Ball extends JComponent implements Runnable {
                     //put code here
                     //-----------------
                     moveBall();
-
                     //---------------
                 }
             } catch (InterruptedException e) {

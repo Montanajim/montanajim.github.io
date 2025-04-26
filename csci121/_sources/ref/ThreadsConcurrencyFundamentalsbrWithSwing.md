@@ -1,6 +1,8 @@
 
 
-#  Java Concurrency Fundamentals:<br> Threads, Synchronization, and Swing UI Threading
+#  Concurrency Fundamentals
+
+## Threads, Synchronization, and Swing UI Threading
 
 In Java, focusing on concurrency (doing multiple things at once) and how it relates to graphical user interfaces (GUIs) like Swing.
 
