@@ -160,9 +160,7 @@ class ShapePanel extends JPanel {
 
     public void drawShape(ShapeChoice myShapechoice)
     {
-
         this.myShapeChoice = myShapechoice;
-
         repaint();
     }
 
