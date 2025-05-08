@@ -1,0 +1,721 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Java Concurrency Fundamentals: Threads, Synchronization, and Swing UI Threading &#8212; Algorithms</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/ThreadsConcurrencyFundamentalsbrWithSwing';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Algorithms</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    CSCI 232
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CSCI232_Intro.html">CSCI 232 Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Terms.html">Terms and Concepts</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Radix.html">Radix - Number Bases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Serializable.html">Serializable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Iterator.html">Iterator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BST_Intro.html">Binary Search Tree - Intro</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="BST_Applications.html">Applications That Use Binary Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_Comparisons.html">Binary Tree Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_TreeTraversal.html">Tree Traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_Iterative_Recursion_Search.html">Demonstrate BST using iterative looping and recursion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_BinarySearchTree.html">Binary Search Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_AVLTree.html">AVL Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_RedBlack.html">Red Black Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_ComparisionTable.html">BST AVL Red Black Tree Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_SplayTrees_2025.html">Splay Trees</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_UnderstandingHashTables.html"><em>Understanding Hash Tables and Hash Functions</em>*</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_ModulusHashFunction.html">Modulus Hash Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_Chaining.html">Hash Tables - Chaining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressing.html">Hash Table - Open Addressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressingHashingCodeExamples.html">Java code for double hashing in a hash table:</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="SkipList.html">Skip List</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Graphs.html">Graphs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="GraphsAnalysisOfBFSandDFS.html">A Comparative Analysis of Breadth-First Search and Depth-First Search Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnderstandingBFS_202504.html">Understanding Breadth-First Search (BFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnderstandingDFS_202504.html">Understanding Depth-First Search (DFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsSevenBridges.html">Seven Bridges of Königsberg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsDFS.html">Depth-First Search (DFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsBFS.html">Breadth First</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFSStoredPaths.html">DFS - Stored Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsMazeSolverDFS.html">DSF - Maze Solving</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="GraphsDijkstra.html">Dijkstra’s Algorithm</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Serializable.html">Serialization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="JAVATechniques.html">JAVA Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="JavaHashMapTreeMapLinkedHashMap.html">Examples of Java’s HashMap, TreeMap, and LinkedHashMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HashSetLinkedHashSetTreeSetComparision.html">HashSet, LinkedHashSet, and TreeSet Comparision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProgrammingToTheInterfacemd.html">Programming To The Interface, Not The Implementation”</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="End.html">End</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/ThreadsConcurrencyFundamentalsbrWithSwing.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Java Concurrency Fundamentals:<br> Threads, Synchronization, and Swing UI Threading</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="java-concurrency-fundamentals-threads-synchronization-and-swing-ui-threading">
+<h1><strong>Java Concurrency Fundamentals:<br> Threads, Synchronization, and Swing UI Threading</strong><a class="headerlink" href="#java-concurrency-fundamentals-threads-synchronization-and-swing-ui-threading" title="Link to this heading">#</a></h1>
+<p>In Java, focusing on concurrency (doing multiple things at once) and how it relates to graphical user interfaces (GUIs) like Swing.</p>
+<p>Imagine you’re working in a kitchen. You’re the main chef.</p>
+<ol class="arabic">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Runnable</span></code> - The Recipe</strong></p>
+<ul>
+<li><p><strong>What it is:</strong> <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> is an <em>interface</em> in Java. An interface is like a contract – it defines <em>what</em> a class should be able to do, but not <em>how</em>. The <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> interface has just one method you need to implement: <code class="docutils literal notranslate"><span class="pre">run()</span></code>.</p></li>
+<li><p><strong>Analogy:</strong> Think of <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> as a specific <em>recipe</em> or a set of instructions for a task (e.g., “chop vegetables,” “wash dishes”). The <code class="docutils literal notranslate"><span class="pre">run()</span></code> method contains the step-by-step instructions for that task.</p></li>
+<li><p><strong>Purpose:</strong> It represents a unit of work, a task that can be executed. It doesn’t execute itself; it just defines the work.</p></li>
+<li><p>Example Skeleton:</p>
+<p>Java</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ChopVegetablesTask</span> <span class="n">implements</span> <span class="n">Runnable</span> <span class="p">{</span>
+    <span class="nd">@Override</span>
+    <span class="n">public</span> <span class="n">void</span> <span class="n">run</span><span class="p">()</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">Code</span> <span class="n">to</span> <span class="n">chop</span> <span class="n">vegetables</span> <span class="n">goes</span> <span class="n">here</span>
+        <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Chopping carrots...&quot;</span><span class="p">);</span>
+        <span class="o">//</span> <span class="o">...</span> <span class="n">more</span> <span class="n">chopping</span> <span class="n">steps</span> <span class="o">...</span>
+        <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Vegetables chopped!&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Thread</span></code> - The Kitchen Assistant</strong></p>
+<ul>
+<li><p><strong>What it is:</strong> A <code class="docutils literal notranslate"><span class="pre">Thread</span></code> is a <em>class</em> in Java. An object of the <code class="docutils literal notranslate"><span class="pre">Thread</span></code> class represents an actual, independent sequence of execution within your program. It’s the <em>worker</em> that can perform a task.</p></li>
+<li><p><strong>Analogy:</strong> If <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> is the recipe, <code class="docutils literal notranslate"><span class="pre">Thread</span></code> is the <em>kitchen assistant</em> you hire to follow that recipe. You can have multiple assistants (threads) working on different recipes (<code class="docutils literal notranslate"><span class="pre">Runnable</span></code> tasks) simultaneously.</p></li>
+<li><p><strong>How it works with <code class="docutils literal notranslate"><span class="pre">Runnable</span></code>:</strong> You usually create a <code class="docutils literal notranslate"><span class="pre">Thread</span></code> object and give it a <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> object (the recipe) to execute.</p></li>
+<li><p>Key Method: <code class="docutils literal notranslate"><span class="pre">start()</span></code> .  When you call <code class="docutils literal notranslate"><span class="pre">start()</span></code>  on a <code class="docutils literal notranslate"><span class="pre">Thread</span></code> object, it does two things:</p>
+<ol class="arabic simple">
+<li><p>It tells the Java Virtual Machine (JVM) that a new thread of execution should be created.</p></li>
+<li><p>It eventually calls the <code class="docutils literal notranslate"><span class="pre">run()</span></code> method of the <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> task you provided (or the <code class="docutils literal notranslate"><span class="pre">Thread</span></code>’s own <code class="docutils literal notranslate"><span class="pre">run()</span></code> method if you extended the <code class="docutils literal notranslate"><span class="pre">Thread</span></code> class directly, though implementing <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> is generally preferred).</p></li>
+</ol>
+</li>
+<li><p><strong>Important:</strong> You call <code class="docutils literal notranslate"><span class="pre">start()</span></code>, <strong>not</strong> <code class="docutils literal notranslate"><span class="pre">run()</span></code>. Calling <code class="docutils literal notranslate"><span class="pre">run()</span></code> directly just executes the code in the current thread, like a normal method call – no new assistant is hired!</p></li>
+<li><p>Example:</p>
+<p>Java</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// Get the recipe (Runnable task)
+Runnable choppingTask = new ChopVegetablesTask();
+
+// Hire an assistant (Thread) and give them the recipe
+Thread assistant1 = new Thread(choppingTask);
+
+// Tell the assistant to start working!
+assistant1.start(); // This eventually calls choppingTask.run() in a new thread
+
+// The main chef (main thread) can continue doing other things...
+System.out.println(&quot;Main chef is checking the oven.&quot;);
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Why Use Multiple Threads?</strong></p>
+<ul class="simple">
+<li><p><strong>Responsiveness:</strong> Keep your application (especially GUIs) responsive. If a long task (like downloading a file) runs on the main thread, the UI might freeze. Running it on a separate thread keeps the UI alive.</p></li>
+<li><p><strong>Performance:</strong> On multi-core processors, different threads can run truly simultaneously on different cores, speeding up computation-intensive tasks.</p></li>
+</ul>
+<p><strong>Problems with Multiple Threads: Sharing is Hard!</strong></p>
+<p>When multiple threads (assistants) access and modify the same data (shared ingredients or utensils), things can go wrong.</p>
+<ul class="simple">
+<li><p><strong>Race Conditions:</strong> The outcome depends on the unpredictable order in which threads execute. Imagine two assistants trying to update the <em>same</em> count of remaining potatoes. One reads “5”, the other reads “5”. Both calculate “4”, and both write “4”. You’ve lost a potato count!</p></li>
+<li><p><strong>Memory Visibility:</strong> One thread might change data, but due to optimizations like CPU caching, other threads might not see that change immediately; they might still see the old, “stale” value.</p></li>
+</ul>
+<p><strong>Tools to Manage Shared Data:</strong></p>
+<ol class="arabic">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">synchronized</span></code> - The Talking Stick / Exclusive Access</strong></p>
+<ul>
+<li><p><strong>What it is:</strong> A keyword used to control access to shared resources. It ensures that only <em>one thread at a time</em> can execute a specific block of code or method associated with a particular object’s <em>lock</em> (also called a <em>monitor</em>).</p></li>
+<li><p><strong>Analogy:</strong> Imagine a single “talking stick” for a specific resource (like the main recipe book). Only the assistant holding the stick can modify the recipe book. Any other assistant wanting to use it must wait until the first one releases the stick.</p></li>
+<li><p>How it works:</p>
+<ul class="simple">
+<li><p><strong>Synchronized Method:</strong> <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">synchronized</span> <span class="pre">void</span> <span class="pre">updateSharedCounter()</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code>. The lock is on the object (<code class="docutils literal notranslate"><span class="pre">this</span></code>) the method belongs to.</p></li>
+<li><p><strong>Synchronized Block:</strong> <code class="docutils literal notranslate"><span class="pre">synchronized(someObject)</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code>. The lock is on <code class="docutils literal notranslate"><span class="pre">someObject</span></code>. This is more flexible.</p></li>
+</ul>
+</li>
+<li><p><strong>Purpose:</strong> Prevents race conditions by enforcing <em>mutual exclusion</em> (only one thread in the critical section at a time). It also helps with memory visibility – changes made inside a synchronized block by one thread are guaranteed to be visible to another thread when <em>it</em> subsequently enters a synchronized block <em>on the same lock</em>.</p></li>
+<li><p>Example (Conceptual Counter):</p>
+<p>Java</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SharedCounter</span> <span class="p">{</span>
+    <span class="n">private</span> <span class="nb">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">private</span> <span class="n">final</span> <span class="n">Object</span> <span class="n">lock</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Object</span><span class="p">();</span> <span class="o">//</span> <span class="n">An</span> <span class="nb">object</span> <span class="n">to</span> <span class="n">use</span> <span class="k">as</span> <span class="n">a</span> <span class="n">lock</span>
+
+    <span class="n">public</span> <span class="n">void</span> <span class="n">increment</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">synchronized</span> <span class="p">(</span><span class="n">lock</span><span class="p">)</span> <span class="p">{</span> <span class="o">//</span> <span class="n">Only</span> <span class="n">one</span> <span class="n">thread</span> <span class="n">can</span> <span class="n">be</span> <span class="n">inside</span> <span class="n">this</span> <span class="n">block</span> <span class="n">at</span> <span class="n">a</span> <span class="n">time</span>
+            <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">public</span> <span class="nb">int</span> <span class="n">getCount</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">synchronized</span> <span class="p">(</span><span class="n">lock</span><span class="p">)</span> <span class="p">{</span> <span class="o">//</span> <span class="n">Ensure</span> <span class="n">reading</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">value</span>
+            <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">volatile</span></code> - The “Always Check the Master Copy” Rule</strong></p>
+<ul>
+<li><p><strong>What it is:</strong> A keyword applied to a variable. It primarily guarantees <em>visibility</em>.</p></li>
+<li><p><strong>Analogy:</strong> Imagine a central whiteboard (<code class="docutils literal notranslate"><span class="pre">volatile</span></code> variable) where an important status is written (e.g., “Stop Processing: true”). The <code class="docutils literal notranslate"><span class="pre">volatile</span></code> keyword tells every assistant (thread) that whenever they read this status, they <em>must</em> go look at the central whiteboard directly, not rely on their own potentially outdated notes (CPU cache). When they write to it, they must ensure the change is immediately visible on the central whiteboard.</p></li>
+<li><p><strong>Purpose:</strong> Ensures that reads and writes to this specific variable happen directly to/from main memory, bypassing local CPU caches. It prevents threads from seeing stale values for <em>that specific variable</em>. It also prevents certain kinds of compiler instruction reordering related to that variable.</p></li>
+<li><p><strong>Limitations:</strong> <code class="docutils literal notranslate"><span class="pre">volatile</span></code> guarantees visibility, but <em>not</em> atomicity for compound actions (like <code class="docutils literal notranslate"><span class="pre">count++</span></code>, which is really read-modify-write). It’s good for simple flags or status indicators read/written by multiple threads, but not sufficient for complex state changes or counters where the previous value matters for the update. Use <code class="docutils literal notranslate"><span class="pre">synchronized</span></code> or atomic classes (<code class="docutils literal notranslate"><span class="pre">AtomicInteger</span></code>, etc.) for those.</p></li>
+<li><p>Example:</p>
+<p>Java</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>class Worker implements Runnable {
+    private volatile boolean stopRequested = false; // Ensure visibility
+
+    public void requestStop() {
+        stopRequested = true; // Write is made visible quickly
+    }
+
+    @Override
+    public void run() {
+        while (!stopRequested) { // Read checks the &#39;master copy&#39;
+            // do work...
+        }
+        System.out.println(&quot;Worker stopping.&quot;);
+    }
+}
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Tools for Thread Coordination:</strong></p>
+<p>Sometimes threads need to coordinate more actively, waiting for a certain condition to become true.</p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">wait()</span></code> and <code class="docutils literal notranslate"><span class="pre">notify()</span></code> (and <code class="docutils literal notranslate"><span class="pre">notifyAll()</span></code>) - The Pause/Resume Buttons</p>
+<ul>
+<li><p><strong>What they are:</strong> Methods belonging to the base <code class="docutils literal notranslate"><span class="pre">Object</span></code> class (so <em>every</em> object has them). They allow threads to pause execution and wait for a condition, and allow other threads to signal that the condition might now be true.</p></li>
+<li><p><strong>Crucial Rule:</strong> These methods <strong>MUST</strong> be called from within a <code class="docutils literal notranslate"><span class="pre">synchronized</span></code> block or method on the <em>same object</em> whose lock the thread currently holds.</p></li>
+<li><p>Analogy:</p>
+<p>Imagine a baker (producer thread) and a delivery person (consumer thread) sharing a bread shelf (shared resource).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wait()</span></code>: If the delivery person arrives and the shelf is empty, they acquire the lock on the shelf (enter a <code class="docutils literal notranslate"><span class="pre">synchronized</span></code> block), check the condition (shelf empty?), and then call <code class="docutils literal notranslate"><span class="pre">shelf.wait()</span></code>. This <em>releases the lock</em> on the shelf and puts the delivery person thread into a waiting state. They “pause.”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">notify()</span></code>: When the baker adds bread, they acquire the lock on the shelf (enter a <code class="docutils literal notranslate"><span class="pre">synchronized</span></code> block), add the bread, and then call <code class="docutils literal notranslate"><span class="pre">shelf.notify()</span></code>. This wakes up <em>one</em> arbitrarily chosen waiting thread (hopefully the delivery person). The awakened thread doesn’t run immediately – it must first re-acquire the lock on the shelf (which it can only do after the baker exits their <code class="docutils literal notranslate"><span class="pre">synchronized</span></code> block).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">notifyAll()</span></code>: Like <code class="docutils literal notranslate"><span class="pre">notify()</span></code>, but wakes up <em>all</em> threads waiting on that object’s lock. They all compete to re-acquire the lock when the notifying thread releases it.</p></li>
+</ul>
+</li>
+<li><p><strong>Important Pattern:</strong> Because a thread might wake up even if the condition isn’t <em>really</em> met (spurious wakeups) or because another thread might have changed the condition <em>after</em> <code class="docutils literal notranslate"><span class="pre">notify()</span></code> but <em>before</em> the waiting thread re-acquires the lock, you <strong>MUST</strong> always check the condition in a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop after waking up from <code class="docutils literal notranslate"><span class="pre">wait()</span></code>.</p></li>
+<li><p>Example (Conceptual Shelf):</p>
+<p>Java</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>class Shelf {
+    private boolean hasBread = false;
+    private final Object lock = new Object();
+
+    public void putBread() {
+        synchronized (lock) {
+            hasBread = true;
+            System.out.println(&quot;Baker added bread. Notifying...&quot;);
+            lock.notify(); // Wake up one waiting thread (delivery person)
+        }
+    }
+
+    public void takeBread() throws InterruptedException {
+        synchronized (lock) {
+            // MUST use a while loop here!
+            while (!hasBread) {
+                System.out.println(&quot;Delivery person waiting for bread...&quot;);
+                lock.wait(); // Release lock and wait
+                System.out.println(&quot;Delivery person woke up! Checking again...&quot;);
+            }
+            // If we get here, hasBread is true and we hold the lock
+            hasBread = false;
+            System.out.println(&quot;Delivery person took the bread.&quot;);
+        }
+    }
+}
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Concurrency in Swing GUIs:</strong></p>
+<p>Swing (a Java GUI toolkit) has its own specific rule for threading:</p>
+<ul class="simple">
+<li><p><strong>The Event Dispatch Thread (EDT):</strong> Swing components (buttons, text fields, etc.) are <em>not</em> thread-safe. Almost all interaction with Swing components (creating them, updating them, reading their state) <strong>must</strong> happen on a single, special thread called the Event Dispatch Thread (EDT).</p></li>
+<li><p><strong>Why?</strong> This simplifies GUI programming immensely. If any thread could modify a button’s text at any time, you’d need complex locking everywhere, risking deadlocks and making GUI code very hard to write correctly. The EDT handles all user input events (button clicks, key presses) and painting requests in order.</p></li>
+<li><p><strong>The Problem:</strong> What if you have a long-running task (like downloading a file or a complex calculation) started by a button click? If you run that task directly on the EDT, your entire GUI will freeze until the task is done, because the EDT is busy and cannot process other events like repainting or responding to clicks.</p></li>
+<li><p><strong>The Solution:</strong> Perform long-running tasks on a separate <em>worker thread</em> (like the “assistants” we discussed using <code class="docutils literal notranslate"><span class="pre">Thread</span></code> and <code class="docutils literal notranslate"><span class="pre">Runnable</span></code>). BUT, when that worker thread needs to update the GUI (e.g., display download progress, show results), it <em>cannot</em> directly touch the Swing components.</p></li>
+</ul>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">SwingUtilities.invokeLater()</span></code> - The “Ask the UI Painter to Do This Later” Mechanism</p>
+<ul>
+<li><p><strong>What it is:</strong> A static method in the <code class="docutils literal notranslate"><span class="pre">SwingUtilities</span></code> class.</p></li>
+<li><p><strong>Purpose:</strong> To safely schedule a piece of code (wrapped in a <code class="docutils literal notranslate"><span class="pre">Runnable</span></code>) to be executed later on the EDT.</p></li>
+<li><p><strong>How it works:</strong> You create a <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> containing the GUI update code. You pass this <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> to <code class="docutils literal notranslate"><span class="pre">SwingUtilities.invokeLater()</span></code>. This method queues the <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> and returns immediately. The EDT, when it’s finished with its current task, will pick up your <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> from the queue and execute its <code class="docutils literal notranslate"><span class="pre">run()</span></code> method.</p></li>
+<li><p><strong>Analogy:</strong> The worker assistant (background thread) finishes calculating something. They can’t paint the result on the main canvas (the GUI) themselves. Instead, they write down the instructions (“update label with ‘Done!’”) on a note (<code class="docutils literal notranslate"><span class="pre">Runnable</span></code>) and hand it to a dispatcher (<code class="docutils literal notranslate"><span class="pre">SwingUtilities.invokeLater</span></code>). The dispatcher puts the note in the dedicated UI painter’s (EDT’s) inbox. When the painter has a moment, they’ll read the note and perform the update.</p></li>
+<li><p>Example:</p>
+<p>Java</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import javax.swing.*;
+import java.awt.event.*;
+
+public class SwingExample {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame(&quot;Swing Threading&quot;);
+        JButton button = new JButton(&quot;Start Long Task&quot;);
+        JLabel label = new JLabel(&quot;Status: Idle&quot;);
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                label.setText(&quot;Status: Working...&quot;); // OK, this is on EDT (button click handler)
+
+                // Create the task (recipe) for the long work
+                Runnable longTask = () -&gt; {
+                    try {
+                        // Simulate long work (e.g., network call, calculation)
+                        Thread.sleep(3000); // Sleep for 3 seconds
+
+                        // **** WRONG WAY (don&#39;t do this!) ****
+                        // label.setText(&quot;Status: Done!&quot;); // Accessing GUI from wrong thread!
+
+                        // **** CORRECT WAY ****
+                        // Create a Runnable for the GUI update
+                        Runnable updateGuiTask = () -&gt; {
+                            label.setText(&quot;Status: Done!&quot;);
+                        };
+                        // Ask Swing to run this task on the EDT
+                        SwingUtilities.invokeLater(updateGuiTask);
+
+                    } catch (InterruptedException ex) {
+                        Thread.currentThread().interrupt(); // Restore interrupt status
+                        // Handle interruption - perhaps update GUI to show error (using invokeLater!)
+                        SwingUtilities.invokeLater(() -&gt; label.setText(&quot;Status: Interrupted!&quot;));
+                    }
+                };
+
+                // Hire an assistant (Thread) and give them the recipe
+                Thread workerThread = new Thread(longTask);
+                workerThread.start(); // Start the work in the background
+            }
+        });
+
+        // Basic frame setup (simplified)
+        frame.setLayout(new java.awt.FlowLayout());
+        frame.add(button);
+        frame.add(label);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+}
+</pre></div>
+</div>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">SwingUtilities.invokeAndWait()</span></code>:</strong> There’s also <code class="docutils literal notranslate"><span class="pre">invokeAndWait()</span></code>, which does the same thing but <em>blocks</em> the calling thread until the EDT has finished executing the <code class="docutils literal notranslate"><span class="pre">Runnable</span></code>. Use this carefully, as it can lead to deadlocks if the EDT is waiting for the blocked thread! <code class="docutils literal notranslate"><span class="pre">invokeLater</span></code> is generally safer and preferred for responsiveness.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Summary:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Runnable</span></code></strong>: Defines a task.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Thread</span></code></strong>: Executes a task concurrently.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">synchronized</span></code></strong>: Controls access to shared resources (mutual exclusion + visibility).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">volatile</span></code></strong>: Ensures visibility of a specific variable (reads/writes go to main memory).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wait()</span></code>/<code class="docutils literal notranslate"><span class="pre">notify()</span></code>/<code class="docutils literal notranslate"><span class="pre">notifyAll()</span></code></strong>: Coordinate threads based on conditions (must be used with <code class="docutils literal notranslate"><span class="pre">synchronized</span></code>).</p></li>
+<li><p><strong>Swing EDT</strong>: The single thread for all Swing GUI updates.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">SwingUtilities.invokeLater()</span></code></strong>: The safe way to schedule GUI updates onto the EDT from other threads.</p></li>
+</ul>
+<p>Concurrency is a powerful but complex topic. Understanding these fundamentals is crucial for writing correct, responsive, and efficient Java applications, especially those with GUIs or that perform background processing.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

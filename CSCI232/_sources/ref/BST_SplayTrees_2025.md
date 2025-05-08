@@ -4,7 +4,7 @@
 
 A **splay tree** is a type of self-adjusting binary search tree (BST) where recently accessed elements are moved to the root of the tree using a process called *splaying*. This helps ensure that frequently accessed elements are quicker to access.
 
-### Who Invented It:
+## Who Invented It:
 
 - Splay trees were invented by **Daniel Sleator** and **Robert Tarjan** in 1985. The invention was part of their research on self-adjusting data structures.
 
@@ -12,13 +12,19 @@ A **splay tree** is a type of self-adjusting binary search tree (BST) where rece
 
 - The splay tree was introduced in **1985**.
 
-### Major Uses: 
+## Major Uses: 
 
 - **Dynamic sets**: Splay trees are used to maintain a dynamic set of elements that can support a variety of search and update operations.
 - **Memory-efficient**: Since splay trees do not require additional space for balancing data like AVL trees or Red-Black trees, they can be more memory-efficient.
 - **Efficient in practice for certain workloads**: Splay trees perform well when there are repeated accesses to a small subset of elements (i.e., the access pattern exhibits locality).
 
-### Insert Function:
+## Typical Applications:
+
+- **Cache systems**: Frequently accessed items bubble to the front.
+- **Text editors**: Recently opened files or commands can be organized in a splay list.
+- **Autocomplete lists**: Recently or frequently used search terms are moved to the front.
+
+## Insert Function:
 
 - **Insertion in a splay tree** is similar to that in a regular binary search tree. The node is inserted following the normal BST rules. However, after insertion, the tree is "splayed" to bring the newly inserted node to the root.
 
@@ -44,7 +50,7 @@ private Node insertRec(Node root, int value) {
 }
 ```
 
-### Delete Function:
+## Delete Function:
 
 - **Deletion** is performed in the same way as in a normal binary search tree. After finding the node to delete, it is removed, and then the tree is splayed to restore the tree's structure.
 
@@ -70,7 +76,7 @@ private Node deleteRec(Node root, int value) {
 }
 ```
 
-### Find Function:
+## Find Function:
 
 - The **find function** searches for a value in the tree, and if the value is found, it performs a splay operation to bring that value to the root. If the value is not found, the tree remains unchanged.
 
@@ -81,14 +87,14 @@ public boolean find(int value) {
 }
 ```
 
-### Rules for Rotations:
+## Rules for Rotations:
 
 - Splay trees use three types of rotations to adjust the tree during splaying:
   1. **Zig**: When the node is the child of the root.
   2. **Zig-Zig**: When the node is the left or right child of a left or right child (two-level deep).
   3. **Zig-Zag**: When the node is the left child of the right child or the right child of the left child.
 
-### Rotations:
+## Rotations:
 
 - **Single Rotation (Zig)**: If the node is the child of the root, perform a single rotation (right or left depending on the situation).
 - **Double Rotation (Zig-Zig or Zig-Zag)**: In these cases, two rotations are needed. They help in cases where the tree has more than one level to adjust.
@@ -125,9 +131,8 @@ private Node splay(Node root, int value) {
 }
 ```
 
-### Java Program Demonstrating Insert, Find, Delete, and Pretty Print:
+## Java Program Demonstrating Insert, Find, Delete, and Pretty Print:
 
-Sure! Here's the updated version of the Java program with comments and the inclusion of the rules for rotations:
 
 ```java
 package inst_splay_2025;
@@ -366,7 +371,7 @@ public class Inst_splay_2025 {
 
 ```
 
-### Explanation of Rotation Rules:
+## Explanation of Rotation Rules:
 
 1. **Zig (Single Rotation)**: If the node to be accessed is the left or right child of the root, perform a single rotation (either left or right).
 2. **Zig-Zig (Double Rotation)**: If the node is the left or right child of a left or right child (two levels deep), perform two rotations. This optimizes the tree by rotating both the node and its parent.
@@ -380,7 +385,7 @@ This program demonstrates how to use splay tree operations and includes helpful 
 
 ## Splay using for loops
 
-Sure! Here's the modified version of the Splay Tree program, using **loops** instead of recursion for the insert, delete, and splay operations.
+
 
 This version avoids the recursive calls and uses loops to handle the tree traversal and adjustments.
 
@@ -556,7 +561,7 @@ class SplayTree {
 }
 ```
 
-### Explanation of Changes:
+## Explanation of Changes:
 
 1. **Insert Method**: The insertion now uses a loop to traverse the tree and find the correct position to insert the new node. The insertion process is followed by a splay operation to move the newly inserted node to the root.
 2. **Delete Method**: Similar to insertion, the delete method now uses a loop to traverse the tree and delete the node. It also includes a splay operation to move the necessary nodes after deletion.

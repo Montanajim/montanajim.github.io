@@ -1,0 +1,1223 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Huffman Code &#8212; Algorithms</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/HuffmanCode';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Serialization" href="Serializable.html" />
+    <link rel="prev" title="Dijkstra’s Algorithm" href="GraphsDijkstra.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Algorithms</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    CSCI 232
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CSCI232_Intro.html">CSCI 232 Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Terms.html">Terms and Concepts</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Radix.html">Radix - Number Bases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Serializable.html">Serializable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Terms_Iterator.html">Iterator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BST_Intro.html">Binary Search Tree - Intro</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="BST_Applications.html">Applications That Use Binary Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_Comparisons.html">Binary Tree Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_TreeTraversal.html">Tree Traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_Iterative_Recursion_Search.html">Demonstrate BST using iterative looping and recursion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_BinarySearchTree.html">Binary Search Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_AVLTree.html">AVL Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_RedBlack.html">Red Black Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_ComparisionTable.html">BST AVL Red Black Tree Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BST_SplayTrees_2025.html">Splay Trees</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Hashing_HashTable.html">Hash Table</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_UnderstandingHashTables.html"><em>Understanding Hash Tables and Hash Functions</em>*</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_ModulusHashFunction.html">Modulus Hash Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_Chaining.html">Hash Tables - Chaining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressing.html">Hash Table - Open Addressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hashing_OpenAddressingHashingCodeExamples.html">Java code for double hashing in a hash table:</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="SkipList.html">Skip List</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Graphs.html">Graphs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="GraphsAnalysisOfBFSandDFS.html">A Comparative Analysis of Breadth-First Search and Depth-First Search Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnderstandingBFS_202504.html">Understanding Breadth-First Search (BFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnderstandingDFS_202504.html">Understanding Depth-First Search (DFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsSevenBridges.html">Seven Bridges of Königsberg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsDFS.html">Depth-First Search (DFS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsBFS.html">Breadth First</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFSStoredPaths.html">DFS - Stored Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphsMazeSolverDFS.html">DSF - Maze Solving</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="GraphsDijkstra.html">Dijkstra’s Algorithm</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Huffman Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Serializable.html">Serialization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="JAVATechniques.html">JAVA Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="JavaHashMapTreeMapLinkedHashMap.html">Examples of Java’s HashMap, TreeMap, and LinkedHashMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HashSetLinkedHashSetTreeSetComparision.html">HashSet, LinkedHashSet, and TreeSet Comparision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProgrammingToTheInterfacemd.html">Programming To The Interface, Not The Implementation”</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="End.html">End</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ref/HuffmanCode.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Huffman Code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-huffman-algorithm">What is the Huffman Algorithm?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-it-work-the-encoding-process">How Does It Work? The Encoding Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-it-work-the-decoding-process">How Does It Work? The Decoding Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-is-huffman-coding-used">Where is Huffman Coding Used?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-code">Example Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-explanation">Code Explanation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-node-class-the-building-blocks-of-our-tree">1. The <code class="docutils literal notranslate"><span class="pre">Node</span></code> Class: The Building Blocks of Our Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-huffmancode-class-the-brains-of-the-operation">2. The <code class="docutils literal notranslate"><span class="pre">HuffmanCode</span></code> Class: The Brains of the Operation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="huffman-code">
+<h1>Huffman Code<a class="headerlink" href="#huffman-code" title="Link to this heading">#</a></h1>
+<section id="what-is-the-huffman-algorithm">
+<h2>What is the Huffman Algorithm?<a class="headerlink" href="#what-is-the-huffman-algorithm" title="Link to this heading">#</a></h2>
+<p>At its core, the <strong>Huffman Algorithm</strong> is a <strong>lossless data compression algorithm</strong>.1 The “lossless” part is key – it means that when we compress data using this method and then decompress it, we get back an exact copy of the original data.2 Nothing is lost in the process.</p>
+<p>The genius of the Huffman Algorithm, developed by David A. Huffman while he was a Ph.D. student at MIT in 1952, lies in how it assigns codes to characters.3 Instead of using a fixed number of bits for every character (like in standard ASCII, which uses 7 or 8 bits per character), Huffman coding uses <strong>variable-length codes</strong>.4 The most frequently occurring characters get shorter codes, and the less frequent characters get longer codes.5 This ultimately leads to an overall reduction in the number of bits needed to represent the data.</p>
+<p>Think of it like this: if you’re sending a message and the letter ‘e’ appears most often, wouldn’t it be more efficient to have a very short symbol for ‘e’, and perhaps a longer one for a rare letter like ‘z’? That’s the fundamental idea.</p>
+<section id="how-does-it-work-the-encoding-process">
+<h3>How Does It Work? The Encoding Process<a class="headerlink" href="#how-does-it-work-the-encoding-process" title="Link to this heading">#</a></h3>
+<p>The Huffman Algorithm works by building a special type of binary tree called a <strong>Huffman Tree</strong> (or sometimes a prefix tree).6 Here’s a step-by-step breakdown:</p>
+<ol class="arabic">
+<li><p><strong>Count Frequencies:</strong> First, we need to know how often each character (or symbol) appears in the data we want to compress. So, we scan the entire input data and count the occurrences of each unique character.</p>
+<ul>
+<li><p>Example:</p>
+<p>Let’s say our data is “ABRACADABRA”.</p>
+<ul class="simple">
+<li><p>A: 5 times</p></li>
+<li><p>B: 2 times</p></li>
+<li><p>R: 2 times</p></li>
+<li><p>C: 1 time</p></li>
+<li><p>D: 1 time</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Create Leaf Nodes:</strong> For each unique character, we create a “leaf node” (think of the bottom-most parts of a tree). Each leaf node will store the character itself and its frequency.</p></li>
+<li><p><strong>Build the Tree (The Greedy Part):</strong> This is where the “greedy” nature of the algorithm comes in.7 A greedy algorithm is one that makes the locally optimal choice at each stage with the hope of finding a global optimum.89</p></li>
+</ol>
+<ul class="simple">
+<li><p>We treat our list of leaf nodes as a priority queue, where the priority is determined by the frequency (lowest frequency has the highest priority for being picked).</p></li>
+<li><p>Repeat the following steps until only one node (the root of the Huffman Tree) remains:</p>
+<ul>
+<li><p>a. <strong>Select Two Nodes:</strong> Extract the two nodes with the lowest frequencies from the queue.</p></li>
+<li><p>b. <strong>Create a Parent Node:</strong> Create a new internal node (a node that is not a leaf). This new node will be the parent of the two nodes selected in step (a).</p></li>
+<li><p>c. <strong>Assign Frequency to Parent:</strong> The frequency of this new parent node is the sum of the frequencies of its two children.10</p></li>
+<li><p>d. <strong>Add to Queue:</strong> Insert this new parent node back into the priority queue.</p></li>
+</ul>
+</li>
+</ul>
+<p><em>Let’s visualize with our “ABRACADABRA” example:</em></p>
+<ul class="simple">
+<li><p>Initial nodes (Character: Frequency): (C:1), (D:1), (B:2), (R:2), (A:5)</p></li>
+<li><p><strong>Step 1:</strong> Pick (C:1) and (D:1). Create parent (CD:2). Nodes: (CD:2), (B:2), (R:2), (A:5)</p></li>
+<li><p><strong>Step 2:</strong> Pick (CD:2) and (B:2) (or (R:2), order doesn’t matter for same frequencies here for the <em>selection</em>, though it might slightly change the tree structure but not the overall compression efficiency). Let’s pick (CD:2) and (B:2). Create parent (CDB:4). Nodes: (R:2), (CDB:4), (A:5)</p></li>
+<li><p><strong>Step 3:</strong> Pick (R:2) and (CDB:4). (Note: (R:2) has lower frequency). Create parent (RCDB:6). Nodes: (A:5), (RCDB:6)</p></li>
+<li><p><strong>Step 4:</strong> Pick (A:5) and (RCDB:6). Create parent (ARCDB:11). This is our root node.</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p><strong>Assign Codes:</strong> Once the Huffman Tree is built, we assign binary codes to each character.11 We do this by traversing the tree from the root to each leaf node:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Assign a ‘0’ to every left branch (or edge) in the tree.</p></li>
+<li><p>Assign a ‘1’ to every right branch (or edge) in the tree.</p></li>
+<li><p>The Huffman code for each character is the sequence of 0s and 1s encountered on the path from the root to that character’s leaf node.</p></li>
+</ul>
+<p>Continuing our example (this depends on how we arranged left/right children, let’s assume one way):</p>
+<p>A possible tree structure and codes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+         <span class="o">/</span>    \
+        <span class="n">A</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+             <span class="o">/</span>   \
+            <span class="p">(</span><span class="mi">4</span><span class="p">)</span>   <span class="n">R</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+           <span class="o">/</span>   \
+          <span class="n">B</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+               <span class="o">/</span>  \
+              <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">D</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If we assign ‘0’ for left and ‘1’ for right:</p>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p>R: <code class="docutils literal notranslate"><span class="pre">11</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">100</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">1010</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">1011</span></code></p></li>
+</ul>
+<p>Notice how ‘A’ (most frequent) has the shortest code, and ‘C’ and ‘D’ (least frequent) have the longest codes. This is the magic of Huffman coding! Also, importantly, no code is a prefix of another code (e.g., ‘0’ is A’s code, no other code starts with ‘0’). This “prefix property” is crucial for decoding.</p>
+<ol class="arabic simple" start="5">
+<li><p><strong>Encode the Data:</strong> Replace each character in the original data with its newly generated Huffman code.</p>
+<ul class="simple">
+<li><p>“ABRACADABRA” becomes: <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">100</span> <span class="pre">11</span> <span class="pre">0</span> <span class="pre">1010</span> <span class="pre">0</span> <span class="pre">1011</span> <span class="pre">0</span> <span class="pre">100</span> <span class="pre">11</span> <span class="pre">0</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="how-does-it-work-the-decoding-process">
+<h3>How Does It Work? The Decoding Process<a class="headerlink" href="#how-does-it-work-the-decoding-process" title="Link to this heading">#</a></h3>
+<p>Decoding is relatively straightforward if you have the Huffman Tree (or the code table).</p>
+<ol class="arabic simple">
+<li><p><strong>Obtain the Huffman Tree/Codes:</strong> The decoder needs the same Huffman Tree (or the mapping of codes to characters) that was used for encoding. This tree/table is often transmitted along with the compressed data.</p></li>
+<li><p><strong>Read the Compressed Bit Stream:</strong> Start reading the encoded data bit by bit.</p></li>
+<li><p><strong>Traverse the Tree:</strong></p>
+<ul class="simple">
+<li><p>Begin at the root of the Huffman Tree.</p></li>
+<li><p>For each bit read from the compressed stream:</p>
+<ul>
+<li><p>If the bit is ‘0’, move to the left child in the tree.</p></li>
+<li><p>If the bit is ‘1’, move to the right child in the tree.</p></li>
+</ul>
+</li>
+<li><p>When you reach a leaf node, you have decoded one character. Record that character.</p></li>
+<li><p>Return to the root of the tree and repeat the process with the next bit in the compressed stream until all bits are processed.</p></li>
+</ul>
+</li>
+</ol>
+<p><em>Example of decoding <code class="docutils literal notranslate"><span class="pre">010011...</span></code> using our codes:</em></p>
+<ol class="arabic simple">
+<li><p>Read <code class="docutils literal notranslate"><span class="pre">0</span></code>: Path is root -&gt; left. It’s ‘A’. Output ‘A’. Back to root.</p></li>
+<li><p>Read <code class="docutils literal notranslate"><span class="pre">1</span></code>: Path is root -&gt; right. Not a leaf.</p></li>
+<li><p>Read <code class="docutils literal notranslate"><span class="pre">0</span></code>: Path is current node -&gt; left. Not a leaf.</p></li>
+<li><p>Read <code class="docutils literal notranslate"><span class="pre">0</span></code>: Path is current node -&gt; left. It’s ‘B’. Output ‘B’. Back to root.</p></li>
+<li><p>Read <code class="docutils literal notranslate"><span class="pre">1</span></code>: Path is root -&gt; right. Not a leaf.</p></li>
+<li><p>Read <code class="docutils literal notranslate"><span class="pre">1</span></code>: Path is current node -&gt; right. It’s ‘R’. Output ‘R’. Back to root. And so on.</p></li>
+</ol>
+<p>Because of the prefix property (no code is a prefix of another), there’s no ambiguity in decoding. As soon as you reach a leaf, you know you’ve completed a character.</p>
+</section>
+<section id="where-is-huffman-coding-used">
+<h3>Where is Huffman Coding Used?<a class="headerlink" href="#where-is-huffman-coding-used" title="Link to this heading">#</a></h3>
+<p>Huffman coding, either in its pure form or as a component of other algorithms, is used in a wide variety of applications.12 Here are some prominent examples:</p>
+<ol class="arabic simple">
+<li><p><strong>File Compression:</strong></p>
+<ul class="simple">
+<li><p><strong>ZIP files:</strong> Classic .zip files often use a method called “Deflate,” which combines LZ77 (another compression algorithm) with Huffman coding.13</p></li>
+<li><p><strong>GZIP files:</strong> Used extensively on Unix-like systems and for web content, GZIP also uses Deflate.14</p></li>
+</ul>
+</li>
+<li><p><strong>Image Compression:</strong></p>
+<ul class="simple">
+<li><p><strong>JPEG:</strong> While JPEG primarily uses a “lossy” compression (Discrete Cosine Transform), Huffman coding is often used as one of the final, lossless steps to compress the resulting data coefficients.</p></li>
+<li><p><strong>PNG:</strong> This is a lossless image format, and it uses the Deflate algorithm (which includes Huffman coding) for compression.</p></li>
+</ul>
+</li>
+<li><p><strong>Multimedia Formats:</strong></p>
+<ul class="simple">
+<li><p><strong>MP3 (Audio):</strong> Huffman coding is used as part of the MP3 compression process to reduce the size of audio data.15</p></li>
+<li><p><strong>MPEG (Video):</strong> Similar to JPEGs and MP3s, various MPEG video formats (like MPEG-2 used in DVDs, MPEG-4 used in many online videos) incorporate Huffman coding for entropy encoding parts of the video and audio data.</p></li>
+</ul>
+</li>
+<li><p><strong>Communication Protocols:</strong></p>
+<ul class="simple">
+<li><p><strong>HTTP/2 and HTTP/3 (HPACK and QPACK):</strong> When your browser communicates with a web server using newer HTTP versions, header compression techniques like HPACK (for HTTP/2) and QPACK (for HTTP/3) use Huffman coding to reduce the size of HTTP headers, making web pages load faster.16</p></li>
+<li><p>Fax machines also historically used forms of Huffman coding.17</p></li>
+</ul>
+</li>
+<li><p><strong>Text and Data Archiving:</strong> Anytime there’s a need to store or transmit text or other data more efficiently without losing information, Huffman coding or algorithms incorporating it can be considered.</p></li>
+</ol>
+<p>In summary, the Huffman Algorithm is a foundational technique in data compression. By assigning shorter codes to more frequent symbols and longer codes to less frequent ones, it efficiently reduces the overall size of data for storage or transmission, all while ensuring the original data can be perfectly reconstructed.18</p>
+</section>
+</section>
+<section id="example-code">
+<h2>Example Code<a class="headerlink" href="#example-code" title="Link to this heading">#</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">huffman_code</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.*</span><span class="p">;</span>
+
+<span class="c1">// Node class for Huffman tree</span>
+<span class="kd">class</span> <span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">freq</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Node</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">freq</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">freq</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">Node</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">freq</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">right</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// internal node</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">freq</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isLeaf</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">HuffmanCode</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">root</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">huffmanCode</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">HuffmanCode</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">runHuffaman</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">freqMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buildFrequencyMap</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buildTree</span><span class="p">(</span><span class="n">freqMap</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">huffmanCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">        </span><span class="n">buildCodes</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">huffmanCode</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">buildFrequencyMap</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">freqMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">freqMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="w"> </span><span class="n">freqMap</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">freqMap</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">buildTree</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">freqMap</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PriorityQueue</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Comparator</span><span class="p">.</span><span class="na">comparingInt</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="na">freq</span><span class="p">));</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">freqMap</span><span class="p">.</span><span class="na">entrySet</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">pq</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="na">getKey</span><span class="p">(),</span><span class="w"> </span><span class="n">entry</span><span class="p">.</span><span class="na">getValue</span><span class="p">()));</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">pq</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pq</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
+<span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pq</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
+<span class="w">            </span><span class="n">pq</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="n">left</span><span class="p">.</span><span class="na">freq</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">right</span><span class="p">.</span><span class="na">freq</span><span class="p">,</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">pq</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span><span class="w"> </span><span class="c1">// root</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">buildCodes</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">isLeaf</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">ch</span><span class="p">,</span><span class="w"> </span><span class="n">code</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">buildCodes</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">map</span><span class="p">);</span>
+<span class="w">        </span><span class="n">buildCodes</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">map</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">encoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">encoded</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">huffmanCode</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">ch</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">encoded</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">decode</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">encodedText</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">decoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">bit</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">encodedText</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">bit</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">isLeaf</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">decoded</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">ch</span><span class="p">);</span>
+<span class="w">                </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">decoded</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getHuffmanCodes</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">huffmanCode</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">stringToBinary</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">newString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">myBinary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">asciVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">asciVal</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">myBinary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myBinary</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">asciVal</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="n">asciVal</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">(</span><span class="n">myBinary</span><span class="p">).</span><span class="na">reverse</span><span class="p">();</span>
+<span class="w">            </span><span class="n">newString</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">newString</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Huffman_Code</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">quit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;n&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Scanner</span><span class="w"> </span><span class="n">myScan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;huffman&quot;</span><span class="p">;</span>
+
+<span class="w">        </span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">HuffmanCode</span><span class="w"> </span><span class="n">huffman</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HuffmanCode</span><span class="p">();</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Humman Code&quot;</span><span class="p">);</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">quit</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;n&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Please enter a word or string: &quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myScan</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="n">huffman</span><span class="p">.</span><span class="na">runHuffaman</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Print codes</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">huffman</span><span class="p">.</span><span class="na">getHuffmanCodes</span><span class="p">().</span><span class="na">entrySet</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="na">getKey</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">entry</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// Encode</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">encoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">huffman</span><span class="p">.</span><span class="na">encode</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nEncoded Text : &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">encoded</span><span class="p">);</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Binary       : &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">huffman</span><span class="p">.</span><span class="na">stringToBinary</span><span class="p">(</span><span class="n">text</span><span class="p">));</span>
+
+<span class="w">            </span><span class="c1">// Decode</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">decoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">huffman</span><span class="p">.</span><span class="na">decode</span><span class="p">(</span><span class="n">encoded</span><span class="p">);</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nDecoded Text:\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">decoded</span><span class="p">);</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Would you like to quit: y/n:  &quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">quit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myScan</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nbye\n&quot;</span><span class="p">);</span>
+
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">Please enter a word or string: Mississippi</span>
+<span class="cm">Mississippi</span>
+<span class="cm">p: 101</span>
+<span class="cm">s: 0</span>
+<span class="cm">i: 11</span>
+<span class="cm">M: 100</span>
+
+<span class="cm">Encoded Text : 100110011001110110111</span>
+<span class="cm">Binary       : 10011011101001111001111100111101001111001111100111101001111000011100001101001</span>
+
+<span class="cm">Decoded Text:</span>
+<span class="cm">Mississippi</span>
+<span class="cm">Would you like to quit: y/n: n</span>
+
+<span class="cm">Please enter a word or string: Bubba blows bubbles</span>
+<span class="cm">Bubba blows bubbles</span>
+<span class="cm"> : 010</span>
+<span class="cm">a: 0000</span>
+<span class="cm">B: 10111</span>
+<span class="cm">b: 11</span>
+<span class="cm">s: 011</span>
+<span class="cm">u: 100</span>
+<span class="cm">e: 1010</span>
+<span class="cm">w: 0001</span>
+<span class="cm">l: 001</span>
+<span class="cm">o: 10110</span>
+
+<span class="cm">Encoded Text : 1011110011110000010110011011000010110101110011110011010011</span>
+<span class="cm">Binary       : 10000101110101110001011000101100001100000110001011011001101111111011111100111000001100010111010111000101100010110110011001011110011</span>
+
+<span class="cm">Decoded Text:</span>
+<span class="cm">Bubba blows bubbles</span>
+<span class="cm">Would you like to quit: y/n:  y</span>
+
+<span class="cm"> bye</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</section>
+<section id="code-explanation">
+<h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Link to this heading">#</a></h2>
+<p>We have two main pieces here: a <code class="docutils literal notranslate"><span class="pre">Node</span></code> class and a <code class="docutils literal notranslate"><span class="pre">HuffmanCode</span></code> class.</p>
+<section id="the-node-class-the-building-blocks-of-our-tree">
+<h3>1. The <code class="docutils literal notranslate"><span class="pre">Node</span></code> Class: The Building Blocks of Our Tree<a class="headerlink" href="#the-node-class-the-building-blocks-of-our-tree" title="Link to this heading">#</a></h3>
+<p>Java</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Node class for Huffman tree</span>
+<span class="kd">class</span> <span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="p">;</span><span class="w">           </span><span class="c1">// The character this node might represent (if it&#39;s a leaf)</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">freq</span><span class="p">;</span><span class="w">          </span><span class="c1">// How often this character appears, or sum of frequencies of children</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">;</span><span class="w">  </span><span class="c1">// The children of this node (null if it&#39;s a leaf)</span>
+
+<span class="w">    </span><span class="c1">// Constructor for LEAF nodes (nodes that represent actual characters)</span>
+<span class="w">    </span><span class="n">Node</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">freq</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">freq</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// left and right will be null by default for a new leaf node</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Constructor for INTERNAL nodes (nodes that are created by combining two other nodes)</span>
+<span class="w">    </span><span class="n">Node</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">freq</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">right</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// A null character, indicating it&#39;s not a character leaf</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">freq</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Helper method to check if this node is a leaf node</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isLeaf</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="c1">// A leaf has no children</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Think of the <code class="docutils literal notranslate"><span class="pre">Node</span></code> class as the blueprint for every single point or junction in our Huffman Tree.</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">ch;</span></code></strong>: This variable holds the actual character (like ‘A’, ‘B’, ‘C’) if this node is a <em>leaf node</em> – meaning it’s at the very bottom of a branch and represents a character from our input text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">freq;</span></code></p>
+<p>: This stores the frequency.</p>
+<ul class="simple">
+<li><p>If it’s a leaf node, <code class="docutils literal notranslate"><span class="pre">freq</span></code> is how many times its character (<code class="docutils literal notranslate"><span class="pre">ch</span></code>) appears in the text.</p></li>
+<li><p>If it’s an <em>internal node</em> (a connection point within the tree, not a character itself), <code class="docutils literal notranslate"><span class="pre">freq</span></code> is the sum of the frequencies of all the leaves below it.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Node</span> <span class="pre">left,</span> <span class="pre">right;</span></code></strong>: These are references to other <code class="docutils literal notranslate"><span class="pre">Node</span></code> objects. They are like the branches of the tree. <code class="docutils literal notranslate"><span class="pre">left</span></code> points to the child node on the left, and <code class="docutils literal notranslate"><span class="pre">right</span></code> points to the child node on the right. If a node is a leaf, both <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code> will be <code class="docutils literal notranslate"><span class="pre">null</span></code> (meaning they don’t point to anything).</p></li>
+</ul>
+<p>Constructors (the Node(…) methods):</p>
+<p>These are special methods used to create new Node objects.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Node(char</span> <span class="pre">ch,</span> <span class="pre">int</span> <span class="pre">freq)</span></code></strong>: This is used to create a <strong>leaf node</strong>. You give it a character and its frequency.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Node(int</span> <span class="pre">freq,</span> <span class="pre">Node</span> <span class="pre">left,</span> <span class="pre">Node</span> <span class="pre">right)</span></code></strong>: This is used to create an <strong>internal node</strong>. You give it the combined frequency of its children, and references to what its <code class="docutils literal notranslate"><span class="pre">left</span></code> child and <code class="docutils literal notranslate"><span class="pre">right</span></code> child should be. We use a special character <code class="docutils literal notranslate"><span class="pre">'\0'</span></code> (the null character) for <code class="docutils literal notranslate"><span class="pre">ch</span></code> just to signify that this internal node doesn’t represent a specific character itself.</p></li>
+</ul>
+<p><strong><code class="docutils literal notranslate"><span class="pre">isLeaf()</span></code> method:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">isLeaf()</span></code></strong>: This is a handy little helper. It returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the node has no left or right children (meaning it’s a leaf), and <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p></li>
+</ul>
+</section>
+<section id="the-huffmancode-class-the-brains-of-the-operation">
+<h3>2. The <code class="docutils literal notranslate"><span class="pre">HuffmanCode</span></code> Class: The Brains of the Operation<a class="headerlink" href="#the-huffmancode-class-the-brains-of-the-operation" title="Link to this heading">#</a></h3>
+<p>Java</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">HuffmanCode</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">root</span><span class="p">;</span><span class="w"> </span><span class="c1">// This will store the very top node (the root) of our Huffman tree</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">huffmanCode</span><span class="p">;</span><span class="w"> </span><span class="c1">// This will store the generated codes (e.g., &#39;A&#39; -&gt; &quot;01&quot;)</span>
+
+<span class="w">    </span><span class="c1">// Constructor (currently empty, could be used for setup if needed)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">HuffmanCode</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Main method to orchestrate the Huffman encoding process</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">runHuffaman</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Step 1: Count character frequencies</span>
+<span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">freqMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buildFrequencyMap</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Step 2: Build the Huffman Tree using these frequencies</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buildTree</span><span class="p">(</span><span class="n">freqMap</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Step 3: Generate the codes (like &quot;0&quot; or &quot;101&quot;) for each character from the tree</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">huffmanCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// Initialize the map to store codes</span>
+<span class="w">        </span><span class="n">buildCodes</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">huffmanCode</span><span class="p">);</span><span class="w">  </span><span class="c1">// Start building codes from the root</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">HuffmanCode</span></code> class contains all the logic to take a piece of text, build the tree, generate the codes, and then encode or decode text.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">Node</span> <span class="pre">root;</span></code></strong>: This variable will eventually hold the single <code class="docutils literal notranslate"><span class="pre">Node</span></code> that is at the very top of our completed Huffman tree. It’s our entry point into the tree.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">Map&lt;Character,</span> <span class="pre">String&gt;</span> <span class="pre">huffmanCode;</span></code></strong>: A <code class="docutils literal notranslate"><span class="pre">Map</span></code> is like a dictionary. This one will store each character from our text as a “key” and its corresponding Huffman code (a string of ‘0’s and ‘1’s) as its “value”. For example, <code class="docutils literal notranslate"><span class="pre">{'A':</span> <span class="pre">&quot;0&quot;,</span> <span class="pre">'B':</span> <span class="pre">&quot;100&quot;,</span> <span class="pre">...}</span></code>.</p></li>
+</ul>
+<p>Let’s look at its key methods:</p>
+<p>public void runHuffaman(String text):</p>
+<p>This is like the main manager for the Huffman process.</p>
+<ol class="arabic simple">
+<li><p>It first calls <code class="docutils literal notranslate"><span class="pre">buildFrequencyMap(text)</span></code> to count how many times each character appears in the input <code class="docutils literal notranslate"><span class="pre">text</span></code>.</p></li>
+<li><p>Then, it calls <code class="docutils literal notranslate"><span class="pre">buildTree(freqMap)</span></code> using those frequencies to construct the actual Huffman tree. The result (the root of the tree) is stored in <code class="docutils literal notranslate"><span class="pre">this.root</span></code>.</p></li>
+<li><p>Finally, it initializes <code class="docutils literal notranslate"><span class="pre">this.huffmanCode</span></code> as a new empty map and calls <code class="docutils literal notranslate"><span class="pre">buildCodes(root,</span> <span class="pre">&quot;&quot;,</span> <span class="pre">huffmanCode)</span></code> to traverse the tree and fill up the <code class="docutils literal notranslate"><span class="pre">huffmanCode</span></code> map with the binary codes for each character.</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong><code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">Map&lt;Character,</span> <span class="pre">Integer&gt;</span> <span class="pre">buildFrequencyMap(String</span> <span class="pre">text)</span></code>:</strong></p>
+<p>Java</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">buildFrequencyMap</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">freqMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// Create an empty dictionary</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Loop through each character in the input text</span>
+<span class="w">            </span><span class="c1">// Get the current count of &#39;ch&#39;, or 0 if not seen yet, then add 1</span>
+<span class="w">            </span><span class="n">freqMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="w"> </span><span class="n">freqMap</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">freqMap</span><span class="p">;</span><span class="w"> </span><span class="c1">// Return the map with all character counts</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This method does exactly what we described as the first step of the Huffman algorithm:</p>
+<ul class="simple">
+<li><p>It creates an empty <code class="docutils literal notranslate"><span class="pre">HashMap</span></code> called <code class="docutils literal notranslate"><span class="pre">freqMap</span></code>.</p></li>
+<li><p>It then loops through every single character (<code class="docutils literal notranslate"><span class="pre">ch</span></code>) in the input <code class="docutils literal notranslate"><span class="pre">text</span></code>.</p></li>
+<li><p>For each character, it updates its count in <code class="docutils literal notranslate"><span class="pre">freqMap</span></code>. The <code class="docutils literal notranslate"><span class="pre">getOrDefault(ch,</span> <span class="pre">0)</span></code> part is clever: it tries to get the current count of <code class="docutils literal notranslate"><span class="pre">ch</span></code>. If <code class="docutils literal notranslate"><span class="pre">ch</span></code> hasn’t been seen before, it defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>, and then <code class="docutils literal notranslate"><span class="pre">1</span></code> is added.</p></li>
+<li><p>It returns this populated <code class="docutils literal notranslate"><span class="pre">freqMap</span></code>. If <code class="docutils literal notranslate"><span class="pre">text</span></code> was “ABCA”, <code class="docutils literal notranslate"><span class="pre">freqMap</span></code> would look like <code class="docutils literal notranslate"><span class="pre">{'A':</span> <span class="pre">2,</span> <span class="pre">'B':</span> <span class="pre">1,</span> <span class="pre">'C':</span> <span class="pre">1}</span></code>.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong><code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">Node</span> <span class="pre">buildTree(Map&lt;Character,</span> <span class="pre">Integer&gt;</span> <span class="pre">freqMap)</span></code>:</strong></p>
+<p>Java</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">buildTree</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">freqMap</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Create a priority queue. Nodes with lower frequency have higher priority.</span>
+<span class="w">        </span><span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PriorityQueue</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Comparator</span><span class="p">.</span><span class="na">comparingInt</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="na">freq</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Create a leaf node for each character and add it to the priority queue.</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">freqMap</span><span class="p">.</span><span class="na">entrySet</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">pq</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="na">getKey</span><span class="p">(),</span><span class="w"> </span><span class="n">entry</span><span class="p">.</span><span class="na">getValue</span><span class="p">()));</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Loop as long as there is more than one node in the queue</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">pq</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Remove the two nodes with the smallest frequency</span>
+<span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pq</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span><span class="w">  </span><span class="c1">// Smallest</span>
+<span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pq</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span><span class="w"> </span><span class="c1">// Second smallest</span>
+
+<span class="w">            </span><span class="c1">// Create a new internal node with these two nodes as children</span>
+<span class="w">            </span><span class="c1">// and frequency equal to the sum of the two nodes&#39; frequencies.</span>
+<span class="w">            </span><span class="c1">// Add the new node to the priority queue.</span>
+<span class="w">            </span><span class="n">pq</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="n">left</span><span class="p">.</span><span class="na">freq</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">right</span><span class="p">.</span><span class="na">freq</span><span class="p">,</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// The remaining node is the root of the Huffman Tree</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">pq</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This is where the Huffman tree is actually built, following the “greedy” approach:</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">PriorityQueue&lt;Node&gt;</span> <span class="pre">pq</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">PriorityQueue&lt;&gt;(Comparator.comparingInt(n</span> <span class="pre">-&gt;</span> <span class="pre">n.freq));</span></code></strong>: A <code class="docutils literal notranslate"><span class="pre">PriorityQueue</span></code> is a special kind of list where items are automatically kept in a certain order based on their “priority.” Here, we’re telling it to prioritize <code class="docutils literal notranslate"><span class="pre">Node</span></code> objects based on their <code class="docutils literal notranslate"><span class="pre">freq</span></code> attribute – specifically, nodes with <em>lower</em> frequencies will be considered higher priority (meaning they come out first).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">(Map.Entry&lt;Character,</span> <span class="pre">Integer&gt;</span> <span class="pre">entry</span> <span class="pre">:</span> <span class="pre">freqMap.entrySet())</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code></strong>: It loops through our <code class="docutils literal notranslate"><span class="pre">freqMap</span></code>. For each character and its frequency, it creates a new <strong>leaf <code class="docutils literal notranslate"><span class="pre">Node</span></code></strong> (using the first <code class="docutils literal notranslate"><span class="pre">Node</span></code> constructor) and adds it to the <code class="docutils literal notranslate"><span class="pre">pq</span></code>. So now, <code class="docutils literal notranslate"><span class="pre">pq</span></code> is full of leaf nodes, ordered by their frequency.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">(pq.size()</span> <span class="pre">&gt;</span> <span class="pre">1)</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code></p>
+<p>: This loop is the heart of the tree construction. It keeps running as long as there’s more than one node in the</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pq</span>
+</pre></div>
+</div>
+<p>.</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Node</span> <span class="pre">left</span> <span class="pre">=</span> <span class="pre">pq.poll();</span></code></strong> and <strong><code class="docutils literal notranslate"><span class="pre">Node</span> <span class="pre">right</span> <span class="pre">=</span> <span class="pre">pq.poll();</span></code></strong>: It takes out the two nodes with the <em>lowest frequencies</em> from the <code class="docutils literal notranslate"><span class="pre">pq</span></code>. (Remember, lowest frequency = highest priority).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pq.add(new</span> <span class="pre">Node(left.freq</span> <span class="pre">+</span> <span class="pre">right.freq,</span> <span class="pre">left,</span> <span class="pre">right));</span></code></p>
+<p>: It creates a</p>
+<p>new internal <code class="docutils literal notranslate"><span class="pre">Node</span></code></p>
+<p>.</p>
+<ul class="simple">
+<li><p>Its frequency is the sum of the frequencies of <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">left</span></code> becomes its left child, and <code class="docutils literal notranslate"><span class="pre">right</span></code> becomes its right child.</p></li>
+<li><p>This new internal node is then added back into the <code class="docutils literal notranslate"><span class="pre">pq</span></code>. It will find its correct place in the priority order based on its new (combined) frequency.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">pq.poll();</span></code></strong>: When the loop finishes, there’s only one node left in the <code class="docutils literal notranslate"><span class="pre">pq</span></code>. This single node is the <strong>root</strong> of the entire Huffman Tree.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong><code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">void</span> <span class="pre">buildCodes(Node</span> <span class="pre">node,</span> <span class="pre">String</span> <span class="pre">code,</span> <span class="pre">Map&lt;Character,</span> <span class="pre">String&gt;</span> <span class="pre">map)</span></code>:</strong></p>
+<p>Java</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">buildCodes</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Base case: if we&#39;ve gone past a leaf</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// If this is a leaf node, we&#39;ve found a character!</span>
+<span class="w">        </span><span class="c1">// Store the character and its accumulated code in our map.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">isLeaf</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">ch</span><span class="p">,</span><span class="w"> </span><span class="n">code</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Recursively call for the left child, appending &quot;0&quot; to the code</span>
+<span class="w">        </span><span class="n">buildCodes</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">map</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Recursively call for the right child, appending &quot;1&quot; to the code</span>
+<span class="w">        </span><span class="n">buildCodes</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">map</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This method figures out the ‘0’s and ‘1’s for each character. It’s a <strong>recursive</strong> method, meaning it calls itself to solve smaller parts of the problem.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(node</span> <span class="pre">==</span> <span class="pre">null)</span> <span class="pre">{</span> <span class="pre">return;</span> <span class="pre">}</span></code></strong>: This is a safety check or a “base case” for the recursion. If we try to go to a child that doesn’t exist, we just stop that path.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(node.isLeaf())</span> <span class="pre">{</span> <span class="pre">map.put(node.ch,</span> <span class="pre">code);</span> <span class="pre">}</span></code></strong>: If the current <code class="docutils literal notranslate"><span class="pre">node</span></code> we’re looking at is a leaf node (it has a character!), we’ve found the end of a path from the root. The <code class="docutils literal notranslate"><span class="pre">code</span></code> string that we’ve built up by travelling down the tree is the Huffman code for <code class="docutils literal notranslate"><span class="pre">node.ch</span></code>. So, we store this pair in our <code class="docutils literal notranslate"><span class="pre">map</span></code> (which is <code class="docutils literal notranslate"><span class="pre">huffmanCode</span></code> from the <code class="docutils literal notranslate"><span class="pre">runHuffman</span></code> method).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">buildCodes(node.left,</span> <span class="pre">code</span> <span class="pre">+</span> <span class="pre">&quot;0&quot;,</span> <span class="pre">map);</span></code></strong>: This is the recursive step. It calls <code class="docutils literal notranslate"><span class="pre">buildCodes</span></code> again, but this time for the <code class="docutils literal notranslate"><span class="pre">left</span></code> child of the current node. Crucially, it appends a <code class="docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code> to the <code class="docutils literal notranslate"><span class="pre">code</span></code> string because we’re taking a left branch.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">buildCodes(node.right,</span> <span class="pre">code</span> <span class="pre">+</span> <span class="pre">&quot;1&quot;,</span> <span class="pre">map);</span></code></strong>: Similarly, it calls <code class="docutils literal notranslate"><span class="pre">buildCodes</span></code> for the <code class="docutils literal notranslate"><span class="pre">right</span></code> child, appending a <code class="docutils literal notranslate"><span class="pre">&quot;1&quot;</span></code> to the <code class="docutils literal notranslate"><span class="pre">code</span></code> string for taking a right branch.</p></li>
+</ul>
+<p>Imagine starting at the <code class="docutils literal notranslate"><span class="pre">root</span></code> with an empty <code class="docutils literal notranslate"><span class="pre">code</span></code> string (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>). If you go left, the code becomes “0”. If you go left again, it’s “00”. If you then reach a leaf for character ‘X’, ‘X’ gets the code “00”. The method backtracks and explores all paths.</p>
+<hr class="docutils" />
+<p><strong><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">String</span> <span class="pre">encode(String</span> <span class="pre">text)</span></code>:</strong></p>
+<p>Java</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">encoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Loop through each character of the input text</span>
+<span class="w">            </span><span class="n">encoded</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">huffmanCode</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">ch</span><span class="p">));</span><span class="w"> </span><span class="c1">// Look up its Huffman code and add it</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">encoded</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span><span class="w"> </span><span class="c1">// Return the full string of 0s and 1s</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Once <code class="docutils literal notranslate"><span class="pre">runHuffman</span></code> has been called (so the <code class="docutils literal notranslate"><span class="pre">huffmanCode</span></code> map is filled), this method takes the original <code class="docutils literal notranslate"><span class="pre">text</span></code> and converts it into the compressed string of 0s and 1s.</p>
+<ul class="simple">
+<li><p>It iterates through each character (<code class="docutils literal notranslate"><span class="pre">ch</span></code>) of the input <code class="docutils literal notranslate"><span class="pre">text</span></code>.</p></li>
+<li><p>For each <code class="docutils literal notranslate"><span class="pre">ch</span></code>, it looks up its corresponding Huffman code in the <code class="docutils literal notranslate"><span class="pre">huffmanCode</span></code> map (e.g., if <code class="docutils literal notranslate"><span class="pre">ch</span></code> is ‘A’, it might get “0”).</p></li>
+<li><p>It appends this code to a <code class="docutils literal notranslate"><span class="pre">StringBuilder</span></code> (which is an efficient way to build strings).</p></li>
+<li><p>Finally, it returns the complete encoded string.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">String</span> <span class="pre">decode(String</span> <span class="pre">encodedText)</span></code>:</strong></p>
+<p>Java</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">decode</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">encodedText</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">decoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">;</span><span class="w"> </span><span class="c1">// Start at the root of our Huffman tree</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">bit</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">encodedText</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Loop through each &#39;0&#39; or &#39;1&#39; in the encoded text</span>
+<span class="w">            </span><span class="c1">// If the bit is &#39;0&#39;, move to the left child. Otherwise, move to the right child.</span>
+<span class="w">            </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">bit</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1">// If we&#39;ve reached a leaf node, we&#39;ve decoded a character!</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">isLeaf</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">decoded</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">ch</span><span class="p">);</span><span class="w"> </span><span class="c1">// Add the character to our result</span>
+<span class="w">                </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">;</span><span class="w">             </span><span class="c1">// Go back to the root for the next character</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">decoded</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span><span class="w"> </span><span class="c1">// Return the fully decoded text</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This method takes a compressed string of 0s and 1s (<code class="docutils literal notranslate"><span class="pre">encodedText</span></code>) and converts it back to the original text.</p>
+<ul>
+<li><p>It starts with <code class="docutils literal notranslate"><span class="pre">current</span></code> pointing to the <code class="docutils literal notranslate"><span class="pre">root</span></code> of our Huffman tree.</p></li>
+<li><p>It reads the <code class="docutils literal notranslate"><span class="pre">encodedText</span></code>   one <code class="docutils literal notranslate"><span class="pre">bit</span></code>  (‘0’ or ‘1’) at a time.</p>
+<ul class="simple">
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">bit</span></code> is ‘0’, it moves <code class="docutils literal notranslate"><span class="pre">current</span></code> to its <code class="docutils literal notranslate"><span class="pre">left</span></code> child.</p></li>
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">bit</span></code> is ‘1’, it moves <code class="docutils literal notranslate"><span class="pre">current</span></code> to its <code class="docutils literal notranslate"><span class="pre">right</span></code> child.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(current.isLeaf())</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code></p>
+<p>: After moving, it checks if</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">current</span>
+</pre></div>
+</div>
+<p>is now a leaf node.</p>
+<ul class="simple">
+<li><p>If it is, it means we’ve successfully traced a complete Huffman code. The character at this leaf (<code class="docutils literal notranslate"><span class="pre">current.ch</span></code>) is appended to our <code class="docutils literal notranslate"><span class="pre">decoded</span></code> result.</p></li>
+<li><p>Importantly, <code class="docutils literal notranslate"><span class="pre">current</span></code> is then reset back to <code class="docutils literal notranslate"><span class="pre">root</span></code> to start searching for the next character from the current position in the <code class="docutils literal notranslate"><span class="pre">encodedText</span></code>.</p></li>
+</ul>
+</li>
+<li><p>It returns the fully <code class="docutils literal notranslate"><span class="pre">decoded</span></code> string.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Map&lt;Character,</span> <span class="pre">String&gt;</span> <span class="pre">getHuffmanCodes()</span></code>:</strong></p>
+<p>Java</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getHuffmanCodes</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">huffmanCode</span><span class="p">;</span><span class="w"> </span><span class="c1">// Simply returns the map of characters to their codes</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This is a simple “getter” method. It just returns the <code class="docutils literal notranslate"><span class="pre">huffmanCode</span></code> map that was generated, in case you want to inspect the codes outside of this class.</p>
+<hr class="docutils" />
+<p><strong><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">String</span> <span class="pre">stringToBinary(String</span> <span class="pre">text)</span></code>:</strong></p>
+<p>Java</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">stringToBinary</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">newString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">myBinary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">asciVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">));</span><span class="w"> </span><span class="c1">// Get ASCII value of character</span>
+
+<span class="w">            </span><span class="c1">// Convert ASCII value to its binary representation</span>
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">asciVal</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">myBinary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myBinary</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">asciVal</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="n">asciVal</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// The above loop generates binary in reverse, so reverse it</span>
+<span class="w">            </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">(</span><span class="n">myBinary</span><span class="p">).</span><span class="na">reverse</span><span class="p">();</span>
+<span class="w">            </span><span class="n">newString</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Append to the result</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">newString</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This method is a bit different from the core Huffman logic. It appears to be a utility function to convert a given string into its <strong>standard fixed-length binary representation</strong> (likely 7 or 8-bit ASCII, padded implicitly).</p>
+<ul class="simple">
+<li><p>It iterates through each character of the input <code class="docutils literal notranslate"><span class="pre">text</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">asciVal</span> <span class="pre">=</span> <span class="pre">Integer.valueOf(text.charAt(i));</span></code> gets the numerical ASCII value of the character (e.g., ‘A’ is 65).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">(asciVal</span> <span class="pre">&gt;</span> <span class="pre">0)</span></code> loop converts this decimal ASCII value into a binary string. It does this by repeatedly taking the number modulo 2 (to get the last bit) and then dividing by 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sb</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">StringBuilder(myBinary).reverse();</span></code> is needed because the loop builds the binary string in reverse order.</p></li>
+<li><p>It concatenates these binary representations for all characters.</p></li>
+</ul>
+<p><strong>Important Note on <code class="docutils literal notranslate"><span class="pre">stringToBinary</span></code>:</strong> This method is <em>not</em> producing Huffman codes. Huffman codes are variable-length and based on frequency. <code class="docutils literal notranslate"><span class="pre">stringToBinary</span></code> produces fixed-length codes (like standard ASCII-to-binary). It might be included in this class for comparison purposes – to show how much space Huffman coding saves compared to a standard binary representation of text. For example, you could encode “AAAAA” using Huffman (might be “00000”) and then using <code class="docutils literal notranslate"><span class="pre">stringToBinary</span></code> (might be “0100000101000001010000010100000101000001”) to see the difference.</p>
+<p>So, the main parts for the Huffman algorithm itself are <code class="docutils literal notranslate"><span class="pre">runHuffman</span></code> (and the methods it calls: <code class="docutils literal notranslate"><span class="pre">buildFrequencyMap</span></code>, <code class="docutils literal notranslate"><span class="pre">buildTree</span></code>, <code class="docutils literal notranslate"><span class="pre">buildCodes</span></code>), <code class="docutils literal notranslate"><span class="pre">encode</span></code>, and <code class="docutils literal notranslate"><span class="pre">decode</span></code>. The <code class="docutils literal notranslate"><span class="pre">Node</span></code> class is the essential data structure it uses.</p>
+<p>Hopefully, this breaks down the code in a way that makes sense! The key is to see how these different code pieces work together to implement the steps of the Huffman algorithm we discussed earlier.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="GraphsDijkstra.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Dijkstra’s Algorithm</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Serializable.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Serialization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-huffman-algorithm">What is the Huffman Algorithm?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-it-work-the-encoding-process">How Does It Work? The Encoding Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-it-work-the-decoding-process">How Does It Work? The Decoding Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-is-huffman-coding-used">Where is Huffman Coding Used?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-code">Example Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-explanation">Code Explanation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-node-class-the-building-blocks-of-our-tree">1. The <code class="docutils literal notranslate"><span class="pre">Node</span></code> Class: The Building Blocks of Our Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-huffmancode-class-the-brains-of-the-operation">2. The <code class="docutils literal notranslate"><span class="pre">HuffmanCode</span></code> Class: The Brains of the Operation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
