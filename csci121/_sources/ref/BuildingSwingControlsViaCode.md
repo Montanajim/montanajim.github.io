@@ -10,7 +10,7 @@ Instead of using a drag-and-drop visual editor, creating controls via code means
 
    Java
 
-   ```
+   ```Java
    // Create a button object
    JButton myButton = new JButton("Click Me!");
    
@@ -27,7 +27,7 @@ Instead of using a drag-and-drop visual editor, creating controls via code means
 
    Java
 
-   ```
+   ```java
    // Assume 'myFrame' is your JFrame (window)
    // Assume 'myPanel' is a JPanel inside the frame
    myPanel.add(nameLabel); // Add the label to the panel
@@ -105,7 +105,7 @@ Now, let's address *why* we need to configure specific things:
 
    The most common listener is 
 
-  ```
+  ```java
   ActionListener
   ```
 
@@ -113,7 +113,7 @@ Now, let's address *why* we need to configure specific things:
 
   Java
 
-  ```
+  ```java
   // 1. Define what happens when clicked (often using a lambda expression)
   ActionListener buttonAction = event -> {
       System.out.println("Button was clicked!");

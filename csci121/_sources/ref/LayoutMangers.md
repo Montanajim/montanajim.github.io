@@ -1,4 +1,4 @@
-Of course, Jim. Below is a **professional, well-structured Java program** that demonstrates the major **layout managers** in **Swing**. I have included examples for:
+# Layout Managers
 
 - **FlowLayout**
 - **BorderLayout**
@@ -8,8 +8,7 @@ Of course, Jim. Below is a **professional, well-structured Java program** that d
 
 Each layout will be demonstrated in a **tabbed pane**, so you can easily switch between layouts during the demonstration.
 
-Here is the complete code:
-
+## Example code
 ```java
 /*
 Demo of Layout Managers
@@ -126,7 +125,7 @@ public class J2_LayoutManager_Demo {
 
 ------
 
-### Notes:
+## Notes:
 
 - **FlowLayout**: Places components in a line, wrapping as needed.
 - **BorderLayout**: Divides the container into five regions (North, South, East, West, Center).
@@ -134,7 +133,7 @@ public class J2_LayoutManager_Demo {
 - **BoxLayout**: Aligns components either vertically (Y_AXIS) or horizontally (X_AXIS).
 - **GridBagLayout**: Flexible, allows fine-tuned positioning and sizing.
 
-### References:
+## References:
 
 - Oracle, *Creating a GUI with Swing - Layout Management* ([link](https://docs.oracle.com/javase/tutorial/uiswing/layout/index.html))
 - Oracle, *How to Use BorderLayout* ([link](https://docs.oracle.com/javase/tutorial/uiswing/layout/border.html))
