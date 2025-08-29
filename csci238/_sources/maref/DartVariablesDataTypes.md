@@ -15,8 +15,8 @@
 
 
 
-``` {admonition}Variables
-  *Ifinitial values are not declared
+```{admonition} Variables
+  *If initial values are not declared
   then the intial value is null*
 
   **ALL VARIABLES ARE OBJECTS**
@@ -161,6 +161,4 @@ main(List<String> arguments) {
 ```
 
 
-
----
 
