@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Webviewer With URL Input &#8212; Mobile Apps</title>
+    <title>Stateless and Stateful Widgets &#8212; Mobile Apps</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'maref/WebviewerWithURLInput';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'maref/StatelesStatefulWidgets';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Switch Rev2" href="SwitchRev2.html" />
-    <link rel="prev" title="SQFLITE" href="SQFLITE_Reference.html" />
+    <link rel="next" title="Stateless Widgets - Container" href="StatelessWidgetsContainer.html" />
+    <link rel="prev" title="Input Output" href="InputOutput.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,6 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="DartClasses.html">Dart Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Future.html">Future</a></li>
 <li class="toctree-l1"><a class="reference internal" href="InputOutput.html">Input Output</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Stateless and Stateful Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StatelessWidgetsContainer.html">Stateless Widgets - Container</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StatelessWidgetsListView.html">Stateless Widgets - ListView</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StatelessRoutes.html">Stateless Routes</a></li>
@@ -200,7 +201,7 @@
 <li class="toctree-l1"><a class="reference internal" href="JSONReadLocalFile.html">JSON  - Read  Local JSON File</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReadJSONFromWebpage.html">Read JSON From Webpage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SQFLITE_Reference.html">SQFLITE</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Webviewer With URL Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WebviewerWithURLInput.html">Webviewer With URL Input</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SwitchRev2.html">Switch Rev2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CarAppVersion2.html">Car App Version 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Breakout.html">Breakout</a></li>
@@ -262,7 +263,7 @@
       
       
       
-      <li><a href="../_sources/maref/WebviewerWithURLInput.md" target="_blank"
+      <li><a href="../_sources/maref/StatelesStatefulWidgets.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -346,7 +347,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Webviewer With URL Input</h1>
+    <h1>Stateless and Stateful Widgets</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -356,7 +357,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stateless-widget"><strong>Stateless Widget</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stateful-widget"><strong>Stateful Widget</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-a-stateful-widget-needs-a-state-class"><strong>Why a Stateful Widget needs a <code class="docutils literal notranslate"><span class="pre">State</span></code> class</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-not-just-put-everything-in-one-class"><strong>Why not just put everything in one class?</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works-in-practice"><strong>How it works in practice</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-short"><strong>In short:</strong></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -368,110 +376,187 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="webviewer-with-url-input">
-<h1>Webviewer With URL Input<a class="headerlink" href="#webviewer-with-url-input" title="Link to this heading">#</a></h1>
-<section id="lecture-code">
-<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Link to this heading">#</a></h2>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">//webview_url</span>
-<span class="c1">// developer: James Goudy</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="stateless-and-stateful-widgets">
+<h1>Stateless and Stateful Widgets<a class="headerlink" href="#stateless-and-stateful-widgets" title="Link to this heading">#</a></h1>
+<p>[TOC]</p>
+<hr class="docutils" />
+<section id="stateless-widget">
+<h2><strong>Stateless Widget</strong><a class="headerlink" href="#stateless-widget" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Definition:</strong> A widget that does not change once it is built.</p></li>
+<li><p><strong>Use Case:</strong> Good for static content that depends only on its configuration (constructor parameters) and the parent widget’s context.</p></li>
+<li><p><strong>Lifecycle:</strong> It is built once and does not rebuild unless the parent rebuilds it.</p></li>
+<li><p><strong>Examples:</strong> <code class="docutils literal notranslate"><span class="pre">Text</span></code>, <code class="docutils literal notranslate"><span class="pre">Icon</span></code>, <code class="docutils literal notranslate"><span class="pre">Container</span></code> (when used with fixed values).</p></li>
+</ul>
+<p><strong>Code Example:</strong></p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyStatelessWidget</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatelessWidget</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">title</span><span class="p">;</span>
 
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:io&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:webview_flutter/webview_flutter.dart&#39;</span><span class="p">;</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MaterialApp</span><span class="p">(</span><span class="nl">home:</span><span class="w"> </span><span class="n">WebViewExample</span><span class="p">()));</span>
-<span class="p">}</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">WebViewExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatefulWidget</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">WebViewExample</span><span class="p">({</span><span class="n">Key</span><span class="o">?</span><span class="w"> </span><span class="n">key</span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">key:</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="n">WebViewExampleState</span><span class="w"> </span><span class="n">createState</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">WebViewExampleState</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">WebViewExampleState</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">State</span><span class="o">&lt;</span><span class="n">WebViewExample</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="n">myFocusNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FocusNode</span><span class="p">();</span>
-
-<span class="w">  </span><span class="n">TextEditingController</span><span class="w"> </span><span class="n">myTextController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextEditingController</span><span class="p">();</span>
-<span class="w">  </span><span class="kt">String</span><span class="w"> </span><span class="n">myUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://www.google.com&quot;</span><span class="p">;</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initState</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Platform</span><span class="p">.</span><span class="n">isAndroid</span><span class="p">)</span><span class="w"> </span><span class="n">WebView</span><span class="p">.</span><span class="n">platform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SurfaceAndroidWebView</span><span class="p">();</span>
-
-<span class="w">    </span><span class="n">myTextController</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;www.google.com&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">dispose</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">myTextController</span><span class="p">.</span><span class="n">dispose</span><span class="p">();</span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">dispose</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">bttnPressed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">setState</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">myUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://</span><span class="si">${</span><span class="n">myTextController</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="p">});</span>
-
-<span class="w">    </span><span class="n">myTextController</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="n">FocusScope</span><span class="p">.</span><span class="n">of</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">requestFocus</span><span class="p">(</span><span class="n">myFocusNode</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">clearTextField</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">myTextController</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-
-<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">MyStatelessWidget</span><span class="p">({</span><span class="kd">required</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">title</span><span class="p">});</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Scaffold</span><span class="p">(</span>
-<span class="w">        </span><span class="nl">appBar:</span><span class="w"> </span><span class="n">AppBar</span><span class="p">(</span><span class="nl">title:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Webview URL Example&#39;</span><span class="p">)),</span>
-<span class="w">        </span><span class="nl">body:</span><span class="w"> </span><span class="n">ListView</span><span class="p">(</span><span class="nl">children:</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span><span class="p">[</span>
-<span class="w">          </span><span class="n">Row</span><span class="p">(</span>
-<span class="w">              </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Enter Url:&#39;</span><span class="p">),</span>
-<span class="w">            </span><span class="n">Expanded</span><span class="p">(</span>
-<span class="w">                </span><span class="nl">child:</span><span class="w"> </span><span class="n">TextField</span><span class="p">(</span>
-<span class="w">                    </span><span class="nl">controller:</span><span class="w"> </span><span class="n">myTextController</span><span class="p">,</span>
-<span class="w">                    </span><span class="nl">focusNode:</span><span class="w"> </span><span class="n">myFocusNode</span><span class="p">,</span>
-<span class="w">                    </span><span class="nl">decoration:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">InputDecoration</span><span class="p">(</span>
-<span class="w">                        </span><span class="nl">border:</span><span class="w"> </span><span class="n">OutlineInputBorder</span><span class="p">(</span>
-<span class="w">                            </span><span class="nl">borderSide:</span><span class="w"> </span><span class="n">BorderSide</span><span class="p">(</span>
-<span class="w">                                </span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">indigo</span><span class="p">,</span>
-<span class="w">                                </span><span class="nl">width:</span><span class="w"> </span><span class="m">2.0</span><span class="p">,</span>
-<span class="w">                                </span><span class="nl">style:</span><span class="w"> </span><span class="n">BorderStyle</span><span class="p">.</span><span class="n">solid</span><span class="p">))),</span>
-<span class="w">                    </span><span class="nl">textInputAction:</span><span class="w"> </span><span class="n">TextInputAction</span><span class="p">.</span><span class="n">newline</span><span class="p">,</span>
-<span class="w">                    </span><span class="nl">onSubmitted:</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                      </span><span class="n">bttnPressed</span><span class="p">();</span>
-<span class="w">                      </span><span class="n">myTextController</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
-<span class="w">                      </span><span class="n">FocusScope</span><span class="p">.</span><span class="n">of</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">requestFocus</span><span class="p">(</span><span class="n">myFocusNode</span><span class="p">);</span>
-<span class="w">                    </span><span class="p">})),</span>
-<span class="w">            </span><span class="n">Container</span><span class="p">(</span><span class="w"> </span>
-<span class="w">                </span><span class="nl">margin:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">10</span><span class="p">),</span>
-<span class="w">                </span><span class="nl">child:</span><span class="w"> </span><span class="n">ElevatedButton</span><span class="p">(</span>
-<span class="w">                </span><span class="nl">onPressed:</span><span class="w"> </span><span class="n">clearTextField</span><span class="p">,</span>
-<span class="w">                </span><span class="nl">child:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Clear&quot;</span><span class="p">))</span>
-<span class="w">            </span><span class="p">)]),</span>
-<span class="w">          </span><span class="k">const</span><span class="w"> </span><span class="n">Divider</span><span class="p">(</span><span class="nl">height:</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="nl">thickness:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">),</span>
-<span class="w">          </span><span class="n">SizedBox</span><span class="p">(</span>
-<span class="w">              </span><span class="nl">height:</span><span class="w"> </span><span class="n">MediaQuery</span><span class="p">.</span><span class="n">of</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">,</span>
-<span class="w">              </span><span class="nl">width:</span><span class="w"> </span><span class="n">MediaQuery</span><span class="p">.</span><span class="n">of</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span>
-<span class="w">              </span><span class="nl">child:</span>
-
-<span class="w">              </span><span class="n">WebView</span><span class="p">(</span>
-<span class="w">                </span><span class="nl">key:</span><span class="w"> </span><span class="n">UniqueKey</span><span class="p">(),</span>
-<span class="w">                </span><span class="nl">initialUrl:</span><span class="w"> </span><span class="n">myUrl</span><span class="p">,</span>
-<span class="w">                </span><span class="nl">javascriptMode:</span><span class="w"> </span><span class="n">JavascriptMode</span><span class="p">.</span><span class="n">unrestricted</span><span class="p">,</span>
-<span class="w">              </span><span class="p">))</span>
-<span class="w">        </span><span class="p">]));</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">title</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
+<hr class="docutils" />
+<section id="stateful-widget">
+<h2><strong>Stateful Widget</strong><a class="headerlink" href="#stateful-widget" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Definition:</strong> A widget that can change its appearance or behavior in response to events, user input, or data changes.</p></li>
+<li><p><strong>Use Case:</strong> Good for interactive widgets that update dynamically, such as forms, animations, or buttons that change when pressed.</p></li>
+<li><p><strong>Lifecycle:</strong> A <code class="docutils literal notranslate"><span class="pre">StatefulWidget</span></code> has two classes:</p>
+<ol class="arabic simple">
+<li><p>The <strong>widget class</strong> (immutable).</p></li>
+<li><p>The <strong>State class</strong> (mutable, where the logic and changing data live).
+Flutter rebuilds the UI when <code class="docutils literal notranslate"><span class="pre">setState()</span></code> is called inside the <code class="docutils literal notranslate"><span class="pre">State</span></code> class.</p></li>
+</ol>
+</li>
+</ul>
+<p><strong>Code Example:</strong></p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyStatefulWidget</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatefulWidget</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">_MyStatefulWidgetState</span><span class="w"> </span><span class="n">createState</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_MyStatefulWidgetState</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">_MyStatefulWidgetState</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">State</span><span class="o">&lt;</span><span class="n">MyStatefulWidget</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">_increment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">setState</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Counter: </span><span class="si">$</span><span class="n">counter</span><span class="s1">&#39;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">ElevatedButton</span><span class="p">(</span>
+<span class="w">          </span><span class="nl">onPressed:</span><span class="w"> </span><span class="n">_increment</span><span class="p">,</span>
+<span class="w">          </span><span class="nl">child:</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Increment&#39;</span><span class="p">),</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><strong>Key Difference in One Sentence</strong></p>
+<ul class="simple">
+<li><p>A <strong>StatelessWidget</strong> is <strong>immutable</strong> (cannot change after it’s built).</p></li>
+<li><p>A <strong>StatefulWidget</strong> is <strong>mutable</strong> (can rebuild itself when its state changes).</p></li>
+</ul>
+<hr class="docutils" />
+<p>Here’s a clear <strong>side-by-side comparison table</strong> of <strong>Stateless vs Stateful Widgets</strong> in Flutter that you can use for teaching:</p>
+<hr class="docutils" />
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p><strong>StatelessWidget</strong></p></th>
+<th class="head"><p><strong>StatefulWidget</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Mutability</strong></p></td>
+<td><p>Immutable – cannot change once built</p></td>
+<td><p>Mutable – can change during runtime</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Rebuild Trigger</strong></p></td>
+<td><p>Rebuilt only when parent widget rebuilds</p></td>
+<td><p>Can rebuild itself using <code class="docutils literal notranslate"><span class="pre">setState()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Lifecycle</strong></p></td>
+<td><p>Has only the <code class="docutils literal notranslate"><span class="pre">build()</span></code> method</p></td>
+<td><p>Has both widget class and <code class="docutils literal notranslate"><span class="pre">State</span></code> class with lifecycle methods (<code class="docutils literal notranslate"><span class="pre">initState</span></code>, <code class="docutils literal notranslate"><span class="pre">setState</span></code>, <code class="docutils literal notranslate"><span class="pre">dispose</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Data Handling</strong></p></td>
+<td><p>Displays data that never changes (static content)</p></td>
+<td><p>Manages data that may change over time (dynamic content)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Use Cases</strong></p></td>
+<td><p>Static UI like <code class="docutils literal notranslate"><span class="pre">Text</span></code>, <code class="docutils literal notranslate"><span class="pre">Icon</span></code>, <code class="docutils literal notranslate"><span class="pre">Container</span></code> (fixed values)</p></td>
+<td><p>Interactive UI like counters, forms, animations, checkboxes</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Performance</strong></p></td>
+<td><p>Lightweight and efficient</p></td>
+<td><p>Slightly heavier due to state management</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Examples</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Text(&quot;Hello&quot;)</span></code>, <code class="docutils literal notranslate"><span class="pre">Icon(Icons.star)</span></code></p></td>
+<td><p>Counter app, toggle switches, form inputs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<p><strong>Summary:</strong></p>
+<ul class="simple">
+<li><p>Use <strong>StatelessWidget</strong> for <strong>static UI</strong>.</p></li>
+<li><p>Use <strong>StatefulWidget</strong> for <strong>interactive/dynamic UI</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="why-a-stateful-widget-needs-a-state-class">
+<h2><strong>Why a Stateful Widget needs a <code class="docutils literal notranslate"><span class="pre">State</span></code> class</strong><a class="headerlink" href="#why-a-stateful-widget-needs-a-state-class" title="Link to this heading">#</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">StatefulWidget</span></code> is split into <strong>two parts</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>The widget class</strong></p>
+<ul class="simple">
+<li><p>Immutable.</p></li>
+<li><p>Holds configuration data (like constructor parameters).</p></li>
+<li><p>Exists only to tell Flutter: “Here is how my UI should be built.”</p></li>
+</ul>
+</li>
+<li><p><strong>The <code class="docutils literal notranslate"><span class="pre">State</span></code> class</strong></p>
+<ul class="simple">
+<li><p>Mutable.</p></li>
+<li><p>Holds the data that can change over time.</p></li>
+<li><p>Provides the logic for updating the UI.</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">setState()</span></code> to tell Flutter to rebuild the widget tree.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<section id="why-not-just-put-everything-in-one-class">
+<h3><strong>Why not just put everything in one class?</strong><a class="headerlink" href="#why-not-just-put-everything-in-one-class" title="Link to this heading">#</a></h3>
+<p>Flutter’s UI system is built around immutability:</p>
+<ul class="simple">
+<li><p>All widgets in Flutter are immutable (their fields cannot change once created).</p></li>
+<li><p>When something changes, Flutter doesn’t “mutate” the widget — it <strong>rebuilds</strong> a new widget tree.</p></li>
+</ul>
+<p>If <code class="docutils literal notranslate"><span class="pre">StatefulWidget</span></code> itself were mutable, it would break this consistency. By separating configuration (<code class="docutils literal notranslate"><span class="pre">StatefulWidget</span></code>) from behavior (<code class="docutils literal notranslate"><span class="pre">State</span></code>), Flutter achieves:</p>
+<ul class="simple">
+<li><p><strong>Performance efficiency:</strong> only the <code class="docutils literal notranslate"><span class="pre">State</span></code> object is preserved during rebuilds, not the whole widget.</p></li>
+<li><p><strong>Clarity:</strong> you can see which parts are static (the widget class) and which parts are dynamic (the state).</p></li>
+<li><p><strong>Reusability:</strong> the same widget class can be paired with different states in different contexts.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="how-it-works-in-practice">
+<h3><strong>How it works in practice</strong><a class="headerlink" href="#how-it-works-in-practice" title="Link to this heading">#</a></h3>
+<p>When Flutter rebuilds:</p>
+<ol class="arabic simple">
+<li><p>The old <code class="docutils literal notranslate"><span class="pre">State</span></code> object is kept.</p></li>
+<li><p>The new <code class="docutils literal notranslate"><span class="pre">StatefulWidget</span></code> object is created (with new config data if needed).</p></li>
+<li><p>The existing <code class="docutils literal notranslate"><span class="pre">State</span></code> is reattached to this new widget.</p></li>
+</ol>
+<p>That’s why you must inherit from <code class="docutils literal notranslate"><span class="pre">State</span></code> — so Flutter knows:</p>
+<ul class="simple">
+<li><p>where to store your mutable data, and</p></li>
+<li><p>how to rebuild your widget when that data changes.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="in-short">
+<h3><strong>In short:</strong><a class="headerlink" href="#in-short" title="Link to this heading">#</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">StatefulWidget</span></code> is immutable by design. Its mutable companion, the <code class="docutils literal notranslate"><span class="pre">State</span></code> class, exists to hold data and logic that can change. That’s why every <code class="docutils literal notranslate"><span class="pre">StatefulWidget</span></code> must be paired with a <code class="docutils literal notranslate"><span class="pre">State</span></code> subclass.</p>
+</section>
 </section>
 </section>
 
@@ -506,20 +591,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="SQFLITE_Reference.html"
+       href="InputOutput.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">SQFLITE</p>
+        <p class="prev-next-title">Input Output</p>
       </div>
     </a>
     <a class="right-next"
-       href="SwitchRev2.html"
+       href="StatelessWidgetsContainer.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Switch Rev2</p>
+        <p class="prev-next-title">Stateless Widgets - Container</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -539,7 +624,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-code">Lecture Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stateless-widget"><strong>Stateless Widget</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stateful-widget"><strong>Stateful Widget</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-a-stateful-widget-needs-a-state-class"><strong>Why a Stateful Widget needs a <code class="docutils literal notranslate"><span class="pre">State</span></code> class</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-not-just-put-everything-in-one-class"><strong>Why not just put everything in one class?</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works-in-practice"><strong>How it works in practice</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-short"><strong>In short:</strong></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
