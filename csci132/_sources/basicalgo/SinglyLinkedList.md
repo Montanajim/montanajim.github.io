@@ -3,7 +3,7 @@
 
 
 ```{admonition} Definition
-**singly linked list** is a type of linked list that is *unidirectional*. It can be traversed in only one direction from the head to the last node (tail). The last node always points to null
+**singly linked list**  is a type of linked list that is *unidirectional*. It can be traversed in only one direction from the head to the last node (tail). The last node always points to null
 ```
 
 

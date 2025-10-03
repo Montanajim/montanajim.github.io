@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -218,10 +218,12 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="DataStructuresAndAlgorithms.html">Data Structures and Algorithms</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="ArrayTechniques.html">Array Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="ArraysCoreFunctionality.html">Arrays Core Functionality</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ArrayWarpAround.html">Array Warp Around</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ArrayAddDeleteData.html">Array Add and Delete Data</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1"><a class="reference internal" href="EncapsulationNonEncapsulation.html">Encapsulation vs Non-Encapsulation</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="BigONotation.html">Big O Notation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Visualizing Big O notation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="BigONotationExplained.html">Big O Notation - Explained</a></li>
@@ -246,6 +248,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="SortAlgorithms.html">Sorting Algorithms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Sort_Bubble.html">Bubble Sort</a></li>
 
+<li class="toctree-l2"><a class="reference internal" href="MergeSort.html">Merge Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MergeSortArrays.html">Merge Sort - Arrays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
 </ul>
 </details></li>
@@ -439,7 +443,7 @@ document.write(`
 <section id="o-1">
 <h2>O(1)<a class="headerlink" href="#o-1" title="Link to this heading">#</a></h2>
 <p>O(1) means constant time. No matter what size the input, the runtime will always be the same. A simple example is finding the middle number in a list. I’ll ensure that all code return the amount of time a command was run in the function. This may make the code look just a bit bloated, but for a good <a class="reference external" href="http://reason.To">reason.To</a> find the center of a list we simply divide the length of the list in two, and return that number. It does not matter if a list has 10 elements or 100 elements, the same amount of steps is performed:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">O1</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">O1</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">result</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
     <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -455,8 +459,8 @@ document.write(`
 <section id="o-logn">
 <h2>O(logN)<a class="headerlink" href="#o-logn" title="Link to this heading">#</a></h2>
 <p>O(logN) increases as the input size goes up. However, it goes up as a log of the input size. This means that you can exponentially increase your input size, without linearly increasing the processing time to match.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">OlogN</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">OlogN</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">length</span> <span class="o">/=</span> <span class="mi">2</span>
         <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -476,7 +480,7 @@ document.write(`
 <section id="o-n">
 <h2>O(N)<a class="headerlink" href="#o-n" title="Link to this heading">#</a></h2>
 <p>O(N) is linear. This means that the run time is linearly matched to the input size. They should increase at exactly the same rate.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ON</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">check</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ON</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">check</span><span class="p">):</span>
     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -494,7 +498,7 @@ document.write(`
 <section id="o-n-2">
 <h2>O(N^2^)<a class="headerlink" href="#o-n-2" title="Link to this heading">#</a></h2>
 <p>O(N^2^)’s runtime will go up as a square of the input size. The runtime goes up faster than your input sizes, so processing time increases rapidly. This is usually when you iterate through multiple loops at the same time like so:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ON2</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ON2</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -512,7 +516,7 @@ document.write(`
 <section id="o-n-3">
 <h2>O(N^3^)<a class="headerlink" href="#o-n-3" title="Link to this heading">#</a></h2>
 <p>O(N^3^)is merely O(N^2^) with another exponent. I wanted to show the difference by simply changing the exponent.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ON3</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ON3</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
