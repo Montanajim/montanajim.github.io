@@ -148,22 +148,51 @@ TRUNCATE TABLE `table1`;COMMIT;
 ```php
 <?php
 
-$host = "locahost";
-$dbname = "wp_doggyembed";
-$user = "root";
-$pwd = "";
-
 try{
-    $pdo = new PDO('mysql:hosthame='.$host.';dbname='.$dbname.';', $user,$pwd);
-    }
+
+    //table1 
+    
+    $host = "127.0.0.1:3308";
+    $user = "root";
+    $pw = "";
+
+    // created a pdo object  
+    // in production change the user with appropriate privs
+    $pdo = new PDO('mysql:host=127.0.0.1:3308;dbname=wp_doggyembed',$user,$pw);
+
+    // lets setup some attributes for the object
+    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+    // only for educational purposes
+    $dbstatus = "Good database connection";
+
+    echo($dbstatus.'<br><hr><br>');
+
+}
 catch(PDOException $ep)
 {
-        echo('Bad DB Connection: ' + $ep->getMessage());
-        echo('<br><hr><br>');
-        die();
+    $dbstatus = "Database connection failed<br>".
+                    $ep->getMessage();
+
+    // for development purposes
+    echo($dbstatus.'<br><hr><br>');
+
+    die();
+    // can also use exit
+    // we don't page to load any further\
+}
+catch(Exception $e)
+{
+    $dbstatus = "Database connection failed<br>".
+                    $e->getMessage();
+    
+    echo($dbstatus.'<br><hr><br>');
+
+    die();
 }
 
-    session_start();
+session_start();
+
 ?>
 ```
 
@@ -173,32 +202,23 @@ catch(PDOException $ep)
 
 ```php
 <!DOCTYPE html>
-<html>
-<head> 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-<title>Home</title>
-    
-<link rel="stylesheet" href="style.css">
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Picture Embeding - Rev. 11-2023</h1>
-    </header>
+    <div class = "content">
+        <h1>Picture Embedding</h1>
 
-    <main>
+        <p> <a href="doggyinput.php">Dog Picture Input</a> &nbsp;&nbsp;
+            <a href="getpix.php">Display Doggy Pictgures</a> &nbsp; &nbsp;
+            <a href="default.php">home</a>
+        </p>
 
-    
-    <p><a href="doggyinput.php">Dog Picture Input</a> &nbsp;&nbsp;
-        <a href="getpix.php">Display Doggy Pictures</a> &nbsp;&nbsp;
-        <a href="index.php">Home</a></p>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 Jimbo</p>
-    </footer>
+    </div>
 </body>
 </html>
 ```
@@ -208,6 +228,27 @@ catch(PDOException $ep)
 
 
 ## doggyinput.php
+
+The `enctype="multipart/form-data"` attribute in an HTML `<form>` specifies how form data should be encoded when it’s submitted to the server. Here's a breakdown:
+
+### Context
+
+- **Used in:** `<form>` element
+- **Purpose:** Defines how form data is sent to the server.
+
+### Why use `multipart/form-data`?
+
+It is necessary when a form includes file uploads, like images, documents, etc. It allows the form to send data in a way that supports sending both text and binary data.
+
+### How it works
+
+When `enctype="multipart/form-data"` is set:
+
+1. **Each form field's data** is sent as a separate part of the request body.
+1. **File data** is encoded in binary, while other fields (e.g., text inputs) are encoded as plain text.
+1. Each part is separated by a **boundary string** that the browser generates, making it easy for the server to parse the data correctly.
+
+
 
 ```php
 
@@ -229,7 +270,7 @@ catch(PDOException $ep)
 
 require('dbconnect.php');
 
-// for testing
+// for testing and demonstonly
 // print_r($_POST);
 // echo('<br>');
 // print_r($_FILES);
@@ -290,6 +331,18 @@ if(isset($_POST['dogname']) && !empty($_POST['dogname']))
 }
 else
 {
+    
+    // *** NOTE enctype="multipart/form-data" ***
+    // The enctype="multipart/form-data" attribute in an HTML <form> 
+    // is used when submitting forms that include file uploads. 
+    // It ensures that the form data is sent in separate parts, 
+    // allowing both text and binary data (like files) to be transmitted. 
+    // This encoding is necessary for handling file uploads, 
+    // as it allows the server to process each part correctly, 
+    // separating text fields from file data.
+    // *******************************************************************
+
+    
 echo('
     <form action="doggyinput.php" method="POST" enctype="multipart/form-data">
         <table border="1">

@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -185,7 +185,8 @@
 <li class="toctree-l2"><a class="reference internal" href="SessionHomeworkHint.html">Session Variable Homework Assignment Hint</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="PDOConnections.html">PDO Connections</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1"><a class="reference internal" href="PDOConnections.html">PDO Connections</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="PHPClosingTags.html">PHP Closing Tags: Leave Them Out Or Out</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="PDOFirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PDONoPlaceHoldersExample.html">PDO With No Named Placeholders</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PHPStringSanitation.html">PHP String Sanitation</a></li>
@@ -195,6 +196,7 @@
 <li class="toctree-l1"><a class="reference internal" href="AddEditDelete.html">Add Edit Delete</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Saving Pictures In Database</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Readingjson.html">Reading json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DateFunctionPHP.html">Date Function</a></li>
 </ul>
 
     </div>
@@ -351,7 +353,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-doggy-database">SQL Doggy Database</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dbconnect-php">dbconnect.php</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index-php">index.php</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doggyinput-php">doggyinput.php</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doggyinput-php">doggyinput.php</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#context">Context</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-multipart-form-data">Why use <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works">How it works</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getpix-php">getpix.php</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#style-css">style.css</a></li>
 </ul>
@@ -496,22 +503,51 @@ document.write(`
 <h2>dbconnect.php<a class="headerlink" href="#dbconnect-php" title="Link to this heading">#</a></h2>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 
-<span class="nv">$host</span> <span class="o">=</span> <span class="s2">&quot;locahost&quot;</span><span class="p">;</span>
-<span class="nv">$dbname</span> <span class="o">=</span> <span class="s2">&quot;wp_doggyembed&quot;</span><span class="p">;</span>
-<span class="nv">$user</span> <span class="o">=</span> <span class="s2">&quot;root&quot;</span><span class="p">;</span>
-<span class="nv">$pwd</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
-
 <span class="k">try</span><span class="p">{</span>
-    <span class="nv">$pdo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s1">&#39;mysql:hosthame=&#39;</span><span class="o">.</span><span class="nv">$host</span><span class="o">.</span><span class="s1">&#39;;dbname=&#39;</span><span class="o">.</span><span class="nv">$dbname</span><span class="o">.</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span><span class="nv">$pwd</span><span class="p">);</span>
-    <span class="p">}</span>
+
+    <span class="c1">//table1 </span>
+    
+    <span class="nv">$host</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1:3308&quot;</span><span class="p">;</span>
+    <span class="nv">$user</span> <span class="o">=</span> <span class="s2">&quot;root&quot;</span><span class="p">;</span>
+    <span class="nv">$pw</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+    <span class="c1">// created a pdo object  </span>
+    <span class="c1">// in production change the user with appropriate privs</span>
+    <span class="nv">$pdo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s1">&#39;mysql:host=127.0.0.1:3308;dbname=wp_doggyembed&#39;</span><span class="p">,</span><span class="nv">$user</span><span class="p">,</span><span class="nv">$pw</span><span class="p">);</span>
+
+    <span class="c1">// lets setup some attributes for the object</span>
+    <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="nx">PDO</span><span class="o">::</span><span class="na">ATTR_ERRMODE</span><span class="p">,</span><span class="nx">PDO</span><span class="o">::</span><span class="na">ERRMODE_EXCEPTION</span><span class="p">);</span>
+
+    <span class="c1">// only for educational purposes</span>
+    <span class="nv">$dbstatus</span> <span class="o">=</span> <span class="s2">&quot;Good database connection&quot;</span><span class="p">;</span>
+
+    <span class="k">echo</span><span class="p">(</span><span class="nv">$dbstatus</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+<span class="p">}</span>
 <span class="k">catch</span><span class="p">(</span><span class="nx">PDOException</span> <span class="nv">$ep</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;Bad DB Connection: &#39;</span> <span class="o">+</span> <span class="nv">$ep</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
-        <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
-        <span class="k">die</span><span class="p">();</span>
+    <span class="nv">$dbstatus</span> <span class="o">=</span> <span class="s2">&quot;Database connection failed&lt;br&gt;&quot;</span><span class="o">.</span>
+                    <span class="nv">$ep</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
+
+    <span class="c1">// for development purposes</span>
+    <span class="k">echo</span><span class="p">(</span><span class="nv">$dbstatus</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+    <span class="k">die</span><span class="p">();</span>
+    <span class="c1">// can also use exit</span>
+    <span class="c1">// we don&#39;t page to load any further\</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$dbstatus</span> <span class="o">=</span> <span class="s2">&quot;Database connection failed&lt;br&gt;&quot;</span><span class="o">.</span>
+                    <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
+    
+    <span class="k">echo</span><span class="p">(</span><span class="nv">$dbstatus</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+    <span class="k">die</span><span class="p">();</span>
 <span class="p">}</span>
 
-    <span class="nb">session_start</span><span class="p">();</span>
+<span class="nb">session_start</span><span class="p">();</span>
+
 <span class="cp">?&gt;</span>
 </pre></div>
 </div>
@@ -519,32 +555,23 @@ document.write(`
 <section id="index-php">
 <h2>index.php<a class="headerlink" href="#index-php" title="Link to this heading">#</a></h2>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!DOCTYPE html&gt;</span>
-<span class="x">&lt;html&gt;</span>
-<span class="x">&lt;head&gt; </span>
-<span class="x">&lt;meta charset=&quot;UTF-8&quot;&gt;</span>
-<span class="x">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span>
-<span class="x">    </span>
-<span class="x">&lt;title&gt;Home&lt;/title&gt;</span>
-<span class="x">    </span>
-<span class="x">&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;</span>
-
+<span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<span class="x">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span>
+<span class="x">    &lt;title&gt;Home&lt;/title&gt;</span>
+<span class="x">    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;</span>
 <span class="x">&lt;/head&gt;</span>
 <span class="x">&lt;body&gt;</span>
-<span class="x">    &lt;header&gt;</span>
-<span class="x">        &lt;h1&gt;Picture Embeding - Rev. 11-2023&lt;/h1&gt;</span>
-<span class="x">    &lt;/header&gt;</span>
+<span class="x">    &lt;div class = &quot;content&quot;&gt;</span>
+<span class="x">        &lt;h1&gt;Picture Embedding&lt;/h1&gt;</span>
 
-<span class="x">    &lt;main&gt;</span>
+<span class="x">        &lt;p&gt; &lt;a href=&quot;doggyinput.php&quot;&gt;Dog Picture Input&lt;/a&gt; &amp;nbsp;&amp;nbsp;</span>
+<span class="x">            &lt;a href=&quot;getpix.php&quot;&gt;Display Doggy Pictgures&lt;/a&gt; &amp;nbsp; &amp;nbsp;</span>
+<span class="x">            &lt;a href=&quot;default.php&quot;&gt;home&lt;/a&gt;</span>
+<span class="x">        &lt;/p&gt;</span>
 
-<span class="x">    </span>
-<span class="x">    &lt;p&gt;&lt;a href=&quot;doggyinput.php&quot;&gt;Dog Picture Input&lt;/a&gt; &amp;nbsp;&amp;nbsp;</span>
-<span class="x">        &lt;a href=&quot;getpix.php&quot;&gt;Display Doggy Pictures&lt;/a&gt; &amp;nbsp;&amp;nbsp;</span>
-<span class="x">        &lt;a href=&quot;index.php&quot;&gt;Home&lt;/a&gt;&lt;/p&gt;</span>
-<span class="x">    &lt;/main&gt;</span>
-
-<span class="x">    &lt;footer&gt;</span>
-<span class="x">        &lt;p&gt;&amp;copy; 2023 Jimbo&lt;/p&gt;</span>
-<span class="x">    &lt;/footer&gt;</span>
+<span class="x">    &lt;/div&gt;</span>
 <span class="x">&lt;/body&gt;</span>
 <span class="x">&lt;/html&gt;</span>
 </pre></div>
@@ -552,6 +579,26 @@ document.write(`
 </section>
 <section id="doggyinput-php">
 <h2>doggyinput.php<a class="headerlink" href="#doggyinput-php" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">enctype=&quot;multipart/form-data&quot;</span></code> attribute in an HTML <code class="docutils literal notranslate"><span class="pre">&lt;form&gt;</span></code> specifies how form data should be encoded when it’s submitted to the server. Here’s a breakdown:</p>
+<section id="context">
+<h3>Context<a class="headerlink" href="#context" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Used in:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;form&gt;</span></code> element</p></li>
+<li><p><strong>Purpose:</strong> Defines how form data is sent to the server.</p></li>
+</ul>
+</section>
+<section id="why-use-multipart-form-data">
+<h3>Why use <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code>?<a class="headerlink" href="#why-use-multipart-form-data" title="Link to this heading">#</a></h3>
+<p>It is necessary when a form includes file uploads, like images, documents, etc. It allows the form to send data in a way that supports sending both text and binary data.</p>
+</section>
+<section id="how-it-works">
+<h3>How it works<a class="headerlink" href="#how-it-works" title="Link to this heading">#</a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">enctype=&quot;multipart/form-data&quot;</span></code> is set:</p>
+<ol class="arabic simple">
+<li><p><strong>Each form field’s data</strong> is sent as a separate part of the request body.</p></li>
+<li><p><strong>File data</strong> is encoded in binary, while other fields (e.g., text inputs) are encoded as plain text.</p></li>
+<li><p>Each part is separated by a <strong>boundary string</strong> that the browser generates, making it easy for the server to parse the data correctly.</p></li>
+</ol>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!DOCTYPE html&gt;</span>
 <span class="x">&lt;html&gt;</span>
 <span class="x">&lt;head&gt;</span>
@@ -570,7 +617,7 @@ document.write(`
 
 <span class="k">require</span><span class="p">(</span><span class="s1">&#39;dbconnect.php&#39;</span><span class="p">);</span>
 
-<span class="c1">// for testing</span>
+<span class="c1">// for testing and demonstonly</span>
 <span class="c1">// print_r($_POST);</span>
 <span class="c1">// echo(&#39;&lt;br&gt;&#39;);</span>
 <span class="c1">// print_r($_FILES);</span>
@@ -631,6 +678,18 @@ document.write(`
 <span class="p">}</span>
 <span class="k">else</span>
 <span class="p">{</span>
+    
+    <span class="c1">// *** NOTE enctype=&quot;multipart/form-data&quot; ***</span>
+    <span class="c1">// The enctype=&quot;multipart/form-data&quot; attribute in an HTML &lt;form&gt; </span>
+    <span class="c1">// is used when submitting forms that include file uploads. </span>
+    <span class="c1">// It ensures that the form data is sent in separate parts, </span>
+    <span class="c1">// allowing both text and binary data (like files) to be transmitted. </span>
+    <span class="c1">// This encoding is necessary for handling file uploads, </span>
+    <span class="c1">// as it allows the server to process each part correctly, </span>
+    <span class="c1">// separating text fields from file data.</span>
+    <span class="c1">// *******************************************************************</span>
+
+    
 <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;</span>
 <span class="s1">    &lt;form action=&quot;doggyinput.php&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;</span>
 <span class="s1">        &lt;table border=&quot;1&quot;&gt;</span>
@@ -739,6 +798,7 @@ document.write(`
 </pre></div>
 </div>
 <p><img alt="image-20231110172412478" src="../_images/image-20231110172412478-1699662255420-5.png" /></p>
+</section>
 </section>
 <section id="getpix-php">
 <h2>getpix.php<a class="headerlink" href="#getpix-php" title="Link to this heading">#</a></h2>
@@ -899,7 +959,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-doggy-database">SQL Doggy Database</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dbconnect-php">dbconnect.php</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index-php">index.php</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doggyinput-php">doggyinput.php</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doggyinput-php">doggyinput.php</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#context">Context</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-multipart-form-data">Why use <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works">How it works</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getpix-php">getpix.php</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#style-css">style.css</a></li>
 </ul>

@@ -109,6 +109,28 @@ echo($dbstatus."<br><hr><br>");
 
 <?php
 
+function sanitize($value){
+
+    // strip of any excess white spaces on the ends
+    $value = trim($value);
+
+    // get rid of any html or php tags
+    $value = strip_tags($value);
+
+    // convert special characters
+    $value = htmlspecialchars($value,ENT_QUOTES,'UTF-8');
+
+    // return the value
+    return $value;
+
+}
+
+// alternative
+function sanitize2($value){
+    return htmlspecialchars(strip_tags(trim($value)),ENT_QUOTES,'UTF-8');
+}
+        
+        
 if(!isset($_POST['OwnerFN']))
 {
     echo('
@@ -166,6 +188,9 @@ if(!isset($_POST['OwnerFN']))
 
         try
         {
+        
+            
+            
         //Step 1 - create sql statement
 
         $sql_insert = "INSERT INTO tbl_car"
@@ -178,17 +203,14 @@ if(!isset($_POST['OwnerFN']))
         $sqlp_insert = $pdo->prepare($sql_insert);
 
 
-        //Step 3 - Sanitize the information from
-        //from the input boxes using filter_var
-        //other types of filters 
-        //http://php.net/manual/en/filter.filters.sanitize.php
+        //Step 3 - Sanitize the information - this prevents SQL Injection
 
-        $OwnerFN = filter_var($_POST['OwnerFN'], FILTER_SANITIZE_STRING);
-        $OwnerLN = filter_var($_POST['OwnerLN'], FILTER_SANITIZE_STRING);
-        $Make = filter_var($_POST['Make'], FILTER_SANITIZE_STRING);
-        $Model = filter_var($_POST['Model'], FILTER_SANITIZE_STRING);
-        $Year = filter_var($_POST['Year'], FILTER_SANITIZE_STRING);
-        $Color = filter_var($_POST['Color'], FILTER_SANITIZE_STRING);
+        $OwnerFN = sanitize($_POST['OwnerFN'] ?? '');
+        $OwnerLN = sanitize($_POST['OwnerLN'] ?? ''G);
+        $Make = sanitize($_POST['Make'] ?? '');
+        $Model = sanitize($_POST['Model'] ?? '');
+        $Year = sanitize($_POST['Year'] ?? '');
+        $Color = sanitize($_POST['Color'] ?? '');
 
         //Step 4 - bind our boxes in the sql statement with our variables
         //bind parameters
@@ -490,3 +512,4 @@ else
 </html>
 ```
 
+10/2025

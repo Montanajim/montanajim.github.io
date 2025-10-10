@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Defending Against Cross Site Scripting &#8212; Web Programming</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'wpref/DefendingAgainstXSS';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Web Programming</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    CSCI 210 Web Programming
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="PHPIntroduction.html">PHP Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PHPBasics.html">PHP Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LoopIf.html">Loops and If</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phparrays.html">PHP Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FirstFormsPOSTandGET.html">First Forms - POST and GET</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HTMLInputFieldReview.html">HTML Input Field Review</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="SessionVariables.html">Session Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="SessionHomeworkHint.html">Session Variable Homework Assignment Hint</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="PDOConnections.html">PDO Connections</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="PHPClosingTags.html">PHP Closing Tags: Leave Them Out Or Out</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDOFirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDONoPlaceHoldersExample.html">PDO With No Named Placeholders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StringSanitation.html">String Sanitation - filter_var()</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Passwords.html">Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddEditDelete.html">Add Edit Delete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SavingPicturesInDatabase.html">Saving Pictures In Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readingjson.html">Reading json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DateFunctionPHP.html">Date Function</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/wpref/DefendingAgainstXSS.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Defending Against Cross Site Scripting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Defending Against Cross Site Scripting</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#defending-against-xss-a-teaching-article">🛡️ Defending Against XSS: A Teaching Article</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#escape-output-context-aware">1. Escape Output (Context-Aware)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-sanitize-input">2. Validate &amp; Sanitize Input</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-content-security-policy-csp">3. Use Content Security Policy (CSP)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dont-trust-javascript-with-html-injection">4. Don’t Trust JavaScript with HTML Injection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-frameworks-safely">5. Use Frameworks Safely</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#protect-your-forms">6. Protect Your Forms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encode-on-the-way-out">7. Encode on the Way Out</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#audit-test">8. Audit &amp; Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-golden-rule">🏁 The Golden Rule</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="defending-against-cross-site-scripting">
+<h1>Defending Against Cross Site Scripting<a class="headerlink" href="#defending-against-cross-site-scripting" title="Link to this heading">#</a></h1>
+<p>Here’s a teaching article built from your checklist. I’ve expanded the explanation around <em>escaping content</em> so your students (or readers) understand not just the “what” but the “why.”</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="defending-against-xss-a-teaching-article">
+<h1>🛡️ Defending Against XSS: A Teaching Article<a class="headerlink" href="#defending-against-xss-a-teaching-article" title="Link to this heading">#</a></h1>
+<p>Cross-Site Scripting (XSS) is one of the most common — and dangerous — web security flaws. At its core, XSS happens when untrusted content makes its way into a webpage without being properly handled, letting an attacker run malicious JavaScript in another user’s browser.</p>
+<p>The good news? A handful of defensive habits stop most XSS dead in its tracks. Below is a practical <strong>XSS Defense Checklist</strong> that explains not only what to do, but why it matters.</p>
+<hr class="docutils" />
+<section id="escape-output-context-aware">
+<h2>1. Escape Output (Context-Aware)<a class="headerlink" href="#escape-output-context-aware" title="Link to this heading">#</a></h2>
+<p><strong>Escaping</strong> means converting potentially dangerous characters (<code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">'</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>) into harmless equivalents before showing them in a web page. For example:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">$name = &quot;&lt;script&gt;alert(1)&lt;/script&gt;&quot;;</span>
+<span class="x">echo htmlspecialchars($name, ENT_QUOTES, &#39;UTF-8&#39;);</span>
+</pre></div>
+</div>
+<p>This would display literally <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;alert(1)&lt;/script&gt;</span></code> in the browser instead of executing it.</p>
+<p>But here’s the subtlety: <strong>context matters.</strong></p>
+<ul class="simple">
+<li><p><strong>HTML body content:</strong> Use <code class="docutils literal notranslate"><span class="pre">htmlspecialchars()</span></code> in PHP or <code class="docutils literal notranslate"><span class="pre">.textContent</span></code> in JS.</p></li>
+<li><p><strong>HTML attributes:</strong> Make sure quotes are escaped.</p></li>
+<li><p><strong>JavaScript inline:</strong> Encode data as JSON, not raw text.</p></li>
+<li><p><strong>CSS/URLs:</strong> Encode values or, better, disallow dynamic injection entirely.</p></li>
+</ul>
+<p>👉 The key lesson: <em>Escape when outputting</em>, not when inputting. Input sanitization alone can’t predict every possible context where data will appear.</p>
+</section>
+<hr class="docutils" />
+<section id="validate-sanitize-input">
+<h2>2. Validate &amp; Sanitize Input<a class="headerlink" href="#validate-sanitize-input" title="Link to this heading">#</a></h2>
+<p>Validation asks: <em>Is this data what I expect?</em></p>
+<ul class="simple">
+<li><p>Last name → letters, spaces, hyphens only.</p></li>
+<li><p>Email → valid email format.</p></li>
+</ul>
+<p>Sanitization cleans unwanted bits, but it should <strong>never replace escaping.</strong> Think of it as a helpful filter, not the main defense.</p>
+</section>
+<hr class="docutils" />
+<section id="use-content-security-policy-csp">
+<h2>3. Use Content Security Policy (CSP)<a class="headerlink" href="#use-content-security-policy-csp" title="Link to this heading">#</a></h2>
+<p>A strong CSP header acts as a <strong>seatbelt</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="err">Content-Security-Policy: default-src &#39;self&#39;; script-src &#39;self&#39;</span>
+</pre></div>
+</div>
+<p>Even if an attacker sneaks code in, CSP limits what can run. It’s not a substitute for escaping, but it reduces the blast radius of mistakes.</p>
+</section>
+<hr class="docutils" />
+<section id="dont-trust-javascript-with-html-injection">
+<h2>4. Don’t Trust JavaScript with HTML Injection<a class="headerlink" href="#dont-trust-javascript-with-html-injection" title="Link to this heading">#</a></h2>
+<p>Tempting but dangerous:</p>
+<ul class="simple">
+<li><p>❌ <code class="docutils literal notranslate"><span class="pre">innerHTML</span></code></p></li>
+<li><p>❌ <code class="docutils literal notranslate"><span class="pre">document.write()</span></code></p></li>
+<li><p>❌ <code class="docutils literal notranslate"><span class="pre">$('.element').html()</span></code></p></li>
+</ul>
+<p>Safer alternatives:</p>
+<ul class="simple">
+<li><p>✅ <code class="docutils literal notranslate"><span class="pre">textContent</span></code></p></li>
+<li><p>✅ <code class="docutils literal notranslate"><span class="pre">createElement</span></code></p></li>
+<li><p>✅ Framework auto-escaping (React, Vue, Angular).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="use-frameworks-safely">
+<h2>5. Use Frameworks Safely<a class="headerlink" href="#use-frameworks-safely" title="Link to this heading">#</a></h2>
+<p>Modern frameworks protect you — until you override them.</p>
+<ul class="simple">
+<li><p>React’s <code class="docutils literal notranslate"><span class="pre">dangerouslySetInnerHTML</span></code></p></li>
+<li><p>Vue’s <code class="docutils literal notranslate"><span class="pre">v-html</span></code></p></li>
+</ul>
+<p>Both are escape hatches. Use them rarely, and only with fully trusted content.</p>
+</section>
+<hr class="docutils" />
+<section id="protect-your-forms">
+<h2>6. Protect Your Forms<a class="headerlink" href="#protect-your-forms" title="Link to this heading">#</a></h2>
+<p>While not directly XSS, <strong>CSRF tokens</strong> stop attackers from tricking users into submitting malicious forms. Since XSS and CSRF often appear together, defense in depth is key.</p>
+</section>
+<hr class="docutils" />
+<section id="encode-on-the-way-out">
+<h2>7. Encode on the Way Out<a class="headerlink" href="#encode-on-the-way-out" title="Link to this heading">#</a></h2>
+<p>Escaping at input time sounds convenient — but it’s fragile. What if the data is later used in a different context (HTML vs. JS)?</p>
+<p>Encoding <strong>at output</strong> ensures the escape matches the context every time. It’s the difference between a one-size-fits-none approach and a tailored, future-proof defense.</p>
+</section>
+<hr class="docutils" />
+<section id="audit-test">
+<h2>8. Audit &amp; Test<a class="headerlink" href="#audit-test" title="Link to this heading">#</a></h2>
+<p>No defense is perfect without testing. Use:</p>
+<ul>
+<li><p><strong>Automated tools:</strong> OWASP ZAP, Burp Suite.</p></li>
+<li><p><strong>Manual payloads:</strong></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="mf">1</span><span class="p">)&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">x</span> <span class="na">onerror</span><span class="o">=</span><span class="s">alert(2)</span><span class="p">&gt;</span>
+&quot;&gt;<span class="p">&lt;</span><span class="nt">svg</span> <span class="na">onload</span><span class="o">=</span><span class="s">alert(3)</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>If any of these run, you’ve got work to do.</p>
+</section>
+<hr class="docutils" />
+<section id="the-golden-rule">
+<h2>🏁 The Golden Rule<a class="headerlink" href="#the-golden-rule" title="Link to this heading">#</a></h2>
+<p><strong>Treat all user input as hostile. Escape it when you output it.</strong>
+Do that, and you’ll block 90% of XSS attempts before they ever start.</p>
+<hr class="docutils" />
+<p>✨ Escaping is your first line of defense. Validation, CSP, and safer coding practices are the reinforcements. Together, they form a layered security strategy that keeps both your applications and your users safe.</p>
+<hr class="docutils" />
+<p>Would you like me to take this article and also build the <strong>visual flowchart</strong> you hinted at — showing “Input → Validation → Output → Escape → CSP Safety Net”? That would make it classroom-ready in one glance.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./wpref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Defending Against Cross Site Scripting</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#defending-against-xss-a-teaching-article">🛡️ Defending Against XSS: A Teaching Article</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#escape-output-context-aware">1. Escape Output (Context-Aware)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-sanitize-input">2. Validate &amp; Sanitize Input</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-content-security-policy-csp">3. Use Content Security Policy (CSP)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dont-trust-javascript-with-html-injection">4. Don’t Trust JavaScript with HTML Injection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-frameworks-safely">5. Use Frameworks Safely</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#protect-your-forms">6. Protect Your Forms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encode-on-the-way-out">7. Encode on the Way Out</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#audit-test">8. Audit &amp; Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-golden-rule">🏁 The Golden Rule</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 By James Goudy.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -185,16 +185,24 @@
 <li class="toctree-l2"><a class="reference internal" href="SessionHomeworkHint.html">Session Variable Homework Assignment Hint</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="PDOConnections.html">PDO Connections</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1"><a class="reference internal" href="PDOConnections.html">PDO Connections</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="PHPClosingTags.html">PHP Closing Tags: Leave Them Out Or Out</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="PDOFirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PDONoPlaceHoldersExample.html">PDO With No Named Placeholders</a></li>
-<li class="toctree-l2"><a class="reference internal" href="PHPStringSanitation.html">PHP String Sanitation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StringSanitation.html">String Sanitation - filter_var()</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="xssDefendingAgainstXSS.html">Defending Against Cross Site Scripting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="xssExamples.html">XSS Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xssContentSecurityPolicy.html">**Content Security Policy **</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="Passwords.html">Passwords</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Add Edit Delete</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SavingPicturesInDatabase.html">Saving Pictures In Database</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Readingjson.html">Reading json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DateFunctionPHP.html">Date Function</a></li>
 </ul>
 
     </div>
@@ -378,6 +386,24 @@ document.write(`
 <hr class="docutils" />
 <section id="database-sql">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Database SQL</a><a class="headerlink" href="#database-sql" title="Link to this heading">#</a></h2>
+<p>This SQL dump creates a small database named <strong><code class="docutils literal notranslate"><span class="pre">wp_dogdb</span></code></strong>, which is test database for storing information about dogs and U.S. states.</p>
+<p>Here’s what it does in essence:</p>
+<ol class="arabic simple">
+<li><p><strong>Creates the database</strong> <code class="docutils literal notranslate"><span class="pre">wp_dogdb</span></code> (if it doesn’t already exist).</p></li>
+<li><p><strong>Defines two tables:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tbl_doginfo</span></code></strong> — stores details about dogs and their owners, including:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">dogname</span></code>, <code class="docutils literal notranslate"><span class="pre">dogbreed</span></code>, <code class="docutils literal notranslate"><span class="pre">ownerfirstname</span></code>, <code class="docutils literal notranslate"><span class="pre">ownerlastname</span></code>, <code class="docutils literal notranslate"><span class="pre">city</span></code>, and <code class="docutils literal notranslate"><span class="pre">st</span></code> (state code).</p></li>
+<li><p>Each record has a unique <code class="docutils literal notranslate"><span class="pre">dogid</span></code> (auto-incremented primary key).</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tbl_state</span></code></strong> — a simple reference table listing all <strong>U.S. state abbreviations</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Populates</strong> <code class="docutils literal notranslate"><span class="pre">tbl_doginfo</span></code> with four sample dogs (all owned by “Joe Cool” from “Fluffy, AK”).</p></li>
+<li><p><strong>Populates</strong> <code class="docutils literal notranslate"><span class="pre">tbl_state</span></code> with the full list of 50 U.S. state abbreviations.</p></li>
+</ol>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- phpMyAdmin SQL Dump</span>
 <span class="c1">-- version 4.7.0</span>
 <span class="c1">-- https://www.phpmyadmin.net/</span>
@@ -463,6 +489,10 @@ document.write(`
 </section>
 <section id="dbconnect-php">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">dbconnect.php</a><a class="headerlink" href="#dbconnect-php" title="Link to this heading">#</a></h2>
+<p>This PHP script attempts to <strong>connect to the <code class="docutils literal notranslate"><span class="pre">wp_dogdb</span></code> MySQL database</strong> using PDO.</p>
+<p>If the connection is successful, it sets a status message saying <strong>“Good database connection.”</strong>
+If the connection fails, it catches the exception and stores an error message containing the failure reason.</p>
+<p>Finally, it <strong>starts a PHP session</strong>—likely to maintain user or application state across pages.</p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 
 <span class="k">try</span>
@@ -474,7 +504,7 @@ document.write(`
 <span class="p">}</span>
  <span class="k">catch</span> <span class="p">(</span><span class="nx">PDOException</span> <span class="nv">$e</span><span class="p">)</span>
  <span class="p">{</span>
-      <span class="o">=</span> <span class="s2">&quot;Database connection failed &lt;br&gt;&quot;</span><span class="o">.</span>
+     <span class="nv">$dbstatus</span> <span class="o">=</span> <span class="s2">&quot;Database connection failed &lt;br&gt;&quot;</span><span class="o">.</span>
              <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>    
  <span class="p">}</span>
  <span class="nb">session_start</span><span class="p">()</span>
@@ -485,6 +515,7 @@ document.write(`
 </section>
 <section id="index-php">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">index.php</a><a class="headerlink" href="#index-php" title="Link to this heading">#</a></h2>
+<p>This PHP and HTML code creates a simple web form for entering dog information into a database. It begins by including the <code class="docutils literal notranslate"><span class="pre">dbconnect.php</span></code> file to establish a connection with the <code class="docutils literal notranslate"><span class="pre">wp_dogdb</span></code> database and displays the current connection status. The script then retrieves a list of U.S. state abbreviations from the <code class="docutils literal notranslate"><span class="pre">tbl_state</span></code> table, sorting them alphabetically, and stores the results for use in the form. The webpage presents an input form where users can enter details about a dog—such as its name, breed, and the owner’s first and last name, as well as the city and state. The state field is dynamically generated from the database query, ensuring the dropdown list reflects accurate state data. When the user submits the form, the entered information is sent via POST to <code class="docutils literal notranslate"><span class="pre">Inputdata_DisplayData.php</span></code> for further processing or display.</p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!DOCTYPE html&gt;</span>
 <span class="x">&lt;html&gt;</span>
 <span class="x">&lt;head&gt;</span>
@@ -578,7 +609,8 @@ document.write(`
 </section>
 <section id="inputdata-displaydata-php">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Inputdata_DisplayData.php</a><a class="headerlink" href="#inputdata-displaydata-php" title="Link to this heading">#</a></h2>
-<p>Enter the data and confirm data entry</p>
+<p>This PHP script, <strong><code class="docutils literal notranslate"><span class="pre">Inputdata_DisplayData.php</span></code></strong>, processes the dog information form submission from the previous page. It begins by including the database connection file <code class="docutils literal notranslate"><span class="pre">dbconnect.php</span></code>, then prints the submitted form data for debugging purposes. The script defines a <code class="docutils literal notranslate"><span class="pre">sanitize()</span></code> function to clean user input by trimming whitespace, removing HTML/PHP tags, and encoding special characters—ensuring the data is safe for database insertion.</p>
+<p>Inside a <code class="docutils literal notranslate"><span class="pre">try</span></code> block, it prepares an SQL <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> statement to add a new record into the <code class="docutils literal notranslate"><span class="pre">tbl_doginfo1</span></code> table, binding the sanitized form values (<code class="docutils literal notranslate"><span class="pre">dogname</span></code>, <code class="docutils literal notranslate"><span class="pre">dogbreed</span></code>, <code class="docutils literal notranslate"><span class="pre">ownerfirstname</span></code>, <code class="docutils literal notranslate"><span class="pre">ownerlastname</span></code>, <code class="docutils literal notranslate"><span class="pre">city</span></code>, and <code class="docutils literal notranslate"><span class="pre">st</span></code>) to named placeholders. After executing the insert command, the script displays a formatted confirmation message showing the details entered by the user. If any database or general errors occur, they are caught and displayed in a clear error message.</p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="c1">//Inputdata_DisplayData.php</span>
 <span class="k">require</span> <span class="s1">&#39;dbconnect.php&#39;</span><span class="p">;</span>
@@ -586,67 +618,90 @@ document.write(`
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">);</span>
 <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
 
+<span class="k">function</span> <span class="nf">sanitize</span><span class="p">(</span><span class="nv">$value</span><span class="p">){</span>
+
+    <span class="c1">// strip of any excess white spaces on the ends</span>
+    <span class="nv">$value</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+
+    <span class="c1">// get rid of any html or php tags</span>
+    <span class="nv">$value</span> <span class="o">=</span> <span class="nb">strip_tags</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+
+    <span class="c1">// convert special characters</span>
+    <span class="nv">$value</span> <span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span><span class="nx">ENT_QUOTES</span><span class="p">,</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">);</span>
+
+    <span class="c1">// return the value</span>
+    <span class="k">return</span> <span class="nv">$value</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="c1">// alternative</span>
+<span class="k">function</span> <span class="nf">sanitize2</span><span class="p">(</span><span class="nv">$value</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nb">strip_tags</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="nv">$value</span><span class="p">)),</span><span class="nx">ENT_QUOTES</span><span class="p">,</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
 <span class="k">try</span><span class="p">{</span>
-<span class="c1">// write insert sql statement</span>
-<span class="nv">$sql_insert</span> <span class="o">=</span> 	<span class="s2">&quot;INSERT INTO tbl_doginfo1(&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;dogname,&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;dogbreed,&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;ownerfirstname,&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;ownerlastname,&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;city,&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;st)&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;VALUES(&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;:dogname,&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;:dogbreed,&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;:ownerfirstname,&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;:ownerlastname,&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;:city,&quot;</span>
-			<span class="o">.</span><span class="s2">&quot;:st)&quot;</span><span class="p">;</span>
+    <span class="c1">// write insert sql statement</span>
+    <span class="nv">$sql_insert</span> <span class="o">=</span> 	<span class="s2">&quot;INSERT INTO tbl_doginfo1(&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;dogname,&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;dogbreed,&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;ownerfirstname,&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;ownerlastname,&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;city,&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;st)&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;VALUES(&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;:dogname,&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;:dogbreed,&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;:ownerfirstname,&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;:ownerlastname,&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;:city,&quot;</span>
+                <span class="o">.</span><span class="s2">&quot;:st)&quot;</span><span class="p">;</span>
 
-<span class="c1">// prepare the sql statement</span>
-<span class="nv">$sql_insert</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql_insert</span><span class="p">);</span>
+    <span class="c1">// prepare the sql statement</span>
+    <span class="nv">$sql_insert</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql_insert</span><span class="p">);</span>
 
-<span class="c1">// sanitize the information</span>
-<span class="nv">$dogname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
-<span class="nv">$dogbreed</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogbreed&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
-<span class="nv">$ownerfirstname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;ownerfirstname&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
-<span class="nv">$ownerlastname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;ownerlastname&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
-<span class="nv">$city</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
-<span class="nv">$st</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+    <span class="c1">// sanitize the information</span>
+    <span class="nv">$dogname</span> <span class="o">=</span> <span class="nx">sanitize</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="nv">$dogbreed</span> <span class="o">=</span> <span class="nx">sanitize</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogbreed&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="nv">$ownerfirstname</span> <span class="o">=</span> <span class="nx">sanitize</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;ownerfirstname&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="nv">$ownerlastname</span> <span class="o">=</span> <span class="nx">sanitize</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;ownerlastname&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="nv">$city</span> <span class="o">=</span> <span class="nx">sanitize</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="nv">$st</span> <span class="o">=</span> <span class="nx">sanitize</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
 
-<span class="c1">//bind variable name to placeholders</span>
-<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:dogname&quot;</span><span class="p">,</span><span class="nv">$dogname</span><span class="p">);</span>
-<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:dogbreed&quot;</span><span class="p">,</span><span class="nv">$dogbreed</span><span class="p">);</span>
-<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:ownerfirstname&quot;</span><span class="p">,</span><span class="nv">$ownerfirstname</span><span class="p">);</span>
-<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:ownerlastname&quot;</span><span class="p">,</span><span class="nv">$ownerlastname</span><span class="p">);</span>
-<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:city&quot;</span><span class="p">,</span><span class="nv">$city</span><span class="p">);</span>
-<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:st&quot;</span><span class="p">,</span><span class="nv">$st</span><span class="p">);</span>
-    
-<span class="c1">//--Alternative Method using an array</span>
-<span class="cm">/*</span>
-<span class="cm">$sql_params=array(&#39;:dogname&#39;=&gt; $dogname,</span>
-<span class="cm">                &#39;:dogbreed&#39; =&gt; $dogbreed,</span>
-<span class="cm">                &#39;:ownerfirstname&#39; =&gt; $ownerfirstname ,</span>
-<span class="cm">                &#39;:ownerlastname&#39; =&gt; $ownerlastname,</span>
-<span class="cm">                &#39;:city&#39; =&gt; $city,</span>
-<span class="cm">                &#39;:st&#39; =&gt; $st);</span>
-<span class="cm">        </span>
-<span class="cm">$sql_insert-&gt;execute($sql_params);</span>
-<span class="cm"> */</span>    
-    
+    <span class="c1">//bind variable name to placeholders</span>
+    <span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:dogname&quot;</span><span class="p">,</span><span class="nv">$dogname</span><span class="p">);</span>
+    <span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:dogbreed&quot;</span><span class="p">,</span><span class="nv">$dogbreed</span><span class="p">);</span>
+    <span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:ownerfirstname&quot;</span><span class="p">,</span><span class="nv">$ownerfirstname</span><span class="p">);</span>
+    <span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:ownerlastname&quot;</span><span class="p">,</span><span class="nv">$ownerlastname</span><span class="p">);</span>
+    <span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:city&quot;</span><span class="p">,</span><span class="nv">$city</span><span class="p">);</span>
+    <span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:st&quot;</span><span class="p">,</span><span class="nv">$st</span><span class="p">);</span>
 
-<span class="c1">//execute</span>
-<span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+    <span class="c1">//execute</span>
+    <span class="nv">$sql_insert</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
 
-<span class="k">echo</span><span class="p">(</span><span class="s2">&quot;</span>
-<span class="s2">        &lt;h2&gt;Dog Infomation Confirmation&lt;/h2&gt;</span>
-<span class="s2">        Dog Name: </span><span class="si">$dogname</span><span class="s2">&lt;br&gt;</span>
-<span class="s2">        Dog Breed: </span><span class="si">$dogbreed</span><span class="s2">&lt;br&gt;</span>
-<span class="s2">        Owner First Name: </span><span class="si">$ownerfirstname</span><span class="s2">&lt;br&gt;</span>
-<span class="s2">        Owner Last Name: </span><span class="si">$ownerlastname</span><span class="s2">&lt;br&gt;</span>
-<span class="s2">        City: </span><span class="si">$city</span><span class="s2">&lt;br&gt;</span>
-<span class="s2">        State: </span><span class="si">$st</span><span class="s2">&lt;br&gt;</span>
-<span class="s2">    &quot;</span><span class="p">);</span>
+    <span class="c1">//--Alternative Binding Method using an array</span>
+    <span class="cm">/*</span>
+<span class="cm">    $sql_params=array(&#39;:dogname&#39;=&gt; $dogname,</span>
+<span class="cm">                    &#39;:dogbreed&#39; =&gt; $dogbreed,</span>
+<span class="cm">                    &#39;:ownerfirstname&#39; =&gt; $ownerfirstname ,</span>
+<span class="cm">                    &#39;:ownerlastname&#39; =&gt; $ownerlastname,</span>
+<span class="cm">                    &#39;:city&#39; =&gt; $city,</span>
+<span class="cm">                    &#39;:st&#39; =&gt; $st);</span>
+
+<span class="cm">    $sql_insert-&gt;execute($sql_params);</span>
+<span class="cm">     */</span>    
+
+
+
+
+    <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;</span>
+<span class="s2">            &lt;h2&gt;Dog Infomation Confirmation&lt;/h2&gt;</span>
+<span class="s2">            Dog Name: </span><span class="si">$dogname</span><span class="s2">&lt;br&gt;</span>
+<span class="s2">            Dog Breed: </span><span class="si">$dogbreed</span><span class="s2">&lt;br&gt;</span>
+<span class="s2">            Owner First Name: </span><span class="si">$ownerfirstname</span><span class="s2">&lt;br&gt;</span>
+<span class="s2">            Owner Last Name: </span><span class="si">$ownerlastname</span><span class="s2">&lt;br&gt;</span>
+<span class="s2">            City: </span><span class="si">$city</span><span class="s2">&lt;br&gt;</span>
+<span class="s2">            State: </span><span class="si">$st</span><span class="s2">&lt;br&gt;</span>
+<span class="s2">        &quot;</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="k">catch</span><span class="p">(</span><span class="nx">PDOException</span> <span class="nv">$err</span><span class="p">)</span>
 <span class="p">{</span>
@@ -668,6 +723,14 @@ document.write(`
 </section>
 <section id="display-edit-php">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Display_Edit.php</a><a class="headerlink" href="#display-edit-php" title="Link to this heading">#</a></h2>
+<p>This PHP script displays and manages a <strong>list of dogs</strong> from the <code class="docutils literal notranslate"><span class="pre">tbl_doginfo</span></code> database table, allowing users to <strong>edit or delete records</strong> directly from a web interface.</p>
+<p>It begins by including the <code class="docutils literal notranslate"><span class="pre">dbconnection.php</span></code> file to establish a database connection. When a form is submitted, the script checks the <code class="docutils literal notranslate"><span class="pre">action</span></code> value in the POST data:</p>
+<ul class="simple">
+<li><p>If the action is <strong>“Delete”</strong>, it sanitizes the <code class="docutils literal notranslate"><span class="pre">dogid</span></code> and executes a SQL <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> command to remove the corresponding record.</p></li>
+<li><p>If the action is <strong>“Edit”</strong>, it stores the selected dog’s ID in a session variable and redirects the user to <code class="docutils literal notranslate"><span class="pre">edit_data.php</span></code> to update that record.</p></li>
+</ul>
+<p>After handling any actions, the script retrieves all existing dog records—showing each dog’s name, breed, owner’s name, city, and state—and dynamically generates an HTML table with <strong>Edit</strong> and <strong>Delete</strong> buttons for each entry.</p>
+<p>In short: 🐕 <em>This code powers a simple admin-style dashboard for managing dog records—complete with live database actions and a clean, table-based interface.</em></p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="k">require</span> <span class="p">(</span><span class="s1">&#39;./dbconnection.php&#39;</span><span class="p">);</span>
 
@@ -747,8 +810,35 @@ document.write(`
 </section>
 <section id="edit-data-php">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Edit_data.php</a><a class="headerlink" href="#edit-data-php" title="Link to this heading">#</a></h2>
+<p>This PHP script provides an <strong>edit interface for updating existing dog records</strong> in the <code class="docutils literal notranslate"><span class="pre">tbl_doginfo</span></code> database.</p>
+<p>It begins by including the database connection file and defining two <code class="docutils literal notranslate"><span class="pre">sanitize()</span></code> functions that clean user input by trimming whitespace, stripping HTML/PHP tags, and encoding special characters—ensuring the data is secure before being stored. If the user submits the form, the script prepares an SQL <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> statement with named placeholders and binds the sanitized input values (dog name, breed, owner info, city, and state) to those placeholders. It then executes the update and redirects the user back to the main display page.</p>
+<p>If the form hasn’t been submitted yet, the script retrieves the selected dog’s record—based on a session-stored <code class="docutils literal notranslate"><span class="pre">dogEditID</span></code>—and queries the list of U.S. states from <code class="docutils literal notranslate"><span class="pre">tbl_state</span></code>. It then displays a pre-filled form that allows the user to modify the existing information, with the current state automatically selected.</p>
+<p>In essence: 🐾 <em>This page is the heart of the “edit dog” workflow—securely fetching, displaying, and updating canine records with clean, user-friendly precision.</em></p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="k">require</span> <span class="p">(</span><span class="s1">&#39;./dbconnection.php&#39;</span><span class="p">);</span>
+
+
+<span class="k">function</span> <span class="nf">sanitize</span><span class="p">(</span><span class="nv">$value</span><span class="p">){</span>
+
+    <span class="c1">// strip of any excess white spaces on the ends</span>
+    <span class="nv">$value</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+
+    <span class="c1">// get rid of any html or php tags</span>
+    <span class="nv">$value</span> <span class="o">=</span> <span class="nb">strip_tags</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+
+    <span class="c1">// convert special characters</span>
+    <span class="nv">$value</span> <span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span><span class="nx">ENT_QUOTES</span><span class="p">,</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">);</span>
+
+    <span class="c1">// return the value</span>
+    <span class="k">return</span> <span class="nv">$value</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="c1">// alternative</span>
+<span class="k">function</span> <span class="nf">sanitize2</span><span class="p">(</span><span class="nv">$value</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nb">strip_tags</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="nv">$value</span><span class="p">)),</span><span class="nx">ENT_QUOTES</span><span class="p">,</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
 
 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">]))</span> <span class="p">{</span>
     
@@ -767,13 +857,12 @@ document.write(`
 
 
     <span class="c1">//Sanitize Information</span>
-    <span class="nv">$dogname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
-    <span class="nv">$dogbreed</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogbreed&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
-    <span class="nv">$ownerfirstname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;ownerfirstname&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
-    <span class="nv">$ownerlastname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;ownerlastname&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
-    <span class="nv">$city</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
-    <span class="nv">$st</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
-    <span class="nv">$dogid</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogid&#39;</span><span class="p">],</span> <span class="nx">FILTER_SANITIZE_NUMBER_INT</span><span class="p">);</span>
+    <span class="nv">$dogname</span> <span class="o">=</span> <span class="nx">sanitize</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="nv">$dogbreed</span> <span class="o">=</span> <span class="nx">sanitize</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogbreed&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="nv">$ownerfirstname</span> <span class="o">=</span> <span class="nx">sanitize</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;ownerfirstname&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="nv">$ownerlastname</span> <span class="o">=</span> <span class="nx">sanitize</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;ownerlastname&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="nv">$city</span> <span class="o">=</span> <span class="nx">sanitize</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="nv">$st</span> <span class="o">=</span> <span class="nx">sanitize</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
 
 
     <span class="c1">//bind parameters</span>
@@ -785,10 +874,10 @@ document.write(`
     <span class="nv">$sql_edit</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:st&quot;</span><span class="p">,</span> <span class="nv">$st</span><span class="p">);</span>
     <span class="nv">$sql_edit</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s2">&quot;:dogid&quot;</span><span class="p">,</span> <span class="nv">$dogid</span><span class="p">);</span>
 
-<span class="c1">//input data</span>
+	<span class="c1">//input data</span>
     <span class="nv">$sqlh_edit</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
 
-<span class="c1">//open display data page</span>
+	<span class="c1">//open display data page</span>
     <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Location: Display_Edit.php&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
@@ -813,87 +902,94 @@ document.write(`
 <span class="cp">?&gt;</span>
 
 <span class="x">&lt;html&gt;</span>
-<span class="x">    &lt;head&gt;</span>
-<span class="x">        &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
-<span class="x">        &lt;title&gt;Edit Data&lt;/title&gt;</span>
-<span class="x">    &lt;/head&gt;</span>
-<span class="x">    &lt;body&gt;</span>
-<span class="x">        </span><span class="cp">&lt;?php</span>
-        <span class="k">include</span> <span class="s1">&#39;menu.php&#39;</span><span class="p">;</span>
-        <span class="cp">?&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<span class="x">    &lt;title&gt;Edit Data&lt;/title&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
+    <span class="k">include</span> <span class="s1">&#39;menu.php&#39;</span><span class="p">;</span>
+    <span class="cp">?&gt;</span>
 
-<span class="x">        &lt;h2&gt;Edit Data&lt;/h2&gt;</span>
-<span class="x">        &lt;form method=&quot;POST&quot; action=&quot;edit_data.php&quot;  </span>
-<span class="x">              onsubmit=&quot;return confirm(&#39;Are you sure you want to continue&#39;)&quot;&gt;</span>
-<span class="x">            &lt;table border=&quot;1&quot;&gt;</span>
-<span class="x">                &lt;thead&gt;</span>
-<span class="x">                    &lt;tr&gt;</span>
-<span class="x">                        &lt;th colspan=&quot;2&quot;&gt;Dog Information&lt;/th&gt;</span>
-<span class="x">                    &lt;/tr&gt;</span>
-<span class="x">                &lt;/thead&gt;</span>
-<span class="x">                &lt;tbody&gt;</span>
+<span class="x">    &lt;h2&gt;Edit Data&lt;/h2&gt;</span>
+<span class="x">    &lt;form method=&quot;POST&quot; action=&quot;edit_data.php&quot;  </span>
+<span class="x">          onsubmit=&quot;return confirm(&#39;Are you sure you want to continue&#39;)&quot;&gt;</span>
+<span class="x">        &lt;table border=&quot;1&quot;&gt;</span>
+<span class="x">            &lt;thead&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;th colspan=&quot;2&quot;&gt;Dog Information&lt;/th&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
+<span class="x">            &lt;/thead&gt;</span>
+<span class="x">            &lt;tbody&gt;</span>
 
-<span class="x">                    &lt;tr&gt;</span>
-<span class="x">                        &lt;td&gt;Dog Name&lt;/td&gt;</span>
-<span class="x">                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;dogname&quot; </span>
-<span class="x">                                   value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;</span>
-<span class="x">                    &lt;/tr&gt;</span>
-<span class="x">                    &lt;tr&gt;</span>
-<span class="x">                        &lt;td&gt;Dog Breed&lt;/td&gt;</span>
-<span class="x">                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;dogbreed&quot; </span>
-<span class="x">                                   value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;dogbreed&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;</span>
-<span class="x">                    &lt;/tr&gt;</span>
-<span class="x">                    &lt;tr&gt;</span>
-<span class="x">                        &lt;td&gt;Owner First Name&lt;/td&gt;</span>
-<span class="x">                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;ownerfirstname&quot; </span>
-<span class="x">                               value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;ownerfirstname&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;</span>
-<span class="x">                    &lt;/tr&gt;</span>
-<span class="x">                    &lt;tr&gt;</span>
-<span class="x">                        &lt;td&gt;Owner Last Name&lt;/td&gt;</span>
-<span class="x">                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;ownerlastname&quot; </span>
-<span class="x">                                   value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;ownerlastname&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;</span>
-<span class="x">                    &lt;/tr&gt;</span>
-<span class="x">                    &lt;tr&gt;</span>
-<span class="x">                        &lt;td&gt;City&lt;/td&gt;</span>
-<span class="x">                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;city&quot; </span>
-<span class="x">                                   value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;</span>
-<span class="x">                    &lt;/tr&gt;</span>
-<span class="x">                    &lt;tr&gt;</span>
-<span class="x">                        &lt;td&gt;ST&lt;/td&gt;</span>
-<span class="x">                        &lt;td&gt;&lt;select name=&quot;st&quot; size=&quot;1&quot; width = 5&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;Dog Name&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;dogname&quot; </span>
+<span class="x">                               value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;						&lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;Dog Breed&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;dogbreed&quot; </span>
+<span class="x">                               value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;dogbreed&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;						&lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;Owner First Name&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;ownerfirstname&quot; </span>
+<span class="x">                           value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;ownerfirstname&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;					&lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;Owner Last Name&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;ownerlastname&quot; </span>
+<span class="x">                               value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;ownerlastname&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; </span>
+<span class="x">        								size=&quot;20&quot; /&gt;&lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;City&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;city&quot; </span>
+<span class="x">                               value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&quot; size=&quot;20&quot; /&gt;&lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;ST&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;select name=&quot;st&quot; size=&quot;1&quot; width = 5&gt;</span>
 
-<span class="x">                                </span><span class="cp">&lt;?php</span>
-                                <span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$result_st</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">())</span> <span class="p">{</span>
-                                    <span class="k">if</span> <span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">])</span> <span class="p">{</span>
-                                        <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;option value=&quot;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&quot; selected&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/option&gt;&#39;</span><span class="p">);</span>
-                                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                                        <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;option value=&quot;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/option&gt;&#39;</span><span class="p">);</span>
-                                    <span class="p">}</span>
+<span class="x">                            </span><span class="cp">&lt;?php</span>
+                            <span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$result_st</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">())</span> <span class="p">{</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">])</span> <span class="p">{</span>
+                                    <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;option value=&quot;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span>
+                                         <span class="o">.</span><span class="s1">&#39;&quot; selected&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/option&gt;&#39;</span><span class="p">);</span>
+                                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                                    <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;option value=&quot;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span> 
+                                         <span class="o">.</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;st&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/option&gt;&#39;</span><span class="p">);</span>
                                 <span class="p">}</span>
-                                <span class="cp">?&gt;</span>
-<span class="x">                            &lt;/select&gt;&lt;/td&gt;</span>
-<span class="x">                    &lt;/tr&gt;</span>
-<span class="x">                    &lt;tr&gt;</span>
-<span class="x">                        &lt;td&gt;Record Id: </span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;dogid&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">  </span>
-<span class="x">                            &lt;input type=&quot;hidden&quot; name=&quot;dogid&quot; value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;dogid&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x"> &quot;/&gt;&lt;/td&gt;</span>
-<span class="x">                        &lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;Enter&quot;/&gt;&lt;/td&gt;</span>
-<span class="x">                    &lt;/tr&gt;</span>
-<span class="x">                &lt;/tbody&gt;</span>
-<span class="x">            &lt;/table&gt;</span>
-<span class="x">        &lt;/form&gt;</span>
-<span class="x">    &lt;/body&gt;</span>
+                            <span class="p">}</span>
+                            <span class="cp">?&gt;</span>
+<span class="x">                        &lt;/select&gt;&lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
+<span class="x">                &lt;tr&gt;</span>
+<span class="x">                    &lt;td&gt;Record Id: </span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;dogid&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">  </span>
+<span class="x">                        &lt;input type=&quot;hidden&quot; name=&quot;dogid&quot; value=&quot;</span><span class="cp">&lt;?php</span> 
+                        <span class="k">echo</span> <span class="nv">$row_edit</span><span class="p">[</span><span class="s1">&#39;dogid&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x"> &quot;/&gt;&lt;/td&gt;</span>
+<span class="x">                    &lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;Enter&quot;/&gt;&lt;/td&gt;</span>
+<span class="x">                &lt;/tr&gt;</span>
+<span class="x">            &lt;/tbody&gt;</span>
+<span class="x">        &lt;/table&gt;</span>
+<span class="x">    &lt;/form&gt;</span>
+<span class="x">&lt;/body&gt;</span>
 <span class="x">&lt;/html&gt;</span>
 </pre></div>
 </div>
 </section>
 <section id="menu-php">
 <h2><a class="toc-backref" href="#id7" role="doc-backlink">menu.php</a><a class="headerlink" href="#menu-php" title="Link to this heading">#</a></h2>
+<p>This short HTML snippet creates a simple <strong>navigation menu</strong> with two links: one leading to the <strong>home page (<code class="docutils literal notranslate"><span class="pre">index.php</span></code>)</strong> and another to the <strong>data display page (<code class="docutils literal notranslate"><span class="pre">Display_Edit.php</span></code>)</strong>. The links are separated by a small space and followed by line breaks for visual spacing.</p>
+<p>In essence:  <em>It’s a minimalist navigation bar that helps users hop between the homepage and the dog data management page.</em></p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>    
     <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;index.php&quot;</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span><span class="ni">&amp;nbsp;</span>
     <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;Display_Edit.php&quot;</span><span class="p">&gt;</span>Display Data<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+<p>10/2025</p>
 </section>
 </section>
 

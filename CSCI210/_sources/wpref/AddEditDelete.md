@@ -28,6 +28,25 @@ D --> C
 
 ## Database SQL
 
+This SQL dump creates a small database named **`wp_dogdb`**, which is test database for storing information about dogs and U.S. states.
+
+Here’s what it does in essence:
+
+1. **Creates the database** `wp_dogdb` (if it doesn’t already exist).
+
+2. **Defines two tables:**
+
+   - **`tbl_doginfo`** — stores details about dogs and their owners, including:
+     - `dogname`, `dogbreed`, `ownerfirstname`, `ownerlastname`, `city`, and `st` (state code).
+     - Each record has a unique `dogid` (auto-incremented primary key).
+   - **`tbl_state`** — a simple reference table listing all **U.S. state abbreviations**.
+
+3. **Populates** `tbl_doginfo` with four sample dogs (all owned by “Joe Cool” from “Fluffy, AK”).
+
+4. **Populates** `tbl_state` with the full list of 50 U.S. state abbreviations.
+
+   
+
 ```sql
 -- phpMyAdmin SQL Dump
 -- version 4.7.0
@@ -116,6 +135,13 @@ COMMIT;
 
 ## dbconnect.php
 
+This PHP script attempts to **connect to the `wp_dogdb` MySQL database** using PDO.
+
+If the connection is successful, it sets a status message saying **“Good database connection.”**
+If the connection fails, it catches the exception and stores an error message containing the failure reason.
+
+Finally, it **starts a PHP session**—likely to maintain user or application state across pages.
+
 ```php
 <?php
 
@@ -128,7 +154,7 @@ try
 }
  catch (PDOException $e)
  {
-      = "Database connection failed <br>".
+     $dbstatus = "Database connection failed <br>".
              $e->getMessage();    
  }
  session_start()
@@ -140,6 +166,8 @@ try
 
 
 ## index.php
+
+This PHP and HTML code creates a simple web form for entering dog information into a database. It begins by including the `dbconnect.php` file to establish a connection with the `wp_dogdb` database and displays the current connection status. The script then retrieves a list of U.S. state abbreviations from the `tbl_state` table, sorting them alphabetically, and stores the results for use in the form. The webpage presents an input form where users can enter details about a dog—such as its name, breed, and the owner’s first and last name, as well as the city and state. The state field is dynamically generated from the database query, ensuring the dropdown list reflects accurate state data. When the user submits the form, the entered information is sent via POST to `Inputdata_DisplayData.php` for further processing or display.
 
 ```php
 <!DOCTYPE html>
@@ -237,9 +265,9 @@ try
 
 ## Inputdata_DisplayData.php
 
-Enter the data and confirm data entry
+This PHP script, **`Inputdata_DisplayData.php`**, processes the dog information form submission from the previous page. It begins by including the database connection file `dbconnect.php`, then prints the submitted form data for debugging purposes. The script defines a `sanitize()` function to clean user input by trimming whitespace, removing HTML/PHP tags, and encoding special characters—ensuring the data is safe for database insertion.
 
-
+Inside a `try` block, it prepares an SQL `INSERT` statement to add a new record into the `tbl_doginfo1` table, binding the sanitized form values (`dogname`, `dogbreed`, `ownerfirstname`, `ownerlastname`, `city`, and `st`) to named placeholders. After executing the insert command, the script displays a formatted confirmation message showing the details entered by the user. If any database or general errors occur, they are caught and displayed in a clear error message.
 
 ```php
 <?php
@@ -249,67 +277,90 @@ require 'dbconnect.php';
 print_r($_POST);
 echo('<br><hr><br>');
 
+function sanitize($value){
+
+    // strip of any excess white spaces on the ends
+    $value = trim($value);
+
+    // get rid of any html or php tags
+    $value = strip_tags($value);
+
+    // convert special characters
+    $value = htmlspecialchars($value,ENT_QUOTES,'UTF-8');
+
+    // return the value
+    return $value;
+
+}
+
+// alternative
+function sanitize2($value){
+    return htmlspecialchars(strip_tags(trim($value)),ENT_QUOTES,'UTF-8');
+}
+
 try{
-// write insert sql statement
-$sql_insert = 	"INSERT INTO tbl_doginfo1("
-			."dogname,"
-			."dogbreed,"
-			."ownerfirstname,"
-			."ownerlastname,"
-			."city,"
-			."st)"
-			."VALUES("
-			.":dogname,"
-			.":dogbreed,"
-			.":ownerfirstname,"
-			.":ownerlastname,"
-			.":city,"
-			.":st)";
+    // write insert sql statement
+    $sql_insert = 	"INSERT INTO tbl_doginfo1("
+                ."dogname,"
+                ."dogbreed,"
+                ."ownerfirstname,"
+                ."ownerlastname,"
+                ."city,"
+                ."st)"
+                ."VALUES("
+                .":dogname,"
+                .":dogbreed,"
+                .":ownerfirstname,"
+                .":ownerlastname,"
+                .":city,"
+                .":st)";
 
-// prepare the sql statement
-$sql_insert = $pdo->prepare($sql_insert);
+    // prepare the sql statement
+    $sql_insert = $pdo->prepare($sql_insert);
 
-// sanitize the information
-$dogname = filter_var($_POST['dogname'],FILTER_SANITIZE_STRING);
-$dogbreed = filter_var($_POST['dogbreed'],FILTER_SANITIZE_STRING);
-$ownerfirstname = filter_var($_POST['ownerfirstname'],FILTER_SANITIZE_STRING);
-$ownerlastname = filter_var($_POST['ownerlastname'],FILTER_SANITIZE_STRING);
-$city = filter_var($_POST['city'],FILTER_SANITIZE_STRING);
-$st = filter_var($_POST['st'],FILTER_SANITIZE_STRING);
+    // sanitize the information
+    $dogname = sanitize($_POST['dogname'] ?? '');
+    $dogbreed = sanitize($_POST['dogbreed'] ?? '');
+    $ownerfirstname = sanitize($_POST['ownerfirstname'] ?? '');
+    $ownerlastname = sanitize($_POST['ownerlastname'] ?? '');
+    $city = sanitize($_POST['city'] ?? '');
+    $st = sanitize($_POST['st'] ?? '');
 
-//bind variable name to placeholders
-$sql_insert->bindparam(":dogname",$dogname);
-$sql_insert->bindparam(":dogbreed",$dogbreed);
-$sql_insert->bindparam(":ownerfirstname",$ownerfirstname);
-$sql_insert->bindparam(":ownerlastname",$ownerlastname);
-$sql_insert->bindparam(":city",$city);
-$sql_insert->bindparam(":st",$st);
-    
-//--Alternative Method using an array
-/*
-$sql_params=array(':dogname'=> $dogname,
-                ':dogbreed' => $dogbreed,
-                ':ownerfirstname' => $ownerfirstname ,
-                ':ownerlastname' => $ownerlastname,
-                ':city' => $city,
-                ':st' => $st);
-        
-$sql_insert->execute($sql_params);
- */    
-    
+    //bind variable name to placeholders
+    $sql_insert->bindparam(":dogname",$dogname);
+    $sql_insert->bindparam(":dogbreed",$dogbreed);
+    $sql_insert->bindparam(":ownerfirstname",$ownerfirstname);
+    $sql_insert->bindparam(":ownerlastname",$ownerlastname);
+    $sql_insert->bindparam(":city",$city);
+    $sql_insert->bindparam(":st",$st);
 
-//execute
-$sql_insert->execute();
+    //execute
+    $sql_insert->execute();
 
-echo("
-        <h2>Dog Infomation Confirmation</h2>
-        Dog Name: $dogname<br>
-        Dog Breed: $dogbreed<br>
-        Owner First Name: $ownerfirstname<br>
-        Owner Last Name: $ownerlastname<br>
-        City: $city<br>
-        State: $st<br>
-    ");
+    //--Alternative Binding Method using an array
+    /*
+    $sql_params=array(':dogname'=> $dogname,
+                    ':dogbreed' => $dogbreed,
+                    ':ownerfirstname' => $ownerfirstname ,
+                    ':ownerlastname' => $ownerlastname,
+                    ':city' => $city,
+                    ':st' => $st);
+
+    $sql_insert->execute($sql_params);
+     */    
+
+
+
+
+    echo("
+            <h2>Dog Infomation Confirmation</h2>
+            Dog Name: $dogname<br>
+            Dog Breed: $dogbreed<br>
+            Owner First Name: $ownerfirstname<br>
+            Owner Last Name: $ownerlastname<br>
+            City: $city<br>
+            State: $st<br>
+        ");
 }
 catch(PDOException $err)
 {
@@ -332,6 +383,17 @@ catch(Exception $e)
 
 
 ## Display_Edit.php
+
+This PHP script displays and manages a **list of dogs** from the `tbl_doginfo` database table, allowing users to **edit or delete records** directly from a web interface.
+
+It begins by including the `dbconnection.php` file to establish a database connection. When a form is submitted, the script checks the `action` value in the POST data:
+
+- If the action is **“Delete”**, it sanitizes the `dogid` and executes a SQL `DELETE` command to remove the corresponding record.
+- If the action is **“Edit”**, it stores the selected dog’s ID in a session variable and redirects the user to `edit_data.php` to update that record.
+
+After handling any actions, the script retrieves all existing dog records—showing each dog’s name, breed, owner’s name, city, and state—and dynamically generates an HTML table with **Edit** and **Delete** buttons for each entry.
+
+In short: 🐕 *This code powers a simple admin-style dashboard for managing dog records—complete with live database actions and a clean, table-based interface.*
 
 ```php
 <?php
@@ -414,9 +476,40 @@ while ($row = $result_edit->fetch()) {
 
 ## Edit_data.php
 
+This PHP script provides an **edit interface for updating existing dog records** in the `tbl_doginfo` database.
+
+It begins by including the database connection file and defining two `sanitize()` functions that clean user input by trimming whitespace, stripping HTML/PHP tags, and encoding special characters—ensuring the data is secure before being stored. If the user submits the form, the script prepares an SQL `UPDATE` statement with named placeholders and binds the sanitized input values (dog name, breed, owner info, city, and state) to those placeholders. It then executes the update and redirects the user back to the main display page.
+
+If the form hasn’t been submitted yet, the script retrieves the selected dog’s record—based on a session-stored `dogEditID`—and queries the list of U.S. states from `tbl_state`. It then displays a pre-filled form that allows the user to modify the existing information, with the current state automatically selected.
+
+In essence: 🐾 *This page is the heart of the “edit dog” workflow—securely fetching, displaying, and updating canine records with clean, user-friendly precision.*
+
 ```php
 <?php
 require ('./dbconnection.php');
+
+
+function sanitize($value){
+
+    // strip of any excess white spaces on the ends
+    $value = trim($value);
+
+    // get rid of any html or php tags
+    $value = strip_tags($value);
+
+    // convert special characters
+    $value = htmlspecialchars($value,ENT_QUOTES,'UTF-8');
+
+    // return the value
+    return $value;
+
+}
+
+// alternative
+function sanitize2($value){
+    return htmlspecialchars(strip_tags(trim($value)),ENT_QUOTES,'UTF-8');
+}
+
 
 if (!empty($_POST['dogname'])) {
     
@@ -435,13 +528,12 @@ if (!empty($_POST['dogname'])) {
 
 
     //Sanitize Information
-    $dogname = filter_var($_POST['dogname'], FILTER_SANITIZE_STRING);
-    $dogbreed = filter_var($_POST['dogbreed'], FILTER_SANITIZE_STRING);
-    $ownerfirstname = filter_var($_POST['ownerfirstname'], FILTER_SANITIZE_STRING);
-    $ownerlastname = filter_var($_POST['ownerlastname'], FILTER_SANITIZE_STRING);
-    $city = filter_var($_POST['city'], FILTER_SANITIZE_STRING);
-    $st = filter_var($_POST['st'], FILTER_SANITIZE_STRING);
-    $dogid = filter_var($_POST['dogid'], FILTER_SANITIZE_NUMBER_INT);
+    $dogname = sanitize($_POST['dogname'] ?? '');
+    $dogbreed = sanitize($_POST['dogbreed'] ?? '');
+    $ownerfirstname = sanitize($_POST['ownerfirstname'] ?? '');
+    $ownerlastname = sanitize($_POST['ownerlastname'] ?? '');
+    $city = sanitize($_POST['city'] ?? '');
+    $st = sanitize($_POST['st'] ?? '');
 
 
     //bind parameters
@@ -453,10 +545,10 @@ if (!empty($_POST['dogname'])) {
     $sql_edit->bindparam(":st", $st);
     $sql_edit->bindparam(":dogid", $dogid);
 
-//input data
+	//input data
     $sqlh_edit->execute();
 
-//open display data page
+	//open display data page
     header("Location: Display_Edit.php");
 }
 
@@ -481,75 +573,79 @@ $result_st = $pdo->query($sql_st);
 ?>
 
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Edit Data</title>
-    </head>
-    <body>
-        <?php
-        include 'menu.php';
-        ?>
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Data</title>
+</head>
+<body>
+    <?php
+    include 'menu.php';
+    ?>
 
-        <h2>Edit Data</h2>
-        <form method="POST" action="edit_data.php"  
-              onsubmit="return confirm('Are you sure you want to continue')">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th colspan="2">Dog Information</th>
-                    </tr>
-                </thead>
-                <tbody>
+    <h2>Edit Data</h2>
+    <form method="POST" action="edit_data.php"  
+          onsubmit="return confirm('Are you sure you want to continue')">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th colspan="2">Dog Information</th>
+                </tr>
+            </thead>
+            <tbody>
 
-                    <tr>
-                        <td>Dog Name</td>
-                        <td><input type="text" name="dogname" 
-                                   value="<?php echo $row_edit['dogname'] ?>" size="20" /></td>
-                    </tr>
-                    <tr>
-                        <td>Dog Breed</td>
-                        <td><input type="text" name="dogbreed" 
-                                   value="<?php echo $row_edit['dogbreed'] ?>" size="20" /></td>
-                    </tr>
-                    <tr>
-                        <td>Owner First Name</td>
-                        <td><input type="text" name="ownerfirstname" 
-                               value="<?php echo $row_edit['ownerfirstname'] ?>" size="20" /></td>
-                    </tr>
-                    <tr>
-                        <td>Owner Last Name</td>
-                        <td><input type="text" name="ownerlastname" 
-                                   value="<?php echo $row_edit['ownerlastname'] ?>" size="20" /></td>
-                    </tr>
-                    <tr>
-                        <td>City</td>
-                        <td><input type="text" name="city" 
-                                   value="<?php echo $row_edit['city'] ?>" size="20" /></td>
-                    </tr>
-                    <tr>
-                        <td>ST</td>
-                        <td><select name="st" size="1" width = 5>
+                <tr>
+                    <td>Dog Name</td>
+                    <td><input type="text" name="dogname" 
+                               value="<?php echo $row_edit['dogname'] ?>" size="20" />						</td>
+                </tr>
+                <tr>
+                    <td>Dog Breed</td>
+                    <td><input type="text" name="dogbreed" 
+                               value="<?php echo $row_edit['dogbreed'] ?>" size="20" />						</td>
+                </tr>
+                <tr>
+                    <td>Owner First Name</td>
+                    <td><input type="text" name="ownerfirstname" 
+                           value="<?php echo $row_edit['ownerfirstname'] ?>" size="20" />					</td>
+                </tr>
+                <tr>
+                    <td>Owner Last Name</td>
+                    <td><input type="text" name="ownerlastname" 
+                               value="<?php echo $row_edit['ownerlastname'] ?>" 
+        								size="20" /></td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td><input type="text" name="city" 
+                               value="<?php echo $row_edit['city'] ?>" size="20" /></td>
+                </tr>
+                <tr>
+                    <td>ST</td>
+                    <td><select name="st" size="1" width = 5>
 
-                                <?php
-                                while ($row = $result_st->fetch()) {
-                                    if ($row['st'] === $row_edit['st']) {
-                                        echo('<option value="'.$row['st'].'" selected>'.$row['st'].'</option>');
-                                    } else {
-                                        echo('<option value="'.$row['st'] . '">'.$row['st'].'</option>');
-                                    }
+                            <?php
+                            while ($row = $result_st->fetch()) {
+                                if ($row['st'] === $row_edit['st']) {
+                                    echo('<option value="'.$row['st']
+                                         .'" selected>'.$row['st'].'</option>');
+                                } else {
+                                    echo('<option value="'.$row['st'] 
+                                         . '">'.$row['st'].'</option>');
                                 }
-                                ?>
-                            </select></td>
-                    </tr>
-                    <tr>
-                        <td>Record Id: <?php echo $row_edit['dogid'] ?>  
-                            <input type="hidden" name="dogid" value="<?php echo $row_edit['dogid'] ?> "/></td>
-                        <td><input type="submit" value="Enter"/></td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-    </body>
+                            }
+                            ?>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Record Id: <?php echo $row_edit['dogid'] ?>  
+                        <input type="hidden" name="dogid" value="<?php 
+                        echo $row_edit['dogid'] ?> "/></td>
+                    <td><input type="submit" value="Enter"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
 </html>
 
 ```
@@ -558,6 +654,10 @@ $result_st = $pdo->query($sql_st);
 
 ## menu.php
 
+This short HTML snippet creates a simple **navigation menu** with two links: one leading to the **home page (`index.php`)** and another to the **data display page (`Display_Edit.php`)**. The links are separated by a small space and followed by line breaks for visual spacing.
+
+In essence:  *It’s a minimalist navigation bar that helps users hop between the homepage and the dog data management page.*
+
 ```html
 <div>    
     <a href="index.php">Home</a>&nbsp;
@@ -565,4 +665,6 @@ $result_st = $pdo->query($sql_st);
 </div>
 
 ```
+
+10/2025
 
