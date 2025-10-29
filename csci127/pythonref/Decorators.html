@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -205,6 +205,7 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Decorators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Properties.html">Properties</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SettersGettersDecoratorsProperties.html">When to use Setters and Getters, Decorators, and Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searchListOfObjects.html">🐾 <strong>Pet Search Program — Explanation and Learning Outcomes</strong></a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="numpy_ref.html">NumPy / Arrays</a></li>
@@ -437,8 +438,8 @@ They are essentially functions that wrap other functions, adding extra functiona
 <span class="c1"># in testing etc, this easily could be written</span>
 <span class="c1"># to a log file</span>
 
-<span class="k">def</span> <span class="nf">log_function_call</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">log_function_call</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="c1"># print(f&quot;Function &#39;{func.__name__}&#39; called with arguments {args} and {kwargs}. Returned {result}&quot;)</span>
         <span class="n">xFunCall</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Function &#39;</span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39; called with arguments </span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2">. Returned </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -447,24 +448,24 @@ They are essentially functions that wrap other functions, adding extra functiona
     <span class="k">return</span> <span class="n">wrapper</span>
 
 <span class="nd">@log_function_call</span>
-<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
 
 <span class="nd">@log_function_call</span>
-<span class="k">def</span> <span class="nf">sub</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sub</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
 
 <span class="nd">@log_function_call</span>
-<span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
 
-<span class="k">def</span> <span class="nf">printFunctionsCalled</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">printFunctionsCalled</span><span class="p">():</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A list of functions called&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">listOfFunctionCalls</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">sub</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
@@ -492,17 +493,17 @@ They are essentially functions that wrap other functions, adding extra functiona
 </pre></div>
 </div>
 <p>Example2</p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
 
 
 <span class="n">listOfFunctionCalls</span> <span class="o">=</span> <span class="p">[]</span>
 
 
-<span class="k">def</span> <span class="nf">timeit</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">timeit</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator to time the execution of a function.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time_ns</span><span class="p">()</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time_ns</span><span class="p">()</span>
@@ -512,7 +513,7 @@ They are essentially functions that wrap other functions, adding extra functiona
 
     <span class="k">return</span> <span class="n">wrapper</span>
 
-<span class="k">def</span> <span class="nf">printFunctionsCalled</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">printFunctionsCalled</span><span class="p">():</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A list of functions called&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">listOfFunctionCalls</span><span class="p">:</span>
@@ -521,7 +522,7 @@ They are essentially functions that wrap other functions, adding extra functiona
 
 
 <span class="nd">@timeit</span>
-<span class="k">def</span> <span class="nf">loopcount1</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">loopcount1</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 
     <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -531,7 +532,7 @@ They are essentially functions that wrap other functions, adding extra functiona
     <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 
 <span class="nd">@timeit</span>
-<span class="k">def</span> <span class="nf">loopcount2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">loopcount2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 
     <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -539,7 +540,7 @@ They are essentially functions that wrap other functions, adding extra functiona
         <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
 
     <span class="n">x</span> <span class="o">=</span> <span class="mi">1000000</span>
 
@@ -636,7 +637,7 @@ By James Goudy
 
   <p class="copyright">
     
-      © Copyright 2024 By James Goudy.
+      © Copyright 2025 By James Goudy.
       <br/>
     
   </p>

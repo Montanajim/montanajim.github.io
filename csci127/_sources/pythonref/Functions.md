@@ -19,7 +19,7 @@ def function_name(parameters):
   return value  # Optional
 ```
 
- Use code [with caution.]()
+ Code:
 
 - **`def`**: Keyword to define a function.
 - **`function_name`**: The name you give to the function.

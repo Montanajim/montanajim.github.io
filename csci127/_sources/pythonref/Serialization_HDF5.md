@@ -25,7 +25,7 @@ In essence, HDF5 provides a robust and flexible solution for managing and preser
 
 ##  Installing HDF5
 
-```cmd
+```shell
   pip install h5py numpy
 ```
 

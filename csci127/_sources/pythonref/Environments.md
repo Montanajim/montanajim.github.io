@@ -25,7 +25,7 @@ Python environments are isolated spaces where you can install and use different 
 
 Cmd /Powershell
 
-```cmd
+```shell
 # Create a new environment named "myproject" with Python 
 python -m venv myproject
 
@@ -65,7 +65,7 @@ Use the `venv` module to create a new virtual environment:
 
 Cmd /Powershell
 
-```
+```shell
 python -m venv my_env
 ```
 
@@ -77,7 +77,7 @@ To use the newly created environment, activate it:
 
 Cmd /Powershell
 
-```cmd
+```shell
 my_env\Scripts\activate
 ```
 
@@ -89,7 +89,7 @@ Now, you can install packages specific to your project:
 
 Cmd /Powershell
 
-```
+```shell
 pip install numpy pandas matplotlib
 ```
 
@@ -101,7 +101,7 @@ To exit the virtual environment:
 
 Cmd /Powershell
 
-```
+```shell
 deactivate
 ```
 
@@ -109,7 +109,7 @@ deactivate
 
 Cmd /Powershell
 
-```cmd
+```shell
 # Create a new environment
 python -m venv my_project
 

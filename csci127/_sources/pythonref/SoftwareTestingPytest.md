@@ -6,13 +6,17 @@
 
 
 
-```Admonition NOTE
-Pytest needs to be installed. 
-```
+> [!NOTE]
+>
+> Pytest needs to be installed. 
 
 
 
-```bash
+
+
+
+
+```shell
 pip install pytest
 ```
 

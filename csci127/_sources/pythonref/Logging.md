@@ -77,13 +77,9 @@ Therefore, you can create log files regardless of whether you're running your pr
 
 
 
-> [!NOTE]
->
-> VSCode seems to be the exception.  The Log file will only create  when ran from the debug mode.
-
-
-
-
+```{note}
+VSCode seems to be the exception.  The Log file will only create  when ran from the debug mode. 
+```
 
 ## Lecture Code
 
