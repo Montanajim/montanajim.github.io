@@ -12,6 +12,8 @@
 
 ![](../wpimages/Lerdorf_2014.JPG)
 
+![](./assets/Lerdorf_2014.JPG)
+
 
 
  Official website: [www.php.net](http://www.php.net/)
