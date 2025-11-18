@@ -1,0 +1,1136 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Sorting Algorithms &#8212; CSCI 132 Basic Data Structures</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'basicalgo/Sorting Algorithms Notes ';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CSCI 132 Basic Data Structures</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to CSCI 132
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Java Language</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../javalang/javalanguage.html">Java Language</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/netbeansinstall.html">NetBeans Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/javaintro.html">JAVA Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/javabasics.html">Java Basics</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../javalang/java_variable_lc.html">Variable Lecture Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/firstprogram.html">First Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/secondprogram.html">Second Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/decisiontrees.html">Decision Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/switchstatement.html">Switch Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/stringfunctions.html">String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/numberformats.html">Number Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/iterationloops.html">Iteration / Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/exceptionhandling.html">Exception Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/iofilefoldercreationdeletion.html">File, Folder - Creation and Deletion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/ioreadcsvfile.html">IO Read CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/arraylists.html">ArrayLists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/overloading.html">Overloading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/classesandobjects.html">Classes and Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/classesinheritance.html">Classes  - Inheritance</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../javalang/abstractclasses.html">Abstract Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/lambdafunctions.html">Lambda Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/recursion.html">Recursion</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../javalang/regexmatches.html">Regex - Using Java Matches</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../javalang/referencereading.html">Reference Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/buildinglargejavaapplications.html">Building Large Java Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/antvsmavenvsgradle.html">Ant Vs Maven Vs Gradle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/PolymorphismInJavaWithExamples.html">Polymorphism in Java (With Examples)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/UnableToRunJarFiles.html">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="DataStructuresAndAlgorithms.html">Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ArrayTechniques.html">Array Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="ArraysCoreFunctionality.html">Arrays Core Functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrayWarpAround.html">Array Warp Around</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrayAddDeleteData.html">Array Add and Delete Data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="EncapsulationNonEncapsulation.html">Encapsulation vs Non-Encapsulation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BigONotation.html">Big O Notation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="ON_VisualizingBigONotation.html">Visualizing Big O notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BigONotationExplained.html">Big O Notation - Explained</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="LinkedLists.html">Linked Lists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="SinglyLinkedListRev3.html">Singly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedList.html">Doubly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListSubClass.html">Doubly Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CircularLinkedList.html">Circular Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListReadDataIntoLL.html">Reading Datafile Into Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListCSharp.html">C# Linked List Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListJava.html">Java Linked List Class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="StacksAndQueues.html">Stacks and Queues</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="StackUsingArrayOfObjects.html">Stack  - Using Array of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QueueUsingArrayOfObjects.html">Queue  - Using Array Of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PriorityQueue.html">Priority Queue</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="SortAlgorithms.html">Sorting Algorithms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Sort_Bubble.html">Bubble Sort</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="xbucketsort.html">Bucket Sort</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="MergeSort.html">Merge Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MergeSort_revA.html">Merge Sort - Demo Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuickSort.html">Quick Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SortingVideosVisualizers.html">Sorting Videos and Visualizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/basicalgo/Sorting Algorithms Notes .md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sorting Algorithms</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popular-sorting-algorithms">Popular Sorting Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-sorting-alogithms">Fast Sorting Alogithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-sort-pros-and-cons">Quick Sort Pros and Cons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-sort-pros-and-cons">Merge Sort Pros and Cons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#small-data-sets">Small Data Sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-sort-and-merge-sort">Quick Sort and Merge Sort</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stable-vs-unstable-sorting-algorithms">Stable vs Unstable Sorting Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-sort-merge-sort-vs-heap-sort">Quick Sort, Merge Sort vs Heap Sort</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-quick-sort">Java Quick Sort</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-merge-sort">Java Merge Sort</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-merge-sort-linked-list">Java Merge Sort Linked List</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sorting-algorithms">
+<h1>Sorting Algorithms<a class="headerlink" href="#sorting-algorithms" title="Link to this heading">#</a></h1>
+<p>[TOC]</p>
+<hr class="docutils" />
+<p>Sure, here is a summary of the sorting algorithms mentioned in the text:</p>
+<p><strong>Sorting Algorithms</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Algorithm</p></th>
+<th class="head text-left"><p>Time Complexity</p></th>
+<th class="head text-left"><p>Space Complexity</p></th>
+<th class="head text-left"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Bubble Sort</p></td>
+<td class="text-left"><p>O(n^2)</p></td>
+<td class="text-left"><p>O(1)</p></td>
+<td class="text-left"><p>Simple to implement but inefficient for large datasets</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Insertion Sort</p></td>
+<td class="text-left"><p>O(n^2)</p></td>
+<td class="text-left"><p>O(1)</p></td>
+<td class="text-left"><p>Efficient for small datasets or when the input is nearly sorted</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Selection Sort</p></td>
+<td class="text-left"><p>O(n^2)</p></td>
+<td class="text-left"><p>O(1)</p></td>
+<td class="text-left"><p>Inefficient for large datasets</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Merge Sort</p></td>
+<td class="text-left"><p>O(n log n)</p></td>
+<td class="text-left"><p>O(n)</p></td>
+<td class="text-left"><p>Stable and efficient for large datasets</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Quick Sort</p></td>
+<td class="text-left"><p>O(n log n)</p></td>
+<td class="text-left"><p>O(log n)</p></td>
+<td class="text-left"><p>Efficient for large datasets but unstable</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Heap Sort</p></td>
+<td class="text-left"><p>O(n log n)</p></td>
+<td class="text-left"><p>O(1)</p></td>
+<td class="text-left"><p>In-place and efficient for large datasets</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Counting Sort</p></td>
+<td class="text-left"><p>O(n + k)</p></td>
+<td class="text-left"><p>O(k)</p></td>
+<td class="text-left"><p>Efficient when the range of input values is small</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Radix Sort</p></td>
+<td class="text-left"><p>O(nk)</p></td>
+<td class="text-left"><p>O(k)</p></td>
+<td class="text-left"><p>Efficient for sorting strings or numbers</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Shell Sort</p></td>
+<td class="text-left"><p>O(n log n)</p></td>
+<td class="text-left"><p>O(1)</p></td>
+<td class="text-left"><p>Efficient for large datasets with a specific distribution</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Timesort</p></td>
+<td class="text-left"><p>O(n log n)</p></td>
+<td class="text-left"><p>O(1)</p></td>
+<td class="text-left"><p>Hybrid sorting algorithm that is efficient for a variety of input data</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="popular-sorting-algorithms">
+<h2>Popular Sorting Algorithms<a class="headerlink" href="#popular-sorting-algorithms" title="Link to this heading">#</a></h2>
+<p>Here are some of the most popular sorting algorithms:</p>
+<ol class="arabic simple">
+<li><p><strong>Bubble Sort</strong>: This algorithm compares adjacent elements and swaps them if they are in the wrong order. It repeats this process until no more swaps are needed. <a class="reference external" href="https://www.sitepoint.com/best-sorting-algorithms/">It has a time complexity of O(n^2) </a><a class="reference external" href="https://www.sitepoint.com/best-sorting-algorithms/">1</a>.</p></li>
+<li><p><strong>Insertion Sort</strong>: This algorithm iterates through an array and removes one element per iteration, finds the place the element belongs among the sorted elements, and inserts it there. <a class="reference external" href="https://www.sitepoint.com/best-sorting-algorithms/">It has a time complexity of O(n^2) </a><a class="reference external" href="https://www.sitepoint.com/best-sorting-algorithms/">1</a>.</p></li>
+<li><p><strong>Selection Sort</strong>: This algorithm sorts an array by repeatedly finding the minimum element from the unsorted part of the array and putting it at the beginning. <a class="reference external" href="https://www.freecodecamp.org/news/sorting-algorithms-explained-with-examples-in-python-java-and-c/">It has a time complexity of O(n^2) </a><a class="reference external" href="https://www.freecodecamp.org/news/sorting-algorithms-explained-with-examples-in-python-java-and-c/">2</a>.</p></li>
+<li><p><strong>Merge Sort</strong>: This algorithm divides the input array into two halves, calls itself for the two halves, and then merges the two sorted halves. <a class="reference external" href="https://www.sitepoint.com/best-sorting-algorithms/">It has a time complexity of O(n log n) </a><a class="reference external" href="https://www.sitepoint.com/best-sorting-algorithms/">1</a>.</p></li>
+<li><p><strong>Quick Sort</strong>: This algorithm picks an element as a pivot and partitions the given array around the picked pivot. <a class="reference external" href="https://www.sitepoint.com/best-sorting-algorithms/">It has a time complexity of O(n log n) </a><a class="reference external" href="https://www.sitepoint.com/best-sorting-algorithms/">1</a>.</p></li>
+<li><p><strong>Heap Sort</strong>: This algorithm sorts an array by first building a heap from the input data, then removing the largest element and placing it at the end of the sorted array. <a class="reference external" href="https://builtin.com/machine-learning/fastest-sorting-algorithm">It has a time complexity of O(n log n) </a><a class="reference external" href="https://builtin.com/machine-learning/fastest-sorting-algorithm">3</a>.</p></li>
+<li><p><strong>Counting Sort</strong>: This algorithm sorts an array by counting the number of occurrences of each unique element in the array and sorting them according to their counts. <a class="reference external" href="https://www.freecodecamp.org/news/sorting-algorithms-explained-with-examples-in-python-java-and-c/">It has a time complexity of O(n + k), where k is the range of the non-negative key values </a><a class="reference external" href="https://www.freecodecamp.org/news/sorting-algorithms-explained-with-examples-in-python-java-and-c/">2</a>.</p></li>
+<li><p><strong>Radix Sort</strong>: This algorithm sorts an array by grouping elements by the individual digits which share the same significant position and value. <a class="reference external" href="https://www.freecodecamp.org/news/sorting-algorithms-explained-with-examples-in-python-java-and-c/">It has a time complexity of O(nk), where k is the number of digits in the longest number </a><a class="reference external" href="https://www.freecodecamp.org/news/sorting-algorithms-explained-with-examples-in-python-java-and-c/">2</a>.</p></li>
+<li><p><strong>Shell Sort</strong>: This algorithm sorts an array by comparing elements that are distant from each other. <a class="reference external" href="https://betterprogramming.pub/5-basic-sorting-algorithms-you-must-know-9ef5b1f3949c">It has a time complexity of O(n log n) </a><a class="reference external" href="https://betterprogramming.pub/5-basic-sorting-algorithms-you-must-know-9ef5b1f3949c">4</a>.</p></li>
+<li><p><strong>Timsort</strong>: This algorithm is a hybrid sorting algorithm derived from merge sort and insertion sort. <a class="reference external" href="https://www.geeksforgeeks.org/sorting-algorithms/">It has a time complexity of O(n log n) </a><a class="reference external" href="https://www.geeksforgeeks.org/sorting-algorithms/">5</a>.</p></li>
+</ol>
+<p>I</p>
+</section>
+<hr class="docutils" />
+<section id="fast-sorting-alogithms">
+<h2>Fast Sorting Alogithms<a class="headerlink" href="#fast-sorting-alogithms" title="Link to this heading">#</a></h2>
+<p>There are several sorting algorithms, each with its own strengths and weaknesses. The efficiency of a sorting algorithm is usually measured by its <strong>time complexity</strong> and <strong>space complexity</strong>. Here are some of the most efficient sorting algorithms:</p>
+<ol class="arabic simple">
+<li><p><strong>Quick Sort</strong>: This algorithm is one of the fastest sorting algorithms in practice. It picks an element as a pivot and partitions the given array around the picked pivot. <a class="reference external" href="https://builtin.com/machine-learning/fastest-sorting-algorithm">It has a time complexity of O(n log n) </a><a class="reference external" href="https://builtin.com/machine-learning/fastest-sorting-algorithm">1</a><a class="reference external" href="https://cs.stackexchange.com/questions/18536/what-is-a-the-fastest-sorting-algorithm-for-an-array-of-integers">2</a>.</p></li>
+<li><p><strong>Merge Sort</strong>: This algorithm is also very fast and is often used as the standard algorithm for sorting large amounts of data. It divides the input array into two halves, calls itself for the two halves, and then merges the two sorted halves. <a class="reference external" href="https://builtin.com/machine-learning/fastest-sorting-algorithm">It has a time complexity of O(n log n) </a><a class="reference external" href="https://builtin.com/machine-learning/fastest-sorting-algorithm">1</a>.</p></li>
+<li><p><strong>Heap Sort</strong>: This algorithm sorts an array by first building a heap from the input data, then removing the largest element and placing it at the end of the sorted array. <a class="reference external" href="https://builtin.com/machine-learning/fastest-sorting-algorithm">It has a time complexity of O(n log n) </a><a class="reference external" href="https://stackoverflow.com/questions/63979874/whats-the-most-efficient-way-to-construct-a-new-sorted-array">3</a>.</p></li>
+<li><p><strong>Counting Sort</strong>: This algorithm sorts an array by counting the number of occurrences of each unique element in the array and sorting them according to their counts. <a class="reference external" href="https://builtin.com/machine-learning/fastest-sorting-algorithm">It has a time complexity of O(n + k), where k is the range of the non-negative key values </a><a class="reference external" href="https://cs.stackexchange.com/questions/18536/what-is-a-the-fastest-sorting-algorithm-for-an-array-of-integers">2</a>.</p></li>
+<li><p><strong>Radix Sort</strong>: This algorithm sorts an array by grouping elements by the individual digits which share the same significant position and value. <a class="reference external" href="https://builtin.com/machine-learning/fastest-sorting-algorithm">It has a time complexity of O(nk), where k is the number of digits in the longest number </a><a class="reference external" href="https://cs.stackexchange.com/questions/18536/what-is-a-the-fastest-sorting-algorithm-for-an-array-of-integers">2</a>.</p></li>
+</ol>
+<p>Please note that the efficiency of a sorting algorithm depends on the size of the input data, the distribution of the data, and the available memory. Therefore, it is important to choose the right algorithm for the specific use case.</p>
+</section>
+<hr class="docutils" />
+<section id="quick-sort-pros-and-cons">
+<h2>Quick Sort Pros and Cons<a class="headerlink" href="#quick-sort-pros-and-cons" title="Link to this heading">#</a></h2>
+<p>Quick Sort is a popular and efficient sorting algorithm. Here are some of its pros and cons:</p>
+<p><strong>Pros:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">Quick Sort is one of the fastest sorting algorithms in practice </a><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">1</a><a class="reference external" href="https://www.ablison.com/pros-and-cons-of-quick-sort/">2</a>.</p></li>
+<li><p><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">It has a time complexity of O(n log n) </a><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">1</a><a class="reference external" href="https://www.ablison.com/pros-and-cons-of-quick-sort/">2</a>.</p></li>
+<li><p><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">It is an in-place sorting algorithm, meaning it doesn’t require additional memory </a><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">It is cache-friendly, which means it works well with modern computer architectures </a><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">It is widely used in practice </a><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">It adapts well to many data types </a><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">1</a>.</p></li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">Quick Sort has a worst-case time complexity of O(n^2) </a><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">It is unstable, meaning it does not maintain the relative order of equal elements </a><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">It is dependent on pivot selection, which can affect its performance </a><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">It is not suitable for small datasets </a><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">It is not suitable for linked lists </a><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">It requires a recursive implementation, which can lead to stack overflow </a><a class="reference external" href="https://www.techquintal.com/advantages-and-disadvantages-of-quick-sort/">1</a>.</p></li>
+</ul>
+<p>Please note that the efficiency of a sorting algorithm depends on the size of the input data, the distribution of the data, and the available memory. Therefore, it is important to choose the right algorithm for the specific use case.</p>
+</section>
+<hr class="docutils" />
+<section id="merge-sort-pros-and-cons">
+<h2>Merge Sort Pros and Cons<a class="headerlink" href="#merge-sort-pros-and-cons" title="Link to this heading">#</a></h2>
+<p>Merge Sort is a popular and efficient sorting algorithm. Here are some of its pros and cons:</p>
+<p><strong>Pros:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://brilliant.org/wiki/merge/">Merge Sort is stable, meaning it maintains the relative order of equal elements in the input array </a><a class="reference external" href="https://brilliant.org/wiki/merge/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://getrevising.co.uk/grids/merge-sort-advantages-and-disadvantages">It has a time complexity of O(n log n) </a><a class="reference external" href="https://getrevising.co.uk/grids/merge-sort-advantages-and-disadvantages">2</a><a class="reference external" href="https://brilliant.org/wiki/merge/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://brilliant.org/wiki/merge/">It is widely used in practice </a><a class="reference external" href="https://www.geeksforgeeks.org/merge-sort/">3</a>.</p></li>
+<li><p><a class="reference external" href="https://brilliant.org/wiki/merge/">It is suitable for sorting large datasets </a><a class="reference external" href="https://getrevising.co.uk/grids/merge-sort-advantages-and-disadvantages">2</a><a class="reference external" href="https://dev.to/ayabouchiha/merge-sort-algorithm-1l55">4</a>.</p></li>
+<li><p><a class="reference external" href="https://brilliant.org/wiki/merge/">It is suitable for parallel processing </a><a class="reference external" href="https://brilliant.org/wiki/merge/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://brilliant.org/wiki/merge/">It is a good choice for sorting linked lists </a><a class="reference external" href="https://brilliant.org/wiki/merge/">1</a>.</p></li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://dev.to/ayabouchiha/merge-sort-algorithm-1l55">Merge Sort requires additional memory to store the sub-arrays </a><a class="reference external" href="https://dev.to/ayabouchiha/merge-sort-algorithm-1l55">4</a><a class="reference external" href="https://sage-answer.com/what-are-the-advantages-and-disadvantages-of-a-merge-sort/">5</a>.</p></li>
+<li><p><a class="reference external" href="https://brilliant.org/wiki/merge/">It is marginally slower than Quick Sort in practice </a><a class="reference external" href="https://brilliant.org/wiki/merge/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://getrevising.co.uk/grids/merge-sort-advantages-and-disadvantages">It is not suitable for small datasets </a><a class="reference external" href="https://getrevising.co.uk/grids/merge-sort-advantages-and-disadvantages">2</a>.</p></li>
+<li><p><a class="reference external" href="https://getrevising.co.uk/grids/merge-sort-advantages-and-disadvantages">It is not an in-place sorting algorithm </a><a class="reference external" href="https://getrevising.co.uk/grids/merge-sort-advantages-and-disadvantages">2</a>.</p></li>
+<li><p><a class="reference external" href="https://getrevising.co.uk/grids/merge-sort-advantages-and-disadvantages">It is not cache-friendly, which means it does not work well with modern computer architectures </a><a class="reference external" href="https://getrevising.co.uk/grids/merge-sort-advantages-and-disadvantages">2</a>.</p></li>
+</ul>
+<p>Please note that the efficiency of a sorting algorithm depends on the size of the input data, the distribution of the data, and the available memory. Therefore, it is important to choose the right algorithm for the specific use case.</p>
+<p>I hope this helps!</p>
+<hr class="docutils" />
+<p>Heap Sort is a popular sorting algorithm with its own strengths and weaknesses. Here are some of its pros and cons:</p>
+<p><strong>Pros:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">Heap Sort has a time complexity of O(n log n) </a><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">1</a><a class="reference external" href="https://www.2braces.com/data-structures/heap-sort">2</a>.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">It is an in-place sorting algorithm, meaning it doesn’t require additional memory </a><a class="reference external" href="https://www.2braces.com/data-structures/heap-sort">2</a>.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">It is cache-friendly, which means it works well with modern computer architectures </a><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">It is widely used in practice </a><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">It is suitable for sorting large datasets </a><a class="reference external" href="https://www.2braces.com/data-structures/heap-sort">2</a>.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">It is suitable for parallel processing </a><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">It is a good choice for sorting priority queues </a><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">1</a>.</p></li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">Heap Sort has a slower average-case performance than Quick Sort and Merge Sort </a><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">It is not stable, meaning it does not maintain the relative order of equal elements </a><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">It is not suitable for small datasets </a><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">It is not suitable for linked lists </a><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">1</a>.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">It requires additional memory to store the sub-arrays </a><a class="reference external" href="https://www.2braces.com/data-structures/heap-sort">2</a>.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">It has a worst-case time complexity of O(n log n) </a><a class="reference external" href="https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-heap/">1</a>.</p></li>
+</ul>
+<p>Please note that the efficiency of a sorting algorithm depends on the size of the input data, the distribution of the data, and the available memory. Therefore, it is important to choose the right algorithm for the specific use case.</p>
+</section>
+<hr class="docutils" />
+<section id="small-data-sets">
+<h2>Small Data Sets<a class="headerlink" href="#small-data-sets" title="Link to this heading">#</a></h2>
+<p>When dealing with <strong>small data sets</strong>, there are several sorting algorithms to consider. Let’s explore a few options:</p>
+<ol class="arabic simple">
+<li><p><strong>Insertion Sort</strong>:</p>
+<ul class="simple">
+<li><p><strong>Efficiency</strong>: For small input data, insertion sort can work well.</p></li>
+<li><p><strong>How it works</strong>: It repeatedly finds the minimum  element (in ascending order) from the unsorted portion and places it at  the beginning. This process continues until all elements are sorted.</p></li>
+<li><p><a class="reference external" href="https://www.enjoyalgorithms.com/blog/comparison-of-sorting-algorithms/"><strong>Time Complexity</strong>: O(n) for almost sorted data</a><a class="reference external" href="https://www.enjoyalgorithms.com/blog/comparison-of-sorting-algorithms/">1</a>.</p></li>
+</ul>
+</li>
+<li><p><strong>Selection Sort</strong>:</p>
+<ul class="simple">
+<li><p><strong>Efficiency</strong>: Also suitable for small datasets.</p></li>
+<li><p><strong>How it works</strong>: It repeatedly selects the smallest element from the remaining unsorted portion and places it in the correct position.</p></li>
+<li><p><a class="reference external" href="https://datatrained.com/post/sorting-in-data-structures/"><strong>Time Complexity</strong>: O(n2), which is less efficient than insertion sort for larger data</a><a class="reference external" href="https://datatrained.com/post/sorting-in-data-structures/">2</a>.</p></li>
+</ul>
+</li>
+<li><p><strong>QuickSelect</strong>:</p>
+<ul class="simple">
+<li><p><strong>Efficiency</strong>: Useful for finding the median or N/2 smallest elements.</p></li>
+<li><p><strong>How it works</strong>: It’s a variation of quicksort that finds the kth smallest element (in this case, N/2).</p></li>
+<li><p><strong>Time Complexity</strong>: O(n) on average for finding the median.</p></li>
+</ul>
+</li>
+<li><p><strong>Hard-Coded Sorting Networks</strong>:</p>
+<ul class="simple">
+<li><p><strong>Efficiency</strong>: Potentially fast, especially if there’s hardware support for sorting two memory cells.</p></li>
+<li><p><strong>How it works</strong>: Implement a specific sorting network (e.g., Batcher, bitonic, or pairwise) tailored to your needs.</p></li>
+<li><p><strong>Time Complexity</strong>: Depends on the specific network design.</p></li>
+</ul>
+</li>
+</ol>
+<p>Remember that the best choice depends on your specific requirements  and constraints. You might want to run micro-benchmarks to compare  different algorithms based on your actual data and usage patterns.  Experiment with these approaches to find the most efficient solution for your use case</p>
+</section>
+<hr class="docutils" />
+<section id="quick-sort-and-merge-sort">
+<h2>Quick Sort and Merge Sort<a class="headerlink" href="#quick-sort-and-merge-sort" title="Link to this heading">#</a></h2>
+<p>When choosing between <strong>Quick Sort</strong> and <strong>Merge Sort</strong>, consider the following factors:</p>
+<ol class="arabic simple">
+<li><p><strong>Stability</strong>:</p>
+<ul class="simple">
+<li><p><strong>Merge Sort</strong> is a <strong>stable sorting algorithm</strong>, meaning that elements with equal values maintain their relative order in the sorted output as they were in the input.</p></li>
+<li><p><strong>Quick Sort</strong> is <strong>unstable</strong> in this regard.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Structures</strong>:</p>
+<ul class="simple">
+<li><p><strong>Merge Sort</strong> performs best on <strong>linked lists</strong> due to its divide-and-conquer approach.</p></li>
+<li><p><strong>Quick Sort</strong> excels when working with <strong>arrays stored in RAM</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Worst-Case Complexity</strong>:</p>
+<ul class="simple">
+<li><p><strong>Quick Sort</strong> has a worst-case complexity of <strong>O(n^2)</strong>, which occurs when there are many comparisons in unfavorable conditions.</p></li>
+<li><p><strong>Merge Sort</strong> maintains the same complexities of <strong>O(n log n)</strong> for both worst and average cases.</p></li>
+</ul>
+</li>
+<li><p><strong>Additional Storage</strong>:</p>
+<ul class="simple">
+<li><p><strong>Merge Sort</strong> is <strong>not in-place</strong> because it requires extra memory for auxiliary arrays.</p></li>
+<li><p><strong>Quick Sort</strong> is <strong>in-place</strong>, avoiding the need for additional storage.</p></li>
+</ul>
+</li>
+<li><p><strong>Efficiency</strong>:</p>
+<ul class="simple">
+<li><p>For <strong>larger array sizes or datasets</strong>, <strong>Merge Sort</strong> tends to be more efficient and faster.</p></li>
+<li><p>For <strong>smaller array sizes or datasets</strong>, <strong>Quick Sort</strong> often outperforms Merge Sort.</p></li>
+</ul>
+</li>
+<li><p><strong>Sorting Method</strong>:</p>
+<ul class="simple">
+<li><p><strong>Quick Sort</strong> is an <strong>internal sorting method</strong>, operating directly in main memory.</p></li>
+<li><p><strong>Merge Sort</strong> is an <strong>external sorting method</strong>, suitable when data cannot fit entirely in memory.</p></li>
+</ul>
+</li>
+<li><p><strong>Locality of Reference</strong>:</p>
+<ul class="simple">
+<li><p><strong>Quick Sort</strong> exhibits <strong>good cache locality</strong>, making it faster than Merge Sort in many scenarios (especially in virtual memory environments).</p></li>
+</ul>
+</li>
+</ol>
+<p>In summary:</p>
+<ul class="simple">
+<li><p>Use <strong>Quick Sort</strong> for <strong>arrays</strong>.</p></li>
+<li><p>Opt for <strong>Merge Sort</strong> when dealing with <strong>linked lists</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="stable-vs-unstable-sorting-algorithms">
+<h2>Stable vs Unstable Sorting Algorithms<a class="headerlink" href="#stable-vs-unstable-sorting-algorithms" title="Link to this heading">#</a></h2>
+<p>Let’s explore the difference between <strong>stable</strong> and <strong>unstable</strong> sorting algorithms:</p>
+<ol class="arabic simple">
+<li><p><strong>Stable Sorting Algorithm</strong>:</p>
+<ul class="simple">
+<li><p>A stable sorting algorithm <strong>maintains the relative order of items with equal sort keys</strong>.</p></li>
+<li><p>When you sort a collection using a stable algorithm, items with the <strong>same sort keys preserve their order</strong> after the collection is sorted.</p></li>
+<li><p>In other words, equivalent elements retain their relative positions in the sorted output as they appeared in the input data set.</p></li>
+<li><p><strong>Example</strong>: If you sort a list of people’s names  alphabetically, a stable sort ensures that people with the same name  stay in the same order.</p></li>
+</ul>
+</li>
+<li><p><strong>Unstable Sorting Algorithm</strong>:</p>
+<ul class="simple">
+<li><p>An unstable sorting algorithm <strong>does not guarantee the relative order of equal elements</strong>.</p></li>
+<li><p>After sorting, items with equal keys might change their positions.</p></li>
+<li><p><strong>Example</strong>: If you sort a list of integers using an unstable algorithm, the relative order of identical integers may not be preserved.</p></li>
+</ul>
+</li>
+<li><p><strong>Why Does Stability Matter?</strong>:</p>
+<ul class="simple">
+<li><p><strong>Key-Value Pairs</strong>: Stability is crucial when dealing  with key-value pairs where duplicate keys are possible (e.g., names as  keys and details as values).</p></li>
+<li><p><strong>Grouping Data</strong>: Consider a dataset of student names  and their class sections. If you sort by name only, an unstable  algorithm might mix up the sections. A stable sort ensures that both  name and section order are maintained.</p></li>
+</ul>
+</li>
+<li><p><strong>Examples</strong>:</p>
+<ul class="simple">
+<li><p><strong>Stable Sorting Algorithms</strong>: Bubble Sort, Insertion Sort, Merge Sort, Counting Sort, etc.</p></li>
+<li><p><strong>Comparison-Based Stable Sorts</strong>: Merge Sort and Insertion Sort maintain stability by preserving the relative order of equal elements.</p></li>
+<li><p><strong>Unstable Sorting Algorithms</strong>: Quick Sort, Heap Sort, etc. These can be made stable by considering element positions, but  they are inherently faster and easier to code.</p></li>
+</ul>
+</li>
+</ol>
+<p>Remember that the choice between stable and unstable sorting depends on your specific use case and requirements!</p>
+</section>
+<hr class="docutils" />
+<section id="quick-sort-merge-sort-vs-heap-sort">
+<h2>Quick Sort, Merge Sort vs Heap Sort<a class="headerlink" href="#quick-sort-merge-sort-vs-heap-sort" title="Link to this heading">#</a></h2>
+<p>Let’s explore the characteristics of <strong>Quick Sort</strong>, <strong>Merge Sort</strong>, and <strong>Heap Sort</strong> to help you decide when to use each algorithm:</p>
+<ol class="arabic simple">
+<li><p><strong>Quick Sort</strong>:</p>
+<ul class="simple">
+<li><p><strong>Divide-and-Conquer Approach</strong>: Quick Sort partitions the unsorted array around a randomly chosen pivot element and recursively sorts the subarrays.</p></li>
+<li><p><strong>Efficiency</strong>: It has an average time complexity of <strong>O(n log n)</strong>, making it faster than Merge Sort.</p></li>
+<li><p><strong>Space Complexity</strong>: Quick Sort requires <strong>O(log n)</strong> space due to variables on the stack during recursion.</p></li>
+<li><p><strong>In-Place Sorting</strong>: Quick Sort is an in-place algorithm, meaning it doesn’t need additional memory.</p></li>
+<li><p><strong>Cache Locality</strong>: It exhibits good cache locality, which contributes to its speed.</p></li>
+<li><p><strong>Worst Case</strong>: While worst-case scenarios can occur, choosing a good pivot minimizes this risk.</p></li>
+</ul>
+</li>
+<li><p><strong>Merge Sort</strong>:</p>
+<ul class="simple">
+<li><p><strong>Divide-and-Conquer Approach</strong>: Merge Sort breaks the  list into sublists until each sublist contains only one element, then  merges them to obtain a sorted list.</p></li>
+<li><p><strong>Efficiency</strong>: It also has an average time complexity of <strong>O(n log n)</strong>.</p></li>
+<li><p><strong>Space Complexity</strong>: Merge Sort is <strong>not in-place</strong> and requires additional <strong>O(n)</strong> space.</p></li>
+<li><p><strong>Stability</strong>: It maintains stability (equal elements retain their relative order).</p></li>
+<li><p><strong>Memory Usage</strong>: It uses twice the memory of Heap Sort due to the second array.</p></li>
+<li><p><strong>Suitability</strong>: Merge Sort is slightly faster than Heap Sort for larger sets.</p></li>
+</ul>
+</li>
+<li><p><strong>Heap Sort</strong>:</p>
+<ul class="simple">
+<li><p><strong>Max-Heap Structure</strong>: Heap Sort treats the array as a Max-Heap and utilizes a heapify function to arrange elements correctly.</p></li>
+<li><p><strong>Efficiency</strong>: It also has an average time complexity of <strong>O(n log n)</strong>.</p></li>
+<li><p><strong>Space Complexity</strong>: Heap Sort is <strong>not in-place</strong> and requires <strong>O(1)</strong> extra space.</p></li>
+<li><p><strong>Recursion</strong>: Unlike Merge and Quick Sort, it doesn’t require massive recursion.</p></li>
+<li><p><strong>Memory Usage</strong>: It uses less memory than Merge Sort.</p></li>
+<li><p><strong>Trade-offs</strong>: Slower than Quick Sort but avoids excessive recursion.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Choose Quick Sort</strong> when:</p>
+<ul class="simple">
+<li><p>You need an efficient, in-place sorting algorithm.</p></li>
+<li><p>Cache locality is crucial.</p></li>
+<li><p>You can handle worst-case scenarios by selecting a good pivot.</p></li>
+</ul>
+<p><strong>Choose Merge Sort</strong> when:</p>
+<ul class="simple">
+<li><p>Stability matters.</p></li>
+<li><p>You have enough memory for the additional space.</p></li>
+<li><p>You want a reliable, predictable performance.</p></li>
+</ul>
+<p><strong>Choose Heap Sort</strong> when:</p>
+<ul class="simple">
+<li><p>You want a simple, space-efficient algorithm.</p></li>
+<li><p>You’re okay with slightly slower performance compared to Quick Sort or Merge Sort.</p></li>
+</ul>
+<p>Remember that the choice depends on your specific requirements and constraints! 🚀</p>
+</section>
+<hr class="docutils" />
+<section id="java-quick-sort">
+<h2>Java Quick Sort<a class="headerlink" href="#java-quick-sort" title="Link to this heading">#</a></h2>
+<p><strong>Quick Sort</strong> is a popular sorting algorithm in Java. It follows the <strong>divide-and-conquer</strong> approach to efficiently sort an array of elements. Here’s how it works:</p>
+<ol class="arabic simple">
+<li><p><strong>Divide</strong>: First, a <strong>pivot element</strong> is chosen from the array. The goal is to partition the array into two sub-arrays:</p>
+<ul class="simple">
+<li><p>The left sub-array contains elements <strong>less than or equal to</strong> the pivot.</p></li>
+<li><p>The right sub-array contains elements <strong>greater than</strong> the pivot.</p></li>
+</ul>
+</li>
+<li><p><strong>Conquer</strong>: Recursively, the Quick Sort algorithm is applied to both sub-arrays.</p></li>
+<li><p><strong>Combine</strong>: Finally, the already sorted sub-arrays are combined to form the fully sorted array.</p></li>
+</ol>
+<p>Here’s the Java implementation of Quick Sort:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">QuickSort</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">quicksort</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">end</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">end</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">pivot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">partition</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="p">);</span>
+<span class="w">            </span><span class="n">quicksort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">pivot</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">            </span><span class="n">quicksort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">pivot</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">partition</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">end</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">pivot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">end</span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="c1">// Choose the last element as the pivot</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">end</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">pivot</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">35</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// Example unsorted array</span>
+<span class="w">        </span><span class="n">quicksort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Sorted array:&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, the <code class="docutils literal notranslate"><span class="pre">quicksort</span></code> method recursively sorts the array by choosing a pivot and partitioning the sub-arrays. The <code class="docutils literal notranslate"><span class="pre">partition</span></code> method rearranges the elements in place.</p>
+<p>Remember that choosing a good pivot is essential for efficient Quick  Sort. You can select the pivot randomly, use the leftmost or rightmost  element, or even find the median as the pivot.</p>
+<p>Java’s built-in <code class="docutils literal notranslate"><span class="pre">Arrays.sort()</span></code> method also uses Quick Sort for sorting arrays of primitives.</p>
+</section>
+<hr class="docutils" />
+<section id="java-merge-sort">
+<h2>Java Merge Sort<a class="headerlink" href="#java-merge-sort" title="Link to this heading">#</a></h2>
+<p>Certainly! Let’s dive into the <strong>Merge Sort</strong> algorithm and its implementation in Java.</p>
+<ol class="arabic">
+<li><p><strong>Introduction</strong>:</p>
+<ul class="simple">
+<li><p>Merge Sort is an efficient sorting technique based on the “divide and conquer” paradigm.</p></li>
+<li><p>It divides the problem into subproblems, sorts them, and then merges the sorted subarrays to obtain the final sorted array.</p></li>
+</ul>
+</li>
+<li><p><strong>The Algorithm</strong>:</p>
+<ul class="simple">
+<li><p><strong>Divide</strong>: We divide the input array into two halves, with the pivot being the midpoint.</p></li>
+<li><p>This division is carried out recursively until there are no more half arrays to divide.</p></li>
+<li><p><strong>Conquer</strong>: We sort and merge the divided arrays from bottom to top to get the final sorted array.</p></li>
+</ul>
+</li>
+<li><p><strong>Java Implementation</strong>:</p>
+<ul class="simple">
+<li><p>We’ll write a <code class="docutils literal notranslate"><span class="pre">mergeSort</span></code> function that takes the input array and its length as parameters.</p></li>
+<li><p>The base condition checks if the array length is 1 (in which case, we return).</p></li>
+<li><p>For the recursive case, we find the middle index and create two temporary arrays, <code class="docutils literal notranslate"><span class="pre">l[]</span></code> and <code class="docutils literal notranslate"><span class="pre">r[]</span></code>.</p></li>
+<li><p>Then we call <code class="docutils literal notranslate"><span class="pre">mergeSort</span></code> recursively for both subarrays.</p></li>
+<li><p>Finally, we call the <code class="docutils literal notranslate"><span class="pre">merge</span></code> function to combine the sorted subarrays.</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MergeSort</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mergeSort</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mid</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">l</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">r</span><span class="o">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mid</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">mergeSort</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="p">);</span>
+<span class="w">        </span><span class="n">mergeSort</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mid</span><span class="p">);</span>
+<span class="w">        </span><span class="n">merge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mid</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">r</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">a</span><span class="o">[</span><span class="n">k</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="o">[</span><span class="n">i</span><span class="o">++]</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">a</span><span class="o">[</span><span class="n">k</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">[</span><span class="n">j</span><span class="o">++]</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">left</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">a</span><span class="o">[</span><span class="n">k</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="o">[</span><span class="n">i</span><span class="o">++]</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">a</span><span class="o">[</span><span class="n">k</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">[</span><span class="n">j</span><span class="o">++]</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// Example unsorted array</span>
+<span class="w">        </span><span class="n">mergeSort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Sorted array:&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>In this example, the <code class="docutils literal notranslate"><span class="pre">mergeSort</span></code> method recursively sorts the array by dividing it into subarrays and then merging them using the <code class="docutils literal notranslate"><span class="pre">merge</span></code> function. Remember that Merge Sort is stable and guarantees consistent performance.</p>
+</section>
+<hr class="docutils" />
+<section id="java-merge-sort-linked-list">
+<h2>Java Merge Sort Linked List<a class="headerlink" href="#java-merge-sort-linked-list" title="Link to this heading">#</a></h2>
+<p>Certainly! Let’s explore how to implement <strong>Merge Sort</strong> for a <strong>linked list</strong> in Java. Merge Sort is often preferred for sorting linked lists due to  its stable performance and suitability for this data structure.</p>
+<p>Below is a Java program that demonstrates Merge Sort for a singly linked list:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LinkedListMergeSort</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="nf">Node</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">mergeSort</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">head</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">head</span><span class="p">;</span><span class="w"> </span><span class="c1">// Base case: empty list or single element</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">middle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getMiddle</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">nextOfMiddle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">middle</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="n">middle</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="c1">// Split the list into two halves</span>
+
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mergeSort</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mergeSort</span><span class="p">(</span><span class="n">nextOfMiddle</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sortedMerge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">sortedMerge</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="na">val</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="na">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">            </span><span class="n">result</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sortedMerge</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="na">next</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">            </span><span class="n">result</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sortedMerge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="na">next</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">getMiddle</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">head</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">fastPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">slowPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">fastPtr</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">fastPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fastPtr</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fastPtr</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">slowPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">slowPtr</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">                </span><span class="n">fastPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fastPtr</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">slowPtr</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">newData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">newNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="n">newData</span><span class="p">);</span>
+<span class="w">        </span><span class="n">newNode</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+<span class="w">        </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newNode</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">printList</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">headRef</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">headRef</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">headRef</span><span class="p">.</span><span class="na">val</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">headRef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">headRef</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">LinkedListMergeSort</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LinkedListMergeSort</span><span class="p">();</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Linked List before sorting:&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">printList</span><span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="na">head</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">mergeSort</span><span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="na">head</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nSorted Linked List:&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">printList</span><span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="na">head</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Linked</span> <span class="n">List</span> <span class="n">before</span> <span class="n">sorting</span><span class="p">:</span>
+<span class="mi">2</span> <span class="mi">3</span> <span class="mi">20</span> <span class="mi">5</span> <span class="mi">10</span> <span class="mi">15</span>
+<span class="n">Sorted</span> <span class="n">Linked</span> <span class="n">List</span><span class="p">:</span>
+<span class="mi">2</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">10</span> <span class="mi">15</span> <span class="mi">20</span>
+</pre></div>
+</div>
+<p><strong>Time Complexity</strong>: O(n<em>log n) <strong>Auxiliary Space</strong>: O(n</em>log n)</p>
+<p>In this example, the <code class="docutils literal notranslate"><span class="pre">mergeSort</span></code> method recursively sorts the linked list by dividing it into sublists and then merging them using the <code class="docutils literal notranslate"><span class="pre">sortedMerge</span></code> function. Remember that Merge Sort is stable and guarantees consistent performance for linked lists</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./basicalgo"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popular-sorting-algorithms">Popular Sorting Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-sorting-alogithms">Fast Sorting Alogithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-sort-pros-and-cons">Quick Sort Pros and Cons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-sort-pros-and-cons">Merge Sort Pros and Cons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#small-data-sets">Small Data Sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-sort-and-merge-sort">Quick Sort and Merge Sort</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stable-vs-unstable-sorting-algorithms">Stable vs Unstable Sorting Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-sort-merge-sort-vs-heap-sort">Quick Sort, Merge Sort vs Heap Sort</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-quick-sort">Java Quick Sort</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-merge-sort">Java Merge Sort</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-merge-sort-linked-list">Java Merge Sort Linked List</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

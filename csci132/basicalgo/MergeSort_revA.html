@@ -1,0 +1,1282 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Merge Sort - Demo Code &#8212; CSCI 132 Basic Data Structures</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'basicalgo/MergeSort_revA';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quick Sort" href="QuickSort.html" />
+    <link rel="prev" title="Merge Sort" href="MergeSort.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CSCI 132 Basic Data Structures</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to CSCI 132
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Java Language</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../javalang/javalanguage.html">Java Language</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/netbeansinstall.html">NetBeans Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/javaintro.html">JAVA Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/javabasics.html">Java Basics</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../javalang/java_variable_lc.html">Variable Lecture Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/firstprogram.html">First Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/secondprogram.html">Second Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/decisiontrees.html">Decision Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/switchstatement.html">Switch Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/stringfunctions.html">String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/numberformats.html">Number Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/iterationloops.html">Iteration / Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/exceptionhandling.html">Exception Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/iofilefoldercreationdeletion.html">File, Folder - Creation and Deletion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/ioreadcsvfile.html">IO Read CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/arraylists.html">ArrayLists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/overloading.html">Overloading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/classesandobjects.html">Classes and Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/classesinheritance.html">Classes  - Inheritance</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../javalang/abstractclasses.html">Abstract Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/lambdafunctions.html">Lambda Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/recursion.html">Recursion</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../javalang/regexmatches.html">Regex - Using Java Matches</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../javalang/referencereading.html">Reference Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/buildinglargejavaapplications.html">Building Large Java Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/antvsmavenvsgradle.html">Ant Vs Maven Vs Gradle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/PolymorphismInJavaWithExamples.html">Polymorphism in Java (With Examples)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/UnableToRunJarFiles.html">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="DataStructuresAndAlgorithms.html">Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ArrayTechniques.html">Array Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="ArraysCoreFunctionality.html">Arrays Core Functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrayWarpAround.html">Array Warp Around</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrayAddDeleteData.html">Array Add and Delete Data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="EncapsulationNonEncapsulation.html">Encapsulation vs Non-Encapsulation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BigONotation.html">Big O Notation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="ON_VisualizingBigONotation.html">Visualizing Big O notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BigONotationExplained.html">Big O Notation - Explained</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="LinkedLists.html">Linked Lists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="SinglyLinkedListRev3.html">Singly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedList.html">Doubly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListSubClass.html">Doubly Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CircularLinkedList.html">Circular Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListReadDataIntoLL.html">Reading Datafile Into Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListCSharp.html">C# Linked List Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListJava.html">Java Linked List Class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="StacksAndQueues.html">Stacks and Queues</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="StackUsingArrayOfObjects.html">Stack  - Using Array of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QueueUsingArrayOfObjects.html">Queue  - Using Array Of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PriorityQueue.html">Priority Queue</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="SortAlgorithms.html">Sorting Algorithms</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Sort_Bubble.html">Bubble Sort</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="xbucketsort.html">Bucket Sort</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="MergeSort.html">Merge Sort</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Merge Sort - Demo Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuickSort.html">Quick Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SortingVideosVisualizers.html">Sorting Videos and Visualizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/basicalgo/MergeSort_revA.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Merge Sort - Demo Code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-merge-sort-works"><strong>How Merge Sort Works</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-code">Demo Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linked-lists">Linked Lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Demo Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use">When To Use</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-summary">Quick summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strengths-vs-weaknesses">Strengths vs. weaknesses</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-top-down">Recursive (top-down)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-bottom-up">Iterative (bottom-up)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-resource-notes">Performance &amp; resource notes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-pick-which">When to pick which</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-checklist">Practical checklist</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="merge-sort-demo-code">
+<h1>Merge Sort - Demo Code<a class="headerlink" href="#merge-sort-demo-code" title="Link to this heading">#</a></h1>
+<section id="how-merge-sort-works">
+<h2><strong>How Merge Sort Works</strong><a class="headerlink" href="#how-merge-sort-works" title="Link to this heading">#</a></h2>
+<p>Merge sort is a <strong>divide-and-conquer</strong> sorting algorithm. It recursively divides the array into two halves until each subarray has only one element (which is trivially sorted). Then it <strong>merges</strong> these sorted halves back together, comparing elements and building a larger sorted array step by step. This merging process continues until the entire array is reassembled in sorted order.</p>
+<p>The algorithm has a consistent time complexity of <strong>O(n log n)</strong> — it divides the array (log n times) and merges n elements at each level. Merge sort is stable and efficient but requires extra space proportional to the array size due to its temporary workspace array.</p>
+</section>
+<section id="arrays">
+<h2>Arrays<a class="headerlink" href="#arrays" title="Link to this heading">#</a></h2>
+<section id="demo-code">
+<h3>Demo Code<a class="headerlink" href="#demo-code" title="Link to this heading">#</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">Engineer: James Goduy</span>
+<span class="cm"> */</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">mergesort_rev</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Random</span><span class="p">;</span>
+
+
+<span class="cm">/*</span>
+<span class="cm"> * The Sorter interface defines a contract that all sorting classes must follow.</span>
+<span class="cm"> * Any class that implements Sorter must provide concrete versions of insert(),</span>
+<span class="cm"> * sort(), and displayArray(). These are method signatures only—no code </span>
+<span class="cm"> * is written here.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Using an interface allows us to treat different sorting algorithms (e.g.,</span>
+<span class="cm"> * recursive and iterative merge sorts) as the same &quot;type.&quot; This is an example</span>
+<span class="cm"> * of polymorphism: we can write one block of code that works with any object</span>
+<span class="cm"> * implementing Sorter, regardless of how it performs the sorting internally.</span>
+<span class="cm"> *</span>
+<span class="cm"> * In short, the interface provides a common structure (what must be done),</span>
+<span class="cm"> * while each class defines its own behavior (how it is done).</span>
+<span class="cm"> */</span>
+
+<span class="kd">interface</span> <span class="nc">Sorter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">sort</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">displayArray</span><span class="p">();</span>
+<span class="p">}</span>
+
+
+<span class="kd">class</span> <span class="nc">MergeSort</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Sorter</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">theArray</span><span class="p">;</span><span class="w">  </span><span class="c1">// Main array to be sorted</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nElems</span><span class="p">;</span><span class="w">      </span><span class="c1">// Current number of elements in the array</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="p">;</span><span class="w">         </span><span class="c1">// Maximum capacity of the array</span>
+
+<span class="w">    </span><span class="c1">// Constructor: initializes the array and tracking variables</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MergeSort</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">theArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="n">max</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="n">nElems</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check if array is full</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isFull</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">nElems</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">max</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Insert a value into the array (if space allows)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isFull</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Array is full&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">theArray</span><span class="o">[</span><span class="n">nElems</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// Place value and increment element count</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Public method to start the merge sort process</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sort</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">workspace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="n">nElems</span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="c1">// Temporary workspace for merging</span>
+<span class="w">        </span><span class="n">recMergeSort</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">nElems</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// Begin recursive sorting</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Recursive function that splits and sorts subarrays</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">recMergeSort</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">workspace</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lowerBound</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">upperBound</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lowerBound</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">upperBound</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="c1">// Base case: one element</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">lowerBound</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">upperBound</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// Find midpoint</span>
+
+<span class="w">        </span><span class="c1">// Recursively sort left and right halves</span>
+<span class="w">        </span><span class="n">recMergeSort</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span><span class="w"> </span><span class="n">lowerBound</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="p">);</span>
+<span class="w">        </span><span class="n">recMergeSort</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">upperBound</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Merge the two sorted halves</span>
+<span class="w">        </span><span class="n">merge</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span><span class="w"> </span><span class="n">lowerBound</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">upperBound</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Merge two sorted halves into a single sorted run</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">workspace</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lowPtr</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">highPtr</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">upperBound</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">                   </span><span class="c1">// Index for workspace</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">lowerBound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lowPtr</span><span class="p">;</span><span class="w">     </span><span class="c1">// Start index of left half</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">highPtr</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">       </span><span class="c1">// End index of left half</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">upperBound</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lowerBound</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Total elements to merge</span>
+
+<span class="w">        </span><span class="c1">// Compare elements from both halves and copy the smaller one first</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">lowPtr</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">highPtr</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">upperBound</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">workspace</span><span class="o">[</span><span class="n">j</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">theArray</span><span class="o">[</span><span class="n">lowPtr</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">theArray</span><span class="o">[</span><span class="n">highPtr</span><span class="o">]</span><span class="p">)</span>
+<span class="w">                    </span><span class="o">?</span><span class="w"> </span><span class="n">theArray</span><span class="o">[</span><span class="n">lowPtr</span><span class="o">++]</span>
+<span class="w">                    </span><span class="p">:</span><span class="w"> </span><span class="n">theArray</span><span class="o">[</span><span class="n">highPtr</span><span class="o">++]</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Copy any remaining elements from the left half</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lowPtr</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">mid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">arraycopy</span><span class="p">(</span><span class="n">theArray</span><span class="p">,</span><span class="w"> </span><span class="n">lowPtr</span><span class="p">,</span><span class="w"> </span><span class="n">workspace</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lowPtr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">            </span><span class="n">j</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">mid</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lowPtr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Copy any remaining elements from the right half</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">highPtr</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">upperBound</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">arraycopy</span><span class="p">(</span><span class="n">theArray</span><span class="p">,</span><span class="w"> </span><span class="n">highPtr</span><span class="p">,</span><span class="w"> </span><span class="n">workspace</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">upperBound</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">highPtr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Copy merged elements back into the original array</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">arraycopy</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">theArray</span><span class="p">,</span><span class="w"> </span><span class="n">lowerBound</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Utility method to display the array contents</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">displayArray</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nElems</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">theArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">).</span><span class="na">append</span><span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// End Of Class</span>
+
+<span class="kd">class</span> <span class="nc">MergeSort_Iterative</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Sorter</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// Instance Variables</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">theArray</span><span class="p">;</span><span class="w">  </span><span class="c1">// The array to be sorted</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nElems</span><span class="p">;</span><span class="w">      </span><span class="c1">// Current number of elements in the array</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="p">;</span><span class="w">         </span><span class="c1">// Maximum array capacity (limit)</span>
+
+<span class="w">    </span><span class="c1">// Constructor</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MergeSort_Iterative</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Initialize the array and size counters</span>
+<span class="w">        </span><span class="n">theArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="n">max</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="n">nElems</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="c1">// Utility Method</span>
+<span class="w">    </span><span class="c1">// Checks whether the array is already full</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isFull</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">nElems</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">max</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Insert Method</span>
+<span class="w">    </span><span class="c1">// Adds a value to the array if space is available</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isFull</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Array is full&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// Store value and increase the element count</span>
+<span class="w">        </span><span class="n">theArray</span><span class="o">[</span><span class="n">nElems</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="c1">// Iterative Merge Sort</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sort</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">workspace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="n">nElems</span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="c1">// Temporary array used during merging</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// subSize represents the size of subarrays being merged each pass</span>
+<span class="w">        </span><span class="c1">// Start with subarrays of size 1 and double the size each iteration</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">subSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">subSize</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nElems</span><span class="p">;</span><span class="w"> </span><span class="n">subSize</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="c1">// Process and merge all pairs of subarrays of the current subSize</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">leftStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">leftStart</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nElems</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">subSize</span><span class="p">;</span><span class="w"> </span><span class="n">leftStart</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">subSize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>
+<span class="w">                </span><span class="c1">// leftStart: beginning index of left subarray</span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">leftStart</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">subSize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Last index of left subarray</span>
+<span class="w">                </span>
+<span class="w">                </span><span class="c1">// Ensure the right subarray does not exceed array bounds</span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">rightEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">leftStart</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">subSize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nElems</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">                </span>
+<span class="w">                </span><span class="c1">// Merge the two adjacent sorted subarrays into one</span>
+<span class="w">                </span><span class="n">merge</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span><span class="w"> </span><span class="n">leftStart</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">rightEnd</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="c1">// Merge Method</span>
+<span class="w">    </span><span class="c1">// Merges two sorted halves into a single sorted section</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">workspace</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lowPtr</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">highPtr</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">upperBound</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">                    </span><span class="c1">// Index for workspace array</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">lowerBound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lowPtr</span><span class="p">;</span><span class="w">      </span><span class="c1">// Start index of the left half</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">highPtr</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">        </span><span class="c1">// End index of the left half</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">upperBound</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lowerBound</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Total number of elements to merge</span>
+
+<span class="w">        </span><span class="c1">// Compare elements from both halves and copy the smaller one first</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">lowPtr</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">highPtr</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">upperBound</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">theArray</span><span class="o">[</span><span class="n">lowPtr</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">theArray</span><span class="o">[</span><span class="n">highPtr</span><span class="o">]</span><span class="p">)</span>
+<span class="w">                </span><span class="n">workspace</span><span class="o">[</span><span class="n">j</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">theArray</span><span class="o">[</span><span class="n">lowPtr</span><span class="o">++]</span><span class="p">;</span><span class="w"> </span><span class="c1">// Copy from left half</span>
+<span class="w">            </span><span class="k">else</span>
+<span class="w">                </span><span class="n">workspace</span><span class="o">[</span><span class="n">j</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">theArray</span><span class="o">[</span><span class="n">highPtr</span><span class="o">++]</span><span class="p">;</span><span class="w"> </span><span class="c1">// Copy from right half</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Copy any remaining elements from the left half</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">lowPtr</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">mid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">workspace</span><span class="o">[</span><span class="n">j</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">theArray</span><span class="o">[</span><span class="n">lowPtr</span><span class="o">++]</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Copy any remaining elements from the right half</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">highPtr</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">upperBound</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">workspace</span><span class="o">[</span><span class="n">j</span><span class="o">++]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">theArray</span><span class="o">[</span><span class="n">highPtr</span><span class="o">++]</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Copy merged elements back into the original array</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">theArray</span><span class="o">[</span><span class="n">lowerBound</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">workspace</span><span class="o">[</span><span class="n">k</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Utility method to display the array contents</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">displayArray</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nElems</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">theArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">).</span><span class="na">append</span><span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MergeSort_Rev</span><span class="w"> </span><span class="p">{</span>
+
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">maxSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="w">    </span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sampleSize</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">maxSize</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">.9</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">choice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">Sorter</span><span class="w"> </span><span class="n">ms</span><span class="p">;</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// create the object</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">choice</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// recursive</span>
+<span class="w">        	</span><span class="n">ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MergeSort</span><span class="p">(</span><span class="n">maxSize</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// iterative - loops</span>
+<span class="w">            </span><span class="n">ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MergeSort_Iterative</span><span class="w"> </span><span class="p">(</span><span class="n">maxSize</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Create RNG</span>
+<span class="w">        </span><span class="n">Random</span><span class="w"> </span><span class="n">RNG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// insert random numbers</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">sampleSize</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">ms</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">RNG</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">maxSize</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span>
+<span class="w">        </span><span class="c1">// display the orignal array</span>
+<span class="w">        </span><span class="n">ms</span><span class="p">.</span><span class="na">displayArray</span><span class="p">();</span>
+
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// sort the list</span>
+<span class="w">        </span><span class="n">ms</span><span class="p">.</span><span class="na">sort</span><span class="p">();</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// spacing</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// display the sorted list</span>
+<span class="w">        </span><span class="n">ms</span><span class="p">.</span><span class="na">displayArray</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nbye\n&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="linked-lists">
+<h2>Linked Lists<a class="headerlink" href="#linked-lists" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Demo Code<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Example program demonstrating two implementations of Merge Sort</span>
+<span class="cm"> * for a linked list of people (first name, last name, city).</span>
+<span class="cm"> * </span>
+<span class="cm"> * Both recursive (top-down) and iterative (bottom-up) versions</span>
+<span class="cm"> * implement a common interface (Sorter) for interchangeable use.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Author: [Your Name]</span>
+<span class="cm"> * Course: [Your Class Name or Section]</span>
+<span class="cm"> */</span>
+
+<span class="kn">package</span><span class="w"> </span><span class="nn">mergesortlinkedlist</span><span class="p">;</span>
+
+<span class="c1">// ----------------------------------------------------------------------</span>
+<span class="c1">// Interface Definition</span>
+<span class="c1">// ----------------------------------------------------------------------</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * The Sorter interface defines a simple contract for</span>
+<span class="cm"> * inserting, sorting, and displaying a collection.</span>
+<span class="cm"> * </span>
+<span class="cm"> * Both recursive and iterative merge sort classes</span>
+<span class="cm"> * will implement this interface to ensure consistent usage.</span>
+<span class="cm"> */</span>
+<span class="kd">interface</span> <span class="nc">Sorter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">fn</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">ln</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">cty</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">sort</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">displayList</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------------------------------------------------------------</span>
+<span class="c1">// Recursive Merge Sort Implementation</span>
+<span class="c1">// ----------------------------------------------------------------------</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * MergeSortLinkedList_Recursive</span>
+<span class="cm"> * </span>
+<span class="cm"> * Uses a recursive (top-down) merge sort approach.</span>
+<span class="cm"> * The list is divided into halves until single nodes remain,</span>
+<span class="cm"> * then merged back together in sorted order by last name.</span>
+<span class="cm"> */</span>
+<span class="kd">class</span> <span class="nc">MergeSortLinkedList_Recursive</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Sorter</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Inner class Node — represents a single record in the linked list.</span>
+<span class="cm">     * Each node stores a person&#39;s first name, last name, and city.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">class</span> <span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">firstName</span><span class="p">;</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">lastName</span><span class="p">;</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">Node</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">firstName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lastName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">firstName</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lastName</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">city</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">head</span><span class="p">;</span><span class="w">  </span><span class="c1">// Head pointer for the linked list</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Inserts a new node at the end of the list.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">firstName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lastName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">newNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="n">firstName</span><span class="p">,</span><span class="w"> </span><span class="n">lastName</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newNode</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="w">            </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newNode</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Public sort method — initiates recursive merge sort.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sort</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mergeSort</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Recursive merge sort: splits the list, sorts each half, and merges them.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">mergeSort</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Base case: 0 or 1 element</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">h</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">h</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Split the list into two halves</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">middle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getMiddle</span><span class="p">(</span><span class="n">h</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">nextOfMiddle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">middle</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="n">middle</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="c1">// Split into two sublists</span>
+
+<span class="w">        </span><span class="c1">// Recursively sort both halves</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mergeSort</span><span class="p">(</span><span class="n">h</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mergeSort</span><span class="p">(</span><span class="n">nextOfMiddle</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Merge the two sorted halves</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sortedMerge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Merges two sorted linked lists into one (sorted by last name).</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">sortedMerge</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Compare by last name (case-insensitive)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="na">lastName</span><span class="p">.</span><span class="na">compareToIgnoreCase</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="na">lastName</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">            </span><span class="n">result</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sortedMerge</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="na">next</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">            </span><span class="n">result</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sortedMerge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="na">next</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Finds the middle node of a linked list using the fast/slow pointer method.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">getMiddle</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">h</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">slow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">fast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">fast</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">fast</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">slow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">slow</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">            </span><span class="n">fast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fast</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">slow</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Displays the contents of the linked list.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">displayList</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%-10s %-10s %-10s%n&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">current</span><span class="p">.</span><span class="na">firstName</span><span class="p">,</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">lastName</span><span class="p">,</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">city</span><span class="p">);</span>
+<span class="w">            </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------------------------------------------------------------</span>
+<span class="c1">// Iterative Merge Sort Implementation</span>
+<span class="c1">// ----------------------------------------------------------------------</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * MergeSortLinkedList_Iterative</span>
+<span class="cm"> * </span>
+<span class="cm"> * Uses an iterative (bottom-up) merge sort approach.</span>
+<span class="cm"> * Starts by merging small sorted sublists of size 1, then doubles</span>
+<span class="cm"> * the size of the sublists (1, 2, 4, 8...) until the full list is sorted.</span>
+<span class="cm"> */</span>
+<span class="kd">class</span> <span class="nc">MergeSortLinkedList_Iterative</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Sorter</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Inner class Node — represents a single record in the linked list.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">class</span> <span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">firstName</span><span class="p">;</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">lastName</span><span class="p">;</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">Node</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">firstName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lastName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">firstName</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lastName</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">city</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">head</span><span class="p">;</span><span class="w"> </span><span class="c1">// Head of the linked list</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Inserts a new node at the end of the list.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">firstName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lastName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">newNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="n">firstName</span><span class="p">,</span><span class="w"> </span><span class="n">lastName</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newNode</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="w">            </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newNode</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Public method to start iterative merge sort.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sort</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mergeSortIterative</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Iterative (loop-based) merge sort implementation.</span>
+<span class="cm">     * Uses sublist merging of increasing size to avoid recursion.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">mergeSortIterative</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">head</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getSize</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Dummy node simplifies pointer management during merging</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">dummy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">dummy</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Merge sublists of size 1, 2, 4, 8, etc.</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dummy</span><span class="p">;</span>
+<span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dummy</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Node</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">                </span><span class="n">Node</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">split</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="p">);</span>
+<span class="w">                </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">split</span><span class="p">(</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="p">);</span>
+
+<span class="w">                </span><span class="n">Node</span><span class="w"> </span><span class="n">merged</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sortedMerge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">);</span>
+<span class="w">                </span><span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">merged</span><span class="p">;</span>
+
+<span class="w">                </span><span class="c1">// Move &#39;prev&#39; to the end of the merged sublist</span>
+<span class="w">                </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="w">                    </span><span class="n">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">dummy</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Splits the list after &#39;size&#39; nodes and returns the next sublist.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">head</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">            </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">second</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Merges two sorted linked lists (by last name).</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">sortedMerge</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">dummy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dummy</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="na">lastName</span><span class="p">.</span><span class="na">compareToIgnoreCase</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="na">lastName</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">tail</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">                </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">tail</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">                </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tail</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">tail</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">dummy</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Counts the number of nodes in the list.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getSize</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">head</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Displays the contents of the linked list.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">displayList</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%-10s %-10s %-10s%n&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">current</span><span class="p">.</span><span class="na">firstName</span><span class="p">,</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">lastName</span><span class="p">,</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">city</span><span class="p">);</span>
+<span class="w">            </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------------------------------------------------------------</span>
+<span class="c1">// Driver Class</span>
+<span class="c1">// ----------------------------------------------------------------------</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Main driver class.</span>
+<span class="cm"> * </span>
+<span class="cm"> * Demonstrates the use of both recursive and iterative</span>
+<span class="cm"> * linked list merge sort implementations via the Sorter interface.</span>
+<span class="cm"> */</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MergeSortLinkedList</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">Sorter</span><span class="w"> </span><span class="n">list</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">choice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// 1 = Recursive, 2 = Iterative</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">choice</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">            </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MergeSortLinkedList_Recursive</span><span class="p">();</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MergeSortLinkedList_Iterative</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Insert sample data</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="s">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Zimmer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Chicago&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Anderson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Kalispell&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="s">&quot;Cathy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Johnson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Seattle&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="s">&quot;Daniel&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Brown&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Denver&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Display before sorting</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Before Sorting:&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">displayList</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Sort and display results</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">sort</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;After Sorting by Last Name:&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="na">displayList</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="when-to-use">
+<h2>When To Use<a class="headerlink" href="#when-to-use" title="Link to this heading">#</a></h2>
+<section id="quick-summary">
+<h3>Quick summary<a class="headerlink" href="#quick-summary" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Both</strong> are <code class="docutils literal notranslate"><span class="pre">O(n</span> <span class="pre">log</span> <span class="pre">n)</span></code> time, <strong>stable</strong>, and <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> extra space on the list (recursive adds <code class="docutils literal notranslate"><span class="pre">O(log</span> <span class="pre">n)</span></code> call-stack space).</p></li>
+<li><p><strong>Recursive</strong> = simpler to read/teach; <strong>Iterative</strong> = no recursion, often better constants and safer for huge inputs.</p></li>
+</ul>
+</section>
+<section id="strengths-vs-weaknesses">
+<h3>Strengths vs. weaknesses<a class="headerlink" href="#strengths-vs-weaknesses" title="Link to this heading">#</a></h3>
+<section id="recursive-top-down">
+<h4>Recursive (top-down)<a class="headerlink" href="#recursive-top-down" title="Link to this heading">#</a></h4>
+<p><strong>How it works:</strong> repeatedly split with fast/slow pointers (<code class="docutils literal notranslate"><span class="pre">getMiddle</span></code>), then merge.</p>
+<p><strong>Strengths</strong></p>
+<ul class="simple">
+<li><p><strong>Clarity &amp; pedagogy:</strong> mirrors the textbook definition; very readable for students.</p></li>
+<li><p><strong>Natural structure:</strong> the “divide → conquer → combine” flow matches the mental model of merge sort.</p></li>
+<li><p><strong>Easy to parallelize:</strong> left and right halves can be sorted concurrently if you go multi-threaded later.</p></li>
+<li><p><strong>Stable by construction:</strong> merge step preserves order of equals.</p></li>
+</ul>
+<p><strong>Weaknesses</strong></p>
+<ul class="simple">
+<li><p><strong>Call-stack use:</strong> <code class="docutils literal notranslate"><span class="pre">O(log</span> <span class="pre">n)</span></code> stack frames. Usually fine, but it’s still extra memory and can matter on very tight stacks or unusual environments.</p></li>
+<li><p><strong>Function-call overhead:</strong> many small recursive calls; minor but measurable on some JVMs.</p></li>
+<li><p><strong>Middle finding every level:</strong> each split uses fast/slow pointers; total cost stays <code class="docutils literal notranslate"><span class="pre">O(n</span> <span class="pre">log</span> <span class="pre">n)</span></code> but the constant factor isn’t free.</p></li>
+</ul>
+</section>
+<section id="iterative-bottom-up">
+<h4>Iterative (bottom-up)<a class="headerlink" href="#iterative-bottom-up" title="Link to this heading">#</a></h4>
+<p><strong>How it works:</strong> repeatedly merge runs of size <code class="docutils literal notranslate"><span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">4,</span> <span class="pre">8,</span> <span class="pre">…</span></code> using loops; uses pointer “splicing” (<code class="docutils literal notranslate"><span class="pre">split</span></code>, <code class="docutils literal notranslate"><span class="pre">merge</span></code>) and a dummy head.</p>
+<p><strong>Strengths</strong></p>
+<ul class="simple">
+<li><p><strong>No recursion:</strong> avoids stack growth entirely; safer for <strong>very large lists</strong> or constrained runtimes.</p></li>
+<li><p><strong>Good constants:</strong> one linear pass per run size; practical throughput often edges out recursive on linked lists.</p></li>
+<li><p><strong>Predictable control flow:</strong> all in loops; easy to bound and instrument.</p></li>
+<li><p><strong>Still stable:</strong> merge loop preserves order of equals.</p></li>
+</ul>
+<p><strong>Weaknesses</strong></p>
+<ul class="simple">
+<li><p><strong>More pointer surgery:</strong> more places to make off-by-one / null-next mistakes; trickier to get right first time.</p></li>
+<li><p><strong>Slightly less intuitive to newcomers:</strong> bottom-up run doubling is less obvious than “split in half”.</p></li>
+<li><p><strong>Needs size or tail walking:</strong> typical pattern computes <code class="docutils literal notranslate"><span class="pre">n</span></code> up front or advances pointers carefully; again, more book-keeping.</p></li>
+</ul>
+</section>
+<section id="performance-resource-notes">
+<h4>Performance &amp; resource notes<a class="headerlink" href="#performance-resource-notes" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Time complexity:</strong> both <code class="docutils literal notranslate"><span class="pre">O(n</span> <span class="pre">log</span> <span class="pre">n)</span></code> on singly linked lists.</p></li>
+<li><p><strong>Space:</strong> both in-place on nodes; <strong>recursive adds <code class="docutils literal notranslate"><span class="pre">O(log</span> <span class="pre">n)</span></code> call stack</strong>, iterative doesn’t.</p></li>
+<li><p><strong>Cache locality:</strong> neither is great (linked lists aren’t cache-friendly), but iterative’s fewer function calls can help a bit.</p></li>
+<li><p><strong>Stability:</strong> both remain stable as long as your merge uses <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> (or equivalent) and never reorders equals.</p></li>
+</ul>
+</section>
+<section id="when-to-pick-which">
+<h4>When to pick which<a class="headerlink" href="#when-to-pick-which" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Teaching / readability / quick correctness:</strong> <strong>Recursive</strong>.</p></li>
+<li><p><strong>Production on huge lists / tight memory / maximum robustness:</strong> <strong>Iterative</strong>.</p></li>
+<li><p><strong>Parallel sort of very large lists:</strong> <strong>Recursive</strong> lends itself to parallelizing the two halves.</p></li>
+</ul>
+</section>
+<section id="practical-checklist">
+<h4>Practical checklist<a class="headerlink" href="#practical-checklist" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Need simple code? → <strong>Recursive</strong>.</p></li>
+<li><p>Worried about stack or sorting millions of nodes? → <strong>Iterative</strong>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./basicalgo"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="MergeSort.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Merge Sort</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="QuickSort.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Quick Sort</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-merge-sort-works"><strong>How Merge Sort Works</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-code">Demo Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linked-lists">Linked Lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Demo Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use">When To Use</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-summary">Quick summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strengths-vs-weaknesses">Strengths vs. weaknesses</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-top-down">Recursive (top-down)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-bottom-up">Iterative (bottom-up)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-resource-notes">Performance &amp; resource notes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-pick-which">When to pick which</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-checklist">Practical checklist</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

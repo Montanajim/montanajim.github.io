@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Stacks and Queues &#8212; CSCI 132 Basic Data Structures</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'basicalgo/StacksAndQueues';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Stack - Using Array of Objects" href="StackUsingArrayOfObjects.html" />
+    <link rel="prev" title="Java Linked List Class" href="DoublyLinkedListJava.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CSCI 132 Basic Data Structures</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to CSCI 132
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Java Language</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../javalang/javalanguage.html">Java Language</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/netbeansinstall.html">NetBeans Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/javaintro.html">JAVA Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/javabasics.html">Java Basics</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../javalang/java_variable_lc.html">Variable Lecture Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/firstprogram.html">First Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/secondprogram.html">Second Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/decisiontrees.html">Decision Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/switchstatement.html">Switch Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/stringfunctions.html">String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/numberformats.html">Number Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/iterationloops.html">Iteration / Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/exceptionhandling.html">Exception Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/iofilefoldercreationdeletion.html">File, Folder - Creation and Deletion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/ioreadcsvfile.html">IO Read CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/arraylists.html">ArrayLists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/overloading.html">Overloading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/classesandobjects.html">Classes and Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/classesinheritance.html">Classes  - Inheritance</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../javalang/abstractclasses.html">Abstract Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/lambdafunctions.html">Lambda Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/recursion.html">Recursion</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../javalang/regexmatches.html">Regex - Using Java Matches</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../javalang/referencereading.html">Reference Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/buildinglargejavaapplications.html">Building Large Java Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/antvsmavenvsgradle.html">Ant Vs Maven Vs Gradle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/PolymorphismInJavaWithExamples.html">Polymorphism in Java (With Examples)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/UnableToRunJarFiles.html">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="DataStructuresAndAlgorithms.html">Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ArrayTechniques.html">Array Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="ArraysCoreFunctionality.html">Arrays Core Functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrayWarpAround.html">Array Warp Around</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrayAddDeleteData.html">Array Add and Delete Data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="EncapsulationNonEncapsulation.html">Encapsulation vs Non-Encapsulation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BigONotation.html">Big O Notation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="ON_VisualizingBigONotation.html">Visualizing Big O notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BigONotationExplained.html">Big O Notation - Explained</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="LinkedLists.html">Linked Lists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="SinglyLinkedListRev3.html">Singly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedList.html">Doubly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListSubClass.html">Doubly Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CircularLinkedList.html">Circular Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListReadDataIntoLL.html">Reading Datafile Into Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListCSharp.html">C# Linked List Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListJava.html">Java Linked List Class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Stacks and Queues</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="StackUsingArrayOfObjects.html">Stack  - Using Array of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QueueUsingArrayOfObjects.html">Queue  - Using Array Of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PriorityQueue.html">Priority Queue</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="SortAlgorithms.html">Sorting Algorithms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Sort_Bubble.html">Bubble Sort</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="xbucketsort.html">Bucket Sort</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="MergeSort.html">Merge Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MergeSort_revA.html">Merge Sort - Demo Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuickSort.html">Quick Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SortingVideosVisualizers.html">Sorting Videos and Visualizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/basicalgo/StacksAndQueues.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Stacks and Queues</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-ideas">Key Ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stack">Stack</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#queue">Queue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priority-queue">Priority Queue</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="stacks-and-queues">
+<h1>Stacks and Queues<a class="headerlink" href="#stacks-and-queues" title="Link to this heading">#</a></h1>
+<section id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Stacks</p></li>
+<li><p>Queues</p></li>
+</ul>
+</section>
+<section id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Link to this heading">#</a></h2>
+<p>Stacks and queues are a way of organizing data and consuming data. The data can be stored in an array or linked list.</p>
+<section id="stack">
+<h3>Stack<a class="headerlink" href="#stack" title="Link to this heading">#</a></h3>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>A <strong>Stack</strong> is a way of organizing and consuming data where the Last In is the First Out (LIFO). Or it can be thought of as First In is the Last Out (FILO).</p>
+</div>
+<p>Most people think of a stack as a stack of plates, where each plate represents data. Data is <em><strong>pushed</strong></em> onto the stack. Meaning. it is added to the array or linked list. Data is consumed by <em><strong>popping</strong></em> it off of the stack. Meaning, that the last piece of data added to the stack is removed from the array or linked list. This data is usually used by the part of the program that is popping/removing it from the stack.  <em><strong>Peeking</strong></em> is looking at the last/next piece of data, but <em>not</em> removing it from the stack. An example is <a class="reference internal" href="StackUsingArrayOfObjects.html"><span class="doc std std-doc">Stack Array</span></a></p>
+<p>Methods usually associated with a <strong>stack</strong> are as follows:</p>
+<ul class="simple">
+<li><p><strong>Push</strong> - adds data to the stack</p></li>
+<li><p><strong>Pop</strong> - removes data from the stack</p></li>
+<li><p><strong>Peek</strong> - retrieves the next piece/top data from the stack, but does not remove it.</p></li>
+<li><p><strong>isFull</strong> - this is used when making a stack with an array since an array has a limited number of elements.</p></li>
+<li><p><strong>isEmpty</strong> - this is used to determine if the stack is empty.</p></li>
+</ul>
+<p>In computer science, a stack is a LIFO (Last In, First Out) data structure that stores elements in a linear order. This means that the last element added to the stack is the first one to be removed. Stacks are often used to manage a sequence of operations, such as function calls or undo/redo functionality.</p>
+<p>Here are some of the key properties of stacks:</p>
+<ul class="simple">
+<li><p><strong>LIFO order</strong>: Elements are removed in the reverse order they were added.</p></li>
+<li><p><strong>Bounded capacity</strong>: Stacks have a limited size, and adding more elements than the stack can hold will result in an error.</p></li>
+<li><p><strong>Efficient access</strong>: Pushing and popping elements from the top of the stack is a very efficient operation, typically taking constant time.</p></li>
+</ul>
+<p>Stacks are used in a variety of applications in computer science, including:</p>
+<ul class="simple">
+<li><p><strong>Function calls</strong>: When a function is called, its arguments and local variables are pushed onto a stack. When the function returns, its stack frame is popped off the stack.</p></li>
+<li><p><strong>Expression evaluation</strong>: Stacks are used to evaluate expressions in many programming languages. For example, when evaluating arithmetic expressions, operands are pushed onto the stack, and then operators are popped off the stack and applied to the operands.</p></li>
+<li><p><strong>Backtracking algorithms</strong>: Stacks are used to store the history of decisions made in backtracking algorithms, such as depth-first search. This allows the algorithm to backtrack to previous states if it reaches a dead end.</p></li>
+<li><p><strong>Undo/redo functionality</strong>: Stacks are used to implement undo/redo functionality in many applications. When an action is performed, the state of the application is pushed onto the undo stack. To undo the action, the state is popped off the undo stack and restored.</p></li>
+</ul>
+<p>Here are some examples of how stacks are used in real-world applications:</p>
+<ul class="simple">
+<li><p><strong>Compilers</strong>: Compilers use stacks to keep track of the current state of the program being compiled.</p></li>
+<li><p><strong>Interpreters</strong>: Interpreters use stacks to evaluate expressions and statements in the program being interpreted.</p></li>
+<li><p><strong>Web browsers</strong>: Web browsers use stacks to keep track of the history of visited web pages.</p></li>
+<li><p><strong>Operating systems</strong>: Operating systems use stacks to manage memory allocation and process scheduling.</p></li>
+</ul>
+<p>Stacks are a versatile and powerful data structure that is used in a wide variety of applications in computer science. Their LIFO order and efficient access make them well-suited for managing sequences of operations and storing the history of decisions made in algorithms.</p>
+</section>
+<section id="queue">
+<h3>Queue<a class="headerlink" href="#queue" title="Link to this heading">#</a></h3>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>A <strong>Queue</strong> is a way of organizing and consuming data where the First In is the First Out (FIFO).</p>
+</div>
+<p>Most people think of a queue as people standing in a line, where people represent data.  Data is consumed in the order in which it was added.</p>
+<p>Methods usually associated with a <strong>queue</strong> are as follows:</p>
+<ul class="simple">
+<li><p><strong>Enqueue</strong> - add data to the queue.</p></li>
+<li><p><strong>Dequeue</strong> - remove data from the queue</p></li>
+<li><p><strong>Peek</strong> - retrieves the next piece/”head” data from the queue, but does not remove it.</p></li>
+<li><p><strong>isFull</strong> - this is used when making a queue with an array since an array has a limited number of elements.</p></li>
+<li><p><strong>isEmpty</strong> - this is used to determine if the queue is empty.</p></li>
+</ul>
+<p>In computer science, a queue is a LIFO (First In, First Out) data structure that stores elements in a linear order. This means that the first element added to the queue is the first one to be removed. Queues are often used to manage a sequence of tasks or events, such as printing jobs or network traffic.</p>
+<p>Here are some of the key properties of queues:</p>
+<ul class="simple">
+<li><p><strong>FIFO order</strong>: Elements are removed in the order they were added.</p></li>
+<li><p><strong>Bounded capacity</strong>: Queues have a limited size, and adding more elements than the queue can hold will result in an error.</p></li>
+<li><p><strong>Efficient access</strong>: Adding and removing elements from the front and back of the queue are efficient operations, typically taking constant time.</p></li>
+</ul>
+<p>Queues are used in a variety of applications in computer science, including:</p>
+<ul class="simple">
+<li><p><strong>Task scheduling</strong>: Queues are used to schedule tasks in operating systems and other systems. For example, a print queue is used to manage the order in which print jobs are processed.</p></li>
+<li><p><strong>Network traffic</strong>: Queues are used to manage the flow of data in networks. For example, a network buffer is used to store data packets that are waiting to be sent over a network.</p></li>
+<li><p><strong>Buffering</strong>: Queues are used to buffer data between different components of a system. For example, a keyboard buffer is used to store characters typed on a keyboard until they can be processed by the operating system.</p></li>
+<li><p><strong>Message passing</strong>: Queues are used to pass messages between different processes or threads. For example, a message queue is used to store messages that are waiting to be processed by a consumer process.</p></li>
+</ul>
+<p>Here are some examples of how queues are used in real-world applications:</p>
+<ul class="simple">
+<li><p><strong>Operating systems</strong>: Operating systems use queues to manage task scheduling, memory allocation, and device drivers.</p></li>
+<li><p><strong>Networking</strong>: Networking protocols use queues to manage the flow of data packets.</p></li>
+<li><p><strong>Multimedia applications</strong>: Multimedia applications use queues to buffer audio and video data.</p></li>
+<li><p><strong>Messaging applications</strong>: Messaging applications use queues to store messages that are waiting to be delivered to recipients.</p></li>
+</ul>
+<p>Queues are a versatile and powerful data structure that is used in a wide variety of applications in computer science. Their FIFO order and efficient access make them well-suited for managing sequences of tasks or events.</p>
+</section>
+<section id="priority-queue">
+<h3>Priority Queue<a class="headerlink" href="#priority-queue" title="Link to this heading">#</a></h3>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>A <strong>Priority Queue</strong> is a queue where there is a mechanism to place data at the start or infront of other data.</p>
+</div>
+<p>In computer science, a priority queue is a specialized type of queue where elements are prioritized based on their associated priority values. Elements with higher priority values are served before elements with lower priority values. Priority queues are often implemented using heap data structures, which allow for efficient insertion and extraction operations.</p>
+<p>Here are some of the key properties of priority queues:</p>
+<ul class="simple">
+<li><p><strong>Priority-based ordering</strong>: Elements are served based on their priority values, with higher priority elements being served first.</p></li>
+<li><p><strong>Efficient insertion and extraction</strong>: Priority queues can efficiently insert and extract elements, typically taking logarithmic time.</p></li>
+<li><p><strong>Dynamic priority updates</strong>: Priority values can be updated dynamically, allowing for reprioritization of elements within the queue.</p></li>
+</ul>
+<p>Priority queues are used in a variety of applications where prioritization is important, including:</p>
+<ul class="simple">
+<li><p><strong>Task scheduling</strong>: Priority queues are used to schedule tasks based on their urgency or importance. For example, a critical job processing system might use a priority queue to prioritize high-priority tasks over less urgent ones.</p></li>
+<li><p><strong>Network traffic management</strong>: Priority queues can be used to prioritize network traffic based on its importance or quality of service requirements. For instance, real-time voice or video traffic might be prioritized over non-real-time data transfers.</p></li>
+<li><p><strong>Event handling</strong>: Priority queues can be used to manage a sequence of events, ensuring that high-priority events are handled first. For example, an event-driven system might use a priority queue to prioritize system alerts or critical user interactions.</p></li>
+<li><p><strong>Algorithm optimization</strong>: Priority queues are used in various algorithms, such as Dijkstra’s algorithm for shortest path finding and A* search for pathfinding in graph-based problems.</p></li>
+</ul>
+<p>Here are some real-world examples of how priority queues are used:</p>
+<ul class="simple">
+<li><p><strong>Operating systems</strong>: Operating systems use priority queues to manage task scheduling, ensuring that high-priority tasks, such as system processes, are executed before less urgent user tasks.</p></li>
+<li><p><strong>Network routers</strong>: Network routers use priority queues to manage network traffic, prioritizing real-time audio or video traffic over non-real-time data transfers.</p></li>
+<li><p><strong>Emergency response systems</strong>: Emergency response systems might use priority queues to prioritize dispatching emergency responders based on the severity of incidents.</p></li>
+<li><p><strong>Hospital patient care</strong>: Critical care units in hospitals might use priority queues to manage patient care, ensuring that patients with the most urgent medical needs are seen first.</p></li>
+</ul>
+<p>Priority queues are a valuable data structure that plays a crucial role in various applications that require efficient prioritization and management of tasks, events, or data. Their ability to handle dynamic priority updates and their efficient insertion and extraction operations make them a well-suited choice for prioritizing elements in a variety of contexts.</p>
+<hr class="docutils" />
+<p>End Of Topic</p>
+</section>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./basicalgo"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="DoublyLinkedListJava.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Java Linked List Class</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="StackUsingArrayOfObjects.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Stack  - Using Array of Objects</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-ideas">Key Ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stack">Stack</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#queue">Queue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priority-queue">Priority Queue</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

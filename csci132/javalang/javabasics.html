@@ -1,0 +1,1017 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Java Basics &#8212; CSCI 132 Basic Data Structures</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'javalang/javabasics';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Variable Lecture Code" href="java_variable_lc.html" />
+    <link rel="prev" title="JAVA Introduction" href="javaintro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CSCI 132 Basic Data Structures</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to CSCI 132
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Java Language</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="javalanguage.html">Java Language</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="netbeansinstall.html">NetBeans Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javaintro.html">JAVA Introduction</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Java Basics</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="java_variable_lc.html">Variable Lecture Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firstprogram.html">First Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secondprogram.html">Second Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decisiontrees.html">Decision Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switchstatement.html">Switch Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringfunctions.html">String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numberformats.html">Number Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iterationloops.html">Iteration / Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptionhandling.html">Exception Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iofilefoldercreationdeletion.html">File, Folder - Creation and Deletion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ioreadcsvfile.html">IO Read CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arraylists.html">ArrayLists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overloading.html">Overloading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classesandobjects.html">Classes and Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classesinheritance.html">Classes  - Inheritance</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="abstractclasses.html">Abstract Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lambdafunctions.html">Lambda Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recursion.html">Recursion</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="regexmatches.html">Regex - Using Java Matches</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="referencereading.html">Reference Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="buildinglargejavaapplications.html">Building Large Java Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="antvsmavenvsgradle.html">Ant Vs Maven Vs Gradle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolymorphismInJavaWithExamples.html">Polymorphism in Java (With Examples)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UnableToRunJarFiles.html">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/DataStructuresAndAlgorithms.html">Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/ArrayTechniques.html">Array Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArraysCoreFunctionality.html">Arrays Core Functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayWarpAround.html">Array Warp Around</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ArrayAddDeleteData.html">Array Add and Delete Data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicalgo/EncapsulationNonEncapsulation.html">Encapsulation vs Non-Encapsulation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/BigONotation.html">Big O Notation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/ON_VisualizingBigONotation.html">Visualizing Big O notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/BigONotationExplained.html">Big O Notation - Explained</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/LinkedLists.html">Linked Lists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/SinglyLinkedListRev3.html">Singly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedList.html">Doubly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListSubClass.html">Doubly Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/CircularLinkedList.html">Circular Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListReadDataIntoLL.html">Reading Datafile Into Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListCSharp.html">C# Linked List Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/DoublyLinkedListJava.html">Java Linked List Class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/StacksAndQueues.html">Stacks and Queues</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/StackUsingArrayOfObjects.html">Stack  - Using Array of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/QueueUsingArrayOfObjects.html">Queue  - Using Array Of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/PriorityQueue.html">Priority Queue</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basicalgo/SortAlgorithms.html">Sorting Algorithms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/Sort_Bubble.html">Bubble Sort</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/xbucketsort.html">Bucket Sort</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/MergeSort.html">Merge Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/MergeSort_revA.html">Merge Sort - Demo Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/QuickSort.html">Quick Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/SortingVideosVisualizers.html">Sorting Videos and Visualizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basicalgo/end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/javalang/javabasics.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Java Basics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Java Basics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-topics">Key Topics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naming-variables">Naming Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data Types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operators">Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-operations">Order Of Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incrementors-and-decrementors">Incrementors and Decrementors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#escape-characters">Escape Characters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparative-operators"><strong>Comparative Operators</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">Logical Operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#truth-table">Truth Table</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenation">Concatenation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="java-basics">
+<h1>Java Basics<a class="headerlink" href="#java-basics" title="Link to this heading">#</a></h1>
+<section id="key-topics">
+<h2>Key Topics<a class="headerlink" href="#key-topics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Comments</p></li>
+<li><p>Variables</p></li>
+<li><p>Data types</p></li>
+<li><p>Operators</p></li>
+<li><p>Order of Operations</p></li>
+<li><p>Incrementors and Decrementors</p></li>
+<li><p>Escape Characters</p></li>
+<li><p>Comparative Operators</p></li>
+<li><p>Concatenation</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="readings">
+<h1>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://books.trinket.io/thinkjava/chapter1.html">https://books.trinket.io/thinkjava/chapter1.html</a></p>
+<section id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Link to this heading">#</a></h2>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p><strong>Comment</strong> allows the programmer to document their code. It is not compiled.</p>
+</div>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is a single line comment</span>
+
+<span class="cm">/*</span>
+<span class="cm">This is </span>
+<span class="cm">a multiline</span>
+<span class="cm">comment</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p><strong>Variable</strong> stores one item of information.</p>
+</div>
+<section id="naming-variables">
+<h3>Naming Variables<a class="headerlink" href="#naming-variables" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Start with a letter, underscore or a dollar sign</p></li>
+<li><p>Can not start with an number</p></li>
+<li><p><strong>NO SPACES</strong></p></li>
+<li><p>CASE SENSITIVE</p>
+<ul>
+<li><p>All different are different variable names:  fname, Fname, fName, FNAME, fnamE</p></li>
+</ul>
+</li>
+<li><p>Java as a whole is case sensitive</p></li>
+</ul>
+<div class="admonition-declaring-a-variable admonition">
+<p class="admonition-title">Declaring A Variable</p>
+<p><em>datatype</em> variableName;<br>
+<em>datatype</em> variableName = value;</p>
+</div>
+</section>
+<section id="id1">
+<h3>Examples<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// declaring variables</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">Age</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">First_Name</span><span class="p">;</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="n">Breathing</span><span class="p">;</span>
+
+<span class="c1">//declaring variables and intializing them with a value</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">numberOfStates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50000</span><span class="p">;</span>
+
+<span class="c1">// note that strings get double quotes</span>
+<span class="c1">// chars get single quotes</span>
+<span class="n">String</span><span class="w"> </span><span class="n">dogName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Spot&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">middleInital</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
+
+<span class="kt">boolean</span><span class="w"> </span><span class="n">isBreathing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A variable is usually declared once within a set of braces{}.</p>
+</div>
+</section>
+<section id="data-types">
+<h3>Data Types<a class="headerlink" href="#data-types" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data Type</p></th>
+<th class="head"><p>Memory Space</p></th>
+<th class="head"><p>Max Values</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Integer Types - whole numbers</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>byte8</p></td>
+<td><p>bits - 1 byte</p></td>
+<td><p>-128 to 128</p></td>
+</tr>
+<tr class="row-even"><td><p>short</p></td>
+<td><p>16 bits – 2 bytes</p></td>
+<td><p>-32,768 to 32,767</p></td>
+</tr>
+<tr class="row-odd"><td><p>int</p></td>
+<td><p>32 bits – 4 bytes</p></td>
+<td><p>-2,147,483,648 to 2,147,483,647</p></td>
+</tr>
+<tr class="row-even"><td><p>long</p></td>
+<td><p>64 bits – 8 bytes</p></td>
+<td><p>(+-)9,223,372,036,854,775,808)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Real / Floating Point</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>float</p></td>
+<td><p>32 bits - 4 bytes</p></td>
+<td><p>1.4 E-45 to 3.4 E+38</p></td>
+</tr>
+<tr class="row-odd"><td><p>double</p></td>
+<td><p>64 bits - 8 bytes</p></td>
+<td><p>4.9 E -324 to 1.7 E 308</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Other</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>boolean</p></td>
+<td><p></p></td>
+<td><p>true / false - Use as flags</p></td>
+</tr>
+<tr class="row-even"><td><p>char</p></td>
+<td><p></p></td>
+<td><p>Individual letters or characters</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Acts Like A Variable</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>String</p></td>
+<td><p></p></td>
+<td><p>~ 2 billion characters</p></td>
+</tr>
+<tr class="row-odd"><td><p>Object</p></td>
+<td><p></p></td>
+<td><p>Store binaries - “anything”</p></td>
+</tr>
+<tr class="row-even"><td><p>var</p></td>
+<td><p></p></td>
+<td><p>limited use within functions when datatype is not known</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note: for precise decimals i.e. currency – use java.math.BigDecimal – reason – rounding accuracy</p>
+</section>
+</section>
+<section id="operators">
+<h2>Operators<a class="headerlink" href="#operators" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sign</p></th>
+<th class="head"><p>Operations</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>+</p></td>
+<td><p>Addition</p></td>
+</tr>
+<tr class="row-odd"><td><p>-</p></td>
+<td><p>Subtraction</p></td>
+</tr>
+<tr class="row-even"><td><p>*</p></td>
+<td><p>Multiplication</p></td>
+</tr>
+<tr class="row-odd"><td><p>/</p></td>
+<td><p>Divide</p></td>
+</tr>
+<tr class="row-even"><td><p>%</p></td>
+<td><p>Modulus (return the remainder of an integer)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="order-of-operations">
+<h2>Order Of Operations<a class="headerlink" href="#order-of-operations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Increment and decrement</p></li>
+<li><p>Parentheses ()</p></li>
+<li><p>Exponents</p></li>
+</ul>
+<ul class="simple">
+<li><p>* /</p></li>
+</ul>
+<ul class="simple">
+<li><p>+ -</p></li>
+<li><p>Comparisons &gt; &lt; &gt;= &lt;= == !=</p></li>
+<li><p>Logical Operations &amp;&amp; ||</p></li>
+<li><p>Assignment Expressions</p></li>
+</ul>
+</section>
+<section id="incrementors-and-decrementors">
+<h2>Incrementors and Decrementors<a class="headerlink" href="#incrementors-and-decrementors" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>use ++ to add the number 1 to a variable.</p></li>
+<li><p>use – to subtract the number one from a variable.</p></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">++</span><span class="p">;</span>
+<span class="n">age</span><span class="o">++</span><span class="p">;</span>
+
+<span class="n">y</span><span class="o">--</span><span class="p">;</span>
+<span class="n">salary</span><span class="o">--</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="escape-characters">
+<h2>Escape Characters<a class="headerlink" href="#escape-characters" title="Link to this heading">#</a></h2>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p><strong>Escape Character</strong> is a backslash \ followed by the character you want to insert into your for printing or inserting into a string.</p>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Escape Character</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>\n</p></td>
+<td><p>new line</p></td>
+</tr>
+<tr class="row-odd"><td><p>\t</p></td>
+<td><p>tab</p></td>
+</tr>
+<tr class="row-even"><td><p>\b</p></td>
+<td><p>backspace</p></td>
+</tr>
+<tr class="row-odd"><td><p>\r</p></td>
+<td><p>carriage return</p></td>
+</tr>
+<tr class="row-even"><td><p>\f</p></td>
+<td><p>form feed</p></td>
+</tr>
+<tr class="row-odd"><td><p>\</p></td>
+<td><p>backslash</p></td>
+</tr>
+<tr class="row-even"><td><p>‘</p></td>
+<td><p>single quotation mark</p></td>
+</tr>
+<tr class="row-odd"><td><p>\”</p></td>
+<td><p>double quotation mark</p></td>
+</tr>
+<tr class="row-even"><td><p>\d</p></td>
+<td><p>octal</p></td>
+</tr>
+<tr class="row-odd"><td><p>\xd</p></td>
+<td><p>hexadecimal</p></td>
+</tr>
+<tr class="row-even"><td><p>\ud</p></td>
+<td><p>Unicode character</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="comparative-operators">
+<h2><strong>Comparative Operators</strong><a class="headerlink" href="#comparative-operators" title="Link to this heading">#</a></h2>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p><strong>Comparative Operators</strong> evaluate is something is true or false.</p>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>==</p></td>
+<td><p>Equal to   			x==y;   (NOT x=y)</p></td>
+</tr>
+<tr class="row-odd"><td><p>!=</p></td>
+<td><p>Not Equal to		x != y;</p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;</p></td>
+<td><p>Less Than			x &lt; y;</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;</p></td>
+<td><p>Greater Than		x&gt;y.</p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;=</p></td>
+<td><p>Less Than or Equal to	x &lt;= y ; (no space between the signs)</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;=</p></td>
+<td><p>Greater Than or Equal to	x &gt;=y;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="logical-operators">
+<h2>Logical Operators<a class="headerlink" href="#logical-operators" title="Link to this heading">#</a></h2>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p><strong>Logica Operators</strong> connect two or more expression together and evalute to true or false.</p>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>&amp;&amp;</p></td>
+<td><p>AND (both sides must be true to evaluate to true)</p></td>
+</tr>
+<tr class="row-odd"><td><p>||</p></td>
+<td><p>OR (only one side must be true to evaluate to true)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="truth-table">
+<h3>Truth Table<a class="headerlink" href="#truth-table" title="Link to this heading">#</a></h3>
+<p><strong>(x &lt; y &amp;&amp; z &gt; 10)</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>expression 1<br>x&lt;y</p></th>
+<th class="head text-center"><p>operator</p></th>
+<th class="head text-center"><p>expression 2<br>z &gt;10</p></th>
+<th class="head text-center"><p>outcome</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><strong>AND</strong></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>true</p></td>
+<td class="text-center"><p>&amp;&amp;</p></td>
+<td class="text-center"><p>true</p></td>
+<td class="text-center"><p>true</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>true</p></td>
+<td class="text-center"><p>&amp;&amp;</p></td>
+<td class="text-center"><p>false</p></td>
+<td class="text-center"><p>false</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>false</p></td>
+<td class="text-center"><p>&amp;&amp;</p></td>
+<td class="text-center"><p>true</p></td>
+<td class="text-center"><p>false</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>false</p></td>
+<td class="text-center"><p>&amp;&amp;</p></td>
+<td class="text-center"><p>false</p></td>
+<td class="text-center"><p>false</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><strong>OR</strong></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>true</p></td>
+<td class="text-center"><p>||</p></td>
+<td class="text-center"><p>true</p></td>
+<td class="text-center"><p>true</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>true</p></td>
+<td class="text-center"><p>||</p></td>
+<td class="text-center"><p>false</p></td>
+<td class="text-center"><p>true</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>false</p></td>
+<td class="text-center"><p>||</p></td>
+<td class="text-center"><p>true</p></td>
+<td class="text-center"><p>true</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>false</p></td>
+<td class="text-center"><p>||</p></td>
+<td class="text-center"><p>false</p></td>
+<td class="text-center"><p>false</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="concatenation">
+<h2>Concatenation<a class="headerlink" href="#concatenation" title="Link to this heading">#</a></h2>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p><strong>Concatenation</strong> is the action of putting strings togeher to form a new string.</p>
+</div>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">fName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Bubba&quot;</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">lName</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="s">&quot;Smith&quot;</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">fullName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fName</span><span class="w">  </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lname</span><span class="p">;</span>
+<span class="c1">// Note we concantenate a space &quot; &quot; between the first and last name</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>End Of Topic</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./javalang"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="javaintro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">JAVA Introduction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="java_variable_lc.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Variable Lecture Code</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Java Basics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-topics">Key Topics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naming-variables">Naming Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data Types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operators">Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-operations">Order Of Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incrementors-and-decrementors">Incrementors and Decrementors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#escape-characters">Escape Characters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparative-operators"><strong>Comparative Operators</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">Logical Operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#truth-table">Truth Table</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenation">Concatenation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
