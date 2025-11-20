@@ -1,0 +1,1065 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Saving Pictures In Database &#8212; Web Programming</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'wpref/SavingPicturesInDatabaseRev2';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reading json" href="Readingjson.html" />
+    <link rel="prev" title="Add Edit Delete" href="AddEditDelete.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Web Programming</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    CSCI 210 Web Programming
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="PHPIntroduction.html">PHP Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PHPBasics.html">PHP Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LoopIf.html">Loops and If</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phparrays.html">PHP Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FirstFormsPOSTandGET.html">First Forms - POST and GET</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HTMLInputFieldReview.html">HTML Input Field Review</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="SessionVariables.html">Session Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="SessionHomeworkHint.html">Session Variable Homework Assignment Hint</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="PDOConnections.html">PDO Connections</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="PHPClosingTags.html">PHP Closing Tags: Leave Them Out Or Out</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDOFirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDONoPlaceHoldersExample.html">PDO With No Named Placeholders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StringSanitation.html">String Sanitation - filter_var()</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="xssDefendingAgainstXSS.html">Defending Against Cross Site Scripting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="xssExamples.html">XSS Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xssContentSecurityPolicy.html">Content Security Policy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Passwords.html">Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddEditDelete.html">Add Edit Delete</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Saving Pictures In Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readingjson.html">Reading json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DateFunctionPHP.html">Date Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zYouTubeDemo.html">YouTube Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zSearchFilterSQLITE.html">Search Filter - SQLITE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/wpref/SavingPicturesInDatabaseRev2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Saving Pictures In Database</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#picture-file-sizes">Picture File Sizes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portions-of-the-php-ini-file">Portions of the php.ini file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#my-ini-file-for-mysql">my.ini file for mysql</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-doggy-database">SQL Doggy Database</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dbconnect-php">dbconnect.php</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index-php">index.php</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doggyinput-php">doggyinput.php</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#context">Context</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-multipart-form-data">Why use <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works">How it works</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code">Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getpix-php">getpix.php</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#style-css">style.css</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="saving-pictures-in-database">
+<h1>Saving Pictures In Database<a class="headerlink" href="#saving-pictures-in-database" title="Link to this heading">#</a></h1>
+<section id="picture-file-sizes">
+<h2>Picture File Sizes<a class="headerlink" href="#picture-file-sizes" title="Link to this heading">#</a></h2>
+<p>Upload sizes are controlled  in the php.ini file</p>
+<p>PHP allows shortcuts for byte values, including K (kilo), M (mega), and G (giga). PHP will do the conversions automatically if you use any of these. Be careful not to exceed the 32-bit signed integer limit (if you’re using 32-bit versions)  as it will cause your script to fail.</p>
+<p>NOTE: The php.ini and the my.ini can be accessed through the XAMPP control panel.</p>
+<section id="portions-of-the-php-ini-file">
+<h3>Portions of the php.ini file<a class="headerlink" href="#portions-of-the-php-ini-file" title="Link to this heading">#</a></h3>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Maximum size of POST data that PHP will accept.</span>
+<span class="c1">; Its value may be 0 to disable the limit. It is ignored if POST data reading</span>
+<span class="c1">; is disabled through enable_post_data_reading.</span>
+<span class="c1">; https://php.net/post-max-size</span>
+<span class="na">post_max_size</span><span class="o">=</span><span class="s">40M</span>
+
+<span class="c1">;;;;;;;;;;;;;;;;</span>
+<span class="c1">; File Uploads ;</span>
+<span class="c1">;;;;;;;;;;;;;;;;</span>
+
+<span class="c1">; Whether to allow HTTP file uploads.</span>
+<span class="c1">; https://php.net/file-uploads</span>
+<span class="na">file_uploads</span><span class="o">=</span><span class="s">On</span>
+
+<span class="c1">; Temporary directory for HTTP uploaded files (will use system default if not</span>
+<span class="c1">; specified).</span>
+<span class="c1">; https://php.net/upload-tmp-dir</span>
+<span class="na">upload_tmp_dir</span><span class="o">=</span><span class="s">&quot;C:\xampp\tmp&quot;</span>
+
+<span class="c1">; Maximum allowed size for uploaded files.</span>
+<span class="c1">; https://php.net/upload-max-filesize</span>
+<span class="na">upload_max_filesize</span><span class="o">=</span><span class="s">40M</span>
+
+<span class="c1">; Maximum number of files that can be uploaded via a single request</span>
+<span class="na">max_file_uploads</span><span class="o">=</span><span class="s">20</span>
+</pre></div>
+</div>
+<p>And/Or</p>
+</section>
+<section id="my-ini-file-for-mysql">
+<h3>my.ini file for mysql<a class="headerlink" href="#my-ini-file-for-mysql" title="Link to this heading">#</a></h3>
+<p>The error message “SQLSTATE[HY000]: General error: 2006 MySQL server has gone away” usually occurs when the MySQL server is not responding to the client’s requests. <a class="reference external" href="https://stackoverflow.com/questions/7942154/mysql-error-2006-mysql-server-has-gone-away">This error can be caused by a variety of reasons, such as a low value of the max_allowed_packet variable, a low value of the wait_timeout variable, or insufficient memory on the server </a><a class="reference external" href="https://stackoverflow.com/questions/7942154/mysql-error-2006-mysql-server-has-gone-away">1</a><a class="reference external" href="https://blog.chapagain.com.np/solved-error-2006-hy000-mysql-server-has-gone-away/">2</a><a class="reference external" href="https://www.prestashop.com/forums/topic/1051481-error-mysql-general-error-2006-mysql-server-has-gone-away/">3</a><a class="reference external" href="https://stackoverflow.com/questions/6054832/getting-mysql-error-error-code-2006-mysql-server-has-gone-away">4</a><a class="reference external" href="https://stackoverflow.com/questions/33250453/how-to-solve-general-error-2006-mysql-server-has-gone-away">5</a>.</p>
+<p>To fix this error, you can try the following steps:</p>
+<ol class="arabic simple">
+<li><p>Increase the value of the max_allowed_packet variable in the my.cnf configuration file. <a class="reference external" href="https://stackoverflow.com/questions/7942154/mysql-error-2006-mysql-server-has-gone-away">You can set it to 16M or higher </a><a class="reference external" href="https://stackoverflow.com/questions/7942154/mysql-error-2006-mysql-server-has-gone-away">1</a>.</p></li>
+<li><p>Increase the value of the wait_timeout variable in the my.cnf configuration file. <a class="reference external" href="https://www.prestashop.com/forums/topic/1051481-error-mysql-general-error-2006-mysql-server-has-gone-away/">You can set it to 28800 or higher </a><a class="reference external" href="https://www.prestashop.com/forums/topic/1051481-error-mysql-general-error-2006-mysql-server-has-gone-away/">3</a>.</p></li>
+<li><p>Check the memory usage of the server. <a class="reference external" href="https://stackoverflow.com/questions/7942154/mysql-error-2006-mysql-server-has-gone-away">If the server is running out of memory, you can add a swap file to increase the available memory </a><a class="reference external" href="https://stackoverflow.com/questions/7942154/mysql-error-2006-mysql-server-has-gone-away">1</a>.</p></li>
+</ol>
+<p><a class="reference external" href="https://stackoverflow.com/questions/7942154/mysql-error-2006-mysql-server-has-gone-away">If none of these steps work, you can try to reconnect to the MySQL server and execute the query again </a><a class="reference external" href="https://stackoverflow.com/questions/7942154/mysql-error-2006-mysql-server-has-gone-away">1</a>. If the problem persists, you may need to contact your system administrator or MySQL support for further assistance.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># The MySQL server</span>
+<span class="na">default-character-set</span><span class="o">=</span><span class="s">utf8mb4</span>
+<span class="k">[mysqld]</span>
+<span class="na">port</span><span class="o">=</span><span class="s">3306</span>
+<span class="na">socket</span><span class="o">=</span><span class="s">&quot;C:/xampp/mysql/mysql.sock&quot;</span>
+<span class="na">basedir</span><span class="o">=</span><span class="s">&quot;C:/xampp/mysql&quot;</span>
+<span class="na">tmpdir</span><span class="o">=</span><span class="s">&quot;C:/xampp/tmp&quot;</span>
+<span class="na">datadir</span><span class="o">=</span><span class="s">&quot;C:/xampp/mysql/data&quot;</span>
+<span class="na">pid_file</span><span class="o">=</span><span class="s">&quot;mysql.pid&quot;</span>
+<span class="c1"># enable-named-pipe</span>
+<span class="na">key_buffer</span><span class="o">=</span><span class="s">16M</span>
+<span class="c1"># **********Change to 16 or Greater ****************</span>
+<span class="na">max_allowed_packet</span><span class="o">=</span><span class="s">16M</span>
+<span class="c1"># **************************************************</span>
+<span class="na">sort_buffer_size</span><span class="o">=</span><span class="s">512K</span>
+<span class="na">net_buffer_length</span><span class="o">=</span><span class="s">8K</span>
+<span class="na">read_buffer_size</span><span class="o">=</span><span class="s">256K</span>
+<span class="na">read_rnd_buffer_size</span><span class="o">=</span><span class="s">512K</span>
+<span class="na">myisam_sort_buffer_size</span><span class="o">=</span><span class="s">8M</span>
+<span class="na">log_error</span><span class="o">=</span><span class="s">&quot;mysql_error.log&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sql-doggy-database">
+<h2>SQL Doggy Database<a class="headerlink" href="#sql-doggy-database" title="Link to this heading">#</a></h2>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- phpMyAdmin SQL Dump</span>
+<span class="c1">-- version 5.2.1</span>
+<span class="c1">-- https://www.phpmyadmin.net/</span>
+<span class="c1">--</span>
+<span class="c1">-- Host: 127.0.0.1</span>
+<span class="c1">-- Generation Time: Nov 09, 2023 at 03:39 AM</span>
+<span class="c1">-- Server version: 10.4.28-MariaDB</span>
+<span class="c1">-- PHP Version: 8.2.4</span>
+
+<span class="k">SET</span><span class="w"> </span><span class="n">SQL_MODE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;NO_AUTO_VALUE_ON_ZERO&quot;</span><span class="p">;</span>
+<span class="k">START</span><span class="w"> </span><span class="k">TRANSACTION</span><span class="p">;</span>
+
+
+<span class="cm">/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET NAMES utf8mb4 */</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Database: `wp_doggyembed`</span>
+<span class="c1">--</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="o">`</span><span class="n">wp_doggyembed</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="o">`</span><span class="n">wp_doggyembed</span><span class="o">`</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="nb">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">utf8mb4</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">utf8mb4_general_ci</span><span class="p">;</span>
+<span class="n">USE</span><span class="w"> </span><span class="o">`</span><span class="n">wp_doggyembed</span><span class="o">`</span><span class="p">;</span>
+
+<span class="c1">-- --------------------------------------------------------</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Table structure for table `table1`</span>
+<span class="c1">--</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="o">`</span><span class="n">table1</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="o">`</span><span class="n">dogname</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="o">`</span><span class="n">dogbreed</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="o">`</span><span class="n">dogimage</span><span class="o">`</span><span class="w"> </span><span class="n">longblob</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="o">`</span><span class="n">imagetype</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="o">`</span><span class="n">imagesize</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="o">`</span><span class="n">table1_pk</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">table1_pk</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span><span class="w"> </span><span class="k">COLLATE</span><span class="o">=</span><span class="n">utf8mb4_general_ci</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Truncate table before insert `table1`</span>
+<span class="c1">--</span>
+
+<span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">table1</span><span class="o">`</span><span class="p">;</span><span class="k">COMMIT</span><span class="p">;</span>
+
+<span class="cm">/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="dbconnect-php">
+<h2>dbconnect.php<a class="headerlink" href="#dbconnect-php" title="Link to this heading">#</a></h2>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="k">try</span><span class="p">{</span>
+
+    <span class="c1">//table1 </span>
+    
+    <span class="nv">$host</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1:3308&quot;</span><span class="p">;</span>
+    <span class="nv">$user</span> <span class="o">=</span> <span class="s2">&quot;yourUser&quot;</span><span class="p">;</span>
+    <span class="nv">$pw</span> <span class="o">=</span> <span class="s2">&quot;yourPassword&quot;</span><span class="p">;</span>
+
+    <span class="c1">// created a pdo object  </span>
+    <span class="c1">// in production change the user with appropriate privs</span>
+    <span class="nv">$pdo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s1">&#39;mysql:host=127.0.0.1:3308;dbname=wp_doggyembed&#39;</span><span class="p">,</span><span class="nv">$user</span><span class="p">,</span><span class="nv">$pw</span><span class="p">);</span>
+
+    <span class="c1">// lets setup some attributes for the object</span>
+    <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="nx">PDO</span><span class="o">::</span><span class="na">ATTR_ERRMODE</span><span class="p">,</span><span class="nx">PDO</span><span class="o">::</span><span class="na">ERRMODE_EXCEPTION</span><span class="p">);</span>
+
+    <span class="c1">// only for educational purposes</span>
+    <span class="nv">$dbstatus</span> <span class="o">=</span> <span class="s2">&quot;Good database connection&quot;</span><span class="p">;</span>
+
+    <span class="k">echo</span><span class="p">(</span><span class="nv">$dbstatus</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">(</span><span class="nx">PDOException</span> <span class="nv">$ep</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$dbstatus</span> <span class="o">=</span> <span class="s2">&quot;Database connection failed&lt;br&gt;&quot;</span><span class="o">.</span>
+                    <span class="nv">$ep</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
+
+    <span class="c1">// for development purposes</span>
+    <span class="k">echo</span><span class="p">(</span><span class="nv">$dbstatus</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+    <span class="k">die</span><span class="p">();</span>
+    <span class="c1">// can also use exit</span>
+    <span class="c1">// we don&#39;t page to load any further\</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$dbstatus</span> <span class="o">=</span> <span class="s2">&quot;Database connection failed&lt;br&gt;&quot;</span><span class="o">.</span>
+                    <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
+    
+    <span class="k">echo</span><span class="p">(</span><span class="nv">$dbstatus</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+    <span class="k">die</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nb">session_start</span><span class="p">();</span>
+
+<span class="cp">?&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="index-php">
+<h2>index.php<a class="headerlink" href="#index-php" title="Link to this heading">#</a></h2>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<span class="x">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span>
+<span class="x">    &lt;title&gt;Home&lt;/title&gt;</span>
+<span class="x">    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">    &lt;div class = &quot;content&quot;&gt;</span>
+<span class="x">        &lt;h1&gt;Picture Embedding&lt;/h1&gt;</span>
+
+<span class="x">        &lt;p&gt; &lt;a href=&quot;doggyinput.php&quot;&gt;Dog Picture Input&lt;/a&gt; &amp;nbsp;&amp;nbsp;</span>
+<span class="x">            &lt;a href=&quot;getpix.php&quot;&gt;Display Doggy Pictgures&lt;/a&gt; &amp;nbsp; &amp;nbsp;</span>
+<span class="x">            &lt;a href=&quot;default.php&quot;&gt;home&lt;/a&gt;</span>
+<span class="x">        &lt;/p&gt;</span>
+
+<span class="x">    &lt;/div&gt;</span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="doggyinput-php">
+<h2>doggyinput.php<a class="headerlink" href="#doggyinput-php" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">enctype=&quot;multipart/form-data&quot;</span></code> attribute in an HTML <code class="docutils literal notranslate"><span class="pre">&lt;form&gt;</span></code> specifies how form data should be encoded when it’s submitted to the server. Here’s a breakdown:</p>
+<section id="context">
+<h3>Context<a class="headerlink" href="#context" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Used in:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;form&gt;</span></code> element</p></li>
+<li><p><strong>Purpose:</strong> Defines how form data is sent to the server.</p></li>
+</ul>
+</section>
+<section id="why-use-multipart-form-data">
+<h3>Why use <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code>?<a class="headerlink" href="#why-use-multipart-form-data" title="Link to this heading">#</a></h3>
+<p>It is necessary when a form includes file uploads, like images, documents, etc. It allows the form to send data in a way that supports sending both text and binary data.</p>
+</section>
+<section id="how-it-works">
+<h3>How it works<a class="headerlink" href="#how-it-works" title="Link to this heading">#</a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">enctype=&quot;multipart/form-data&quot;</span></code> is set:</p>
+<ol class="arabic simple">
+<li><p><strong>Each form field’s data</strong> is sent as a separate part of the request body.</p></li>
+<li><p><strong>File data</strong> is encoded in binary, while other fields (e.g., text inputs) are encoded as plain text.</p></li>
+<li><p>Each part is separated by a <strong>boundary string</strong> that the browser generates, making it easy for the server to parse the data correctly.</p></li>
+</ol>
+</section>
+<section id="code">
+<h3>Code<a class="headerlink" href="#code" title="Link to this heading">#</a></h3>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<span class="x">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span>
+<span class="x">    &lt;title&gt;Input&lt;/title&gt;</span>
+<span class="x">    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">    &lt;header&gt;</span>
+<span class="x">        &lt;h1&gt;Doggy Picture Upload&lt;/h1&gt;</span>
+<span class="x">    &lt;/header&gt;</span>
+<span class="x">    &lt;main&gt;</span>
+
+<span class="cp">&lt;?php</span>
+
+<span class="k">require</span><span class="p">(</span><span class="s1">&#39;dbconnect.php&#39;</span><span class="p">);</span>
+
+<span class="c1">// for testing and demonstration only</span>
+<span class="c1">// print_r($_POST);</span>
+<span class="c1">// echo(&#39;&lt;br&gt;&#39;);</span>
+<span class="c1">// print_r($_FILES);</span>
+<span class="c1">// echo(&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">]))</span>
+<span class="p">{</span>
+
+
+    <span class="c1">// get file specifications</span>
+    <span class="nv">$thedogfile</span> <span class="o">=</span> <span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;dogimage&#39;</span><span class="p">][</span><span class="s1">&#39;tmp_name&#39;</span><span class="p">];</span>
+    <span class="nv">$imagetype</span> <span class="o">=</span> <span class="nb">mime_content_type</span><span class="p">(</span><span class="nv">$thedogfile</span><span class="p">);</span>
+    <span class="nv">$imagesize</span> <span class="o">=</span> <span class="nb">filesize</span><span class="p">(</span><span class="nv">$thedogfile</span><span class="p">);</span>
+
+    <span class="c1">// Retrieve the file and encode it as base64</span>
+    <span class="c1">// Base64 is a common form of handling data and it is used to ensure</span>
+    <span class="c1">// that the handling of bits accros the network are correct.</span>
+
+    <span class="nv">$dogimage</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;dogimage&#39;</span><span class="p">][</span><span class="s1">&#39;tmp_name&#39;</span><span class="p">]));</span>
+    
+    <span class="c1">// Alternative</span>
+    <span class="c1">// $dogimage = base64_encode(file_get_contents($thedogfile));</span>
+
+    <span class="c1">// sql statement</span>
+    <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO table1(dogname,dogbreed,dogimage,imagetype,imagesize) &quot;</span><span class="o">.</span>
+            <span class="s2">&quot;VALUES(:dogname,:dogbreed,:dogimage,:imagetype,:imagesize)&quot;</span><span class="p">;</span>
+    
+    <span class="c1">// prepare sql statement</span>
+    <span class="nv">$sqlobj</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+
+    <span class="c1">// sanitize input</span>
+    <span class="nv">$dogname</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+    <span class="nv">$dogbreed</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;dogbreed&#39;</span><span class="p">],</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+
+    <span class="c1">// bind</span>
+    <span class="nv">$sqlobj</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s1">&#39;:dogname&#39;</span><span class="p">,</span><span class="nv">$dogname</span><span class="p">);</span>
+    <span class="nv">$sqlobj</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s1">&#39;:dogbreed&#39;</span><span class="p">,</span><span class="nv">$dogbreed</span><span class="p">);</span>
+    <span class="nv">$sqlobj</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s1">&#39;:dogimage&#39;</span><span class="p">,</span><span class="nv">$dogimage</span><span class="p">,</span><span class="nx">PDO</span><span class="o">::</span><span class="na">PARAM_LOB</span><span class="p">);</span>
+    <span class="nv">$sqlobj</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s1">&#39;:imagetype&#39;</span><span class="p">,</span><span class="nv">$imagetype</span><span class="p">);</span>
+    <span class="nv">$sqlobj</span><span class="o">-&gt;</span><span class="na">bindparam</span><span class="p">(</span><span class="s1">&#39;:imagesize&#39;</span><span class="p">,</span><span class="nv">$imagesize</span><span class="p">);</span>
+
+    <span class="cm">/*</span>
+<span class="cm">    // ALTERNATIVE FOR BINDING USING AN ARRAY</span>
+<span class="cm">    // Define parameters in an array</span>
+<span class="cm">	$params = [</span>
+<span class="cm">    &#39;:dogname&#39;   =&gt; [$dogname, PDO::PARAM_STR],</span>
+<span class="cm">    &#39;:dogbreed&#39;  =&gt; [$dogbreed, PDO::PARAM_STR],</span>
+<span class="cm">    &#39;:dogimage&#39;  =&gt; [$dogimage, PDO::PARAM_LOB],</span>
+<span class="cm">    &#39;:imagetype&#39; =&gt; [$imagetype, PDO::PARAM_STR],</span>
+<span class="cm">    &#39;:imagesize&#39; =&gt; [$imagesize, PDO::PARAM_INT]</span>
+<span class="cm">	];</span>
+
+<span class="cm">	// Bind parameters dynamically</span>
+<span class="cm">    foreach ($params as $key =&gt; [$value, $type]) {</span>
+<span class="cm">        $sqlobj-&gt;bindParam($key, $value, $type);</span>
+<span class="cm">    }</span>
+<span class="cm">    */</span>
+    
+    
+
+    <span class="k">try</span><span class="p">{</span>
+        <span class="c1">// execute the upload</span>
+        <span class="nv">$uploadcheck</span> <span class="o">=</span> <span class="nv">$sqlobj</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="nx">PDOException</span> <span class="nv">$e</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$uploadcheck</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;Upload Failed: &quot;</span><span class="o">.</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="nv">$uploadcheck</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;</span>
+<span class="s1">            &lt;br&gt;&lt;br&gt;File Uploaded Successfully&lt;br&gt;&lt;br&gt;</span>
+<span class="s1">        &#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    
+    <span class="c1">// *** NOTE enctype=&quot;multipart/form-data&quot; ***</span>
+    <span class="c1">// The enctype=&quot;multipart/form-data&quot; attribute in an HTML &lt;form&gt; </span>
+    <span class="c1">// is used when submitting forms that include file uploads. </span>
+    <span class="c1">// It ensures that the form data is sent in separate parts, </span>
+    <span class="c1">// allowing both text and binary data (like files) to be transmitted. </span>
+    <span class="c1">// This encoding is necessary for handling file uploads, </span>
+    <span class="c1">// as it allows the server to process each part correctly, </span>
+    <span class="c1">// separating text fields from file data.</span>
+    <span class="c1">// *******************************************************************</span>
+
+    
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;</span>
+<span class="s1">    &lt;form action=&quot;doggyinput.php&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;</span>
+<span class="s1">        &lt;table border=&quot;1&quot;&gt;</span>
+<span class="s1">            &lt;tr&gt;</span>
+<span class="s1">                &lt;th colspan=2&gt;Doggy Input&lt;/th&gt;</span>
+<span class="s1">            &lt;/tr&gt;</span>
+<span class="s1">            &lt;tr&gt;</span>
+<span class="s1">                &lt;td&gt;Dog Name&lt;/td&gt;</span>
+<span class="s1">                &lt;td&gt;&lt;input type=&quot;text&quot; size=&quot;25&quot; name=&quot;dogname&quot; </span>
+<span class="s1">                    value=&quot;barky&quot; required&gt; &lt;/td&gt;</span>
+<span class="s1">            &lt;/tr&gt;</span>
+<span class="s1">            &lt;tr&gt;</span>
+<span class="s1">                &lt;td&gt;Dog Name&lt;/td&gt;</span>
+<span class="s1">                &lt;td&gt;&lt;input type=&quot;text&quot; size=&quot;25&quot; name=&quot;dogbreed&quot; </span>
+<span class="s1">                    value=&quot;mutt&quot;&gt; &lt;/td&gt;</span>
+<span class="s1">            &lt;/tr&gt;</span>
+<span class="s1">            &lt;tr&gt;</span>
+<span class="s1">                &lt;td&gt;Dog Name&lt;/td&gt;</span>
+<span class="s1">                &lt;td&gt;&lt;input type=&quot;file&quot; </span>
+<span class="s1">                    name=&quot;dogimage&quot; </span>
+<span class="s1">                    accept=&quot;.jpg,.jpeg,.png&quot; </span>
+<span class="s1">                    required&gt; &lt;/td&gt;</span>
+<span class="s1">            &lt;/tr&gt;</span>
+<span class="s1">            &lt;tr&gt;</span>
+<span class="s1">                &lt;td&gt;&lt;/td&gt;</span>
+<span class="s1">                &lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;Enter&quot;&gt;&lt;/td&gt;</span>
+<span class="s1">            &lt;/tr&gt;</span>
+<span class="s1">        &lt;/table&gt;</span>
+<span class="s1">        &lt;/form&gt;</span>
+<span class="s1">    &#39;</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">//end of else</span>
+<span class="cp">?&gt;</span>
+<span class="x">    &lt;p&gt;&lt;a href=&quot;doggyinput.php&quot;&gt;Dog Picture Input&lt;/a&gt; &amp;nbsp;&amp;nbsp;</span>
+<span class="x">    &lt;a href=&quot;getpix.php&quot;&gt;Display Doggy Pictures&lt;/a&gt; &amp;nbsp;&amp;nbsp;</span>
+<span class="x">    &lt;a href=&quot;index.php&quot;&gt;Home&lt;/a&gt;</span>
+<span class="x">&lt;/p&gt;&lt;/main&gt;</span>
+<span class="x">&lt;footer&gt;&amp;copy;Doggy Embed Demo&lt;/footer&gt;</span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;&#39;);</span>
+
+
+<span class="cp">&lt;?php</span>
+<span class="cm">/*</span>
+<span class="cm">Upload sizes are controlled in the php.ini file</span>
+
+<span class="cm">Items to check</span>
+<span class="cm">; Maximum size of POST data that PHP will accept.</span>
+<span class="cm">; Its value may be 0 to disable the limit. It is ignored if POST data reading</span>
+<span class="cm">; is disabled through enable_post_data_reading.</span>
+<span class="cm">; https://php.net/post-max-size</span>
+<span class="cm">post_max_size=40M</span>
+
+<span class="cm">Note:</span>
+<span class="cm">PHP allows shortcuts for byte values, including K (kilo), M (mega) and G (giga). </span>
+<span class="cm">PHP will do the conversions automatically if you use any of these. Be careful </span>
+<span class="cm">not to exceed the 32 bit signed integer limit (if you&#39;re using 32bit versions) </span>
+<span class="cm">as it will cause your script to fail. </span>
+
+
+<span class="cm">;;;;;;;;;;;;;;;;</span>
+<span class="cm">; File Uploads ;</span>
+<span class="cm">;;;;;;;;;;;;;;;;</span>
+
+<span class="cm">; Whether to allow HTTP file uploads.</span>
+<span class="cm">; https://php.net/file-uploads</span>
+<span class="cm">file_uploads=On</span>
+
+<span class="cm">; Temporary directory for HTTP uploaded files (will use system default if not</span>
+<span class="cm">; specified).</span>
+<span class="cm">; https://php.net/upload-tmp-dir</span>
+<span class="cm">upload_tmp_dir=&quot;C:\xampp\tmp&quot;</span>
+
+<span class="cm">; Maximum allowed size for uploaded files.</span>
+<span class="cm">; https://php.net/upload-max-filesize</span>
+<span class="cm">upload_max_filesize=40M</span>
+
+<span class="cm">; Maximum number of files that can be uploaded via a single request</span>
+<span class="cm">max_file_uploads=20</span>
+
+
+<span class="cm">my.ini file</span>
+<span class="cm"># The MySQL server</span>
+<span class="cm">default-character-set=utf8mb4</span>
+<span class="cm">[mysqld]</span>
+<span class="cm">port=3306</span>
+<span class="cm">socket=&quot;C:/xampp/mysql/mysql.sock&quot;</span>
+<span class="cm">basedir=&quot;C:/xampp/mysql&quot;</span>
+<span class="cm">tmpdir=&quot;C:/xampp/tmp&quot;</span>
+<span class="cm">datadir=&quot;C:/xampp/mysql/data&quot;</span>
+<span class="cm">pid_file=&quot;mysql.pid&quot;</span>
+<span class="cm"># enable-named-pipe</span>
+<span class="cm">key_buffer=16M</span>
+<span class="cm"># **********Change to 16 or Greater ****************</span>
+<span class="cm">max_allowed_packet=16M</span>
+<span class="cm"># **************************************************</span>
+<span class="cm">sort_buffer_size=512K</span>
+<span class="cm">net_buffer_length=8K</span>
+<span class="cm">read_buffer_size=256K</span>
+<span class="cm">read_rnd_buffer_size=512K</span>
+<span class="cm">myisam_sort_buffer_size=8M</span>
+<span class="cm">log_error=&quot;mysql_error.log&quot;</span>
+
+<span class="cm">*/</span>
+
+<span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p><img alt="image-20231110172412478" src="../_images/image-20231110172412478-1699662255420-5.png" /></p>
+</section>
+</section>
+<section id="getpix-php">
+<h2>getpix.php<a class="headerlink" href="#getpix-php" title="Link to this heading">#</a></h2>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+    <span class="c1">// database connection</span>
+    <span class="k">require</span><span class="p">(</span><span class="s1">&#39;dbconnect.php&#39;</span><span class="p">);</span>
+
+    <span class="c1">// SQL statement</span>
+    <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM table1&quot;</span><span class="p">;</span>
+
+    <span class="c1">// Excecute query and store recordset</span>
+    <span class="nv">$rs</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+
+<span class="cp">?&gt;</span>
+
+<span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt; </span>
+<span class="x">&lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<span class="x">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span>
+<span class="x">    </span>
+<span class="x">&lt;title&gt;GetPix&lt;/title&gt;   </span>
+<span class="x">&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+
+<span class="x">&lt;body&gt;</span>
+<span class="x">    &lt;header&gt;</span>
+<span class="x">        &lt;h1&gt;Doggy Pictures&lt;/h1&gt;</span>
+<span class="x">        &lt;p&gt;&lt;a href=&quot;doggyinput.php&quot;&gt;Dog Picture Input&lt;/a&gt; &amp;nbsp;&amp;nbsp;</span>
+<span class="x">        &lt;a href=&quot;getpix.php&quot;&gt;Display Doggy Pictures&lt;/a&gt; &amp;nbsp;&amp;nbsp;</span>
+<span class="x">        &lt;a href=&quot;index.php&quot;&gt;Home&lt;/a&gt;&lt;/p&gt;</span>
+<span class="x">    &lt;/header&gt;</span>
+
+<span class="x">    &lt;main&gt;</span>
+<span class="x">        &lt;p&gt;Here are the doggies&lt;/p&gt;</span>
+
+<span class="x">        </span><span class="cp">&lt;?php</span>
+        <span class="k">while</span><span class="p">(</span><span class="nv">$row</span><span class="o">=</span><span class="nv">$rs</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;dogpix&quot;&gt;&#39;</span><span class="p">);</span>
+            
+            <span class="c1">// retreive the image</span>
+            <span class="c1">// build data url - example &#39;data:image/jeg;base64,mypix.jpg&#39;</span>
+
+            <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;img src=&quot;data:&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;imagetype&#39;</span><span class="p">]</span><span class="o">.</span>
+                    <span class="s1">&#39;;base64,&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;dogimage&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&quot; width=&quot;300&quot;&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+            <span class="k">echo</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;dogname&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;dogbreed&#39;</span><span class="p">]);</span>
+
+            <span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;/div&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+            
+        <span class="p">}</span>
+        <span class="cp">?&gt;</span>
+<span class="x">        &lt;p&gt;&lt;a href=&quot;doggyinput.php&quot;&gt;Dog Picture Input&lt;/a&gt; &amp;nbsp;&amp;nbsp;</span>
+<span class="x">        &lt;a href=&quot;getpix.php&quot;&gt;Display Doggy Pictures&lt;/a&gt; &amp;nbsp;&amp;nbsp;</span>
+<span class="x">        &lt;a href=&quot;index.php&quot;&gt;Home&lt;/a&gt;&lt;/p&gt;</span>
+<span class="x">    &lt;/main&gt;</span>
+
+<span class="x">    &lt;footer&gt;</span>
+<span class="x">        &lt;p&gt;&amp;copy; 2023 Get Doggy Pix &lt;/p&gt;</span>
+<span class="x">    &lt;/footer&gt;</span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p><img alt="image-20231110172320987" src="../_images/image-20231110172320987-1699662202862-3.png" /></p>
+</section>
+<section id="style-css">
+<h2>style.css<a class="headerlink" href="#style-css" title="Link to this heading">#</a></h2>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">body</span><span class="p">{</span>
+<span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin-top</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">    </span><span class="k">flex-direction</span><span class="p">:</span><span class="kc">column</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">content</span><span class="p">{</span>
+<span class="w">    </span><span class="k">align-self</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">cornsilk</span><span class="p">;</span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">dogpix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">darkblue</span><span class="p">;</span>
+<span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">darkgrey</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin-left</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin-right</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">    </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">    </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./wpref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="AddEditDelete.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Add Edit Delete</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Readingjson.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Reading json</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#picture-file-sizes">Picture File Sizes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#portions-of-the-php-ini-file">Portions of the php.ini file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#my-ini-file-for-mysql">my.ini file for mysql</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-doggy-database">SQL Doggy Database</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dbconnect-php">dbconnect.php</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index-php">index.php</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doggyinput-php">doggyinput.php</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#context">Context</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-multipart-form-data">Why use <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works">How it works</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code">Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getpix-php">getpix.php</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#style-css">style.css</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 By James Goudy.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

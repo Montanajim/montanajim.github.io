@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Functions &#8212; Web Programming</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'wpref/Functions';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="First Forms - POST and GET" href="FirstFormsPOSTandGET.html" />
+    <link rel="prev" title="PHP Arrays" href="phparrays.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Web Programming</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    CSCI 210 Web Programming
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="PHPIntroduction.html">PHP Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PHPBasics.html">PHP Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LoopIf.html">Loops and If</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phparrays.html">PHP Arrays</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FirstFormsPOSTandGET.html">First Forms - POST and GET</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HTMLInputFieldReview.html">HTML Input Field Review</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="SessionVariables.html">Session Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="SessionHomeworkHint.html">Session Variable Homework Assignment Hint</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="PDOConnections.html">PDO Connections</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="PHPClosingTags.html">PHP Closing Tags: Leave Them Out Or Out</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDOFirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDONoPlaceHoldersExample.html">PDO With No Named Placeholders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StringSanitation.html">String Sanitation - filter_var()</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="xssDefendingAgainstXSS.html">Defending Against Cross Site Scripting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="xssExamples.html">XSS Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xssContentSecurityPolicy.html">Content Security Policy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Passwords.html">Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddEditDelete.html">Add Edit Delete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SavingPicturesInDatabase.html">Saving Pictures In Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readingjson.html">Reading json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DateFunctionPHP.html">Date Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zSearchFilterSQLITE.html">Search Filter - SQLITE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/wpref/Functions.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Functions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-breakdown-and-comments">Code Breakdown and Comments</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h1>
+<section id="code-breakdown-and-comments">
+<h2>Code Breakdown and Comments<a class="headerlink" href="#code-breakdown-and-comments" title="Link to this heading">#</a></h2>
+<p><strong>Purpose:</strong> This PHP code demonstrates various programming concepts, including functions, loops, and conditional statements.</p>
+<p><strong>Functions:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">myfunc1()</span></code>:</strong> A simple function that prints “Func1” to the page</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">add2($n1,</span> <span class="pre">$n2)</span></code>:</strong> Takes two numbers as input, adds them together, and returns the sum.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">loops()</span></code>:</strong> A function that demonstrates different types of loops (while, do-while) and conditional statements.</p></li>
+</ul>
+<p><strong>Variables:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">$n1</span></code>, <code class="docutils literal notranslate"><span class="pre">$n2</span></code>:</strong> Used in the <code class="docutils literal notranslate"><span class="pre">add2()</span></code> function to store the input numbers.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">$sum</span></code>:</strong> Stores the calculated sum in the <code class="docutils literal notranslate"><span class="pre">add2()</span></code> function.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">$run</span></code>, <code class="docutils literal notranslate"><span class="pre">$cntr</span></code>, <code class="docutils literal notranslate"><span class="pre">$stop</span></code>, <code class="docutils literal notranslate"><span class="pre">$status</span></code>:</strong> Variables used in the <code class="docutils literal notranslate"><span class="pre">loops()</span></code> function for loop control, counting, and status tracking.</p></li>
+</ul>
+<p><strong>Loops:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">while</span></code> loop:</strong> Continues to execute as long as a given condition is true.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">do-while</span></code> loop:</strong> Executes at least once, then continues as long as a given condition is true.</p></li>
+</ul>
+<p><strong>Conditional Statements:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">if-else</span></code> statements:</strong> Used to make decisions based on conditions.</p></li>
+</ul>
+<p><strong>Code Breakdown:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Function Definitions:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">myfunc1()</span></code> is defined to print a message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add2()</span></code> takes two numbers, adds them, and returns the result.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loops()</span></code> demonstrates different loop types and conditional logic.</p></li>
+</ul>
+</li>
+<li><p><strong>Main Execution:</strong></p>
+<ul class="simple">
+<li><p>Calls the <code class="docutils literal notranslate"><span class="pre">myfunc1()</span></code> function.</p></li>
+<li><p>Calculates the sum using <code class="docutils literal notranslate"><span class="pre">add2()</span></code> and prints the result.</p></li>
+<li><p>Calls the <code class="docutils literal notranslate"><span class="pre">loops()</span></code> function to demonstrate loop and conditional concepts.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Comments within <code class="docutils literal notranslate"><span class="pre">loops()</span></code>:</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">while</span></code> loop:</strong> Demonstrates a basic <code class="docutils literal notranslate"><span class="pre">while</span></code> loop with a counter and a stopping condition.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">while</span></code> loop with <code class="docutils literal notranslate"><span class="pre">if</span></code>:</strong> Shows how to use an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement inside a loop to break out of the loop based on a condition.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">do-while</span></code> loop:</strong> Demonstrates a <code class="docutils literal notranslate"><span class="pre">do-while</span></code> loop that executes at least once.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">if-else</span></code> statements:</strong> Shows how to use <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statements to check conditions and set a status based on the result.</p></li>
+</ul>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!doctype html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">    &lt;head&gt;</span>
+<span class="x">        &lt;title&gt;functions&lt;/title&gt;</span>
+
+<span class="x">        </span><span class="cp">&lt;?php</span>
+        
+        <span class="k">function</span> <span class="nf">myfunc1</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;br&gt;Func1&lt;br&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">function</span> <span class="nf">add2</span><span class="p">(</span><span class="nv">$n1</span><span class="p">,</span><span class="nv">$n2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nv">$sum</span> <span class="o">=</span> <span class="nv">$n1</span> <span class="o">+</span> <span class="nv">$n2</span><span class="p">;</span>
+
+            <span class="k">return</span> <span class="nv">$sum</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">function</span> <span class="nf">loops</span><span class="p">()</span>
+        <span class="p">{</span>
+            
+            <span class="nv">$run</span> <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
+
+            <span class="nv">$cntr</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="nv">$stop</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+
+            <span class="c1">// Example of a while loop</span>
+            <span class="k">while</span><span class="p">(</span><span class="nv">$cntr</span> <span class="o">&lt;</span> <span class="nv">$stop</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">echo</span><span class="p">(</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;. Item&quot;</span><span class="o">.</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+                <span class="nv">$cntr</span> <span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+			<span class="c1">// excample of while loop using</span>
+            <span class="c1">// a boolean and if statement</span>
+            <span class="nv">$cntr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="nv">$run</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">echo</span><span class="p">(</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;. Item 22 &quot;</span><span class="o">.</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+                <span class="nv">$cntr</span> <span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+
+                <span class="k">if</span><span class="p">(</span><span class="nv">$cntr</span> <span class="o">==</span> <span class="nv">$stop</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="nv">$run</span><span class="o">=</span><span class="k">FALSE</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+            <span class="c1">// Example of do loop - always runs once</span>
+            <span class="nv">$cntr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">do</span><span class="p">{</span>
+                <span class="k">echo</span><span class="p">(</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;.  Item Do&quot;</span><span class="o">.</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+                <span class="nv">$cntr</span> <span class="o">+=</span><span class="mi">1</span><span class="p">;</span>  
+            <span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="nv">$cntr</span> <span class="o">&lt;</span> <span class="nv">$stop</span><span class="p">);</span>
+        
+
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&lt;h2&gt;Status If&lt;/h2&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+
+        <span class="nv">$cntr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nv">$status</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+        <span class="nv">$run</span> <span class="o">=</span> <span class="k">True</span><span class="p">;</span>
+
+        <span class="k">while</span><span class="p">(</span><span class="nv">$run</span><span class="p">)</span>
+        <span class="p">{</span>
+
+			<span class="c1">// example of else if statement</span>
+            <span class="k">if</span><span class="p">(</span><span class="nv">$cntr</span> <span class="o">==</span> <span class="nv">$stop</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="nv">$run</span><span class="o">=</span><span class="k">FALSE</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">((</span><span class="nv">$cntr</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="nv">$status</span> <span class="o">=</span> <span class="s2">&quot;Even&quot;</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span><span class="p">{</span>
+                <span class="nv">$status</span> <span class="o">=</span> <span class="s2">&quot;Odd&quot;</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">echo</span><span class="p">(</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot;. Item 22 &quot;</span><span class="o">.</span><span class="nv">$cntr</span><span class="o">.</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="nv">$status</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+            <span class="nv">$cntr</span> <span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="cp">?&gt;</span>
+<span class="x">        </span>
+<span class="x">    &lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
+        
+        <span class="nx">myfunc1</span><span class="p">();</span>
+
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+    <span class="cp">?&gt;</span>
+<span class="x">    &lt;h2&gt;Sum Example - 60 + 40&lt;/h2&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span> 
+        <span class="nv">$x</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+        <span class="nv">$xx</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+        <span class="nv">$total</span> <span class="o">=</span> <span class="nx">add2</span><span class="p">(</span><span class="nv">$x</span><span class="p">,</span><span class="nv">$xx</span><span class="p">);</span>
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;The sum = &quot;</span><span class="o">.</span><span class="nv">$total</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+
+        <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&lt;br&gt;&quot;</span><span class="p">);</span>
+
+        <span class="nx">loops</span><span class="p">();</span>
+    <span class="cp">?&gt;</span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./wpref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="phparrays.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PHP Arrays</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="FirstFormsPOSTandGET.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">First Forms - POST and GET</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-breakdown-and-comments">Code Breakdown and Comments</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 By James Goudy.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

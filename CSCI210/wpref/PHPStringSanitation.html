@@ -1,0 +1,819 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PHP String Sanitation &#8212; Web Programming</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'wpref/PHPStringSanitation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Web Programming</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    CSCI 210 Web Programming
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="PHPIntroduction.html">PHP Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PHPBasics.html">PHP Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LoopIf.html">Loops and If</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phparrays.html">PHP Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FirstFormsPOSTandGET.html">First Forms - POST and GET</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HTMLInputFieldReview.html">HTML Input Field Review</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="SessionVariables.html">Session Variables</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="SessionHomeworkHint.html">Session Variable Homework Assignment Hint</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="PDOConnections.html">PDO Connections</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="PHPClosingTags.html">PHP Closing Tags: Leave Them Out Or Out</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDOFirstDataDBInsertCarExample.html">PDO - First Data Insert - Car Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDONoPlaceHoldersExample.html">PDO With No Named Placeholders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StringSanitation.html">String Sanitation - filter_var()</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="xssDefendingAgainstXSS.html">Defending Against Cross Site Scripting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="xssExamples.html">XSS Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xssContentSecurityPolicy.html">Content Security Policy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Passwords.html">Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddEditDelete.html">Add Edit Delete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SavingPicturesInDatabase.html">Saving Pictures In Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Readingjson.html">Reading json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DateFunctionPHP.html">Date Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zSearchFilterSQLITE.html">Search Filter - SQLITE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/wpref/PHPStringSanitation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PHP String Sanitation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sanitation-functions">Sanitation Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#htmlspecialchars">htmlspecialchars()</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-var">filter_var()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#php-sanitation-flags">PHP Sanitation Flags</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-flag-strip-high-filter-flag-strip-low">FILTER_FLAG_STRIP_HIGH | FILTER_FLAG_STRIP_LOW</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-flag-encode-low-filter-flag-encode-high">FILTER_FLAG_ENCODE_LOW | FILTER_FLAG_ENCODE_HIGH</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-flag-allow-fraction-filter-flag-allow-thousand-filter-flag-allow-scientific">FILTER_FLAG_ALLOW_FRACTION  | FILTER_FLAG_ALLOW_THOUSAND  | FILTER_FLAG_ALLOW_SCIENTIFIC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-flag-strip-backtick">FILTER_FLAG_STRIP_BACKTICK</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">Code Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="php-string-sanitation">
+<h1>PHP String Sanitation<a class="headerlink" href="#php-string-sanitation" title="Link to this heading">#</a></h1>
+<p>PHP string sanitation is the process of removing or encoding malicious characters from a string to prevent them from being executed or displayed unexpectedly. This is an important security measure, as attackers can inject malicious code into strings through user input, cookies, and other sources.</p>
+<p>There are a number of ways to sanitize strings in PHP. One common method is to use the <code class="docutils literal notranslate"><span class="pre">htmlspecialchars()</span></code> function. This function encodes special characters, such as <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, so that they are displayed as text instead of being executed as HTML.</p>
+<p>Another way to sanitize strings is to use the <code class="docutils literal notranslate"><span class="pre">filter_var()</span></code> function with the <code class="docutils literal notranslate"><span class="pre">FILTER_SANITIZE_STRING</span></code> filter. This filter removes all characters from the string except for letters, digits, spaces, and a few other common characters.</p>
+<p>You can also use regular expressions to sanitize strings. This can be a more complex method, but it gives you more control over the characters that are removed.</p>
+<hr class="docutils" />
+<section id="sanitation-functions">
+<h2>Sanitation Functions<a class="headerlink" href="#sanitation-functions" title="Link to this heading">#</a></h2>
+<section id="htmlspecialchars">
+<h3>htmlspecialchars()<a class="headerlink" href="#htmlspecialchars" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">htmlspecialchars()</span></code> function in PHP is used to convert special characters to HTML entities. This is useful for preventing cross-site scripting (XSS) attacks, which can occur when an attacker injects malicious code into a web page.</p>
+<p>The following characters are converted to HTML entities by the <code class="docutils literal notranslate"><span class="pre">htmlspecialchars()</span></code> function:</p>
+<ul class="simple">
+<li><p>&amp; (ampersand) becomes  <code class="docutils literal notranslate"><span class="pre">&amp;amp;</span></code></p></li>
+<li><p>“ (double quote) becomes <code class="docutils literal notranslate"><span class="pre">&amp;quot;</span></code></p></li>
+<li><p>‘ (single quote) becomes <code class="docutils literal notranslate"><span class="pre">&amp;apos;</span></code></p></li>
+<li><p>&lt; (less than) becomes <code class="docutils literal notranslate"><span class="pre">&amp;lt;</span></code></p></li>
+<li><p>&lt; (greater than) becomes <code class="docutils literal notranslate"><span class="pre">&amp;gt;</span></code></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">htmlspecialchars()</span></code> function can also be used to convert other characters to HTML entities, such as the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">\n</span></code> (newline) becomes <code class="docutils literal notranslate"><span class="pre">&lt;br&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\t</span></code> (tab) becomes <code class="docutils literal notranslate"><span class="pre">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span></code></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">htmlspecialchars()</span></code> function takes two arguments:</p>
+<ul class="simple">
+<li><p>The string to be converted.</p></li>
+<li><p>An optional bitmask of flags that specify how to convert the string.</p></li>
+</ul>
+<p>The following flags can be used with the <code class="docutils literal notranslate"><span class="pre">htmlspecialchars()</span></code> function:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ENT_QUOTES</span></code>: Convert both double and single quotes to HTML entities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ENT_NOQUOTES</span></code>: Do not convert quotes to HTML entities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ENT_SUBSTITUTE</span></code>: Replace invalid characters with HTML entities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ENT_HTML401</span></code>: Use the HTML 4.01 character set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ENT_XML1</span></code>: Use the XML 1.0 character set.</p></li>
+</ul>
+<p>The default value for the bitmask is <code class="docutils literal notranslate"><span class="pre">ENT_QUOTES</span> <span class="pre">|</span> <span class="pre">ENT_SUBSTITUTE</span> <span class="pre">|</span> <span class="pre">ENT_HTML401</span></code>.</p>
+<p>Here is an example of how to use the <code class="docutils literal notranslate"><span class="pre">htmlspecialchars()</span></code> function:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">$string = &#39;This is a string with special characters: &amp;&lt;&gt;&quot;&#39;;</span>
+
+<span class="x">// Convert all special characters to HTML entities.</span>
+<span class="x">$encodedString = htmlspecialchars($string);</span>
+
+<span class="x">// stores the following:  &#39;This is a string with special characters: &amp;amp;&amp;lt;&amp;gt;&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="filter-var">
+<h2>filter_var()<a class="headerlink" href="#filter-var" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">filter_var()</span></code> function in PHP is used to filter a variable with a specified filter. This can be used to validate and sanitize user input, or to convert data from one format to another.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">filter_var()</span></code> function takes two arguments:</p>
+<ul class="simple">
+<li><p>The variable to be filtered.</p></li>
+<li><p>The filter to apply.</p></li>
+</ul>
+<p>The filter can be one of the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_VALIDATE_INT</span></code>: Validates the variable as an integer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_VALIDATE_FLOAT</span></code>: Validates the variable as a floating-point number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_VALIDATE_BOOLEAN</span></code>: Validates the variable as a boolean value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_VALIDATE_EMAIL</span></code>: Validates the variable as an email address.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_VALIDATE_URL</span></code>: Validates the variable as a URL.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_SANITIZE_STRING</span></code>: Sanitizes the variable by removing all HTML and PHP tags.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_SANITIZE_NUMBER_INT</span></code>: Sanitizes the variable by converting it to an integer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_SANITIZE_NUMBER_FLOAT</span></code>: Sanitizes the variable by converting it to a floating-point number.</p></li>
+</ul>
+<p>You can also specify a set of options for the filter. For example, you can specify a minimum and maximum value for the filter.</p>
+</section>
+<hr class="docutils" />
+<section id="php-sanitation-flags">
+<h2>PHP Sanitation Flags<a class="headerlink" href="#php-sanitation-flags" title="Link to this heading">#</a></h2>
+<section id="filter-flag-strip-high-filter-flag-strip-low">
+<h3>FILTER_FLAG_STRIP_HIGH | FILTER_FLAG_STRIP_LOW<a class="headerlink" href="#filter-flag-strip-high-filter-flag-strip-low" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_STRIP_HIGH</span></code> and <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_STRIP_LOW</span></code> flags are used to remove characters from a string based on their ASCII values.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_STRIP_HIGH</span></code> removes all characters with an ASCII value greater than 127.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_STRIP_LOW</span></code> removes all characters with an ASCII value less than 32.</p></li>
+</ul>
+<p>These flags are often used to sanitize user input to prevent attacks that exploit non-ASCII characters or control characters.</p>
+<p>For example, an attacker could inject a malicious script into a web application by submitting a form with a non-ASCII character or control character in the input field. If the application does not properly sanitize the input, the script could be executed and the attacker could gain control of the application.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_STRIP_HIGH</span></code> and <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_STRIP_LOW</span></code> flags can be used to prevent this type of attack by removing all non-ASCII characters and control characters from the user input. However, it is important to note that these flags can also remove legitimate data, such as foreign language characters and control characters that are used in some programming languages.</p>
+<p>Here is an example of how to use the <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_STRIP_HIGH</span></code> and <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_STRIP_LOW</span></code> flags to sanitize user input:</p>
+<p>PHP</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$input = filter_var($_GET[&#39;input&#39;], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH | FILTER_FLAG_STRIP_LOW);
+</pre></div>
+</div>
+<p>This code will sanitize the variable <code class="docutils literal notranslate"><span class="pre">$_GET['input']</span></code> and remove all non-ASCII characters and control characters. The sanitized input will then be stored in the variable <code class="docutils literal notranslate"><span class="pre">$input</span></code>.</p>
+<p>It is important to note that the <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_STRIP_HIGH</span></code> and <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_STRIP_LOW</span></code> flags are not a replacement for input validation. You should always validate user input before sanitizing it. This will help to ensure that the input is valid and that it cannot be used to exploit your application. (AIBRDJG)</p>
+</section>
+<section id="filter-flag-encode-low-filter-flag-encode-high">
+<h3>FILTER_FLAG_ENCODE_LOW | FILTER_FLAG_ENCODE_HIGH<a class="headerlink" href="#filter-flag-encode-low-filter-flag-encode-high" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_ENCODE_LOW</span></code> and <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_ENCODE_HIGH</span></code> flags are used to encode characters in a string based on their ASCII values.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_ENCODE_LOW</span></code> encodes all characters with an ASCII value less than 32.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_ENCODE_HIGH</span></code> encodes all characters with an ASCII value greater than 127.</p></li>
+</ul>
+<p>These flags are often used to sanitize user input to prevent attacks that exploit control characters or non-ASCII characters.</p>
+<p>For example, an attacker could inject a malicious script into a web application by submitting a form with a control character or non-ASCII character in the input field. If the application does not properly sanitize the input, the script could be executed and the attacker could gain control of the application.</p>
+<p>The FILTER_FLAG_ENCODE_LOW and FILTER_FLAG_ENCODE_HIGH flags can be used to prevent this type of attack by encoding all control characters and non-ASCII characters in the user input. However, it is important to note that these flags can also encode legitimate data, such as foreign language characters and control characters that are used in some programming languages.  (AIBRDJG)</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">// Encode all control characters and non-ASCII characters in a string.</span>
+<span class="x">$encodedString = filter_var($string, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW | FILTER_FLAG_ENCODE_HIGH);</span>
+</pre></div>
+</div>
+</section>
+<section id="filter-flag-allow-fraction-filter-flag-allow-thousand-filter-flag-allow-scientific">
+<h3>FILTER_FLAG_ALLOW_FRACTION  | FILTER_FLAG_ALLOW_THOUSAND  | FILTER_FLAG_ALLOW_SCIENTIFIC<a class="headerlink" href="#filter-flag-allow-fraction-filter-flag-allow-thousand-filter-flag-allow-scientific" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_ALLOW_FRACTION</span></code>, <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_ALLOW_THOUSAND</span></code>, and <code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_ALLOW_SCIENTIFIC</span></code> flags are used to control the validation and sanitation of numbers in PHP.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_ALLOW_FRACTION</span></code> allows decimal points in numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_ALLOW_THOUSAND</span></code> allows thousands separators in numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_FLAG_ALLOW_SCIENTIFIC</span></code> allows scientific notation in numbers.</p></li>
+</ul>
+<p>These flags can be used with the <code class="docutils literal notranslate"><span class="pre">FILTER_VALIDATE_NUMBER_INT</span></code> and <code class="docutils literal notranslate"><span class="pre">FILTER_SANITIZE_NUMBER_INT</span></code> filters to validate and sanitize integer numbers. They can also be used with the <code class="docutils literal notranslate"><span class="pre">FILTER_VALIDATE_NUMBER_FLOAT</span></code> and <code class="docutils literal notranslate"><span class="pre">FILTER_SANITIZE_NUMBER_FLOAT</span></code> filters to validate and sanitize floating-point numbers. (AIBRDJG)</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">// Validate a number with a decimal point.</span>
+<span class="x">$number = filter_var(&#39;123.45&#39;, FILTER_VALIDATE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);</span>
+
+<span class="x">// Validate a number with a thousands separator.</span>
+<span class="x">$number = filter_var(&#39;1,234,567&#39;, FILTER_VALIDATE_NUMBER_INT, FILTER_FLAG_ALLOW_THOUSAND);</span>
+
+<span class="x">// Validate a number in scientific notation.</span>
+<span class="x">$number = filter_var(&#39;1.23e+10&#39;, FILTER_VALIDATE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_SCIENTIFIC);</span>
+
+<span class="x">// Sanitize a number with a decimal point.</span>
+<span class="x">$number = filter_var(&#39;123.45&#39;, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);</span>
+
+<span class="x">// Sanitize a number with a thousands separator.</span>
+<span class="x">$number = filter_var(&#39;1,234,567&#39;, FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_ALLOW_THOUSAND);</span>
+
+<span class="x">// Sanitize a number in scientific notation.</span>
+<span class="x">$number = filter_var(&#39;1.23e+10&#39;, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_SCIENTIFIC);</span>
+</pre></div>
+</div>
+</section>
+<section id="filter-flag-strip-backtick">
+<h3>FILTER_FLAG_STRIP_BACKTICK<a class="headerlink" href="#filter-flag-strip-backtick" title="Link to this heading">#</a></h3>
+<p>The FILTER_FLAG_STRIP_BACKTICK flag is used to remove the backtick (`) character from a string. This flag is often used to sanitize user input to prevent attacks that exploit the backtick character like SQL Injection Attacks.</p>
+<p>For example, an attacker could inject a malicious script into a web application by submitting a form with a backtick character in the input field. If the application does not properly sanitize the input, the script could be executed and the attacker could gain control of the application.</p>
+<p>The FILTER_FLAG_STRIP_BACKTICK flag can be used to prevent this type of attack by removing all backtick characters from the user input. However, it is important to note that this flag can also remove legitimate data, such as backticks used in code.</p>
+<p>Here is an example of how to use the FILTER_FLAG_STRIP_BACKTICK flag to sanitize user input:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">$input = filter_var($_GET[&#39;input&#39;], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_BACKTICK);</span>
+</pre></div>
+</div>
+<p>source for page(AIBRDJG)</p>
+</section>
+<section id="code-example">
+<h3>Code Example<a class="headerlink" href="#code-example" title="Link to this heading">#</a></h3>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">&lt;title&gt;PHP Sanitization&lt;/title&gt;</span>
+
+<span class="x">    &lt;style&gt;</span>
+<span class="x">        main,header,footer{</span>
+<span class="x">            margin-left: auto;</span>
+<span class="x">            margin-right: auto;</span>
+<span class="x">            width: 80%;</span>
+<span class="x">        }</span>
+<span class="x">    &lt;/style&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+
+<span class="x">  &lt;header&gt;</span>
+<span class="x">    &lt;h1&gt;Sanitization Examples&lt;/h1&gt;</span>
+<span class="x">  &lt;/header&gt;</span>
+
+<span class="x">  &lt;main&gt;</span>
+
+<span class="x">  &lt;!-- --------------------------------------------- --&gt;</span>
+
+<span class="x">  </span><span class="cp">&lt;?php</span>
+
+
+<span class="nv">$testString</span> <span class="o">=</span> <span class="s2">&quot;ASDasd1234.99!@#$%^&amp;*()_+-,./</span><span class="se">\&quot;</span><span class="s2">;\&#39;&lt;&gt;?:[]{}\|`~ &quot;</span><span class="p">;</span>
+<span class="nv">$testString2</span> <span class="o">=</span> <span class="s2">&quot;&lt;h1&gt;&lt;p&gt;This is a test&lt;/p&gt;&lt;/h1&gt;&quot;</span><span class="p">;</span>
+<span class="nv">$testString_Int</span> <span class="o">=</span> <span class="s2">&quot;+- 123,456,789&quot;</span><span class="p">;</span>
+<span class="nv">$testString_Float</span> <span class="o">=</span> <span class="s2">&quot;+- 123,456,789.8899&quot;</span><span class="p">;</span>
+
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;font face=&quot;Courier New&quot;&gt;&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;h2&gt;&#39;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="s2">&quot;Test Strings&lt;br&gt;&quot;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$testString</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$testString_Int</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$testString_Float</span><span class="o">.</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nv">$testString</span><span class="p">;</span>
+<span class="nv">$space</span> <span class="o">=</span> <span class="s2">&quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&quot;</span><span class="p">;</span>
+
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="s2">&quot; FILTER_SANITIZE_EMAIL&lt;br&gt;&quot;</span><span class="p">);</span>
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$test1</span><span class="p">,</span><span class="nx">FILTER_SANITIZE_EMAIL</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$testString</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$test1</span><span class="o">.</span><span class="nv">$space</span><span class="o">.</span><span class="s2">&quot;  &quot;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nv">$testString_Float</span><span class="p">;</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;FILTER_SANITIZE_NUMBER_FLOAT&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$test1</span><span class="p">,</span><span class="nx">FILTER_SANITIZE_NUMBER_FLOAT</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$testString_Float</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$test1</span><span class="o">.</span><span class="nv">$space</span><span class="o">.</span><span class="s2">&quot; &quot;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nv">$testString_Float</span><span class="p">;</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_THOUSAND&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$test1</span><span class="p">,</span><span class="nx">FILTER_SANITIZE_NUMBER_FLOAT</span><span class="p">,</span><span class="nx">FILTER_FLAG_ALLOW_THOUSAND</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$testString_Float</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$test1</span><span class="o">.</span><span class="nv">$space</span><span class="o">.</span><span class="s2">&quot; &quot;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nv">$testString_Float</span><span class="p">;</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$test1</span><span class="p">,</span><span class="nx">FILTER_SANITIZE_NUMBER_FLOAT</span><span class="p">,</span><span class="nx">FILTER_FLAG_ALLOW_FRACTION</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$testString_Float</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$test1</span><span class="o">.</span><span class="nv">$space</span><span class="o">.</span><span class="s2">&quot; &quot;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nv">$testString_Float</span><span class="p">;</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;FILTER_SANITIZE_NUMBER_FLOAT, </span>
+<span class="s1">        FILTER_FLAG_ALLOW_THOUSAND | FILTER_FLAG_ALLOW_FRACTION&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$test1</span><span class="p">,</span><span class="nx">FILTER_SANITIZE_NUMBER_FLOAT</span><span class="p">,</span>
+                    <span class="nx">FILTER_FLAG_ALLOW_THOUSAND</span> <span class="o">|</span> <span class="nx">FILTER_FLAG_ALLOW_FRACTION</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$testString_Float</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$test1</span><span class="o">.</span><span class="nv">$space</span><span class="o">.</span><span class="s2">&quot; &quot;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nv">$testString_Int</span><span class="p">;</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;FILTER_SANITIZE_NUMBER_INT&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$test1</span><span class="p">,</span><span class="nx">FILTER_SANITIZE_NUMBER_INT</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$testString_Int</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$test1</span><span class="o">.</span><span class="nv">$space</span><span class="o">.</span><span class="s2">&quot;  &quot;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nv">$testString</span><span class="p">;</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;FILTER_SANITIZE_SPECIAL_CHARS&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$test1</span><span class="p">,</span><span class="nx">FILTER_SANITIZE_SPECIAL_CHARS</span><span class="p">,</span>
+                <span class="k">array</span><span class="p">(</span><span class="s1">&#39;flags&#39;</span><span class="o">=&gt;</span>  <span class="nx">FILTER_FLAG_STRIP_HIGH</span>  <span class="p">));</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$testString</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$test1</span><span class="o">.</span><span class="nv">$space</span><span class="o">.</span><span class="s2">&quot;  &quot;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nv">$testString</span><span class="p">;</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;FILTER_SANITIZE_STRING&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nb">filter_var</span><span class="p">(</span><span class="nv">$test1</span><span class="p">,</span><span class="nx">FILTER_SANITIZE_STRING</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$testString</span><span class="o">.</span><span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$test1</span><span class="o">.</span><span class="nv">$space</span><span class="o">.</span><span class="s2">&quot;  &quot;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="c1">//echo(&#39;&lt;br&gt;&lt;br&gt;&lt;hr&gt;&lt;br&gt;&#39;);</span>
+
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nv">$testString</span><span class="p">;</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">);</span>
+<span class="nv">$test1</span> <span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$test1</span><span class="p">,</span><span class="nx">ENT_COMPAT</span><span class="p">);</span>
+<span class="c1">//$test1 = filter_var($test1,FILTER_SANITIZE_STRING);</span>
+<span class="k">echo</span><span class="p">(</span><span class="nv">$test1</span><span class="o">.</span><span class="nv">$space</span><span class="o">.</span><span class="s2">&quot; htmlspecialchars&quot;</span><span class="p">);</span>
+
+
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;/h2&gt;&#39;</span><span class="p">);</span>
+<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;&lt;/font&#39;</span><span class="p">);</span>
+
+<span class="cp">?&gt;</span>
+
+<span class="x"> &lt;!-- --------------------------------------------- --&gt;</span>
+<span class="x">  &lt;/main&gt;</span>
+
+<span class="x">  &lt;footer&gt;</span>
+<span class="x">    &lt;p&gt;&amp;copy; 2023 Jim Goudy&lt;/p&gt;</span>
+<span class="x">  &lt;/footer&gt;</span>
+
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Sanitization Examples
+Test Strings
+ASDasd1234.99!@#$%^&amp;*()_+-,./&quot;;\&#39;&lt;&gt;?:[]{}\|`~
++- 123,456,789
++- 123,456,789.8899
+
+
+FILTER_SANITIZE_EMAIL
+ASDasd1234.99!@#$%^&amp;*()_+-,./&quot;;\&#39;&lt;&gt;?:[]{}\|`~
+ASDasd1234.99!@#$%^&amp;*_+-.&#39;?[]{}|`~     
+
+FILTER_SANITIZE_NUMBER_FLOAT
++- 123,456,789.8899
++-1234567898899     
+
+FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_THOUSAND
++- 123,456,789.8899
++-123,456,7898899     
+
+FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION
++- 123,456,789.8899
++-123456789.8899     
+
+FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_THOUSAND | FILTER_FLAG_ALLOW_FRACTION
++- 123,456,789.8899
++-123,456,789.8899     
+
+FILTER_SANITIZE_NUMBER_INT
++- 123,456,789
++-123456789     
+
+FILTER_SANITIZE_SPECIAL_CHARS
+ASDasd1234.99!@#$%^&amp;*()_+-,./&quot;;\&#39;&lt;&gt;?:[]{}\|`~
+ASDasd1234.99!@#$%^&amp;*()_+-,./&quot;;\&#39;&lt;&gt;?:[]{}\|`~      
+
+FILTER_SANITIZE_STRING
+ASDasd1234.99!@#$%^&amp;*()_+-,./&quot;;\&#39;&lt;&gt;?:[]{}\|`~
+ASDasd1234.99!@#$%^&amp;*()_+-,./&quot;;\&#39;?:[]{}\|`~      
+
+
+ASDasd1234.99!@#$%^&amp;*()_+-,./&quot;;\&#39;&lt;&gt;?:[]{}\|`~       htmlspecialchars
+© 2023 Jim Goudy
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./wpref"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sanitation-functions">Sanitation Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#htmlspecialchars">htmlspecialchars()</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-var">filter_var()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#php-sanitation-flags">PHP Sanitation Flags</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-flag-strip-high-filter-flag-strip-low">FILTER_FLAG_STRIP_HIGH | FILTER_FLAG_STRIP_LOW</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-flag-encode-low-filter-flag-encode-high">FILTER_FLAG_ENCODE_LOW | FILTER_FLAG_ENCODE_HIGH</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-flag-allow-fraction-filter-flag-allow-thousand-filter-flag-allow-scientific">FILTER_FLAG_ALLOW_FRACTION  | FILTER_FLAG_ALLOW_THOUSAND  | FILTER_FLAG_ALLOW_SCIENTIFIC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-flag-strip-backtick">FILTER_FLAG_STRIP_BACKTICK</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">Code Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 By James Goudy.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
