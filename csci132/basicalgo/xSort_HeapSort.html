@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Heap Sort &#8212; CSCI 132 Basic Data Structures</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'basicalgo/xSort_HeapSort';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sorting Videos and Visualizers" href="SortingVideosVisualizers.html" />
+    <link rel="prev" title="Quicksort - Linked Lists" href="xQuicksortLinkedLists.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CSCI 132 Basic Data Structures</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to CSCI 132
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Java Language</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../javalang/javalanguage.html">Java Language</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/netbeansinstall.html">NetBeans Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/javaintro.html">JAVA Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/javabasics.html">Java Basics</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../javalang/java_variable_lc.html">Variable Lecture Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/firstprogram.html">First Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/secondprogram.html">Second Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/decisiontrees.html">Decision Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/switchstatement.html">Switch Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/stringfunctions.html">String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/numberformats.html">Number Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/iterationloops.html">Iteration / Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/exceptionhandling.html">Exception Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/iofilefoldercreationdeletion.html">File, Folder - Creation and Deletion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/ioreadcsvfile.html">IO Read CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/arraylists.html">ArrayLists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/overloading.html">Overloading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/classesandobjects.html">Classes and Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/classesinheritance.html">Classes  - Inheritance</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../javalang/abstractclasses.html">Abstract Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/lambdafunctions.html">Lambda Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/recursion.html">Recursion</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../javalang/regexmatches.html">Regex - Using Java Matches</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../javalang/referencereading.html">Reference Reading</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/buildinglargejavaapplications.html">Building Large Java Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/antvsmavenvsgradle.html">Ant Vs Maven Vs Gradle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/PolymorphismInJavaWithExamples.html">Polymorphism in Java (With Examples)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/UnableToRunJarFiles.html">Unable To Run .JAR Files in Windows 10 / 11 ? Here’s the Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javalang/end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="DataStructuresAndAlgorithms.html">Data Structures and Algorithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ArrayTechniques.html">Array Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="ArraysCoreFunctionality.html">Arrays Core Functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrayWarpAround.html">Array Warp Around</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrayAddDeleteData.html">Array Add and Delete Data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="EncapsulationNonEncapsulation.html">Encapsulation vs Non-Encapsulation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BigONotation.html">Big O Notation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="ON_VisualizingBigONotation.html">Visualizing Big O notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BigONotationExplained.html">Big O Notation - Explained</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="LinkedLists.html">Linked Lists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="SinglyLinkedListRev3.html">Singly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedList.html">Doubly Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListSubClass.html">Doubly Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CircularLinkedList.html">Circular Linked List - Links as Sub Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListReadDataIntoLL.html">Reading Datafile Into Linked List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListCSharp.html">C# Linked List Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DoublyLinkedListJava.html">Java Linked List Class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="StacksAndQueues.html">Stacks and Queues</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="StackUsingArrayOfObjects.html">Stack  - Using Array of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QueueUsingArrayOfObjects.html">Queue  - Using Array Of Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PriorityQueue.html">Priority Queue</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="SortAlgorithms.html">Sorting Algorithms</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Sort_Bubble.html">Bubble Sort</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="xbucketsort.html">Bucket Sort</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="MergeSort.html">Merge Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MergeSort_revA.html">Merge Sort - Demo Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuickSort.html">Quick Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xQuicksortDemo.html">Quicksort Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xQuicksortLinkedLists.html">Quicksort - Linked Lists</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Heap Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SortingVideosVisualizers.html">Sorting Videos and Visualizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">End Of Section</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/basicalgo/xSort_HeapSort.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Heap Sort</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-heap-with-diagrams"><strong>What Is a Heap? (With Diagrams)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-a-max-heap-is-stored-in-an-array"><strong>How a max-heap is stored in an array</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-array"><strong>Example Array</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#as-a-heap-tree-form"><strong>As a Heap (Tree Form)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-1-building-the-max-heap"><strong>Phase 1: Building the Max Heap</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heapify-index-1"><strong>Heapify index 1</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heapify-index-0"><strong>Heapify index 0</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-2-extracting-the-maximum-sorting"><strong>Phase 2: Extracting the Maximum (Sorting)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-swap-root-with-last-element"><strong>Step 1: Swap Root With Last Element</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heapify"><strong>Heapify →</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-swap-root-with-element-at-index-3"><strong>Step 2: Swap Root With Element at Index 3</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-swap-root-with-element-at-index-2"><strong>Step 3: Swap Root With Element at Index 2</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-swap-root-with-element-at-index-1"><strong>Step 4: Swap Root With Element at Index 1</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-sorted-array"><strong>Final Sorted Array</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-visual-summary"><strong>Complete Visual Summary</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-code"><strong>Python Code</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-code"><strong>Java Code</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-use-cases-for-heap-sort"><strong>Best Use Cases for Heap Sort</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worst-use-cases-for-heap-sort"><strong>Worst Use Cases for Heap Sort</strong></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="heap-sort">
+<h1>Heap Sort<a class="headerlink" href="#heap-sort" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Merge Sort works by taking the chaotic mess of an array and breaking it down into smaller and smaller pieces until each piece is trivially simple to sort. It follows a <strong>divide-and-conquer</strong> rhythm: first divide the array into two halves, then divide those halves again, and keep going until each sub-array contains just one element. A single element is, by definition, already sorted. Once everything is split into these tiny, manageable chunks, Merge Sort begins the <strong>conquer</strong> phase—carefully merging pairs of sorted sub-arrays back together. During each merge, it compares the fronts of both lists and chooses the smaller element, building a new, larger sorted list one element at a time.</p>
+<p>The brilliance of Merge Sort lies in this merging step: it guarantees that every combination of two sorted lists becomes one sorted list, and it repeats this until the entire array is reconstructed in perfect order. Its performance is reliably <strong>O(n log n)</strong>, regardless of the data’s original state, making it one of the most stable and predictable sorting algorithms in computer science. It does require extra memory—space to hold the temporary merged lists—but in exchange, it delivers elegant consistency and stability. Merge Sort doesn’t try to be clever; it just applies patient, mathematical discipline to tame disorder.</p>
+</section>
+<section id="what-is-a-heap-with-diagrams">
+<h2><strong>What Is a Heap? (With Diagrams)</strong><a class="headerlink" href="#what-is-a-heap-with-diagrams" title="Link to this heading">#</a></h2>
+<p>A <strong>heap</strong> is a special kind of binary tree stored inside an array.
+It follows two rules:</p>
+<ol class="arabic simple">
+<li><p><strong>Complete tree</strong> (filled left to right)</p></li>
+<li><p><strong>Heap property</strong> (max-heap = parent ≥ children)</p></li>
+</ol>
+<section id="how-a-max-heap-is-stored-in-an-array">
+<h3><strong>How a max-heap is stored in an array</strong><a class="headerlink" href="#how-a-max-heap-is-stored-in-an-array" title="Link to this heading">#</a></h3>
+<p>If an element is at index <code class="docutils literal notranslate"><span class="pre">i</span></code>:</p>
+<ul class="simple">
+<li><p><strong>Left child:</strong> <code class="docutils literal notranslate"><span class="pre">2*i</span> <span class="pre">+</span> <span class="pre">1</span></code></p></li>
+<li><p><strong>Right child:</strong> <code class="docutils literal notranslate"><span class="pre">2*i</span> <span class="pre">+</span> <span class="pre">2</span></code></p></li>
+<li><p><strong>Parent:</strong> <code class="docutils literal notranslate"><span class="pre">(i-1)</span> <span class="pre">//</span> <span class="pre">2</span></code></p></li>
+</ul>
+</section>
+<section id="example-array">
+<h3><strong>Example Array</strong><a class="headerlink" href="#example-array" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">:</span> <span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">3</span>  <span class="mi">4</span>
+<span class="n">Value</span><span class="p">:</span> <span class="mi">4</span> <span class="mi">10</span>  <span class="mi">3</span>  <span class="mi">5</span>  <span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+<section id="as-a-heap-tree-form">
+<h3><strong>As a Heap (Tree Form)</strong><a class="headerlink" href="#as-a-heap-tree-form" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="mi">4</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+       <span class="o">/</span>        \
+   <span class="mi">10</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>       <span class="mi">3</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="o">/</span>   \
+  <span class="mi">5</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="mi">1</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Right now this is <strong>not</strong> a proper max heap.
+Heap Sort’s first job is to fix that.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="phase-1-building-the-max-heap">
+<h2><strong>Phase 1: Building the Max Heap</strong><a class="headerlink" href="#phase-1-building-the-max-heap" title="Link to this heading">#</a></h2>
+<p>We “heapify” from the bottom up.</p>
+<p>Starting at the last parent node: index <strong>(n//2 − 1)</strong></p>
+<p>For our array of 5 elements:</p>
+<ul class="simple">
+<li><p>Last parent = <code class="docutils literal notranslate"><span class="pre">5//2</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">=</span> <span class="pre">1</span></code></p></li>
+</ul>
+<p>So we heapify indices: <strong>1</strong>, then <strong>0</strong></p>
+<hr class="docutils" />
+<section id="heapify-index-1">
+<h3><strong>Heapify index 1</strong><a class="headerlink" href="#heapify-index-1" title="Link to this heading">#</a></h3>
+<p>Node = 10
+Children = 5 and 1
+Already a valid max-heap section.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="mi">4</span>
+       <span class="o">/</span>     \
+    <span class="mi">10</span>        <span class="mi">3</span>
+   <span class="o">/</span>   \
+  <span class="mi">5</span>     <span class="mi">1</span>
+</pre></div>
+</div>
+<p>No changes.</p>
+</section>
+<hr class="docutils" />
+<section id="heapify-index-0">
+<h3><strong>Heapify index 0</strong><a class="headerlink" href="#heapify-index-0" title="Link to this heading">#</a></h3>
+<p>Node 0 = 4
+Children = 10 and 3
+Largest is <strong>10</strong>, so swap 4 ↔ 10</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="mi">10</span>
+       <span class="o">/</span>        \
+     <span class="mi">4</span>           <span class="mi">3</span>
+   <span class="o">/</span>   \
+  <span class="mi">5</span>     <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Now heapify the subtree rooted at index 1 (value 4):</p>
+<p>Compare 4 to its children (5 and 1):</p>
+<p>Largest is <strong>5</strong>, so swap 4 ↔ 5:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="mi">10</span>
+       <span class="o">/</span>        \
+     <span class="mi">5</span>           <span class="mi">3</span>
+   <span class="o">/</span>   \
+  <span class="mi">4</span>     <span class="mi">1</span>
+</pre></div>
+</div>
+<p>We’re done—this is a proper <strong>max heap</strong>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="phase-2-extracting-the-maximum-sorting">
+<h2><strong>Phase 2: Extracting the Maximum (Sorting)</strong><a class="headerlink" href="#phase-2-extracting-the-maximum-sorting" title="Link to this heading">#</a></h2>
+<p>Now we repeatedly:</p>
+<ol class="arabic simple">
+<li><p>Swap root ↔ last element</p></li>
+<li><p>Shrink heap size</p></li>
+<li><p>Heapify again</p></li>
+</ol>
+<p>Each diagram below shows the transformation.</p>
+<hr class="docutils" />
+<section id="step-1-swap-root-with-last-element">
+<h3><strong>Step 1: Swap Root With Last Element</strong><a class="headerlink" href="#step-1-swap-root-with-last-element" title="Link to this heading">#</a></h3>
+<p>Swap 10 ↔ 1</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Array</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">Heap</span> <span class="n">Size</span><span class="p">:</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>Tree:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>           <span class="mi">1</span>
+       <span class="o">/</span>        \
+     <span class="mi">5</span>           <span class="mi">3</span>
+   <span class="o">/</span>   
+  <span class="mi">4</span>    
+</pre></div>
+</div>
+<p>Now heapify index 0.</p>
+</section>
+<section id="heapify">
+<h3><strong>Heapify →</strong><a class="headerlink" href="#heapify" title="Link to this heading">#</a></h3>
+<p>Largest child = 5 → swap 1 ↔ 5</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>           <span class="mi">5</span>
+       <span class="o">/</span>        \
+     <span class="mi">1</span>           <span class="mi">3</span>
+   <span class="o">/</span>
+  <span class="mi">4</span>
+</pre></div>
+</div>
+<p>Heapify index 1:</p>
+<p>1 &lt; 4 → swap 1 ↔ 4</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>           <span class="mi">5</span>
+       <span class="o">/</span>        \
+     <span class="mi">4</span>           <span class="mi">3</span>
+   <span class="o">/</span>
+  <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Array now:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="step-2-swap-root-with-element-at-index-3">
+<h2><strong>Step 2: Swap Root With Element at Index 3</strong><a class="headerlink" href="#step-2-swap-root-with-element-at-index-3" title="Link to this heading">#</a></h2>
+<p>Swap 5 ↔ 1:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">Heap</span> <span class="n">Size</span><span class="p">:</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>Tree:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>         <span class="mi">1</span>
+       <span class="o">/</span>   \
+     <span class="mi">4</span>       <span class="mi">3</span>
+</pre></div>
+</div>
+<p>Heapify index 0 → swap 1 ↔ 4:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>         <span class="mi">4</span>
+       <span class="o">/</span>   \
+     <span class="mi">1</span>       <span class="mi">3</span>
+</pre></div>
+</div>
+<p>Array becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="step-3-swap-root-with-element-at-index-2">
+<h2><strong>Step 3: Swap Root With Element at Index 2</strong><a class="headerlink" href="#step-3-swap-root-with-element-at-index-2" title="Link to this heading">#</a></h2>
+<p>Swap 4 ↔ 3:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">Heap</span> <span class="n">Size</span><span class="p">:</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Heapify index 0:</p>
+<p>Compare 3 and 1 → already valid.</p>
+<p>Array:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="step-4-swap-root-with-element-at-index-1">
+<h2><strong>Step 4: Swap Root With Element at Index 1</strong><a class="headerlink" href="#step-4-swap-root-with-element-at-index-1" title="Link to this heading">#</a></h2>
+<p>Swap 3 ↔ 1:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">Heap</span> <span class="n">Size</span><span class="p">:</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Sorting complete.</p>
+</section>
+<hr class="docutils" />
+<section id="final-sorted-array">
+<h2><strong>Final Sorted Array</strong><a class="headerlink" href="#final-sorted-array" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The mountain of numbers has been carved into a perfect, ascending ridge.</p>
+</section>
+<hr class="docutils" />
+<section id="complete-visual-summary">
+<h2><strong>Complete Visual Summary</strong><a class="headerlink" href="#complete-visual-summary" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Start:          Build Max Heap:      Extract 1:         Extract 2:
+
+[4 10 3 5 1] →  [10 5 3 4 1] →       [5 4 3 1 10] →     [4 1 3 5 10]
+
+Extract 3:      Extract 4:           Sorted:
+
+[3 1 4 5 10] →  [1 3 4 5 10] →       [1 3 4 5 10]
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="python-code">
+<h2><strong>Python Code</strong><a class="headerlink" href="#python-code" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># heap_sort()</span>
+<span class="c1"># Performs Heap Sort on the provided array.</span>
+<span class="c1"># The process has two phases:</span>
+<span class="c1">#   1. Build a max-heap from the entire array.</span>
+<span class="c1">#   2. Repeatedly swap the root (largest value) with the last</span>
+<span class="c1">#      element in the heap and shrink the heap size.</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">heap_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>    <span class="c1"># Number of elements in the list</span>
+
+
+    <span class="c1"># Build the max heap (bottom-up)</span>
+    <span class="c1"># We start heapifying at the last parent node and move</span>
+    <span class="c1"># backwards toward the root. This ensures the entire array</span>
+    <span class="c1"># becomes a valid max-heap.</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+
+    <span class="c1"># Extract elements from the heap one by one</span>
+    <span class="c1"># Each extraction moves the current maximum (index 0)</span>
+    <span class="c1"># to the end of the array. Then we reduce the heap size</span>
+    <span class="c1"># and restore the heap property.</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+
+        <span class="c1"># Move current largest value (arr[0]) to the end</span>
+        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="c1"># Restore heap property on the reduced heap (size i)</span>
+        <span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+
+
+
+<span class="c1"># heapify()</span>
+<span class="c1"># Ensures that the subtree rooted at index i follows the</span>
+<span class="c1"># max-heap property. If the parent is smaller than one of its</span>
+<span class="c1"># children, we swap it with the larger child and continue</span>
+<span class="c1"># heapifying downward.</span>
+<span class="c1">#</span>
+<span class="c1"># arr : the list we are treating as a heap</span>
+<span class="c1"># n   : the size of the heap section we&#39;re working with</span>
+<span class="c1"># i   : the index of the current parent node</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+
+    <span class="n">largest</span> <span class="o">=</span> <span class="n">i</span>             <span class="c1"># Assume the parent is the largest</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>          <span class="c1"># Index of the left child</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span>         <span class="c1"># Index of the right child</span>
+
+    <span class="c1"># If the left child exists and is larger than the parent,</span>
+    <span class="c1"># mark it as the new largest.</span>
+    <span class="k">if</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">largest</span><span class="p">]:</span>
+        <span class="n">largest</span> <span class="o">=</span> <span class="n">left</span>
+
+    <span class="c1"># If the right child exists and is larger than the current</span>
+    <span class="c1"># largest value, update the largest.</span>
+    <span class="k">if</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">arr</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">largest</span><span class="p">]:</span>
+        <span class="n">largest</span> <span class="o">=</span> <span class="n">right</span>
+
+    <span class="c1"># If the largest element is NOT the parent (i),</span>
+    <span class="c1"># swap parent with the largest child.</span>
+    <span class="k">if</span> <span class="n">largest</span> <span class="o">!=</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">largest</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">largest</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="c1"># After the swap, the subtree rooted at &#39;largest&#39;</span>
+        <span class="c1"># may now violate the heap property, so we fix it</span>
+        <span class="c1"># by heapifying again.</span>
+        <span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">largest</span><span class="p">)</span>
+
+
+
+
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="java-code">
+<h2><strong>Java Code</strong><a class="headerlink" href="#java-code" title="Link to this heading">#</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// HeapSort class</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HeapSort</span><span class="w"> </span><span class="p">{</span>
+
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sort</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w">   </span><span class="c1">// Total number of elements</span>
+
+<span class="w">		</span><span class="cm">/*</span>
+<span class="cm">		Build Heap</span>
+<span class="cm">        We start from the last parent node and move backward.</span>
+<span class="cm">        (n/2 - 1) is the index of the last non-leaf node.</span>
+<span class="cm">        Each heapify call ensures the subtree rooted at i</span>
+<span class="cm">        follows the max-heap property.</span>
+<span class="cm">        */</span>
+<span class="w">        </span>
+<span class="w">        </span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">       	</span><span class="cm">/* Extract elements from heap</span>
+<span class="cm">        We repeatedly swap the max element (index 0)</span>
+<span class="cm">        with the last element in the heap.</span>
+<span class="cm">        After each swap, we shrink the heap size by 1</span>
+<span class="cm">        and restore heap order.</span>
+<span class="cm">        */</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="c1">// Move current root (largest value) to end</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+<span class="w">            </span><span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="w">            </span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1">// Restore heap property on the reduced heap</span>
+<span class="w">            </span><span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* Heapify</span>
+<span class="cm">    heapify(): Ensures the subtree rooted at index i</span>
+<span class="cm">    obeys the max-heap rule.</span>
+<span class="cm">    </span>
+<span class="cm">    arr   = array representing the heap</span>
+<span class="cm">    n     = size of the heap section we&#39;re working with</span>
+<span class="cm">    i     = index of the current root node</span>
+<span class="cm">    */</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">heapify</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">        </span><span class="c1">// Assume the parent is the largest</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">     </span><span class="c1">// Index of left child</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">    </span><span class="c1">// Index of right child</span>
+
+<span class="w">        </span><span class="c1">// If the left child exists and is greater than the parent,</span>
+<span class="w">        </span><span class="c1">// mark it as the new largest.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">left</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">largest</span><span class="o">]</span><span class="p">)</span>
+<span class="w">            </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// If the right child exists and is greater than the current largest,</span>
+<span class="w">        </span><span class="c1">// update the largest value.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">right</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">right</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">largest</span><span class="o">]</span><span class="p">)</span>
+<span class="w">            </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// If the largest element is NOT the parent,</span>
+<span class="w">        </span><span class="c1">// swap them and continue heapifying downward.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">largest</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="c1">// Swap parent with the larger child</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">swap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+<span class="w">            </span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">largest</span><span class="o">]</span><span class="p">;</span>
+<span class="w">            </span><span class="n">arr</span><span class="o">[</span><span class="n">largest</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">swap</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1">// Recursively heapify the affected subtree</span>
+<span class="w">            </span><span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">largest</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="best-use-cases-for-heap-sort">
+<h2><strong>Best Use Cases for Heap Sort</strong><a class="headerlink" href="#best-use-cases-for-heap-sort" title="Link to this heading">#</a></h2>
+<p>Heap Sort shines when you want <strong>predictable performance</strong> and <strong>tight memory discipline</strong>. Because it runs in a guaranteed <strong>O(n log n)</strong>—regardless of how ugly the input is—it’s a strong choice when you absolutely must avoid the worst-case meltdowns that plague something like QuickSort. It also sorts <strong>in place</strong>, which means it needs only constant extra space; this makes it ideal for memory-constrained environments such as embedded systems, older hardware, or large data sets that can’t afford the luxury of extra arrays. And since the algorithm is tightly aligned with the behavior of <strong>priority queues</strong>, it’s a natural fit whenever you are already working with heaps—like scheduling tasks, selecting the top-k elements, or managing simulations. When memory counts and guaranteed performance matters, Heap Sort is the reliable, strong-backed workhorse of the sorting world.</p>
+</section>
+<section id="worst-use-cases-for-heap-sort">
+<h2><strong>Worst Use Cases for Heap Sort</strong><a class="headerlink" href="#worst-use-cases-for-heap-sort" title="Link to this heading">#</a></h2>
+<p>But Heap Sort also has its rough edges. It is <strong>not stable</strong>, meaning equal elements can be reordered—a deal breaker in situations where order matters (such as sorting records by one field while preserving their sequence by another). It’s also <strong>cache-unfriendly</strong>; its constant jumping around in memory makes it slower in practice than algorithms like QuickSort or Merge Sort on modern hardware, even though they share the same theoretical time complexity. If you need blazing performance on real-world data, or if you’re sorting structures where preserving relative order matters, Heap Sort isn’t the hero—there are faster, smoother tools. And if your environment allows recursion, extra memory, or stable sorting, then Merge Sort or TimSort will leave Heap Sort sitting in the dust.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./basicalgo"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="xQuicksortLinkedLists.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Quicksort - Linked Lists</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="SortingVideosVisualizers.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Sorting Videos and Visualizers</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-heap-with-diagrams"><strong>What Is a Heap? (With Diagrams)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-a-max-heap-is-stored-in-an-array"><strong>How a max-heap is stored in an array</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-array"><strong>Example Array</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#as-a-heap-tree-form"><strong>As a Heap (Tree Form)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-1-building-the-max-heap"><strong>Phase 1: Building the Max Heap</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heapify-index-1"><strong>Heapify index 1</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heapify-index-0"><strong>Heapify index 0</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-2-extracting-the-maximum-sorting"><strong>Phase 2: Extracting the Maximum (Sorting)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-swap-root-with-last-element"><strong>Step 1: Swap Root With Last Element</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heapify"><strong>Heapify →</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-swap-root-with-element-at-index-3"><strong>Step 2: Swap Root With Element at Index 3</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-swap-root-with-element-at-index-2"><strong>Step 3: Swap Root With Element at Index 2</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-swap-root-with-element-at-index-1"><strong>Step 4: Swap Root With Element at Index 1</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-sorted-array"><strong>Final Sorted Array</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-visual-summary"><strong>Complete Visual Summary</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-code"><strong>Python Code</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-code"><strong>Java Code</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-use-cases-for-heap-sort"><strong>Best Use Cases for Heap Sort</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worst-use-cases-for-heap-sort"><strong>Worst Use Cases for Heap Sort</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By James Goudy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
