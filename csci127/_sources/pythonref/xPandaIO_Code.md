@@ -9,6 +9,10 @@ Additionally, the script demonstrates data manipulation by creating a copy of th
 
 
 ```python
+# if not installed
+# pip install pandas
+# pip install openpyxl
+
 import pandas as pd
 
 # Create sample data to use in the program

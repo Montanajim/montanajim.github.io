@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>How To Create A Menu &#8212; CSCI 127</title>
+    <title>Python Application Packaging Tools &#8212; CSCI 127</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/HowToCreateAMenu';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pythonref/xPythonPackagingOverview';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Nested Ifs" href="NestedIfs.html" />
-    <link rel="prev" title="Decision Trees" href="DecisionTrees.html" />
+    <link rel="next" title="Compile Python To Executable - PyInstaller" href="CompilePyInstaller.html" />
+    <link rel="prev" title="The Zen of Python," href="TheZenOfPython.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -183,7 +183,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Debugger.html">Debugger</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Logging.html">Logging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DecisionTrees.html">Decision Trees</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">How To Create A Menu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToCreateAMenu.html">How To Create A Menu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="NestedIfs.html">Nested Ifs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ifnamequalsmain.html">If  <code class="docutils literal notranslate"><span class="pre">__name_</span> <span class="pre">==</span> <span class="pre">__main__</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="TryExcept.html">Try Except - Preventing Errors</a></li>
@@ -248,10 +248,10 @@
 <li class="toctree-l2"><a class="reference internal" href="SoftwareTestingUnittestVsPytest.html">Software Testing - Unittest vs Pytest</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Miscellany.html">Miscellany</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Miscellany.html">Miscellany</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="BuiltinVariable_Name.html">Built-in Variable  <code class="docutils literal notranslate"><span class="pre">__name__</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="TheZenOfPython.html">The Zen of Python,</a></li>
-<li class="toctree-l2"><a class="reference internal" href="xPythonPackagingOverview.html">Python Application Packaging Tools</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Python Application Packaging Tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CompilePyInstaller.html">Compile Python To Executable - PyInstaller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PIP.html">PIP Python Package Installer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Environments.html">Python Environments</a></li>
@@ -311,7 +311,7 @@
       
       
       
-      <li><a href="../_sources/pythonref/HowToCreateAMenu.md" target="_blank"
+      <li><a href="../_sources/pythonref/xPythonPackagingOverview.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -382,7 +382,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -393,11 +395,30 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>How To Create A Menu</h1>
+    <h1>Python Application Packaging Tools</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-pricing-and-urls">Overview, Pricing, and URLs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-packaging-tools">1. Overview of Packaging Tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cx-freeze"><strong>cx_Freeze</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nuitka"><strong>Nuitka</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#briefcase-beeware-project"><strong>Briefcase (BeeWare Project)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#py2exe"><strong>py2exe</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#py2app"><strong>py2app</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pricing-licensing-table">2. Pricing &amp; Licensing Table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-each-tool">3. When to Use Each Tool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-notes">4. Additional Notes</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -407,64 +428,101 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="how-to-create-a-menu">
-<h1>How To Create A Menu<a class="headerlink" href="#how-to-create-a-menu" title="Link to this heading">#</a></h1>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Menu Template</span>
-<span class="sd">Created on Tue Sep 17 17:06:05 2019</span>
-
-<span class="sd">@author: jgoudy</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">Function1</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is function 1&quot;</span><span class="p">)</span>
-    
-<span class="k">def</span><span class="w"> </span><span class="nf">Function2</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is function 2&quot;</span><span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">Function3</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is function 3&quot;</span><span class="p">)</span>
-    <span class="n">WinAPrize</span><span class="p">()</span>
-    
-<span class="k">def</span><span class="w"> </span><span class="nf">WinAPrize</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You have won 5000 live grasshoppers - Enjoy&quot;</span><span class="p">)</span>
-    
-<span class="k">def</span><span class="w"> </span><span class="nf">Menu</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Menu Example</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
-          <span class="s2">&quot;1. Function 1</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
-          <span class="s2">&quot;2. Function 2</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
-          <span class="s2">&quot;3. Function 3&quot;</span> <span class="p">)</span>
-    
-    <span class="n">choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Choose a number:  &quot;</span><span class="p">))</span>
-    
-    <span class="k">if</span><span class="p">(</span><span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">Function1</span><span class="p">()</span>
-    <span class="k">elif</span><span class="p">(</span><span class="n">choice</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
-        <span class="n">Function2</span><span class="p">()</span>
-    <span class="k">elif</span><span class="p">(</span><span class="n">choice</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
-        <span class="n">Function3</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;That was not a choice&quot;</span><span class="p">)</span>
-    
-
-<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-    <span class="n">Menu</span><span class="p">()</span>
-    
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">bye bye&quot;</span><span class="p">)</span>
-
-
-<span class="n">main</span><span class="p">()</span>
-
-<span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">Program choices</span>
-<span class="sd">1. Happy Function 1</span>
-<span class="sd">2. Happy Function 2</span>
-<span class="sd">3. Happy Function 3</span>
-<span class="sd">Please choose 1, 2, or 3:  </span>
-<span class="sd">&#39;&#39;&#39;</span>
-</pre></div>
+  <section class="tex2jax_ignore mathjax_ignore" id="python-application-packaging-tools">
+<h1>Python Application Packaging Tools<a class="headerlink" href="#python-application-packaging-tools" title="Link to this heading">#</a></h1>
+<section id="overview-pricing-and-urls">
+<h2>Overview, Pricing, and URLs<a class="headerlink" href="#overview-pricing-and-urls" title="Link to this heading">#</a></h2>
+<p>This document presents a consolidated overview of major Python packaging tools, their costs, licenses, URLs, and practical notes suitable for classroom, textbook, and professional use.</p>
+</section>
+<hr class="docutils" />
+<section id="overview-of-packaging-tools">
+<h2>1. Overview of Packaging Tools<a class="headerlink" href="#overview-of-packaging-tools" title="Link to this heading">#</a></h2>
+<p>Below is a summary of the most widely used tools for converting Python applications (including GUIs) into standalone executables or native installers.</p>
+<section id="cx-freeze">
+<h3><strong>cx_Freeze</strong><a class="headerlink" href="#cx-freeze" title="Link to this heading">#</a></h3>
+<p>A free, open-source tool that works across Windows, macOS, and Linux. It bundles a Python script and its dependencies into a distributable executable directory. Very stable and ideal for teaching environments.</p>
+<p><strong>URL:</strong> <a class="reference external" href="https://pypi.org/project/cx-Freeze/">https://pypi.org/project/cx-Freeze/</a></p>
+</section>
+<hr class="docutils" />
+<section id="nuitka">
+<h3><strong>Nuitka</strong><a class="headerlink" href="#nuitka" title="Link to this heading">#</a></h3>
+<p>A Python-to-C compiler that generates optimized binaries. It offers both free and commercial versions. The free version is suitable for typical course assignments, while the paid versions add advanced features.</p>
+<p><strong>URL:</strong> <a class="reference external" href="https://nuitka.net/">https://nuitka.net/</a></p>
+</section>
+<hr class="docutils" />
+<section id="briefcase-beeware-project">
+<h3><strong>Briefcase (BeeWare Project)</strong><a class="headerlink" href="#briefcase-beeware-project" title="Link to this heading">#</a></h3>
+<p>Creates native installers and application bundles for desktop and mobile platforms. Fully open-source. Excellent when you want applications that feel platform-native.</p>
+<p><strong>URL:</strong> <a class="reference external" href="https://beeware.org/briefcase/">https://beeware.org/briefcase/</a></p>
+</section>
+<hr class="docutils" />
+<section id="py2exe">
+<h3><strong>py2exe</strong><a class="headerlink" href="#py2exe" title="Link to this heading">#</a></h3>
+<p>A simple, Windows-only packaging solution. Useful for classrooms or labs where Windows is the standard environment.</p>
+<p><strong>URL:</strong> <a class="reference external" href="https://www.py2exe.org/">https://www.py2exe.org/</a></p>
+</section>
+<hr class="docutils" />
+<section id="py2app">
+<h3><strong>py2app</strong><a class="headerlink" href="#py2app" title="Link to this heading">#</a></h3>
+<p>The macOS equivalent of py2exe. Packages Python applications into macOS .app bundles.</p>
+<p><strong>URL:</strong> <a class="reference external" href="https://py2app.readthedocs.io/en/latest/">https://py2app.readthedocs.io/en/latest/</a></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pricing-licensing-table">
+<h2>2. Pricing &amp; Licensing Table<a class="headerlink" href="#pricing-licensing-table" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tool</p></th>
+<th class="head"><p>Price / License</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>cx_Freeze</strong></p></td>
+<td><p>Free, open source (PSF-derived license)</p></td>
+<td><p>Ideal for teaching and student projects. Requires small license snippet in output per documentation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>py2exe</strong></p></td>
+<td><p>Free, open source (MIT / MPL / X11)</p></td>
+<td><p>Windows-only; very straightforward.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>py2app</strong></p></td>
+<td><p>Free, open source</p></td>
+<td><p>Mac-only; simple and stable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Nuitka</strong></p></td>
+<td><p>Free core (Apache), Paid tiers: €250/yr, €400/yr, €1000/yr</p></td>
+<td><p>Free version works for most student needs; paid tiers give extended features and support.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Briefcase</strong></p></td>
+<td><p>Free, open source (BSD-3-Clause)</p></td>
+<td><p>Produces native installers; distribution to app stores may require respective account fees.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
+</section>
+<hr class="docutils" />
+<section id="when-to-use-each-tool">
+<h2>3. When to Use Each Tool<a class="headerlink" href="#when-to-use-each-tool" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>cx_Freeze</strong>: Best all-around free tool for desktop apps across platforms.</p></li>
+<li><p><strong>py2exe / py2app</strong>: Great when students are working on a single OS environment.</p></li>
+<li><p><strong>Nuitka</strong>: Use when you want compiled performance or to demonstrate how Python can become real binaries.</p></li>
+<li><p><strong>Briefcase</strong>: Best for polished, platform-native installers and mobile distribution.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="additional-notes">
+<h2>4. Additional Notes<a class="headerlink" href="#additional-notes" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Packaging tools help students understand software distribution beyond the source-code level.</p></li>
+<li><p>Make sure students test executables on a fresh machine when possible.</p></li>
+<li><p>If building GUI apps (Tkinter, PyQt, PySide, Kivy), choose a packager that supports non-Python assets.</p></li>
+<li><p>Packaging is an excellent appendix or final chapter for a programming or GUI development textbook.</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -498,20 +556,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="DecisionTrees.html"
+       href="TheZenOfPython.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Decision Trees</p>
+        <p class="prev-next-title">The Zen of Python,</p>
       </div>
     </a>
     <a class="right-next"
-       href="NestedIfs.html"
+       href="CompilePyInstaller.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Nested Ifs</p>
+        <p class="prev-next-title">Compile Python To Executable - PyInstaller</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -521,6 +579,32 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-pricing-and-urls">Overview, Pricing, and URLs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-packaging-tools">1. Overview of Packaging Tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cx-freeze"><strong>cx_Freeze</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nuitka"><strong>Nuitka</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#briefcase-beeware-project"><strong>Briefcase (BeeWare Project)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#py2exe"><strong>py2exe</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#py2app"><strong>py2app</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pricing-licensing-table">2. Pricing &amp; Licensing Table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-each-tool">3. When to Use Each Tool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-notes">4. Additional Notes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
