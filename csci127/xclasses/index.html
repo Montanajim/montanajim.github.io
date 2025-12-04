@@ -1,0 +1,679 @@
+<!DOCTYPE html><html lang="en" class="" style="scroll-padding:60px"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Classes - CSCI 127</title><meta property="og:title" content="Classes - CSCI 127"/><meta name="generator" content="mystmd"/><meta name="keywords" content=""/><link rel="stylesheet" href="/csci127/build/_assets/app-KKSZXL3E.css"/><link rel="stylesheet" href="/csci127/build/_assets/thebe-core-VKVHG5VY.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jupyter-matplotlib@0.11.3/css/mpl_widget.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous"/><link rel="icon" href="/csci127/favicon.ico"/><link rel="stylesheet" href="/csci127/myst-theme.css"/><script>
+  const savedTheme = localStorage.getItem("myst:theme");
+  const theme = window.matchMedia("(prefers-color-scheme: light)").matches ? 'light' : 'dark';
+  const classes = document.documentElement.classList;
+  const hasAnyTheme = classes.contains('light') || classes.contains('dark');
+  if (!hasAnyTheme) classes.add(savedTheme ?? theme);
+</script></head><body class="m-0 transition-colors duration-500 bg-white dark:bg-stone-900"><div class="myst-skip-to-article fixed top-1 left-1 h-[0px] w-[0px] focus-within:z-40 focus-within:h-auto focus-within:w-auto bg-white overflow-hidden focus-within:p-2 focus-within:ring-1" aria-label="skip to content options"><a href="#skip-to-frontmatter" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article frontmatter</a><a href="#skip-to-article" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article content</a></div><dialog id="myst-no-css" style="position:fixed;left:0px;top:0px;width:100vw;height:100vh;font-size:4rem;padding:1rem;color:black;background:white"><strong>Site not loading correctly?</strong><p>This may be due to an incorrect <code>BASE_URL</code> configuration. See<!-- --> <a href="https://mystmd.org/guide/deployment#deploy-base-url">the MyST Documentation</a> <!-- -->for reference.</p><script>
+    (() => {
+            // Test for has-styling variable set by the MyST stylesheet
+            const node = document.currentScript.parentNode;
+            const hasCSS = window.getComputedStyle(node).getPropertyValue("--has-styling");
+            if (hasCSS === ""){
+                    node.showModal();
+            }
+
+    })()
+</script></dialog><div class="myst-top-nav bg-white/80 backdrop-blur dark:bg-stone-900/80 shadow dark:shadow-stone-700 p-3 md:px-8 sticky w-screen top-0 z-30 h-[60px]"><nav class="myst-top-nav-bar flex items-center justify-between flex-nowrap max-w-[1440px] mx-auto"><div class="flex flex-row xl:min-w-[19.5rem] mr-2 sm:mr-7 justify-start items-center shrink-0"><div class="block xl:hidden"><button class="myst-top-nav-menu-button flex items-center border-stone-400 text-stone-800 hover:text-stone-900 dark:text-stone-200 hover:dark:text-stone-100"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" width="2rem" height="2rem" class="m-1"><path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"></path></svg><span class="sr-only">Open Menu</span></button></div><a class="myst-home-link flex items-center ml-3 dark:text-white w-fit md:ml-5 xl:ml-7" href="/csci127/"><span class="text-md sm:text-xl tracking-tight sm:mr-5">Made with MyST</span></a></div><div class="flex items-center flex-grow w-auto"><div class="flex-grow hidden text-md lg:block"></div><div class="flex-grow block"></div><button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R75cp:" data-state="closed" class="myst-search-bar flex items-center h-10 aspect-square sm:w-64 text-left text-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 myst-search-bar-disabled hover:ring-blue-500 dark:hover:ring-blue-500 hover:border-blue-500 dark:hover:border-blue-500"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="p-2.5 h-10 w-10 aspect-square"><path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd"></path></svg><span class="myst-search-text-placeholder hidden sm:block grow">Search</span><div aria-hidden="true" class="myst-search-shortcut items-center hidden mx-1 font-mono text-sm text-gray-600 sm:flex gap-x-1"><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none hide-mac">CTRL</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none show-mac">⌘</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none ">K</kbd><script>
+;(() => {
+const script = document.currentScript;
+const root = script.parentElement;
+
+const isMac = /mac/i.test(
+      window.navigator.userAgentData?.platform ?? window.navigator.userAgent,
+    );
+root.querySelectorAll(".hide-mac").forEach(node => {node.classList.add(isMac ? "hidden" : "block")});
+root.querySelectorAll(".show-mac").forEach(node => {node.classList.add(!isMac ? "hidden" : "block")});
+})()</script></div></button><button class="myst-theme-button theme rounded-full aspect-square border border-stone-700 dark:border-white hover:bg-neutral-100 border-solid overflow-hidden text-stone-700 dark:text-white hover:text-stone-500 dark:hover:text-neutral-800 w-8 h-8 mx-3" title="Toggle theme between light and dark mode" aria-label="Toggle theme between light and dark mode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-moon-icon h-full w-full p-0.5 hidden dark:block"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-sun-icon h-full w-full p-0.5 dark:hidden"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></button><div class="block sm:hidden"></div><div class="hidden sm:block"></div></div></nav></div><div class="myst-primary-sidebar fixed xl:article-grid grid-gap xl:w-screen xl:pointer-events-none overflow-auto max-xl:min-w-[300px] hidden z-10" style="top:60px"><div class="myst-primary-sidebar-pointer pointer-events-auto xl:col-margin-left flex-col overflow-hidden hidden xl:flex"><div class="myst-primary-sidebar-nav flex-grow py-6 overflow-y-auto primary-scrollbar"><nav aria-label="Navigation" class="myst-primary-sidebar-topnav overflow-y-hidden transition-opacity ml-3 xl:ml-0 mr-3 max-w-[350px] lg:hidden"><div class="w-full px-1 dark:text-white font-medium"></div></nav><div class="my-3 border-b-2 lg:hidden"></div><nav aria-label="Table of Contents" class="myst-primary-sidebar-toc flex-grow overflow-y-hidden transition-opacity ml-3 xl:ml-0 mr-3 max-w-[350px]"><div class="myst-toc w-full px-1 dark:text-white"><a title="CSCI 127" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30 font-bold" href="/csci127/">CSCI 127</a><a title="Introduction" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xintroduction">Introduction</a><a title="Readings" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xreadings">Readings</a><a title="The Basics" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xthebasics">The Basics</a><a title="Basics - Getting Started" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xbasicsgettingstarted">Basics - Getting Started</a><a title="Second Program" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xsecondprogram">Second Program</a><a title="Functions" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xfunctions">Functions</a><a title="Debugger" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xdebugger">Debugger</a><a title="Logging" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xlogging">Logging</a><a title="Decision Trees" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xdecisiontrees">Decision Trees</a><a title="How To Create A Menu" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xhowtocreateamenu">How To Create A Menu</a><a title="Nested Ifs" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xnestedifs">Nested Ifs</a><a title="If  __name_ == __main__" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xifnamequalsmain">If  __name_ == __main__</a><a title="Try Except - Preventing Errors" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xtryexcept">Try Except - Preventing Errors</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Iteration" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci127/xiteration">Iteration</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R3upsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R3upsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="Itertools" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xitertools">Itertools</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Recursion" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci127/xrecursion">Recursion</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R4epsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R4epsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="Lists" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xlists">Lists</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Classes" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci127/xclasses">Classes</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R4upsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R4upsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="NumPy / Arrays" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xnumpy-ref">NumPy / Arrays</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Pandas" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci127/xpaneldata">Pandas</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R5epsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R5epsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="Input / Output - Files And Folders" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xinputoutput">Input / Output - Files And Folders</a><a title="Tkinter" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xtkinter">Tkinter</a><a title="Tic Tac Toe" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci127/xtictactoe">Tic Tac Toe</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Serialization" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci127/xserialization">Serialization</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R6epsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R6epsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Software Testing" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci127/xsoftwaretesting">Software Testing</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R6mpsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R6mpsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Miscellany" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci127/xmiscellany">Miscellany</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R6upsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R6upsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div></div></nav></div><div class="myst-primary-sidebar-footer flex-none py-6 transition-all duration-700 translate-y-6 opacity-0"><a class="myst-made-with-myst flex mx-auto text-gray-700 w-fit hover:text-blue-700 dark:text-gray-200 dark:hover:text-blue-400" href="https://mystmd.org/made-with-myst" target="_blank" rel="noreferrer"><svg style="width:24px;height:24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" stroke="none"><g id="icon"><path fill="currentColor" d="M23.8,54.8v-3.6l4.7-0.8V17.5l-4.7-0.8V13H36l13.4,31.7h0.2l13-31.7h12.6v3.6l-4.7,0.8v32.9l4.7,0.8v3.6h-15
+          v-3.6l4.9-0.8V20.8H65L51.4,53.3h-3.8l-14-32.5h-0.1l0.2,17.4v12.1l5,0.8v3.6H23.8z"></path><path fill="#F37726" d="M47,86.9c0-5.9-3.4-8.8-10.1-8.8h-8.4c-5.2,0-9.4-1.3-12.5-3.8c-3.1-2.5-5.4-6.2-6.8-11l4.8-1.6
+          c1.8,5.6,6.4,8.6,13.8,8.8h9.2c6.4,0,10.8,2.5,13.1,7.5c2.3-5,6.7-7.5,13.1-7.5h8.4c7.8,0,12.7-2.9,14.6-8.7l4.8,1.6
+          c-1.4,4.9-3.6,8.6-6.8,11.1c-3.1,2.5-7.3,3.7-12.4,3.8H63c-6.7,0-10,2.9-10,8.8"></path></g></svg><span class="self-center ml-2 text-sm">Made with MyST</span></a></div></div></div><main class="article-grid grid-gap"><article class="article-grid subgrid-gap col-screen article content"><div class="hidden"></div><div id="skip-to-frontmatter" aria-label="article frontmatter" class="myst-fm-block mb-8 pt-9"><div class="myst-fm-block-header flex items-center mb-5 h-6 text-sm font-light"><div class="flex-grow"></div><div class="myst-fm-block-badges"></div><div class="myst-fm-downloads-dropdown relative flex inline-block mx-1 grow-0" data-headlessui-state=""><button class="myst-fm-downloads-button relative ml-2 -mr-1" id="headlessui-menu-button-:Rs8ucp:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state=""><span class="sr-only">Downloads</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.25rem" height="1.25rem" class="myst-fm-downloads-icon"><title>Download</title><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg></button></div></div><h1 class="myst-fm-block-title mb-0">Classes</h1><header class="myst-fm-authors-affiliations mt-4 not-prose"><div class="myst-fm-authors-list"><span class="myst-fm-author font-semibold text-sm myst-fm-author-item inline-block"><button class="myst-fm-author-popover focus:shadow-[0_0_0_2px] focus:shadow-black outline-none hover:underline" aria-label="Author Details" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R78ucp:" data-state="closed"><span class="myst-fm-author-name">James Goudy</span></button></span></div></header></div><div class="block my-10 lg:sticky lg:z-10 lg:h-0 lg:pt-0 lg:my-0 lg:ml-10 lg:col-margin-right" style="top:60px"><nav></nav></div><div id="skip-to-article"></div><h2 id="key-ideas" class="relative group"><span class="heading-text">Key Ideas</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#key-ideas" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><ul><li><p>classes</p></li><li><p>objects</p></li><li><p>inheritance</p></li></ul><aside class="myst-admonition myst-admonition-note my-5 shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-gray-50/10 dark:bg-stone-800 overflow-hidden myst-admonition-default rounded border-l-4 border-blue-500"><div class="myst-admonition-header m-0 font-medium py-1 flex min-w-0 text-lg text-blue-600 bg-blue-50 dark:bg-slate-900"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="2rem" height="2rem" class="myst-admonition-header-icon inline-block pl-2 mr-2 self-center flex-none text-blue-600"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"></path></svg><div class="myst-admonition-header-text text-neutral-900 dark:text-white grow self-center overflow-hidden break-words">Definition</div></div><div class="myst-admonition-body px-4 py-1"><p><strong>Class</strong> is code that acts like a blueprint.  “Objects” are made from classes. Classes can represent things in terms of code. For example, they could represent a <em>car</em> - make, model, year; a <em>dog</em> - dog name, breed, color; a <em>person</em> - first name, last name, address, city, state; etc.</p></div></aside><h2 id="lecture-code" class="relative group"><span class="heading-text">Lecture Code</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#lecture-code" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><h3 id="example-1-cars" class="relative group"><span class="heading-text">Example 1 - Cars</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#example-1-cars" title="Link to this Section" aria-label="Link to this Section">¶</a></h3><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-python" style="white-space:pre"># -*- coding: utf-8 -*-
+&quot;&quot;&quot;
+Created on Mon Oct 2019
+
+@author: jgoudy
+&quot;&quot;&quot;
+
+class car:
+    
+    
+    
+    carspeed = 0
+    carengineOn = True
+    
+    
+    # constructor  - there can only be one in python
+    def __init__(self, carmake=&quot;&quot;,carmodel=&quot;&quot;,caryear=&quot;&quot;, carcolor=&quot;&quot;):
+        self.carspeed = 0
+        self.carengineOn = False
+        self.carmake = carmake
+        self.carmodel = carmodel
+        self.caryear= caryear
+        self.carcolor = carcolor
+    
+    # __str__  defines what print() or str() is printed for the obje
+    # example print(car) = what is defined here is what will be printed
+    def __str__(self):
+        return (&quot;Make: &quot; + self.carmake + &quot;\n&quot; + \
+                &quot;Model: &quot; + self.carmodel + &quot;\n&quot; + \
+                &quot;Year: &quot; + self.caryear + &quot;\n&quot; + \
+                &quot;Color: &quot; + self.carcolor + &quot;\n&quot;)
+    
+
+    # __str__ must return string object 
+    # whereas __repr__ can return any python expression.
+    #https://docs.python.org/3/reference/datamodel.html
+    # when possible it should return a string
+    
+    def __repr__(self):
+        return (self.carmake+&quot;,&quot;+ self.carmodel+&quot;,&quot;+ self.caryear+&quot;,&quot;+ self.carcolor)
+  
+    
+    @property
+    def make(self):
+        return self.carmake    
+    @make.setter
+    def make(self, value):
+        self.carmake = value
+       
+    @property
+    def model(self):
+        return self.carmodel    
+    @model.setter
+    def model(self, value):
+        self.carmodel = value
+       
+    @property
+    def year(self):
+        return self.caryear    
+    @year.setter
+    def year(self, value):
+        self.caryear = value
+       
+    @property
+    def color(self):
+        return self.carcolor    
+    @color.setter
+    def color(self, value):
+        self.carcolor = value
+    
+    @property
+    def speed(self):
+        return self.carspeed
+    
+    @property
+    def engineOn(self):
+        return self.carengineOn
+
+    def startCar(self):
+        self.carengineOn = True
+        
+    def stopCar(self):
+        self.carengineOn = False
+        
+   
+    def accelerate(self,speed = 5):
+        if (self.carengineOn == True) :
+            self.carspeed += speed
+            print(&quot;aaargh&quot;)
+        else:
+            print(&quot;Start the car&quot;)
+      
+      
+    def deccelerate(self,speed = 5):
+        if self.carspeed &gt; 0:
+            self.carspeed -= speed
+        else:
+            self.carspeed = 0
+        print(&quot;car is stopped&quot;)
+                
+    
+    def honk(self):
+        print(&quot;beep beep&quot;)
+# --------------------------------------------------        
+
+def main():
+    
+   mycar1 = car()
+   
+   mycar2 = car(&quot;Ford&quot;, &quot;Mustang&quot;,&quot;1967&quot;,&quot;red&quot;)
+    
+   mycar2.accelerate()
+   mycar2.startCar()
+   mycar2.accelerate()
+   print(mycar2.speed)
+   mycar2.accelerate()
+   print(mycar2.speed)
+   mycar2.accelerate(50)
+   print(mycar2.speed)
+   mycar2.deccelerate(70)
+   
+   print(&quot;The color of my car is &quot; + mycar2.color)
+   mycar2.color = &quot;blue&quot;
+   print(&quot;The color of my car is &quot; + mycar2.color)
+   
+   mycar1.honk()
+     
+   print(&quot;\bye bye&quot;)
+    
+main()
+
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><h3 id="example-2-person-worker-voter" class="relative group"><span class="heading-text">Example 2 - Person / Worker /  Voter</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#example-2-person-worker-voter" title="Link to this Section" aria-label="Link to this Section">¶</a></h3><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-python" style="white-space:pre">class Person:
+    &quot;&quot;&quot; Represents a person. &quot;&quot;&quot;
+
+    # python can only have one constructor
+    def __init__(self, first_name=&quot;&quot;, last_name=&quot;&quot;, town=&quot;&quot;):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.town = town
+
+    # describes the class person
+    def __str__(self):
+        return self.first_name + &quot;, &quot; + self.last_name + &quot;, &quot; + self.town
+    
+    # falls back to this if there is no __str__ - used in debugging
+    def __repr__(self):
+        return self.first_name + &quot;, &quot; + self.last_name + &quot;, &quot; + self.town
+
+
+    #CANNOT HAVE VARIABLE NAME SAME AS FUNCTION NAME
+
+    @property
+    def firstname(self):
+        return self.first_name
+
+    @firstname.setter
+    def firstname(self, first_name):
+        self.first_name = first_name
+
+    @property
+    def lastname(self):
+        return self.last_name
+
+    @lastname.setter
+    def lastname(self, last_name):
+        self.last_name = last_name
+
+    @property
+    def city(self):
+        return self.town
+
+    @city.setter
+    def city(self, town):
+        self.town = town
+
+    # methods
+    def full_name(self):
+        &quot;&quot;&quot; Returns the full name (first and last name) as a string &quot;&quot;&quot;
+        return self.first_name + &quot; &quot; + self.last_name
+    
+    def full_name_city(self):
+        &quot;&quot;&quot; Returns first, last and city as string &quot;&quot;&quot;
+        return self.first_name + &quot; &quot; + self.last_name + self.city
+    
+    def username(self):
+        &quot;&quot;&quot; returns the username as string &quot;&quot;&quot;
+        return self.first_name[0] + self.last_name
+    
+# --------------- End Of Person ---------------
+
+class Worker(Person):
+    &quot;&quot;&quot; represents a worker &quot;&quot;&quot;
+    
+    def __init__(self, first_name = &quot;&quot;, last_name= &quot;&quot;, town= &quot;&quot;,
+                 job_title= &quot;&quot;, company_name= &quot;&quot;, wages=0):
+        self.job_title = job_title
+        self.company_name = company_name
+        self.wages = wages
+
+        Person.__init__ (self, first_name, last_name, town)
+
+    # describes the class person
+    def __str__(self):
+        return self.first_name + &quot;, &quot; + self.last_name + &quot;, &quot; + self.town 
+               + &quot; &quot;  + self.job_title + &quot;, &quot; + self.company_name + 
+               &quot;, &quot; +str(self.wages)
+               
+    # falls back to this if there is no __str__ - used in debugging               
+    def __repr__(self):
+        return self.first_name + &quot;, &quot; + self.last_name + &quot;, &quot; + self.town 
+               + &quot; &quot;  + self.job_title + &quot;, &quot; + self.company_name + 
+               &quot;, &quot; +str(self.wages)
+
+    @property
+    def jobtitle(self):
+        return self.job_title
+
+    @jobtitle.setter
+    def jobtitle(self, title_value):
+        self.job_title = title_value
+
+    @property
+    def company(self):
+        return self.company_name
+
+    @company.setter
+    def company(self, company_value):
+        self.company_name = company_value
+
+    @property
+    def salary(self):
+        return self.wages
+
+    @salary.setter
+    def salary(self, wages_value):
+        self.wages = wages_value
+# --------------- End Of Worker ---------------
+
+class Voter(Person):
+    &quot;&quot;&quot; Represents a voter based on Person &quot;&quot;&quot;
+    def __init__(self, first_name = &quot;&quot;, last_name= &quot;&quot;, town= &quot;&quot;,
+                 precient_number= 0, party_name= &quot;&quot;):
+        self.precient_number = precient_number
+        self.party_name = party_name
+
+        Person.__init__ (self, first_name, last_name, town)
+        
+    def __str__(self):
+        return self.first_name + &quot; &quot; + self.last_name + &quot; &quot; + self.town 
+           + &quot; &quot;  + str(self.precient_number) + &quot; &quot; + self.party_name
+    
+    # falls back to this if there is no __str__ - used in debugging
+    def __repr__(self):
+        return self.first_name + &quot;, &quot; + self.last_name + &quot;, &quot; + self.town 
+           + &quot;, &quot;  + str(self.precient_number) + &quot;, &quot; + self.party_name
+    
+    @property
+    def precient(self):
+        &quot;&quot;&quot;represents the precient of the voter as a string &quot;&quot;&quot;
+        return self.precient_number
+    
+    @precient.setter
+    def precient(self, precient_value):
+        self.precient_number = precient_value
+    
+    @property
+    def party(self):
+        &quot;&quot;&quot;represents the party of the voter as a string&quot;&quot;&quot;
+        return self.party_name
+    
+    @party.setter
+    def party(self, party_value):
+        self.party_name = party_value
+
+# --------------- End Of Voter --------------- 
+        
+
+def main():
+
+    qty  = 5
+
+    
+    print(&quot;Create Person&quot;)
+#    p1 = Person(&quot;John&quot;, &quot;Doe&quot;, &quot;Anywhere&quot;)
+
+    p1 = Person(&quot;John&quot;,&quot;Doe&quot;,&quot;Kali&quot;)
+    p1.firstname = &quot;Jimbo&quot;
+    p1.lastname = &quot;Smith&quot;
+    p1.city = &quot;Whitefish&quot;
+
+    print(p1)
+    print(p1.full_name())
+    print(p1.first_name)
+    print(p1.lastname)
+    print(p1)
+
+    p2 = Person(&quot;Sally&quot;, &quot;Smith&quot;, &quot;Polson&quot;)
+    #change first and last name of p2
+    p2.first_name = &quot;Bonnie&quot;
+    p2.last_name = &quot;Bond&quot;
+    print(p2)
+
+    # create a list of people
+    people = []
+    
+    for i in range(qty):                
+        px = Person(&quot;John&quot; + str(i), 
+                    &quot;Doe&quot; + str(i),
+                    &quot;Kali&quot; + str(i))
+        people.append(px)
+        print(people[i].first_name + &quot; &quot;+ people[i].last_name)
+    
+    print()        
+    
+    # create workers
+    w1 = Worker(&quot;Tom&quot;, &quot;Tune&quot;, &quot;New York&quot;, &quot;Dancer&quot;, &quot;Broadway&quot;, 100000)
+    print(w1)
+
+    w2 = Worker()
+    w2.firstname = &quot;Ira&quot;
+    w2.lastname = &quot;Money&quot;
+    w2.company = &quot;IRS&quot;
+    w2.jobtitle = &quot;Auditor&quot;
+    w2.salary = 90000
+
+
+    print(w2)    
+    
+    print()
+    
+    # create a list of workers
+    workers = []
+   
+    
+    
+    for i in range(qty):                
+        wx = Worker(&quot;John&quot; + str(i), 
+                    &quot;Doe&quot; + str(i),&quot;&quot;,
+                    &quot;Programmer&quot; + str(i))
+        workers.append(wx)
+        print(workers[i].first_name + &quot; &quot;+ 
+              workers[i].last_name  + &quot; &quot; +
+              workers[i].jobtitle)
+    
+    print()
+
+    # create voters
+    v1 = Voter(&quot;Abe&quot;, &quot;Lincoln&quot;, &quot;Springfield&quot;, 17, &quot;Republican&quot;)
+    v2 = Voter()
+    
+    v2.firstname = &quot;Charles&quot;
+    v2.lastname = &quot;Daily&quot;
+    v2.city = &quot;Chicago&quot;
+    v2.precient_number= 1
+    v2.party =&quot;Democrat&quot;
+    print(v1)
+    print(v2)
+    
+    print()
+   
+    # create a list of voters
+    voters = []
+    
+    for i in range(qty):                
+        vx = Voter(&quot;John&quot; + str(i), 
+                    &quot;Doe&quot; + str(i),&quot;&quot;,&quot;&quot;,
+                    &quot;Independent&quot; + str(i))
+        voters.append(vx)
+        print(voters[i].firstname + &quot; &quot;+ 
+              voters[i].lastname  + &quot; &quot; +
+              voters[i].party) 
+
+
+    print(&quot;bye&quot;)
+
+main()
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><h3 id="example-3-getters-and-setters" class="relative group"><span class="heading-text">Example 3 - getters and setters</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#example-3-getters-and-setters" title="Link to this Section" aria-label="Link to this Section">¶</a></h3><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-python" style="white-space:pre"># -*- coding: utf-8 -*-
+&quot;&quot;&quot;
+@author: jgoudy
+&quot;&quot;&quot;
+class class1:
+    
+    # The traditional &quot;old&quot; style of creating getters and setters
+    
+    def __init__(self, number = 0):
+        self.number = number
+        
+    # getter method
+    def get_Number(self):
+        return self.number
+    
+    # setter method
+    def set_Number(self, value):
+        self.number = value
+        
+# ---------------- End of class 2 -----------------
+        
+class class2:
+    
+    # using properties 
+    # using a property allows the object code to be cleaner
+    # and users of the class will not have to make changes to their code
+    
+    def __init__(self, anumber = 0):
+        self.anumber = anumber
+        
+    # getter method
+    def get_Number(self):
+        return self.anumber
+    
+    # setter method
+    def set_Number(self, value):
+        self.anumber = value
+    
+    # function to delete the number attribute
+    def del_Number(self):
+        del self.anumber
+    
+    # TURN SETTERS AND GETTERS INTO PROPERTIES
+    number = property(get_Number, set_Number, del_Number, &quot;Stores a number&quot;)
+
+# ---------------- End of class 2 -----------------
+   
+class class3:
+   
+    
+    # THE PYTHONIC WAY
+    # This is the preferred way of doing setters and getters.  
+    
+    # this is a getter method
+
+    def __init__(self, anumber = 0):
+        self.anumber = anumber
+    
+    @property
+    def number(self):
+        return self.anumber
+    
+    # this is the setter method
+    @number.setter
+    def number(self, value):
+        self.anumber = value
+        
+    @number.deleter
+    def number(self):
+        del self.anumber
+# ---------------- End of class 3 -----------------
+
+def main():
+    
+    #Old way
+    mc1 = class1()
+    mc1.set_Number(42)
+    print(mc1.get_Number())
+    
+    
+    print(&quot;\n----------\n&quot;)
+    mc2 = class2()
+    mc2.number = 52
+    print(mc2.number)
+    
+    
+    print(&quot;\n----------\n&quot;)
+    mc3 = class3()
+    mc3.number = 62
+    print(mc3.number)
+    
+    
+    
+main()
+
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><h3 id="example-4-trains" class="relative group"><span class="heading-text">Example 4 - Trains</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#example-4-trains" title="Link to this Section" aria-label="Link to this Section">¶</a></h3><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-python" style="white-space:pre">
+# trains
+&quot;&quot;&quot;
+Train
+    id
+    engine
+    cabose
+    start       (location)
+    destination (location)
+    traincars
+
+&quot;&quot;&quot;
+import random
+
+class Train:
+
+    # constructor
+    def __init__(self, a_trainid, a_start=&quot;Whitefish&quot;,a_destination=&quot;&quot;):
+        self.a_trainid = a_trainid
+        self.a_start = a_start
+        self.a_destination = a_destination
+
+        # create an empty list to hold train cars
+        self.traincars = []
+
+        # functions can be called within a constructor
+        # or any other function as well 
+        self._addengine()
+
+    # properties
+    @property
+    def trainid(self):
+        return self.a_trainid
+    @trainid.setter
+    def trainid(self,value):
+        self.a_trainid = value
+
+    @property
+    def start(self):
+        return self.a_startstart
+    @start.setter
+    def start(self,value):
+        self.a_start = value
+
+    @property
+    def destination(self):
+        return self.a_destination
+    @destination.setter
+    def destination(self,value):
+        self.a_destination = value 
+
+            
+    # add our methods
+
+    def _addengine(self):
+        self.traincars.append(&quot;engine&quot;)
+
+    def addcar(self,value):
+        self.traincars.append(value)
+    
+    def addcaboose(self):
+        self.traincars.append(&quot;caboose&quot;)
+
+    # print the train cars
+    def printtrain(self):
+        print(&quot;\n&quot;+ self.a_trainid + &quot;\t&quot; + self.a_start + &quot; to &quot; + self.a_destination)
+
+        for i in range(len(self.traincars)):
+            print(&quot;\t&quot; + self.traincars[i])
+
+        print()
+
+# ---------------- End Of Class ----------------------------------
+
+# *****************************************************************
+# program starts here
+
+# global variable to hold whole trains
+mytrains = []
+
+# create a function to create a train with random cars
+def createtrain(maxNumTrains, maxNumCars):
+
+    # create a list car types
+    cartypes = [&quot;flat&quot;,&quot;box&quot;,&quot;tanker&quot;,&quot;passenger&quot;,&quot;ore&quot;]
+
+    # create a list of towns
+    towns = [&quot;Denver&quot;, &quot;Seattle&quot;,&quot;Missoula&quot;, &quot;Kalispell&quot;,
+             &quot;Whitefish&quot;, &quot;Chicago&quot;, &quot;New York&quot;, &quot;Ringling&quot;,&quot;Clarskville&quot;]
+    
+    # randomly pick a number to determine the number of trains
+    rnd = random.randint(0,maxNumTrains)
+
+    # loop to create the number of complete trains
+    for i in range(rnd):
+
+        # variables to hold the start and end towns
+        startTown   = &quot;&quot;
+        desTown     = &quot;&quot;
+
+        # this while statement is used to ensure
+        # that there will always be two different towns
+
+        # if the startTown and desTown are equivalent,
+        # the while loop runs. Note that the
+        # startTown and desTown start equivalent
+
+        while(startTown == desTown): 
+            # randomly going to pick a start town
+            rndtemp = random.randint(0,len(towns)-1)
+            startTown = towns[rndtemp]
+
+            # randomly going to pick a destination town
+            rndtemp = random.randint(0,len(towns)-1)
+            desTown = towns[rndtemp]
+
+        # call the class to create a train
+        tx = Train(&quot;T&quot;+ str(i),startTown,desTown)
+
+        # randomly decide on how many train cars
+        rndtemp = random.randint(0,maxNumCars)
+
+        # randomly add cars to the train
+        for i in range(rndtemp):
+            rndcar= random.randint(0,len(cartypes)-1)
+            tx.addcar(cartypes[rndcar])
+
+
+        tx.addcaboose()
+
+        # add train to the global variable
+        mytrains.append(tx)
+
+
+def printmytrains(alist):
+
+    # print the total number of trains
+    print(len(alist))
+
+    # iterate/loop the number of trains
+    for i in range(len(alist)):
+        alist[i].printtrain()
+
+        # this code will only show two trains at a time
+        # if the remainder == 0 show the input command
+        # example i = 4 | 4 / 2 = 0 with a remainder of 0
+        if((i % 2) == 0):
+            input(&quot;press any key to continue&quot;)
+
+
+
+def main():
+    
+    # create an individual train
+    train1 = Train(&quot;ML11&quot;,&quot;Helena&quot;,&quot;Missoula&quot;)
+
+    # add 10 box cars
+    for c  in range(10):
+        train1.addcar(&quot;box&quot;)
+    
+    train1.addcaboose()
+
+    # print the train we just created
+    train1.printtrain()
+
+    # create trains 
+    # each time this runs the trains will change
+    createtrain(15,8)
+
+    printmytrains(mytrains)
+
+
+main()
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><div class="myst-backmatter-parts"></div><div class="myst-footer-links flex pt-10 mb-10 space-x-4"><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-prev" href="/csci127/xlists"><div class="flex h-full align-middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:-translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path></svg><div class="flex-grow text-right"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">CSCI 127</div>Lists</div></div></a><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-next" href="/csci127/xclaseshowtowriteaclass"><div class="flex h-full align-middle"><div class="flex-grow"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">CSCI 127</div>How to Write a Class in Python</div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path></svg></div></a></div></article></main><script>((a,l)=>{if(!window.history.state||!window.history.state.key){let d=Math.random().toString(32).slice(2);window.history.replaceState({key:d},"")}try{let u=JSON.parse(sessionStorage.getItem(a)||"{}")[l||window.history.state.key];typeof u=="number"&&window.scrollTo(0,u)}catch(d){console.error(d),sessionStorage.removeItem(a)}})("positions", null)</script><link rel="modulepreload" href="/csci127/build/entry.client-PCJPW7TK.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-AQ2CODAG.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-JJXTQVMA.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-OZE3FFNP.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-UGO2RSJF.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-HHKX4TLX.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-YATQFWLS.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-MBMQ6BQC.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-OCWQY3HK.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-CVDX4WR7.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-3EBOCCHJ.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-O4VQNZ62.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-NK7RXO5Q.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-GUCIBHGO.js"/><link rel="modulepreload" href="/csci127/build/root-TRTRBUUN.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-6NUWI4AQ.js"/><link rel="modulepreload" href="/csci127/build/_shared/chunk-M5KN76GI.js"/><link rel="modulepreload" href="/csci127/build/routes/$-VLPGWU3Z.js"/><script>window.__remixContext = {"url":"/xclasses","state":{"loaderData":{"root":{"config":{"version":2,"myst":"1.6.4","options":{"folders":true},"nav":[],"actions":[],"projects":[{"bibliography":["C:\\a_books\\0_jbdbook\\references.bib"],"exports":[],"title":"CSCI 127","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\0_jbdbook\\myst-generated-uid-0"}],"copyright":"2025 By James Goudy","toc":[{"file":"xintro.md"},{"file":"xIntroduction.md"},{"file":"xReadings.md"},{"file":"xTheBasics.md"},{"file":"xBasicsGettingStarted.md"},{"file":"xSecondProgram.md"},{"file":"xFunctions.md"},{"file":"xDebugger.md"},{"file":"xLogging.md"},{"file":"xDecisionTrees.md"},{"file":"xHowToCreateAMenu.md"},{"file":"xNestedIfs.md"},{"file":"xifnamequalsmain.md"},{"file":"xTryExcept.md"},{"children":[{"file":"xMoreLoopExamples.md"},{"file":"xTypewriterSimulation.md"},{"file":"xMenuShell.md"}],"file":"xIteration.md"},{"file":"xItertools.md"},{"children":[{"file":"xRecursion_part2.md"},{"file":"xRecursion_VisualizingFunctionCalls.md"}],"file":"xRecursion.md"},{"file":"xLists.md"},{"children":[{"file":"xClasesHowToWriteAClass.md"},{"file":"xDecorators.md"},{"file":"xProperties.md"},{"file":"xSettersGettersDecoratorsProperties.md"},{"file":"xsearchListOfObjects.md"}],"file":"xClasses.md"},{"file":"xnumpy_ref.md"},{"children":[{"file":"xPanda_Reference.md"},{"file":"xPandaIO_Code.md"},{"file":"xPanda_Inspection.md"},{"file":"xPanda_Selection.md"},{"file":"xPanda_DataCleaning.md"},{"file":"xPanda_Transformation.md"},{"file":"xPanda_Aggregation.md"},{"file":"xPanda_MergingShaping.md"},{"file":"xPanda_Statistical.md"},{"file":"xPanda_TimeSeries.md"},{"file":"xPandasMatPlotLib.md"},{"file":"xPanelDataDogExample.md"},{"file":"xCompareContrastNumPyArraysPanelDataDataFrames.md"},{"file":"xPanda_Quiz.md"}],"file":"xPanelData.md"},{"file":"xInputOutput.md"},{"file":"xTkinter.md"},{"file":"xTicTacToe.md"},{"children":[{"file":"xSerialization_CSV.md"},{"file":"xSerialization_JSON.md"},{"file":"xSerialization_Pickle_Data.md"},{"file":"xSerialization_Pickle_Function.md"},{"file":"xSerialization_Pickle_Security.md"},{"file":"xSerialization_HDF5.md"},{"file":"xSerialization_XML.md"},{"file":"xSerialization_YAML.md"}],"file":"xSerialization.md"},{"children":[{"file":"xSoftwareTestingPytest.md"},{"file":"xSoftwareTestingUnitTesting.md"},{"file":"xSoftwareTestingUnittestVsPytest.md"}],"file":"xSoftwareTesting.md"},{"children":[{"file":"xBuiltinVariable_Name.md"},{"file":"xTheZenOfPython.md"},{"file":"xPythonPackagingOverview.md"},{"file":"xCompilePyInstaller.md"},{"file":"xPIP.md"},{"file":"xEnvironments.md"}],"file":"xMiscellany.md"}],"index":"index","pages":[{"slug":"xintroduction","title":"Introduction","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xreadings","title":"Readings","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xthebasics","title":"The Basics","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbasicsgettingstarted","title":"Basics - Getting Started","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsecondprogram","title":"Second Program","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xfunctions","title":"Functions","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdebugger","title":"Debugger","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xlogging","title":"Logging","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdecisiontrees","title":"Decision Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhowtocreateamenu","title":"How To Create A Menu","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xnestedifs","title":"Nested Ifs","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xifnamequalsmain","title":"If  __name_ == __main__","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xtryexcept","title":"Try Except - Preventing Errors","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xiteration","title":"Iteration","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xmoreloopexamples","title":"More Loop Examples","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xtypewritersimulation","title":"Loops - Typewriter Simulation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmenushell","title":"Menu Shell","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xitertools","title":"Itertools","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xrecursion","title":"Recursion","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xrecursion-part2","title":"Recursion - Loops vs Recursion","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xrecursion-visualizingfunctioncalls","title":"Visualizing Recursive Function Calls:","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xlists","title":"Lists","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xclasses","title":"Classes","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xclaseshowtowriteaclass","title":"How to Write a Class in Python","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdecorators","title":"Decorators","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xproperties","title":"Properties","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsettersgettersdecoratorsproperties","title":"When to use Setters and Getters, Decorators, and Properties","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsearchlistofobjects","title":"🐾 Pet Search Program — Explanation and Learning Outcomes","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xnumpy-ref","title":"NumPy / Arrays","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xpaneldata","title":"Pandas","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xpanda-reference","title":"Panel Data - Pandas","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpandaio-code","title":"Panda IO","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-inspection","title":"Panda Inspection","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-selection","title":"Panda Selection","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-datacleaning","title":"Panda Data Cleaning","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-transformation","title":"Panda Data Transformation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-aggregation","title":"Panda Aggregation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-mergingshaping","title":"Panda Merging and Shaping","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-statistical","title":"Panda Statistical Operations","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-timeseries","title":"Panda Time Series","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpandasmatplotlib","title":"Pandas and MatPlotLib","description":"","date":"","thumbnail":"/csci127/build/pandaplt_graph1-1702-9be07eb25c96395e492d228dcda076c1.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpaneldatadogexample","title":"Panel Data - Dog Example","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xcomparecontrastnumpyarrayspaneldatadataframes","title":"Comparing and Contrasting NumPy Arrays and Panel Data DataFrames","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-quiz","title":"Pandas Quiz: Test Your Knowledge","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xinputoutput","title":"Input / Output - Files And Folders","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xtkinter","title":"Tkinter","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xtictactoe","title":"Tic Tac Toe","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xserialization","title":"Serialization","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xserialization-csv","title":"Serialization - CSV","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-json","title":"Serialization - JSON","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-pickle-data","title":"Serialization - Pickle - Data","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-pickle-function","title":"Serialization - Pickle - Function","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-pickle-security","title":"Serialization - Pickle -  Security Implications","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-hdf5","title":"Serialization HDF5","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-xml","title":"Serialization - XML","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-yaml","title":"Serialization - YAML","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsoftwaretesting","title":"Software Testing","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsoftwaretestingpytest","title":"Software Testing - Pytest","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsoftwaretestingunittesting","title":"Software Testing  Unit Testing","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsoftwaretestingunittestvspytest","title":"Software Testing - Unittest vs Pytest","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmiscellany","title":"Miscellany","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbuiltinvariable-name","title":"Built-in Variable  __name__","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xthezenofpython","title":"The Zen of Python,","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpythonpackagingoverview","title":"Python Application Packaging Tools","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xcompilepyinstaller","title":"Compile Python To Executable - PyInstaller","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpip","title":"PIP Python Package Installer","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xenvironments","title":"Python Environments","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2}]}]},"CONTENT_CDN_PORT":"3100","MODE":"static","BASE_URL":"/csci127"},"routes/$":{"config":{"version":2,"myst":"1.6.4","options":{"folders":true},"nav":[],"actions":[],"projects":[{"bibliography":["C:\\a_books\\0_jbdbook\\references.bib"],"exports":[],"title":"CSCI 127","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\0_jbdbook\\myst-generated-uid-0"}],"copyright":"2025 By James Goudy","toc":[{"file":"xintro.md"},{"file":"xIntroduction.md"},{"file":"xReadings.md"},{"file":"xTheBasics.md"},{"file":"xBasicsGettingStarted.md"},{"file":"xSecondProgram.md"},{"file":"xFunctions.md"},{"file":"xDebugger.md"},{"file":"xLogging.md"},{"file":"xDecisionTrees.md"},{"file":"xHowToCreateAMenu.md"},{"file":"xNestedIfs.md"},{"file":"xifnamequalsmain.md"},{"file":"xTryExcept.md"},{"children":[{"file":"xMoreLoopExamples.md"},{"file":"xTypewriterSimulation.md"},{"file":"xMenuShell.md"}],"file":"xIteration.md"},{"file":"xItertools.md"},{"children":[{"file":"xRecursion_part2.md"},{"file":"xRecursion_VisualizingFunctionCalls.md"}],"file":"xRecursion.md"},{"file":"xLists.md"},{"children":[{"file":"xClasesHowToWriteAClass.md"},{"file":"xDecorators.md"},{"file":"xProperties.md"},{"file":"xSettersGettersDecoratorsProperties.md"},{"file":"xsearchListOfObjects.md"}],"file":"xClasses.md"},{"file":"xnumpy_ref.md"},{"children":[{"file":"xPanda_Reference.md"},{"file":"xPandaIO_Code.md"},{"file":"xPanda_Inspection.md"},{"file":"xPanda_Selection.md"},{"file":"xPanda_DataCleaning.md"},{"file":"xPanda_Transformation.md"},{"file":"xPanda_Aggregation.md"},{"file":"xPanda_MergingShaping.md"},{"file":"xPanda_Statistical.md"},{"file":"xPanda_TimeSeries.md"},{"file":"xPandasMatPlotLib.md"},{"file":"xPanelDataDogExample.md"},{"file":"xCompareContrastNumPyArraysPanelDataDataFrames.md"},{"file":"xPanda_Quiz.md"}],"file":"xPanelData.md"},{"file":"xInputOutput.md"},{"file":"xTkinter.md"},{"file":"xTicTacToe.md"},{"children":[{"file":"xSerialization_CSV.md"},{"file":"xSerialization_JSON.md"},{"file":"xSerialization_Pickle_Data.md"},{"file":"xSerialization_Pickle_Function.md"},{"file":"xSerialization_Pickle_Security.md"},{"file":"xSerialization_HDF5.md"},{"file":"xSerialization_XML.md"},{"file":"xSerialization_YAML.md"}],"file":"xSerialization.md"},{"children":[{"file":"xSoftwareTestingPytest.md"},{"file":"xSoftwareTestingUnitTesting.md"},{"file":"xSoftwareTestingUnittestVsPytest.md"}],"file":"xSoftwareTesting.md"},{"children":[{"file":"xBuiltinVariable_Name.md"},{"file":"xTheZenOfPython.md"},{"file":"xPythonPackagingOverview.md"},{"file":"xCompilePyInstaller.md"},{"file":"xPIP.md"},{"file":"xEnvironments.md"}],"file":"xMiscellany.md"}],"index":"index","pages":[{"slug":"xintroduction","title":"Introduction","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xreadings","title":"Readings","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xthebasics","title":"The Basics","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbasicsgettingstarted","title":"Basics - Getting Started","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsecondprogram","title":"Second Program","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xfunctions","title":"Functions","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdebugger","title":"Debugger","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xlogging","title":"Logging","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdecisiontrees","title":"Decision Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhowtocreateamenu","title":"How To Create A Menu","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xnestedifs","title":"Nested Ifs","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xifnamequalsmain","title":"If  __name_ == __main__","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xtryexcept","title":"Try Except - Preventing Errors","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xiteration","title":"Iteration","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xmoreloopexamples","title":"More Loop Examples","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xtypewritersimulation","title":"Loops - Typewriter Simulation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmenushell","title":"Menu Shell","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xitertools","title":"Itertools","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xrecursion","title":"Recursion","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xrecursion-part2","title":"Recursion - Loops vs Recursion","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xrecursion-visualizingfunctioncalls","title":"Visualizing Recursive Function Calls:","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xlists","title":"Lists","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xclasses","title":"Classes","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xclaseshowtowriteaclass","title":"How to Write a Class in Python","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdecorators","title":"Decorators","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xproperties","title":"Properties","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsettersgettersdecoratorsproperties","title":"When to use Setters and Getters, Decorators, and Properties","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsearchlistofobjects","title":"🐾 Pet Search Program — Explanation and Learning Outcomes","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xnumpy-ref","title":"NumPy / Arrays","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xpaneldata","title":"Pandas","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xpanda-reference","title":"Panel Data - Pandas","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpandaio-code","title":"Panda IO","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-inspection","title":"Panda Inspection","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-selection","title":"Panda Selection","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-datacleaning","title":"Panda Data Cleaning","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-transformation","title":"Panda Data Transformation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-aggregation","title":"Panda Aggregation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-mergingshaping","title":"Panda Merging and Shaping","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-statistical","title":"Panda Statistical Operations","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-timeseries","title":"Panda Time Series","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpandasmatplotlib","title":"Pandas and MatPlotLib","description":"","date":"","thumbnail":"/csci127/build/pandaplt_graph1-1702-9be07eb25c96395e492d228dcda076c1.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpaneldatadogexample","title":"Panel Data - Dog Example","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xcomparecontrastnumpyarrayspaneldatadataframes","title":"Comparing and Contrasting NumPy Arrays and Panel Data DataFrames","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-quiz","title":"Pandas Quiz: Test Your Knowledge","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xinputoutput","title":"Input / Output - Files And Folders","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xtkinter","title":"Tkinter","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xtictactoe","title":"Tic Tac Toe","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xserialization","title":"Serialization","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xserialization-csv","title":"Serialization - CSV","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-json","title":"Serialization - JSON","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-pickle-data","title":"Serialization - Pickle - Data","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-pickle-function","title":"Serialization - Pickle - Function","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-pickle-security","title":"Serialization - Pickle -  Security Implications","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-hdf5","title":"Serialization HDF5","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-xml","title":"Serialization - XML","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-yaml","title":"Serialization - YAML","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsoftwaretesting","title":"Software Testing","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsoftwaretestingpytest","title":"Software Testing - Pytest","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsoftwaretestingunittesting","title":"Software Testing  Unit Testing","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsoftwaretestingunittestvspytest","title":"Software Testing - Unittest vs Pytest","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmiscellany","title":"Miscellany","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbuiltinvariable-name","title":"Built-in Variable  __name__","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xthezenofpython","title":"The Zen of Python,","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpythonpackagingoverview","title":"Python Application Packaging Tools","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xcompilepyinstaller","title":"Compile Python To Executable - PyInstaller","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpip","title":"PIP Python Package Installer","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xenvironments","title":"Python Environments","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2}]}]},"page":{"version":2,"kind":"Article","sha256":"b94a7df7e4446a1f19df823519bab0d0ef648a00d5f6d45c524bf8b620b92e74","slug":"xclasses","location":"/xClasses.md","dependencies":[],"frontmatter":{"title":"Classes","content_includes_title":false,"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\0_jbdbook\\myst-generated-uid-0"}],"copyright":"2025 By James Goudy","exports":[{"format":"md","filename":"xClasses.md","url":"/csci127/build/xClasses-51b583d2b93a4d1643ba3c3e3ac625e7.md"}]},"mdast":{"type":"root","children":[{"type":"block","children":[{"type":"heading","depth":2,"position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"children":[{"type":"text","value":"Key Ideas","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"key":"E5tM8mDpNr"}],"identifier":"key-ideas","label":"Key Ideas","html_id":"key-ideas","implicit":true,"key":"ahb1cMTtqk"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":5,"column":1},"end":{"line":10,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":5,"column":1},"end":{"line":5,"column":1}},"children":[{"type":"paragraph","children":[{"type":"text","value":"classes","position":{"start":{"line":5,"column":1},"end":{"line":5,"column":1}},"key":"foJzvIXYY3"}],"key":"d1ANtbqT36"}],"key":"beyDF2hacQ"},{"type":"listItem","spread":true,"position":{"start":{"line":6,"column":1},"end":{"line":6,"column":1}},"children":[{"type":"paragraph","children":[{"type":"text","value":"objects","position":{"start":{"line":6,"column":1},"end":{"line":6,"column":1}},"key":"ilLDUqa2BC"}],"key":"mBbzrCmnx5"}],"key":"ypLQQuPkrX"},{"type":"listItem","spread":true,"position":{"start":{"line":7,"column":1},"end":{"line":10,"column":1}},"children":[{"type":"paragraph","children":[{"type":"text","value":"inheritance","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"MXzsPHcad2"}],"key":"UlUZUvAv8f"}],"key":"sfwaEKhtxp"}],"key":"KdeljoauUO"},{"type":"admonition","children":[{"type":"admonitionTitle","children":[{"type":"text","value":"Definition","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"vxiU23rnFT"}],"key":"mv5astjZLR"},{"type":"paragraph","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"children":[{"type":"strong","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"children":[{"type":"text","value":"Class","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"key":"SUkcVSKoMO"}],"key":"YSmq6wAn3l"},{"type":"text","value":" is code that acts like a blueprint.  “Objects” are made from classes. Classes can represent things in terms of code. For example, they could represent a ","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"key":"hEAMKH52aM"},{"type":"emphasis","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"children":[{"type":"text","value":"car","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"key":"eETJXy3wvI"}],"key":"Of0lmgU0hI"},{"type":"text","value":" - make, model, year; a ","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"key":"UPtv2NP3SC"},{"type":"emphasis","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"children":[{"type":"text","value":"dog","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"key":"qU9qk0YMeB"}],"key":"W65tvJF26e"},{"type":"text","value":" - dog name, breed, color; a ","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"key":"OGdUpj6taF"},{"type":"emphasis","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"children":[{"type":"text","value":"person","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"key":"yj0dUXdVbN"}],"key":"r4UILeHjoj"},{"type":"text","value":" - first name, last name, address, city, state; etc.","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"key":"Ac2qZPn3mh"}],"key":"GGbDTjrT00"}],"key":"qZ3RZREuCE"},{"type":"heading","depth":2,"position":{"start":{"line":19,"column":1},"end":{"line":19,"column":1}},"children":[{"type":"text","value":"Lecture Code","position":{"start":{"line":19,"column":1},"end":{"line":19,"column":1}},"key":"Eykk3Wj3OM"}],"identifier":"lecture-code","label":"Lecture Code","html_id":"lecture-code","implicit":true,"key":"ja9T4nN6rI"},{"type":"heading","depth":3,"position":{"start":{"line":21,"column":1},"end":{"line":21,"column":1}},"children":[{"type":"text","value":"Example 1 - Cars","position":{"start":{"line":21,"column":1},"end":{"line":21,"column":1}},"key":"Xe2lgDSxED"}],"identifier":"example-1-cars","label":"Example 1 - Cars","html_id":"example-1-cars","implicit":true,"key":"EcASr3IW6Q"},{"type":"code","lang":"python","value":"# -*- coding: utf-8 -*-\n\"\"\"\nCreated on Mon Oct 2019\n\n@author: jgoudy\n\"\"\"\n\nclass car:\n    \n    \n    \n    carspeed = 0\n    carengineOn = True\n    \n    \n    # constructor  - there can only be one in python\n    def __init__(self, carmake=\"\",carmodel=\"\",caryear=\"\", carcolor=\"\"):\n        self.carspeed = 0\n        self.carengineOn = False\n        self.carmake = carmake\n        self.carmodel = carmodel\n        self.caryear= caryear\n        self.carcolor = carcolor\n    \n    # __str__  defines what print() or str() is printed for the obje\n    # example print(car) = what is defined here is what will be printed\n    def __str__(self):\n        return (\"Make: \" + self.carmake + \"\\n\" + \\\n                \"Model: \" + self.carmodel + \"\\n\" + \\\n                \"Year: \" + self.caryear + \"\\n\" + \\\n                \"Color: \" + self.carcolor + \"\\n\")\n    \n\n    # __str__ must return string object \n    # whereas __repr__ can return any python expression.\n    #https://docs.python.org/3/reference/datamodel.html\n    # when possible it should return a string\n    \n    def __repr__(self):\n        return (self.carmake+\",\"+ self.carmodel+\",\"+ self.caryear+\",\"+ self.carcolor)\n  \n    \n    @property\n    def make(self):\n        return self.carmake    \n    @make.setter\n    def make(self, value):\n        self.carmake = value\n       \n    @property\n    def model(self):\n        return self.carmodel    \n    @model.setter\n    def model(self, value):\n        self.carmodel = value\n       \n    @property\n    def year(self):\n        return self.caryear    \n    @year.setter\n    def year(self, value):\n        self.caryear = value\n       \n    @property\n    def color(self):\n        return self.carcolor    \n    @color.setter\n    def color(self, value):\n        self.carcolor = value\n    \n    @property\n    def speed(self):\n        return self.carspeed\n    \n    @property\n    def engineOn(self):\n        return self.carengineOn\n\n    def startCar(self):\n        self.carengineOn = True\n        \n    def stopCar(self):\n        self.carengineOn = False\n        \n   \n    def accelerate(self,speed = 5):\n        if (self.carengineOn == True) :\n            self.carspeed += speed\n            print(\"aaargh\")\n        else:\n            print(\"Start the car\")\n      \n      \n    def deccelerate(self,speed = 5):\n        if self.carspeed \u003e 0:\n            self.carspeed -= speed\n        else:\n            self.carspeed = 0\n        print(\"car is stopped\")\n                \n    \n    def honk(self):\n        print(\"beep beep\")\n# --------------------------------------------------        \n\ndef main():\n    \n   mycar1 = car()\n   \n   mycar2 = car(\"Ford\", \"Mustang\",\"1967\",\"red\")\n    \n   mycar2.accelerate()\n   mycar2.startCar()\n   mycar2.accelerate()\n   print(mycar2.speed)\n   mycar2.accelerate()\n   print(mycar2.speed)\n   mycar2.accelerate(50)\n   print(mycar2.speed)\n   mycar2.deccelerate(70)\n   \n   print(\"The color of my car is \" + mycar2.color)\n   mycar2.color = \"blue\"\n   print(\"The color of my car is \" + mycar2.color)\n   \n   mycar1.honk()\n     \n   print(\"\\bye bye\")\n    \nmain()\n\n","position":{"start":{"line":23,"column":1},"end":{"line":156,"column":1}},"key":"ckLawoAlqq"},{"type":"heading","depth":3,"position":{"start":{"line":160,"column":1},"end":{"line":160,"column":1}},"children":[{"type":"text","value":"Example 2 - Person / Worker /  Voter","position":{"start":{"line":160,"column":1},"end":{"line":160,"column":1}},"key":"Z5v4GdNCin"}],"identifier":"example-2-person-worker-voter","label":"Example 2 - Person / Worker /  Voter","html_id":"example-2-person-worker-voter","implicit":true,"key":"E9Zb5ustTW"},{"type":"code","lang":"python","value":"class Person:\n    \"\"\" Represents a person. \"\"\"\n\n    # python can only have one constructor\n    def __init__(self, first_name=\"\", last_name=\"\", town=\"\"):\n        self.first_name = first_name\n        self.last_name = last_name\n        self.town = town\n\n    # describes the class person\n    def __str__(self):\n        return self.first_name + \", \" + self.last_name + \", \" + self.town\n    \n    # falls back to this if there is no __str__ - used in debugging\n    def __repr__(self):\n        return self.first_name + \", \" + self.last_name + \", \" + self.town\n\n\n    #CANNOT HAVE VARIABLE NAME SAME AS FUNCTION NAME\n\n    @property\n    def firstname(self):\n        return self.first_name\n\n    @firstname.setter\n    def firstname(self, first_name):\n        self.first_name = first_name\n\n    @property\n    def lastname(self):\n        return self.last_name\n\n    @lastname.setter\n    def lastname(self, last_name):\n        self.last_name = last_name\n\n    @property\n    def city(self):\n        return self.town\n\n    @city.setter\n    def city(self, town):\n        self.town = town\n\n    # methods\n    def full_name(self):\n        \"\"\" Returns the full name (first and last name) as a string \"\"\"\n        return self.first_name + \" \" + self.last_name\n    \n    def full_name_city(self):\n        \"\"\" Returns first, last and city as string \"\"\"\n        return self.first_name + \" \" + self.last_name + self.city\n    \n    def username(self):\n        \"\"\" returns the username as string \"\"\"\n        return self.first_name[0] + self.last_name\n    \n# --------------- End Of Person ---------------\n\nclass Worker(Person):\n    \"\"\" represents a worker \"\"\"\n    \n    def __init__(self, first_name = \"\", last_name= \"\", town= \"\",\n                 job_title= \"\", company_name= \"\", wages=0):\n        self.job_title = job_title\n        self.company_name = company_name\n        self.wages = wages\n\n        Person.__init__ (self, first_name, last_name, town)\n\n    # describes the class person\n    def __str__(self):\n        return self.first_name + \", \" + self.last_name + \", \" + self.town \n               + \" \"  + self.job_title + \", \" + self.company_name + \n               \", \" +str(self.wages)\n               \n    # falls back to this if there is no __str__ - used in debugging               \n    def __repr__(self):\n        return self.first_name + \", \" + self.last_name + \", \" + self.town \n               + \" \"  + self.job_title + \", \" + self.company_name + \n               \", \" +str(self.wages)\n\n    @property\n    def jobtitle(self):\n        return self.job_title\n\n    @jobtitle.setter\n    def jobtitle(self, title_value):\n        self.job_title = title_value\n\n    @property\n    def company(self):\n        return self.company_name\n\n    @company.setter\n    def company(self, company_value):\n        self.company_name = company_value\n\n    @property\n    def salary(self):\n        return self.wages\n\n    @salary.setter\n    def salary(self, wages_value):\n        self.wages = wages_value\n# --------------- End Of Worker ---------------\n\nclass Voter(Person):\n    \"\"\" Represents a voter based on Person \"\"\"\n    def __init__(self, first_name = \"\", last_name= \"\", town= \"\",\n                 precient_number= 0, party_name= \"\"):\n        self.precient_number = precient_number\n        self.party_name = party_name\n\n        Person.__init__ (self, first_name, last_name, town)\n        \n    def __str__(self):\n        return self.first_name + \" \" + self.last_name + \" \" + self.town \n           + \" \"  + str(self.precient_number) + \" \" + self.party_name\n    \n    # falls back to this if there is no __str__ - used in debugging\n    def __repr__(self):\n        return self.first_name + \", \" + self.last_name + \", \" + self.town \n           + \", \"  + str(self.precient_number) + \", \" + self.party_name\n    \n    @property\n    def precient(self):\n        \"\"\"represents the precient of the voter as a string \"\"\"\n        return self.precient_number\n    \n    @precient.setter\n    def precient(self, precient_value):\n        self.precient_number = precient_value\n    \n    @property\n    def party(self):\n        \"\"\"represents the party of the voter as a string\"\"\"\n        return self.party_name\n    \n    @party.setter\n    def party(self, party_value):\n        self.party_name = party_value\n\n# --------------- End Of Voter --------------- \n        \n\ndef main():\n\n    qty  = 5\n\n    \n    print(\"Create Person\")\n#    p1 = Person(\"John\", \"Doe\", \"Anywhere\")\n\n    p1 = Person(\"John\",\"Doe\",\"Kali\")\n    p1.firstname = \"Jimbo\"\n    p1.lastname = \"Smith\"\n    p1.city = \"Whitefish\"\n\n    print(p1)\n    print(p1.full_name())\n    print(p1.first_name)\n    print(p1.lastname)\n    print(p1)\n\n    p2 = Person(\"Sally\", \"Smith\", \"Polson\")\n    #change first and last name of p2\n    p2.first_name = \"Bonnie\"\n    p2.last_name = \"Bond\"\n    print(p2)\n\n    # create a list of people\n    people = []\n    \n    for i in range(qty):                \n        px = Person(\"John\" + str(i), \n                    \"Doe\" + str(i),\n                    \"Kali\" + str(i))\n        people.append(px)\n        print(people[i].first_name + \" \"+ people[i].last_name)\n    \n    print()        \n    \n    # create workers\n    w1 = Worker(\"Tom\", \"Tune\", \"New York\", \"Dancer\", \"Broadway\", 100000)\n    print(w1)\n\n    w2 = Worker()\n    w2.firstname = \"Ira\"\n    w2.lastname = \"Money\"\n    w2.company = \"IRS\"\n    w2.jobtitle = \"Auditor\"\n    w2.salary = 90000\n\n\n    print(w2)    \n    \n    print()\n    \n    # create a list of workers\n    workers = []\n   \n    \n    \n    for i in range(qty):                \n        wx = Worker(\"John\" + str(i), \n                    \"Doe\" + str(i),\"\",\n                    \"Programmer\" + str(i))\n        workers.append(wx)\n        print(workers[i].first_name + \" \"+ \n              workers[i].last_name  + \" \" +\n              workers[i].jobtitle)\n    \n    print()\n\n    # create voters\n    v1 = Voter(\"Abe\", \"Lincoln\", \"Springfield\", 17, \"Republican\")\n    v2 = Voter()\n    \n    v2.firstname = \"Charles\"\n    v2.lastname = \"Daily\"\n    v2.city = \"Chicago\"\n    v2.precient_number= 1\n    v2.party =\"Democrat\"\n    print(v1)\n    print(v2)\n    \n    print()\n   \n    # create a list of voters\n    voters = []\n    \n    for i in range(qty):                \n        vx = Voter(\"John\" + str(i), \n                    \"Doe\" + str(i),\"\",\"\",\n                    \"Independent\" + str(i))\n        voters.append(vx)\n        print(voters[i].firstname + \" \"+ \n              voters[i].lastname  + \" \" +\n              voters[i].party) \n\n\n    print(\"bye\")\n\nmain()\n","position":{"start":{"line":162,"column":1},"end":{"line":409,"column":1}},"key":"F4VnF1QHpU"},{"type":"heading","depth":3,"position":{"start":{"line":413,"column":1},"end":{"line":413,"column":1}},"children":[{"type":"text","value":"Example 3 - getters and setters","position":{"start":{"line":413,"column":1},"end":{"line":413,"column":1}},"key":"GrE9BYJ4hC"}],"identifier":"example-3-getters-and-setters","label":"Example 3 - getters and setters","html_id":"example-3-getters-and-setters","implicit":true,"key":"UmLAnOZ08I"},{"type":"code","lang":"python","value":"# -*- coding: utf-8 -*-\n\"\"\"\n@author: jgoudy\n\"\"\"\nclass class1:\n    \n    # The traditional \"old\" style of creating getters and setters\n    \n    def __init__(self, number = 0):\n        self.number = number\n        \n    # getter method\n    def get_Number(self):\n        return self.number\n    \n    # setter method\n    def set_Number(self, value):\n        self.number = value\n        \n# ---------------- End of class 2 -----------------\n        \nclass class2:\n    \n    # using properties \n    # using a property allows the object code to be cleaner\n    # and users of the class will not have to make changes to their code\n    \n    def __init__(self, anumber = 0):\n        self.anumber = anumber\n        \n    # getter method\n    def get_Number(self):\n        return self.anumber\n    \n    # setter method\n    def set_Number(self, value):\n        self.anumber = value\n    \n    # function to delete the number attribute\n    def del_Number(self):\n        del self.anumber\n    \n    # TURN SETTERS AND GETTERS INTO PROPERTIES\n    number = property(get_Number, set_Number, del_Number, \"Stores a number\")\n\n# ---------------- End of class 2 -----------------\n   \nclass class3:\n   \n    \n    # THE PYTHONIC WAY\n    # This is the preferred way of doing setters and getters.  \n    \n    # this is a getter method\n\n    def __init__(self, anumber = 0):\n        self.anumber = anumber\n    \n    @property\n    def number(self):\n        return self.anumber\n    \n    # this is the setter method\n    @number.setter\n    def number(self, value):\n        self.anumber = value\n        \n    @number.deleter\n    def number(self):\n        del self.anumber\n# ---------------- End of class 3 -----------------\n\ndef main():\n    \n    #Old way\n    mc1 = class1()\n    mc1.set_Number(42)\n    print(mc1.get_Number())\n    \n    \n    print(\"\\n----------\\n\")\n    mc2 = class2()\n    mc2.number = 52\n    print(mc2.number)\n    \n    \n    print(\"\\n----------\\n\")\n    mc3 = class3()\n    mc3.number = 62\n    print(mc3.number)\n    \n    \n    \nmain()\n\n","position":{"start":{"line":415,"column":1},"end":{"line":512,"column":1}},"key":"Ap3pL2SliP"},{"type":"heading","depth":3,"position":{"start":{"line":516,"column":1},"end":{"line":516,"column":1}},"children":[{"type":"text","value":"Example 4 - Trains","position":{"start":{"line":516,"column":1},"end":{"line":516,"column":1}},"key":"aoQF47QuMe"}],"identifier":"example-4-trains","label":"Example 4 - Trains","html_id":"example-4-trains","implicit":true,"key":"SIgmr3TQoN"},{"type":"code","lang":"python","value":"\n# trains\n\"\"\"\nTrain\n    id\n    engine\n    cabose\n    start       (location)\n    destination (location)\n    traincars\n\n\"\"\"\nimport random\n\nclass Train:\n\n    # constructor\n    def __init__(self, a_trainid, a_start=\"Whitefish\",a_destination=\"\"):\n        self.a_trainid = a_trainid\n        self.a_start = a_start\n        self.a_destination = a_destination\n\n        # create an empty list to hold train cars\n        self.traincars = []\n\n        # functions can be called within a constructor\n        # or any other function as well \n        self._addengine()\n\n    # properties\n    @property\n    def trainid(self):\n        return self.a_trainid\n    @trainid.setter\n    def trainid(self,value):\n        self.a_trainid = value\n\n    @property\n    def start(self):\n        return self.a_startstart\n    @start.setter\n    def start(self,value):\n        self.a_start = value\n\n    @property\n    def destination(self):\n        return self.a_destination\n    @destination.setter\n    def destination(self,value):\n        self.a_destination = value \n\n            \n    # add our methods\n\n    def _addengine(self):\n        self.traincars.append(\"engine\")\n\n    def addcar(self,value):\n        self.traincars.append(value)\n    \n    def addcaboose(self):\n        self.traincars.append(\"caboose\")\n\n    # print the train cars\n    def printtrain(self):\n        print(\"\\n\"+ self.a_trainid + \"\\t\" + self.a_start + \" to \" + self.a_destination)\n\n        for i in range(len(self.traincars)):\n            print(\"\\t\" + self.traincars[i])\n\n        print()\n\n# ---------------- End Of Class ----------------------------------\n\n# *****************************************************************\n# program starts here\n\n# global variable to hold whole trains\nmytrains = []\n\n# create a function to create a train with random cars\ndef createtrain(maxNumTrains, maxNumCars):\n\n    # create a list car types\n    cartypes = [\"flat\",\"box\",\"tanker\",\"passenger\",\"ore\"]\n\n    # create a list of towns\n    towns = [\"Denver\", \"Seattle\",\"Missoula\", \"Kalispell\",\n             \"Whitefish\", \"Chicago\", \"New York\", \"Ringling\",\"Clarskville\"]\n    \n    # randomly pick a number to determine the number of trains\n    rnd = random.randint(0,maxNumTrains)\n\n    # loop to create the number of complete trains\n    for i in range(rnd):\n\n        # variables to hold the start and end towns\n        startTown   = \"\"\n        desTown     = \"\"\n\n        # this while statement is used to ensure\n        # that there will always be two different towns\n\n        # if the startTown and desTown are equivalent,\n        # the while loop runs. Note that the\n        # startTown and desTown start equivalent\n\n        while(startTown == desTown): \n            # randomly going to pick a start town\n            rndtemp = random.randint(0,len(towns)-1)\n            startTown = towns[rndtemp]\n\n            # randomly going to pick a destination town\n            rndtemp = random.randint(0,len(towns)-1)\n            desTown = towns[rndtemp]\n\n        # call the class to create a train\n        tx = Train(\"T\"+ str(i),startTown,desTown)\n\n        # randomly decide on how many train cars\n        rndtemp = random.randint(0,maxNumCars)\n\n        # randomly add cars to the train\n        for i in range(rndtemp):\n            rndcar= random.randint(0,len(cartypes)-1)\n            tx.addcar(cartypes[rndcar])\n\n\n        tx.addcaboose()\n\n        # add train to the global variable\n        mytrains.append(tx)\n\n\ndef printmytrains(alist):\n\n    # print the total number of trains\n    print(len(alist))\n\n    # iterate/loop the number of trains\n    for i in range(len(alist)):\n        alist[i].printtrain()\n\n        # this code will only show two trains at a time\n        # if the remainder == 0 show the input command\n        # example i = 4 | 4 / 2 = 0 with a remainder of 0\n        if((i % 2) == 0):\n            input(\"press any key to continue\")\n\n\n\ndef main():\n    \n    # create an individual train\n    train1 = Train(\"ML11\",\"Helena\",\"Missoula\")\n\n    # add 10 box cars\n    for c  in range(10):\n        train1.addcar(\"box\")\n    \n    train1.addcaboose()\n\n    # print the train we just created\n    train1.printtrain()\n\n    # create trains \n    # each time this runs the trains will change\n    createtrain(15,8)\n\n    printmytrains(mytrains)\n\n\nmain()\n","position":{"start":{"line":518,"column":1},"end":{"line":693,"column":1}},"key":"pe2EqiyxSX"}],"key":"Q5ZUsOEIHT"}],"key":"tKPnZAoZwd"},"references":{"cite":{"order":[],"data":{}}},"footer":{"navigation":{"prev":{"title":"Lists","url":"/xlists","group":"CSCI 127"},"next":{"title":"How to Write a Class in Python","url":"/xclaseshowtowriteaclass","group":"CSCI 127"}}},"domain":"http://localhost:3000"},"project":{"bibliography":["C:\\a_books\\0_jbdbook\\references.bib"],"exports":[],"title":"CSCI 127","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\0_jbdbook\\myst-generated-uid-0"}],"copyright":"2025 By James Goudy","toc":[{"file":"xintro.md"},{"file":"xIntroduction.md"},{"file":"xReadings.md"},{"file":"xTheBasics.md"},{"file":"xBasicsGettingStarted.md"},{"file":"xSecondProgram.md"},{"file":"xFunctions.md"},{"file":"xDebugger.md"},{"file":"xLogging.md"},{"file":"xDecisionTrees.md"},{"file":"xHowToCreateAMenu.md"},{"file":"xNestedIfs.md"},{"file":"xifnamequalsmain.md"},{"file":"xTryExcept.md"},{"children":[{"file":"xMoreLoopExamples.md"},{"file":"xTypewriterSimulation.md"},{"file":"xMenuShell.md"}],"file":"xIteration.md"},{"file":"xItertools.md"},{"children":[{"file":"xRecursion_part2.md"},{"file":"xRecursion_VisualizingFunctionCalls.md"}],"file":"xRecursion.md"},{"file":"xLists.md"},{"children":[{"file":"xClasesHowToWriteAClass.md"},{"file":"xDecorators.md"},{"file":"xProperties.md"},{"file":"xSettersGettersDecoratorsProperties.md"},{"file":"xsearchListOfObjects.md"}],"file":"xClasses.md"},{"file":"xnumpy_ref.md"},{"children":[{"file":"xPanda_Reference.md"},{"file":"xPandaIO_Code.md"},{"file":"xPanda_Inspection.md"},{"file":"xPanda_Selection.md"},{"file":"xPanda_DataCleaning.md"},{"file":"xPanda_Transformation.md"},{"file":"xPanda_Aggregation.md"},{"file":"xPanda_MergingShaping.md"},{"file":"xPanda_Statistical.md"},{"file":"xPanda_TimeSeries.md"},{"file":"xPandasMatPlotLib.md"},{"file":"xPanelDataDogExample.md"},{"file":"xCompareContrastNumPyArraysPanelDataDataFrames.md"},{"file":"xPanda_Quiz.md"}],"file":"xPanelData.md"},{"file":"xInputOutput.md"},{"file":"xTkinter.md"},{"file":"xTicTacToe.md"},{"children":[{"file":"xSerialization_CSV.md"},{"file":"xSerialization_JSON.md"},{"file":"xSerialization_Pickle_Data.md"},{"file":"xSerialization_Pickle_Function.md"},{"file":"xSerialization_Pickle_Security.md"},{"file":"xSerialization_HDF5.md"},{"file":"xSerialization_XML.md"},{"file":"xSerialization_YAML.md"}],"file":"xSerialization.md"},{"children":[{"file":"xSoftwareTestingPytest.md"},{"file":"xSoftwareTestingUnitTesting.md"},{"file":"xSoftwareTestingUnittestVsPytest.md"}],"file":"xSoftwareTesting.md"},{"children":[{"file":"xBuiltinVariable_Name.md"},{"file":"xTheZenOfPython.md"},{"file":"xPythonPackagingOverview.md"},{"file":"xCompilePyInstaller.md"},{"file":"xPIP.md"},{"file":"xEnvironments.md"}],"file":"xMiscellany.md"}],"index":"index","pages":[{"slug":"xintroduction","title":"Introduction","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xreadings","title":"Readings","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xthebasics","title":"The Basics","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbasicsgettingstarted","title":"Basics - Getting Started","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsecondprogram","title":"Second Program","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xfunctions","title":"Functions","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdebugger","title":"Debugger","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xlogging","title":"Logging","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdecisiontrees","title":"Decision Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhowtocreateamenu","title":"How To Create A Menu","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xnestedifs","title":"Nested Ifs","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xifnamequalsmain","title":"If  __name_ == __main__","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xtryexcept","title":"Try Except - Preventing Errors","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xiteration","title":"Iteration","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xmoreloopexamples","title":"More Loop Examples","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xtypewritersimulation","title":"Loops - Typewriter Simulation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmenushell","title":"Menu Shell","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xitertools","title":"Itertools","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xrecursion","title":"Recursion","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xrecursion-part2","title":"Recursion - Loops vs Recursion","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xrecursion-visualizingfunctioncalls","title":"Visualizing Recursive Function Calls:","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xlists","title":"Lists","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xclasses","title":"Classes","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xclaseshowtowriteaclass","title":"How to Write a Class in Python","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdecorators","title":"Decorators","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xproperties","title":"Properties","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsettersgettersdecoratorsproperties","title":"When to use Setters and Getters, Decorators, and Properties","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsearchlistofobjects","title":"🐾 Pet Search Program — Explanation and Learning Outcomes","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xnumpy-ref","title":"NumPy / Arrays","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xpaneldata","title":"Pandas","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xpanda-reference","title":"Panel Data - Pandas","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpandaio-code","title":"Panda IO","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-inspection","title":"Panda Inspection","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-selection","title":"Panda Selection","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-datacleaning","title":"Panda Data Cleaning","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-transformation","title":"Panda Data Transformation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-aggregation","title":"Panda Aggregation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-mergingshaping","title":"Panda Merging and Shaping","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-statistical","title":"Panda Statistical Operations","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-timeseries","title":"Panda Time Series","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpandasmatplotlib","title":"Pandas and MatPlotLib","description":"","date":"","thumbnail":"/csci127/build/pandaplt_graph1-1702-9be07eb25c96395e492d228dcda076c1.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpaneldatadogexample","title":"Panel Data - Dog Example","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xcomparecontrastnumpyarrayspaneldatadataframes","title":"Comparing and Contrasting NumPy Arrays and Panel Data DataFrames","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpanda-quiz","title":"Pandas Quiz: Test Your Knowledge","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xinputoutput","title":"Input / Output - Files And Folders","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xtkinter","title":"Tkinter","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xtictactoe","title":"Tic Tac Toe","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xserialization","title":"Serialization","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xserialization-csv","title":"Serialization - CSV","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-json","title":"Serialization - JSON","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-pickle-data","title":"Serialization - Pickle - Data","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-pickle-function","title":"Serialization - Pickle - Function","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-pickle-security","title":"Serialization - Pickle -  Security Implications","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-hdf5","title":"Serialization HDF5","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-xml","title":"Serialization - XML","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xserialization-yaml","title":"Serialization - YAML","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsoftwaretesting","title":"Software Testing","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsoftwaretestingpytest","title":"Software Testing - Pytest","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsoftwaretestingunittesting","title":"Software Testing  Unit Testing","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsoftwaretestingunittestvspytest","title":"Software Testing - Unittest vs Pytest","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmiscellany","title":"Miscellany","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbuiltinvariable-name","title":"Built-in Variable  __name__","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xthezenofpython","title":"The Zen of Python,","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpythonpackagingoverview","title":"Python Application Packaging Tools","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xcompilepyinstaller","title":"Compile Python To Executable - PyInstaller","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpip","title":"PIP Python Package Installer","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xenvironments","title":"Python Environments","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2}]}}},"actionData":null,"errors":null},"future":{"unstable_dev":false,"unstable_postcss":false,"unstable_tailwind":false,"v2_errorBoundary":true,"v2_headers":true,"v2_meta":true,"v2_normalizeFormMethod":true,"v2_routeConvention":true}};</script><script type="module" async="">import "/csci127/build/manifest-51D9907C.js";
+import * as route0 from "/csci127/build/root-TRTRBUUN.js";
+import * as route1 from "/csci127/build/routes/$-VLPGWU3Z.js";
+window.__remixRouteModules = {"root":route0,"routes/$":route1};
+
+import("/csci127/build/entry.client-PCJPW7TK.js");</script></body></html>
