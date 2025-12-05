@@ -1,0 +1,559 @@
+<!DOCTYPE html><html lang="en" class="" style="scroll-padding:60px"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Reading Datafile Into Linked List - JAVA and Basic Algorithms</title><meta property="og:title" content="Reading Datafile Into Linked List - JAVA and Basic Algorithms"/><meta name="generator" content="mystmd"/><meta name="description" content="Course material for CSCI 132"/><meta property="og:description" content="Course material for CSCI 132"/><meta name="keywords" content="JAVA, Algorithms"/><link rel="stylesheet" href="/csci132/build/_assets/app-SDGCW62C.css"/><link rel="stylesheet" href="/csci132/build/_assets/thebe-core-VKVHG5VY.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jupyter-matplotlib@0.11.3/css/mpl_widget.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous"/><link rel="icon" href="/csci132/favicon.ico"/><link rel="stylesheet" href="/csci132/myst-theme.css"/><script>
+  const savedTheme = localStorage.getItem("myst:theme");
+  const theme = window.matchMedia("(prefers-color-scheme: light)").matches ? 'light' : 'dark';
+  const classes = document.documentElement.classList;
+  const hasAnyTheme = classes.contains('light') || classes.contains('dark');
+  if (!hasAnyTheme) classes.add(savedTheme ?? theme);
+</script></head><body class="m-0 transition-colors duration-500 bg-white dark:bg-stone-900"><div class="myst-skip-to-article fixed top-1 left-1 h-[0px] w-[0px] focus-within:z-40 focus-within:h-auto focus-within:w-auto bg-white overflow-hidden focus-within:p-2 focus-within:ring-1" aria-label="skip to content options"><a href="#skip-to-frontmatter" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article frontmatter</a><a href="#skip-to-article" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article content</a></div><dialog id="myst-no-css" style="position:fixed;left:0px;top:0px;width:100vw;height:100vh;font-size:4rem;padding:1rem;color:black;background:white"><strong>Site not loading correctly?</strong><p>This may be due to an incorrect <code>BASE_URL</code> configuration. See<!-- --> <a href="https://mystmd.org/guide/deployment#deploy-base-url">the MyST Documentation</a> <!-- -->for reference.</p><script>
+    (() => {
+            // Test for has-styling variable set by the MyST stylesheet
+            const node = document.currentScript.parentNode;
+            const hasCSS = window.getComputedStyle(node).getPropertyValue("--has-styling");
+            if (hasCSS === ""){
+                    node.showModal();
+            }
+
+    })()
+</script></dialog><div class="myst-top-nav bg-white/80 backdrop-blur dark:bg-stone-900/80 shadow dark:shadow-stone-700 p-3 md:px-8 sticky w-screen top-0 z-30 h-[60px]"><nav class="myst-top-nav-bar flex items-center justify-between flex-nowrap max-w-[1440px] mx-auto"><div class="flex flex-row xl:min-w-[19.5rem] mr-2 sm:mr-7 justify-start items-center shrink-0"><div class="block xl:hidden"><button class="myst-top-nav-menu-button flex items-center border-stone-400 text-stone-800 hover:text-stone-900 dark:text-stone-200 hover:dark:text-stone-100"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" width="2rem" height="2rem" class="m-1"><path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"></path></svg><span class="sr-only">Open Menu</span></button></div><a class="myst-home-link flex items-center ml-3 dark:text-white w-fit md:ml-5 xl:ml-7" href="/csci132/"><span class="text-md sm:text-xl tracking-tight sm:mr-5">CSCI 132</span></a></div><div class="flex items-center flex-grow w-auto"><div class="flex-grow hidden text-md lg:block"></div><div class="flex-grow block"></div><button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R75cp:" data-state="closed" class="myst-search-bar flex items-center h-10 aspect-square sm:w-64 text-left text-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 myst-search-bar-disabled hover:ring-blue-500 dark:hover:ring-blue-500 hover:border-blue-500 dark:hover:border-blue-500"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="p-2.5 h-10 w-10 aspect-square"><path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd"></path></svg><span class="myst-search-text-placeholder hidden sm:block grow">Search</span><div aria-hidden="true" class="myst-search-shortcut items-center hidden mx-1 font-mono text-sm text-gray-600 sm:flex gap-x-1"><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none hide-mac">CTRL</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none show-mac">⌘</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none ">K</kbd><script>
+;(() => {
+const script = document.currentScript;
+const root = script.parentElement;
+
+const isMac = /mac/i.test(
+      window.navigator.userAgentData?.platform ?? window.navigator.userAgent,
+    );
+root.querySelectorAll(".hide-mac").forEach(node => {node.classList.add(isMac ? "hidden" : "block")});
+root.querySelectorAll(".show-mac").forEach(node => {node.classList.add(!isMac ? "hidden" : "block")});
+})()</script></div></button><button class="myst-theme-button theme rounded-full aspect-square border border-stone-700 dark:border-white hover:bg-neutral-100 border-solid overflow-hidden text-stone-700 dark:text-white hover:text-stone-500 dark:hover:text-neutral-800 w-8 h-8 mx-3" title="Toggle theme between light and dark mode" aria-label="Toggle theme between light and dark mode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-moon-icon h-full w-full p-0.5 hidden dark:block"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-sun-icon h-full w-full p-0.5 dark:hidden"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></button><div class="block sm:hidden"></div><div class="hidden sm:block"></div></div></nav></div><div class="myst-primary-sidebar fixed xl:article-grid grid-gap xl:w-screen xl:pointer-events-none overflow-auto max-xl:min-w-[300px] hidden z-10" style="top:60px"><div class="myst-primary-sidebar-pointer pointer-events-auto xl:col-margin-left flex-col overflow-hidden hidden xl:flex"><div class="myst-primary-sidebar-nav flex-grow py-6 overflow-y-auto primary-scrollbar"><nav aria-label="Navigation" class="myst-primary-sidebar-topnav overflow-y-hidden transition-opacity ml-3 xl:ml-0 mr-3 max-w-[350px] lg:hidden"><div class="w-full px-1 dark:text-white font-medium"></div></nav><div class="my-3 border-b-2 lg:hidden"></div><nav aria-label="Table of Contents" class="myst-primary-sidebar-toc flex-grow overflow-y-hidden transition-opacity ml-3 xl:ml-0 mr-3 max-w-[350px]"><div class="myst-toc w-full px-1 dark:text-white"><a title="JAVA and Basic Algorithms" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30 font-bold" href="/csci132/">CSCI 132</a><a title="Data Structures and Algorithms" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci132/xdatastructuresandalgorithms">Data Structures and Algorithms</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Array Techniques" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci132/xarraytechniques">Array Techniques</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:Rupsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:Rupsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="Encapsulation vs Non-Encapsulation" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci132/xencapsulationnonencapsulation">Encapsulation vs Non-Encapsulation</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Big O Notation" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci132/xbigonotation">Big O Notation</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R1epsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R1epsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Linked Lists" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci132/xlinkedlists">Linked Lists</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R1mpsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R1mpsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Stacks and Queues" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci132/xstacksandqueues">Stacks and Queues</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R1upsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R1upsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Sorting Algorithms" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci132/xsortalgorithms">Sorting Algorithms</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R26psp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R26psp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div></div></nav></div><div class="myst-primary-sidebar-footer flex-none py-6 transition-all duration-700 translate-y-6 opacity-0"><a class="myst-made-with-myst flex mx-auto text-gray-700 w-fit hover:text-blue-700 dark:text-gray-200 dark:hover:text-blue-400" href="https://mystmd.org/made-with-myst" target="_blank" rel="noreferrer"><svg style="width:24px;height:24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" stroke="none"><g id="icon"><path fill="currentColor" d="M23.8,54.8v-3.6l4.7-0.8V17.5l-4.7-0.8V13H36l13.4,31.7h0.2l13-31.7h12.6v3.6l-4.7,0.8v32.9l4.7,0.8v3.6h-15
+          v-3.6l4.9-0.8V20.8H65L51.4,53.3h-3.8l-14-32.5h-0.1l0.2,17.4v12.1l5,0.8v3.6H23.8z"></path><path fill="#F37726" d="M47,86.9c0-5.9-3.4-8.8-10.1-8.8h-8.4c-5.2,0-9.4-1.3-12.5-3.8c-3.1-2.5-5.4-6.2-6.8-11l4.8-1.6
+          c1.8,5.6,6.4,8.6,13.8,8.8h9.2c6.4,0,10.8,2.5,13.1,7.5c2.3-5,6.7-7.5,13.1-7.5h8.4c7.8,0,12.7-2.9,14.6-8.7l4.8,1.6
+          c-1.4,4.9-3.6,8.6-6.8,11.1c-3.1,2.5-7.3,3.7-12.4,3.8H63c-6.7,0-10,2.9-10,8.8"></path></g></svg><span class="self-center ml-2 text-sm">Made with MyST</span></a></div></div></div><main class="article-grid grid-gap"><article class="article-grid subgrid-gap col-screen article content"><div class="hidden"></div><div id="skip-to-frontmatter" aria-label="article frontmatter" class="myst-fm-block mb-8 pt-9"><div class="myst-fm-block-header flex items-center mb-5 h-6 text-sm font-light"><div class="flex-grow"></div><div class="myst-fm-block-badges"></div><div class="myst-fm-downloads-dropdown relative flex inline-block mx-1 grow-0" data-headlessui-state=""><button class="myst-fm-downloads-button relative ml-2 -mr-1" id="headlessui-menu-button-:Rs8ucp:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state=""><span class="sr-only">Downloads</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.25rem" height="1.25rem" class="myst-fm-downloads-icon"><title>Download</title><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg></button></div></div><h1 class="myst-fm-block-title mb-0">Reading Datafile Into Linked List</h1><header class="myst-fm-authors-affiliations mt-4 not-prose"><div class="myst-fm-authors-list"><span class="myst-fm-author font-semibold text-sm myst-fm-author-item inline-block"><button class="myst-fm-author-popover focus:shadow-[0_0_0_2px] focus:shadow-black outline-none hover:underline" aria-label="Author Details" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R78ucp:" data-state="closed"><span class="myst-fm-author-name">James Goudy</span></button></span></div></header><div class="myst-fm-block-date-doi flex mt-2 text-sm font-light"><time dateTime="2025-12-04" class="myst-fm-date-string">December 4, 2025</time></div></div><div class="block my-10 lg:sticky lg:z-10 lg:h-0 lg:pt-0 lg:my-0 lg:ml-10 lg:col-margin-right" style="top:60px"><nav></nav></div><div id="skip-to-article"></div><h2 id="lecture-code" class="relative group"><span class="heading-text">Lecture Code</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#lecture-code" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-java" style="white-space:pre">/*
+Programmer: James Goudy
+Project: Reading a csv file into a linked list
+ */
+
+
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+class Link {
+
+    Link first = null;
+    Link last = null;
+
+    // data
+    String id = null;
+    String firstname;
+    String lastname;
+    String pet;
+    
+
+    // link navigation
+    Link next = null;
+    Link prev = null;
+
+    // constructor
+    public Link(String id, String firstname, String lastname, String pet) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.pet = pet;
+    }
+
+
+    public void displayNode() {
+        System.out.println(&quot;{&quot;+ firstname + &quot; &quot; + lastname + &quot; &quot;
+                            +pet+ &quot; &quot; + id +&quot; } &quot; );
+    }
+} // end of link
+
+
+
+
+class Doubly {
+
+    Link first = null;
+    Link last = null;
+
+    // constructor
+    public Doubly() {
+
+        first = null;
+        last = null;
+    }
+
+    // add link at the beginning of the list
+    public boolean addFirst(String id,String firstname, 
+            String lastname, String pet) {
+        Link newLink = new Link( id,firstname,  lastname,  pet);
+
+        if (first == null) {
+            // if list is empty
+            first = newLink;
+            last = newLink;
+        } else {
+            newLink.next = first;
+            first.prev = newLink;
+            first = newLink;
+        }
+
+        return true;
+    }
+
+    // add link to the end of the list
+    public boolean addLast(String id,String firstname, 
+            String lastname, String pet) {
+        Link newLink = new Link( id,firstname,  lastname,  pet);
+
+        if (first == null) {
+            // if list is empty
+            first = newLink;
+            last = newLink;
+        } else {
+            newLink.prev = last;
+            last.next = newLink;
+            last = newLink;
+        }
+
+        return true;
+    }
+
+    public boolean findId(String searchID) {
+
+        if (first == null) {
+
+            // if list is empty
+            return false;
+        } else {
+            Link current = first;
+
+            while (current != null) {
+                if (current.id.equals(searchID)) {
+                    return true;
+                }
+                current = current.next;
+            }
+
+            return false;
+        }
+    }
+
+    public boolean insertAfter(String searchId, String id,String firstname, 
+            String lastname, String pet) {
+        Link newLink = new Link( id,firstname,  lastname,  pet);
+
+        if (first == null) {
+
+            // list is empty - add the link
+            first = newLink;
+            last = newLink;
+
+            // NOTE: there is an option not to insert
+            // a link then the code above would be replaced
+            // with return false
+        } else {
+            Link current = first;
+
+            while (current != null) {
+                if (current.id.equals(searchId)) {
+
+                    // check if last link
+                    if (current.next == null) {
+                        // check if last link
+                        current.next = newLink;
+                        newLink.prev = current;
+
+                        last = newLink;
+
+                    } else {
+                        newLink.next = current.next;
+                        newLink.prev = current;
+
+                        current.next.prev = newLink;
+                        current.next = newLink;
+                    }
+
+                    return true;
+                }
+                current = current.next;
+
+            }
+        }
+
+        return false;
+
+    }
+
+    public boolean insertBefore(String searchId, String id,String firstname, 
+            String lastname, String pet) {
+
+        Link newLink = new Link( id,firstname,  lastname,  pet);
+
+        if (first == null) {
+
+            // list is empty - add the link
+            first = newLink;
+            last = newLink;
+
+            // NOTE: there is an option not to insert
+            // a link then the code above would be replaced
+            // with return false
+        } else {
+            Link current = first;
+
+            while (current != null) {
+                if (current.id.equals(searchId)) {
+
+                    // check for first link
+                    if (current.prev == null) {
+                        // check if last link
+                        current.prev = newLink;
+                        newLink.next = current;
+
+                        first = newLink;
+
+                    } else {
+                        newLink.next = current;
+                        newLink.prev = current.prev;
+
+                        current.prev.next = newLink;
+                        current.prev = newLink;
+                    }
+
+                    return true;
+                }
+                current = current.next;
+
+            }
+        }
+
+        return false;
+    }
+
+    public boolean deleteId(String searchID) {
+
+        if (first == null) {
+            return false;
+        } else {
+            Link current = first;
+
+            while (current != null) {
+                if (current.id.equals(searchID)) {
+
+                    if (current.prev == null) {
+                        // first node
+                        current.next.prev = null;
+                        first = current.next;
+                        current = null;
+                        return true;
+                    } else if (current.next == null) {
+                        // last node
+                        current.prev.next = null;
+                        last = current;
+                        current = null;
+                        return true;
+                    } else {
+                        // a center node
+                        current.prev.next = current.next;
+                        current.next.prev = current.prev;
+                        current = null;
+
+                        return true;
+                    }
+                }
+                current = current.next;
+            }
+
+            return false;
+        }
+    } //end of function
+
+    public void displayList() {
+        Link current = first;
+
+        System.out.println(&quot;&quot;);
+        while (current != null) {
+            current.displayNode();
+            current = current.next;
+        }
+        System.out.println(&quot;&quot;);
+
+    }
+}
+
+public class DS_ReadDataIntoLinkedList {
+
+    static Doubly dl = new Doubly();
+
+    public static void idSearch(String searchId) {
+
+        // note that findCity returns a boolean
+        // so it can be used in an &quot;if&quot; statement
+        if (dl.findId(searchId)) {
+            System.out.println(&quot;\n&quot; + searchId + &quot; is in list&quot;);
+        } else {
+            System.out.println(&quot;\n&quot; + searchId + &quot; not found&quot;);
+        }
+
+    }
+
+    public static void deleteID(String searchId) {
+
+        // note that findCity returns a boolean
+        // so it can be used in an &quot;if&quot; statement
+        if (dl.deleteId(searchId)) {
+            System.out.println(searchId + &quot; was deleted&quot;);
+        } else {
+            System.out.println(searchId + &quot; was NOT deleted&quot;);
+        }
+
+    }
+    
+    
+    public static boolean addData(String filePath)
+    {
+        BufferedReader br;
+        FileReader fr;
+        String inputLine;
+        
+        try {
+            // create buffered reader
+            br = new BufferedReader(new FileReader(filePath));
+            
+            // skip the header line
+            br.readLine();
+            
+            while((inputLine = br.readLine()) != null)
+            {
+                String[] inputArray = inputLine.split(&quot;,&quot;);
+                dl.addLast(inputArray[0],
+                           inputArray[1],
+                           inputArray[2],
+                           inputArray[3]);
+            
+            }
+            
+            br.close();
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        
+        
+        return true;
+    }
+    
+
+    public static void main(String[] args) {
+
+        String searchID = &quot;&quot;;
+        String insertCity = &quot;&quot;;
+        
+        String filePath = &quot;c:\\z\\peoplePets.csv&quot;;
+
+        addData(filePath);
+
+        dl.displayList();
+
+        System.out.println(&quot;\n----- Find Examples------\n&quot;);
+
+        searchID = &quot;10&quot;;
+        idSearch(searchID);
+
+        searchID = &quot;AAA&quot;;
+        idSearch(searchID);
+
+        System.out.println(&quot;\n----- Delete Examples------\n&quot;);
+
+        searchID = &quot;10&quot;;
+        deleteID(searchID);
+
+        searchID = &quot;AA&quot;;
+        deleteID(searchID);
+
+
+        System.out.println(&quot;\n----- Insert Examples------\n&quot;);
+
+        searchID = &quot;140&quot;;
+        dl.insertAfter(searchID, &quot;1440&quot;,&quot;Duke&quot;,&quot;Ellington&quot;, &quot;Phoenix&quot;);
+
+
+        searchID = &quot;145&quot;;
+        dl.insertBefore(searchID, &quot;1455&quot;,&quot;John&quot;,&quot;Coletrane&quot;, &quot;Hydra&quot;);
+
+
+        dl.displayList();
+
+        System.out.println(&quot;\nbye&quot;);
+    }
+}
+
+/* peoplePet.csv
+
+id,firstname,lastname,pet
+1,Wini,Gwinnett,Crowned hawk-eagle
+2,Birgit,Tabb,Silver gull
+3,Alfonso,Moyle,Ring-tailed possum
+4,Ode,Buckwell,Leopard
+5,Francene,Zanazzi,Wambenger
+6,Willie,Hakking,Butterfly
+7,Carlie,Pizey,Northern fur seal
+8,Cobby,Chittock,Great white pelican
+9,Ingamar,Cardenoza,Puma
+10,Brady,Vowles,Red meerkat
+11,Nonna,Betser,Lesser mouse lemur
+12,Antonina,Dovey,Insect
+13,Erastus,Crackett,Cow
+14,Lucien,Cardenosa,Yellow baboon
+15,Leon,Storm,Blue catfish
+16,Reinaldos,Welberry,Common grenadier
+17,Cherice,Coleson,Shrike
+18,Elyn,Antill,Echidna
+19,Dicky,Guppie,Puna ibis
+20,Erasmus,Pauncefort,White-necked stork
+21,Stewart,Pettifer,Starling
+22,Brand,Tytcomb,Raccoon
+23,Edwina,Cosens,Radiated tortoise
+24,Martelle,Barkus,Cormorant
+25,Blithe,Prevett,Kafue flats lechwe
+26,Abbie,Ferber,Common wombat
+27,Antonin,Sayes,Small-clawed otter
+28,Vaughan,Barzen,Hawk-eagle
+29,Elwira,Braemer,Monkey
+30,Sibelle,Vennings,Javanese cormorant
+31,Mavra,Bulter,Lemur
+32,Darrelle,Sanford,Beisa oryx
+33,Rodney,Whapples,Gull
+34,Horace,Gerwood,Tropical buckeye butterfly
+35,Garvin,Pestell,Bleu
+36,Lauralee,Crowdace,Dama wallaby
+37,Farica,Juara,Penguin
+38,Bucky,Taylo,Crab
+39,Carlynne,Pleasaunce,Common genet
+40,Dana,Percy,White-throated kingfisher
+41,Esma,McKerley,Southern ground hornbill
+42,Hube,Grills,Flamingo
+43,Hersch,Schneidau,Kangaroo
+44,Hildy,Matfin,Gull
+45,Lelia,Donaghy,American marten
+46,Eric,Tydd,Bahama pintail
+47,Clim,Tetsall,Spur-winged goose
+48,Berke,Brotherwood,Little cormorant
+49,Steve,Bride,Turtle
+50,Christiane,Stoppe,Fox
+51,Riley,Badgers,Swallow
+52,Leonidas,Pughsley,Roseate cockatoo
+53,Richard,Baudon,White-browed owl
+54,Marline,Tousey,Indian mynah
+55,Margarita,Breche,Phalarope
+56,Gerek,Aspinwall,Great horned owl
+57,Mabelle,Aronin,Grouse
+58,Curtice,Provost,Indian mynah
+59,Nikolaos,Cass,Desert tortoise
+60,Edmund,Pogosian,Grenadier
+61,Cindi,Vell,Catfish
+62,Davis,Roberts,Three-banded plover
+63,Clayborne,Jennrich,Roe deer
+64,Malory,Iwanicki,Snowy owl
+65,Toddy,Vannuchi,Arboral spiny rat
+66,Terri,Dudson,Malachite kingfisher
+67,Gabriel,Prine,Possum
+68,Jeannine,Westwick,Gecko
+69,Conney,Mattke,Stork
+70,Eulalie,Wapplington,Flamingo
+71,Darrick,Porcas,Rat
+72,Matty,Marchment,Deer
+73,Fedora,Semper,Nighthawk
+74,Barnebas,Wychard,Flying fox
+75,Edmund,Whitton,Squirrel
+76,Oliver,Dragoe,Parrot
+77,Carly,Royden,Lourie
+78,Cairistiona,Brothwell,Chestnut weaver
+79,Barnabas,Eastby,Lion
+80,Clementina,McCoish,European stork
+81,Rupert,Goosnell,Boa
+82,Jerrylee,Keir,Lizard
+83,Cariotta,Strettell,Little blue penguin
+84,Onida,Wysome,White-rumped vulture
+85,Reggis,Thursby,Cape wild cat
+86,Sharleen,Yele,Gazer
+87,Obadias,Rosedale,Vine snake
+88,Jodie,Harmond,Boat-billed heron
+89,Jonie,Goodricke,Brush-tailed phascogale
+90,Carissa,Clorley,Elk
+91,Jacki,Belhome,Northern elephant seal
+92,Virgina,Jarrette,House sparrow
+93,Hasheem,Cordeiro,Oystercatcher
+94,Roseann,Hussy,Fairy penguin
+95,Emmeline,Saurat,Bee-eater
+96,Ashlin,Ollerhead,Grey lourie
+97,Frannie,Sailes,Jungle kangaroo
+98,Shelden,Imason,Woodpecker
+99,Nicole,Cattle,Starling
+100,Bennie,Selliman,Ant
+101,Monroe,Sturzaker,Wild turkey
+102,Lou,Drew-Clifton,Ferruginous hawk
+103,Gerladina,Broadbere,Yellow-billed stork
+104,Laney,Scartifield,Common zebra
+105,Rolfe,Dressel,Cape Barren goose
+106,Clarita,Zylbermann,Red-legged pademelon
+107,Ev,Buckston,Kite
+108,Vidovic,Lawson,Buffalo
+109,Daloris,Grzesiak,Southern brown bandicoot
+110,Pier,Sproson,Brocket
+111,Edwina,Barlace,Giant girdled lizard
+112,Elvin,Birchwood,Deer
+113,Jedediah,Lazonby,Wallaby
+114,Ambur,Lochead,Gila monster
+115,Mirabella,Ferron,Possum
+116,Dougy,Gianinotti,Openbill
+117,Cher,Sivill,Dog
+118,Durante,Wissby,Genet
+119,Rora,Shord,Dove
+120,Dame,Jennison,Red-billed toucan
+121,Ira,Karolowski,Eurasian red squirrel
+122,Juliet,Hobson,Greylag goose
+123,Natale,Tattersdill,Starling
+124,Caitlin,Leggett,Ring-necked pheasant
+125,Hamnet,Danelut,South African hedgehog
+126,Christye,Stores,Porcupine
+127,Vince,Paolo,Kangaroo
+128,Cristy,Fesby,Starling
+129,Britney,Standfield,Burrowing owl
+130,Kaleena,Volkers,Langur
+131,Averil,Kimbell,Rhea
+132,Carmelita,Gehrels,Spotted-tailed quoll
+133,Cory,Sreenan,Hyrax
+134,Sybille,Filippone,Dove
+135,Delia,Forkan,Agama lizard
+136,Sigfried,Cattlemull,Eastern dwarf mongoose
+137,Rowena,James,Fox
+138,Shane,Naisey,Jaguarundi
+139,Janine,Ielden,Eastern fox squirrel
+140,Beverlie,Biggerstaff,Fox
+141,Menard,Archbould,Roe deer
+142,Darline,Keating,Caribou
+143,Heall,Chritchley,Beaver
+144,Corenda,Bunnell,Glossy starling
+145,Town,Mandal,White-winged tern
+146,Pietrek,Primmer,Superb starling
+147,Guillemette,Jasper,Gemsbok
+148,Diane,Mewes,Civet
+149,Hatty,Liddle,Grouse
+150,Ange,Beardwell,Deer
+
+ */</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><hr class="py-2 my-5 translate-y-2"/><p>End Of Topic</p><div class="myst-backmatter-parts"></div><div class="myst-footer-links flex pt-10 mb-10 space-x-4"><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-prev" href="/csci132/xcircularlinkedlist"><div class="flex h-full align-middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:-translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path></svg><div class="flex-grow text-right"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">CSCI 132</div>Circular Linked List - Links as Sub Class</div></div></a><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-next" href="/csci132/xdoublylinkedlistcsharp"><div class="flex h-full align-middle"><div class="flex-grow"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">CSCI 132</div>C# Linked List Class</div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path></svg></div></a></div></article></main><script>((a,l)=>{if(!window.history.state||!window.history.state.key){let u=Math.random().toString(32).slice(2);window.history.replaceState({key:u},"")}try{let d=JSON.parse(sessionStorage.getItem(a)||"{}")[l||window.history.state.key];typeof d=="number"&&window.scrollTo(0,d)}catch(u){console.error(u),sessionStorage.removeItem(a)}})("positions", null)</script><link rel="modulepreload" href="/csci132/build/entry.client-PCJPW7TK.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-AQ2CODAG.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-JJXTQVMA.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-OZE3FFNP.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-N76G4W6Y.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-C4DFGG5C.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-J7TUH54J.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-FZ2S7OYD.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-JEM6JXYA.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-34XIY2DH.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-KQM5FBHR.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-OCWQY3HK.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-7HNKBP4B.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-CUKUDK3R.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-3EBOCCHJ.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-O4VQNZ62.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-4OEDG4JQ.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-GUCIBHGO.js"/><link rel="modulepreload" href="/csci132/build/root-AA24SA6C.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-AH7OE64W.js"/><link rel="modulepreload" href="/csci132/build/routes/$-5SFLQWPV.js"/><script>window.__remixContext = {"url":"/xdoublylinkedlistreaddataintoll","state":{"loaderData":{"root":{"config":{"version":2,"myst":"1.6.4","options":{"logo_text":"CSCI 132"},"nav":[],"actions":[],"projects":[{"date":"2025-12-04","exports":[],"title":"JAVA and Basic Algorithms","short_title":"CSCI 132","description":"Course material for CSCI 132","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci132_bdbook\\myst-generated-uid-0"}],"keywords":["JAVA","Algorithms"],"id":"70435226-f2e9-4585-b1e5-763a843f2399","toc":[{"file":"index.md"},{"file":"xDataStructuresAndAlgorithms.md"},{"children":[{"file":"xArraysCoreFunctionality.md"},{"file":"xArrayWarpAround.md"},{"file":"xArrayAddDeleteData.md"}],"file":"xArrayTechniques.md"},{"file":"xEncapsulationNonEncapsulation.md"},{"children":[{"file":"xON_VisualizingBigONotation.md"},{"file":"xBigONotationExplained.md"}],"file":"xBigONotation.md"},{"children":[{"file":"xSinglyLinkedListRev3.md"},{"file":"xDoublyLinkedList.md"},{"file":"xDoublyLinkedListSubClass.md"},{"file":"xCircularLinkedList.md"},{"file":"xDoublyLinkedListReadDataIntoLL.md"},{"file":"xDoublyLinkedListCSharp.md"},{"file":"xDoublyLinkedListJava.md"}],"file":"xLinkedLists.md"},{"children":[{"file":"xStackUsingArrayOfObjects.md"},{"file":"xQueueUsingArrayOfObjects.md"},{"file":"xPriorityQueue.md"}],"file":"xStacksAndQueues.md"},{"children":[{"file":"xSort_Bubble.md"},{"file":"xbucketsort.md"},{"file":"xMergeSort.md"},{"file":"xMergeSort_revA.md"},{"file":"xQuickSort.md"},{"file":"xQuicksortDemo.md"},{"file":"xQuicksortLinkedLists.md"},{"file":"xSort_HeapSort.md"},{"file":"xUnderstandingQuickMergeHeap.md"},{"file":"xSortingVideosVisualizers.md"},{"file":"xend.md"}],"file":"xSortAlgorithms.md"}],"bibliography":[],"index":"index","pages":[{"slug":"xdatastructuresandalgorithms","title":"Data Structures and Algorithms","description":"","date":"2025-12-04","thumbnail":"/csci132/build/c798a09d2ea7aaf43821d8d632896091.jpeg","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xarraytechniques","title":"Array Techniques","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xarrayscorefunctionality","title":"Arrays Core Functionality","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xarraywarparound","title":"Array Warp Around","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xarrayadddeletedata","title":"Array Add and Delete Data","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xencapsulationnonencapsulation","title":"Encapsulation vs Non-Encapsulation","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbigonotation","title":"Big O Notation","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xon-visualizingbigonotation","title":"Visualizing Big O notation","description":"","date":"2025-12-04","thumbnail":"/csci132/build/vbon_image_O1-9b81a61817a64d078f43a349fd16f04b.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbigonotationexplained","title":"Big O Notation - Explained","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xlinkedlists","title":"Linked Lists","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsinglylinkedlistrev3","title":"Singly Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlist","title":"Doubly Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistsubclass","title":"Doubly Linked List - Links as Sub Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xcircularlinkedlist","title":"Circular Linked List - Links as Sub Class","description":"","date":"2025-12-04","thumbnail":"/csci132/build/CircularLinkList-c844fefbdf30018d464995a97d1c7c8d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistreaddataintoll","title":"Reading Datafile Into Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistcsharp","title":"C# Linked List Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistjava","title":"Java Linked List Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xstacksandqueues","title":"Stacks and Queues","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xstackusingarrayofobjects","title":"Stack  - Using Array of Objects","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xqueueusingarrayofobjects","title":"Queue  - Using Array Of Objects","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpriorityqueue","title":"Priority Queue","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsortalgorithms","title":"Sorting Algorithms","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsort-bubble","title":"Bubble Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbucketsort","title":"Bucket Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmergesort","title":"Merge Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmergesort-reva","title":"Merge Sort - Demo Code","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksort","title":"Quick Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksortdemo","title":"Quicksort Demo","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksortlinkedlists","title":"Quicksort - Linked Lists","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsort-heapsort","title":"Heap Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingquickmergeheap","title":"Understanding Three Quick, Merge, and Heap Sort Algorithms","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsortingvideosvisualizers","title":"Sorting Videos and Visualizers","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xend","title":"End Of Section","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2}]}]},"CONTENT_CDN_PORT":"3100","MODE":"static","BASE_URL":"/csci132"},"routes/$":{"config":{"version":2,"myst":"1.6.4","options":{"logo_text":"CSCI 132"},"nav":[],"actions":[],"projects":[{"date":"2025-12-04","exports":[],"title":"JAVA and Basic Algorithms","short_title":"CSCI 132","description":"Course material for CSCI 132","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci132_bdbook\\myst-generated-uid-0"}],"keywords":["JAVA","Algorithms"],"id":"70435226-f2e9-4585-b1e5-763a843f2399","toc":[{"file":"index.md"},{"file":"xDataStructuresAndAlgorithms.md"},{"children":[{"file":"xArraysCoreFunctionality.md"},{"file":"xArrayWarpAround.md"},{"file":"xArrayAddDeleteData.md"}],"file":"xArrayTechniques.md"},{"file":"xEncapsulationNonEncapsulation.md"},{"children":[{"file":"xON_VisualizingBigONotation.md"},{"file":"xBigONotationExplained.md"}],"file":"xBigONotation.md"},{"children":[{"file":"xSinglyLinkedListRev3.md"},{"file":"xDoublyLinkedList.md"},{"file":"xDoublyLinkedListSubClass.md"},{"file":"xCircularLinkedList.md"},{"file":"xDoublyLinkedListReadDataIntoLL.md"},{"file":"xDoublyLinkedListCSharp.md"},{"file":"xDoublyLinkedListJava.md"}],"file":"xLinkedLists.md"},{"children":[{"file":"xStackUsingArrayOfObjects.md"},{"file":"xQueueUsingArrayOfObjects.md"},{"file":"xPriorityQueue.md"}],"file":"xStacksAndQueues.md"},{"children":[{"file":"xSort_Bubble.md"},{"file":"xbucketsort.md"},{"file":"xMergeSort.md"},{"file":"xMergeSort_revA.md"},{"file":"xQuickSort.md"},{"file":"xQuicksortDemo.md"},{"file":"xQuicksortLinkedLists.md"},{"file":"xSort_HeapSort.md"},{"file":"xUnderstandingQuickMergeHeap.md"},{"file":"xSortingVideosVisualizers.md"},{"file":"xend.md"}],"file":"xSortAlgorithms.md"}],"bibliography":[],"index":"index","pages":[{"slug":"xdatastructuresandalgorithms","title":"Data Structures and Algorithms","description":"","date":"2025-12-04","thumbnail":"/csci132/build/c798a09d2ea7aaf43821d8d632896091.jpeg","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xarraytechniques","title":"Array Techniques","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xarrayscorefunctionality","title":"Arrays Core Functionality","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xarraywarparound","title":"Array Warp Around","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xarrayadddeletedata","title":"Array Add and Delete Data","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xencapsulationnonencapsulation","title":"Encapsulation vs Non-Encapsulation","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbigonotation","title":"Big O Notation","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xon-visualizingbigonotation","title":"Visualizing Big O notation","description":"","date":"2025-12-04","thumbnail":"/csci132/build/vbon_image_O1-9b81a61817a64d078f43a349fd16f04b.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbigonotationexplained","title":"Big O Notation - Explained","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xlinkedlists","title":"Linked Lists","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsinglylinkedlistrev3","title":"Singly Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlist","title":"Doubly Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistsubclass","title":"Doubly Linked List - Links as Sub Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xcircularlinkedlist","title":"Circular Linked List - Links as Sub Class","description":"","date":"2025-12-04","thumbnail":"/csci132/build/CircularLinkList-c844fefbdf30018d464995a97d1c7c8d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistreaddataintoll","title":"Reading Datafile Into Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistcsharp","title":"C# Linked List Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistjava","title":"Java Linked List Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xstacksandqueues","title":"Stacks and Queues","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xstackusingarrayofobjects","title":"Stack  - Using Array of Objects","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xqueueusingarrayofobjects","title":"Queue  - Using Array Of Objects","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpriorityqueue","title":"Priority Queue","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsortalgorithms","title":"Sorting Algorithms","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsort-bubble","title":"Bubble Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbucketsort","title":"Bucket Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmergesort","title":"Merge Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmergesort-reva","title":"Merge Sort - Demo Code","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksort","title":"Quick Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksortdemo","title":"Quicksort Demo","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksortlinkedlists","title":"Quicksort - Linked Lists","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsort-heapsort","title":"Heap Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingquickmergeheap","title":"Understanding Three Quick, Merge, and Heap Sort Algorithms","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsortingvideosvisualizers","title":"Sorting Videos and Visualizers","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xend","title":"End Of Section","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2}]}]},"page":{"version":2,"kind":"Article","sha256":"ea469790c81ba7d5e380780d2161b200abe5c7e096fd6e770d9435124b97482a","slug":"xdoublylinkedlistreaddataintoll","location":"/xDoublyLinkedListReadDataIntoLL.md","dependencies":[],"frontmatter":{"title":"Reading Datafile Into Linked List","content_includes_title":false,"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci132_bdbook\\myst-generated-uid-0"}],"date":"2025-12-04","keywords":["JAVA","Algorithms"],"numbering":{"title":{"offset":1}},"exports":[{"format":"md","filename":"xDoublyLinkedListReadDataIntoLL.md","url":"/csci132/build/xDoublyLinkedListRea-72c8177372134075c188225d67ec3595.md"}]},"mdast":{"type":"root","children":[{"type":"block","children":[{"type":"heading","depth":2,"position":{"start":{"line":5,"column":1},"end":{"line":5,"column":1}},"children":[{"type":"text","value":"Lecture Code","position":{"start":{"line":5,"column":1},"end":{"line":5,"column":1}},"key":"kd5phUM5te"}],"identifier":"lecture-code","label":"Lecture Code","html_id":"lecture-code","implicit":true,"key":"eAQgWDzadY"},{"type":"code","lang":"java","value":"/*\nProgrammer: James Goudy\nProject: Reading a csv file into a linked list\n */\n\n\n\nimport java.io.BufferedReader;\nimport java.io.FileNotFoundException;\nimport java.io.FileReader;\nimport java.util.logging.Level;\nimport java.util.logging.Logger;\n\nclass Link {\n\n    Link first = null;\n    Link last = null;\n\n    // data\n    String id = null;\n    String firstname;\n    String lastname;\n    String pet;\n    \n\n    // link navigation\n    Link next = null;\n    Link prev = null;\n\n    // constructor\n    public Link(String id, String firstname, String lastname, String pet) {\n        this.id = id;\n        this.firstname = firstname;\n        this.lastname = lastname;\n        this.pet = pet;\n    }\n\n\n    public void displayNode() {\n        System.out.println(\"{\"+ firstname + \" \" + lastname + \" \"\n                            +pet+ \" \" + id +\" } \" );\n    }\n} // end of link\n\n\n\n\nclass Doubly {\n\n    Link first = null;\n    Link last = null;\n\n    // constructor\n    public Doubly() {\n\n        first = null;\n        last = null;\n    }\n\n    // add link at the beginning of the list\n    public boolean addFirst(String id,String firstname, \n            String lastname, String pet) {\n        Link newLink = new Link( id,firstname,  lastname,  pet);\n\n        if (first == null) {\n            // if list is empty\n            first = newLink;\n            last = newLink;\n        } else {\n            newLink.next = first;\n            first.prev = newLink;\n            first = newLink;\n        }\n\n        return true;\n    }\n\n    // add link to the end of the list\n    public boolean addLast(String id,String firstname, \n            String lastname, String pet) {\n        Link newLink = new Link( id,firstname,  lastname,  pet);\n\n        if (first == null) {\n            // if list is empty\n            first = newLink;\n            last = newLink;\n        } else {\n            newLink.prev = last;\n            last.next = newLink;\n            last = newLink;\n        }\n\n        return true;\n    }\n\n    public boolean findId(String searchID) {\n\n        if (first == null) {\n\n            // if list is empty\n            return false;\n        } else {\n            Link current = first;\n\n            while (current != null) {\n                if (current.id.equals(searchID)) {\n                    return true;\n                }\n                current = current.next;\n            }\n\n            return false;\n        }\n    }\n\n    public boolean insertAfter(String searchId, String id,String firstname, \n            String lastname, String pet) {\n        Link newLink = new Link( id,firstname,  lastname,  pet);\n\n        if (first == null) {\n\n            // list is empty - add the link\n            first = newLink;\n            last = newLink;\n\n            // NOTE: there is an option not to insert\n            // a link then the code above would be replaced\n            // with return false\n        } else {\n            Link current = first;\n\n            while (current != null) {\n                if (current.id.equals(searchId)) {\n\n                    // check if last link\n                    if (current.next == null) {\n                        // check if last link\n                        current.next = newLink;\n                        newLink.prev = current;\n\n                        last = newLink;\n\n                    } else {\n                        newLink.next = current.next;\n                        newLink.prev = current;\n\n                        current.next.prev = newLink;\n                        current.next = newLink;\n                    }\n\n                    return true;\n                }\n                current = current.next;\n\n            }\n        }\n\n        return false;\n\n    }\n\n    public boolean insertBefore(String searchId, String id,String firstname, \n            String lastname, String pet) {\n\n        Link newLink = new Link( id,firstname,  lastname,  pet);\n\n        if (first == null) {\n\n            // list is empty - add the link\n            first = newLink;\n            last = newLink;\n\n            // NOTE: there is an option not to insert\n            // a link then the code above would be replaced\n            // with return false\n        } else {\n            Link current = first;\n\n            while (current != null) {\n                if (current.id.equals(searchId)) {\n\n                    // check for first link\n                    if (current.prev == null) {\n                        // check if last link\n                        current.prev = newLink;\n                        newLink.next = current;\n\n                        first = newLink;\n\n                    } else {\n                        newLink.next = current;\n                        newLink.prev = current.prev;\n\n                        current.prev.next = newLink;\n                        current.prev = newLink;\n                    }\n\n                    return true;\n                }\n                current = current.next;\n\n            }\n        }\n\n        return false;\n    }\n\n    public boolean deleteId(String searchID) {\n\n        if (first == null) {\n            return false;\n        } else {\n            Link current = first;\n\n            while (current != null) {\n                if (current.id.equals(searchID)) {\n\n                    if (current.prev == null) {\n                        // first node\n                        current.next.prev = null;\n                        first = current.next;\n                        current = null;\n                        return true;\n                    } else if (current.next == null) {\n                        // last node\n                        current.prev.next = null;\n                        last = current;\n                        current = null;\n                        return true;\n                    } else {\n                        // a center node\n                        current.prev.next = current.next;\n                        current.next.prev = current.prev;\n                        current = null;\n\n                        return true;\n                    }\n                }\n                current = current.next;\n            }\n\n            return false;\n        }\n    } //end of function\n\n    public void displayList() {\n        Link current = first;\n\n        System.out.println(\"\");\n        while (current != null) {\n            current.displayNode();\n            current = current.next;\n        }\n        System.out.println(\"\");\n\n    }\n}\n\npublic class DS_ReadDataIntoLinkedList {\n\n    static Doubly dl = new Doubly();\n\n    public static void idSearch(String searchId) {\n\n        // note that findCity returns a boolean\n        // so it can be used in an \"if\" statement\n        if (dl.findId(searchId)) {\n            System.out.println(\"\\n\" + searchId + \" is in list\");\n        } else {\n            System.out.println(\"\\n\" + searchId + \" not found\");\n        }\n\n    }\n\n    public static void deleteID(String searchId) {\n\n        // note that findCity returns a boolean\n        // so it can be used in an \"if\" statement\n        if (dl.deleteId(searchId)) {\n            System.out.println(searchId + \" was deleted\");\n        } else {\n            System.out.println(searchId + \" was NOT deleted\");\n        }\n\n    }\n    \n    \n    public static boolean addData(String filePath)\n    {\n        BufferedReader br;\n        FileReader fr;\n        String inputLine;\n        \n        try {\n            // create buffered reader\n            br = new BufferedReader(new FileReader(filePath));\n            \n            // skip the header line\n            br.readLine();\n            \n            while((inputLine = br.readLine()) != null)\n            {\n                String[] inputArray = inputLine.split(\",\");\n                dl.addLast(inputArray[0],\n                           inputArray[1],\n                           inputArray[2],\n                           inputArray[3]);\n            \n            }\n            \n            br.close();\n            \n        } catch (FileNotFoundException ex) {\n            System.out.println(ex.getMessage());\n            return false;\n        }catch (Exception e)\n        {\n            System.out.println(e.getMessage());\n            return false;\n        }\n        \n        \n        return true;\n    }\n    \n\n    public static void main(String[] args) {\n\n        String searchID = \"\";\n        String insertCity = \"\";\n        \n        String filePath = \"c:\\\\z\\\\peoplePets.csv\";\n\n        addData(filePath);\n\n        dl.displayList();\n\n        System.out.println(\"\\n----- Find Examples------\\n\");\n\n        searchID = \"10\";\n        idSearch(searchID);\n\n        searchID = \"AAA\";\n        idSearch(searchID);\n\n        System.out.println(\"\\n----- Delete Examples------\\n\");\n\n        searchID = \"10\";\n        deleteID(searchID);\n\n        searchID = \"AA\";\n        deleteID(searchID);\n\n\n        System.out.println(\"\\n----- Insert Examples------\\n\");\n\n        searchID = \"140\";\n        dl.insertAfter(searchID, \"1440\",\"Duke\",\"Ellington\", \"Phoenix\");\n\n\n        searchID = \"145\";\n        dl.insertBefore(searchID, \"1455\",\"John\",\"Coletrane\", \"Hydra\");\n\n\n        dl.displayList();\n\n        System.out.println(\"\\nbye\");\n    }\n}\n\n/* peoplePet.csv\n\nid,firstname,lastname,pet\n1,Wini,Gwinnett,Crowned hawk-eagle\n2,Birgit,Tabb,Silver gull\n3,Alfonso,Moyle,Ring-tailed possum\n4,Ode,Buckwell,Leopard\n5,Francene,Zanazzi,Wambenger\n6,Willie,Hakking,Butterfly\n7,Carlie,Pizey,Northern fur seal\n8,Cobby,Chittock,Great white pelican\n9,Ingamar,Cardenoza,Puma\n10,Brady,Vowles,Red meerkat\n11,Nonna,Betser,Lesser mouse lemur\n12,Antonina,Dovey,Insect\n13,Erastus,Crackett,Cow\n14,Lucien,Cardenosa,Yellow baboon\n15,Leon,Storm,Blue catfish\n16,Reinaldos,Welberry,Common grenadier\n17,Cherice,Coleson,Shrike\n18,Elyn,Antill,Echidna\n19,Dicky,Guppie,Puna ibis\n20,Erasmus,Pauncefort,White-necked stork\n21,Stewart,Pettifer,Starling\n22,Brand,Tytcomb,Raccoon\n23,Edwina,Cosens,Radiated tortoise\n24,Martelle,Barkus,Cormorant\n25,Blithe,Prevett,Kafue flats lechwe\n26,Abbie,Ferber,Common wombat\n27,Antonin,Sayes,Small-clawed otter\n28,Vaughan,Barzen,Hawk-eagle\n29,Elwira,Braemer,Monkey\n30,Sibelle,Vennings,Javanese cormorant\n31,Mavra,Bulter,Lemur\n32,Darrelle,Sanford,Beisa oryx\n33,Rodney,Whapples,Gull\n34,Horace,Gerwood,Tropical buckeye butterfly\n35,Garvin,Pestell,Bleu\n36,Lauralee,Crowdace,Dama wallaby\n37,Farica,Juara,Penguin\n38,Bucky,Taylo,Crab\n39,Carlynne,Pleasaunce,Common genet\n40,Dana,Percy,White-throated kingfisher\n41,Esma,McKerley,Southern ground hornbill\n42,Hube,Grills,Flamingo\n43,Hersch,Schneidau,Kangaroo\n44,Hildy,Matfin,Gull\n45,Lelia,Donaghy,American marten\n46,Eric,Tydd,Bahama pintail\n47,Clim,Tetsall,Spur-winged goose\n48,Berke,Brotherwood,Little cormorant\n49,Steve,Bride,Turtle\n50,Christiane,Stoppe,Fox\n51,Riley,Badgers,Swallow\n52,Leonidas,Pughsley,Roseate cockatoo\n53,Richard,Baudon,White-browed owl\n54,Marline,Tousey,Indian mynah\n55,Margarita,Breche,Phalarope\n56,Gerek,Aspinwall,Great horned owl\n57,Mabelle,Aronin,Grouse\n58,Curtice,Provost,Indian mynah\n59,Nikolaos,Cass,Desert tortoise\n60,Edmund,Pogosian,Grenadier\n61,Cindi,Vell,Catfish\n62,Davis,Roberts,Three-banded plover\n63,Clayborne,Jennrich,Roe deer\n64,Malory,Iwanicki,Snowy owl\n65,Toddy,Vannuchi,Arboral spiny rat\n66,Terri,Dudson,Malachite kingfisher\n67,Gabriel,Prine,Possum\n68,Jeannine,Westwick,Gecko\n69,Conney,Mattke,Stork\n70,Eulalie,Wapplington,Flamingo\n71,Darrick,Porcas,Rat\n72,Matty,Marchment,Deer\n73,Fedora,Semper,Nighthawk\n74,Barnebas,Wychard,Flying fox\n75,Edmund,Whitton,Squirrel\n76,Oliver,Dragoe,Parrot\n77,Carly,Royden,Lourie\n78,Cairistiona,Brothwell,Chestnut weaver\n79,Barnabas,Eastby,Lion\n80,Clementina,McCoish,European stork\n81,Rupert,Goosnell,Boa\n82,Jerrylee,Keir,Lizard\n83,Cariotta,Strettell,Little blue penguin\n84,Onida,Wysome,White-rumped vulture\n85,Reggis,Thursby,Cape wild cat\n86,Sharleen,Yele,Gazer\n87,Obadias,Rosedale,Vine snake\n88,Jodie,Harmond,Boat-billed heron\n89,Jonie,Goodricke,Brush-tailed phascogale\n90,Carissa,Clorley,Elk\n91,Jacki,Belhome,Northern elephant seal\n92,Virgina,Jarrette,House sparrow\n93,Hasheem,Cordeiro,Oystercatcher\n94,Roseann,Hussy,Fairy penguin\n95,Emmeline,Saurat,Bee-eater\n96,Ashlin,Ollerhead,Grey lourie\n97,Frannie,Sailes,Jungle kangaroo\n98,Shelden,Imason,Woodpecker\n99,Nicole,Cattle,Starling\n100,Bennie,Selliman,Ant\n101,Monroe,Sturzaker,Wild turkey\n102,Lou,Drew-Clifton,Ferruginous hawk\n103,Gerladina,Broadbere,Yellow-billed stork\n104,Laney,Scartifield,Common zebra\n105,Rolfe,Dressel,Cape Barren goose\n106,Clarita,Zylbermann,Red-legged pademelon\n107,Ev,Buckston,Kite\n108,Vidovic,Lawson,Buffalo\n109,Daloris,Grzesiak,Southern brown bandicoot\n110,Pier,Sproson,Brocket\n111,Edwina,Barlace,Giant girdled lizard\n112,Elvin,Birchwood,Deer\n113,Jedediah,Lazonby,Wallaby\n114,Ambur,Lochead,Gila monster\n115,Mirabella,Ferron,Possum\n116,Dougy,Gianinotti,Openbill\n117,Cher,Sivill,Dog\n118,Durante,Wissby,Genet\n119,Rora,Shord,Dove\n120,Dame,Jennison,Red-billed toucan\n121,Ira,Karolowski,Eurasian red squirrel\n122,Juliet,Hobson,Greylag goose\n123,Natale,Tattersdill,Starling\n124,Caitlin,Leggett,Ring-necked pheasant\n125,Hamnet,Danelut,South African hedgehog\n126,Christye,Stores,Porcupine\n127,Vince,Paolo,Kangaroo\n128,Cristy,Fesby,Starling\n129,Britney,Standfield,Burrowing owl\n130,Kaleena,Volkers,Langur\n131,Averil,Kimbell,Rhea\n132,Carmelita,Gehrels,Spotted-tailed quoll\n133,Cory,Sreenan,Hyrax\n134,Sybille,Filippone,Dove\n135,Delia,Forkan,Agama lizard\n136,Sigfried,Cattlemull,Eastern dwarf mongoose\n137,Rowena,James,Fox\n138,Shane,Naisey,Jaguarundi\n139,Janine,Ielden,Eastern fox squirrel\n140,Beverlie,Biggerstaff,Fox\n141,Menard,Archbould,Roe deer\n142,Darline,Keating,Caribou\n143,Heall,Chritchley,Beaver\n144,Corenda,Bunnell,Glossy starling\n145,Town,Mandal,White-winged tern\n146,Pietrek,Primmer,Superb starling\n147,Guillemette,Jasper,Gemsbok\n148,Diane,Mewes,Civet\n149,Hatty,Liddle,Grouse\n150,Ange,Beardwell,Deer\n\n */","position":{"start":{"line":7,"column":1},"end":{"line":533,"column":1}},"key":"wS16lnYcUE"},{"type":"thematicBreak","position":{"start":{"line":537,"column":1},"end":{"line":537,"column":1}},"key":"nnkzyC95HG"},{"type":"paragraph","position":{"start":{"line":539,"column":1},"end":{"line":539,"column":1}},"children":[{"type":"text","value":"End Of Topic","position":{"start":{"line":539,"column":1},"end":{"line":539,"column":1}},"key":"i0jPCC1dtE"}],"key":"vIXyp8YJxZ"}],"key":"JX7HPdKLec"}],"key":"vJsNEwYxq8"},"references":{"cite":{"order":[],"data":{}}},"footer":{"navigation":{"prev":{"title":"Circular Linked List - Links as Sub Class","url":"/xcircularlinkedlist","group":"CSCI 132"},"next":{"title":"C# Linked List Class","url":"/xdoublylinkedlistcsharp","group":"CSCI 132"}}},"domain":"http://localhost:3002"},"project":{"date":"2025-12-04","exports":[],"title":"JAVA and Basic Algorithms","short_title":"CSCI 132","description":"Course material for CSCI 132","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci132_bdbook\\myst-generated-uid-0"}],"keywords":["JAVA","Algorithms"],"id":"70435226-f2e9-4585-b1e5-763a843f2399","toc":[{"file":"index.md"},{"file":"xDataStructuresAndAlgorithms.md"},{"children":[{"file":"xArraysCoreFunctionality.md"},{"file":"xArrayWarpAround.md"},{"file":"xArrayAddDeleteData.md"}],"file":"xArrayTechniques.md"},{"file":"xEncapsulationNonEncapsulation.md"},{"children":[{"file":"xON_VisualizingBigONotation.md"},{"file":"xBigONotationExplained.md"}],"file":"xBigONotation.md"},{"children":[{"file":"xSinglyLinkedListRev3.md"},{"file":"xDoublyLinkedList.md"},{"file":"xDoublyLinkedListSubClass.md"},{"file":"xCircularLinkedList.md"},{"file":"xDoublyLinkedListReadDataIntoLL.md"},{"file":"xDoublyLinkedListCSharp.md"},{"file":"xDoublyLinkedListJava.md"}],"file":"xLinkedLists.md"},{"children":[{"file":"xStackUsingArrayOfObjects.md"},{"file":"xQueueUsingArrayOfObjects.md"},{"file":"xPriorityQueue.md"}],"file":"xStacksAndQueues.md"},{"children":[{"file":"xSort_Bubble.md"},{"file":"xbucketsort.md"},{"file":"xMergeSort.md"},{"file":"xMergeSort_revA.md"},{"file":"xQuickSort.md"},{"file":"xQuicksortDemo.md"},{"file":"xQuicksortLinkedLists.md"},{"file":"xSort_HeapSort.md"},{"file":"xUnderstandingQuickMergeHeap.md"},{"file":"xSortingVideosVisualizers.md"},{"file":"xend.md"}],"file":"xSortAlgorithms.md"}],"bibliography":[],"index":"index","pages":[{"slug":"xdatastructuresandalgorithms","title":"Data Structures and Algorithms","description":"","date":"2025-12-04","thumbnail":"/csci132/build/c798a09d2ea7aaf43821d8d632896091.jpeg","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xarraytechniques","title":"Array Techniques","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xarrayscorefunctionality","title":"Arrays Core Functionality","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xarraywarparound","title":"Array Warp Around","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xarrayadddeletedata","title":"Array Add and Delete Data","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xencapsulationnonencapsulation","title":"Encapsulation vs Non-Encapsulation","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbigonotation","title":"Big O Notation","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xon-visualizingbigonotation","title":"Visualizing Big O notation","description":"","date":"2025-12-04","thumbnail":"/csci132/build/vbon_image_O1-9b81a61817a64d078f43a349fd16f04b.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbigonotationexplained","title":"Big O Notation - Explained","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xlinkedlists","title":"Linked Lists","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsinglylinkedlistrev3","title":"Singly Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlist","title":"Doubly Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistsubclass","title":"Doubly Linked List - Links as Sub Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xcircularlinkedlist","title":"Circular Linked List - Links as Sub Class","description":"","date":"2025-12-04","thumbnail":"/csci132/build/CircularLinkList-c844fefbdf30018d464995a97d1c7c8d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistreaddataintoll","title":"Reading Datafile Into Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistcsharp","title":"C# Linked List Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistjava","title":"Java Linked List Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xstacksandqueues","title":"Stacks and Queues","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xstackusingarrayofobjects","title":"Stack  - Using Array of Objects","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xqueueusingarrayofobjects","title":"Queue  - Using Array Of Objects","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpriorityqueue","title":"Priority Queue","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsortalgorithms","title":"Sorting Algorithms","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsort-bubble","title":"Bubble Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbucketsort","title":"Bucket Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmergesort","title":"Merge Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmergesort-reva","title":"Merge Sort - Demo Code","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksort","title":"Quick Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksortdemo","title":"Quicksort Demo","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksortlinkedlists","title":"Quicksort - Linked Lists","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsort-heapsort","title":"Heap Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingquickmergeheap","title":"Understanding Three Quick, Merge, and Heap Sort Algorithms","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsortingvideosvisualizers","title":"Sorting Videos and Visualizers","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xend","title":"End Of Section","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2}]}}},"actionData":null,"errors":null},"future":{"unstable_dev":false,"unstable_postcss":false,"unstable_tailwind":false,"v2_errorBoundary":true,"v2_headers":true,"v2_meta":true,"v2_normalizeFormMethod":true,"v2_routeConvention":true}};</script><script type="module" async="">import "/csci132/build/manifest-5D5D9E8C.js";
+import * as route0 from "/csci132/build/root-AA24SA6C.js";
+import * as route1 from "/csci132/build/routes/$-5SFLQWPV.js";
+window.__remixRouteModules = {"root":route0,"routes/$":route1};
+
+import("/csci132/build/entry.client-PCJPW7TK.js");</script></body></html>

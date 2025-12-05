@@ -1,0 +1,575 @@
+<!DOCTYPE html><html lang="en" class="" style="scroll-padding:60px"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Circular Linked List - Links as Sub Class - JAVA and Basic Algorithms</title><meta property="og:title" content="Circular Linked List - Links as Sub Class - JAVA and Basic Algorithms"/><meta name="generator" content="mystmd"/><meta name="description" content="Course material for CSCI 132"/><meta property="og:description" content="Course material for CSCI 132"/><meta name="keywords" content="JAVA, Algorithms"/><meta name="image" content="/csci132/build/CircularLinkList-c844fefbdf30018d464995a97d1c7c8d.png"/><meta property="og:image" content="/csci132/build/CircularLinkList-c844fefbdf30018d464995a97d1c7c8d.png"/><link rel="stylesheet" href="/csci132/build/_assets/app-SDGCW62C.css"/><link rel="stylesheet" href="/csci132/build/_assets/thebe-core-VKVHG5VY.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jupyter-matplotlib@0.11.3/css/mpl_widget.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous"/><link rel="icon" href="/csci132/favicon.ico"/><link rel="stylesheet" href="/csci132/myst-theme.css"/><script>
+  const savedTheme = localStorage.getItem("myst:theme");
+  const theme = window.matchMedia("(prefers-color-scheme: light)").matches ? 'light' : 'dark';
+  const classes = document.documentElement.classList;
+  const hasAnyTheme = classes.contains('light') || classes.contains('dark');
+  if (!hasAnyTheme) classes.add(savedTheme ?? theme);
+</script></head><body class="m-0 transition-colors duration-500 bg-white dark:bg-stone-900"><div class="myst-skip-to-article fixed top-1 left-1 h-[0px] w-[0px] focus-within:z-40 focus-within:h-auto focus-within:w-auto bg-white overflow-hidden focus-within:p-2 focus-within:ring-1" aria-label="skip to content options"><a href="#skip-to-frontmatter" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article frontmatter</a><a href="#skip-to-article" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article content</a></div><dialog id="myst-no-css" style="position:fixed;left:0px;top:0px;width:100vw;height:100vh;font-size:4rem;padding:1rem;color:black;background:white"><strong>Site not loading correctly?</strong><p>This may be due to an incorrect <code>BASE_URL</code> configuration. See<!-- --> <a href="https://mystmd.org/guide/deployment#deploy-base-url">the MyST Documentation</a> <!-- -->for reference.</p><script>
+    (() => {
+            // Test for has-styling variable set by the MyST stylesheet
+            const node = document.currentScript.parentNode;
+            const hasCSS = window.getComputedStyle(node).getPropertyValue("--has-styling");
+            if (hasCSS === ""){
+                    node.showModal();
+            }
+
+    })()
+</script></dialog><div class="myst-top-nav bg-white/80 backdrop-blur dark:bg-stone-900/80 shadow dark:shadow-stone-700 p-3 md:px-8 sticky w-screen top-0 z-30 h-[60px]"><nav class="myst-top-nav-bar flex items-center justify-between flex-nowrap max-w-[1440px] mx-auto"><div class="flex flex-row xl:min-w-[19.5rem] mr-2 sm:mr-7 justify-start items-center shrink-0"><div class="block xl:hidden"><button class="myst-top-nav-menu-button flex items-center border-stone-400 text-stone-800 hover:text-stone-900 dark:text-stone-200 hover:dark:text-stone-100"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" width="2rem" height="2rem" class="m-1"><path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"></path></svg><span class="sr-only">Open Menu</span></button></div><a class="myst-home-link flex items-center ml-3 dark:text-white w-fit md:ml-5 xl:ml-7" href="/csci132/"><span class="text-md sm:text-xl tracking-tight sm:mr-5">CSCI 132</span></a></div><div class="flex items-center flex-grow w-auto"><div class="flex-grow hidden text-md lg:block"></div><div class="flex-grow block"></div><button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R75cp:" data-state="closed" class="myst-search-bar flex items-center h-10 aspect-square sm:w-64 text-left text-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 myst-search-bar-disabled hover:ring-blue-500 dark:hover:ring-blue-500 hover:border-blue-500 dark:hover:border-blue-500"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="p-2.5 h-10 w-10 aspect-square"><path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd"></path></svg><span class="myst-search-text-placeholder hidden sm:block grow">Search</span><div aria-hidden="true" class="myst-search-shortcut items-center hidden mx-1 font-mono text-sm text-gray-600 sm:flex gap-x-1"><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none hide-mac">CTRL</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none show-mac">⌘</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none ">K</kbd><script>
+;(() => {
+const script = document.currentScript;
+const root = script.parentElement;
+
+const isMac = /mac/i.test(
+      window.navigator.userAgentData?.platform ?? window.navigator.userAgent,
+    );
+root.querySelectorAll(".hide-mac").forEach(node => {node.classList.add(isMac ? "hidden" : "block")});
+root.querySelectorAll(".show-mac").forEach(node => {node.classList.add(!isMac ? "hidden" : "block")});
+})()</script></div></button><button class="myst-theme-button theme rounded-full aspect-square border border-stone-700 dark:border-white hover:bg-neutral-100 border-solid overflow-hidden text-stone-700 dark:text-white hover:text-stone-500 dark:hover:text-neutral-800 w-8 h-8 mx-3" title="Toggle theme between light and dark mode" aria-label="Toggle theme between light and dark mode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-moon-icon h-full w-full p-0.5 hidden dark:block"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-sun-icon h-full w-full p-0.5 dark:hidden"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></button><div class="block sm:hidden"></div><div class="hidden sm:block"></div></div></nav></div><div class="myst-primary-sidebar fixed xl:article-grid grid-gap xl:w-screen xl:pointer-events-none overflow-auto max-xl:min-w-[300px] hidden z-10" style="top:60px"><div class="myst-primary-sidebar-pointer pointer-events-auto xl:col-margin-left flex-col overflow-hidden hidden xl:flex"><div class="myst-primary-sidebar-nav flex-grow py-6 overflow-y-auto primary-scrollbar"><nav aria-label="Navigation" class="myst-primary-sidebar-topnav overflow-y-hidden transition-opacity ml-3 xl:ml-0 mr-3 max-w-[350px] lg:hidden"><div class="w-full px-1 dark:text-white font-medium"></div></nav><div class="my-3 border-b-2 lg:hidden"></div><nav aria-label="Table of Contents" class="myst-primary-sidebar-toc flex-grow overflow-y-hidden transition-opacity ml-3 xl:ml-0 mr-3 max-w-[350px]"><div class="myst-toc w-full px-1 dark:text-white"><a title="JAVA and Basic Algorithms" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30 font-bold" href="/csci132/">CSCI 132</a><a title="Data Structures and Algorithms" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci132/xdatastructuresandalgorithms">Data Structures and Algorithms</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Array Techniques" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci132/xarraytechniques">Array Techniques</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:Rupsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:Rupsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="Encapsulation vs Non-Encapsulation" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci132/xencapsulationnonencapsulation">Encapsulation vs Non-Encapsulation</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Big O Notation" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci132/xbigonotation">Big O Notation</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R1epsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R1epsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Linked Lists" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci132/xlinkedlists">Linked Lists</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R1mpsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R1mpsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Stacks and Queues" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci132/xstacksandqueues">Stacks and Queues</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R1upsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R1upsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Sorting Algorithms" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/csci132/xsortalgorithms">Sorting Algorithms</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R26psp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R26psp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div></div></nav></div><div class="myst-primary-sidebar-footer flex-none py-6 transition-all duration-700 translate-y-6 opacity-0"><a class="myst-made-with-myst flex mx-auto text-gray-700 w-fit hover:text-blue-700 dark:text-gray-200 dark:hover:text-blue-400" href="https://mystmd.org/made-with-myst" target="_blank" rel="noreferrer"><svg style="width:24px;height:24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" stroke="none"><g id="icon"><path fill="currentColor" d="M23.8,54.8v-3.6l4.7-0.8V17.5l-4.7-0.8V13H36l13.4,31.7h0.2l13-31.7h12.6v3.6l-4.7,0.8v32.9l4.7,0.8v3.6h-15
+          v-3.6l4.9-0.8V20.8H65L51.4,53.3h-3.8l-14-32.5h-0.1l0.2,17.4v12.1l5,0.8v3.6H23.8z"></path><path fill="#F37726" d="M47,86.9c0-5.9-3.4-8.8-10.1-8.8h-8.4c-5.2,0-9.4-1.3-12.5-3.8c-3.1-2.5-5.4-6.2-6.8-11l4.8-1.6
+          c1.8,5.6,6.4,8.6,13.8,8.8h9.2c6.4,0,10.8,2.5,13.1,7.5c2.3-5,6.7-7.5,13.1-7.5h8.4c7.8,0,12.7-2.9,14.6-8.7l4.8,1.6
+          c-1.4,4.9-3.6,8.6-6.8,11.1c-3.1,2.5-7.3,3.7-12.4,3.8H63c-6.7,0-10,2.9-10,8.8"></path></g></svg><span class="self-center ml-2 text-sm">Made with MyST</span></a></div></div></div><main class="article-grid grid-gap"><article class="article-grid subgrid-gap col-screen article content"><div class="hidden"></div><div id="skip-to-frontmatter" aria-label="article frontmatter" class="myst-fm-block mb-8 pt-9"><div class="myst-fm-block-header flex items-center mb-5 h-6 text-sm font-light"><div class="flex-grow"></div><div class="myst-fm-block-badges"></div><div class="myst-fm-downloads-dropdown relative flex inline-block mx-1 grow-0" data-headlessui-state=""><button class="myst-fm-downloads-button relative ml-2 -mr-1" id="headlessui-menu-button-:Rs8ucp:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state=""><span class="sr-only">Downloads</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.25rem" height="1.25rem" class="myst-fm-downloads-icon"><title>Download</title><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg></button></div></div><h1 class="myst-fm-block-title mb-0">Circular Linked List - Links as Sub Class</h1><header class="myst-fm-authors-affiliations mt-4 not-prose"><div class="myst-fm-authors-list"><span class="myst-fm-author font-semibold text-sm myst-fm-author-item inline-block"><button class="myst-fm-author-popover focus:shadow-[0_0_0_2px] focus:shadow-black outline-none hover:underline" aria-label="Author Details" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R78ucp:" data-state="closed"><span class="myst-fm-author-name">James Goudy</span></button></span></div></header><div class="myst-fm-block-date-doi flex mt-2 text-sm font-light"><time dateTime="2025-12-04" class="myst-fm-date-string">December 4, 2025</time></div></div><div class="block my-10 lg:sticky lg:z-10 lg:h-0 lg:pt-0 lg:my-0 lg:ml-10 lg:col-margin-right" style="top:60px"><nav></nav></div><div id="skip-to-article"></div><h2 id="key-ideas" class="relative group"><span class="heading-text">Key Ideas</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#key-ideas" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><ul><li><p>The doubly linked list allows the list to be traversed in both directions; forwards and backwards</p></li><li><p>In a circular doubly-linked list the last node (next) points to the first. The first node (previous) points to the last node.</p></li><li><p>The doubly linked list allows the list to be traversed in both directions; forwards and backwards</p></li></ul><img id="BChHl8jt5X" style="margin-left:auto;margin-right:auto" src="/csci132/build/CircularLinkList-c844fefbdf30018d464995a97d1c7c8d.png" alt="Circular Linked List" data-canonical-url="images/CircularLinkList.png" class=""/><aside class="myst-admonition myst-admonition-note my-5 shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-gray-50/10 dark:bg-stone-800 overflow-hidden myst-admonition-default rounded border-l-4 border-blue-500"><div class="myst-admonition-header m-0 font-medium py-1 flex min-w-0 text-lg text-blue-600 bg-blue-50 dark:bg-slate-900"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="2rem" height="2rem" class="myst-admonition-header-icon inline-block pl-2 mr-2 self-center flex-none text-blue-600"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"></path></svg><div class="myst-admonition-header-text text-neutral-900 dark:text-white grow self-center overflow-hidden break-words">Note</div></div><div class="myst-admonition-body px-4 py-1"><p>Not all languages support subclasses.</p></div></aside><h2 id="lecture-code" class="relative group"><span class="heading-text">Lecture Code</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#lecture-code" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-java" style="white-space:pre">package com.mycompany.linkedlistcircular;
+
+/*
+ * Programmer: James Goudy
+ * Project Circular LinkedList
+ *
+ * NOTE: last link is referenced as first.prev
+ */
+class CircularLinkedList {
+
+    Link first = new Link(&quot;&quot;);
+
+    // ---------------------------------
+    // sub class - Link / Nodes
+    // NOTE: this can be a separate class as well
+    class Link {
+
+        Link first = null;
+
+        // data
+        String city = null;
+
+        // link navigation
+        Link next = null;
+        Link prev = null;
+
+        // constructor
+        Link(String city) {
+            this.city = city;
+            this.next = null;
+            this.prev = null;
+        }
+
+        public void displayNode() {
+            System.out.print(city + &quot; &quot;);
+        }
+    } // end of link
+    // ---------------------------------
+
+    // constructor
+    public CircularLinkedList() {
+
+        first = null;
+    }
+
+    // add link at the beginning of the list
+    public boolean addFirst(String city) {
+
+        Link newLink = new Link(city);
+
+        if (first == null) {
+            // empty list
+            newLink.next = newLink;
+            newLink.prev = newLink;
+
+            first = newLink;
+
+        } else {
+
+            // connect the newLink references
+            newLink.next = first;
+
+            newLink.prev = first.prev;
+
+            first.prev = newLink;
+
+            // move first to the new link
+            first = newLink;
+
+            // point the last link to the new first
+            first.prev.next = first;
+
+        }
+
+        return true;
+    }
+
+    // add link to the end of the list
+    public boolean addLast(String city) {
+
+        Link newLink = new Link(city);
+
+        if (first == null) {
+            //list is empty
+            first = newLink;
+        } else {
+            // set new link references
+            newLink.next = first;
+
+            newLink.prev = first.prev;
+
+            // last link is (first.prev)
+            first.prev.next = newLink;
+
+            first.prev = newLink;
+
+        }
+
+        return true;
+    }
+
+    public boolean findCity(String citySearch) {
+
+        if (first == null) {
+
+            // if list is empty
+            return false;
+        } else {
+            Link current = first;
+
+            do {
+                if (current.city.equals(citySearch)) {
+                    return true;
+                }
+                current = current.next;
+
+            } while (current != first);
+
+            return false;
+        }
+    }
+
+    public boolean insertAfter(String citySearch, String insertCity) {
+
+        Link newLink = new Link(insertCity);
+
+        if (first == null) {
+
+            // list is empty - add the link
+            first = newLink;
+
+            // NOTE: there is an option not to insert
+            // a link then the code above would be replaced
+            // with return false
+        } else {
+            Link current = first;
+
+            while (current != null) {
+                if (current.city.equals(citySearch)) {
+
+                    // check if last link
+                    if (current.next == first.prev) {
+                        // check if last link
+                        current.next = newLink;
+                        newLink.prev = current;
+
+                        first.prev = newLink;
+
+                    } else {
+                        newLink.next = current.next;
+                        newLink.prev = current;
+
+                        current.next.prev = newLink;
+                        current.next = newLink;
+                    }
+
+                    return true;
+                }
+                current = current.next;
+
+            }
+        }
+
+        return false;
+
+    }
+
+    public boolean insertBefore(String citySearch, String insertCity) {
+
+        Link newLink = new Link(insertCity);
+
+        if (first == null) {
+
+            // list is empty - add the link
+            first = newLink;
+
+            // NOTE: there is an option not to insert
+            // a link then the code above would be replaced
+            // with return false
+        } else {
+            Link current = first;
+
+            while (current != null) {
+                if (current.city.equals(citySearch)) {
+
+                    // check for first link
+                    if (current.prev == null) {
+                        // check if last link
+                        current.prev = newLink;
+                        newLink.next = current;
+
+                        first = newLink;
+
+                    } else {
+                        newLink.next = current;
+                        newLink.prev = current.prev;
+
+                        current.prev.next = newLink;
+                        current.prev = newLink;
+                    }
+
+                    return true;
+                }
+                current = current.next;
+
+            }
+        }
+
+        return false;
+    }
+
+    public boolean deleteCity(String citySearch) {
+
+        if (first == null) {
+            return false;
+        } else {
+            Link current = first;
+
+            do {
+                if (current.city.equals(citySearch)) {
+
+                    if (current.prev == null) {
+                        // first node
+                        current.next.prev = null;
+                        first = current.next;
+                        current = null;
+                        return true;
+                    } else if (current.next == null) {
+                        // last node
+                        current.prev.next = null;
+                        first.prev = current;
+                        current = null;
+                        return true;
+                    } else {
+                        // a center node
+                        current.prev.next = current.next;
+                        current.next.prev = current.prev;
+                        current = null;
+
+                        return true;
+                    }
+                }
+
+                current = current.next;
+            } while (current != first);
+
+            return false;
+        }
+    } //end of function
+
+    public void displayList() {
+        Link current = first;
+
+        System.out.println(&quot;\n** Display List Forward To Back **&quot;);
+
+        do {
+            current.displayNode();
+            current = current.next;
+            if (current == first) {
+                System.out.println(&quot;\n-----------\n&quot;);
+                return;
+            }
+
+        } while (current.next != null);
+
+    } // end of method
+
+    public void displayList(String startCity) {
+
+        Link current = first;
+        Link start = null;
+
+        System.out.println(&quot;\n ** Display List Forward To Back&quot;
+                + &quot; starting at &quot; + startCity + &quot;**&quot;);
+
+        // find the city in the list
+        do {
+            if (current.city.equals(startCity)) {
+                break;
+            }
+
+            current = current.next;
+
+            if (current == first) {
+                System.out.println(&quot;City Not Found&quot;);
+                return;
+            }
+
+        } while (current.next != null);
+
+        System.out.println(&quot;&quot;);
+
+        start = current;
+
+        do {
+            current.displayNode();
+            current = current.next;
+            if (current == start) {
+                System.out.println(&quot;\n-----------\n&quot;);
+                return;
+            }
+
+        } while (current.next != null);
+
+    } // end of method
+
+    public void displayListReverse() {
+
+        Link current = first.prev;
+
+        System.out.println(&quot;\n** Display List in Reverse **\n&quot;);
+
+        do {
+            current.displayNode();
+            current = current.prev;
+            if (current == first.prev) {
+                System.out.println(&quot;\n-----------\n&quot;);
+                return;
+            }
+
+        } while (current.prev != null);
+    } // end of method
+
+    public void displayListReverse(String startCity) {
+
+        Link current = first;
+        Link start = null;
+
+        System.out.println(&quot;\n ** Display list in reverse&quot;
+                + &quot; starting at &quot; + startCity + &quot;**&quot;);
+
+        // find the city in the list
+        do {
+            if (current.city.equals(startCity)) {
+                break;
+            }
+
+            current = current.next;
+
+            if (current == first) {
+                System.out.println(&quot;City Not Found&quot;);
+                return;
+            }
+
+        } while (current.next != null);
+
+        System.out.println(&quot;&quot;);
+
+        start = current;
+
+        do {
+            current.displayNode();
+            current = current.prev;
+            if (current == start) {
+                System.out.println(&quot;\n-----------\n&quot;);
+                return;
+            }
+
+        } while (current.prev != null);
+    } // end of method
+
+} // end of class
+
+public class DS_LinkedListCircular {
+
+    static CircularLinkedList dl = new CircularLinkedList();
+
+    public static void citySearch(String searchCity) {
+
+        // note that findCity returns a boolean
+        // so it can be used in an &quot;if&quot; statement
+        if (dl.findCity(searchCity)) {
+            System.out.println(&quot;\n&quot; + searchCity + &quot; is in list&quot;);
+        } else {
+            System.out.println(&quot;\n&quot; + searchCity + &quot; not found&quot;);
+        }
+
+    }
+
+    public static void deleteCity(String searchCity) {
+
+        // note that findCity returns a boolean
+        // so it can be used in an &quot;if&quot; statement
+        if (dl.deleteCity(searchCity)) {
+            System.out.println(searchCity + &quot; was deleted&quot;);
+        } else {
+            System.out.println(searchCity + &quot; was NOT deleted&quot;);
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+        String searchCity = &quot;&quot;;
+        String insertCity = &quot;&quot;;
+
+        // insert data at front of list
+        dl.addFirst(&quot;Kali&quot;);
+        dl.addFirst(&quot;Polson&quot;);
+        dl.addFirst(&quot;Missoula&quot;);
+        dl.addFirst(&quot;Whitefish&quot;);
+        dl.addFirst(&quot;Plains&quot;);
+
+        // insert data at end of list
+        dl.addLast(&quot;Chicago&quot;);
+        dl.addLast(&quot;Denver&quot;);
+        dl.addLast(&quot;Sandiego&quot;);
+
+        dl.displayList();
+        dl.displayListReverse();
+
+        dl.displayList(&quot;Missoula&quot;);
+        dl.displayList(&quot;Wolfcreek&quot;);
+
+        dl.displayListReverse();
+        dl.displayListReverse(&quot;Missoula&quot;);
+
+        System.out.println(&quot;\n----- Find Examples------\n&quot;);
+
+        searchCity = &quot;Missoula&quot;;
+        citySearch(searchCity);
+
+        searchCity = &quot;Bozeman&quot;;
+        citySearch(searchCity);
+
+        System.out.println(&quot;\n----- Delete Examples------\n&quot;);
+
+        searchCity = &quot;Polson&quot;;
+        deleteCity(searchCity);
+
+        searchCity = &quot;Bozeman&quot;;
+        deleteCity(searchCity);
+
+        searchCity = &quot;Sandiego&quot;;
+        deleteCity(searchCity);
+
+        searchCity = &quot;Whitefish&quot;;
+        deleteCity(searchCity);
+
+        dl.displayList();
+
+        System.out.println(&quot;\n----- Insert After Examples------\n&quot;);
+
+        searchCity = &quot;Missoula&quot;;
+        insertCity = &quot;Dayton&quot;;
+        dl.insertAfter(searchCity, insertCity);
+
+        searchCity = &quot;Denver&quot;;
+        insertCity = &quot;Boulder&quot;;
+        dl.insertAfter(searchCity, insertCity);
+
+        dl.displayList();
+
+        System.out.println(&quot;\n----- Insert After Examples------\n&quot;);
+
+        searchCity = &quot;Chicago&quot;;
+        insertCity = &quot;Springfield&quot;;
+        dl.insertBefore(searchCity, insertCity);
+
+        searchCity = &quot;Missoula&quot;;
+        insertCity = &quot;Libby&quot;;
+        dl.insertBefore(searchCity, insertCity);
+
+        dl.displayList();
+        System.out.println(&quot;\nbye&quot;);
+    }
+}
+/*
+ * output
+ *
+ ** Display List Forward To Back **
+ * Plains Whitefish Missoula Polson Kali Chicago Denver Sandiego
+ * -----------
+ *
+ *
+ ** Display List in Reverse **
+ *
+ * Sandiego Denver Chicago Kali Polson Missoula Whitefish Plains
+ * -----------
+ *
+ *
+ ** Display List Forward To Back starting at Missoula**
+ *
+ * Missoula Polson Kali Chicago Denver Sandiego Plains Whitefish
+ * -----------
+ *
+ *
+ ** Display List Forward To Back starting at Wolfcreek**
+ * City Not Found
+ *
+ ** Display List in Reverse **
+ *
+ * Sandiego Denver Chicago Kali Polson Missoula Whitefish Plains
+ * -----------
+ *
+ *
+ ** Display list in reverse starting at Missoula**
+ *
+ * Missoula Whitefish Plains Sandiego Denver Chicago Kali Polson
+ * -----------
+ *
+ *
+ * ----- Find Examples------
+ *
+ *
+ * Missoula is in list
+ *
+ * Bozeman not found
+ *
+ * ----- Delete Examples------
+ *
+ * Polson was deleted
+ * Bozeman was NOT deleted
+ * Sandiego was deleted
+ * Whitefish was deleted
+ *
+ ** Display List Forward To Back **
+ * Plains Missoula Kali Chicago Denver
+ * -----------
+ *
+ *
+ * ----- Insert After Examples------
+ *
+ *
+ ** Display List Forward To Back **
+ * Plains Missoula Dayton Kali Chicago Denver Boulder
+ * -----------
+ *
+ *
+ * ----- Insert After Examples------
+ *
+ *
+ ** Display List Forward To Back **
+ * Plains Libby Missoula Dayton Kali Springfield Chicago Denver Boulder
+ * -----------
+ *
+ *
+ * bye
+ *
+ */
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><hr class="py-2 my-5 translate-y-2"/><p>End Of Topic</p><div class="myst-backmatter-parts"></div><div class="myst-footer-links flex pt-10 mb-10 space-x-4"><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-prev" href="/csci132/xdoublylinkedlistsubclass"><div class="flex h-full align-middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:-translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path></svg><div class="flex-grow text-right"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">CSCI 132</div>Doubly Linked List - Links as Sub Class</div></div></a><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-next" href="/csci132/xdoublylinkedlistreaddataintoll"><div class="flex h-full align-middle"><div class="flex-grow"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">CSCI 132</div>Reading Datafile Into Linked List</div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path></svg></div></a></div></article></main><script>((a,l)=>{if(!window.history.state||!window.history.state.key){let u=Math.random().toString(32).slice(2);window.history.replaceState({key:u},"")}try{let d=JSON.parse(sessionStorage.getItem(a)||"{}")[l||window.history.state.key];typeof d=="number"&&window.scrollTo(0,d)}catch(u){console.error(u),sessionStorage.removeItem(a)}})("positions", null)</script><link rel="modulepreload" href="/csci132/build/entry.client-PCJPW7TK.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-AQ2CODAG.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-JJXTQVMA.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-OZE3FFNP.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-N76G4W6Y.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-C4DFGG5C.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-J7TUH54J.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-FZ2S7OYD.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-JEM6JXYA.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-34XIY2DH.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-KQM5FBHR.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-OCWQY3HK.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-7HNKBP4B.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-CUKUDK3R.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-3EBOCCHJ.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-O4VQNZ62.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-4OEDG4JQ.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-GUCIBHGO.js"/><link rel="modulepreload" href="/csci132/build/root-AA24SA6C.js"/><link rel="modulepreload" href="/csci132/build/_shared/chunk-AH7OE64W.js"/><link rel="modulepreload" href="/csci132/build/routes/$-5SFLQWPV.js"/><script>window.__remixContext = {"url":"/xcircularlinkedlist","state":{"loaderData":{"root":{"config":{"version":2,"myst":"1.6.4","options":{"logo_text":"CSCI 132"},"nav":[],"actions":[],"projects":[{"date":"2025-12-04","exports":[],"title":"JAVA and Basic Algorithms","short_title":"CSCI 132","description":"Course material for CSCI 132","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci132_bdbook\\myst-generated-uid-0"}],"keywords":["JAVA","Algorithms"],"id":"70435226-f2e9-4585-b1e5-763a843f2399","toc":[{"file":"index.md"},{"file":"xDataStructuresAndAlgorithms.md"},{"children":[{"file":"xArraysCoreFunctionality.md"},{"file":"xArrayWarpAround.md"},{"file":"xArrayAddDeleteData.md"}],"file":"xArrayTechniques.md"},{"file":"xEncapsulationNonEncapsulation.md"},{"children":[{"file":"xON_VisualizingBigONotation.md"},{"file":"xBigONotationExplained.md"}],"file":"xBigONotation.md"},{"children":[{"file":"xSinglyLinkedListRev3.md"},{"file":"xDoublyLinkedList.md"},{"file":"xDoublyLinkedListSubClass.md"},{"file":"xCircularLinkedList.md"},{"file":"xDoublyLinkedListReadDataIntoLL.md"},{"file":"xDoublyLinkedListCSharp.md"},{"file":"xDoublyLinkedListJava.md"}],"file":"xLinkedLists.md"},{"children":[{"file":"xStackUsingArrayOfObjects.md"},{"file":"xQueueUsingArrayOfObjects.md"},{"file":"xPriorityQueue.md"}],"file":"xStacksAndQueues.md"},{"children":[{"file":"xSort_Bubble.md"},{"file":"xbucketsort.md"},{"file":"xMergeSort.md"},{"file":"xMergeSort_revA.md"},{"file":"xQuickSort.md"},{"file":"xQuicksortDemo.md"},{"file":"xQuicksortLinkedLists.md"},{"file":"xSort_HeapSort.md"},{"file":"xUnderstandingQuickMergeHeap.md"},{"file":"xSortingVideosVisualizers.md"},{"file":"xend.md"}],"file":"xSortAlgorithms.md"}],"bibliography":[],"index":"index","pages":[{"slug":"xdatastructuresandalgorithms","title":"Data Structures and Algorithms","description":"","date":"2025-12-04","thumbnail":"/csci132/build/c798a09d2ea7aaf43821d8d632896091.jpeg","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xarraytechniques","title":"Array Techniques","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xarrayscorefunctionality","title":"Arrays Core Functionality","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xarraywarparound","title":"Array Warp Around","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xarrayadddeletedata","title":"Array Add and Delete Data","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xencapsulationnonencapsulation","title":"Encapsulation vs Non-Encapsulation","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbigonotation","title":"Big O Notation","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xon-visualizingbigonotation","title":"Visualizing Big O notation","description":"","date":"2025-12-04","thumbnail":"/csci132/build/vbon_image_O1-9b81a61817a64d078f43a349fd16f04b.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbigonotationexplained","title":"Big O Notation - Explained","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xlinkedlists","title":"Linked Lists","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsinglylinkedlistrev3","title":"Singly Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlist","title":"Doubly Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistsubclass","title":"Doubly Linked List - Links as Sub Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xcircularlinkedlist","title":"Circular Linked List - Links as Sub Class","description":"","date":"2025-12-04","thumbnail":"/csci132/build/CircularLinkList-c844fefbdf30018d464995a97d1c7c8d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistreaddataintoll","title":"Reading Datafile Into Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistcsharp","title":"C# Linked List Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistjava","title":"Java Linked List Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xstacksandqueues","title":"Stacks and Queues","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xstackusingarrayofobjects","title":"Stack  - Using Array of Objects","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xqueueusingarrayofobjects","title":"Queue  - Using Array Of Objects","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpriorityqueue","title":"Priority Queue","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsortalgorithms","title":"Sorting Algorithms","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsort-bubble","title":"Bubble Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbucketsort","title":"Bucket Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmergesort","title":"Merge Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmergesort-reva","title":"Merge Sort - Demo Code","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksort","title":"Quick Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksortdemo","title":"Quicksort Demo","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksortlinkedlists","title":"Quicksort - Linked Lists","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsort-heapsort","title":"Heap Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingquickmergeheap","title":"Understanding Three Quick, Merge, and Heap Sort Algorithms","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsortingvideosvisualizers","title":"Sorting Videos and Visualizers","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xend","title":"End Of Section","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2}]}]},"CONTENT_CDN_PORT":"3100","MODE":"static","BASE_URL":"/csci132"},"routes/$":{"config":{"version":2,"myst":"1.6.4","options":{"logo_text":"CSCI 132"},"nav":[],"actions":[],"projects":[{"date":"2025-12-04","exports":[],"title":"JAVA and Basic Algorithms","short_title":"CSCI 132","description":"Course material for CSCI 132","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci132_bdbook\\myst-generated-uid-0"}],"keywords":["JAVA","Algorithms"],"id":"70435226-f2e9-4585-b1e5-763a843f2399","toc":[{"file":"index.md"},{"file":"xDataStructuresAndAlgorithms.md"},{"children":[{"file":"xArraysCoreFunctionality.md"},{"file":"xArrayWarpAround.md"},{"file":"xArrayAddDeleteData.md"}],"file":"xArrayTechniques.md"},{"file":"xEncapsulationNonEncapsulation.md"},{"children":[{"file":"xON_VisualizingBigONotation.md"},{"file":"xBigONotationExplained.md"}],"file":"xBigONotation.md"},{"children":[{"file":"xSinglyLinkedListRev3.md"},{"file":"xDoublyLinkedList.md"},{"file":"xDoublyLinkedListSubClass.md"},{"file":"xCircularLinkedList.md"},{"file":"xDoublyLinkedListReadDataIntoLL.md"},{"file":"xDoublyLinkedListCSharp.md"},{"file":"xDoublyLinkedListJava.md"}],"file":"xLinkedLists.md"},{"children":[{"file":"xStackUsingArrayOfObjects.md"},{"file":"xQueueUsingArrayOfObjects.md"},{"file":"xPriorityQueue.md"}],"file":"xStacksAndQueues.md"},{"children":[{"file":"xSort_Bubble.md"},{"file":"xbucketsort.md"},{"file":"xMergeSort.md"},{"file":"xMergeSort_revA.md"},{"file":"xQuickSort.md"},{"file":"xQuicksortDemo.md"},{"file":"xQuicksortLinkedLists.md"},{"file":"xSort_HeapSort.md"},{"file":"xUnderstandingQuickMergeHeap.md"},{"file":"xSortingVideosVisualizers.md"},{"file":"xend.md"}],"file":"xSortAlgorithms.md"}],"bibliography":[],"index":"index","pages":[{"slug":"xdatastructuresandalgorithms","title":"Data Structures and Algorithms","description":"","date":"2025-12-04","thumbnail":"/csci132/build/c798a09d2ea7aaf43821d8d632896091.jpeg","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xarraytechniques","title":"Array Techniques","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xarrayscorefunctionality","title":"Arrays Core Functionality","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xarraywarparound","title":"Array Warp Around","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xarrayadddeletedata","title":"Array Add and Delete Data","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xencapsulationnonencapsulation","title":"Encapsulation vs Non-Encapsulation","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbigonotation","title":"Big O Notation","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xon-visualizingbigonotation","title":"Visualizing Big O notation","description":"","date":"2025-12-04","thumbnail":"/csci132/build/vbon_image_O1-9b81a61817a64d078f43a349fd16f04b.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbigonotationexplained","title":"Big O Notation - Explained","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xlinkedlists","title":"Linked Lists","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsinglylinkedlistrev3","title":"Singly Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlist","title":"Doubly Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistsubclass","title":"Doubly Linked List - Links as Sub Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xcircularlinkedlist","title":"Circular Linked List - Links as Sub Class","description":"","date":"2025-12-04","thumbnail":"/csci132/build/CircularLinkList-c844fefbdf30018d464995a97d1c7c8d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistreaddataintoll","title":"Reading Datafile Into Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistcsharp","title":"C# Linked List Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistjava","title":"Java Linked List Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xstacksandqueues","title":"Stacks and Queues","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xstackusingarrayofobjects","title":"Stack  - Using Array of Objects","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xqueueusingarrayofobjects","title":"Queue  - Using Array Of Objects","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpriorityqueue","title":"Priority Queue","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsortalgorithms","title":"Sorting Algorithms","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsort-bubble","title":"Bubble Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbucketsort","title":"Bucket Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmergesort","title":"Merge Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmergesort-reva","title":"Merge Sort - Demo Code","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksort","title":"Quick Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksortdemo","title":"Quicksort Demo","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksortlinkedlists","title":"Quicksort - Linked Lists","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsort-heapsort","title":"Heap Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingquickmergeheap","title":"Understanding Three Quick, Merge, and Heap Sort Algorithms","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsortingvideosvisualizers","title":"Sorting Videos and Visualizers","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xend","title":"End Of Section","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2}]}]},"page":{"version":2,"kind":"Article","sha256":"eb8725d49d29ea1b5e0ec9f8f4b6d87266c27541680354e5e64048160b70fcbc","slug":"xcircularlinkedlist","location":"/xCircularLinkedList.md","dependencies":[],"frontmatter":{"title":"Circular Linked List - Links as Sub Class","content_includes_title":false,"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci132_bdbook\\myst-generated-uid-0"}],"date":"2025-12-04","keywords":["JAVA","Algorithms"],"numbering":{"title":{"offset":1}},"thumbnail":"/csci132/build/CircularLinkList-c844fefbdf30018d464995a97d1c7c8d.png","exports":[{"format":"md","filename":"xCircularLinkedList.md","url":"/csci132/build/xCircularLinkedList-faf8a31e3cd5f9b388a872736047d9ea.md"}]},"mdast":{"type":"root","children":[{"type":"block","children":[{"type":"heading","depth":2,"position":{"start":{"line":5,"column":1},"end":{"line":5,"column":1}},"children":[{"type":"text","value":"Key Ideas","position":{"start":{"line":5,"column":1},"end":{"line":5,"column":1}},"key":"AUVV1CGInR"}],"identifier":"key-ideas","label":"Key Ideas","html_id":"key-ideas","implicit":true,"key":"uNrbo3jPei"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":7,"column":1},"end":{"line":13,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":7,"column":1},"end":{"line":8,"column":1}},"children":[{"type":"paragraph","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"children":[{"type":"text","value":"The doubly linked list allows the list to be traversed in both directions; forwards and backwards","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"kddFu0JV1l"}],"key":"oBktlDmEM2"}],"key":"ve8uoeJOWM"},{"type":"listItem","spread":true,"position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"children":[{"type":"paragraph","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"children":[{"type":"text","value":"In a circular doubly-linked list the last node (next) points to the first. The first node (previous) points to the last node.","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"key":"dJCj7Jogao"}],"key":"VmG5ZeRiRP"}],"key":"nR8qYEcVGw"},{"type":"listItem","spread":true,"position":{"start":{"line":10,"column":1},"end":{"line":13,"column":1}},"children":[{"type":"paragraph","position":{"start":{"line":10,"column":1},"end":{"line":10,"column":1}},"children":[{"type":"text","value":"The doubly linked list allows the list to be traversed in both directions; forwards and backwards","position":{"start":{"line":10,"column":1},"end":{"line":10,"column":1}},"key":"mt1FypoB7k"}],"key":"RBZfyOVRVz"}],"key":"mWKO5cyRGF"}],"key":"zwlli7Wsww"},{"type":"image","url":"/csci132/build/CircularLinkList-c844fefbdf30018d464995a97d1c7c8d.png","alt":"Circular Linked List","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"key":"BChHl8jt5X","urlSource":"images/CircularLinkList.png"},{"type":"admonition","kind":"note","children":[{"type":"admonitionTitle","children":[{"type":"text","value":"Note","key":"Nx3Cr07boL"}],"key":"TW5BjXmJ5x"},{"type":"paragraph","position":{"start":{"line":19,"column":1},"end":{"line":19,"column":1}},"children":[{"type":"text","value":"Not all languages support subclasses.","position":{"start":{"line":19,"column":1},"end":{"line":19,"column":1}},"key":"jqIygjY6Qr"}],"key":"kCZInSV8u7"}],"key":"LNFEXTXNlV"},{"type":"heading","depth":2,"position":{"start":{"line":25,"column":1},"end":{"line":25,"column":1}},"children":[{"type":"text","value":"Lecture Code","position":{"start":{"line":25,"column":1},"end":{"line":25,"column":1}},"key":"pXZz6zrfWF"}],"identifier":"lecture-code","label":"Lecture Code","html_id":"lecture-code","implicit":true,"key":"FikXM8hIwK"},{"type":"code","lang":"java","value":"package com.mycompany.linkedlistcircular;\n\n/*\n * Programmer: James Goudy\n * Project Circular LinkedList\n *\n * NOTE: last link is referenced as first.prev\n */\nclass CircularLinkedList {\n\n    Link first = new Link(\"\");\n\n    // ---------------------------------\n    // sub class - Link / Nodes\n    // NOTE: this can be a separate class as well\n    class Link {\n\n        Link first = null;\n\n        // data\n        String city = null;\n\n        // link navigation\n        Link next = null;\n        Link prev = null;\n\n        // constructor\n        Link(String city) {\n            this.city = city;\n            this.next = null;\n            this.prev = null;\n        }\n\n        public void displayNode() {\n            System.out.print(city + \" \");\n        }\n    } // end of link\n    // ---------------------------------\n\n    // constructor\n    public CircularLinkedList() {\n\n        first = null;\n    }\n\n    // add link at the beginning of the list\n    public boolean addFirst(String city) {\n\n        Link newLink = new Link(city);\n\n        if (first == null) {\n            // empty list\n            newLink.next = newLink;\n            newLink.prev = newLink;\n\n            first = newLink;\n\n        } else {\n\n            // connect the newLink references\n            newLink.next = first;\n\n            newLink.prev = first.prev;\n\n            first.prev = newLink;\n\n            // move first to the new link\n            first = newLink;\n\n            // point the last link to the new first\n            first.prev.next = first;\n\n        }\n\n        return true;\n    }\n\n    // add link to the end of the list\n    public boolean addLast(String city) {\n\n        Link newLink = new Link(city);\n\n        if (first == null) {\n            //list is empty\n            first = newLink;\n        } else {\n            // set new link references\n            newLink.next = first;\n\n            newLink.prev = first.prev;\n\n            // last link is (first.prev)\n            first.prev.next = newLink;\n\n            first.prev = newLink;\n\n        }\n\n        return true;\n    }\n\n    public boolean findCity(String citySearch) {\n\n        if (first == null) {\n\n            // if list is empty\n            return false;\n        } else {\n            Link current = first;\n\n            do {\n                if (current.city.equals(citySearch)) {\n                    return true;\n                }\n                current = current.next;\n\n            } while (current != first);\n\n            return false;\n        }\n    }\n\n    public boolean insertAfter(String citySearch, String insertCity) {\n\n        Link newLink = new Link(insertCity);\n\n        if (first == null) {\n\n            // list is empty - add the link\n            first = newLink;\n\n            // NOTE: there is an option not to insert\n            // a link then the code above would be replaced\n            // with return false\n        } else {\n            Link current = first;\n\n            while (current != null) {\n                if (current.city.equals(citySearch)) {\n\n                    // check if last link\n                    if (current.next == first.prev) {\n                        // check if last link\n                        current.next = newLink;\n                        newLink.prev = current;\n\n                        first.prev = newLink;\n\n                    } else {\n                        newLink.next = current.next;\n                        newLink.prev = current;\n\n                        current.next.prev = newLink;\n                        current.next = newLink;\n                    }\n\n                    return true;\n                }\n                current = current.next;\n\n            }\n        }\n\n        return false;\n\n    }\n\n    public boolean insertBefore(String citySearch, String insertCity) {\n\n        Link newLink = new Link(insertCity);\n\n        if (first == null) {\n\n            // list is empty - add the link\n            first = newLink;\n\n            // NOTE: there is an option not to insert\n            // a link then the code above would be replaced\n            // with return false\n        } else {\n            Link current = first;\n\n            while (current != null) {\n                if (current.city.equals(citySearch)) {\n\n                    // check for first link\n                    if (current.prev == null) {\n                        // check if last link\n                        current.prev = newLink;\n                        newLink.next = current;\n\n                        first = newLink;\n\n                    } else {\n                        newLink.next = current;\n                        newLink.prev = current.prev;\n\n                        current.prev.next = newLink;\n                        current.prev = newLink;\n                    }\n\n                    return true;\n                }\n                current = current.next;\n\n            }\n        }\n\n        return false;\n    }\n\n    public boolean deleteCity(String citySearch) {\n\n        if (first == null) {\n            return false;\n        } else {\n            Link current = first;\n\n            do {\n                if (current.city.equals(citySearch)) {\n\n                    if (current.prev == null) {\n                        // first node\n                        current.next.prev = null;\n                        first = current.next;\n                        current = null;\n                        return true;\n                    } else if (current.next == null) {\n                        // last node\n                        current.prev.next = null;\n                        first.prev = current;\n                        current = null;\n                        return true;\n                    } else {\n                        // a center node\n                        current.prev.next = current.next;\n                        current.next.prev = current.prev;\n                        current = null;\n\n                        return true;\n                    }\n                }\n\n                current = current.next;\n            } while (current != first);\n\n            return false;\n        }\n    } //end of function\n\n    public void displayList() {\n        Link current = first;\n\n        System.out.println(\"\\n** Display List Forward To Back **\");\n\n        do {\n            current.displayNode();\n            current = current.next;\n            if (current == first) {\n                System.out.println(\"\\n-----------\\n\");\n                return;\n            }\n\n        } while (current.next != null);\n\n    } // end of method\n\n    public void displayList(String startCity) {\n\n        Link current = first;\n        Link start = null;\n\n        System.out.println(\"\\n ** Display List Forward To Back\"\n                + \" starting at \" + startCity + \"**\");\n\n        // find the city in the list\n        do {\n            if (current.city.equals(startCity)) {\n                break;\n            }\n\n            current = current.next;\n\n            if (current == first) {\n                System.out.println(\"City Not Found\");\n                return;\n            }\n\n        } while (current.next != null);\n\n        System.out.println(\"\");\n\n        start = current;\n\n        do {\n            current.displayNode();\n            current = current.next;\n            if (current == start) {\n                System.out.println(\"\\n-----------\\n\");\n                return;\n            }\n\n        } while (current.next != null);\n\n    } // end of method\n\n    public void displayListReverse() {\n\n        Link current = first.prev;\n\n        System.out.println(\"\\n** Display List in Reverse **\\n\");\n\n        do {\n            current.displayNode();\n            current = current.prev;\n            if (current == first.prev) {\n                System.out.println(\"\\n-----------\\n\");\n                return;\n            }\n\n        } while (current.prev != null);\n    } // end of method\n\n    public void displayListReverse(String startCity) {\n\n        Link current = first;\n        Link start = null;\n\n        System.out.println(\"\\n ** Display list in reverse\"\n                + \" starting at \" + startCity + \"**\");\n\n        // find the city in the list\n        do {\n            if (current.city.equals(startCity)) {\n                break;\n            }\n\n            current = current.next;\n\n            if (current == first) {\n                System.out.println(\"City Not Found\");\n                return;\n            }\n\n        } while (current.next != null);\n\n        System.out.println(\"\");\n\n        start = current;\n\n        do {\n            current.displayNode();\n            current = current.prev;\n            if (current == start) {\n                System.out.println(\"\\n-----------\\n\");\n                return;\n            }\n\n        } while (current.prev != null);\n    } // end of method\n\n} // end of class\n\npublic class DS_LinkedListCircular {\n\n    static CircularLinkedList dl = new CircularLinkedList();\n\n    public static void citySearch(String searchCity) {\n\n        // note that findCity returns a boolean\n        // so it can be used in an \"if\" statement\n        if (dl.findCity(searchCity)) {\n            System.out.println(\"\\n\" + searchCity + \" is in list\");\n        } else {\n            System.out.println(\"\\n\" + searchCity + \" not found\");\n        }\n\n    }\n\n    public static void deleteCity(String searchCity) {\n\n        // note that findCity returns a boolean\n        // so it can be used in an \"if\" statement\n        if (dl.deleteCity(searchCity)) {\n            System.out.println(searchCity + \" was deleted\");\n        } else {\n            System.out.println(searchCity + \" was NOT deleted\");\n        }\n\n    }\n\n    public static void main(String[] args) {\n\n        String searchCity = \"\";\n        String insertCity = \"\";\n\n        // insert data at front of list\n        dl.addFirst(\"Kali\");\n        dl.addFirst(\"Polson\");\n        dl.addFirst(\"Missoula\");\n        dl.addFirst(\"Whitefish\");\n        dl.addFirst(\"Plains\");\n\n        // insert data at end of list\n        dl.addLast(\"Chicago\");\n        dl.addLast(\"Denver\");\n        dl.addLast(\"Sandiego\");\n\n        dl.displayList();\n        dl.displayListReverse();\n\n        dl.displayList(\"Missoula\");\n        dl.displayList(\"Wolfcreek\");\n\n        dl.displayListReverse();\n        dl.displayListReverse(\"Missoula\");\n\n        System.out.println(\"\\n----- Find Examples------\\n\");\n\n        searchCity = \"Missoula\";\n        citySearch(searchCity);\n\n        searchCity = \"Bozeman\";\n        citySearch(searchCity);\n\n        System.out.println(\"\\n----- Delete Examples------\\n\");\n\n        searchCity = \"Polson\";\n        deleteCity(searchCity);\n\n        searchCity = \"Bozeman\";\n        deleteCity(searchCity);\n\n        searchCity = \"Sandiego\";\n        deleteCity(searchCity);\n\n        searchCity = \"Whitefish\";\n        deleteCity(searchCity);\n\n        dl.displayList();\n\n        System.out.println(\"\\n----- Insert After Examples------\\n\");\n\n        searchCity = \"Missoula\";\n        insertCity = \"Dayton\";\n        dl.insertAfter(searchCity, insertCity);\n\n        searchCity = \"Denver\";\n        insertCity = \"Boulder\";\n        dl.insertAfter(searchCity, insertCity);\n\n        dl.displayList();\n\n        System.out.println(\"\\n----- Insert After Examples------\\n\");\n\n        searchCity = \"Chicago\";\n        insertCity = \"Springfield\";\n        dl.insertBefore(searchCity, insertCity);\n\n        searchCity = \"Missoula\";\n        insertCity = \"Libby\";\n        dl.insertBefore(searchCity, insertCity);\n\n        dl.displayList();\n        System.out.println(\"\\nbye\");\n    }\n}\n/*\n * output\n *\n ** Display List Forward To Back **\n * Plains Whitefish Missoula Polson Kali Chicago Denver Sandiego\n * -----------\n *\n *\n ** Display List in Reverse **\n *\n * Sandiego Denver Chicago Kali Polson Missoula Whitefish Plains\n * -----------\n *\n *\n ** Display List Forward To Back starting at Missoula**\n *\n * Missoula Polson Kali Chicago Denver Sandiego Plains Whitefish\n * -----------\n *\n *\n ** Display List Forward To Back starting at Wolfcreek**\n * City Not Found\n *\n ** Display List in Reverse **\n *\n * Sandiego Denver Chicago Kali Polson Missoula Whitefish Plains\n * -----------\n *\n *\n ** Display list in reverse starting at Missoula**\n *\n * Missoula Whitefish Plains Sandiego Denver Chicago Kali Polson\n * -----------\n *\n *\n * ----- Find Examples------\n *\n *\n * Missoula is in list\n *\n * Bozeman not found\n *\n * ----- Delete Examples------\n *\n * Polson was deleted\n * Bozeman was NOT deleted\n * Sandiego was deleted\n * Whitefish was deleted\n *\n ** Display List Forward To Back **\n * Plains Missoula Kali Chicago Denver\n * -----------\n *\n *\n * ----- Insert After Examples------\n *\n *\n ** Display List Forward To Back **\n * Plains Missoula Dayton Kali Chicago Denver Boulder\n * -----------\n *\n *\n * ----- Insert After Examples------\n *\n *\n ** Display List Forward To Back **\n * Plains Libby Missoula Dayton Kali Springfield Chicago Denver Boulder\n * -----------\n *\n *\n * bye\n *\n */\n","position":{"start":{"line":27,"column":1},"end":{"line":569,"column":1}},"key":"bUWJwavK4O"},{"type":"thematicBreak","position":{"start":{"line":573,"column":1},"end":{"line":573,"column":1}},"key":"qLmztAQ38L"},{"type":"paragraph","position":{"start":{"line":575,"column":1},"end":{"line":575,"column":1}},"children":[{"type":"text","value":"End Of Topic","position":{"start":{"line":575,"column":1},"end":{"line":575,"column":1}},"key":"FVFNuWx6sO"}],"key":"OjEYlggWLq"}],"key":"jJYNniRX0Z"}],"key":"XGr5xJuNES"},"references":{"cite":{"order":[],"data":{}}},"footer":{"navigation":{"prev":{"title":"Doubly Linked List - Links as Sub Class","url":"/xdoublylinkedlistsubclass","group":"CSCI 132"},"next":{"title":"Reading Datafile Into Linked List","url":"/xdoublylinkedlistreaddataintoll","group":"CSCI 132"}}},"domain":"http://localhost:3002"},"project":{"date":"2025-12-04","exports":[],"title":"JAVA and Basic Algorithms","short_title":"CSCI 132","description":"Course material for CSCI 132","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci132_bdbook\\myst-generated-uid-0"}],"keywords":["JAVA","Algorithms"],"id":"70435226-f2e9-4585-b1e5-763a843f2399","toc":[{"file":"index.md"},{"file":"xDataStructuresAndAlgorithms.md"},{"children":[{"file":"xArraysCoreFunctionality.md"},{"file":"xArrayWarpAround.md"},{"file":"xArrayAddDeleteData.md"}],"file":"xArrayTechniques.md"},{"file":"xEncapsulationNonEncapsulation.md"},{"children":[{"file":"xON_VisualizingBigONotation.md"},{"file":"xBigONotationExplained.md"}],"file":"xBigONotation.md"},{"children":[{"file":"xSinglyLinkedListRev3.md"},{"file":"xDoublyLinkedList.md"},{"file":"xDoublyLinkedListSubClass.md"},{"file":"xCircularLinkedList.md"},{"file":"xDoublyLinkedListReadDataIntoLL.md"},{"file":"xDoublyLinkedListCSharp.md"},{"file":"xDoublyLinkedListJava.md"}],"file":"xLinkedLists.md"},{"children":[{"file":"xStackUsingArrayOfObjects.md"},{"file":"xQueueUsingArrayOfObjects.md"},{"file":"xPriorityQueue.md"}],"file":"xStacksAndQueues.md"},{"children":[{"file":"xSort_Bubble.md"},{"file":"xbucketsort.md"},{"file":"xMergeSort.md"},{"file":"xMergeSort_revA.md"},{"file":"xQuickSort.md"},{"file":"xQuicksortDemo.md"},{"file":"xQuicksortLinkedLists.md"},{"file":"xSort_HeapSort.md"},{"file":"xUnderstandingQuickMergeHeap.md"},{"file":"xSortingVideosVisualizers.md"},{"file":"xend.md"}],"file":"xSortAlgorithms.md"}],"bibliography":[],"index":"index","pages":[{"slug":"xdatastructuresandalgorithms","title":"Data Structures and Algorithms","description":"","date":"2025-12-04","thumbnail":"/csci132/build/c798a09d2ea7aaf43821d8d632896091.jpeg","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xarraytechniques","title":"Array Techniques","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xarrayscorefunctionality","title":"Arrays Core Functionality","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xarraywarparound","title":"Array Warp Around","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xarrayadddeletedata","title":"Array Add and Delete Data","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xencapsulationnonencapsulation","title":"Encapsulation vs Non-Encapsulation","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbigonotation","title":"Big O Notation","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xon-visualizingbigonotation","title":"Visualizing Big O notation","description":"","date":"2025-12-04","thumbnail":"/csci132/build/vbon_image_O1-9b81a61817a64d078f43a349fd16f04b.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbigonotationexplained","title":"Big O Notation - Explained","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xlinkedlists","title":"Linked Lists","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsinglylinkedlistrev3","title":"Singly Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlist","title":"Doubly Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistsubclass","title":"Doubly Linked List - Links as Sub Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xcircularlinkedlist","title":"Circular Linked List - Links as Sub Class","description":"","date":"2025-12-04","thumbnail":"/csci132/build/CircularLinkList-c844fefbdf30018d464995a97d1c7c8d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistreaddataintoll","title":"Reading Datafile Into Linked List","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistcsharp","title":"C# Linked List Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdoublylinkedlistjava","title":"Java Linked List Class","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xstacksandqueues","title":"Stacks and Queues","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xstackusingarrayofobjects","title":"Stack  - Using Array of Objects","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xqueueusingarrayofobjects","title":"Queue  - Using Array Of Objects","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xpriorityqueue","title":"Priority Queue","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsortalgorithms","title":"Sorting Algorithms","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xsort-bubble","title":"Bubble Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbucketsort","title":"Bucket Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmergesort","title":"Merge Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xmergesort-reva","title":"Merge Sort - Demo Code","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksort","title":"Quick Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksortdemo","title":"Quicksort Demo","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xquicksortlinkedlists","title":"Quicksort - Linked Lists","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsort-heapsort","title":"Heap Sort","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingquickmergeheap","title":"Understanding Three Quick, Merge, and Heap Sort Algorithms","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xsortingvideosvisualizers","title":"Sorting Videos and Visualizers","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xend","title":"End Of Section","description":"","date":"2025-12-04","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2}]}}},"actionData":null,"errors":null},"future":{"unstable_dev":false,"unstable_postcss":false,"unstable_tailwind":false,"v2_errorBoundary":true,"v2_headers":true,"v2_meta":true,"v2_normalizeFormMethod":true,"v2_routeConvention":true}};</script><script type="module" async="">import "/csci132/build/manifest-5D5D9E8C.js";
+import * as route0 from "/csci132/build/root-AA24SA6C.js";
+import * as route1 from "/csci132/build/routes/$-5SFLQWPV.js";
+window.__remixRouteModules = {"root":route0,"routes/$":route1};
+
+import("/csci132/build/entry.client-PCJPW7TK.js");</script></body></html>
