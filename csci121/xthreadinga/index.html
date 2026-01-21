@@ -1,0 +1,712 @@
+<!DOCTYPE html><html lang="en" class="" style="scroll-padding:60px"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Threading - JAVA II</title><meta property="og:title" content="Threading - JAVA II"/><meta name="generator" content="mystmd"/><meta name="keywords" content=""/><link rel="stylesheet" href="/wp_jb2/site/build/_assets/app-AIT5GAEP.css"/><link rel="stylesheet" href="/wp_jb2/site/build/_assets/thebe-core-VKVHG5VY.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jupyter-matplotlib@0.11.3/css/mpl_widget.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous"/><link rel="icon" href="/wp_jb2/site/favicon.ico"/><link rel="stylesheet" href="/wp_jb2/site/myst-theme.css"/><script>
+  const savedTheme = localStorage.getItem("myst:theme");
+  const theme = window.matchMedia("(prefers-color-scheme: light)").matches ? 'light' : 'dark';
+  const classes = document.documentElement.classList;
+  const hasAnyTheme = classes.contains('light') || classes.contains('dark');
+  if (!hasAnyTheme) classes.add(savedTheme ?? theme);
+</script></head><body class="m-0 transition-colors duration-500 bg-white dark:bg-stone-900"><div class="myst-skip-to-article fixed top-1 left-1 h-[0px] w-[0px] focus-within:z-40 focus-within:h-auto focus-within:w-auto bg-white overflow-hidden focus-within:p-2 focus-within:ring-1" aria-label="skip to content options"><a href="#skip-to-frontmatter" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article frontmatter</a><a href="#skip-to-article" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article content</a></div><dialog id="myst-no-css" style="position:fixed;left:0px;top:0px;width:100vw;height:100vh;font-size:4rem;padding:1rem;color:black;background:white"><strong>Site not loading correctly?</strong><p>This may be due to an incorrect <code>BASE_URL</code> configuration. See<!-- --> <a href="https://mystmd.org/guide/deployment#deploy-base-url">the MyST Documentation</a> <!-- -->for reference.</p><script>
+    (() => {
+            // Test for has-styling variable set by the MyST stylesheet
+            const node = document.currentScript.parentNode;
+            const hasCSS = window.getComputedStyle(node).getPropertyValue("--has-styling");
+            if (hasCSS === ""){
+                    node.showModal();
+            }
+
+    })()
+</script></dialog><div class="myst-top-nav bg-white/80 backdrop-blur dark:bg-stone-900/80 shadow dark:shadow-stone-700 p-3 md:px-8 sticky w-screen top-0 z-30 h-[60px]"><nav class="myst-top-nav-bar flex items-center justify-between flex-nowrap max-w-[1440px] mx-auto"><div class="flex flex-row xl:min-w-[19.5rem] mr-2 sm:mr-7 justify-start items-center shrink-0"><div class="block xl:hidden"><button class="myst-top-nav-menu-button flex items-center justify-center border-stone-400 text-stone-800 hover:text-stone-900 dark:text-stone-200 hover:dark:text-stone-100 w-10 h-10"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem"><path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"></path></svg><span class="sr-only">Open Menu</span></button></div><a class="myst-home-link flex items-center ml-3 dark:text-white w-fit md:ml-5 xl:ml-7" href="/wp_jb2/site/"><span class="text-md sm:text-xl tracking-tight sm:mr-5">Made with MyST</span></a></div><div class="flex items-center flex-grow w-auto"><div class="flex-grow hidden text-md lg:block"></div><div class="flex-grow block"></div><button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R75cp:" data-state="closed" class="myst-search-bar flex items-center h-10 aspect-square sm:w-64 text-left text-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 myst-search-bar-disabled hover:ring-blue-500 dark:hover:ring-blue-500 hover:border-blue-500 dark:hover:border-blue-500"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="p-2.5 h-10 w-10 aspect-square"><path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd"></path></svg><span class="myst-search-text-placeholder hidden sm:block grow">Search</span><div aria-hidden="true" class="myst-search-shortcut items-center hidden mx-1 font-mono text-sm text-gray-600 sm:flex gap-x-1"><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none hide-mac">CTRL</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none show-mac">⌘</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none ">K</kbd><script>
+;(() => {
+const script = document.currentScript;
+const root = script.parentElement;
+
+const isMac = /mac/i.test(
+      window.navigator.userAgentData?.platform ?? window.navigator.userAgent,
+    );
+root.querySelectorAll(".hide-mac").forEach(node => {node.classList.add(isMac ? "hidden" : "block")});
+root.querySelectorAll(".show-mac").forEach(node => {node.classList.add(!isMac ? "hidden" : "block")});
+})()</script></div></button><button class="myst-theme-button theme rounded-full aspect-square border border-stone-700 dark:border-white hover:bg-neutral-100 border-solid overflow-hidden text-stone-700 dark:text-white hover:text-stone-500 dark:hover:text-neutral-800 w-10 h-10 mx-3" title="Toggle theme between light and dark mode" aria-label="Toggle theme between light and dark mode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-moon-icon h-full w-full p-0.5 hidden dark:block"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-sun-icon h-full w-full p-0.5 dark:hidden"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></button><div class="block sm:hidden"></div><div class="hidden sm:block"></div></div></nav></div><div class="myst-primary-sidebar fixed xl:article-grid grid-gap xl:w-screen xl:pointer-events-none overflow-auto max-xl:min-w-[300px] hidden z-10" style="top:60px"><div class="myst-primary-sidebar-pointer pointer-events-auto xl:col-margin-left flex-col overflow-hidden hidden xl:flex"><div class="myst-primary-sidebar-nav flex-grow py-6 overflow-y-auto primary-scrollbar"><nav aria-label="Navigation" class="myst-primary-sidebar-topnav overflow-y-hidden transition-opacity ml-3 xl:ml-0 mr-3 max-w-[350px] lg:hidden"><div class="w-full px-1 dark:text-white font-medium"></div></nav><div class="my-3 border-b-2 lg:hidden"></div><nav aria-label="Table of Contents" class="myst-primary-sidebar-toc flex-grow overflow-y-hidden transition-opacity ml-3 xl:ml-0 mr-3 max-w-[350px]"><div class="myst-toc w-full px-1 dark:text-white"><a title="JAVA II" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30 font-bold" href="/wp_jb2/site/">JAVA II</a><a title="First Form" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xfirstform">First Form</a><a title="Layout Managers" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xlayoutmangers">Layout Managers</a><a title="Displaying Text" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xdisplayingtext">Displaying Text</a><a title="Radio Buttons" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xradiobuttons">Radio Buttons</a><a title="Menus" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xmenus">Menus</a><a title="Combo boxes" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xcomboboxes-rev1">Combo boxes</a><a title="Slider and Progress Bar" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xjslider-progbar">Slider and Progress Bar</a><a title="Letters vs Digits" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xlettersvsdigits">Letters vs Digits</a><a title="Building A String Using Combo, Lists, and Textfield" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xbuildingstrings">Building A String Using Combo, Lists, and Textfield</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Building Swing Controls Via Code" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/wp_jb2/site/xbuildingswingcontrolsviacode">Building Swing Controls Via Code</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R2upsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R2upsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="Bounce Balls Animation" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xbounce">Bounce Balls Animation</a><a title="Bounce With Collision" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xbouncewithcollision">Bounce With Collision</a><a title="Threading" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xthreadinga">Threading</a><a title="Concurrency Fundamentals" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xthreadsconcurrencyfundamentalsbrwithswing">Concurrency Fundamentals</a><a title="Pictures and Sound" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xpicturesandsound">Pictures and Sound</a><a title="Add Image Using Image Icon Label" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/ximageiconlabel">Add Image Using Image Icon Label</a><a title="JTable" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/wp_jb2/site/xjtable">JTable</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 px-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="JAVA Automated Build Tools" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/wp_jb2/site/xjabt-javaautomatedbuildtools">JAVA Automated Build Tools</a><button class="self-center flex-none rounded-md group hover:bg-slate-300/30 focus:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R4upsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R4upsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div></div></nav></div><div class="myst-primary-sidebar-footer flex-none py-6 transition-all duration-700 translate-y-6 opacity-0"><a class="myst-made-with-myst flex mx-auto text-gray-700 w-fit hover:text-blue-700 dark:text-gray-200 dark:hover:text-blue-400" href="https://mystmd.org/made-with-myst" target="_blank" rel="noreferrer"><svg style="width:24px;height:24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" stroke="none"><g id="icon"><path fill="currentColor" d="M23.8,54.8v-3.6l4.7-0.8V17.5l-4.7-0.8V13H36l13.4,31.7h0.2l13-31.7h12.6v3.6l-4.7,0.8v32.9l4.7,0.8v3.6h-15
+          v-3.6l4.9-0.8V20.8H65L51.4,53.3h-3.8l-14-32.5h-0.1l0.2,17.4v12.1l5,0.8v3.6H23.8z"></path><path fill="#F37726" d="M47,86.9c0-5.9-3.4-8.8-10.1-8.8h-8.4c-5.2,0-9.4-1.3-12.5-3.8c-3.1-2.5-5.4-6.2-6.8-11l4.8-1.6
+          c1.8,5.6,6.4,8.6,13.8,8.8h9.2c6.4,0,10.8,2.5,13.1,7.5c2.3-5,6.7-7.5,13.1-7.5h8.4c7.8,0,12.7-2.9,14.6-8.7l4.8,1.6
+          c-1.4,4.9-3.6,8.6-6.8,11.1c-3.1,2.5-7.3,3.7-12.4,3.8H63c-6.7,0-10,2.9-10,8.8"></path></g></svg><span class="self-center ml-2 text-sm">Made with MyST</span></a></div></div></div><main class="article-grid grid-gap"><article class="article-grid subgrid-gap col-screen article content"><div class="hidden"></div><div id="skip-to-frontmatter" aria-label="article frontmatter" class="myst-fm-block mb-8 pt-9"><div class="myst-fm-block-header flex items-center mb-5 h-6 text-sm font-light"><div class="flex-grow"></div><div class="myst-fm-block-badges"><a href="https://github.com/executablebooks/jupyter-book" title="GitHub Repository: executablebooks/jupyter-book" target="_blank" rel="noopener noreferrer" class="myst-fm-github-link text-inherit hover:text-inherit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="1.25rem" height="1.25rem" class="myst-fm-github-icon inline-block mr-1 opacity-60 hover:opacity-100"><path d="M12 2.5c-5.4 0-9.8 4.4-9.8 9.7 0 4.3 2.8 8 6.7 9.2.5.1.7-.2.7-.5v-1.8c-2.4.5-3.1-.6-3.3-1.1-.1-.3-.6-1.1-1-1.4-.3-.2-.8-.6 0-.6s1.3.7 1.5 1c.9 1.5 2.3 1.1 2.8.8.1-.6.3-1.1.6-1.3-2.2-.2-4.4-1.1-4.4-4.8 0-1.1.4-1.9 1-2.6-.1-.2-.4-1.2.1-2.6 0 0 .8-.3 2.7 1 .8-.2 1.6-.3 2.4-.3.8 0 1.7.1 2.4.3 1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.6 0 3.7-2.3 4.6-4.4 4.8.4.3.7.9.7 1.8V21c0 .3.2.6.7.5 3.9-1.3 6.6-4.9 6.6-9.2 0-5.4-4.4-9.8-9.8-9.8z"></path></svg></a></div><div class="myst-fm-downloads-dropdown relative flex inline-block mx-1 grow-0" data-headlessui-state=""><button class="myst-fm-downloads-button relative ml-2 -mr-1" id="headlessui-menu-button-:Rs8ucp:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state=""><span class="sr-only">Downloads</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.25rem" height="1.25rem" class="myst-fm-downloads-icon"><title>Download</title><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg></button></div></div><h1 class="myst-fm-block-title mb-0">Threading</h1><header class="myst-fm-authors-affiliations mt-4 not-prose"><div class="myst-fm-authors-list"><span class="myst-fm-author font-semibold text-sm myst-fm-author-item inline-block"><button class="myst-fm-author-popover focus:shadow-[0_0_0_2px] focus:shadow-black outline-none hover:underline" aria-label="Author Details" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R78ucp:" data-state="closed"><span class="myst-fm-author-name">James Goudy</span></button></span></div></header></div><div class="block my-10 lg:sticky lg:z-10 lg:h-0 lg:pt-0 lg:my-0 lg:ml-10 lg:col-margin-right" style="top:60px"><nav></nav></div><div id="skip-to-article"></div><p>In computing, a <strong>process</strong> is an instance of a computer program that is being executed. Each process has its own memory space. <strong>Threading</strong>, in the context of Java (and other programming languages), is a way to achieve <strong>concurrency</strong> <em>within</em> a single process.</p><p>Think of a process like a workshop.</p><ul><li>A <strong>single-threaded</strong> process is like having only <strong>one worker</strong> in the workshop. This worker has to do every task sequentially (e.g., build a chair part by part, paint it, then package it). If one task takes a long time (like waiting for paint to dry), the entire workshop’s progress stops.</li><li>A <strong>multi-threaded</strong> process is like having <strong>multiple workers</strong> (threads) in the same workshop. They all share the same tools and materials (the process’s memory space). One worker can build the chair parts, another can paint a finished chair, and a third can package a painted one, potentially all happening <em>concurrently</em> or <em>interleaved</em>. This allows the workshop (the program) to make progress on multiple tasks simultaneously, leading to better efficiency and responsiveness.</li></ul><p><strong>Key Concepts of Java Threading:</strong></p><ol start="1"><li>Concurrency vs. Parallelism:<ul><li><strong>Concurrency:</strong> Tasks <em>appear</em> to run at the same time. The system switches between tasks rapidly, giving the illusion of simultaneous execution, even on a single-core processor.</li><li><strong>Parallelism:</strong> Tasks <em>actually</em> run at the same time on different processor cores. This requires a multi-core processor. Java threading enables both concurrency and, on suitable hardware, parallelism.</li></ul></li><li><strong>Shared Memory:</strong> Threads within the same Java process share the same memory space (heap memory). This makes communication between threads relatively easy (they can access the same objects) but also introduces challenges like race conditions if access to shared data isn’t carefully managed.</li><li><strong>Thread Lifecycle:</strong> Threads go through various states (e.g., NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED).</li><li>Benefits:<ul><li><strong>Responsiveness:</strong> Keep applications (especially GUIs) responsive by performing long-running tasks in background threads.</li><li><strong>Performance:</strong> Utilize multi-core processors effectively for computationally intensive tasks.</li><li><strong>Resource Sharing:</strong> Efficient sharing of resources compared to creating separate processes.</li></ul></li><li>Challenges:<ul><li><strong>Complexity:</strong> Writing correct concurrent code is harder than single-threaded code.</li><li><strong>Synchronization Issues:</strong> Need to manage access to shared data to prevent race conditions (where the outcome depends on the unpredictable timing of thread execution).</li><li><strong>Deadlock:</strong> Two or more threads waiting indefinitely for each other to release resources.</li><li><strong>Livelock:</strong> Threads are active but unable to make progress.</li><li><strong>Starvation:</strong> One thread is perpetually denied access to resources.</li></ul></li></ol><h2 id="example-code" class="relative group"><span class="heading-text">Example Code</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#example-code" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><p><strong>Overall Program Summary</strong></p><p>This Java application demonstrates the use of multithreading within a Swing GUI framework. It presents a window containing three distinct panels, each capable of hosting an animated ball. Users can independently control the animation within each panel using “Start”/“Stop” and “Pause”/“Resume” buttons. When started, each ball runs on its own dedicated thread, calculating its movement according to a predefined path (bouncing, horizontal wave, or vertical wave) and redrawing its position asynchronously.</p><p>The program effectively showcases how background threads can manage computationally intensive or time-based tasks like animation without freezing the main user interface thread (Event Dispatch Thread). It utilizes core Java threading concepts like <code>Runnable</code>, <code>Thread</code>, <code>volatile</code>, <code>synchronized</code>, <code>wait()</code>, and <code>notify()</code>, along with Swing’s mechanism (<code>SwingUtilities.invokeLater</code>) for safely updating the GUI from these background threads. This separation ensures the application remains responsive while animations are running.</p><h2 id="ball" class="relative group"><span class="heading-text">Ball</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#ball" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><p><strong>Ball Class Summary</strong></p><p>The <code>Ball</code> class serves a dual purpose: it’s a graphical component (<code>JComponent</code>) responsible for drawing a colored circle, and it’s a <code>Runnable</code> task that controls its own animation logic on a separate thread. Each <code>Ball</code> instance manages its position (<code>xpos</code>, <code>ypos</code>), size, color, movement direction (<code>xdir</code>, <code>ydir</code>), speed (<code>sleepTime</code>), and path type (bounce or wave). Its <code>run()</code> method contains the main animation loop, which periodically updates the ball’s position, checks for collisions with the panel boundaries (reversing direction and changing color upon impact), and then schedules a repaint on the Event Dispatch Thread using <code>SwingUtilities.invokeLater</code>. The class includes synchronized methods (<code>startBall</code>, <code>stopBall</code>, <code>pauseBall</code>, <code>resumeBall</code>) and uses <code>volatile</code> variables and <code>wait</code>/<code>notify</code> mechanisms to safely manage the thread’s lifecycle and state changes (like pausing) from other threads.</p><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-java" style="white-space:pre">/*
+Developer: James Goudy
+The ball class is to be added to a JPanel. 
+This program is to demonstate threads.
+Project: J2_Threading_Rev25
+
+ */
+package j2_threading_rev25;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
+
+/**
+ *
+ * @author jgoudy
+ */
+public class Ball extends JComponent implements Runnable {
+
+    // thread variables
+    private volatile Thread ballThread;
+    private volatile boolean threadSuspended;
+
+    // When class elements are public, there is no ability to check if the
+    // data is correct as compared to setters and getters.
+    // In many cases, using getter and setters is the better way.
+    
+    
+    // component dimension - usually overlaid a jpanel
+    public int compWidth;
+    public int compHeight;
+
+    // graphic properties
+    // will use this for both height and width
+    public int ballSize = 10;
+    public volatile Color color;
+
+    // position of graphic on component panel
+    public volatile int xpos = 0;
+    public volatile int ypos = 0;
+
+    // direction based on slope
+    public int rise = 1;
+    public int run = 2;
+
+    // direction based on slope
+    public int xdir = 1;
+    public int ydir = 1;
+
+    // since this is a thread, we need a sleep time
+    public long sleepTime = 10;
+
+    // ball path - 1 is bounce, 2 is horizontal wave, 3 is vertical wave
+    //public int ballPath;
+    public enum BallPath {
+        BOUNCE, HORIZONTAL_WAVE, VERTICAL_WAVE
+    }
+    public BallPath currentBallPath;
+
+    // variables for wave action
+    public double waveAngle = 0.1;
+    public double waveAngleVelocity = 0.5;
+    public double waveAmplitude = 30;
+
+    // constructors
+    public Ball()
+    {
+        ballThread = new Thread(this);
+        color = Color.blue;
+    }
+
+    public Ball(int compWidth, int compHeight, int ballSize, Color color,
+            int xpos, int ypos, int rise, int run)
+    {
+        this.compWidth = compWidth;
+        this.compHeight = compHeight;
+        this.ballSize = ballSize;
+        this.color = color;
+        this.xpos = xpos;
+        this.ypos = ypos;
+        this.rise = rise;
+        this.run = run;
+
+        threadSuspended = false;
+
+        ballThread = new Thread(this);
+
+    }
+
+    @Override
+    public void run()
+    {
+        Thread thisThread = Thread.currentThread();
+
+        while (ballThread == thisThread) {
+            try {
+                Thread.sleep(sleepTime);
+
+                synchronized (this) {
+
+                    // this is for pausing the thread
+                    while (threadSuspended &amp;&amp; ballThread == thisThread) {
+                        wait();
+                    }
+
+                    //put code here
+                    //-----------------
+                    moveBall();
+                    //---------------
+                }
+            } catch (InterruptedException e) {
+            }
+
+        }
+
+    }
+
+    @Override
+    public void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+        g.setColor(this.color);
+        g.fillOval(xpos, ypos, ballSize, ballSize);
+
+    }
+
+    public void moveBall()
+    {
+
+        checkIfBallHitASide();
+
+        switch (currentBallPath) {
+            case BOUNCE -&gt; {
+                // ball bounces when hits side
+                xpos = xpos + (xdir * run);
+                ypos = ypos + (ydir * rise);
+
+            }
+            case HORIZONTAL_WAVE -&gt; {
+                // ball travels a horizontal wave
+                ypos = (int) (waveAmplitude * Math.sin(waveAngle))
+                        + (compHeight / 2 - 10);
+                xpos = xpos + (xdir * run);
+
+                waveAngle = waveAngle + waveAngleVelocity;
+
+            }
+            case VERTICAL_WAVE -&gt; {
+                // ball travels vertical wave
+                xpos = (int) (waveAmplitude * Math.sin(waveAngle))
+                        + (compWidth / 2 - 10);
+                ypos = ypos + (ydir * rise);
+
+                waveAngle = waveAngle + waveAngleVelocity;
+
+            }
+            default -&gt; {
+                currentBallPath = BallPath.BOUNCE;
+            }
+        }
+       
+        // schedule repaint on the EDT (wait until the tread is done)
+        SwingUtilities.invokeLater(() -&gt; {
+            repaint();
+        });
+
+    }
+
+    private void checkIfBallHitASide()
+    {
+        // check right and left
+        if (xpos &gt; compWidth - ballSize) {
+            // check if ball hits/exceeds right side
+            xdir = xdir * -1;
+            xpos = compWidth - ballSize - 1;
+            if (color == Color.blue) {
+                color = Color.red;
+            } else {
+                color = Color.blue;
+            }
+
+        } else if (xpos &lt;= 0) {
+            // check if ball hits/exceeds left side
+            xdir = xdir * -1;
+            xpos = 0;
+            color = Color.green;
+        }
+
+        // check bottom and top
+        if (ypos &gt; compHeight - ballSize) {
+            // check if ball hits/exceeds bottom side
+            ydir = ydir * -1;
+            ypos = compHeight - ballSize;
+            color = Color.yellow;
+
+        } else if (ypos &lt;= 0) {
+            // check if ball hits/exceeds top side
+            ydir = ydir * -1;
+            ypos = 0;
+            color = Color.lightGray;
+        }
+
+    }
+
+    // start stop pause resume thread - the ball
+    public synchronized void stopBall()
+    {
+        ballThread = null;
+        
+        // notify is to let the other threads and 
+        // the main program know that this thread
+        // is no longer in existence 
+        
+        notify();
+    }
+
+    public synchronized void startBall()
+    {
+        threadSuspended = false;
+        ballThread.start();
+    }
+
+    public synchronized void pauseBall()
+    {
+        threadSuspended = true;
+    }
+
+    public synchronized void resumeBall()
+    {
+        threadSuspended = false;
+        
+        // notify is to let the other threads
+        // and the main program  know that the
+        // thread is starting up again
+        
+        notify();
+    }
+
+}
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><hr class="py-2 my-5 translate-y-2"/><h2 id="frame1-java" class="relative group"><span class="heading-text">Frame1.java</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#frame1-java" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><p><strong>Frame1 Class Summary</strong></p><p>The <code>Frame1</code> class defines the main application window using <code>javax.swing.JFrame</code> and contains the user interface elements. It sets up three <code>JPanel</code> components, each acting as a container for a <code>Ball</code> animation, along with corresponding “Start”/“Stop” and “Pause”/“Resume” buttons for each panel. <code>Frame1</code> is responsible for orchestrating the creation, addition, and removal of <code>Ball</code> instances within their respective panels in response to button clicks. It maintains state variables (<code>isBallStartedX</code>, <code>isBallPausedX</code>) to track the status of each ball and toggle the button functionalities appropriately. The action listeners for the buttons call the relevant control methods (<code>startBall</code>, <code>stopBall</code>, <code>pauseBall</code>, <code>resumeBall</code>) on the correct <code>Ball</code> object stored in an array, effectively linking the UI controls to the underlying animation threads.</p><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-java" style="white-space:pre">/*
+
+Developer: James Goudy
+The purpose of this program is to demonstrate the use of threads in Java.
+Project Name: J2_Threading_Rev25
+ */
+package j2_threading_rev25;
+
+
+import javax.swing.JPanel;
+
+/**
+ *
+ * @author jgoudy
+ */
+public class Frame1 extends javax.swing.JFrame {
+
+    // an array to keep track of the balls
+    Ball[] balls = new Ball[3];
+
+    
+    // status variables for ball
+    boolean isBallStarted1 = true;
+    boolean isBallStarted2 = true;
+    boolean isBallStarted3 = true;
+    
+
+    boolean isBallPaused1 = true;
+    boolean isBallPaused2 = true;
+    boolean isBallPaused3 = true;
+    
+    /**
+     * Creates new form Frame1
+     */
+    public Frame1()
+    {
+        initComponents();
+
+        this.setLocationRelativeTo(this);
+
+    }
+
+    private void addBall(JPanel jp, int ballSize, Ball.BallPath ballpath,
+            int sleepTime, int rise, int run, int arrayIndex)
+    {
+
+        Ball nb = new Ball();
+
+        // set characteristics of the ball
+        // set ball path
+        switch (ballpath) {
+            case Ball.BallPath.BOUNCE -&gt; {
+                nb.currentBallPath = Ball.BallPath.BOUNCE;
+            }
+            case Ball.BallPath.HORIZONTAL_WAVE-&gt; {
+                nb.currentBallPath = Ball.BallPath.HORIZONTAL_WAVE;
+            }
+            case Ball.BallPath.VERTICAL_WAVE -&gt; {
+                nb.currentBallPath = Ball.BallPath.VERTICAL_WAVE;
+            }
+            default -&gt; {
+                nb.currentBallPath = Ball.BallPath.BOUNCE;
+            }
+        }
+
+        nb.compHeight = jp.getHeight();
+        nb.compWidth = jp.getWidth();
+        nb.ballSize = ballSize;
+        nb.rise = rise;
+        nb.run = run;
+        nb.sleepTime = sleepTime;
+
+        // remember when a component (ball) is added to a panel
+        // the visibility, the size of the component, height and width
+        // and the location of the top right corner has to be set
+        nb.setVisible(true);
+        nb.setSize(jp.getWidth(), jp.getHeight());
+        nb.setLocation(0, 0);
+
+        //nb.startBall();
+        jp.add(nb);
+        balls[arrayIndex] = nb;
+
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+    private void initComponents()
+    {
+
+        jPanel1 = new javax.swing.JPanel();
+        jbttnStart1 = new javax.swing.JButton();
+        jbttnPause1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jbttnStart2 = new javax.swing.JButton();
+        jbttnPause2 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jbttnStart3 = new javax.swing.JButton();
+        jbttnPause3 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 275, Short.MAX_VALUE)
+        );
+
+        jbttnStart1.setText(&quot;Start&quot;);
+        jbttnStart1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jbttnStart1ActionPerformed(evt);
+            }
+        });
+
+        jbttnPause1.setText(&quot;Pause&quot;);
+        jbttnPause1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jbttnPause1ActionPerformed(evt);
+            }
+        });
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 275, Short.MAX_VALUE)
+        );
+
+        jbttnStart2.setText(&quot;Start&quot;);
+        jbttnStart2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jbttnStart2ActionPerformed(evt);
+            }
+        });
+
+        jbttnPause2.setText(&quot;Pause&quot;);
+        jbttnPause2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jbttnPause2ActionPerformed(evt);
+            }
+        });
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 275, Short.MAX_VALUE)
+        );
+
+        jbttnStart3.setText(&quot;Start&quot;);
+        jbttnStart3.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jbttnStart3ActionPerformed(evt);
+            }
+        });
+
+        jbttnPause3.setText(&quot;Pause&quot;);
+        jbttnPause3.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jbttnPause3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbttnStart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbttnPause1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbttnStart2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbttnPause2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbttnStart3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbttnPause3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jbttnStart3)
+                        .addGap(30, 30, 30)
+                        .addComponent(jbttnPause3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jbttnStart2)
+                        .addGap(30, 30, 30)
+                        .addComponent(jbttnPause2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jbttnStart1)
+                        .addGap(30, 30, 30)
+                        .addComponent(jbttnPause1)))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// &lt;/editor-fold&gt;//GEN-END:initComponents
+
+    private void jbttnStart1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbttnStart1ActionPerformed
+    {//GEN-HEADEREND:event_jbttnStart1ActionPerformed
+
+        // toggle the start button to stop
+        if (isBallStarted1) {
+            jbttnStart1.setText(&quot;Stop&quot;);
+            addBall(jPanel1, 20, Ball.BallPath.BOUNCE, 10, 1, 1, 0);
+            balls[0].startBall();
+            isBallStarted1 = false;
+        } else {
+            jbttnStart1.setText(&quot;Start&quot;);
+            balls[0].stopBall();
+            balls[0] = null;
+            jPanel1.removeAll();
+            jPanel1.repaint();
+
+            // reset the pause button
+            isBallStarted1 = true;
+            isBallPaused1 = true;
+            jbttnPause1.setText(&quot;Pause&quot;);
+        }
+
+
+    }//GEN-LAST:event_jbttnStart1ActionPerformed
+
+    private void jbttnPause1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbttnPause1ActionPerformed
+    {//GEN-HEADEREND:event_jbttnPause1ActionPerformed
+
+        try {
+
+            if (isBallPaused1) {
+                jbttnPause1.setText(&quot;Resume&quot;);
+                balls[0].pauseBall();
+                isBallPaused1 = false;
+            } else {
+                jbttnPause1.setText(&quot;Pause&quot;);
+                balls[0].resumeBall();
+                isBallPaused1 = true;
+            }
+        } catch (Exception e) {
+            
+            // in production we would log the error
+        }
+
+    }//GEN-LAST:event_jbttnPause1ActionPerformed
+
+    private void jbttnStart2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbttnStart2ActionPerformed
+    {//GEN-HEADEREND:event_jbttnStart2ActionPerformed
+        
+        
+        // toggle the start button to stop
+        if (isBallStarted2) {
+            jbttnStart2.setText(&quot;Stop&quot;);
+            addBall(jPanel2, 20, Ball.BallPath.HORIZONTAL_WAVE, 25, 1, 1, 1);
+            balls[1].startBall();
+            isBallStarted2 = false;
+        } else {
+            jbttnStart2.setText(&quot;Start&quot;);
+            balls[1].stopBall();
+            balls[1] = null;
+            jPanel2.removeAll();
+            jPanel2.repaint();
+
+            // reset the pause button
+            isBallStarted2 = true;
+            isBallPaused2 = true;
+            jbttnPause2.setText(&quot;Pause&quot;);
+        }
+        
+        
+
+
+    }//GEN-LAST:event_jbttnStart2ActionPerformed
+
+    private void jbttnPause2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbttnPause2ActionPerformed
+    {//GEN-HEADEREND:event_jbttnPause2ActionPerformed
+        try {
+
+            if (isBallPaused2) {
+                jbttnPause2.setText(&quot;Resume&quot;);
+                balls[1].pauseBall();
+                isBallPaused2 = false;
+            } else {
+                jbttnPause2.setText(&quot;Pause&quot;);
+                balls[1].resumeBall();
+                isBallPaused2 = true;
+            }
+        } catch (Exception e) {
+            
+            // in production we would log the error
+        }
+    }//GEN-LAST:event_jbttnPause2ActionPerformed
+
+    private void jbttnStart3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbttnStart3ActionPerformed
+    {//GEN-HEADEREND:event_jbttnStart3ActionPerformed
+        // toggle the start button to stop
+        if (isBallStarted3) {
+            jbttnStart3.setText(&quot;Stop&quot;);
+            addBall(jPanel3, 20, Ball.BallPath.VERTICAL_WAVE, 40, 1, 1, 2);
+            balls[2].startBall();
+            isBallStarted3 = false;
+        } else {
+            jbttnStart3.setText(&quot;Start&quot;);
+            balls[2].stopBall();
+            balls[2] = null;
+            jPanel3.removeAll();
+            jPanel3.repaint();
+
+            // reset the pause button
+            isBallStarted3 = true;
+            isBallPaused3 = true;
+            jbttnPause3.setText(&quot;Pause&quot;);
+        }
+    }//GEN-LAST:event_jbttnStart3ActionPerformed
+
+    private void jbttnPause3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbttnPause3ActionPerformed
+    {//GEN-HEADEREND:event_jbttnPause3ActionPerformed
+        try {
+
+            if (isBallPaused3) {
+                jbttnPause3.setText(&quot;Resume&quot;);
+                balls[2].pauseBall();
+                isBallPaused3 = false;
+            } else {
+                jbttnPause3.setText(&quot;Pause&quot;);
+                balls[2].resumeBall();
+                isBallPaused3 = true;
+            }
+        } catch (Exception e) {
+            
+            // in production we would log the error
+        }
+    }//GEN-LAST:event_jbttnPause3ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[])
+    {
+        /* Set the Nimbus look and feel */
+        //&lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot; Look and feel setting code (optional) &quot;&gt;
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if (&quot;Nimbus&quot;.equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Frame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Frame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Frame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Frame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //&lt;/editor-fold&gt;
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run()
+            {
+                new Frame1().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JButton jbttnPause1;
+    private javax.swing.JButton jbttnPause2;
+    private javax.swing.JButton jbttnPause3;
+    private javax.swing.JButton jbttnStart1;
+    private javax.swing.JButton jbttnStart2;
+    private javax.swing.JButton jbttnStart3;
+    // End of variables declaration//GEN-END:variables
+}
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><div class="myst-backmatter-parts"></div><div class="myst-footer-links flex pt-10 mb-10 space-x-4"><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-prev" href="/wp_jb2/site/xbouncewithcollision"><div class="flex h-full align-middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:-translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path></svg><div class="flex-grow text-right"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">JAVA II</div>Bounce With Collision</div></div></a><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-next" href="/wp_jb2/site/xthreadsconcurrencyfundamentalsbrwithswing"><div class="flex h-full align-middle"><div class="flex-grow"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">JAVA II</div>Concurrency Fundamentals</div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path></svg></div></a></div></article></main><script>((a,l)=>{if(!window.history.state||!window.history.state.key){let u=Math.random().toString(32).slice(2);window.history.replaceState({key:u},"")}try{let d=JSON.parse(sessionStorage.getItem(a)||"{}")[l||window.history.state.key];typeof d=="number"&&window.scrollTo(0,d)}catch(u){console.error(u),sessionStorage.removeItem(a)}})("positions", null)</script><link rel="modulepreload" href="/wp_jb2/site/build/entry.client-PCJPW7TK.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-AQ2CODAG.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-JJXTQVMA.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-OZE3FFNP.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-OYMW4E3D.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-C4DFGG5C.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-J7TUH54J.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-FZ2S7OYD.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-JEM6JXYA.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-34XIY2DH.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-KQM5FBHR.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-OCWQY3HK.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-7HNKBP4B.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-CUKUDK3R.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-3EBOCCHJ.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-O4VQNZ62.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-4OEDG4JQ.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-GUCIBHGO.js"/><link rel="modulepreload" href="/wp_jb2/site/build/root-CXYA7X5D.js"/><link rel="modulepreload" href="/wp_jb2/site/build/_shared/chunk-DATP5P2X.js"/><link rel="modulepreload" href="/wp_jb2/site/build/routes/$-JRBPULBO.js"/><script>window.__remixContext = {"url":"/xthreadinga","state":{"loaderData":{"root":{"config":{"version":2,"myst":"1.6.0","options":{"folders":true},"nav":[],"actions":[],"projects":[{"bibliography":["references.bib"],"exports":[],"title":"JAVA II","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci121_j2book\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024","toc":[{"file":"xintro.md"},{"file":"xFirstForm.md"},{"file":"xLayoutMangers.md"},{"file":"xDisplayingText.md"},{"file":"xRadioButtons.md"},{"file":"xMenus.md"},{"file":"xComboboxes_Rev1.md"},{"file":"xJSlider_ProgBar.md"},{"file":"xLettersvsDigits.md"},{"file":"xBuildingStrings.md"},{"children":[{"file":"xDynamic_GamePiece.md"}],"file":"xBuildingSwingControlsViaCode.md"},{"file":"xBounce.md"},{"file":"xBounceWithCollision.md"},{"file":"xThreadinga.md"},{"file":"xThreadsConcurrencyFundamentalsbrWithSwing.md"},{"file":"xPicturesAndSound.md"},{"file":"xImageIconLabel.md"},{"file":"xJTable.md"},{"children":[{"file":"xJABT_JavaAnt.md"},{"file":"xJABT_JavaMaven.md"},{"file":"xJABT_JavaGradle.md"}],"file":"xJABT_JAVAAutomatedBuildTools.md"}],"index":"index","pages":[{"slug":"xfirstform","title":"First Form","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xlayoutmangers","title":"Layout Managers","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdisplayingtext","title":"Displaying Text","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xradiobuttons","title":"Radio Buttons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xmenus","title":"Menus","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xcomboboxes-rev1","title":"Combo boxes","description":"","date":"","thumbnail":"/wp_jb2/site/build/combobox-1141391d39dcb78a78ae52ea3c03e02e.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjslider-progbar","title":"Slider and Progress Bar","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20250508161033-91ba2c862c4aa7fcdf1b7fe2894e58d9.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xlettersvsdigits","title":"Letters vs Digits","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20240313141208-a32cb117eeefed585a2fd609d4ccf953.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbuildingstrings","title":"Building A String Using Combo, Lists, and Textfield","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20250321152932-84d4abdf715775ca7173786d654cbf0a.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbuildingswingcontrolsviacode","title":"Building Swing Controls Via Code","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdynamic-gamepiece","title":"Game Piece - Dynamically Adding Pieces to a Panel","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbounce","title":"Bounce Balls Animation","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20240411111208-50a4c51801e6dc5e59c30c04530e33d8.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbouncewithcollision","title":"Bounce With Collision","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xthreadinga","title":"Threading","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xthreadsconcurrencyfundamentalsbrwithswing","title":"Concurrency Fundamentals","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xpicturesandsound","title":"Pictures and Sound","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"ximageiconlabel","title":"Add Image Using Image Icon Label","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjtable","title":"JTable","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20240416152944-d9e32f28de51f9b7c8dd45334ec2977d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjabt-javaautomatedbuildtools","title":"JAVA Automated Build Tools","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjabt-javaant","title":"Java Ant: Build Automation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xjabt-javamaven","title":"Java Maven:  Build Automation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xjabt-javagradle","title":"Java Gradle: Build Automation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2}]}]},"CONTENT_CDN_PORT":"3100","MODE":"static","BASE_URL":"/wp_jb2/site"},"routes/$":{"config":{"version":2,"myst":"1.6.0","options":{"folders":true},"nav":[],"actions":[],"projects":[{"bibliography":["references.bib"],"exports":[],"title":"JAVA II","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci121_j2book\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024","toc":[{"file":"xintro.md"},{"file":"xFirstForm.md"},{"file":"xLayoutMangers.md"},{"file":"xDisplayingText.md"},{"file":"xRadioButtons.md"},{"file":"xMenus.md"},{"file":"xComboboxes_Rev1.md"},{"file":"xJSlider_ProgBar.md"},{"file":"xLettersvsDigits.md"},{"file":"xBuildingStrings.md"},{"children":[{"file":"xDynamic_GamePiece.md"}],"file":"xBuildingSwingControlsViaCode.md"},{"file":"xBounce.md"},{"file":"xBounceWithCollision.md"},{"file":"xThreadinga.md"},{"file":"xThreadsConcurrencyFundamentalsbrWithSwing.md"},{"file":"xPicturesAndSound.md"},{"file":"xImageIconLabel.md"},{"file":"xJTable.md"},{"children":[{"file":"xJABT_JavaAnt.md"},{"file":"xJABT_JavaMaven.md"},{"file":"xJABT_JavaGradle.md"}],"file":"xJABT_JAVAAutomatedBuildTools.md"}],"index":"index","pages":[{"slug":"xfirstform","title":"First Form","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xlayoutmangers","title":"Layout Managers","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdisplayingtext","title":"Displaying Text","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xradiobuttons","title":"Radio Buttons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xmenus","title":"Menus","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xcomboboxes-rev1","title":"Combo boxes","description":"","date":"","thumbnail":"/wp_jb2/site/build/combobox-1141391d39dcb78a78ae52ea3c03e02e.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjslider-progbar","title":"Slider and Progress Bar","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20250508161033-91ba2c862c4aa7fcdf1b7fe2894e58d9.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xlettersvsdigits","title":"Letters vs Digits","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20240313141208-a32cb117eeefed585a2fd609d4ccf953.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbuildingstrings","title":"Building A String Using Combo, Lists, and Textfield","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20250321152932-84d4abdf715775ca7173786d654cbf0a.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbuildingswingcontrolsviacode","title":"Building Swing Controls Via Code","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdynamic-gamepiece","title":"Game Piece - Dynamically Adding Pieces to a Panel","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbounce","title":"Bounce Balls Animation","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20240411111208-50a4c51801e6dc5e59c30c04530e33d8.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbouncewithcollision","title":"Bounce With Collision","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xthreadinga","title":"Threading","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xthreadsconcurrencyfundamentalsbrwithswing","title":"Concurrency Fundamentals","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xpicturesandsound","title":"Pictures and Sound","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"ximageiconlabel","title":"Add Image Using Image Icon Label","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjtable","title":"JTable","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20240416152944-d9e32f28de51f9b7c8dd45334ec2977d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjabt-javaautomatedbuildtools","title":"JAVA Automated Build Tools","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjabt-javaant","title":"Java Ant: Build Automation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xjabt-javamaven","title":"Java Maven:  Build Automation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xjabt-javagradle","title":"Java Gradle: Build Automation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2}]}]},"page":{"version":3,"kind":"Article","sha256":"95c770c3ceb0145f3ed9c16a872bfd0509eb46f1ed3e6c880bf40204c3fcd331","slug":"xthreadinga","location":"/xThreadinga.md","dependencies":[],"frontmatter":{"title":"Threading","content_includes_title":false,"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci121_j2book\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024","exports":[{"format":"md","filename":"xThreadinga.md","url":"/wp_jb2/site/build/xThreadinga-061e1c57fecad36f73d832e5cae1febb.md"}]},"mdast":{"type":"root","children":[{"type":"block","children":[{"type":"paragraph","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"children":[{"type":"text","value":"In computing, a ","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"key":"crRFZT0W2q"},{"type":"strong","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"children":[{"type":"text","value":"process","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"key":"e3uybdbIAG"}],"key":"qLuIPKnh9U"},{"type":"text","value":" is an instance of a computer program that is being executed. Each process has its own memory space. ","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"key":"xxV3FqAnf1"},{"type":"strong","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"children":[{"type":"text","value":"Threading","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"key":"CoCDP3PBE3"}],"key":"js098wAQVU"},{"type":"text","value":", in the context of Java (and other programming languages), is a way to achieve ","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"key":"Rk4JsiAivo"},{"type":"strong","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"children":[{"type":"text","value":"concurrency","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"key":"JRy2omwxyq"}],"key":"yji6hIyTOH"},{"type":"text","value":" ","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"key":"PZuou1fUyV"},{"type":"emphasis","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"children":[{"type":"text","value":"within","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"key":"nlfg1eBU6N"}],"key":"GuawcFuokm"},{"type":"text","value":" a single process.","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"key":"PKGAK02c2t"}],"key":"qSXL67D5CK"},{"type":"paragraph","position":{"start":{"line":5,"column":1},"end":{"line":5,"column":1}},"children":[{"type":"text","value":"Think of a process like a workshop.","position":{"start":{"line":5,"column":1},"end":{"line":5,"column":1}},"key":"Lpr9eTUjha"}],"key":"a1TB1yD66t"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":7,"column":1},"end":{"line":9,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"children":[{"type":"text","value":"A ","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"WCp40tg0SK"},{"type":"strong","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"children":[{"type":"text","value":"single-threaded","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"YuNIVC2vJZ"}],"key":"BpXR7oF2Sf"},{"type":"text","value":" process is like having only ","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"J0NHbTcooy"},{"type":"strong","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"children":[{"type":"text","value":"one worker","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"PfsB8x0W2w"}],"key":"fpiH2e7DsO"},{"type":"text","value":" in the workshop. This worker has to do every task sequentially (e.g., build a chair part by part, paint it, then package it). If one task takes a long time (like waiting for paint to dry), the entire workshop’s progress stops.","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"Z5v7DzXzDe"}],"key":"KMJqubfqy3"},{"type":"listItem","spread":true,"position":{"start":{"line":8,"column":1},"end":{"line":9,"column":1}},"children":[{"type":"text","value":"A ","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"key":"nxtwPa4LSj"},{"type":"strong","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"children":[{"type":"text","value":"multi-threaded","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"key":"lANkGEn0af"}],"key":"Yv4KH0XcyK"},{"type":"text","value":" process is like having ","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"key":"yaJpM2YPkB"},{"type":"strong","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"children":[{"type":"text","value":"multiple workers","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"key":"bWAC72p7R4"}],"key":"TezhI4N0z3"},{"type":"text","value":" (threads) in the same workshop. They all share the same tools and materials (the process’s memory space). One worker can build the chair parts, another can paint a finished chair, and a third can package a painted one, potentially all happening ","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"key":"tblhRnLu11"},{"type":"emphasis","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"children":[{"type":"text","value":"concurrently","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"key":"mBtmuVc3j1"}],"key":"vuCV8uVj3b"},{"type":"text","value":" or ","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"key":"WUTI6T7ANb"},{"type":"emphasis","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"children":[{"type":"text","value":"interleaved","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"key":"r2Z27KIBCR"}],"key":"ruaWdrunSM"},{"type":"text","value":". This allows the workshop (the program) to make progress on multiple tasks simultaneously, leading to better efficiency and responsiveness.","position":{"start":{"line":8,"column":1},"end":{"line":8,"column":1}},"key":"CTh56qXexx"}],"key":"zigVw5CQLx"}],"key":"uwWktaEqrp"},{"type":"paragraph","position":{"start":{"line":10,"column":1},"end":{"line":10,"column":1}},"children":[{"type":"strong","position":{"start":{"line":10,"column":1},"end":{"line":10,"column":1}},"children":[{"type":"text","value":"Key Concepts of Java Threading:","position":{"start":{"line":10,"column":1},"end":{"line":10,"column":1}},"key":"F1nEQSOELM"}],"key":"Xs2CatOb3Y"}],"key":"cvLE6yJRvf"},{"type":"list","ordered":true,"start":1,"spread":false,"position":{"start":{"line":12,"column":1},"end":{"line":29,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":12,"column":1},"end":{"line":14,"column":1}},"children":[{"type":"text","value":"Concurrency vs. Parallelism:","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"key":"vcTNxTiuXB"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":13,"column":1},"end":{"line":14,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":13,"column":1},"end":{"line":13,"column":1}},"children":[{"type":"strong","position":{"start":{"line":13,"column":1},"end":{"line":13,"column":1}},"children":[{"type":"text","value":"Concurrency:","position":{"start":{"line":13,"column":1},"end":{"line":13,"column":1}},"key":"imxBFQ5JMO"}],"key":"HItfeaZwiu"},{"type":"text","value":" Tasks ","position":{"start":{"line":13,"column":1},"end":{"line":13,"column":1}},"key":"eHEBPqni5c"},{"type":"emphasis","position":{"start":{"line":13,"column":1},"end":{"line":13,"column":1}},"children":[{"type":"text","value":"appear","position":{"start":{"line":13,"column":1},"end":{"line":13,"column":1}},"key":"gmOXaxVHcR"}],"key":"jfZdQuwKM6"},{"type":"text","value":" to run at the same time. The system switches between tasks rapidly, giving the illusion of simultaneous execution, even on a single-core processor.","position":{"start":{"line":13,"column":1},"end":{"line":13,"column":1}},"key":"nfOFQWXaiJ"}],"key":"U1SlTXwNZz"},{"type":"listItem","spread":true,"position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"children":[{"type":"strong","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"children":[{"type":"text","value":"Parallelism:","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"key":"llcSBAim5u"}],"key":"l29isWbj7O"},{"type":"text","value":" Tasks ","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"key":"x4gufTsxRw"},{"type":"emphasis","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"children":[{"type":"text","value":"actually","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"key":"ASU5FRp9Oz"}],"key":"GHlWAOYqLz"},{"type":"text","value":" run at the same time on different processor cores. This requires a multi-core processor. Java threading enables both concurrency and, on suitable hardware, parallelism.","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"key":"ZMtvutQYZK"}],"key":"qlauYcoHII"}],"key":"BV3IZ41eGK"}],"key":"ScuUIgz7Yf"},{"type":"listItem","spread":true,"position":{"start":{"line":15,"column":1},"end":{"line":15,"column":1}},"children":[{"type":"strong","position":{"start":{"line":15,"column":1},"end":{"line":15,"column":1}},"children":[{"type":"text","value":"Shared Memory:","position":{"start":{"line":15,"column":1},"end":{"line":15,"column":1}},"key":"nIBlLgFVAR"}],"key":"h7U2RNzwoy"},{"type":"text","value":" Threads within the same Java process share the same memory space (heap memory). This makes communication between threads relatively easy (they can access the same objects) but also introduces challenges like race conditions if access to shared data isn’t carefully managed.","position":{"start":{"line":15,"column":1},"end":{"line":15,"column":1}},"key":"N0n1UJdvHy"}],"key":"nmXZmI0EYO"},{"type":"listItem","spread":true,"position":{"start":{"line":16,"column":1},"end":{"line":16,"column":1}},"children":[{"type":"strong","position":{"start":{"line":16,"column":1},"end":{"line":16,"column":1}},"children":[{"type":"text","value":"Thread Lifecycle:","position":{"start":{"line":16,"column":1},"end":{"line":16,"column":1}},"key":"PhCJH5WoQt"}],"key":"sVneMyQq3R"},{"type":"text","value":" Threads go through various states (e.g., NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED).","position":{"start":{"line":16,"column":1},"end":{"line":16,"column":1}},"key":"gkaFlaj63v"}],"key":"shs1gkQXx5"},{"type":"listItem","spread":true,"position":{"start":{"line":17,"column":1},"end":{"line":20,"column":1}},"children":[{"type":"text","value":"Benefits:","position":{"start":{"line":17,"column":1},"end":{"line":17,"column":1}},"key":"XTedTTl7oU"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":18,"column":1},"end":{"line":20,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":18,"column":1},"end":{"line":18,"column":1}},"children":[{"type":"strong","position":{"start":{"line":18,"column":1},"end":{"line":18,"column":1}},"children":[{"type":"text","value":"Responsiveness:","position":{"start":{"line":18,"column":1},"end":{"line":18,"column":1}},"key":"rLgwbslrBk"}],"key":"kbTJADhAhV"},{"type":"text","value":" Keep applications (especially GUIs) responsive by performing long-running tasks in background threads.","position":{"start":{"line":18,"column":1},"end":{"line":18,"column":1}},"key":"mvBhnnMWi9"}],"key":"yxKmPXyhzY"},{"type":"listItem","spread":true,"position":{"start":{"line":19,"column":1},"end":{"line":19,"column":1}},"children":[{"type":"strong","position":{"start":{"line":19,"column":1},"end":{"line":19,"column":1}},"children":[{"type":"text","value":"Performance:","position":{"start":{"line":19,"column":1},"end":{"line":19,"column":1}},"key":"I7DmIv0K0p"}],"key":"CqFYREcbSl"},{"type":"text","value":" Utilize multi-core processors effectively for computationally intensive tasks.","position":{"start":{"line":19,"column":1},"end":{"line":19,"column":1}},"key":"xlcWHiqrGH"}],"key":"snibq5pPEL"},{"type":"listItem","spread":true,"position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"children":[{"type":"strong","position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"children":[{"type":"text","value":"Resource Sharing:","position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"key":"D8XCvZari7"}],"key":"rmKv6Zg0O4"},{"type":"text","value":" Efficient sharing of resources compared to creating separate processes.","position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"key":"g94y1Wr3FC"}],"key":"UuFhG65w2P"}],"key":"x5HGysAtkW"}],"key":"LujDrS2Tgk"},{"type":"listItem","spread":true,"position":{"start":{"line":21,"column":1},"end":{"line":29,"column":1}},"children":[{"type":"text","value":"Challenges:","position":{"start":{"line":21,"column":1},"end":{"line":21,"column":1}},"key":"gA9B9abrcB"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":22,"column":1},"end":{"line":29,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":22,"column":1},"end":{"line":22,"column":1}},"children":[{"type":"strong","position":{"start":{"line":22,"column":1},"end":{"line":22,"column":1}},"children":[{"type":"text","value":"Complexity:","position":{"start":{"line":22,"column":1},"end":{"line":22,"column":1}},"key":"R2U76ufVKN"}],"key":"CvsA1Bjbla"},{"type":"text","value":" Writing correct concurrent code is harder than single-threaded code.","position":{"start":{"line":22,"column":1},"end":{"line":22,"column":1}},"key":"FyCHUdsbMp"}],"key":"FvaEODv0na"},{"type":"listItem","spread":true,"position":{"start":{"line":23,"column":1},"end":{"line":23,"column":1}},"children":[{"type":"strong","position":{"start":{"line":23,"column":1},"end":{"line":23,"column":1}},"children":[{"type":"text","value":"Synchronization Issues:","position":{"start":{"line":23,"column":1},"end":{"line":23,"column":1}},"key":"FrjyePJkuJ"}],"key":"t45PgUPkQr"},{"type":"text","value":" Need to manage access to shared data to prevent race conditions (where the outcome depends on the unpredictable timing of thread execution).","position":{"start":{"line":23,"column":1},"end":{"line":23,"column":1}},"key":"SSLLj3Fy0A"}],"key":"hm4nWewMAR"},{"type":"listItem","spread":true,"position":{"start":{"line":24,"column":1},"end":{"line":24,"column":1}},"children":[{"type":"strong","position":{"start":{"line":24,"column":1},"end":{"line":24,"column":1}},"children":[{"type":"text","value":"Deadlock:","position":{"start":{"line":24,"column":1},"end":{"line":24,"column":1}},"key":"E9BdZkDMq5"}],"key":"KIKyzlyBod"},{"type":"text","value":" Two or more threads waiting indefinitely for each other to release resources.","position":{"start":{"line":24,"column":1},"end":{"line":24,"column":1}},"key":"sCDNI1CR5F"}],"key":"qOscd25tui"},{"type":"listItem","spread":true,"position":{"start":{"line":25,"column":1},"end":{"line":25,"column":1}},"children":[{"type":"strong","position":{"start":{"line":25,"column":1},"end":{"line":25,"column":1}},"children":[{"type":"text","value":"Livelock:","position":{"start":{"line":25,"column":1},"end":{"line":25,"column":1}},"key":"zrPFizHywc"}],"key":"wNLQycBhUV"},{"type":"text","value":" Threads are active but unable to make progress.","position":{"start":{"line":25,"column":1},"end":{"line":25,"column":1}},"key":"iL0WRTqAAB"}],"key":"E1oJCrXGtX"},{"type":"listItem","spread":true,"position":{"start":{"line":26,"column":1},"end":{"line":29,"column":1}},"children":[{"type":"strong","position":{"start":{"line":26,"column":1},"end":{"line":26,"column":1}},"children":[{"type":"text","value":"Starvation:","position":{"start":{"line":26,"column":1},"end":{"line":26,"column":1}},"key":"iYCJpDWMqF"}],"key":"c7bf91EPfD"},{"type":"text","value":" One thread is perpetually denied access to resources.","position":{"start":{"line":26,"column":1},"end":{"line":26,"column":1}},"key":"mI181hw96S"}],"key":"ULRPzMsEU6"}],"key":"vvwy3hdDmB"}],"key":"gdnGqoeaXu"}],"key":"dv1ZC1MXYy"},{"type":"heading","depth":2,"position":{"start":{"line":30,"column":1},"end":{"line":30,"column":1}},"children":[{"type":"text","value":"Example Code","position":{"start":{"line":30,"column":1},"end":{"line":30,"column":1}},"key":"ZtNt0hJmyM"}],"identifier":"example-code","label":"Example Code","html_id":"example-code","implicit":true,"key":"FTOHwyC8Pb"},{"type":"paragraph","position":{"start":{"line":32,"column":1},"end":{"line":32,"column":1}},"children":[{"type":"strong","position":{"start":{"line":32,"column":1},"end":{"line":32,"column":1}},"children":[{"type":"text","value":"Overall Program Summary","position":{"start":{"line":32,"column":1},"end":{"line":32,"column":1}},"key":"R4a7BuH79H"}],"key":"QuseJGv7vF"}],"key":"SBCwm4NK4a"},{"type":"paragraph","position":{"start":{"line":34,"column":1},"end":{"line":34,"column":1}},"children":[{"type":"text","value":"This Java application demonstrates the use of multithreading within a Swing GUI framework. It presents a window containing three distinct panels, each capable of hosting an animated ball. Users can independently control the animation within each panel using “Start”/“Stop” and “Pause”/“Resume” buttons. When started, each ball runs on its own dedicated thread, calculating its movement according to a predefined path (bouncing, horizontal wave, or vertical wave) and redrawing its position asynchronously.","position":{"start":{"line":34,"column":1},"end":{"line":34,"column":1}},"key":"ZmOjfjj1Pu"}],"key":"JcgQubEoAz"},{"type":"paragraph","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"children":[{"type":"text","value":"The program effectively showcases how background threads can manage computationally intensive or time-based tasks like animation without freezing the main user interface thread (Event Dispatch Thread). It utilizes core Java threading concepts like ","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"LbYNkZ9VdB"},{"type":"inlineCode","value":"Runnable","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"xc3uYafGzS"},{"type":"text","value":", ","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"Dcov4x7UWL"},{"type":"inlineCode","value":"Thread","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"fOXfigJKJS"},{"type":"text","value":", ","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"CfTdJrM7tF"},{"type":"inlineCode","value":"volatile","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"lXDChwpGCp"},{"type":"text","value":", ","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"Q9bPdF00vz"},{"type":"inlineCode","value":"synchronized","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"B5TdmwFNVs"},{"type":"text","value":", ","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"X7LZCWDBOU"},{"type":"inlineCode","value":"wait()","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"moZj9I7JFA"},{"type":"text","value":", and ","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"ubr8Jr1tSZ"},{"type":"inlineCode","value":"notify()","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"lKUb1cBEyM"},{"type":"text","value":", along with Swing’s mechanism (","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"fiIYkVdhiG"},{"type":"inlineCode","value":"SwingUtilities.invokeLater","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"sEmnQK5FjG"},{"type":"text","value":") for safely updating the GUI from these background threads. This separation ensures the application remains responsive while animations are running.","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"lEDgGkJ5g3"}],"key":"nxatAkv5QA"},{"type":"heading","depth":2,"position":{"start":{"line":40,"column":1},"end":{"line":40,"column":1}},"children":[{"type":"text","value":"Ball","position":{"start":{"line":40,"column":1},"end":{"line":40,"column":1}},"key":"vG82jpneP2"}],"identifier":"ball","label":"Ball","html_id":"ball","implicit":true,"key":"H0YXEBrEDn"},{"type":"paragraph","position":{"start":{"line":42,"column":1},"end":{"line":42,"column":1}},"children":[{"type":"strong","position":{"start":{"line":42,"column":1},"end":{"line":42,"column":1}},"children":[{"type":"text","value":"Ball Class Summary","position":{"start":{"line":42,"column":1},"end":{"line":42,"column":1}},"key":"bl8hQ3h6GZ"}],"key":"ijIf8HiZr9"}],"key":"hLUsQ61lfQ"},{"type":"paragraph","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"children":[{"type":"text","value":"The ","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"XPegDcju0M"},{"type":"inlineCode","value":"Ball","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"JdGn0NkF1T"},{"type":"text","value":" class serves a dual purpose: it’s a graphical component (","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"zo4HCbrv8v"},{"type":"inlineCode","value":"JComponent","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"pKwXAZXDyt"},{"type":"text","value":") responsible for drawing a colored circle, and it’s a ","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"HCkElLsVYj"},{"type":"inlineCode","value":"Runnable","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"tT8Qpx7SwY"},{"type":"text","value":" task that controls its own animation logic on a separate thread. Each ","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"xOeQ5IvEZn"},{"type":"inlineCode","value":"Ball","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"M63LAWY6t6"},{"type":"text","value":" instance manages its position (","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"tH7p726wwH"},{"type":"inlineCode","value":"xpos","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"jb3pSFbTbH"},{"type":"text","value":", ","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"zWdnBpM9dJ"},{"type":"inlineCode","value":"ypos","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"iFqtMDjzNs"},{"type":"text","value":"), size, color, movement direction (","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"dd6mzxVRqs"},{"type":"inlineCode","value":"xdir","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"bsKAow3eSc"},{"type":"text","value":", ","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"qvCnHLcaKs"},{"type":"inlineCode","value":"ydir","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"VgoeNJTKs6"},{"type":"text","value":"), speed (","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"hO7CB12Kh5"},{"type":"inlineCode","value":"sleepTime","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"SBaObpxOU3"},{"type":"text","value":"), and path type (bounce or wave). Its ","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"xk7iS2zkJC"},{"type":"inlineCode","value":"run()","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"F7OFvCQ11D"},{"type":"text","value":" method contains the main animation loop, which periodically updates the ball’s position, checks for collisions with the panel boundaries (reversing direction and changing color upon impact), and then schedules a repaint on the Event Dispatch Thread using ","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"i8OucuK8hd"},{"type":"inlineCode","value":"SwingUtilities.invokeLater","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"v7rdwrdB10"},{"type":"text","value":". The class includes synchronized methods (","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"W29yZMpDYY"},{"type":"inlineCode","value":"startBall","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"l5GhE7AS6i"},{"type":"text","value":", ","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"wDZUbozAEO"},{"type":"inlineCode","value":"stopBall","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"o5nZxLJ3eH"},{"type":"text","value":", ","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"R7zUE6frJe"},{"type":"inlineCode","value":"pauseBall","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"wrpJVcW6B2"},{"type":"text","value":", ","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"PfPdyNNfru"},{"type":"inlineCode","value":"resumeBall","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"I7kXojRGao"},{"type":"text","value":") and uses ","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"Mp02dbuKHh"},{"type":"inlineCode","value":"volatile","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"RQilnZttH0"},{"type":"text","value":" variables and ","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"FISjA5VAFy"},{"type":"inlineCode","value":"wait","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"rHFnZjv5cR"},{"type":"text","value":"/","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"DtGQ0UacFr"},{"type":"inlineCode","value":"notify","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"LpnA7RLAJD"},{"type":"text","value":" mechanisms to safely manage the thread’s lifecycle and state changes (like pausing) from other threads.","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"pRF5jZivRd"}],"key":"LicYGMOwSm"},{"type":"code","lang":"java","value":"/*\nDeveloper: James Goudy\nThe ball class is to be added to a JPanel. \nThis program is to demonstate threads.\nProject: J2_Threading_Rev25\n\n */\npackage j2_threading_rev25;\n\nimport java.awt.Color;\nimport java.awt.Graphics;\nimport javax.swing.JComponent;\nimport javax.swing.SwingUtilities;\n\n/**\n *\n * @author jgoudy\n */\npublic class Ball extends JComponent implements Runnable {\n\n    // thread variables\n    private volatile Thread ballThread;\n    private volatile boolean threadSuspended;\n\n    // When class elements are public, there is no ability to check if the\n    // data is correct as compared to setters and getters.\n    // In many cases, using getter and setters is the better way.\n    \n    \n    // component dimension - usually overlaid a jpanel\n    public int compWidth;\n    public int compHeight;\n\n    // graphic properties\n    // will use this for both height and width\n    public int ballSize = 10;\n    public volatile Color color;\n\n    // position of graphic on component panel\n    public volatile int xpos = 0;\n    public volatile int ypos = 0;\n\n    // direction based on slope\n    public int rise = 1;\n    public int run = 2;\n\n    // direction based on slope\n    public int xdir = 1;\n    public int ydir = 1;\n\n    // since this is a thread, we need a sleep time\n    public long sleepTime = 10;\n\n    // ball path - 1 is bounce, 2 is horizontal wave, 3 is vertical wave\n    //public int ballPath;\n    public enum BallPath {\n        BOUNCE, HORIZONTAL_WAVE, VERTICAL_WAVE\n    }\n    public BallPath currentBallPath;\n\n    // variables for wave action\n    public double waveAngle = 0.1;\n    public double waveAngleVelocity = 0.5;\n    public double waveAmplitude = 30;\n\n    // constructors\n    public Ball()\n    {\n        ballThread = new Thread(this);\n        color = Color.blue;\n    }\n\n    public Ball(int compWidth, int compHeight, int ballSize, Color color,\n            int xpos, int ypos, int rise, int run)\n    {\n        this.compWidth = compWidth;\n        this.compHeight = compHeight;\n        this.ballSize = ballSize;\n        this.color = color;\n        this.xpos = xpos;\n        this.ypos = ypos;\n        this.rise = rise;\n        this.run = run;\n\n        threadSuspended = false;\n\n        ballThread = new Thread(this);\n\n    }\n\n    @Override\n    public void run()\n    {\n        Thread thisThread = Thread.currentThread();\n\n        while (ballThread == thisThread) {\n            try {\n                Thread.sleep(sleepTime);\n\n                synchronized (this) {\n\n                    // this is for pausing the thread\n                    while (threadSuspended \u0026\u0026 ballThread == thisThread) {\n                        wait();\n                    }\n\n                    //put code here\n                    //-----------------\n                    moveBall();\n                    //---------------\n                }\n            } catch (InterruptedException e) {\n            }\n\n        }\n\n    }\n\n    @Override\n    public void paintComponent(Graphics g)\n    {\n        super.paintComponent(g);\n        g.setColor(this.color);\n        g.fillOval(xpos, ypos, ballSize, ballSize);\n\n    }\n\n    public void moveBall()\n    {\n\n        checkIfBallHitASide();\n\n        switch (currentBallPath) {\n            case BOUNCE -\u003e {\n                // ball bounces when hits side\n                xpos = xpos + (xdir * run);\n                ypos = ypos + (ydir * rise);\n\n            }\n            case HORIZONTAL_WAVE -\u003e {\n                // ball travels a horizontal wave\n                ypos = (int) (waveAmplitude * Math.sin(waveAngle))\n                        + (compHeight / 2 - 10);\n                xpos = xpos + (xdir * run);\n\n                waveAngle = waveAngle + waveAngleVelocity;\n\n            }\n            case VERTICAL_WAVE -\u003e {\n                // ball travels vertical wave\n                xpos = (int) (waveAmplitude * Math.sin(waveAngle))\n                        + (compWidth / 2 - 10);\n                ypos = ypos + (ydir * rise);\n\n                waveAngle = waveAngle + waveAngleVelocity;\n\n            }\n            default -\u003e {\n                currentBallPath = BallPath.BOUNCE;\n            }\n        }\n       \n        // schedule repaint on the EDT (wait until the tread is done)\n        SwingUtilities.invokeLater(() -\u003e {\n            repaint();\n        });\n\n    }\n\n    private void checkIfBallHitASide()\n    {\n        // check right and left\n        if (xpos \u003e compWidth - ballSize) {\n            // check if ball hits/exceeds right side\n            xdir = xdir * -1;\n            xpos = compWidth - ballSize - 1;\n            if (color == Color.blue) {\n                color = Color.red;\n            } else {\n                color = Color.blue;\n            }\n\n        } else if (xpos \u003c= 0) {\n            // check if ball hits/exceeds left side\n            xdir = xdir * -1;\n            xpos = 0;\n            color = Color.green;\n        }\n\n        // check bottom and top\n        if (ypos \u003e compHeight - ballSize) {\n            // check if ball hits/exceeds bottom side\n            ydir = ydir * -1;\n            ypos = compHeight - ballSize;\n            color = Color.yellow;\n\n        } else if (ypos \u003c= 0) {\n            // check if ball hits/exceeds top side\n            ydir = ydir * -1;\n            ypos = 0;\n            color = Color.lightGray;\n        }\n\n    }\n\n    // start stop pause resume thread - the ball\n    public synchronized void stopBall()\n    {\n        ballThread = null;\n        \n        // notify is to let the other threads and \n        // the main program know that this thread\n        // is no longer in existence \n        \n        notify();\n    }\n\n    public synchronized void startBall()\n    {\n        threadSuspended = false;\n        ballThread.start();\n    }\n\n    public synchronized void pauseBall()\n    {\n        threadSuspended = true;\n    }\n\n    public synchronized void resumeBall()\n    {\n        threadSuspended = false;\n        \n        // notify is to let the other threads\n        // and the main program  know that the\n        // thread is starting up again\n        \n        notify();\n    }\n\n}\n","position":{"start":{"line":46,"column":1},"end":{"line":288,"column":1}},"key":"OHd75t1Bog"},{"type":"thematicBreak","position":{"start":{"line":292,"column":1},"end":{"line":292,"column":1}},"key":"v0o3X2o55c"},{"type":"heading","depth":2,"position":{"start":{"line":294,"column":1},"end":{"line":294,"column":1}},"children":[{"type":"text","value":"Frame1.java","position":{"start":{"line":294,"column":1},"end":{"line":294,"column":1}},"key":"JRpWvF2Lvv"}],"identifier":"frame1-java","label":"Frame1.java","html_id":"frame1-java","implicit":true,"key":"ToeUy6w9Rm"},{"type":"paragraph","position":{"start":{"line":296,"column":1},"end":{"line":296,"column":1}},"children":[{"type":"strong","position":{"start":{"line":296,"column":1},"end":{"line":296,"column":1}},"children":[{"type":"text","value":"Frame1 Class Summary","position":{"start":{"line":296,"column":1},"end":{"line":296,"column":1}},"key":"DpshxaQJ7P"}],"key":"JrbqrkYNJ7"}],"key":"uJGfg7p5iF"},{"type":"paragraph","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"children":[{"type":"text","value":"The ","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"Pd8qypAqgQ"},{"type":"inlineCode","value":"Frame1","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"nyqsVUY47r"},{"type":"text","value":" class defines the main application window using ","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"ZbvwqWLPVM"},{"type":"inlineCode","value":"javax.swing.JFrame","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"XJfx84C6cu"},{"type":"text","value":" and contains the user interface elements. It sets up three ","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"JSayTHasMT"},{"type":"inlineCode","value":"JPanel","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"mUdVccqxEd"},{"type":"text","value":" components, each acting as a container for a ","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"neN02Om76M"},{"type":"inlineCode","value":"Ball","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"DUfY7bjUSC"},{"type":"text","value":" animation, along with corresponding “Start”/“Stop” and “Pause”/“Resume” buttons for each panel. ","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"zaLef8rmLE"},{"type":"inlineCode","value":"Frame1","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"MbLJgsKuut"},{"type":"text","value":" is responsible for orchestrating the creation, addition, and removal of ","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"E0rHHf0SkC"},{"type":"inlineCode","value":"Ball","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"vNXLBfXn3Y"},{"type":"text","value":" instances within their respective panels in response to button clicks. It maintains state variables (","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"R38LbBkJyv"},{"type":"inlineCode","value":"isBallStartedX","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"AGjkaGAGtM"},{"type":"text","value":", ","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"tmvVo2YjZN"},{"type":"inlineCode","value":"isBallPausedX","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"LbY7kpC59b"},{"type":"text","value":") to track the status of each ball and toggle the button functionalities appropriately. The action listeners for the buttons call the relevant control methods (","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"fqhAZRTvkW"},{"type":"inlineCode","value":"startBall","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"qNLYW0HJbp"},{"type":"text","value":", ","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"VqIZwsn1F5"},{"type":"inlineCode","value":"stopBall","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"LhbgGRLT6Y"},{"type":"text","value":", ","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"sXD0AGo00W"},{"type":"inlineCode","value":"pauseBall","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"ynz63BRNnN"},{"type":"text","value":", ","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"zvYNahyEqv"},{"type":"inlineCode","value":"resumeBall","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"mCemO93FTm"},{"type":"text","value":") on the correct ","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"jOcmfBexqc"},{"type":"inlineCode","value":"Ball","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"Br5gKIXpyB"},{"type":"text","value":" object stored in an array, effectively linking the UI controls to the underlying animation threads.","position":{"start":{"line":298,"column":1},"end":{"line":298,"column":1}},"key":"T04CmJDRdh"}],"key":"lcuwyEZpyr"},{"type":"code","lang":"java","value":"/*\n\nDeveloper: James Goudy\nThe purpose of this program is to demonstrate the use of threads in Java.\nProject Name: J2_Threading_Rev25\n */\npackage j2_threading_rev25;\n\n\nimport javax.swing.JPanel;\n\n/**\n *\n * @author jgoudy\n */\npublic class Frame1 extends javax.swing.JFrame {\n\n    // an array to keep track of the balls\n    Ball[] balls = new Ball[3];\n\n    \n    // status variables for ball\n    boolean isBallStarted1 = true;\n    boolean isBallStarted2 = true;\n    boolean isBallStarted3 = true;\n    \n\n    boolean isBallPaused1 = true;\n    boolean isBallPaused2 = true;\n    boolean isBallPaused3 = true;\n    \n    /**\n     * Creates new form Frame1\n     */\n    public Frame1()\n    {\n        initComponents();\n\n        this.setLocationRelativeTo(this);\n\n    }\n\n    private void addBall(JPanel jp, int ballSize, Ball.BallPath ballpath,\n            int sleepTime, int rise, int run, int arrayIndex)\n    {\n\n        Ball nb = new Ball();\n\n        // set characteristics of the ball\n        // set ball path\n        switch (ballpath) {\n            case Ball.BallPath.BOUNCE -\u003e {\n                nb.currentBallPath = Ball.BallPath.BOUNCE;\n            }\n            case Ball.BallPath.HORIZONTAL_WAVE-\u003e {\n                nb.currentBallPath = Ball.BallPath.HORIZONTAL_WAVE;\n            }\n            case Ball.BallPath.VERTICAL_WAVE -\u003e {\n                nb.currentBallPath = Ball.BallPath.VERTICAL_WAVE;\n            }\n            default -\u003e {\n                nb.currentBallPath = Ball.BallPath.BOUNCE;\n            }\n        }\n\n        nb.compHeight = jp.getHeight();\n        nb.compWidth = jp.getWidth();\n        nb.ballSize = ballSize;\n        nb.rise = rise;\n        nb.run = run;\n        nb.sleepTime = sleepTime;\n\n        // remember when a component (ball) is added to a panel\n        // the visibility, the size of the component, height and width\n        // and the location of the top right corner has to be set\n        nb.setVisible(true);\n        nb.setSize(jp.getWidth(), jp.getHeight());\n        nb.setLocation(0, 0);\n\n        //nb.startBall();\n        jp.add(nb);\n        balls[arrayIndex] = nb;\n\n    }\n\n    /**\n     * This method is called from within the constructor to initialize the form.\n     * WARNING: Do NOT modify this code. The content of this method is always\n     * regenerated by the Form Editor.\n     */\n    @SuppressWarnings(\"unchecked\")\n    // \u003ceditor-fold defaultstate=\"collapsed\" desc=\"Generated Code\"\u003e//GEN-BEGIN:initComponents\n    private void initComponents()\n    {\n\n        jPanel1 = new javax.swing.JPanel();\n        jbttnStart1 = new javax.swing.JButton();\n        jbttnPause1 = new javax.swing.JButton();\n        jPanel2 = new javax.swing.JPanel();\n        jbttnStart2 = new javax.swing.JButton();\n        jbttnPause2 = new javax.swing.JButton();\n        jPanel3 = new javax.swing.JPanel();\n        jbttnStart3 = new javax.swing.JButton();\n        jbttnPause3 = new javax.swing.JButton();\n\n        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);\n\n        jPanel1.setBackground(new java.awt.Color(255, 255, 255));\n        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));\n\n        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);\n        jPanel1.setLayout(jPanel1Layout);\n        jPanel1Layout.setHorizontalGroup(\n            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)\n            .addGap(0, 0, Short.MAX_VALUE)\n        );\n        jPanel1Layout.setVerticalGroup(\n            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)\n            .addGap(0, 275, Short.MAX_VALUE)\n        );\n\n        jbttnStart1.setText(\"Start\");\n        jbttnStart1.addActionListener(new java.awt.event.ActionListener()\n        {\n            public void actionPerformed(java.awt.event.ActionEvent evt)\n            {\n                jbttnStart1ActionPerformed(evt);\n            }\n        });\n\n        jbttnPause1.setText(\"Pause\");\n        jbttnPause1.addActionListener(new java.awt.event.ActionListener()\n        {\n            public void actionPerformed(java.awt.event.ActionEvent evt)\n            {\n                jbttnPause1ActionPerformed(evt);\n            }\n        });\n\n        jPanel2.setBackground(new java.awt.Color(255, 255, 255));\n        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));\n\n        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);\n        jPanel2.setLayout(jPanel2Layout);\n        jPanel2Layout.setHorizontalGroup(\n            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)\n            .addGap(0, 0, Short.MAX_VALUE)\n        );\n        jPanel2Layout.setVerticalGroup(\n            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)\n            .addGap(0, 275, Short.MAX_VALUE)\n        );\n\n        jbttnStart2.setText(\"Start\");\n        jbttnStart2.addActionListener(new java.awt.event.ActionListener()\n        {\n            public void actionPerformed(java.awt.event.ActionEvent evt)\n            {\n                jbttnStart2ActionPerformed(evt);\n            }\n        });\n\n        jbttnPause2.setText(\"Pause\");\n        jbttnPause2.addActionListener(new java.awt.event.ActionListener()\n        {\n            public void actionPerformed(java.awt.event.ActionEvent evt)\n            {\n                jbttnPause2ActionPerformed(evt);\n            }\n        });\n\n        jPanel3.setBackground(new java.awt.Color(255, 255, 255));\n        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));\n\n        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);\n        jPanel3.setLayout(jPanel3Layout);\n        jPanel3Layout.setHorizontalGroup(\n            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)\n            .addGap(0, 0, Short.MAX_VALUE)\n        );\n        jPanel3Layout.setVerticalGroup(\n            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)\n            .addGap(0, 275, Short.MAX_VALUE)\n        );\n\n        jbttnStart3.setText(\"Start\");\n        jbttnStart3.addActionListener(new java.awt.event.ActionListener()\n        {\n            public void actionPerformed(java.awt.event.ActionEvent evt)\n            {\n                jbttnStart3ActionPerformed(evt);\n            }\n        });\n\n        jbttnPause3.setText(\"Pause\");\n        jbttnPause3.addActionListener(new java.awt.event.ActionListener()\n        {\n            public void actionPerformed(java.awt.event.ActionEvent evt)\n            {\n                jbttnPause3ActionPerformed(evt);\n            }\n        });\n\n        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());\n        getContentPane().setLayout(layout);\n        layout.setHorizontalGroup(\n            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)\n            .addGroup(layout.createSequentialGroup()\n                .addGap(59, 59, 59)\n                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)\n                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)\n                    .addComponent(jbttnStart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)\n                    .addComponent(jbttnPause1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))\n                .addGap(38, 38, 38)\n                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)\n                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)\n                    .addComponent(jbttnStart2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)\n                    .addComponent(jbttnPause2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))\n                .addGap(39, 39, 39)\n                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)\n                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)\n                    .addComponent(jbttnStart3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)\n                    .addComponent(jbttnPause3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))\n                .addContainerGap(75, Short.MAX_VALUE))\n        );\n        layout.setVerticalGroup(\n            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)\n            .addGroup(layout.createSequentialGroup()\n                .addGap(70, 70, 70)\n                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)\n                    .addGroup(layout.createSequentialGroup()\n                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)\n                        .addGap(30, 30, 30)\n                        .addComponent(jbttnStart3)\n                        .addGap(30, 30, 30)\n                        .addComponent(jbttnPause3))\n                    .addGroup(layout.createSequentialGroup()\n                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)\n                        .addGap(30, 30, 30)\n                        .addComponent(jbttnStart2)\n                        .addGap(30, 30, 30)\n                        .addComponent(jbttnPause2))\n                    .addGroup(layout.createSequentialGroup()\n                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)\n                        .addGap(30, 30, 30)\n                        .addComponent(jbttnStart1)\n                        .addGap(30, 30, 30)\n                        .addComponent(jbttnPause1)))\n                .addContainerGap(25, Short.MAX_VALUE))\n        );\n\n        pack();\n    }// \u003c/editor-fold\u003e//GEN-END:initComponents\n\n    private void jbttnStart1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbttnStart1ActionPerformed\n    {//GEN-HEADEREND:event_jbttnStart1ActionPerformed\n\n        // toggle the start button to stop\n        if (isBallStarted1) {\n            jbttnStart1.setText(\"Stop\");\n            addBall(jPanel1, 20, Ball.BallPath.BOUNCE, 10, 1, 1, 0);\n            balls[0].startBall();\n            isBallStarted1 = false;\n        } else {\n            jbttnStart1.setText(\"Start\");\n            balls[0].stopBall();\n            balls[0] = null;\n            jPanel1.removeAll();\n            jPanel1.repaint();\n\n            // reset the pause button\n            isBallStarted1 = true;\n            isBallPaused1 = true;\n            jbttnPause1.setText(\"Pause\");\n        }\n\n\n    }//GEN-LAST:event_jbttnStart1ActionPerformed\n\n    private void jbttnPause1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbttnPause1ActionPerformed\n    {//GEN-HEADEREND:event_jbttnPause1ActionPerformed\n\n        try {\n\n            if (isBallPaused1) {\n                jbttnPause1.setText(\"Resume\");\n                balls[0].pauseBall();\n                isBallPaused1 = false;\n            } else {\n                jbttnPause1.setText(\"Pause\");\n                balls[0].resumeBall();\n                isBallPaused1 = true;\n            }\n        } catch (Exception e) {\n            \n            // in production we would log the error\n        }\n\n    }//GEN-LAST:event_jbttnPause1ActionPerformed\n\n    private void jbttnStart2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbttnStart2ActionPerformed\n    {//GEN-HEADEREND:event_jbttnStart2ActionPerformed\n        \n        \n        // toggle the start button to stop\n        if (isBallStarted2) {\n            jbttnStart2.setText(\"Stop\");\n            addBall(jPanel2, 20, Ball.BallPath.HORIZONTAL_WAVE, 25, 1, 1, 1);\n            balls[1].startBall();\n            isBallStarted2 = false;\n        } else {\n            jbttnStart2.setText(\"Start\");\n            balls[1].stopBall();\n            balls[1] = null;\n            jPanel2.removeAll();\n            jPanel2.repaint();\n\n            // reset the pause button\n            isBallStarted2 = true;\n            isBallPaused2 = true;\n            jbttnPause2.setText(\"Pause\");\n        }\n        \n        \n\n\n    }//GEN-LAST:event_jbttnStart2ActionPerformed\n\n    private void jbttnPause2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbttnPause2ActionPerformed\n    {//GEN-HEADEREND:event_jbttnPause2ActionPerformed\n        try {\n\n            if (isBallPaused2) {\n                jbttnPause2.setText(\"Resume\");\n                balls[1].pauseBall();\n                isBallPaused2 = false;\n            } else {\n                jbttnPause2.setText(\"Pause\");\n                balls[1].resumeBall();\n                isBallPaused2 = true;\n            }\n        } catch (Exception e) {\n            \n            // in production we would log the error\n        }\n    }//GEN-LAST:event_jbttnPause2ActionPerformed\n\n    private void jbttnStart3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbttnStart3ActionPerformed\n    {//GEN-HEADEREND:event_jbttnStart3ActionPerformed\n        // toggle the start button to stop\n        if (isBallStarted3) {\n            jbttnStart3.setText(\"Stop\");\n            addBall(jPanel3, 20, Ball.BallPath.VERTICAL_WAVE, 40, 1, 1, 2);\n            balls[2].startBall();\n            isBallStarted3 = false;\n        } else {\n            jbttnStart3.setText(\"Start\");\n            balls[2].stopBall();\n            balls[2] = null;\n            jPanel3.removeAll();\n            jPanel3.repaint();\n\n            // reset the pause button\n            isBallStarted3 = true;\n            isBallPaused3 = true;\n            jbttnPause3.setText(\"Pause\");\n        }\n    }//GEN-LAST:event_jbttnStart3ActionPerformed\n\n    private void jbttnPause3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbttnPause3ActionPerformed\n    {//GEN-HEADEREND:event_jbttnPause3ActionPerformed\n        try {\n\n            if (isBallPaused3) {\n                jbttnPause3.setText(\"Resume\");\n                balls[2].pauseBall();\n                isBallPaused3 = false;\n            } else {\n                jbttnPause3.setText(\"Pause\");\n                balls[2].resumeBall();\n                isBallPaused3 = true;\n            }\n        } catch (Exception e) {\n            \n            // in production we would log the error\n        }\n    }//GEN-LAST:event_jbttnPause3ActionPerformed\n\n    /**\n     * @param args the command line arguments\n     */\n    public static void main(String args[])\n    {\n        /* Set the Nimbus look and feel */\n        //\u003ceditor-fold defaultstate=\"collapsed\" desc=\" Look and feel setting code (optional) \"\u003e\n        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.\n         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html \n         */\n        try {\n            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {\n                if (\"Nimbus\".equals(info.getName())) {\n                    javax.swing.UIManager.setLookAndFeel(info.getClassName());\n                    break;\n                }\n            }\n        } catch (ClassNotFoundException ex) {\n            java.util.logging.Logger.getLogger(Frame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);\n        } catch (InstantiationException ex) {\n            java.util.logging.Logger.getLogger(Frame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);\n        } catch (IllegalAccessException ex) {\n            java.util.logging.Logger.getLogger(Frame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);\n        } catch (javax.swing.UnsupportedLookAndFeelException ex) {\n            java.util.logging.Logger.getLogger(Frame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);\n        }\n        //\u003c/editor-fold\u003e\n\n        /* Create and display the form */\n        java.awt.EventQueue.invokeLater(new Runnable() {\n            public void run()\n            {\n                new Frame1().setVisible(true);\n            }\n        });\n    }\n\n    // Variables declaration - do not modify//GEN-BEGIN:variables\n    private javax.swing.JPanel jPanel1;\n    private javax.swing.JPanel jPanel2;\n    private javax.swing.JPanel jPanel3;\n    private javax.swing.JButton jbttnPause1;\n    private javax.swing.JButton jbttnPause2;\n    private javax.swing.JButton jbttnPause3;\n    private javax.swing.JButton jbttnStart1;\n    private javax.swing.JButton jbttnStart2;\n    private javax.swing.JButton jbttnStart3;\n    // End of variables declaration//GEN-END:variables\n}\n","position":{"start":{"line":302,"column":1},"end":{"line":741,"column":1}},"key":"vw4PfOH69I"}],"key":"Lyg7vzqjXy"}],"key":"tzENCJibsX"},"references":{"cite":{"order":[],"data":{}}},"footer":{"navigation":{"prev":{"title":"Bounce With Collision","url":"/xbouncewithcollision","group":"JAVA II"},"next":{"title":"Concurrency Fundamentals","url":"/xthreadsconcurrencyfundamentalsbrwithswing","group":"JAVA II"}}},"domain":"http://localhost:3000"},"project":{"bibliography":["references.bib"],"exports":[],"title":"JAVA II","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci121_j2book\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024","toc":[{"file":"xintro.md"},{"file":"xFirstForm.md"},{"file":"xLayoutMangers.md"},{"file":"xDisplayingText.md"},{"file":"xRadioButtons.md"},{"file":"xMenus.md"},{"file":"xComboboxes_Rev1.md"},{"file":"xJSlider_ProgBar.md"},{"file":"xLettersvsDigits.md"},{"file":"xBuildingStrings.md"},{"children":[{"file":"xDynamic_GamePiece.md"}],"file":"xBuildingSwingControlsViaCode.md"},{"file":"xBounce.md"},{"file":"xBounceWithCollision.md"},{"file":"xThreadinga.md"},{"file":"xThreadsConcurrencyFundamentalsbrWithSwing.md"},{"file":"xPicturesAndSound.md"},{"file":"xImageIconLabel.md"},{"file":"xJTable.md"},{"children":[{"file":"xJABT_JavaAnt.md"},{"file":"xJABT_JavaMaven.md"},{"file":"xJABT_JavaGradle.md"}],"file":"xJABT_JAVAAutomatedBuildTools.md"}],"index":"index","pages":[{"slug":"xfirstform","title":"First Form","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xlayoutmangers","title":"Layout Managers","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdisplayingtext","title":"Displaying Text","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xradiobuttons","title":"Radio Buttons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xmenus","title":"Menus","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xcomboboxes-rev1","title":"Combo boxes","description":"","date":"","thumbnail":"/wp_jb2/site/build/combobox-1141391d39dcb78a78ae52ea3c03e02e.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjslider-progbar","title":"Slider and Progress Bar","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20250508161033-91ba2c862c4aa7fcdf1b7fe2894e58d9.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xlettersvsdigits","title":"Letters vs Digits","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20240313141208-a32cb117eeefed585a2fd609d4ccf953.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbuildingstrings","title":"Building A String Using Combo, Lists, and Textfield","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20250321152932-84d4abdf715775ca7173786d654cbf0a.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbuildingswingcontrolsviacode","title":"Building Swing Controls Via Code","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdynamic-gamepiece","title":"Game Piece - Dynamically Adding Pieces to a Panel","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbounce","title":"Bounce Balls Animation","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20240411111208-50a4c51801e6dc5e59c30c04530e33d8.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbouncewithcollision","title":"Bounce With Collision","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xthreadinga","title":"Threading","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xthreadsconcurrencyfundamentalsbrwithswing","title":"Concurrency Fundamentals","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xpicturesandsound","title":"Pictures and Sound","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"ximageiconlabel","title":"Add Image Using Image Icon Label","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjtable","title":"JTable","description":"","date":"","thumbnail":"/wp_jb2/site/build/image-20240416152944-d9e32f28de51f9b7c8dd45334ec2977d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjabt-javaautomatedbuildtools","title":"JAVA Automated Build Tools","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjabt-javaant","title":"Java Ant: Build Automation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xjabt-javamaven","title":"Java Maven:  Build Automation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xjabt-javagradle","title":"Java Gradle: Build Automation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2}]}}},"actionData":null,"errors":null},"future":{"unstable_dev":false,"unstable_postcss":false,"unstable_tailwind":false,"v2_errorBoundary":true,"v2_headers":true,"v2_meta":true,"v2_normalizeFormMethod":true,"v2_routeConvention":true}};</script><script type="module" async="">import "/wp_jb2/site/build/manifest-86A905A4.js";
+import * as route0 from "/wp_jb2/site/build/root-CXYA7X5D.js";
+import * as route1 from "/wp_jb2/site/build/routes/$-JRBPULBO.js";
+window.__remixRouteModules = {"root":route0,"routes/$":route1};
+
+import("/wp_jb2/site/build/entry.client-PCJPW7TK.js");</script></body></html>
