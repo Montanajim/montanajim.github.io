@@ -1,1 +1,1 @@
-import{c as e}from"/wp_jb2/site/build/_shared/chunk-OZE3FFNP.js";var n=e((l,t)=>{function a(i){return{name:"Plain text",aliases:["text","txt"],disableAutodetect:!0}}t.exports=a});export default n();
+import{c as e}from"/csci121/build/_shared/chunk-OZE3FFNP.js";var n=e((l,t)=>{function a(i){return{name:"Plain text",aliases:["text","txt"],disableAutodetect:!0}}t.exports=a});export default n();

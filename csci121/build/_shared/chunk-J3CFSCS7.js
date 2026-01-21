@@ -1,1 +1,1 @@
-import{b as t}from"/wp_jb2/site/build/_shared/chunk-7DW7L33J.js";var s=class{constructor(i){this.init=i,this.records=this.init()}static{t(this,"ImperativeState")}reset(){this.records=this.init()}};export{s as a};
+import{b as t}from"/csci121/build/_shared/chunk-7DW7L33J.js";var s=class{constructor(i){this.init=i,this.records=this.init()}static{t(this,"ImperativeState")}reset(){this.records=this.init()}};export{s as a};

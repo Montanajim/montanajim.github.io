@@ -1,1 +1,1 @@
-import{c as o}from"/wp_jb2/site/build/_shared/chunk-OZE3FFNP.js";var p=o((r,e)=>{e.exports={}});export default p();
+import{c as o}from"/csci121/build/_shared/chunk-OZE3FFNP.js";var p=o((r,e)=>{e.exports={}});export default p();

@@ -1,1 +1,1 @@
-import{a}from"/wp_jb2/site/build/_shared/chunk-2HQFXNVZ.js";import"/wp_jb2/site/build/_shared/chunk-5XNNEDOD.js";import"/wp_jb2/site/build/_shared/chunk-J3PKFMLQ.js";import"/wp_jb2/site/build/_shared/chunk-OZE3FFNP.js";export default a();
+import{a}from"/csci121/build/_shared/chunk-2HQFXNVZ.js";import"/csci121/build/_shared/chunk-5XNNEDOD.js";import"/csci121/build/_shared/chunk-J3PKFMLQ.js";import"/csci121/build/_shared/chunk-OZE3FFNP.js";export default a();
