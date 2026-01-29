@@ -1,1 +1,1 @@
-import{a}from"/csci211/build/_shared/chunk-FKKQ6CED.js";import"/csci211/build/_shared/chunk-J3PKFMLQ.js";import"/csci211/build/_shared/chunk-KPSTTWTG.js";import"/csci211/build/_shared/chunk-OZE3FFNP.js";export default a();
+import{a}from"/CSCI211/build/_shared/chunk-FKKQ6CED.js";import"/CSCI211/build/_shared/chunk-J3PKFMLQ.js";import"/CSCI211/build/_shared/chunk-KPSTTWTG.js";import"/CSCI211/build/_shared/chunk-OZE3FFNP.js";export default a();
