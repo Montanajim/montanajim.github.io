@@ -1,0 +1,847 @@
+<!DOCTYPE html><html lang="en" class="" style="scroll-padding:60px"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>HTML Input Tag - Client Side Programming</title><meta property="og:title" content="HTML Input Tag - Client Side Programming"/><meta name="generator" content="mystmd"/><meta name="description" content="Class lectures for JavaScript"/><meta property="og:description" content="Class lectures for JavaScript"/><meta name="keywords" content="JavaScript, TypeScript"/><meta name="image" content="/csci211/build/inputtag-4f6e5cb3011a4b339d28624d5aee3f18.png"/><meta property="og:image" content="/csci211/build/inputtag-4f6e5cb3011a4b339d28624d5aee3f18.png"/><link rel="stylesheet" href="/csci211/build/_assets/app-OIHP3NGU.css"/><link rel="stylesheet" href="/csci211/build/_assets/thebe-core-VKVHG5VY.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jupyter-matplotlib@0.11.3/css/mpl_widget.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous"/><link rel="icon" href="/csci211/favicon.ico"/><link rel="stylesheet" href="/csci211/myst-theme.css"/><script>
+  const savedTheme = localStorage.getItem("myst:theme");
+  const theme = window.matchMedia("(prefers-color-scheme: light)").matches ? 'light' : 'dark';
+  const classes = document.documentElement.classList;
+  const hasAnyTheme = classes.contains('light') || classes.contains('dark');
+  if (!hasAnyTheme) classes.add(savedTheme ?? theme);
+</script></head><body class="m-0 transition-colors duration-500 bg-white dark:bg-stone-900"><div class="myst-skip-to-article fixed top-1 left-1 h-[0px] w-[0px] focus-within:z-40 focus-within:h-auto focus-within:w-auto bg-white overflow-hidden focus-within:p-2 focus-within:ring-1" aria-label="skip to content options"><a href="#skip-to-frontmatter" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article frontmatter</a><a href="#skip-to-article" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article content</a></div><dialog id="myst-no-css" style="position:fixed;left:0px;top:0px;width:100vw;height:100vh;font-size:4rem;padding:1rem;color:black;background:white"><strong>Site not loading correctly?</strong><p>This may be due to an incorrect <code>BASE_URL</code> configuration. See<!-- --> <a href="https://mystmd.org/guide/deployment#deploy-base-url">the MyST Documentation</a> <!-- -->for reference.</p><script>
+    (() => {
+            // Test for has-styling variable set by the MyST stylesheet
+            const node = document.currentScript.parentNode;
+            const hasCSS = window.getComputedStyle(node).getPropertyValue("--has-styling");
+            if (hasCSS === ""){
+                    node.showModal();
+            }
+
+    })()
+</script></dialog><div class="myst-top-nav bg-white/80 backdrop-blur dark:bg-stone-900/80 shadow dark:shadow-stone-700 p-3 md:px-8 sticky w-screen top-0 z-30 h-[60px]"><nav class="myst-top-nav-bar flex items-center justify-between flex-nowrap max-w-[1440px] mx-auto"><div class="flex flex-row xl:min-w-[19.5rem] mr-2 sm:mr-7 justify-start items-center shrink-0"><div class="block xl:hidden"><button class="myst-top-nav-menu-button flex items-center justify-center border-stone-400 text-stone-800 hover:text-stone-900 dark:text-stone-200 hover:dark:text-stone-100 w-10 h-10"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem"><path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"></path></svg><span class="sr-only">Open Menu</span></button></div><a class="myst-home-link flex items-center ml-3 dark:text-white w-fit md:ml-5 xl:ml-7" href="/csci211/"><span class="text-md sm:text-xl tracking-tight sm:mr-5">Made with MyST</span></a></div><div class="flex items-center flex-grow w-auto"><div class="flex-grow hidden text-md lg:block"></div><div class="flex-grow block"></div><button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R75cp:" data-state="closed" class="myst-search-bar flex items-center h-10 aspect-square sm:w-64 text-left text-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 myst-search-bar-disabled hover:ring-blue-500 dark:hover:ring-blue-500 hover:border-blue-500 dark:hover:border-blue-500"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="p-2.5 h-10 w-10 aspect-square"><path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd"></path></svg><span class="myst-search-text-placeholder hidden sm:block grow">Search</span><div aria-hidden="true" class="myst-search-shortcut items-center hidden mx-1 font-mono text-sm text-gray-600 sm:flex gap-x-1"><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none hide-mac">CTRL</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none show-mac">⌘</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none ">K</kbd><script>
+;(() => {
+const script = document.currentScript;
+const root = script.parentElement;
+
+const isMac = /mac/i.test(
+      window.navigator.userAgentData?.platform ?? window.navigator.userAgent,
+    );
+root.querySelectorAll(".hide-mac").forEach(node => {node.classList.add(isMac ? "hidden" : "block")});
+root.querySelectorAll(".show-mac").forEach(node => {node.classList.add(!isMac ? "hidden" : "block")});
+})()</script></div></button><button class="myst-theme-button theme rounded-full aspect-square border border-stone-700 dark:border-white hover:bg-neutral-100 border-solid overflow-hidden text-stone-700 dark:text-white hover:text-stone-500 dark:hover:text-neutral-800 w-10 h-10 mx-3" title="Toggle theme between light and dark mode" aria-label="Toggle theme between light and dark mode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-moon-icon h-full w-full p-0.5 hidden dark:block"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-sun-icon h-full w-full p-0.5 dark:hidden"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></button><div class="block sm:hidden"></div><div class="hidden sm:block"></div></div></nav></div><div class="myst-primary-sidebar fixed xl:article-grid grid-gap xl:w-screen xl:pointer-events-none overflow-auto max-xl:min-w-[300px] hidden z-10" style="top:60px"><div class="myst-primary-sidebar-pointer pointer-events-auto xl:col-margin-left flex-col overflow-hidden hidden xl:flex"><div class="myst-primary-sidebar-nav flex-grow py-6 overflow-y-auto primary-scrollbar"><nav aria-label="Navigation" class="myst-primary-sidebar-topnav overflow-y-hidden transition-opacity ml-3 xl:ml-0 mr-3 max-w-[350px] lg:hidden"><div class="w-full px-1 dark:text-white font-medium"></div></nav><div class="my-3 border-b-2 lg:hidden"></div><nav aria-label="Table of Contents" class="myst-primary-sidebar-toc flex-grow overflow-y-hidden transition-opacity ml-3 xl:ml-0 mr-3 max-w-[350px]"><div class="myst-toc w-full px-1 dark:text-white"><a title="Client Side Programming" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30 font-bold" href="/csci211/">Client Side Programming</a><a title="JavaScript Introduction" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsintro">JavaScript Introduction</a><a title="Short History Of JavaScript" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjshistory">Short History Of JavaScript</a><a title="Document Object Model" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xdom">Document Object Model</a><a title="JavaScript Placement" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsplacement">JavaScript Placement</a><a title="Four Ways To Display Output" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsfourwaysoutput">Four Ways To Display Output</a><a title="Variables" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsvariables">Variables</a><a title="HTML Input Tag" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xhtmlinputtag">HTML Input Tag</a><a title="HTML Input Tag - Short Form" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xhtmlinputtagshortform">HTML Input Tag - Short Form</a><a title="If Statement" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsifstatement">If Statement</a><a title="Loops and Switch" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsloopsswitch">Loops and Switch</a><a title="Arrays" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsarrays">Arrays</a><a title="Random Functions" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsrandom">Random Functions</a><a title="Importance of Form Validation" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsformvalidationwhy">Importance of Form Validation</a><a title="Form Validation" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsformvalidation">Form Validation</a><a title="Form Validation - Onblur" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsformvalidationonblur">Form Validation - Onblur</a><a title="JavaScript Placement" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsobjectswhy">JavaScript Placement</a><a title="Objects By Class" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsobjectsbyclass">Objects By Class</a><a title="Objects By Function" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsobjectsbyfunction">Objects By Function</a><a title="Objects Inheritance" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsobjectsinheritance">Objects Inheritance</a><a title="Storing Web Data" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsstoringwebdata">Storing Web Data</a><a title="END" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/csci211/xjsendofmaterial">END</a></div></nav></div><div class="myst-primary-sidebar-footer flex-none py-6 transition-all duration-700 translate-y-6 opacity-0"><a class="myst-made-with-myst flex mx-auto text-gray-700 w-fit hover:text-blue-700 dark:text-gray-200 dark:hover:text-blue-400" href="https://mystmd.org/made-with-myst" target="_blank" rel="noreferrer"><svg style="width:24px;height:24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" stroke="none"><g id="icon"><path fill="currentColor" d="M23.8,54.8v-3.6l4.7-0.8V17.5l-4.7-0.8V13H36l13.4,31.7h0.2l13-31.7h12.6v3.6l-4.7,0.8v32.9l4.7,0.8v3.6h-15
+          v-3.6l4.9-0.8V20.8H65L51.4,53.3h-3.8l-14-32.5h-0.1l0.2,17.4v12.1l5,0.8v3.6H23.8z"></path><path fill="#F37726" d="M47,86.9c0-5.9-3.4-8.8-10.1-8.8h-8.4c-5.2,0-9.4-1.3-12.5-3.8c-3.1-2.5-5.4-6.2-6.8-11l4.8-1.6
+          c1.8,5.6,6.4,8.6,13.8,8.8h9.2c6.4,0,10.8,2.5,13.1,7.5c2.3-5,6.7-7.5,13.1-7.5h8.4c7.8,0,12.7-2.9,14.6-8.7l4.8,1.6
+          c-1.4,4.9-3.6,8.6-6.8,11.1c-3.1,2.5-7.3,3.7-12.4,3.8H63c-6.7,0-10,2.9-10,8.8"></path></g></svg><span class="self-center ml-2 text-sm">Made with MyST</span></a></div></div></div><main class="article-grid grid-gap"><article class="article-grid subgrid-gap col-screen article content"><div class="hidden"></div><div id="skip-to-frontmatter" aria-label="article frontmatter" class="myst-fm-block mb-8 pt-9"><div class="myst-fm-block-header flex items-center mb-5 h-6 text-sm font-light"><div class="flex-grow"></div><div class="myst-fm-block-badges"><a href="https://github.com/executablebooks/jupyter-book" title="GitHub Repository: executablebooks/jupyter-book" target="_blank" rel="noopener noreferrer" class="myst-fm-github-link text-inherit hover:text-inherit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="1.25rem" height="1.25rem" class="myst-fm-github-icon inline-block mr-1 opacity-60 hover:opacity-100"><path d="M12 2.5c-5.4 0-9.8 4.4-9.8 9.7 0 4.3 2.8 8 6.7 9.2.5.1.7-.2.7-.5v-1.8c-2.4.5-3.1-.6-3.3-1.1-.1-.3-.6-1.1-1-1.4-.3-.2-.8-.6 0-.6s1.3.7 1.5 1c.9 1.5 2.3 1.1 2.8.8.1-.6.3-1.1.6-1.3-2.2-.2-4.4-1.1-4.4-4.8 0-1.1.4-1.9 1-2.6-.1-.2-.4-1.2.1-2.6 0 0 .8-.3 2.7 1 .8-.2 1.6-.3 2.4-.3.8 0 1.7.1 2.4.3 1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.6 0 3.7-2.3 4.6-4.4 4.8.4.3.7.9.7 1.8V21c0 .3.2.6.7.5 3.9-1.3 6.6-4.9 6.6-9.2 0-5.4-4.4-9.8-9.8-9.8z"></path></svg></a></div><div class="myst-fm-downloads-dropdown relative flex inline-block mx-1 grow-0" data-headlessui-state=""><button class="myst-fm-downloads-button relative ml-2 -mr-1" id="headlessui-menu-button-:Rs8ucp:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state=""><span class="sr-only">Downloads</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.25rem" height="1.25rem" class="myst-fm-downloads-icon"><title>Download</title><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg></button></div></div><h1 class="myst-fm-block-title mb-0">HTML Input Tag</h1><header class="myst-fm-authors-affiliations mt-4 not-prose"><div class="myst-fm-authors-list"><span class="myst-fm-author font-semibold text-sm myst-fm-author-item inline-block"><button class="myst-fm-author-popover focus:shadow-[0_0_0_2px] focus:shadow-black outline-none hover:underline" aria-label="Author Details" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R78ucp:" data-state="closed"><span class="myst-fm-author-name">James Goudy</span></button></span></div></header></div><div class="block my-10 lg:sticky lg:z-10 lg:h-0 lg:pt-0 lg:my-0 lg:ml-10 lg:col-margin-right" style="top:60px"><nav></nav></div><div id="skip-to-article"></div><img id="IVYCBJ2D0w" style="margin-left:auto;margin-right:auto" src="/csci211/build/inputtag-4f6e5cb3011a4b339d28624d5aee3f18.png" alt="Picture Of a form utilizing all of the input type attributes" data-canonical-url="./assets/inputtag.png" class=""/><h2 id="using-inline-inline-event-handlers" class="relative group"><span class="heading-text">Using Inline  (inline event handlers)</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#using-inline-inline-event-handlers" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><p>In the <strong>Inline</strong> version, behavior is attached directly inside the HTML using attributes like <code>oninput=&quot;...&quot;</code> and <code>onchange=&quot;...&quot;</code>. That means the HTML doesn’t just describe structure—it also tells the browser <em>what code to run</em> when something happens. It’s immediate and readable for beginners: you can point to a single line and say “this fires the function.”</p><p><strong>Best use cases:</strong> tiny demos, learning exercises, quick one-off prototypes where clarity beats architecture.
+<strong>Worst use cases:</strong> real applications, shared codebases, or anything you expect to maintain. Inline handlers get messy fast, duplicate logic, and blur separation of concerns. It’s also harder to refactor because your behavior is scattered across markup.</p><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-xml" style="white-space:pre">&lt;!DOCTYPE html&gt;
+&lt;!--
+  This document demonstrates many HTML &lt;input&gt; types.
+  Each input triggers a JavaScript function that logs
+  user interaction directly to the DOM.
+--&gt;
+
+&lt;head&gt;
+  &lt;!-- Page title shown in the browser tab --&gt;
+  &lt;title&gt;Input types&lt;/title&gt;
+
+  &lt;style&gt;
+    /*
+      Simple container styling to center the demo
+      and make it visually distinct from the page background
+    */
+    .div1 {
+      width: 75%;
+      background-color: cornsilk;
+      padding: 25px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;!-- Main demo container --&gt;
+  &lt;div class=&quot;div1&quot;&gt;
+
+    &lt;!-- Page heading --&gt;
+    &lt;h1&gt;HTML Input Types – DOM Logging&lt;/h1&gt;
+    &lt;p&gt;Every interaction is logged below.&lt;/p&gt;
+
+    &lt;!--
+      Log area:
+      JavaScript dynamically inserts messages here
+      instead of using console.log()
+    --&gt;
+    &lt;div id=&quot;log&quot; style=&quot;border:1px solid #444; 
+      padding:10px; 
+      height:200px; 
+      overflow-y:auto; 
+      margin-bottom: 20px;
+      background:#f9f9f9;&quot;&gt;
+    &lt;/div&gt;
+
+    &lt;!--
+      Demo form:
+      Each input element demonstrates a different input type.
+      Event handlers call JavaScript functions on change or input.
+    --&gt;
+    &lt;form id=&quot;demoForm&quot;&gt;
+      &lt;table&gt;
+
+        &lt;!-- Text input (fires on every keystroke) --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;textInput&quot;&gt;Text:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;text&quot; id=&quot;textInput&quot; oninput=&quot;handleText(this.value)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Password input (value intentionally hidden in logs) --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;passwordInput&quot;&gt;Password:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;password&quot; id=&quot;passwordInput&quot; onchange=&quot;handlePassword()&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Email input with built-in browser validation --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;emailInput&quot;&gt;Email:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;email&quot; id=&quot;emailInput&quot; onchange=&quot;handleEmail(this.value)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Numeric input --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;numberInput&quot;&gt;Number:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;number&quot; id=&quot;numberInput&quot; onchange=&quot;handleNumber(this.value)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Search input --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;searchInput&quot;&gt;Search:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;search&quot; id=&quot;searchInput&quot; oninput=&quot;handleSearch(this.value)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Telephone input with a validation pattern --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;telInput&quot;&gt;Tel:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;
+            &lt;input type=&quot;tel&quot; id=&quot;telInput&quot;
+              onchange=&quot;handleTel(this.value)&quot;
+              placeholder=&quot;555-555-5555&quot;
+              pattern=&quot;[0-9]{3}-[0-9]{3}-[0-9]{4}&quot;&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- URL input with HTTPS pattern enforcement --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;urlInput&quot;&gt;URL:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;url&quot; id=&quot;urlInput&quot; onchange=&quot;handleURL(this.value)&quot; pattern=&quot;https://.*&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Date picker --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;dateInput&quot;&gt;Date:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;date&quot; id=&quot;dateInput&quot; onchange=&quot;handleDate(this.value)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Time picker --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;timeInput&quot;&gt;Time:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;time&quot; id=&quot;timeInput&quot; onchange=&quot;handleTime(this.value)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Combined date and time picker --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;datetimeInput&quot;&gt;DateTime-Local:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;datetime-local&quot; id=&quot;datetimeInput&quot; onchange=&quot;handleDateTime(this.value)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Month picker --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;monthInput&quot;&gt;Month:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;month&quot; id=&quot;monthInput&quot; onchange=&quot;handleMonth(this.value)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Week picker --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;weekInput&quot;&gt;Week:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;week&quot; id=&quot;weekInput&quot; onchange=&quot;handleWeek(this.value)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Range slider --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;rangeInput&quot;&gt;Range:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;range&quot; id=&quot;rangeInput&quot; min=&quot;0&quot; max=&quot;100&quot; oninput=&quot;handleRange(this.value)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Color picker --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;colorInput&quot;&gt;Color:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;
+            &lt;input type=&quot;color&quot; id=&quot;colorInput&quot;
+              onchange=&quot;handleColor(this.value)&quot;&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Checkbox --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;checkboxInput&quot;&gt;Checkbox:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;checkbox&quot; id=&quot;checkboxInput&quot; onchange=&quot;handleCheckbox(this.checked)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Radio buttons (grouped by name attribute) --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;radioA&quot;&gt;Radio A:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;radio&quot; id=&quot;radioA&quot; name=&quot;group1&quot; value=&quot;A&quot; onchange=&quot;handleRadio(this.value)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;radioB&quot;&gt;Radio B:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;radio&quot; id=&quot;radioB&quot; name=&quot;group1&quot; value=&quot;B&quot; onchange=&quot;handleRadio(this.value)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- File upload --&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;label for=&quot;fileInput&quot;&gt;File:&lt;/label&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;file&quot; id=&quot;fileInput&quot; onchange=&quot;handleFile(this.files)&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Hidden field (not visible to users, still submitted) --&gt;
+        &lt;tr style=&quot;display: none;&quot;&gt;
+          &lt;td colspan=&quot;2&quot;&gt;
+            &lt;input type=&quot;hidden&quot; id=&quot;hiddenInput&quot; value=&quot;classified&quot;&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Form control buttons --&gt;
+        &lt;tr&gt;
+          &lt;td colspan=&quot;2&quot; style=&quot;text-align: center;&quot;&gt;
+            &lt;input type=&quot;button&quot; value=&quot;Button&quot; onclick=&quot;handleButton()&quot;&gt;
+            &lt;input type=&quot;reset&quot; value=&quot;Reset&quot; onclick=&quot;handleReset()&quot;&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+
+      &lt;/table&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    /*
+      Core logging function.
+      Appends messages to the log div and auto-scrolls.
+    */
+    function log(message) {
+
+      // Clear log when the form is reset
+      if (message === &quot;Form reset&quot;) {
+        document.getElementById(&quot;log&quot;).innerHTML = &quot;&quot;;
+      }
+
+      const logDiv = document.getElementById(&quot;log&quot;);
+      const entry = document.createElement(&quot;div&quot;);
+      entry.textContent = message;
+      logDiv.appendChild(entry);
+
+      // Keep newest log entry visible
+      logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    // Individual handlers for each input type
+    function handleText(value) { log(&quot;Text: &quot; + value); }
+    function handlePassword() { log(&quot;Password changed (value hidden, on purpose)&quot;); }
+    function handleEmail(value) { log(&quot;Email: &quot; + value); }
+    function handleNumber(value) { log(&quot;Number: &quot; + value); }
+    function handleSearch(value) { log(&quot;Search: &quot; + value); }
+    function handleTel(value) { log(&quot;Tel: &quot; + value); }
+    function handleURL(value) { log(&quot;URL: &quot; + value); }
+    function handleDate(value) { log(&quot;Date: &quot; + value); }
+    function handleTime(value) { log(&quot;Time: &quot; + value); }
+    function handleDateTime(value) { log(&quot;DateTime: &quot; + value); }
+    function handleMonth(value) { log(&quot;Month: &quot; + value); }
+    function handleWeek(value) { log(&quot;Week: &quot; + value); }
+    function handleRange(value) { log(&quot;Range: &quot; + value); }
+    function handleColor(value) { log(&quot;Color: &quot; + value); }
+    function handleCheckbox(checked) { log(&quot;Checkbox checked: &quot; + checked); }
+    function handleRadio(value) { log(&quot;Radio selected: &quot; + value); }
+
+    // File input handler (optional chaining avoids errors)
+    function handleFile(files) {
+      log(&quot;File selected: &quot; + (files[0]?.name || &quot;none&quot;));
+    }
+
+    function handleButton() { log(&quot;Button clicked&quot;); }
+    function handleReset() { log(&quot;Form reset&quot;); }
+
+    /*
+      Form submission handler.
+      Prevents actual submission and logs hidden input data.
+    */
+    document.getElementById(&quot;demoForm&quot;).onsubmit = function (e) {
+      e.preventDefault();
+      log(&quot;Form submitted&quot;);
+      log(&quot;Hidden value: &quot; + document.getElementById(&quot;hiddenInput&quot;).value);
+    };
+  &lt;/script&gt;
+
+&lt;/body&gt;
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><h2 id="using-listeners-addeventlistener" class="relative group"><span class="heading-text">Using Listeners (addEventListener)</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#using-listeners-addeventlistener" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><p>In the <strong>Listeners</strong> version, the HTML stays clean and JavaScript does the wiring with <code>addEventListener</code>. This is the “grown-up” baseline: structure in HTML, behavior in JS. It also avoids common inline pitfalls like mixing quoting rules, creating hidden dependencies, and accidentally triggering code before the DOM is ready.</p><p><strong>Best use cases:</strong> most projects, especially when you want maintainable code and clear separation of concerns. Great for small-to-medium forms where each input has unique logic.
+<strong>Worst use cases:</strong> very large forms with many similar elements, where attaching a separate listener to every element becomes repetitive and noisy (and sometimes slightly wasteful).</p><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-xml" style="white-space:pre">&lt;!DOCTYPE html&gt;
+&lt;!--
+  Demonstration of HTML &lt;input&gt; types using JavaScript event listeners.
+  All events are attached in JavaScript to reinforce separation of concerns.
+
+  Below is the same behavior, same UI, same logging—but 
+  all inline event handlers are removed and replaced with addEventListener. 
+The comments now explicitly call out why this approach matters.
+--&gt;
+
+&lt;head&gt;
+  &lt;title&gt;Input types&lt;/title&gt;
+
+  &lt;style&gt;
+    /* Visual container for the demo */
+    .div1 {
+      width: 75%;
+      background-color: cornsilk;
+      padding: 25px;
+      margin: 50px auto;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div class=&quot;div1&quot;&gt;
+    &lt;h1&gt;HTML Input Types – DOM Logging&lt;/h1&gt;
+    &lt;h2&gt;Adding Event Listeners&lt;/h2&gt;
+    &lt;p&gt;Every interaction is logged below.&lt;/p&gt;
+
+    &lt;!-- Log output area --&gt;
+    &lt;div id=&quot;log&quot; style=&quot;border:1px solid #444;
+      padding:10px;
+      height:200px;
+      overflow-y:auto;
+      margin-bottom:20px;
+      background:#f9f9f9;&quot;&gt;
+    &lt;/div&gt;
+
+    &lt;!--
+      Form contains examples of many HTML input types.
+      No inline JavaScript is used here.
+    --&gt;
+    &lt;form id=&quot;demoForm&quot;&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;td&gt;Text:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;text&quot; id=&quot;textInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Password:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;password&quot; id=&quot;passwordInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Email:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;email&quot; id=&quot;emailInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Number:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;number&quot; id=&quot;numberInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Search:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;search&quot; id=&quot;searchInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Tel:&lt;/td&gt;
+          &lt;td&gt;
+            &lt;input type=&quot;tel&quot; id=&quot;telInput&quot;
+              placeholder=&quot;555-555-5555&quot;
+              pattern=&quot;[0-9]{3}-[0-9]{3}-[0-9]{4}&quot;&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;URL:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;url&quot; id=&quot;urlInput&quot; pattern=&quot;https://.*&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Date:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;date&quot; id=&quot;dateInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Time:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;time&quot; id=&quot;timeInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;DateTime:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;datetime-local&quot; id=&quot;datetimeInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Month:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;month&quot; id=&quot;monthInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Week:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;week&quot; id=&quot;weekInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Range:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;range&quot; id=&quot;rangeInput&quot; min=&quot;0&quot; max=&quot;100&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Color:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;color&quot; id=&quot;colorInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Checkbox:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;checkbox&quot; id=&quot;checkboxInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Radio A:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;radio&quot; name=&quot;group1&quot; value=&quot;A&quot; id=&quot;radioA&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Radio B:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;radio&quot; name=&quot;group1&quot; value=&quot;B&quot; id=&quot;radioB&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;File:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;file&quot; id=&quot;fileInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+
+        &lt;!-- Hidden input demonstrates non-visible form data --&gt;
+        &lt;tr style=&quot;display:none;&quot;&gt;
+          &lt;td colspan=&quot;2&quot;&gt;&lt;input type=&quot;hidden&quot; id=&quot;hiddenInput&quot; value=&quot;classified&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+          &lt;td colspan=&quot;2&quot; style=&quot;text-align:center;&quot;&gt;
+            &lt;input type=&quot;button&quot; id=&quot;buttonInput&quot; value=&quot;Button&quot;&gt;
+            &lt;input type=&quot;reset&quot; value=&quot;Reset&quot;&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    /*
+      Utility function to append messages to the log div.
+      Keeps the UI responsive and readable.
+    */
+    function log(message) {
+      if (message === &quot;Form reset&quot;) {
+        document.getElementById(&quot;log&quot;).innerHTML = &quot;&quot;;
+      }
+
+      const logDiv = document.getElementById(&quot;log&quot;);
+      const entry = document.createElement(&quot;div&quot;);
+      entry.textContent = message;
+      logDiv.appendChild(entry);
+      logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    /*
+      Event listeners are attached AFTER the DOM loads.
+      This avoids race conditions and inline JavaScript.
+    */
+    document.addEventListener(&quot;DOMContentLoaded&quot;, () =&gt; {
+
+      document.getElementById(&quot;textInput&quot;)
+        .addEventListener(&quot;input&quot;, e =&gt; log(&quot;Text: &quot; + e.target.value));
+
+      document.getElementById(&quot;passwordInput&quot;)
+        .addEventListener(&quot;change&quot;, () =&gt; log(&quot;Password changed (value hidden, on purpose)&quot;));
+
+      document.getElementById(&quot;emailInput&quot;)
+        .addEventListener(&quot;change&quot;, e =&gt; log(&quot;Email: &quot; + e.target.value));
+
+      document.getElementById(&quot;numberInput&quot;)
+        .addEventListener(&quot;change&quot;, e =&gt; log(&quot;Number: &quot; + e.target.value));
+
+      document.getElementById(&quot;searchInput&quot;)
+        .addEventListener(&quot;input&quot;, e =&gt; log(&quot;Search: &quot; + e.target.value));
+
+      document.getElementById(&quot;telInput&quot;)
+        .addEventListener(&quot;change&quot;, e =&gt; log(&quot;Tel: &quot; + e.target.value));
+
+      document.getElementById(&quot;urlInput&quot;)
+        .addEventListener(&quot;change&quot;, e =&gt; log(&quot;URL: &quot; + e.target.value));
+
+      document.getElementById(&quot;dateInput&quot;)
+        .addEventListener(&quot;change&quot;, e =&gt; log(&quot;Date: &quot; + e.target.value));
+
+      document.getElementById(&quot;timeInput&quot;)
+        .addEventListener(&quot;change&quot;, e =&gt; log(&quot;Time: &quot; + e.target.value));
+
+      document.getElementById(&quot;datetimeInput&quot;)
+        .addEventListener(&quot;change&quot;, e =&gt; log(&quot;DateTime: &quot; + e.target.value));
+
+      document.getElementById(&quot;monthInput&quot;)
+        .addEventListener(&quot;change&quot;, e =&gt; log(&quot;Month: &quot; + e.target.value));
+
+      document.getElementById(&quot;weekInput&quot;)
+        .addEventListener(&quot;change&quot;, e =&gt; log(&quot;Week: &quot; + e.target.value));
+
+      document.getElementById(&quot;rangeInput&quot;)
+        .addEventListener(&quot;input&quot;, e =&gt; log(&quot;Range: &quot; + e.target.value));
+
+      document.getElementById(&quot;colorInput&quot;)
+        .addEventListener(&quot;change&quot;, e =&gt; log(&quot;Color: &quot; + e.target.value));
+
+      document.getElementById(&quot;checkboxInput&quot;)
+        .addEventListener(&quot;change&quot;, e =&gt; log(&quot;Checkbox checked: &quot; + e.target.checked));
+
+      document.querySelectorAll(&quot;input[name=&#x27;group1&#x27;]&quot;)
+        .forEach(radio =&gt;
+          radio.addEventListener(&quot;change&quot;, e =&gt; log(&quot;Radio selected: &quot; + e.target.value))
+        );
+
+      document.getElementById(&quot;fileInput&quot;)
+        .addEventListener(&quot;change&quot;, e =&gt;
+          log(&quot;File selected: &quot; + (e.target.files[0]?.name || &quot;none&quot;))
+        );
+
+      document.getElementById(&quot;buttonInput&quot;)
+        .addEventListener(&quot;click&quot;, () =&gt; log(&quot;Button clicked&quot;));
+
+      document.getElementById(&quot;demoForm&quot;)
+        .addEventListener(&quot;reset&quot;, () =&gt; log(&quot;Form reset&quot;));
+
+      document.getElementById(&quot;demoForm&quot;)
+        .addEventListener(&quot;submit&quot;, e =&gt; {
+          e.preventDefault();
+          log(&quot;Form submitted&quot;);
+          log(&quot;Hidden value: &quot; + document.getElementById(&quot;hiddenInput&quot;).value);
+        });
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><h2 id="using-delegation-event-delegation" class="relative group"><span class="heading-text">Using Delegation (event delegation)</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#using-delegation-event-delegation" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><p>In the <strong>Delegation</strong> version, you attach <em>one</em> listener (or a few) to the parent container (here, the <code>&lt;form&gt;</code>). Events bubble up from the input to the form, and your code inspects <code>event.target</code> to figure out which input triggered it. This is the “one guard at the door checks everyone’s ID” approach.</p><p><strong>Best use cases:</strong> large dynamic UIs, long forms, tables of inputs, and interfaces where elements are added/removed after page load. It’s also excellent when many inputs share similar handling.
+<strong>Worst use cases:</strong> complex forms where different inputs need radically different event timing or custom rules. Delegation can become a logic maze if you pile too many special cases into one handler.</p><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-xml" style="white-space:pre">&lt;!DOCTYPE html&gt;
+&lt;!--
+  HTML input types demo using EVENT DELEGATION.
+  A single event listener handles all inputs by inspecting the event target.
+
+  What follows is event delegation: one listener on the form, 
+  the DOM bubbling events upward, and JavaScript calmly deciding what happened. 
+  Fewer listeners, less repetition, clearer intent. 
+  The browser already did half the work.
+--&gt;
+
+&lt;head&gt;
+  &lt;title&gt;Input types&lt;/title&gt;
+
+  &lt;style&gt;
+    .div1 {
+      width: 75%;
+      background-color: cornsilk;
+      padding: 25px;
+      margin: 50px auto;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div class=&quot;div1&quot;&gt;
+    &lt;h1&gt;HTML Input Types – Event Delegation&lt;/h1&gt;
+    &lt;p&gt;All input events are handled by one listener.&lt;/p&gt;
+
+    &lt;!-- Log output --&gt;
+    &lt;div id=&quot;log&quot; style=&quot;border:1px solid #444;
+      padding:10px;
+      height:200px;
+      overflow-y:auto;
+      margin-bottom:20px;
+      background:#f9f9f9;&quot;&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Form with many input types --&gt;
+    &lt;form id=&quot;demoForm&quot;&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;td&gt;Text:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;text&quot; id=&quot;textInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Password:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;password&quot; id=&quot;passwordInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Email:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;email&quot; id=&quot;emailInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Number:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;number&quot; id=&quot;numberInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Search:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;search&quot; id=&quot;searchInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Tel:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;tel&quot; id=&quot;telInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;URL:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;url&quot; id=&quot;urlInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Date:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;date&quot; id=&quot;dateInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Time:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;time&quot; id=&quot;timeInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;DateTime:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;datetime-local&quot; id=&quot;datetimeInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Month:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;month&quot; id=&quot;monthInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Week:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;week&quot; id=&quot;weekInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Range:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;range&quot; id=&quot;rangeInput&quot; min=&quot;0&quot; max=&quot;100&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Color:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;color&quot; id=&quot;colorInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Checkbox:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;checkbox&quot; id=&quot;checkboxInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Radio A:&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;radio&quot; name=&quot;group1&quot; value=&quot;A&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Radio B:&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;radio&quot; name=&quot;group1&quot; value=&quot;B&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;File:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;file&quot; id=&quot;fileInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+
+        &lt;!-- Hidden input --&gt;
+        &lt;tr style=&quot;display:none;&quot;&gt;
+          &lt;td colspan=&quot;2&quot;&gt;&lt;input type=&quot;hidden&quot; id=&quot;hiddenInput&quot; value=&quot;classified&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+          &lt;td colspan=&quot;2&quot; style=&quot;text-align:center;&quot;&gt;
+            &lt;input type=&quot;button&quot; id=&quot;buttonInput&quot; value=&quot;Button&quot;&gt;
+            &lt;input type=&quot;reset&quot; value=&quot;Reset&quot;&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    /*
+      Writes a message to the log div and auto-scrolls.
+    */
+    function log(message) {
+      if (message === &quot;Form reset&quot;) {
+        document.getElementById(&quot;log&quot;).innerHTML = &quot;&quot;;
+      }
+
+      const logDiv = document.getElementById(&quot;log&quot;);
+      const entry = document.createElement(&quot;div&quot;);
+      entry.textContent = message;
+      logDiv.appendChild(entry);
+      logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    /*
+      One listener. One decision point.
+      The event bubbles up from the input to the form.
+    */
+    document.addEventListener(&quot;DOMContentLoaded&quot;, () =&gt; {
+
+      const form = document.getElementById(&quot;demoForm&quot;);
+
+      form.addEventListener(&quot;input&quot;, handleEvent);
+      form.addEventListener(&quot;change&quot;, handleEvent);
+
+      form.addEventListener(&quot;reset&quot;, () =&gt; log(&quot;Form reset&quot;));
+
+      form.addEventListener(&quot;submit&quot;, e =&gt; {
+        e.preventDefault();
+        log(&quot;Form submitted&quot;);
+        log(&quot;Hidden value: &quot; + document.getElementById(&quot;hiddenInput&quot;).value);
+      });
+
+      document.getElementById(&quot;buttonInput&quot;)
+        .addEventListener(&quot;click&quot;, () =&gt; log(&quot;Button clicked&quot;));
+    });
+
+    /*
+      Centralized event handler.
+      Determines behavior based on input type and attributes.
+    */
+    function handleEvent(e) {
+
+      const el = e.target;
+
+      if (el.tagName !== &quot;INPUT&quot;) return;
+
+      switch (el.type) {
+
+        case &quot;text&quot;:
+          log(&quot;Text: &quot; + el.value);
+          break;
+
+        case &quot;password&quot;:
+          log(&quot;Password changed (value hidden, on purpose)&quot;);
+          break;
+
+        case &quot;email&quot;:
+          log(&quot;Email: &quot; + el.value);
+          break;
+
+        case &quot;number&quot;:
+          log(&quot;Number: &quot; + el.value);
+          break;
+
+        case &quot;search&quot;:
+          log(&quot;Search: &quot; + el.value);
+          break;
+
+        case &quot;tel&quot;:
+          log(&quot;Tel: &quot; + el.value);
+          break;
+
+        case &quot;url&quot;:
+          log(&quot;URL: &quot; + el.value);
+          break;
+
+        case &quot;date&quot;:
+          log(&quot;Date: &quot; + el.value);
+          break;
+
+        case &quot;time&quot;:
+          log(&quot;Time: &quot; + el.value);
+          break;
+
+        case &quot;datetime-local&quot;:
+          log(&quot;DateTime: &quot; + el.value);
+          break;
+
+        case &quot;month&quot;:
+          log(&quot;Month: &quot; + el.value);
+          break;
+
+        case &quot;week&quot;:
+          log(&quot;Week: &quot; + el.value);
+          break;
+
+        case &quot;range&quot;:
+          log(&quot;Range: &quot; + el.value);
+          break;
+
+        case &quot;color&quot;:
+          log(&quot;Color: &quot; + el.value);
+          break;
+
+        case &quot;checkbox&quot;:
+          log(&quot;Checkbox checked: &quot; + el.checked);
+          break;
+
+        case &quot;radio&quot;:
+          log(&quot;Radio selected: &quot; + el.value);
+          break;
+
+        case &quot;file&quot;:
+          log(&quot;File selected: &quot; + (el.files[0]?.name || &quot;none&quot;));
+          break;
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><h2 id="using-objects-data-driven-handlers" class="relative group"><span class="heading-text">Using Objects (data-driven handlers)</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#using-objects-data-driven-handlers" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><p>In the <strong>Objects</strong> version, you keep delegation, but replace the long <code>switch</code> statement with an <strong>object lookup table</strong> that maps an input’s type (like <code>&quot;email&quot;</code> or <code>&quot;date&quot;</code>) to the appropriate handler function. This is the cleanest scaling strategy: adding a new input often becomes “add one row to the handler table.”</p><p><strong>Best use cases:</strong> scalable systems, maintainable demos, codebases where you want to add new behavior without editing a monster conditional. This is also a stepping stone toward more advanced patterns (config-driven forms, reusable components, validation maps).
+<strong>Worst use cases:</strong> when the type alone isn’t enough to determine behavior. If two text inputs need different logic, mapping only by <code>type</code> can be too blunt—then you’ll want to dispatch by <code>id</code>, <code>name</code>, or <code>data-*</code> attributes instead.</p><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-xml" style="white-space:pre">&lt;!DOCTYPE html&gt;
+&lt;!--
+  HTML input types demo using:
+    - Event delegation (one listener for many inputs)
+    - Data-driven handlers (mapping input types to functions)
+
+  same interface, same behavior, 
+  but now the JavaScript is data-driven. 
+  Instead of a long switch, we have a lookup table (an object) 
+  that maps input types to handler functions.
+--&gt;
+
+&lt;head&gt;
+  &lt;title&gt;Input types&lt;/title&gt;
+
+  &lt;style&gt;
+    .div1 {
+      width: 75%;
+      background-color: cornsilk;
+      padding: 25px;
+      margin: 50px auto;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div class=&quot;div1&quot;&gt;
+    &lt;h1&gt;HTML Input Types – Data-Driven Event Handling&lt;/h1&gt;
+    &lt;p&gt;Input types are mapped to handler functions through a lookup table.&lt;/p&gt;
+
+    &lt;!-- Log output --&gt;
+    &lt;div id=&quot;log&quot; style=&quot;border:1px solid #444;
+      padding:10px;
+      height:200px;
+      overflow-y:auto;
+      margin-bottom:20px;
+      background:#f9f9f9;&quot;&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Form with many input types --&gt;
+    &lt;form id=&quot;demoForm&quot;&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;td&gt;Text:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;text&quot; id=&quot;textInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Password:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;password&quot; id=&quot;passwordInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Email:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;email&quot; id=&quot;emailInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Number:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;number&quot; id=&quot;numberInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Search:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;search&quot; id=&quot;searchInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Tel:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;tel&quot; id=&quot;telInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;URL:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;url&quot; id=&quot;urlInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Date:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;date&quot; id=&quot;dateInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Time:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;time&quot; id=&quot;timeInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;DateTime:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;datetime-local&quot; id=&quot;datetimeInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Month:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;month&quot; id=&quot;monthInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Week:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;week&quot; id=&quot;weekInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Range:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;range&quot; id=&quot;rangeInput&quot; min=&quot;0&quot; max=&quot;100&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Color:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;color&quot; id=&quot;colorInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Checkbox:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;checkbox&quot; id=&quot;checkboxInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Radio A:&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;radio&quot; name=&quot;group1&quot; value=&quot;A&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Radio B:&lt;/td&gt;
+          &lt;td&gt;&lt;input type=&quot;radio&quot; name=&quot;group1&quot; value=&quot;B&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;File:&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;file&quot; id=&quot;fileInput&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+
+        &lt;!-- Hidden input --&gt;
+        &lt;tr style=&quot;display:none;&quot;&gt;
+          &lt;td colspan=&quot;2&quot;&gt;&lt;input type=&quot;hidden&quot; id=&quot;hiddenInput&quot; value=&quot;classified&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+          &lt;td colspan=&quot;2&quot; style=&quot;text-align:center;&quot;&gt;
+            &lt;input type=&quot;button&quot; id=&quot;buttonInput&quot; value=&quot;Button&quot;&gt;
+            &lt;input type=&quot;reset&quot; value=&quot;Reset&quot;&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    /*
+      Writes a message to the log div and auto-scrolls.
+    */
+    function log(message) {
+      if (message === &quot;Form reset&quot;) {
+        document.getElementById(&quot;log&quot;).innerHTML = &quot;&quot;;
+      }
+
+      const logDiv = document.getElementById(&quot;log&quot;);
+      const entry = document.createElement(&quot;div&quot;);
+      entry.textContent = message;
+      logDiv.appendChild(entry);
+      logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    /*
+      Handler table:
+      Keys are input &quot;type&quot; values.
+      Values are functions that know how to log that type.
+      This replaces a long switch statement.
+    */
+    const inputHandlers = {
+      text: el =&gt; log(&quot;Text: &quot; + el.value),
+      password: el =&gt; log(&quot;Password changed (value hidden, on purpose)&quot;),
+      email: el =&gt; log(&quot;Email: &quot; + el.value),
+      number: el =&gt; log(&quot;Number: &quot; + el.value),
+      search: el =&gt; log(&quot;Search: &quot; + el.value),
+      tel: el =&gt; log(&quot;Tel: &quot; + el.value),
+      url: el =&gt; log(&quot;URL: &quot; + el.value),
+      date: el =&gt; log(&quot;Date: &quot; + el.value),
+      time: el =&gt; log(&quot;Time: &quot; + el.value),
+      &quot;datetime-local&quot;: el =&gt; log(&quot;DateTime: &quot; + el.value),
+      month: el =&gt; log(&quot;Month: &quot; + el.value),
+      week: el =&gt; log(&quot;Week: &quot; + el.value),
+      range: el =&gt; log(&quot;Range: &quot; + el.value),
+      color: el =&gt; log(&quot;Color: &quot; + el.value),
+      checkbox: el =&gt; log(&quot;Checkbox checked: &quot; + el.checked),
+      radio: el =&gt; log(&quot;Radio selected: &quot; + el.value),
+      file: el =&gt; log(&quot;File selected: &quot; + (el.files[0]?.name || &quot;none&quot;))
+    };
+
+    /*
+      Attach a few top-level listeners when the DOM is ready:
+        - Delegated &#x27;input&#x27; and &#x27;change&#x27; on the form
+        - &#x27;reset&#x27; and &#x27;submit&#x27; on the form
+        - Separate click handler for the plain button
+    */
+    document.addEventListener(&quot;DOMContentLoaded&quot;, () =&gt; {
+
+      const form = document.getElementById(&quot;demoForm&quot;);
+
+      // Delegated listeners: any input inside the form bubbles up here
+      form.addEventListener(&quot;input&quot;, handleDelegatedEvent);
+      form.addEventListener(&quot;change&quot;, handleDelegatedEvent);
+
+      form.addEventListener(&quot;reset&quot;, () =&gt; log(&quot;Form reset&quot;));
+
+      form.addEventListener(&quot;submit&quot;, e =&gt; {
+        e.preventDefault();
+        log(&quot;Form submitted&quot;);
+        log(&quot;Hidden value: &quot; + document.getElementById(&quot;hiddenInput&quot;).value);
+      });
+
+      document.getElementById(&quot;buttonInput&quot;)
+        .addEventListener(&quot;click&quot;, () =&gt; log(&quot;Button clicked&quot;));
+    });
+
+    /*
+      Central delegated handler:
+      - Makes sure the event came from an &lt;input&gt;
+      - Looks up a handler by input type
+      - Calls that handler if it exists
+    */
+    function handleDelegatedEvent(e) {
+      const el = e.target;
+
+      if (el.tagName !== &quot;INPUT&quot;) return;
+
+      const handler = inputHandlers[el.type];
+
+      if (handler) {
+        handler(el, e); // pass element (and event if needed later)
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><h2 id="practical-summary-when-each-approach-wins-and-loses" class="relative group"><span class="heading-text">Practical Summary: When Each Approach Wins (and Loses)</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#practical-summary-when-each-approach-wins-and-loses" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><p>Inline events are a bicycle with no brakes: perfect for learning balance, a bad idea on a downhill commute. Event listeners are the standard, clean and professional. Delegation is the power tool you reach for when the number of inputs explodes or the DOM changes dynamically. Objects turn delegation into a system: fewer moving parts, clearer intent, and easier growth.</p><p>Inline shows <em>what events do</em> → listeners show <em>where code should live</em> → delegation shows <em>how to scale events</em> → objects show <em>how to scale logic</em>.</p><div class="myst-backmatter-parts"></div><div class="myst-footer-links flex pt-10 mb-10 space-x-4"><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-prev" href="/csci211/xjsvariables"><div class="flex h-full align-middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:-translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path></svg><div class="flex-grow text-right"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">Client Side Programming</div>Variables</div></div></a><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-next" href="/csci211/xhtmlinputtagshortform"><div class="flex h-full align-middle"><div class="flex-grow"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">Client Side Programming</div>HTML Input Tag - Short Form</div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path></svg></div></a></div></article></main><script>((a,l)=>{if(!window.history.state||!window.history.state.key){let u=Math.random().toString(32).slice(2);window.history.replaceState({key:u},"")}try{let d=JSON.parse(sessionStorage.getItem(a)||"{}")[l||window.history.state.key];typeof d=="number"&&window.scrollTo(0,d)}catch(u){console.error(u),sessionStorage.removeItem(a)}})("positions", null)</script><link rel="modulepreload" href="/csci211/build/entry.client-PCJPW7TK.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-AQ2CODAG.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-JJXTQVMA.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-OZE3FFNP.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-7UUHRSK3.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-C4DFGG5C.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-J7TUH54J.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-FZ2S7OYD.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-JEM6JXYA.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-34XIY2DH.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-KQM5FBHR.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-OCWQY3HK.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-7HNKBP4B.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-CUKUDK3R.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-3EBOCCHJ.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-O4VQNZ62.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-4OEDG4JQ.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-GUCIBHGO.js"/><link rel="modulepreload" href="/csci211/build/root-EDJFWIEV.js"/><link rel="modulepreload" href="/csci211/build/_shared/chunk-ECLX7DIY.js"/><link rel="modulepreload" href="/csci211/build/routes/$-AD65NCUT.js"/><script>window.__remixContext = {"url":"/xhtmlinputtag","state":{"loaderData":{"root":{"config":{"version":2,"myst":"1.6.0","options":{"folders":true},"nav":[],"actions":[],"projects":[{"bibliography":["C:\\a_books\\csci211_csbook\\references.bib"],"exports":[{"format":"typst","filename":"CSCI_211_ptb.pdf","url":"/csci211/build/CSCI_211_ptb-d5c6734f5debbc0f91b00c58f15c4527.pdf"}],"title":"Client Side Programming","description":"Class lectures for JavaScript","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci211_csbook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","keywords":["JavaScript","TypeScript"],"copyright":"2026","parts":{"abstract":{"mdast":{"type":"root","children":[{"type":"block","data":{"part":"abstract"},"children":[{"type":"paragraph","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"children":[{"type":"text","value":"These are the class lectures and supporting materials for the Client Side Programming Class","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"key":"rlhwNq9zfZ"}],"key":"VfaHcwCLvJ"}],"key":"rlVVux20rU"}],"key":"HfMN2wEFa6"},"frontmatter":{"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci211_csbook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","keywords":["JavaScript","TypeScript"],"copyright":"2026"}}},"toc":[{"file":"intro.md"},{"file":"xJSIntro.md"},{"file":"xJSHistory.md"},{"file":"xDOM.md"},{"file":"xJSPlacement.md"},{"file":"xJSFourWaysOutput.md"},{"file":"xJSVariables.md"},{"file":"xHTMLInputTag.md"},{"file":"xHTMLInputTagShortForm.md"},{"file":"xJSIfStatement.md"},{"file":"xJSLoopsSwitch.md"},{"file":"xJSArrays.md"},{"file":"xJSRandom.md"},{"file":"xJSFormValidationWhy.md"},{"file":"xJSFormValidation.md"},{"file":"xJSFormValidationOnBlur.md"},{"file":"xJSObjectsWhy.md"},{"file":"xJSObjectsByClass.md"},{"file":"xJSObjectsByFunction.md"},{"file":"xJSObjectsInheritance.md"},{"file":"xJSStoringWebData.md"},{"file":"xJSEndOfMaterial.md"}],"index":"index","pages":[{"slug":"xjsintro","title":"JavaScript Introduction","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjshistory","title":"Short History Of JavaScript","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdom","title":"Document Object Model","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsplacement","title":"JavaScript Placement","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsfourwaysoutput","title":"Four Ways To Display Output","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsvariables","title":"Variables","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhtmlinputtag","title":"HTML Input Tag","description":"","date":"","thumbnail":"/csci211/build/inputtag-4f6e5cb3011a4b339d28624d5aee3f18.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhtmlinputtagshortform","title":"HTML Input Tag - Short Form","description":"","date":"","thumbnail":"/csci211/build/image-20260129144909-d12bfa152cecd2eb4adad039f07fad98.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsifstatement","title":"If Statement","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsloopsswitch","title":"Loops and Switch","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsarrays","title":"Arrays","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsrandom","title":"Random Functions","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsformvalidationwhy","title":"Importance of Form Validation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsformvalidation","title":"Form Validation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsformvalidationonblur","title":"Form Validation - Onblur","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsobjectswhy","title":"JavaScript Placement","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsobjectsbyclass","title":"Objects By Class","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsobjectsbyfunction","title":"Objects By Function","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsobjectsinheritance","title":"Objects Inheritance","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsstoringwebdata","title":"Storing Web Data","description":"","date":"","thumbnail":"/csci211/build/image-20240426155445-432497c3706c8f70cabdf5a79cd1894d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsendofmaterial","title":"END","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1}]}]},"CONTENT_CDN_PORT":"3100","MODE":"static","BASE_URL":"/csci211"},"routes/$":{"config":{"version":2,"myst":"1.6.0","options":{"folders":true},"nav":[],"actions":[],"projects":[{"bibliography":["C:\\a_books\\csci211_csbook\\references.bib"],"exports":[{"format":"typst","filename":"CSCI_211_ptb.pdf","url":"/csci211/build/CSCI_211_ptb-d5c6734f5debbc0f91b00c58f15c4527.pdf"}],"title":"Client Side Programming","description":"Class lectures for JavaScript","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci211_csbook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","keywords":["JavaScript","TypeScript"],"copyright":"2026","parts":{"abstract":{"mdast":{"type":"root","children":[{"type":"block","data":{"part":"abstract"},"children":[{"type":"paragraph","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"children":[{"type":"text","value":"These are the class lectures and supporting materials for the Client Side Programming Class","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"key":"rlhwNq9zfZ"}],"key":"VfaHcwCLvJ"}],"key":"rlVVux20rU"}],"key":"HfMN2wEFa6"},"frontmatter":{"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci211_csbook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","keywords":["JavaScript","TypeScript"],"copyright":"2026"}}},"toc":[{"file":"intro.md"},{"file":"xJSIntro.md"},{"file":"xJSHistory.md"},{"file":"xDOM.md"},{"file":"xJSPlacement.md"},{"file":"xJSFourWaysOutput.md"},{"file":"xJSVariables.md"},{"file":"xHTMLInputTag.md"},{"file":"xHTMLInputTagShortForm.md"},{"file":"xJSIfStatement.md"},{"file":"xJSLoopsSwitch.md"},{"file":"xJSArrays.md"},{"file":"xJSRandom.md"},{"file":"xJSFormValidationWhy.md"},{"file":"xJSFormValidation.md"},{"file":"xJSFormValidationOnBlur.md"},{"file":"xJSObjectsWhy.md"},{"file":"xJSObjectsByClass.md"},{"file":"xJSObjectsByFunction.md"},{"file":"xJSObjectsInheritance.md"},{"file":"xJSStoringWebData.md"},{"file":"xJSEndOfMaterial.md"}],"index":"index","pages":[{"slug":"xjsintro","title":"JavaScript Introduction","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjshistory","title":"Short History Of JavaScript","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdom","title":"Document Object Model","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsplacement","title":"JavaScript Placement","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsfourwaysoutput","title":"Four Ways To Display Output","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsvariables","title":"Variables","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhtmlinputtag","title":"HTML Input Tag","description":"","date":"","thumbnail":"/csci211/build/inputtag-4f6e5cb3011a4b339d28624d5aee3f18.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhtmlinputtagshortform","title":"HTML Input Tag - Short Form","description":"","date":"","thumbnail":"/csci211/build/image-20260129144909-d12bfa152cecd2eb4adad039f07fad98.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsifstatement","title":"If Statement","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsloopsswitch","title":"Loops and Switch","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsarrays","title":"Arrays","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsrandom","title":"Random Functions","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsformvalidationwhy","title":"Importance of Form Validation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsformvalidation","title":"Form Validation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsformvalidationonblur","title":"Form Validation - Onblur","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsobjectswhy","title":"JavaScript Placement","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsobjectsbyclass","title":"Objects By Class","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsobjectsbyfunction","title":"Objects By Function","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsobjectsinheritance","title":"Objects Inheritance","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsstoringwebdata","title":"Storing Web Data","description":"","date":"","thumbnail":"/csci211/build/image-20240426155445-432497c3706c8f70cabdf5a79cd1894d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsendofmaterial","title":"END","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1}]}]},"page":{"version":3,"kind":"Article","sha256":"6b4875195ee543bbbad5aa6d5ee0804af751de2fd8251e5067b466ef5ddc394f","slug":"xhtmlinputtag","location":"/xHTMLInputTag.md","dependencies":[],"frontmatter":{"title":"HTML Input Tag","content_includes_title":false,"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci211_csbook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","keywords":["JavaScript","TypeScript"],"copyright":"2026","thumbnail":"/csci211/build/inputtag-4f6e5cb3011a4b339d28624d5aee3f18.png","exports":[{"format":"md","filename":"xHTMLInputTag.md","url":"/csci211/build/xHTMLInputTag-90287aaa19709a6aae1c013ea713c73f.md"}]},"mdast":{"type":"root","children":[{"type":"block","children":[{"type":"image","url":"/csci211/build/inputtag-4f6e5cb3011a4b339d28624d5aee3f18.png","alt":"Picture Of a form utilizing all of the input type attributes","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"key":"IVYCBJ2D0w","urlSource":"./assets/inputtag.png"},{"type":"heading","depth":2,"position":{"start":{"line":5,"column":1},"end":{"line":5,"column":1}},"children":[{"type":"text","value":"Using Inline  (inline event handlers)","position":{"start":{"line":5,"column":1},"end":{"line":5,"column":1}},"key":"Y2dxPfCpzF"}],"identifier":"using-inline-inline-event-handlers","label":"Using Inline  (inline event handlers)","html_id":"using-inline-inline-event-handlers","implicit":true,"key":"Xusnu5OYpD"},{"type":"paragraph","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"children":[{"type":"text","value":"In the ","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"zZNEOf4LLr"},{"type":"strong","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"children":[{"type":"text","value":"Inline","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"u4kk5yFMU8"}],"key":"vEJILV1YlH"},{"type":"text","value":" version, behavior is attached directly inside the HTML using attributes like ","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"NDLCNYRBS0"},{"type":"inlineCode","value":"oninput=\"...\"","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"fTh0UgAFz6"},{"type":"text","value":" and ","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"EHIRuHmfFv"},{"type":"inlineCode","value":"onchange=\"...\"","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"PC9O0Xpcev"},{"type":"text","value":". That means the HTML doesn’t just describe structure—it also tells the browser ","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"vGQmADuCAf"},{"type":"emphasis","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"children":[{"type":"text","value":"what code to run","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"uELMeWhRnt"}],"key":"POLg7dUbW2"},{"type":"text","value":" when something happens. It’s immediate and readable for beginners: you can point to a single line and say “this fires the function.”","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"WLvl5zgAKN"}],"key":"NujYAnauUX"},{"type":"paragraph","position":{"start":{"line":9,"column":1},"end":{"line":10,"column":1}},"children":[{"type":"strong","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"children":[{"type":"text","value":"Best use cases:","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"key":"YWTZ3jjTjX"}],"key":"XL5JN0dq5o"},{"type":"text","value":" tiny demos, learning exercises, quick one-off prototypes where clarity beats architecture.\n","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"key":"zAuEDNKTjk"},{"type":"strong","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"children":[{"type":"text","value":"Worst use cases:","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"key":"eHIEs8oek1"}],"key":"yedQB4SJ3C"},{"type":"text","value":" real applications, shared codebases, or anything you expect to maintain. Inline handlers get messy fast, duplicate logic, and blur separation of concerns. It’s also harder to refactor because your behavior is scattered across markup.","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"key":"cE2sz3jYEg"}],"key":"u5jrEZarR7"},{"type":"code","lang":"html","value":"\u003c!DOCTYPE html\u003e\n\u003c!--\n  This document demonstrates many HTML \u003cinput\u003e types.\n  Each input triggers a JavaScript function that logs\n  user interaction directly to the DOM.\n--\u003e\n\n\u003chead\u003e\n  \u003c!-- Page title shown in the browser tab --\u003e\n  \u003ctitle\u003eInput types\u003c/title\u003e\n\n  \u003cstyle\u003e\n    /*\n      Simple container styling to center the demo\n      and make it visually distinct from the page background\n    */\n    .div1 {\n      width: 75%;\n      background-color: cornsilk;\n      padding: 25px;\n      margin-left: auto;\n      margin-right: auto;\n      margin-top: 50px;\n      margin-bottom: 50px;\n    }\n  \u003c/style\u003e\n\u003c/head\u003e\n\n\u003cbody\u003e\n\n  \u003c!-- Main demo container --\u003e\n  \u003cdiv class=\"div1\"\u003e\n\n    \u003c!-- Page heading --\u003e\n    \u003ch1\u003eHTML Input Types – DOM Logging\u003c/h1\u003e\n    \u003cp\u003eEvery interaction is logged below.\u003c/p\u003e\n\n    \u003c!--\n      Log area:\n      JavaScript dynamically inserts messages here\n      instead of using console.log()\n    --\u003e\n    \u003cdiv id=\"log\" style=\"border:1px solid #444; \n      padding:10px; \n      height:200px; \n      overflow-y:auto; \n      margin-bottom: 20px;\n      background:#f9f9f9;\"\u003e\n    \u003c/div\u003e\n\n    \u003c!--\n      Demo form:\n      Each input element demonstrates a different input type.\n      Event handlers call JavaScript functions on change or input.\n    --\u003e\n    \u003cform id=\"demoForm\"\u003e\n      \u003ctable\u003e\n\n        \u003c!-- Text input (fires on every keystroke) --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"textInput\"\u003eText:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"text\" id=\"textInput\" oninput=\"handleText(this.value)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Password input (value intentionally hidden in logs) --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"passwordInput\"\u003ePassword:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"password\" id=\"passwordInput\" onchange=\"handlePassword()\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Email input with built-in browser validation --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"emailInput\"\u003eEmail:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"email\" id=\"emailInput\" onchange=\"handleEmail(this.value)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Numeric input --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"numberInput\"\u003eNumber:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"number\" id=\"numberInput\" onchange=\"handleNumber(this.value)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Search input --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"searchInput\"\u003eSearch:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"search\" id=\"searchInput\" oninput=\"handleSearch(this.value)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Telephone input with a validation pattern --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"telInput\"\u003eTel:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\n            \u003cinput type=\"tel\" id=\"telInput\"\n              onchange=\"handleTel(this.value)\"\n              placeholder=\"555-555-5555\"\n              pattern=\"[0-9]{3}-[0-9]{3}-[0-9]{4}\"\u003e\n          \u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- URL input with HTTPS pattern enforcement --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"urlInput\"\u003eURL:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"url\" id=\"urlInput\" onchange=\"handleURL(this.value)\" pattern=\"https://.*\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Date picker --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"dateInput\"\u003eDate:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"date\" id=\"dateInput\" onchange=\"handleDate(this.value)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Time picker --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"timeInput\"\u003eTime:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"time\" id=\"timeInput\" onchange=\"handleTime(this.value)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Combined date and time picker --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"datetimeInput\"\u003eDateTime-Local:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"datetime-local\" id=\"datetimeInput\" onchange=\"handleDateTime(this.value)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Month picker --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"monthInput\"\u003eMonth:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"month\" id=\"monthInput\" onchange=\"handleMonth(this.value)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Week picker --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"weekInput\"\u003eWeek:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"week\" id=\"weekInput\" onchange=\"handleWeek(this.value)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Range slider --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"rangeInput\"\u003eRange:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"range\" id=\"rangeInput\" min=\"0\" max=\"100\" oninput=\"handleRange(this.value)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Color picker --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"colorInput\"\u003eColor:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\n            \u003cinput type=\"color\" id=\"colorInput\"\n              onchange=\"handleColor(this.value)\"\u003e\n          \u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Checkbox --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"checkboxInput\"\u003eCheckbox:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"checkbox\" id=\"checkboxInput\" onchange=\"handleCheckbox(this.checked)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Radio buttons (grouped by name attribute) --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"radioA\"\u003eRadio A:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"radio\" id=\"radioA\" name=\"group1\" value=\"A\" onchange=\"handleRadio(this.value)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"radioB\"\u003eRadio B:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"radio\" id=\"radioB\" name=\"group1\" value=\"B\" onchange=\"handleRadio(this.value)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- File upload --\u003e\n        \u003ctr\u003e\n          \u003ctd\u003e\u003clabel for=\"fileInput\"\u003eFile:\u003c/label\u003e\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"file\" id=\"fileInput\" onchange=\"handleFile(this.files)\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Hidden field (not visible to users, still submitted) --\u003e\n        \u003ctr style=\"display: none;\"\u003e\n          \u003ctd colspan=\"2\"\u003e\n            \u003cinput type=\"hidden\" id=\"hiddenInput\" value=\"classified\"\u003e\n          \u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003c!-- Form control buttons --\u003e\n        \u003ctr\u003e\n          \u003ctd colspan=\"2\" style=\"text-align: center;\"\u003e\n            \u003cinput type=\"button\" value=\"Button\" onclick=\"handleButton()\"\u003e\n            \u003cinput type=\"reset\" value=\"Reset\" onclick=\"handleReset()\"\u003e\n            \u003cinput type=\"submit\" value=\"Submit\"\u003e\n          \u003c/td\u003e\n        \u003c/tr\u003e\n\n      \u003c/table\u003e\n    \u003c/form\u003e\n  \u003c/div\u003e\n\n  \u003cscript\u003e\n    /*\n      Core logging function.\n      Appends messages to the log div and auto-scrolls.\n    */\n    function log(message) {\n\n      // Clear log when the form is reset\n      if (message === \"Form reset\") {\n        document.getElementById(\"log\").innerHTML = \"\";\n      }\n\n      const logDiv = document.getElementById(\"log\");\n      const entry = document.createElement(\"div\");\n      entry.textContent = message;\n      logDiv.appendChild(entry);\n\n      // Keep newest log entry visible\n      logDiv.scrollTop = logDiv.scrollHeight;\n    }\n\n    // Individual handlers for each input type\n    function handleText(value) { log(\"Text: \" + value); }\n    function handlePassword() { log(\"Password changed (value hidden, on purpose)\"); }\n    function handleEmail(value) { log(\"Email: \" + value); }\n    function handleNumber(value) { log(\"Number: \" + value); }\n    function handleSearch(value) { log(\"Search: \" + value); }\n    function handleTel(value) { log(\"Tel: \" + value); }\n    function handleURL(value) { log(\"URL: \" + value); }\n    function handleDate(value) { log(\"Date: \" + value); }\n    function handleTime(value) { log(\"Time: \" + value); }\n    function handleDateTime(value) { log(\"DateTime: \" + value); }\n    function handleMonth(value) { log(\"Month: \" + value); }\n    function handleWeek(value) { log(\"Week: \" + value); }\n    function handleRange(value) { log(\"Range: \" + value); }\n    function handleColor(value) { log(\"Color: \" + value); }\n    function handleCheckbox(checked) { log(\"Checkbox checked: \" + checked); }\n    function handleRadio(value) { log(\"Radio selected: \" + value); }\n\n    // File input handler (optional chaining avoids errors)\n    function handleFile(files) {\n      log(\"File selected: \" + (files[0]?.name || \"none\"));\n    }\n\n    function handleButton() { log(\"Button clicked\"); }\n    function handleReset() { log(\"Form reset\"); }\n\n    /*\n      Form submission handler.\n      Prevents actual submission and logs hidden input data.\n    */\n    document.getElementById(\"demoForm\").onsubmit = function (e) {\n      e.preventDefault();\n      log(\"Form submitted\");\n      log(\"Hidden value: \" + document.getElementById(\"hiddenInput\").value);\n    };\n  \u003c/script\u003e\n\n\u003c/body\u003e\n","position":{"start":{"line":12,"column":1},"end":{"line":265,"column":1}},"key":"qMS45yRWgS"},{"type":"heading","depth":2,"position":{"start":{"line":269,"column":1},"end":{"line":269,"column":1}},"children":[{"type":"text","value":"Using Listeners (addEventListener)","position":{"start":{"line":269,"column":1},"end":{"line":269,"column":1}},"key":"sFMxMUGeFB"}],"identifier":"using-listeners-addeventlistener","label":"Using Listeners (addEventListener)","html_id":"using-listeners-addeventlistener","implicit":true,"key":"UrxJP3b08D"},{"type":"paragraph","position":{"start":{"line":271,"column":1},"end":{"line":271,"column":1}},"children":[{"type":"text","value":"In the ","position":{"start":{"line":271,"column":1},"end":{"line":271,"column":1}},"key":"ACOHKdbw1O"},{"type":"strong","position":{"start":{"line":271,"column":1},"end":{"line":271,"column":1}},"children":[{"type":"text","value":"Listeners","position":{"start":{"line":271,"column":1},"end":{"line":271,"column":1}},"key":"G5bgIgy0xD"}],"key":"yFmvbmcT53"},{"type":"text","value":" version, the HTML stays clean and JavaScript does the wiring with ","position":{"start":{"line":271,"column":1},"end":{"line":271,"column":1}},"key":"Mqnbm5t6VF"},{"type":"inlineCode","value":"addEventListener","position":{"start":{"line":271,"column":1},"end":{"line":271,"column":1}},"key":"Vzg4VWeDWU"},{"type":"text","value":". This is the “grown-up” baseline: structure in HTML, behavior in JS. It also avoids common inline pitfalls like mixing quoting rules, creating hidden dependencies, and accidentally triggering code before the DOM is ready.","position":{"start":{"line":271,"column":1},"end":{"line":271,"column":1}},"key":"ci86xNzK2Y"}],"key":"gD63Uf2iKa"},{"type":"paragraph","position":{"start":{"line":273,"column":1},"end":{"line":274,"column":1}},"children":[{"type":"strong","position":{"start":{"line":273,"column":1},"end":{"line":273,"column":1}},"children":[{"type":"text","value":"Best use cases:","position":{"start":{"line":273,"column":1},"end":{"line":273,"column":1}},"key":"kFuXpoIBmb"}],"key":"IZ9J5iuNJd"},{"type":"text","value":" most projects, especially when you want maintainable code and clear separation of concerns. Great for small-to-medium forms where each input has unique logic.\n","position":{"start":{"line":273,"column":1},"end":{"line":273,"column":1}},"key":"SM5s8UDxQT"},{"type":"strong","position":{"start":{"line":273,"column":1},"end":{"line":273,"column":1}},"children":[{"type":"text","value":"Worst use cases:","position":{"start":{"line":273,"column":1},"end":{"line":273,"column":1}},"key":"kpUJ6IoimQ"}],"key":"KuZvi5EkpW"},{"type":"text","value":" very large forms with many similar elements, where attaching a separate listener to every element becomes repetitive and noisy (and sometimes slightly wasteful).","position":{"start":{"line":273,"column":1},"end":{"line":273,"column":1}},"key":"m1BU2Ggn4z"}],"key":"bXnrMXvflm"},{"type":"code","lang":"html","value":"\u003c!DOCTYPE html\u003e\n\u003c!--\n  Demonstration of HTML \u003cinput\u003e types using JavaScript event listeners.\n  All events are attached in JavaScript to reinforce separation of concerns.\n\n  Below is the same behavior, same UI, same logging—but \n  all inline event handlers are removed and replaced with addEventListener. \nThe comments now explicitly call out why this approach matters.\n--\u003e\n\n\u003chead\u003e\n  \u003ctitle\u003eInput types\u003c/title\u003e\n\n  \u003cstyle\u003e\n    /* Visual container for the demo */\n    .div1 {\n      width: 75%;\n      background-color: cornsilk;\n      padding: 25px;\n      margin: 50px auto;\n    }\n  \u003c/style\u003e\n\u003c/head\u003e\n\n\u003cbody\u003e\n\n  \u003cdiv class=\"div1\"\u003e\n    \u003ch1\u003eHTML Input Types – DOM Logging\u003c/h1\u003e\n    \u003ch2\u003eAdding Event Listeners\u003c/h2\u003e\n    \u003cp\u003eEvery interaction is logged below.\u003c/p\u003e\n\n    \u003c!-- Log output area --\u003e\n    \u003cdiv id=\"log\" style=\"border:1px solid #444;\n      padding:10px;\n      height:200px;\n      overflow-y:auto;\n      margin-bottom:20px;\n      background:#f9f9f9;\"\u003e\n    \u003c/div\u003e\n\n    \u003c!--\n      Form contains examples of many HTML input types.\n      No inline JavaScript is used here.\n    --\u003e\n    \u003cform id=\"demoForm\"\u003e\n      \u003ctable\u003e\n        \u003ctr\u003e\u003ctd\u003eText:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"text\" id=\"textInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003ePassword:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"password\" id=\"passwordInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eEmail:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"email\" id=\"emailInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eNumber:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"number\" id=\"numberInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eSearch:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"search\" id=\"searchInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\n          \u003ctd\u003eTel:\u003c/td\u003e\n          \u003ctd\u003e\n            \u003cinput type=\"tel\" id=\"telInput\"\n              placeholder=\"555-555-5555\"\n              pattern=\"[0-9]{3}-[0-9]{3}-[0-9]{4}\"\u003e\n          \u003c/td\u003e\n        \u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eURL:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"url\" id=\"urlInput\" pattern=\"https://.*\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eDate:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"date\" id=\"dateInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eTime:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"time\" id=\"timeInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eDateTime:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"datetime-local\" id=\"datetimeInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eMonth:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"month\" id=\"monthInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eWeek:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"week\" id=\"weekInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eRange:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"range\" id=\"rangeInput\" min=\"0\" max=\"100\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eColor:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"color\" id=\"colorInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eCheckbox:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"checkbox\" id=\"checkboxInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eRadio A:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"radio\" name=\"group1\" value=\"A\" id=\"radioA\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eRadio B:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"radio\" name=\"group1\" value=\"B\" id=\"radioB\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eFile:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"file\" id=\"fileInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n\n        \u003c!-- Hidden input demonstrates non-visible form data --\u003e\n        \u003ctr style=\"display:none;\"\u003e\n          \u003ctd colspan=\"2\"\u003e\u003cinput type=\"hidden\" id=\"hiddenInput\" value=\"classified\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003ctr\u003e\n          \u003ctd colspan=\"2\" style=\"text-align:center;\"\u003e\n            \u003cinput type=\"button\" id=\"buttonInput\" value=\"Button\"\u003e\n            \u003cinput type=\"reset\" value=\"Reset\"\u003e\n            \u003cinput type=\"submit\" value=\"Submit\"\u003e\n          \u003c/td\u003e\n        \u003c/tr\u003e\n      \u003c/table\u003e\n    \u003c/form\u003e\n  \u003c/div\u003e\n\n  \u003cscript\u003e\n    /*\n      Utility function to append messages to the log div.\n      Keeps the UI responsive and readable.\n    */\n    function log(message) {\n      if (message === \"Form reset\") {\n        document.getElementById(\"log\").innerHTML = \"\";\n      }\n\n      const logDiv = document.getElementById(\"log\");\n      const entry = document.createElement(\"div\");\n      entry.textContent = message;\n      logDiv.appendChild(entry);\n      logDiv.scrollTop = logDiv.scrollHeight;\n    }\n\n    /*\n      Event listeners are attached AFTER the DOM loads.\n      This avoids race conditions and inline JavaScript.\n    */\n    document.addEventListener(\"DOMContentLoaded\", () =\u003e {\n\n      document.getElementById(\"textInput\")\n        .addEventListener(\"input\", e =\u003e log(\"Text: \" + e.target.value));\n\n      document.getElementById(\"passwordInput\")\n        .addEventListener(\"change\", () =\u003e log(\"Password changed (value hidden, on purpose)\"));\n\n      document.getElementById(\"emailInput\")\n        .addEventListener(\"change\", e =\u003e log(\"Email: \" + e.target.value));\n\n      document.getElementById(\"numberInput\")\n        .addEventListener(\"change\", e =\u003e log(\"Number: \" + e.target.value));\n\n      document.getElementById(\"searchInput\")\n        .addEventListener(\"input\", e =\u003e log(\"Search: \" + e.target.value));\n\n      document.getElementById(\"telInput\")\n        .addEventListener(\"change\", e =\u003e log(\"Tel: \" + e.target.value));\n\n      document.getElementById(\"urlInput\")\n        .addEventListener(\"change\", e =\u003e log(\"URL: \" + e.target.value));\n\n      document.getElementById(\"dateInput\")\n        .addEventListener(\"change\", e =\u003e log(\"Date: \" + e.target.value));\n\n      document.getElementById(\"timeInput\")\n        .addEventListener(\"change\", e =\u003e log(\"Time: \" + e.target.value));\n\n      document.getElementById(\"datetimeInput\")\n        .addEventListener(\"change\", e =\u003e log(\"DateTime: \" + e.target.value));\n\n      document.getElementById(\"monthInput\")\n        .addEventListener(\"change\", e =\u003e log(\"Month: \" + e.target.value));\n\n      document.getElementById(\"weekInput\")\n        .addEventListener(\"change\", e =\u003e log(\"Week: \" + e.target.value));\n\n      document.getElementById(\"rangeInput\")\n        .addEventListener(\"input\", e =\u003e log(\"Range: \" + e.target.value));\n\n      document.getElementById(\"colorInput\")\n        .addEventListener(\"change\", e =\u003e log(\"Color: \" + e.target.value));\n\n      document.getElementById(\"checkboxInput\")\n        .addEventListener(\"change\", e =\u003e log(\"Checkbox checked: \" + e.target.checked));\n\n      document.querySelectorAll(\"input[name='group1']\")\n        .forEach(radio =\u003e\n          radio.addEventListener(\"change\", e =\u003e log(\"Radio selected: \" + e.target.value))\n        );\n\n      document.getElementById(\"fileInput\")\n        .addEventListener(\"change\", e =\u003e\n          log(\"File selected: \" + (e.target.files[0]?.name || \"none\"))\n        );\n\n      document.getElementById(\"buttonInput\")\n        .addEventListener(\"click\", () =\u003e log(\"Button clicked\"));\n\n      document.getElementById(\"demoForm\")\n        .addEventListener(\"reset\", () =\u003e log(\"Form reset\"));\n\n      document.getElementById(\"demoForm\")\n        .addEventListener(\"submit\", e =\u003e {\n          e.preventDefault();\n          log(\"Form submitted\");\n          log(\"Hidden value: \" + document.getElementById(\"hiddenInput\").value);\n        });\n    });\n  \u003c/script\u003e\n\u003c/body\u003e\n","position":{"start":{"line":276,"column":1},"end":{"line":459,"column":1}},"key":"d5KUWgl2Xv"},{"type":"heading","depth":2,"position":{"start":{"line":465,"column":1},"end":{"line":465,"column":1}},"children":[{"type":"text","value":"Using Delegation (event delegation)","position":{"start":{"line":465,"column":1},"end":{"line":465,"column":1}},"key":"n2vBSSY7qi"}],"identifier":"using-delegation-event-delegation","label":"Using Delegation (event delegation)","html_id":"using-delegation-event-delegation","implicit":true,"key":"YP0qtn7pfs"},{"type":"paragraph","position":{"start":{"line":467,"column":1},"end":{"line":467,"column":1}},"children":[{"type":"text","value":"In the ","position":{"start":{"line":467,"column":1},"end":{"line":467,"column":1}},"key":"WiExsjJF7h"},{"type":"strong","position":{"start":{"line":467,"column":1},"end":{"line":467,"column":1}},"children":[{"type":"text","value":"Delegation","position":{"start":{"line":467,"column":1},"end":{"line":467,"column":1}},"key":"qhZLqW6Brk"}],"key":"lEB22XUiWt"},{"type":"text","value":" version, you attach ","position":{"start":{"line":467,"column":1},"end":{"line":467,"column":1}},"key":"mOYGkKztP6"},{"type":"emphasis","position":{"start":{"line":467,"column":1},"end":{"line":467,"column":1}},"children":[{"type":"text","value":"one","position":{"start":{"line":467,"column":1},"end":{"line":467,"column":1}},"key":"XIdWmz2SuQ"}],"key":"PxAaGjItOZ"},{"type":"text","value":" listener (or a few) to the parent container (here, the ","position":{"start":{"line":467,"column":1},"end":{"line":467,"column":1}},"key":"ZBWbjUk3VU"},{"type":"inlineCode","value":"\u003cform\u003e","position":{"start":{"line":467,"column":1},"end":{"line":467,"column":1}},"key":"iLdRcrXXmT"},{"type":"text","value":"). Events bubble up from the input to the form, and your code inspects ","position":{"start":{"line":467,"column":1},"end":{"line":467,"column":1}},"key":"ArkXN6xxVa"},{"type":"inlineCode","value":"event.target","position":{"start":{"line":467,"column":1},"end":{"line":467,"column":1}},"key":"M7F94vgpzG"},{"type":"text","value":" to figure out which input triggered it. This is the “one guard at the door checks everyone’s ID” approach.","position":{"start":{"line":467,"column":1},"end":{"line":467,"column":1}},"key":"W2E5DqiCDR"}],"key":"satIRrUv5a"},{"type":"paragraph","position":{"start":{"line":469,"column":1},"end":{"line":470,"column":1}},"children":[{"type":"strong","position":{"start":{"line":469,"column":1},"end":{"line":469,"column":1}},"children":[{"type":"text","value":"Best use cases:","position":{"start":{"line":469,"column":1},"end":{"line":469,"column":1}},"key":"Ur58a7Um3f"}],"key":"vJxqZejiWI"},{"type":"text","value":" large dynamic UIs, long forms, tables of inputs, and interfaces where elements are added/removed after page load. It’s also excellent when many inputs share similar handling.\n","position":{"start":{"line":469,"column":1},"end":{"line":469,"column":1}},"key":"k5iPXTNtWv"},{"type":"strong","position":{"start":{"line":469,"column":1},"end":{"line":469,"column":1}},"children":[{"type":"text","value":"Worst use cases:","position":{"start":{"line":469,"column":1},"end":{"line":469,"column":1}},"key":"U3lB1xOByS"}],"key":"Q4BvRxWJEb"},{"type":"text","value":" complex forms where different inputs need radically different event timing or custom rules. Delegation can become a logic maze if you pile too many special cases into one handler.","position":{"start":{"line":469,"column":1},"end":{"line":469,"column":1}},"key":"WXMnlVYNvv"}],"key":"tSmewKLZD7"},{"type":"code","lang":"html","value":"\u003c!DOCTYPE html\u003e\n\u003c!--\n  HTML input types demo using EVENT DELEGATION.\n  A single event listener handles all inputs by inspecting the event target.\n\n  What follows is event delegation: one listener on the form, \n  the DOM bubbling events upward, and JavaScript calmly deciding what happened. \n  Fewer listeners, less repetition, clearer intent. \n  The browser already did half the work.\n--\u003e\n\n\u003chead\u003e\n  \u003ctitle\u003eInput types\u003c/title\u003e\n\n  \u003cstyle\u003e\n    .div1 {\n      width: 75%;\n      background-color: cornsilk;\n      padding: 25px;\n      margin: 50px auto;\n    }\n  \u003c/style\u003e\n\u003c/head\u003e\n\n\u003cbody\u003e\n\n  \u003cdiv class=\"div1\"\u003e\n    \u003ch1\u003eHTML Input Types – Event Delegation\u003c/h1\u003e\n    \u003cp\u003eAll input events are handled by one listener.\u003c/p\u003e\n\n    \u003c!-- Log output --\u003e\n    \u003cdiv id=\"log\" style=\"border:1px solid #444;\n      padding:10px;\n      height:200px;\n      overflow-y:auto;\n      margin-bottom:20px;\n      background:#f9f9f9;\"\u003e\n    \u003c/div\u003e\n\n    \u003c!-- Form with many input types --\u003e\n    \u003cform id=\"demoForm\"\u003e\n      \u003ctable\u003e\n        \u003ctr\u003e\u003ctd\u003eText:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"text\" id=\"textInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003ePassword:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"password\" id=\"passwordInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eEmail:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"email\" id=\"emailInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eNumber:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"number\" id=\"numberInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eSearch:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"search\" id=\"searchInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eTel:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"tel\" id=\"telInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eURL:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"url\" id=\"urlInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eDate:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"date\" id=\"dateInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eTime:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"time\" id=\"timeInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eDateTime:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"datetime-local\" id=\"datetimeInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eMonth:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"month\" id=\"monthInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eWeek:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"week\" id=\"weekInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eRange:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"range\" id=\"rangeInput\" min=\"0\" max=\"100\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eColor:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"color\" id=\"colorInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eCheckbox:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"checkbox\" id=\"checkboxInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\n          \u003ctd\u003eRadio A:\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"radio\" name=\"group1\" value=\"A\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n        \u003ctr\u003e\n          \u003ctd\u003eRadio B:\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"radio\" name=\"group1\" value=\"B\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eFile:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"file\" id=\"fileInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n\n        \u003c!-- Hidden input --\u003e\n        \u003ctr style=\"display:none;\"\u003e\n          \u003ctd colspan=\"2\"\u003e\u003cinput type=\"hidden\" id=\"hiddenInput\" value=\"classified\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003ctr\u003e\n          \u003ctd colspan=\"2\" style=\"text-align:center;\"\u003e\n            \u003cinput type=\"button\" id=\"buttonInput\" value=\"Button\"\u003e\n            \u003cinput type=\"reset\" value=\"Reset\"\u003e\n            \u003cinput type=\"submit\" value=\"Submit\"\u003e\n          \u003c/td\u003e\n        \u003c/tr\u003e\n      \u003c/table\u003e\n    \u003c/form\u003e\n  \u003c/div\u003e\n\n  \u003cscript\u003e\n    /*\n      Writes a message to the log div and auto-scrolls.\n    */\n    function log(message) {\n      if (message === \"Form reset\") {\n        document.getElementById(\"log\").innerHTML = \"\";\n      }\n\n      const logDiv = document.getElementById(\"log\");\n      const entry = document.createElement(\"div\");\n      entry.textContent = message;\n      logDiv.appendChild(entry);\n      logDiv.scrollTop = logDiv.scrollHeight;\n    }\n\n    /*\n      One listener. One decision point.\n      The event bubbles up from the input to the form.\n    */\n    document.addEventListener(\"DOMContentLoaded\", () =\u003e {\n\n      const form = document.getElementById(\"demoForm\");\n\n      form.addEventListener(\"input\", handleEvent);\n      form.addEventListener(\"change\", handleEvent);\n\n      form.addEventListener(\"reset\", () =\u003e log(\"Form reset\"));\n\n      form.addEventListener(\"submit\", e =\u003e {\n        e.preventDefault();\n        log(\"Form submitted\");\n        log(\"Hidden value: \" + document.getElementById(\"hiddenInput\").value);\n      });\n\n      document.getElementById(\"buttonInput\")\n        .addEventListener(\"click\", () =\u003e log(\"Button clicked\"));\n    });\n\n    /*\n      Centralized event handler.\n      Determines behavior based on input type and attributes.\n    */\n    function handleEvent(e) {\n\n      const el = e.target;\n\n      if (el.tagName !== \"INPUT\") return;\n\n      switch (el.type) {\n\n        case \"text\":\n          log(\"Text: \" + el.value);\n          break;\n\n        case \"password\":\n          log(\"Password changed (value hidden, on purpose)\");\n          break;\n\n        case \"email\":\n          log(\"Email: \" + el.value);\n          break;\n\n        case \"number\":\n          log(\"Number: \" + el.value);\n          break;\n\n        case \"search\":\n          log(\"Search: \" + el.value);\n          break;\n\n        case \"tel\":\n          log(\"Tel: \" + el.value);\n          break;\n\n        case \"url\":\n          log(\"URL: \" + el.value);\n          break;\n\n        case \"date\":\n          log(\"Date: \" + el.value);\n          break;\n\n        case \"time\":\n          log(\"Time: \" + el.value);\n          break;\n\n        case \"datetime-local\":\n          log(\"DateTime: \" + el.value);\n          break;\n\n        case \"month\":\n          log(\"Month: \" + el.value);\n          break;\n\n        case \"week\":\n          log(\"Week: \" + el.value);\n          break;\n\n        case \"range\":\n          log(\"Range: \" + el.value);\n          break;\n\n        case \"color\":\n          log(\"Color: \" + el.value);\n          break;\n\n        case \"checkbox\":\n          log(\"Checkbox checked: \" + el.checked);\n          break;\n\n        case \"radio\":\n          log(\"Radio selected: \" + el.value);\n          break;\n\n        case \"file\":\n          log(\"File selected: \" + (el.files[0]?.name || \"none\"));\n          break;\n      }\n    }\n  \u003c/script\u003e\n\u003c/body\u003e\n","position":{"start":{"line":472,"column":1},"end":{"line":679,"column":1}},"key":"fpN4Zgf6yl"},{"type":"heading","depth":2,"position":{"start":{"line":683,"column":1},"end":{"line":683,"column":1}},"children":[{"type":"text","value":"Using Objects (data-driven handlers)","position":{"start":{"line":683,"column":1},"end":{"line":683,"column":1}},"key":"XSg8ljR37u"}],"identifier":"using-objects-data-driven-handlers","label":"Using Objects (data-driven handlers)","html_id":"using-objects-data-driven-handlers","implicit":true,"key":"VMd2RPMwkd"},{"type":"paragraph","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"children":[{"type":"text","value":"In the ","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"key":"FzZua8M2Hv"},{"type":"strong","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"children":[{"type":"text","value":"Objects","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"key":"FwI1lODYQy"}],"key":"Nk2vvCgB37"},{"type":"text","value":" version, you keep delegation, but replace the long ","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"key":"xngWoaF3hi"},{"type":"inlineCode","value":"switch","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"key":"Wt38vSrPJB"},{"type":"text","value":" statement with an ","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"key":"mWjiwnUhzf"},{"type":"strong","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"children":[{"type":"text","value":"object lookup table","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"key":"GLOWzCHm1A"}],"key":"FJNqW9pQwF"},{"type":"text","value":" that maps an input’s type (like ","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"key":"R8s5NEKjgd"},{"type":"inlineCode","value":"\"email\"","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"key":"eGCss6bPNI"},{"type":"text","value":" or ","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"key":"l6qLBSiem5"},{"type":"inlineCode","value":"\"date\"","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"key":"lZu8UV1Gmm"},{"type":"text","value":") to the appropriate handler function. This is the cleanest scaling strategy: adding a new input often becomes “add one row to the handler table.”","position":{"start":{"line":685,"column":1},"end":{"line":685,"column":1}},"key":"iHWQC3dkxA"}],"key":"vRXWDznc8O"},{"type":"paragraph","position":{"start":{"line":687,"column":1},"end":{"line":688,"column":1}},"children":[{"type":"strong","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"children":[{"type":"text","value":"Best use cases:","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"key":"U0kV5OyFsz"}],"key":"zkJlqa43Wl"},{"type":"text","value":" scalable systems, maintainable demos, codebases where you want to add new behavior without editing a monster conditional. This is also a stepping stone toward more advanced patterns (config-driven forms, reusable components, validation maps).\n","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"key":"RFBUwI5QFM"},{"type":"strong","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"children":[{"type":"text","value":"Worst use cases:","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"key":"PB70ZDuzTS"}],"key":"SH6zIVqwDw"},{"type":"text","value":" when the type alone isn’t enough to determine behavior. If two text inputs need different logic, mapping only by ","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"key":"jKsVN8gXfL"},{"type":"inlineCode","value":"type","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"key":"P1q1wtJR7Q"},{"type":"text","value":" can be too blunt—then you’ll want to dispatch by ","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"key":"puQYtfIyeX"},{"type":"inlineCode","value":"id","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"key":"UmkQveLey7"},{"type":"text","value":", ","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"key":"K4zyfoznIL"},{"type":"inlineCode","value":"name","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"key":"GG69KQzP36"},{"type":"text","value":", or ","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"key":"eVw8f4DoxY"},{"type":"inlineCode","value":"data-*","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"key":"bVw3EvcwaF"},{"type":"text","value":" attributes instead.","position":{"start":{"line":687,"column":1},"end":{"line":687,"column":1}},"key":"v3bSYcW7oL"}],"key":"CEewI2k9pF"},{"type":"code","lang":"html","value":"\u003c!DOCTYPE html\u003e\n\u003c!--\n  HTML input types demo using:\n    - Event delegation (one listener for many inputs)\n    - Data-driven handlers (mapping input types to functions)\n\n  same interface, same behavior, \n  but now the JavaScript is data-driven. \n  Instead of a long switch, we have a lookup table (an object) \n  that maps input types to handler functions.\n--\u003e\n\n\u003chead\u003e\n  \u003ctitle\u003eInput types\u003c/title\u003e\n\n  \u003cstyle\u003e\n    .div1 {\n      width: 75%;\n      background-color: cornsilk;\n      padding: 25px;\n      margin: 50px auto;\n    }\n  \u003c/style\u003e\n\u003c/head\u003e\n\n\u003cbody\u003e\n\n  \u003cdiv class=\"div1\"\u003e\n    \u003ch1\u003eHTML Input Types – Data-Driven Event Handling\u003c/h1\u003e\n    \u003cp\u003eInput types are mapped to handler functions through a lookup table.\u003c/p\u003e\n\n    \u003c!-- Log output --\u003e\n    \u003cdiv id=\"log\" style=\"border:1px solid #444;\n      padding:10px;\n      height:200px;\n      overflow-y:auto;\n      margin-bottom:20px;\n      background:#f9f9f9;\"\u003e\n    \u003c/div\u003e\n\n    \u003c!-- Form with many input types --\u003e\n    \u003cform id=\"demoForm\"\u003e\n      \u003ctable\u003e\n        \u003ctr\u003e\u003ctd\u003eText:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"text\" id=\"textInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003ePassword:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"password\" id=\"passwordInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eEmail:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"email\" id=\"emailInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eNumber:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"number\" id=\"numberInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eSearch:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"search\" id=\"searchInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eTel:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"tel\" id=\"telInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eURL:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"url\" id=\"urlInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eDate:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"date\" id=\"dateInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eTime:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"time\" id=\"timeInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eDateTime:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"datetime-local\" id=\"datetimeInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eMonth:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"month\" id=\"monthInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eWeek:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"week\" id=\"weekInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eRange:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"range\" id=\"rangeInput\" min=\"0\" max=\"100\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eColor:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"color\" id=\"colorInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eCheckbox:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"checkbox\" id=\"checkboxInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n        \u003ctr\u003e\n          \u003ctd\u003eRadio A:\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"radio\" name=\"group1\" value=\"A\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n        \u003ctr\u003e\n          \u003ctd\u003eRadio B:\u003c/td\u003e\n          \u003ctd\u003e\u003cinput type=\"radio\" name=\"group1\" value=\"B\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n        \u003ctr\u003e\u003ctd\u003eFile:\u003c/td\u003e\u003ctd\u003e\u003cinput type=\"file\" id=\"fileInput\"\u003e\u003c/td\u003e\u003c/tr\u003e\n\n        \u003c!-- Hidden input --\u003e\n        \u003ctr style=\"display:none;\"\u003e\n          \u003ctd colspan=\"2\"\u003e\u003cinput type=\"hidden\" id=\"hiddenInput\" value=\"classified\"\u003e\u003c/td\u003e\n        \u003c/tr\u003e\n\n        \u003ctr\u003e\n          \u003ctd colspan=\"2\" style=\"text-align:center;\"\u003e\n            \u003cinput type=\"button\" id=\"buttonInput\" value=\"Button\"\u003e\n            \u003cinput type=\"reset\" value=\"Reset\"\u003e\n            \u003cinput type=\"submit\" value=\"Submit\"\u003e\n          \u003c/td\u003e\n        \u003c/tr\u003e\n      \u003c/table\u003e\n    \u003c/form\u003e\n  \u003c/div\u003e\n\n  \u003cscript\u003e\n    /*\n      Writes a message to the log div and auto-scrolls.\n    */\n    function log(message) {\n      if (message === \"Form reset\") {\n        document.getElementById(\"log\").innerHTML = \"\";\n      }\n\n      const logDiv = document.getElementById(\"log\");\n      const entry = document.createElement(\"div\");\n      entry.textContent = message;\n      logDiv.appendChild(entry);\n      logDiv.scrollTop = logDiv.scrollHeight;\n    }\n\n    /*\n      Handler table:\n      Keys are input \"type\" values.\n      Values are functions that know how to log that type.\n      This replaces a long switch statement.\n    */\n    const inputHandlers = {\n      text: el =\u003e log(\"Text: \" + el.value),\n      password: el =\u003e log(\"Password changed (value hidden, on purpose)\"),\n      email: el =\u003e log(\"Email: \" + el.value),\n      number: el =\u003e log(\"Number: \" + el.value),\n      search: el =\u003e log(\"Search: \" + el.value),\n      tel: el =\u003e log(\"Tel: \" + el.value),\n      url: el =\u003e log(\"URL: \" + el.value),\n      date: el =\u003e log(\"Date: \" + el.value),\n      time: el =\u003e log(\"Time: \" + el.value),\n      \"datetime-local\": el =\u003e log(\"DateTime: \" + el.value),\n      month: el =\u003e log(\"Month: \" + el.value),\n      week: el =\u003e log(\"Week: \" + el.value),\n      range: el =\u003e log(\"Range: \" + el.value),\n      color: el =\u003e log(\"Color: \" + el.value),\n      checkbox: el =\u003e log(\"Checkbox checked: \" + el.checked),\n      radio: el =\u003e log(\"Radio selected: \" + el.value),\n      file: el =\u003e log(\"File selected: \" + (el.files[0]?.name || \"none\"))\n    };\n\n    /*\n      Attach a few top-level listeners when the DOM is ready:\n        - Delegated 'input' and 'change' on the form\n        - 'reset' and 'submit' on the form\n        - Separate click handler for the plain button\n    */\n    document.addEventListener(\"DOMContentLoaded\", () =\u003e {\n\n      const form = document.getElementById(\"demoForm\");\n\n      // Delegated listeners: any input inside the form bubbles up here\n      form.addEventListener(\"input\", handleDelegatedEvent);\n      form.addEventListener(\"change\", handleDelegatedEvent);\n\n      form.addEventListener(\"reset\", () =\u003e log(\"Form reset\"));\n\n      form.addEventListener(\"submit\", e =\u003e {\n        e.preventDefault();\n        log(\"Form submitted\");\n        log(\"Hidden value: \" + document.getElementById(\"hiddenInput\").value);\n      });\n\n      document.getElementById(\"buttonInput\")\n        .addEventListener(\"click\", () =\u003e log(\"Button clicked\"));\n    });\n\n    /*\n      Central delegated handler:\n      - Makes sure the event came from an \u003cinput\u003e\n      - Looks up a handler by input type\n      - Calls that handler if it exists\n    */\n    function handleDelegatedEvent(e) {\n      const el = e.target;\n\n      if (el.tagName !== \"INPUT\") return;\n\n      const handler = inputHandlers[el.type];\n\n      if (handler) {\n        handler(el, e); // pass element (and event if needed later)\n      }\n    }\n  \u003c/script\u003e\n\u003c/body\u003e\n","position":{"start":{"line":690,"column":1},"end":{"line":863,"column":1}},"key":"f52bEpucTP"},{"type":"heading","depth":2,"position":{"start":{"line":867,"column":1},"end":{"line":867,"column":1}},"children":[{"type":"text","value":"Practical Summary: When Each Approach Wins (and Loses)","position":{"start":{"line":867,"column":1},"end":{"line":867,"column":1}},"key":"wzka7zfnqO"}],"identifier":"practical-summary-when-each-approach-wins-and-loses","label":"Practical Summary: When Each Approach Wins (and Loses)","html_id":"practical-summary-when-each-approach-wins-and-loses","implicit":true,"key":"qLrNpkMze8"},{"type":"paragraph","position":{"start":{"line":869,"column":1},"end":{"line":869,"column":1}},"children":[{"type":"text","value":"Inline events are a bicycle with no brakes: perfect for learning balance, a bad idea on a downhill commute. Event listeners are the standard, clean and professional. Delegation is the power tool you reach for when the number of inputs explodes or the DOM changes dynamically. Objects turn delegation into a system: fewer moving parts, clearer intent, and easier growth.","position":{"start":{"line":869,"column":1},"end":{"line":869,"column":1}},"key":"R21hmlBuJr"}],"key":"w4Jo1GOueA"},{"type":"paragraph","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"children":[{"type":"text","value":"Inline shows ","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"key":"gxvn2l3CE3"},{"type":"emphasis","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"children":[{"type":"text","value":"what events do","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"key":"OYFV1uzht0"}],"key":"pLnf8VE4zh"},{"type":"text","value":" → listeners show ","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"key":"bMrnCjtaeN"},{"type":"emphasis","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"children":[{"type":"text","value":"where code should live","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"key":"b038j1a7gY"}],"key":"HHts65eiWr"},{"type":"text","value":" → delegation shows ","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"key":"aH6OQjvHL7"},{"type":"emphasis","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"children":[{"type":"text","value":"how to scale events","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"key":"wkCsf6GtYN"}],"key":"MdKitu7ub7"},{"type":"text","value":" → objects show ","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"key":"KL4aNpShOG"},{"type":"emphasis","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"children":[{"type":"text","value":"how to scale logic","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"key":"itwGnmavmX"}],"key":"tpVRjYXA3G"},{"type":"text","value":".","position":{"start":{"line":871,"column":1},"end":{"line":871,"column":1}},"key":"YfCHGpBt8s"}],"key":"u80WNWkWhF"}],"key":"OQXhCekYoy"}],"key":"GDSHgAfrBT"},"references":{"cite":{"order":[],"data":{}}},"footer":{"navigation":{"prev":{"title":"Variables","url":"/xjsvariables","group":"Client Side Programming"},"next":{"title":"HTML Input Tag - Short Form","url":"/xhtmlinputtagshortform","group":"Client Side Programming"}}},"domain":"http://localhost:3000"},"project":{"bibliography":["C:\\a_books\\csci211_csbook\\references.bib"],"exports":[{"format":"typst","filename":"CSCI_211_ptb.pdf","url":"/csci211/build/CSCI_211_ptb-d5c6734f5debbc0f91b00c58f15c4527.pdf"}],"title":"Client Side Programming","description":"Class lectures for JavaScript","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci211_csbook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","keywords":["JavaScript","TypeScript"],"copyright":"2026","parts":{"abstract":{"mdast":{"type":"root","children":[{"type":"block","data":{"part":"abstract"},"children":[{"type":"paragraph","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"children":[{"type":"text","value":"These are the class lectures and supporting materials for the Client Side Programming Class","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"key":"rlhwNq9zfZ"}],"key":"VfaHcwCLvJ"}],"key":"rlVVux20rU"}],"key":"HfMN2wEFa6"},"frontmatter":{"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\csci211_csbook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","keywords":["JavaScript","TypeScript"],"copyright":"2026"}}},"toc":[{"file":"intro.md"},{"file":"xJSIntro.md"},{"file":"xJSHistory.md"},{"file":"xDOM.md"},{"file":"xJSPlacement.md"},{"file":"xJSFourWaysOutput.md"},{"file":"xJSVariables.md"},{"file":"xHTMLInputTag.md"},{"file":"xHTMLInputTagShortForm.md"},{"file":"xJSIfStatement.md"},{"file":"xJSLoopsSwitch.md"},{"file":"xJSArrays.md"},{"file":"xJSRandom.md"},{"file":"xJSFormValidationWhy.md"},{"file":"xJSFormValidation.md"},{"file":"xJSFormValidationOnBlur.md"},{"file":"xJSObjectsWhy.md"},{"file":"xJSObjectsByClass.md"},{"file":"xJSObjectsByFunction.md"},{"file":"xJSObjectsInheritance.md"},{"file":"xJSStoringWebData.md"},{"file":"xJSEndOfMaterial.md"}],"index":"index","pages":[{"slug":"xjsintro","title":"JavaScript Introduction","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjshistory","title":"Short History Of JavaScript","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xdom","title":"Document Object Model","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsplacement","title":"JavaScript Placement","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsfourwaysoutput","title":"Four Ways To Display Output","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsvariables","title":"Variables","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhtmlinputtag","title":"HTML Input Tag","description":"","date":"","thumbnail":"/csci211/build/inputtag-4f6e5cb3011a4b339d28624d5aee3f18.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhtmlinputtagshortform","title":"HTML Input Tag - Short Form","description":"","date":"","thumbnail":"/csci211/build/image-20260129144909-d12bfa152cecd2eb4adad039f07fad98.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsifstatement","title":"If Statement","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsloopsswitch","title":"Loops and Switch","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsarrays","title":"Arrays","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsrandom","title":"Random Functions","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsformvalidationwhy","title":"Importance of Form Validation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsformvalidation","title":"Form Validation","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsformvalidationonblur","title":"Form Validation - Onblur","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsobjectswhy","title":"JavaScript Placement","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsobjectsbyclass","title":"Objects By Class","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsobjectsbyfunction","title":"Objects By Function","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsobjectsinheritance","title":"Objects Inheritance","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsstoringwebdata","title":"Storing Web Data","description":"","date":"","thumbnail":"/csci211/build/image-20240426155445-432497c3706c8f70cabdf5a79cd1894d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjsendofmaterial","title":"END","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1}]}}},"actionData":null,"errors":null},"future":{"unstable_dev":false,"unstable_postcss":false,"unstable_tailwind":false,"v2_errorBoundary":true,"v2_headers":true,"v2_meta":true,"v2_normalizeFormMethod":true,"v2_routeConvention":true}};</script><script type="module" async="">import "/csci211/build/manifest-7B0967AD.js";
+import * as route0 from "/csci211/build/root-EDJFWIEV.js";
+import * as route1 from "/csci211/build/routes/$-AD65NCUT.js";
+window.__remixRouteModules = {"root":route0,"routes/$":route1};
+
+import("/csci211/build/entry.client-PCJPW7TK.js");</script></body></html>
