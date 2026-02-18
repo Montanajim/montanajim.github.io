@@ -1,0 +1,688 @@
+<!DOCTYPE html><html lang="en" class="" style="scroll-padding:60px"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Red Black Tree - Algorithms</title><meta property="og:title" content="Red Black Tree - Algorithms"/><meta name="generator" content="mystmd"/><meta name="keywords" content=""/><link rel="stylesheet" href="/CSCI232/build/_assets/app-2K3KGISG.css"/><link rel="stylesheet" href="/CSCI232/build/_assets/thebe-core-VKVHG5VY.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jupyter-matplotlib@0.11.3/css/mpl_widget.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous"/><link rel="icon" href="/CSCI232/favicon.ico"/><link rel="stylesheet" href="/CSCI232/myst-theme.css"/><script>
+  const savedTheme = localStorage.getItem("myst:theme");
+  const theme = window.matchMedia("(prefers-color-scheme: light)").matches ? 'light' : 'dark';
+  const classes = document.documentElement.classList;
+  const hasAnyTheme = classes.contains('light') || classes.contains('dark');
+  if (!hasAnyTheme) classes.add(savedTheme ?? theme);
+</script></head><body class="m-0 transition-colors duration-500 bg-white dark:bg-stone-900"><div class="myst-skip-to-article fixed top-1 left-1 h-[0px] w-[0px] focus-within:z-40 focus-within:h-auto focus-within:w-auto bg-white overflow-hidden focus-within:p-2 focus-within:ring-1" aria-label="skip to content options"><a href="#skip-to-frontmatter" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article frontmatter</a><a href="#skip-to-article" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article content</a></div><dialog id="myst-no-css" style="position:fixed;left:0px;top:0px;width:100%;height:100vh;font-size:4rem;padding:1rem;color:black;background:white"><strong>Site not loading correctly?</strong><p>This may be due to an incorrect <code>BASE_URL</code> configuration. See<!-- --> <a href="https://mystmd.org/guide/deployment#deploy-base-url">the MyST Documentation</a> <!-- -->for reference.</p><script>
+    (() => {
+            // Test for has-styling variable set by the MyST stylesheet
+            const node = document.currentScript.parentNode;
+            const hasCSS = window.getComputedStyle(node).getPropertyValue("--has-styling");
+            if (hasCSS === ""){
+                    node.showModal();
+            }
+
+    })()
+</script></dialog><div class="myst-top-nav bg-white/80 backdrop-blur dark:bg-stone-900/80 shadow dark:shadow-stone-700 p-3 md:px-8 sticky w-full top-0 z-30 h-[60px]"><nav class="myst-top-nav-bar flex items-center justify-between flex-nowrap max-w-[1440px] mx-auto"><div class="flex flex-row xl:min-w-[19.5rem] mr-2 sm:mr-7 justify-start items-center shrink-0"><div class="block xl:hidden"><button class="myst-top-nav-menu-button flex items-center justify-center border-stone-400 text-stone-800 hover:text-stone-900 dark:text-stone-200 hover:dark:text-stone-100 w-10 h-10"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem"><path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"></path></svg><span class="sr-only">Open Menu</span></button></div><a class="myst-home-link flex items-center ml-3 dark:text-white w-fit md:ml-5 xl:ml-7" href="/CSCI232/"><span class="text-md sm:text-xl tracking-tight sm:mr-5">CSCI 211</span></a></div><div class="flex items-center flex-grow w-auto"><div class="flex-grow hidden text-md lg:block"></div><div class="flex-grow block"></div><button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R75cp:" data-state="closed" class="myst-search-bar flex items-center h-10 aspect-square sm:w-64 text-left text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 myst-search-bar-disabled hover:ring-blue-500 dark:hover:ring-blue-500 hover:border-blue-500 dark:hover:border-blue-500"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="p-2.5 h-10 w-10 aspect-square"><path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd"></path></svg><span class="myst-search-text-placeholder hidden sm:block grow">Search</span><div aria-hidden="true" class="myst-search-shortcut items-center hidden mx-1 font-mono text-sm text-gray-600 dark:text-gray-300 sm:flex gap-x-1"><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none hide-mac">CTRL</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none show-mac">⌘</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none ">K</kbd><script>
+;(() => {
+const script = document.currentScript;
+const root = script.parentElement;
+
+const isMac = /mac/i.test(
+      window.navigator.userAgentData?.platform ?? window.navigator.userAgent,
+    );
+root.querySelectorAll(".hide-mac").forEach(node => {node.classList.add(isMac ? "hidden" : "block")});
+root.querySelectorAll(".show-mac").forEach(node => {node.classList.add(!isMac ? "hidden" : "block")});
+})()</script></div></button><button class="myst-theme-button theme rounded-full aspect-square border border-stone-700 dark:border-white hover:bg-neutral-100 border-solid overflow-hidden text-stone-700 dark:text-white hover:text-stone-500 dark:hover:text-neutral-800 w-10 h-10 mx-3" title="Toggle theme between light and dark mode" aria-label="Toggle theme between light and dark mode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-moon-icon h-full w-full p-0.5 hidden dark:block"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-sun-icon h-full w-full p-0.5 dark:hidden"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></button><div class="block sm:hidden"></div><div class="hidden sm:block"></div></div></nav></div><div class="myst-primary-sidebar fixed xl:article-grid grid-gap xl:w-full xl:pointer-events-none overflow-auto max-xl:w-[75vw] max-xl:max-w-[350px] max-xl:!top-0 max-xl:h-screen hidden z-10" style="top:60px"><div class="myst-primary-sidebar-pointer pointer-events-auto xl:col-margin-left flex-col overflow-hidden max-xl:h-full hidden xl:flex"><div class="myst-primary-sidebar-nav flex-grow py-6 overflow-y-auto primary-scrollbar"><nav aria-label="Navigation" class="myst-primary-sidebar-topnav overflow-y-hidden transition-opacity lg:hidden ml-3 xl:ml-0 mr-3 max-w-[350px]"><div class="w-full px-1 dark:text-white font-medium"></div></nav><div class="my-3 border-b-2 lg:hidden"></div><nav aria-label="Table of Contents" class="myst-primary-sidebar-toc flex-grow overflow-y-hidden transition-opacity ml-3 xl:ml-0 mr-3 max-w-[350px]"><div class="myst-toc w-full px-1 dark:text-white"><a title="Algorithms" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30 font-bold" href="/CSCI232/">Algorithms</a><a title="CSCI 232 Data Structures and Algorithms" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/CSCI232/xcsci232-intro">CSCI 232 Data Structures and Algorithms</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 pl-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Terms and Concepts" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/CSCI232/xterms">Terms and Concepts</a><button class="self-stretch flex items-center flex-none px-1 rounded-l-md group hover:bg-slate-300/30 focus-visible:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:Rupsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:Rupsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 pl-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Binary Search Tree - Intro" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/CSCI232/xbst-intro">Binary Search Tree - Intro</a><button class="self-stretch flex items-center flex-none px-1 rounded-l-md group hover:bg-slate-300/30 focus-visible:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R16psp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R16psp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 pl-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Hash Table" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/CSCI232/xhashing-hashtable">Hash Table</a><button class="self-stretch flex items-center flex-none px-1 rounded-l-md group hover:bg-slate-300/30 focus-visible:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R1epsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R1epsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="Skip List" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/CSCI232/xskiplist">Skip List</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 pl-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Graphs" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/CSCI232/xgraphs">Graphs</a><button class="self-stretch flex items-center flex-none px-1 rounded-l-md group hover:bg-slate-300/30 focus-visible:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R1upsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R1upsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="Huffman Code" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/CSCI232/xhuffmancode">Huffman Code</a><a title="Serialization" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/CSCI232/xserializable">Serialization</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 pl-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="JAVA Techniques" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/CSCI232/xjavatechniques">JAVA Techniques</a><button class="self-stretch flex items-center flex-none px-1 rounded-l-md group hover:bg-slate-300/30 focus-visible:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R2mpsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R2mpsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="End" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/CSCI232/xend">End</a></div></nav></div><div class="myst-primary-sidebar-footer flex-none py-6 transition-all duration-700 translate-y-6 opacity-0 ml-3 xl:ml-0 mr-3 max-w-[350px]"><div class="article footer myst-primary-sidebar-footer"><p>© 2026 by James Goudy</p></div></div></div></div><main class="article-grid grid-gap"><article class="article-grid subgrid-gap col-screen article content"><div class="hidden"></div><div id="skip-to-frontmatter" aria-label="article frontmatter" class="myst-fm-block mb-8 pt-9"><div class="myst-fm-block-header flex items-center mb-5 h-6 text-sm font-light"><div class="flex-grow"></div><div class="myst-fm-block-badges"><a href="https://github.com/executablebooks/jupyter-book" title="GitHub Repository: executablebooks/jupyter-book" target="_blank" rel="noopener noreferrer" class="myst-fm-github-link text-inherit hover:text-inherit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="1.25rem" height="1.25rem" class="myst-fm-github-icon inline-block mr-1 opacity-60 hover:opacity-100"><path d="M12 2.5c-5.4 0-9.8 4.4-9.8 9.7 0 4.3 2.8 8 6.7 9.2.5.1.7-.2.7-.5v-1.8c-2.4.5-3.1-.6-3.3-1.1-.1-.3-.6-1.1-1-1.4-.3-.2-.8-.6 0-.6s1.3.7 1.5 1c.9 1.5 2.3 1.1 2.8.8.1-.6.3-1.1.6-1.3-2.2-.2-4.4-1.1-4.4-4.8 0-1.1.4-1.9 1-2.6-.1-.2-.4-1.2.1-2.6 0 0 .8-.3 2.7 1 .8-.2 1.6-.3 2.4-.3.8 0 1.7.1 2.4.3 1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.6 0 3.7-2.3 4.6-4.4 4.8.4.3.7.9.7 1.8V21c0 .3.2.6.7.5 3.9-1.3 6.6-4.9 6.6-9.2 0-5.4-4.4-9.8-9.8-9.8z"></path></svg></a></div><div class="myst-fm-downloads-dropdown relative flex inline-block mx-1 grow-0" data-headlessui-state=""><button class="myst-fm-downloads-button relative ml-2 -mr-1" id="headlessui-menu-button-:Rs8ucp:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state=""><span class="sr-only">Downloads</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.25rem" height="1.25rem" class="myst-fm-downloads-icon"><title>Download</title><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg></button></div></div><h1 class="myst-fm-block-title mb-0">Red Black Tree</h1><header class="myst-fm-authors-affiliations mt-4 not-prose"><div class="myst-fm-authors-list"><span class="myst-fm-author font-semibold text-sm myst-fm-author-item inline-block"><button class="myst-fm-author-popover focus:shadow-[0_0_0_2px] focus:shadow-black outline-none hover:underline" aria-label="Author Details" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R78ucp:" data-state="closed"><span class="myst-fm-author-name">James Goudy</span></button></span></div></header></div><div class="block my-10 lg:sticky lg:z-10 lg:h-0 lg:pt-0 lg:my-0 lg:ml-10 lg:col-margin-right" style="top:60px"><nav></nav></div><div id="skip-to-article"></div><p>A <strong>Red-Black Tree</strong> is a type of <strong>self-balancing binary search tree</strong> in computer science. Let’s delve into its fascinating properties:</p><ol start="1"><li><p><strong>Structure and Color</strong>:</p><ul><li>Each node in a Red-Black Tree has an extra bit that represents its color (either <strong>red</strong> or <strong>black</strong>).</li><li>These color bits are used to ensure that the tree remains approximately balanced during insertions and deletions.</li><li>The tree’s structure guarantees that operations like searching, insertion, and deletion complete within a known time.</li></ul></li><li><p><strong>Properties of Red-Black Trees</strong>:</p><ul><li><strong>Root Property</strong>: The root node is always black.</li><li><strong>External Property</strong>: Every leaf (which is a NULL child of a node) is black.</li><li><strong>Internal Property</strong>: The children of a red node are black. Thus, a red node’s possible parent is a black node.</li><li><strong>Depth Property</strong>: All leaves have the same black depth.</li><li><strong>Path Property</strong>: Every simple path from the root to a descendant leaf node contains the same number of black nodes.</li></ul></li><li><p><strong>Why Red-Black Trees?</strong>:</p><ul><li><p>Most Binary Search Tree (BST) operations (e.g., search, max, min, insert, delete) take O(h) time, where h is the height of the BST.</p></li><li><p>If we ensure that the tree’s height remains O(log n) after every insertion and deletion, we guarantee an upper bound of O(log n) for all these operations.</p></li><li><p>The height of a Red-Black tree is always O(log n), where n is the number of nodes in the tree.</p></li></ul></li></ol><h2 id="insertion-process" class="relative group"><span class="heading-text">Insertion Process</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#insertion-process" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><ol start="1"><li><strong>Initial Setup</strong>:<ul><li>When inserting a new node, it is initially colored <strong>red</strong>.</li><li>If the tree is empty, the new node becomes the <strong>root</strong> (colored <strong>black</strong>).</li><li>Otherwise, we insert the node as a <strong>leaf</strong> (colored <strong>red</strong>).</li></ul></li><li><strong>Insertion Algorithm</strong>:<ul><li>Perform a standard <strong>BST insertion</strong> (similar to a regular binary search tree).</li><li>Color the newly inserted nodes as <strong>RED</strong>.</li><li>If the newly inserted node is the <strong>root</strong>, change its color to <strong>BLACK</strong> (increasing the black height of the tree by 1).</li></ul></li><li><strong>Balancing Steps</strong>:<ul><li>If the parent of the newly inserted node is not BLACK and the node is not the root :<ul><li>Case 1: If the uncle of the node is RED :<ul><li>Change the color of the parent and uncle to <strong>BLACK</strong>.</li><li>Change the color of the <strong>grandparent</strong> to <strong>RED</strong>.</li><li>Repeat steps 2 and 3 for the new <strong>grandparent</strong>.</li></ul></li><li>Case 2: If the uncle is BLACK :<ul><li>There are four possible configurations (similar to AVL Tree rotations):<ul><li><strong>Left Left Case (LL rotation)</strong></li><li><strong>Left Right Case (LR rotation)</strong></li><li><strong>Right Right Case (RR rotation)</strong></li><li><strong>Right Left Case (RL rotation)</strong></li></ul></li><li>After these rotations, re-color according to the rotation case.</li></ul></li></ul></li></ul></li><li><strong>Re-coloring after Rotations</strong>:<ul><li>For <strong>Left Left Case</strong> and <strong>Right Right Case</strong>, swap colors of <strong>grandparent</strong> and <strong>parent</strong> after rotations.</li><li>For <strong>Left Right Case</strong> and <strong>Right Left Case</strong>, swap colors of <strong>grandparent</strong> and <strong>inserted node</strong> after rotations.</li></ul></li></ol><h2 id="deletion-process" class="relative group"><span class="heading-text">Deletion Process</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#deletion-process" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><ol start="1"><li><strong>Initial Setup</strong>:<ul><li>When deleting a node, it can fall into three cases:<ul><li>The node has <strong>no children</strong>: Simply remove it and update the parent node.</li><li>The node has <strong>one child</strong>: Replace the node with its child.</li><li>The node has <strong>two children</strong>: Replace the node with its <strong>in-order successor</strong>, which is the leftmost node in the right subtree.</li></ul></li></ul></li><li><strong>Deletion Algorithm</strong>:<ul><li>Perform a standard <strong>BST delete</strong> operation (similar to regular binary search tree deletion).</li><li>Color the newly inserted nodes as <strong>RED</strong>.</li><li>If the deleted node was <strong>BLACK</strong>, we introduce the concept of <strong>double black</strong> (marking the replacement child as double black).</li></ul></li><li><strong>Balancing Steps</strong>:<ul><li>After deletion, the Red-Black Tree properties might be violated.</li><li>To restore these properties, perform color changes and rotations similar to those during insertion, but with different conditions.</li><li>The main goal is to convert the <strong>double black</strong> node back to a <strong>single black</strong> node.</li><li>The cases for restructuring and recoloring are determined by the color of the <strong>sibling</strong> of the double black node.</li></ul></li></ol><h2 id="red-black-class" class="relative group"><span class="heading-text">RED BLACK Class</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#red-black-class" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-java" style="white-space:pre">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+import java.util.Random;
+
+public class RedBlackTree
+{
+
+    //An inner nested class can be declared private and only accessed
+    //within the class
+    //A inner nested class can be declared static and can be accessed
+    //from outside the class. 
+    //Example in main or other function outside of class
+    // RedBlackTree.Node tempNode = new RedBlackTree.Node(); 
+    
+    static class Node
+    {
+
+        int key; // holds the key
+        Node parent; // pointer to the parent
+        Node left; // pointer to left child
+        Node right; // pointer to right child
+        int color; // 1 . Red, 0 . Black
+
+        //some data - in this case string
+        String sdata;
+    }
+
+    private Node root;
+    private Node TNULL;
+
+    private void preOrderHelper(Node node)
+    {
+        if (node != TNULL)
+        {
+            System.out.print(node.key + &quot; &quot;);
+            preOrderHelper(node.left);
+            preOrderHelper(node.right);
+        }
+    }
+
+    private void inOrderHelper(Node node)
+    {
+        if (node != TNULL)
+        {
+            inOrderHelper(node.left);
+            System.out.print(node.key + &quot; &quot;);
+            inOrderHelper(node.right);
+        }
+    }
+
+    private void postOrderHelper(Node node)
+    {
+        if (node != TNULL)
+        {
+            postOrderHelper(node.left);
+            postOrderHelper(node.right);
+            System.out.print(node.key + &quot; &quot;);
+        }
+    }
+
+    void preOrder()
+    {
+        System.out.println(&quot;\nPreOder&quot;);
+        Node node = root;
+        if (node != TNULL)
+        {
+            System.out.print(&quot; **&quot; + node.key + &quot;** &quot;);
+            preOrderHelper(node.left);
+            preOrderHelper(node.right);
+        }
+        System.out.println(&quot;\n------------------\n&quot;);
+    }
+
+    // In-Order traversal
+    // Left Subtree . Node . Right Subtree
+    public void inOrder()
+    {
+        System.out.println(&quot;\ninOder&quot;);
+        Node node = root;
+        if (node != TNULL)
+        {
+            inOrderHelper(node.left);
+            System.out.print(&quot; **&quot; + node.key + &quot;** &quot;);
+            inOrderHelper(node.right);
+        }
+        System.out.println(&quot;\n------------------\n&quot;);
+    }
+
+    // Post-Order traversal
+    // Left Subtree . Right Subtree . Node
+    public void postOrder()
+    {
+        System.out.println(&quot;\npostOder&quot;);
+        Node node = root;
+        if (node != TNULL)
+        {
+            postOrderHelper(node.left);
+            postOrderHelper(node.right);
+            System.out.print(&quot; **&quot; + node.key + &quot;** &quot;);
+        }
+        System.out.println(&quot;\n------------------\n&quot;);
+    }
+
+    // search the tree for the key k
+    // and return the corresponding node
+    public Node searchTree(int k)
+    {
+        return searchTreeHelper(this.root, k);
+    }
+
+    private Node searchTreeHelper(Node node, int key)
+    {
+        if (node == TNULL || key == node.key)
+        {
+            //if(node == null)
+
+            return node;
+        }
+
+        if (key &lt; node.key)
+        {
+            return searchTreeHelper(node.left, key);
+        }
+        return searchTreeHelper(node.right, key);
+    }
+
+    // fix the rb tree modified by the delete operation
+    private void fixDelete(Node x)
+    {
+        Node s;
+        while (x != root &amp;&amp; x.color == 0)
+        {
+            if (x == x.parent.left)
+            {
+                s = x.parent.right;
+                if (s.color == 1)
+                {
+                    // case 3.1
+                    s.color = 0;
+                    x.parent.color = 1;
+                    leftRotate(x.parent);
+                    s = x.parent.right;
+                }
+
+                if (s.left.color == 0 &amp;&amp; s.right.color == 0)
+                {
+                    // case 3.2
+                    s.color = 1;
+                    x = x.parent;
+                } else
+                {
+                    if (s.right.color == 0)
+                    {
+                        // case 3.3
+                        s.left.color = 0;
+                        s.color = 1;
+                        rightRotate(s);
+                        s = x.parent.right;
+                    }
+
+                    // case 3.4
+                    s.color = x.parent.color;
+                    x.parent.color = 0;
+                    s.right.color = 0;
+                    leftRotate(x.parent);
+                    x = root;
+                }
+            } else
+            {
+                s = x.parent.left;
+                if (s.color == 1)
+                {
+                    // case 3.1
+                    s.color = 0;
+                    x.parent.color = 1;
+                    rightRotate(x.parent);
+                    s = x.parent.left;
+                }
+
+                if (s.right.color == 0 &amp;&amp; s.right.color == 0)
+                {
+                    // case 3.2
+                    s.color = 1;
+                    x = x.parent;
+                } else
+                {
+                    if (s.left.color == 0)
+                    {
+                        // case 3.3
+                        s.right.color = 0;
+                        s.color = 1;
+                        leftRotate(s);
+                        s = x.parent.left;
+                    }
+
+                    // case 3.4
+                    s.color = x.parent.color;
+                    x.parent.color = 0;
+                    s.left.color = 0;
+                    rightRotate(x.parent);
+                    x = root;
+                }
+            }
+        }
+        x.color = 0;
+    }
+
+    private void rbTransplant(Node u, Node v)
+    {
+        if (u.parent == null)
+        {
+            root = v;
+        } else if (u == u.parent.left)
+        {
+            u.parent.left = v;
+        } else
+        {
+            u.parent.right = v;
+        }
+        v.parent = u.parent;
+    }
+
+    private void deleteNodeHelper(Node node, int key)
+    {
+        // find the node containing key
+        Node z = TNULL;
+        Node x, y;
+        while (node != TNULL)
+        {
+            if (node.key == key)
+            {
+                z = node;
+            }
+
+            if (node.key &lt;= key)
+            {
+                node = node.right;
+            } else
+            {
+                node = node.left;
+            }
+        }
+
+        if (z == TNULL)
+        {
+            System.out.println(&quot;Couldn&#x27;t find key in the tree&quot;);
+            return;
+        }
+
+        y = z;
+        int yOriginalColor = y.color;
+        if (z.left == TNULL)
+        {
+            x = z.right;
+            rbTransplant(z, z.right);
+        } else if (z.right == TNULL)
+        {
+            x = z.left;
+            rbTransplant(z, z.left);
+        } else
+        {
+            y = minimum(z.right);
+            yOriginalColor = y.color;
+            x = y.right;
+            if (y.parent == z)
+            {
+                x.parent = y;
+            } else
+            {
+                rbTransplant(y, y.right);
+                y.right = z.right;
+                y.right.parent = y;
+            }
+
+            rbTransplant(z, y);
+            y.left = z.left;
+            y.left.parent = y;
+            y.color = z.color;
+        }
+        if (yOriginalColor == 0)
+        {
+            fixDelete(x);
+        }
+    }
+
+    // fix the red-black tree
+    private void fixInsert(Node k)
+    {
+        Node u;
+        while (k.parent.color == 1)
+        {
+            if (k.parent == k.parent.parent.right)
+            {
+                u = k.parent.parent.left; // uncle
+                if (u.color == 1)
+                {
+                    // case 3.1
+                    u.color = 0;
+                    k.parent.color = 0;
+                    k.parent.parent.color = 1;
+                    k = k.parent.parent;
+                } else
+                {
+                    if (k == k.parent.left)
+                    {
+                        // case 3.2.2
+                        k = k.parent;
+                        rightRotate(k);
+                    }
+                    // case 3.2.1
+                    k.parent.color = 0;
+                    k.parent.parent.color = 1;
+                    leftRotate(k.parent.parent);
+                }
+            } else
+            {
+                u = k.parent.parent.right; // uncle
+
+                if (u.color == 1)
+                {
+                    // mirror case 3.1
+                    u.color = 0;
+                    k.parent.color = 0;
+                    k.parent.parent.color = 1;
+                    k = k.parent.parent;
+                } else
+                {
+                    if (k == k.parent.right)
+                    {
+                        // mirror case 3.2.2
+                        k = k.parent;
+                        leftRotate(k);
+                    }
+                    // mirror case 3.2.1
+                    k.parent.color = 0;
+                    k.parent.parent.color = 1;
+                    rightRotate(k.parent.parent);
+                }
+            }
+            if (k == root)
+            {
+                break;
+            }
+        }
+        root.color = 0;
+    }
+
+    private void printHelper(Node root, String indent, boolean last)
+    {
+        // print the tree structure on the screen
+        if (root != TNULL)
+        {
+            System.out.print(indent);
+            if (last)
+            {
+                System.out.print(&quot;R----&quot;);
+                indent += &quot;     &quot;;
+            } else
+            {
+                System.out.print(&quot;L----&quot;);
+                indent += &quot;|    &quot;;
+            }
+
+            String sColor = root.color == 1 ? &quot;RED&quot; : &quot;BLACK&quot;;
+            System.out.println(root.key + &quot;-&quot; + root.sdata
+                    + &quot;(&quot; + sColor + &quot;)&quot;);
+            printHelper(root.left, indent, false);
+            printHelper(root.right, indent, true);
+        }
+    }
+
+    public RedBlackTree()
+    {
+        TNULL = new Node();
+        TNULL.color = 0;
+        TNULL.left = null;
+        TNULL.right = null;
+        root = TNULL;
+    }
+
+    // find the node with the minimum key
+    public Node minimum(Node node)
+    {
+        while (node.left != TNULL)
+        {
+            node = node.left;
+        }
+        return node;
+    }
+
+    // find the node with the maximum key
+    public Node maximum(Node node)
+    {
+        while (node.right != TNULL)
+        {
+            node = node.right;
+        }
+        return node;
+    }
+
+    // find the successor of a given node
+    public Node successor(Node x)
+    {
+        // if the right subtree is not null,
+        // the successor is the leftmost node in the
+        // right subtree
+        if (x.right != TNULL)
+        {
+            return minimum(x.right);
+        }
+
+        // else it is the lowest ancestor of x whose
+        // left child is also an ancestor of x.
+        Node y = x.parent;
+        while (y != TNULL &amp;&amp; x == y.right)
+        {
+            x = y;
+            y = y.parent;
+        }
+        return y;
+    }
+
+    // find the predecessor of a given node
+    public Node predecessor(Node x)
+    {
+        // if the left subtree is not null,
+        // the predecessor is the rightmost node in the 
+        // left subtree
+        if (x.left != TNULL)
+        {
+            return maximum(x.left);
+        }
+
+        Node y = x.parent;
+        while (y != TNULL &amp;&amp; x == y.left)
+        {
+            x = y;
+            y = y.parent;
+        }
+
+        return y;
+    }
+
+    // rotate left at node x
+    public void leftRotate(Node x)
+    {
+        Node y = x.right;
+        x.right = y.left;
+        if (y.left != TNULL)
+        {
+            y.left.parent = x;
+        }
+        y.parent = x.parent;
+        if (x.parent == null)
+        {
+            this.root = y;
+        } else if (x == x.parent.left)
+        {
+            x.parent.left = y;
+        } else
+        {
+            x.parent.right = y;
+        }
+        y.left = x;
+        x.parent = y;
+    }
+
+    // rotate right at node x
+    public void rightRotate(Node x)
+    {
+        Node y = x.left;
+        x.left = y.right;
+        if (y.right != TNULL)
+        {
+            y.right.parent = x;
+        }
+        y.parent = x.parent;
+        if (x.parent == null)
+        {
+            this.root = y;
+        } else if (x == x.parent.right)
+        {
+            x.parent.right = y;
+        } else
+        {
+            x.parent.left = y;
+        }
+        y.right = x;
+        x.parent = y;
+    }
+
+    // insert the key to the tree in its appropriate position
+    // and fix the tree
+    public void insert(int key, String sdata)
+    {
+        // Ordinary Binary Search Insertion
+        Node node = new Node();
+        node.parent = null;
+        node.key = key;
+
+        node.sdata = sdata;
+
+        node.left = TNULL;
+        node.right = TNULL;
+        node.color = 1; // new node must be red
+
+        Node y = null;
+        Node x = this.root;
+
+        while (x != TNULL)
+        {
+            y = x;
+            if (node.key &lt; x.key)
+            {
+                x = x.left;
+            } else
+            {
+                x = x.right;
+            }
+        }
+
+        // y is parent of x
+        node.parent = y;
+        if (y == null)
+        {
+            root = node;
+        } else if (node.key &lt; y.key)
+        {
+            y.left = node;
+        } else
+        {
+            y.right = node;
+        }
+
+        // if new node is a root node, simply return
+        if (node.parent == null)
+        {
+            node.color = 0;
+            return;
+        }
+
+        // if the grandparent is null, simply return
+        if (node.parent.parent == null)
+        {
+            return;
+        }
+
+        // Fix the tree
+        fixInsert(node);
+    }
+
+    public Node getRoot()
+    {
+        return this.root;
+    }
+
+    // delete the node from the tree
+    public void deleteNode(int key)
+    {
+        deleteNodeHelper(this.root, key);
+    }
+
+    // print the tree structure on the screen
+    public void prettyPrint()
+    {
+        printHelper(this.root, &quot;&quot;, true);
+    }
+
+   // static RedBlackTree bst = new RedBlackTree();
+
+    void insertRandom()
+    {
+        int amt = 12;
+        int amts = 5;
+        int amtNodes, amtLetters;
+        int[] keys;
+
+        int selectKey = -1;
+        int selectIndex = -1;
+        boolean run = true;
+
+        String numberOrder = &quot;&quot;;
+        int numberOrderCount = 0;
+
+        Random RNG = new Random();
+        amtNodes = RNG.nextInt(amt);
+        //amtNodes = 15; //hard code the amount 
+        amtLetters = 3;
+
+        System.out.println(amtNodes);
+        keys = new int[amtNodes];
+
+        //load keys
+        for (int i = 0; i &lt; keys.length; i++)
+        {
+            keys[i] = i;
+        }
+
+        for (int i = 0; i &lt; amtNodes; i++)
+        {
+            //create random letter patterns
+            String ld = &quot;&quot;;
+            for (int j = 0; j &lt; amtLetters; j++)
+            {
+                ld = ld + (char) (RNG.nextInt(25) + 65);
+            }
+
+            //pick random key
+            int cntr = 0;
+            selectIndex = RNG.nextInt(amtNodes);
+
+            selectKey = keys[selectIndex];
+            run = true;
+            while (run)
+            {
+
+                if (selectKey &gt; -1)
+                {
+                    run = false;
+                } else
+                {
+                    selectIndex = selectIndex + 1;
+                    if (selectIndex &gt;= amtNodes)
+                    {
+                        selectIndex = 0;
+                    }
+
+                }
+                selectKey = keys[selectIndex];
+
+            }
+            //System.out.print(selectKey + &quot; &quot;);
+
+            numberOrder = numberOrder + selectKey + &quot; &quot;;
+            numberOrderCount++;
+            if (numberOrderCount &gt; 20)
+            {
+                numberOrder = numberOrder + &quot;\n&quot;;
+                numberOrderCount = 0;
+
+            }
+
+            insert(selectKey, ld);
+            keys[selectKey] = -1;
+        }
+        System.out.println(&quot;\n&quot; + numberOrder + &quot;\n&quot;);
+        System.out.println(&quot;&quot;);
+
+    }
+
+}
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><div class="myst-backmatter-parts"></div><div class="myst-footer-links flex pt-10 mb-10 space-x-4"><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-prev" href="/CSCI232/xbst-avltree"><div class="flex h-full align-middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:-translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path></svg><div class="flex-grow text-right"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">Algorithms</div>AVL Tree</div></div></a><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-next" href="/CSCI232/xbst-comparisiontable"><div class="flex h-full align-middle"><div class="flex-grow"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">Algorithms</div>BST AVL Red Black Tree Comparisons</div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path></svg></div></a></div></article></main><script>((a,l)=>{if(!window.history.state||!window.history.state.key){let u=Math.random().toString(32).slice(2);window.history.replaceState({key:u},"")}try{let d=JSON.parse(sessionStorage.getItem(a)||"{}")[l||window.history.state.key];typeof d=="number"&&window.scrollTo(0,d)}catch(u){console.error(u),sessionStorage.removeItem(a)}})("positions", null)</script><link rel="modulepreload" href="/CSCI232/build/entry.client-PCJPW7TK.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-AQ2CODAG.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-JJXTQVMA.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-OZE3FFNP.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-G62B6HZR.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-C4DFGG5C.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-J7TUH54J.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-FZ2S7OYD.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-JEM6JXYA.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-34XIY2DH.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-KQM5FBHR.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-OCWQY3HK.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-7HNKBP4B.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-CUKUDK3R.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-3EBOCCHJ.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-O4VQNZ62.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-4OEDG4JQ.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-GUCIBHGO.js"/><link rel="modulepreload" href="/CSCI232/build/root-PMP5BIHC.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-IX5KPAHP.js"/><link rel="modulepreload" href="/CSCI232/build/routes/$-5ZLZ2O3Y.js"/><script>window.__remixContext = {"url":"/xbst-redblack","state":{"loaderData":{"root":{"config":{"version":2,"myst":"1.6.0","options":{"logo_text":"CSCI 211","folders":true},"parts":{"primary_sidebar_footer":{"mdast":{"type":"root","children":[{"type":"block","data":{"part":"primary_sidebar_footer"},"children":[{"type":"paragraph","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"children":[{"type":"text","value":"© 2026 by James Goudy","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"key":"JNqyZV4dE3"}],"key":"rHtYhRJkF4"}],"key":"Q6hsjbFdwJ"}],"key":"bEhouLfs9N"},"frontmatter":{"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\CSCI232_algobook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024"}}},"nav":[],"actions":[],"projects":[{"bibliography":["C:\\a_books\\CSCI232_algobook\\references.bib"],"exports":[],"title":"Algorithms","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\CSCI232_algobook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024","toc":[{"file":"intro.md"},{"file":"xCSCI232_Intro.md"},{"children":[{"file":"xTerms_Radix.md"},{"file":"xTerms_Serializable.md"},{"file":"xTerms_Iterator.md"}],"file":"xTerms.md"},{"children":[{"file":"xBST_Applications.md"},{"file":"xBST_Comparisons.md"},{"file":"xBST_TreeTraversal.md"},{"file":"xBST_Iterative_Recursion_Search.md"},{"file":"xBST_BinarySearchTree.md"},{"file":"xBST_AVLTree.md"},{"file":"xBST_RedBlack.md"},{"file":"xBST_ComparisionTable.md"},{"file":"xBST_SplayTrees_2025.md"}],"file":"xBST_Intro.md"},{"children":[{"file":"xHashing_UnderstandingHashTables.md"},{"file":"xHashing_ModulusHashFunction.md"},{"file":"xHashing_Chaining.md"},{"file":"xHashing_OpenAddressing.md"},{"file":"xHashing_OpenAddressingHashingCodeExamples.md"}],"file":"xHashing_HashTable.md"},{"file":"xSkipList.md"},{"children":[{"file":"xGraphsAnalysisOfBFSandDFS.md"},{"file":"xUnderstandingBFS_202504.md"},{"file":"xUnderstandingDFS_202504.md"},{"file":"xGraphsSevenBridges.md"},{"file":"xGraphsDFS.md"},{"file":"xGraphsBFS.md"},{"file":"xDFSStoredPaths.md"},{"file":"xGraphsMazeSolverDFS.md"},{"file":"xGraphsDijkstra.md"}],"file":"xGraphs.md"},{"file":"xHuffmanCode.md"},{"file":"xSerializable.md"},{"children":[{"file":"xJavaHashMapTreeMapLinkedHashMap.md"},{"file":"xHashSetLinkedHashSetTreeSetComparision.md"},{"file":"xProgrammingToTheInterfacemd.md"}],"file":"xJAVATechniques.md"},{"file":"xEnd.md"}],"index":"index","pages":[{"slug":"xcsci232-intro","title":"CSCI 232 Data Structures and Algorithms","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xterms","title":"Terms and Concepts","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xterms-radix","title":"Radix - Number Bases","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xterms-serializable","title":"Serializable","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xterms-iterator","title":"Iterator","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-intro","title":"Binary Search Tree - Intro","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbst-applications","title":"Applications That Use Binary Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-comparisons","title":"Binary Tree Comparisons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-treetraversal","title":"Tree Traversal","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-iterative-recursion-search","title":"Demonstrate BST using iterative looping and recursion","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-binarysearchtree","title":"Binary Search Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-avltree","title":"AVL Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-redblack","title":"Red Black Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-comparisiontable","title":"BST AVL Red Black Tree Comparisons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-splaytrees-2025","title":"Splay Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-hashtable","title":"Hash Table","description":"","date":"","thumbnail":"/CSCI232/build/f694c399ae1cdea2e011d1ecd6ed8d9d.jpeg","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhashing-understandinghashtables","title":"Understanding Hash Tables and Hash Functions*","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-modulushashfunction","title":"Modulus Hash Function","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-chaining","title":"Hash Tables - Chaining","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-openaddressing","title":"Hash Table - Open Addressing","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-openaddressinghashingcodeexamples","title":"Java code for double hashing in a hash table:","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xskiplist","title":"Skip List","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xgraphs","title":"Graphs","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xgraphsanalysisofbfsanddfs","title":"A Comparative Analysis of Breadth-First Search and Depth-First Search Algorithms","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingbfs-202504","title":"Understanding Breadth-First Search (BFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingdfs-202504","title":"Understanding Depth-First Search (DFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphssevenbridges","title":"Seven Bridges of Königsberg","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsdfs","title":"Depth-First Search (DFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsbfs","title":"Breadth First","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdfsstoredpaths","title":"DFS - Stored Paths","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsmazesolverdfs","title":"DSF - Maze Solving","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsdijkstra","title":"Dijkstra’s Algorithm","description":"","date":"","thumbnail":"/CSCI232/build/dijkstra_example-8cca3c2c620cd1d44d2c9745b698d02d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhuffmancode","title":"Huffman Code","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xserializable","title":"Serialization","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjavatechniques","title":"JAVA Techniques","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjavahashmaptreemaplinkedhashmap","title":"Examples of Java’s HashMap, TreeMap, and LinkedHashMap","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashsetlinkedhashsettreesetcomparision","title":"HashSet, LinkedHashSet, and TreeSet Comparision","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xprogrammingtotheinterfacemd","title":"Programming To The Interface, Not The Implementation\"","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xend","title":"End","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1}]}]},"CONTENT_CDN_PORT":"3100","MODE":"static","BASE_URL":"/CSCI232"},"routes/$":{"config":{"version":2,"myst":"1.6.0","options":{"logo_text":"CSCI 211","folders":true},"parts":{"primary_sidebar_footer":{"mdast":{"type":"root","children":[{"type":"block","data":{"part":"primary_sidebar_footer"},"children":[{"type":"paragraph","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"children":[{"type":"text","value":"© 2026 by James Goudy","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"key":"JNqyZV4dE3"}],"key":"rHtYhRJkF4"}],"key":"Q6hsjbFdwJ"}],"key":"bEhouLfs9N"},"frontmatter":{"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\CSCI232_algobook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024"}}},"nav":[],"actions":[],"projects":[{"bibliography":["C:\\a_books\\CSCI232_algobook\\references.bib"],"exports":[],"title":"Algorithms","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\CSCI232_algobook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024","toc":[{"file":"intro.md"},{"file":"xCSCI232_Intro.md"},{"children":[{"file":"xTerms_Radix.md"},{"file":"xTerms_Serializable.md"},{"file":"xTerms_Iterator.md"}],"file":"xTerms.md"},{"children":[{"file":"xBST_Applications.md"},{"file":"xBST_Comparisons.md"},{"file":"xBST_TreeTraversal.md"},{"file":"xBST_Iterative_Recursion_Search.md"},{"file":"xBST_BinarySearchTree.md"},{"file":"xBST_AVLTree.md"},{"file":"xBST_RedBlack.md"},{"file":"xBST_ComparisionTable.md"},{"file":"xBST_SplayTrees_2025.md"}],"file":"xBST_Intro.md"},{"children":[{"file":"xHashing_UnderstandingHashTables.md"},{"file":"xHashing_ModulusHashFunction.md"},{"file":"xHashing_Chaining.md"},{"file":"xHashing_OpenAddressing.md"},{"file":"xHashing_OpenAddressingHashingCodeExamples.md"}],"file":"xHashing_HashTable.md"},{"file":"xSkipList.md"},{"children":[{"file":"xGraphsAnalysisOfBFSandDFS.md"},{"file":"xUnderstandingBFS_202504.md"},{"file":"xUnderstandingDFS_202504.md"},{"file":"xGraphsSevenBridges.md"},{"file":"xGraphsDFS.md"},{"file":"xGraphsBFS.md"},{"file":"xDFSStoredPaths.md"},{"file":"xGraphsMazeSolverDFS.md"},{"file":"xGraphsDijkstra.md"}],"file":"xGraphs.md"},{"file":"xHuffmanCode.md"},{"file":"xSerializable.md"},{"children":[{"file":"xJavaHashMapTreeMapLinkedHashMap.md"},{"file":"xHashSetLinkedHashSetTreeSetComparision.md"},{"file":"xProgrammingToTheInterfacemd.md"}],"file":"xJAVATechniques.md"},{"file":"xEnd.md"}],"index":"index","pages":[{"slug":"xcsci232-intro","title":"CSCI 232 Data Structures and Algorithms","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xterms","title":"Terms and Concepts","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xterms-radix","title":"Radix - Number Bases","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xterms-serializable","title":"Serializable","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xterms-iterator","title":"Iterator","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-intro","title":"Binary Search Tree - Intro","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbst-applications","title":"Applications That Use Binary Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-comparisons","title":"Binary Tree Comparisons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-treetraversal","title":"Tree Traversal","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-iterative-recursion-search","title":"Demonstrate BST using iterative looping and recursion","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-binarysearchtree","title":"Binary Search Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-avltree","title":"AVL Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-redblack","title":"Red Black Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-comparisiontable","title":"BST AVL Red Black Tree Comparisons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-splaytrees-2025","title":"Splay Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-hashtable","title":"Hash Table","description":"","date":"","thumbnail":"/CSCI232/build/f694c399ae1cdea2e011d1ecd6ed8d9d.jpeg","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhashing-understandinghashtables","title":"Understanding Hash Tables and Hash Functions*","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-modulushashfunction","title":"Modulus Hash Function","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-chaining","title":"Hash Tables - Chaining","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-openaddressing","title":"Hash Table - Open Addressing","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-openaddressinghashingcodeexamples","title":"Java code for double hashing in a hash table:","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xskiplist","title":"Skip List","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xgraphs","title":"Graphs","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xgraphsanalysisofbfsanddfs","title":"A Comparative Analysis of Breadth-First Search and Depth-First Search Algorithms","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingbfs-202504","title":"Understanding Breadth-First Search (BFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingdfs-202504","title":"Understanding Depth-First Search (DFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphssevenbridges","title":"Seven Bridges of Königsberg","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsdfs","title":"Depth-First Search (DFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsbfs","title":"Breadth First","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdfsstoredpaths","title":"DFS - Stored Paths","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsmazesolverdfs","title":"DSF - Maze Solving","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsdijkstra","title":"Dijkstra’s Algorithm","description":"","date":"","thumbnail":"/CSCI232/build/dijkstra_example-8cca3c2c620cd1d44d2c9745b698d02d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhuffmancode","title":"Huffman Code","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xserializable","title":"Serialization","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjavatechniques","title":"JAVA Techniques","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjavahashmaptreemaplinkedhashmap","title":"Examples of Java’s HashMap, TreeMap, and LinkedHashMap","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashsetlinkedhashsettreesetcomparision","title":"HashSet, LinkedHashSet, and TreeSet Comparision","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xprogrammingtotheinterfacemd","title":"Programming To The Interface, Not The Implementation\"","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xend","title":"End","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1}]}]},"page":{"version":3,"kind":"Article","sha256":"3394936c2d80e6f78495395a2c848d949d82f47350606b9113c0874982096be2","slug":"xbst-redblack","location":"/xBST_RedBlack.md","dependencies":[],"frontmatter":{"title":"Red Black Tree","content_includes_title":false,"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\CSCI232_algobook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024","numbering":{"title":{"offset":1}},"exports":[{"format":"md","filename":"xBST_RedBlack.md","url":"/CSCI232/build/xBST_RedBlack-bfaa844237f66bc28dc4b5ca64f034ce.md"}]},"mdast":{"type":"root","children":[{"type":"block","children":[{"type":"paragraph","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"children":[{"type":"text","value":"A ","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"J1GJT1FbLF"},{"type":"strong","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"children":[{"type":"text","value":"Red-Black Tree","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"mICoaFRXOf"}],"key":"bI8oCcAbTg"},{"type":"text","value":" is a type of ","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"eUojQ7hRgS"},{"type":"strong","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"children":[{"type":"text","value":"self-balancing binary search tree","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"h2GGnKFKks"}],"key":"YTMRack5tJ"},{"type":"text","value":" in computer science. Let’s delve into its fascinating properties:","position":{"start":{"line":7,"column":1},"end":{"line":7,"column":1}},"key":"euelBk5P5M"}],"key":"poP9caFTao"},{"type":"list","ordered":true,"start":1,"spread":false,"position":{"start":{"line":9,"column":1},"end":{"line":32,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":9,"column":1},"end":{"line":14,"column":1}},"children":[{"type":"paragraph","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"children":[{"type":"strong","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"children":[{"type":"text","value":"Structure and Color","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"key":"X6OEN9YIMJ"}],"key":"CjUiZfxrEe"},{"type":"text","value":":","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"key":"aQbCxDy2UB"}],"key":"bszI7TjUaB"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":11,"column":1},"end":{"line":14,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"children":[{"type":"text","value":"Each node in a Red-Black Tree has an extra bit that represents its color (either ","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"V4j8jhupmy"},{"type":"strong","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"children":[{"type":"text","value":"red","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"KC3Rpw94Kh"}],"key":"aSwmgJ0rJo"},{"type":"text","value":" or ","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"EvYXsaMclc"},{"type":"strong","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"children":[{"type":"text","value":"black","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"hRuB5crQKV"}],"key":"GIP31lYbps"},{"type":"text","value":").","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"Ep9desRpkd"}],"key":"JuWAl471eq"},{"type":"listItem","spread":true,"position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"children":[{"type":"text","value":"These color bits are used to ensure that the tree remains approximately balanced during insertions and deletions.","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"key":"t9rGULNdwF"}],"key":"Jf1mbeOHxb"},{"type":"listItem","spread":true,"position":{"start":{"line":13,"column":1},"end":{"line":14,"column":1}},"children":[{"type":"text","value":"The tree’s structure guarantees that operations like searching, insertion, and deletion complete within a known time.","position":{"start":{"line":13,"column":1},"end":{"line":13,"column":1}},"key":"osvbpP49cI"}],"key":"avwhWU5sLO"}],"key":"hapMdADFfp"}],"key":"kAMQbRi9Q3"},{"type":"listItem","spread":true,"position":{"start":{"line":15,"column":1},"end":{"line":22,"column":1}},"children":[{"type":"paragraph","position":{"start":{"line":15,"column":1},"end":{"line":15,"column":1}},"children":[{"type":"strong","position":{"start":{"line":15,"column":1},"end":{"line":15,"column":1}},"children":[{"type":"text","value":"Properties of Red-Black Trees","position":{"start":{"line":15,"column":1},"end":{"line":15,"column":1}},"key":"GMhowAdzJ0"}],"key":"bzDfhtZme1"},{"type":"text","value":":","position":{"start":{"line":15,"column":1},"end":{"line":15,"column":1}},"key":"ZaBWLlkbHj"}],"key":"nuLeigkqs7"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":17,"column":1},"end":{"line":22,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":17,"column":1},"end":{"line":17,"column":1}},"children":[{"type":"strong","position":{"start":{"line":17,"column":1},"end":{"line":17,"column":1}},"children":[{"type":"text","value":"Root Property","position":{"start":{"line":17,"column":1},"end":{"line":17,"column":1}},"key":"Td0nYWC2Zk"}],"key":"EUeiJQIrqb"},{"type":"text","value":": The root node is always black.","position":{"start":{"line":17,"column":1},"end":{"line":17,"column":1}},"key":"UODVnoulMu"}],"key":"hxEuyTbwT3"},{"type":"listItem","spread":true,"position":{"start":{"line":18,"column":1},"end":{"line":18,"column":1}},"children":[{"type":"strong","position":{"start":{"line":18,"column":1},"end":{"line":18,"column":1}},"children":[{"type":"text","value":"External Property","position":{"start":{"line":18,"column":1},"end":{"line":18,"column":1}},"key":"guX8MLV40w"}],"key":"JISJ8QCUKy"},{"type":"text","value":": Every leaf (which is a NULL child of a node) is black.","position":{"start":{"line":18,"column":1},"end":{"line":18,"column":1}},"key":"H43ywNpzFi"}],"key":"f5KF88RMgu"},{"type":"listItem","spread":true,"position":{"start":{"line":19,"column":1},"end":{"line":19,"column":1}},"children":[{"type":"strong","position":{"start":{"line":19,"column":1},"end":{"line":19,"column":1}},"children":[{"type":"text","value":"Internal Property","position":{"start":{"line":19,"column":1},"end":{"line":19,"column":1}},"key":"YT1VlQKToQ"}],"key":"lctq8rxDwN"},{"type":"text","value":": The children of a red node are black. Thus, a red node’s possible parent is a black node.","position":{"start":{"line":19,"column":1},"end":{"line":19,"column":1}},"key":"HRNKeMS9Bg"}],"key":"YsFRm4SPw6"},{"type":"listItem","spread":true,"position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"children":[{"type":"strong","position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"children":[{"type":"text","value":"Depth Property","position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"key":"n2OQ9RlMVA"}],"key":"WcrzDXPUg4"},{"type":"text","value":": All leaves have the same black depth.","position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"key":"toufrhhiV5"}],"key":"AzaXSvkLGc"},{"type":"listItem","spread":true,"position":{"start":{"line":21,"column":1},"end":{"line":22,"column":1}},"children":[{"type":"strong","position":{"start":{"line":21,"column":1},"end":{"line":21,"column":1}},"children":[{"type":"text","value":"Path Property","position":{"start":{"line":21,"column":1},"end":{"line":21,"column":1}},"key":"IHFCRCOeqx"}],"key":"q5Z2LE1ULu"},{"type":"text","value":": Every simple path from the root to a descendant leaf node contains the same number of black nodes.","position":{"start":{"line":21,"column":1},"end":{"line":21,"column":1}},"key":"K5qsyqRcd4"}],"key":"lzEr8kgsPK"}],"key":"QUSLwV0aus"}],"key":"r1FTUIT8IO"},{"type":"listItem","spread":true,"position":{"start":{"line":23,"column":1},"end":{"line":32,"column":1}},"children":[{"type":"paragraph","position":{"start":{"line":23,"column":1},"end":{"line":23,"column":1}},"children":[{"type":"strong","position":{"start":{"line":23,"column":1},"end":{"line":23,"column":1}},"children":[{"type":"text","value":"Why Red-Black Trees?","position":{"start":{"line":23,"column":1},"end":{"line":23,"column":1}},"key":"xFMDKqEo0h"}],"key":"lIUEzjWV70"},{"type":"text","value":":","position":{"start":{"line":23,"column":1},"end":{"line":23,"column":1}},"key":"IlnYenhPNi"}],"key":"VqBHjCjo4H"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":25,"column":1},"end":{"line":32,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":25,"column":1},"end":{"line":26,"column":1}},"children":[{"type":"paragraph","position":{"start":{"line":25,"column":1},"end":{"line":25,"column":1}},"children":[{"type":"text","value":"Most Binary Search Tree (BST) operations (e.g., search, max, min, insert, delete) take O(h) time, where h is the height of the BST.","position":{"start":{"line":25,"column":1},"end":{"line":25,"column":1}},"key":"JWvJFvuIjV"}],"key":"g78Lgz2CeO"}],"key":"lldKxVL98f"},{"type":"listItem","spread":true,"position":{"start":{"line":27,"column":1},"end":{"line":28,"column":1}},"children":[{"type":"paragraph","position":{"start":{"line":27,"column":1},"end":{"line":27,"column":1}},"children":[{"type":"text","value":"If we ensure that the tree’s height remains O(log n) after every insertion and deletion, we guarantee an upper bound of O(log n) for all these operations.","position":{"start":{"line":27,"column":1},"end":{"line":27,"column":1}},"key":"Nlzj0iAPAy"}],"key":"H7J69L7NTK"}],"key":"bRxoZETN1f"},{"type":"listItem","spread":true,"position":{"start":{"line":29,"column":1},"end":{"line":32,"column":1}},"children":[{"type":"paragraph","position":{"start":{"line":29,"column":1},"end":{"line":29,"column":1}},"children":[{"type":"text","value":"The height of a Red-Black tree is always O(log n), where n is the number of nodes in the tree.","position":{"start":{"line":29,"column":1},"end":{"line":29,"column":1}},"key":"PSRxvKgqgd"}],"key":"bR3h53qdjw"}],"key":"czwCelMTvF"}],"key":"Gxo0tRH66x"}],"key":"p21HP5hKd1"}],"key":"x61NEuuzUs"},{"type":"heading","depth":2,"position":{"start":{"line":33,"column":1},"end":{"line":33,"column":1}},"children":[{"type":"text","value":"Insertion Process","position":{"start":{"line":33,"column":1},"end":{"line":33,"column":1}},"key":"uRtz8ldEEg"}],"identifier":"insertion-process","label":"Insertion Process","html_id":"insertion-process","implicit":true,"key":"LkArvVJLq1"},{"type":"list","ordered":true,"start":1,"spread":false,"position":{"start":{"line":35,"column":1},"end":{"line":61,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":35,"column":1},"end":{"line":38,"column":1}},"children":[{"type":"strong","position":{"start":{"line":35,"column":1},"end":{"line":35,"column":1}},"children":[{"type":"text","value":"Initial Setup","position":{"start":{"line":35,"column":1},"end":{"line":35,"column":1}},"key":"y2midqSGJw"}],"key":"HmsiCzAtKL"},{"type":"text","value":":","position":{"start":{"line":35,"column":1},"end":{"line":35,"column":1}},"key":"eI22HBhcqu"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":36,"column":1},"end":{"line":38,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"children":[{"type":"text","value":"When inserting a new node, it is initially colored ","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"HvUZ5cs2Mo"},{"type":"strong","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"children":[{"type":"text","value":"red","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"j2YuudtK96"}],"key":"Ps8yqoG3gv"},{"type":"text","value":".","position":{"start":{"line":36,"column":1},"end":{"line":36,"column":1}},"key":"v9dvbF4brA"}],"key":"Daim48CmXB"},{"type":"listItem","spread":true,"position":{"start":{"line":37,"column":1},"end":{"line":37,"column":1}},"children":[{"type":"text","value":"If the tree is empty, the new node becomes the ","position":{"start":{"line":37,"column":1},"end":{"line":37,"column":1}},"key":"zDXs5KuttC"},{"type":"strong","position":{"start":{"line":37,"column":1},"end":{"line":37,"column":1}},"children":[{"type":"text","value":"root","position":{"start":{"line":37,"column":1},"end":{"line":37,"column":1}},"key":"fgjqvKwbAe"}],"key":"rapCfH99ls"},{"type":"text","value":" (colored ","position":{"start":{"line":37,"column":1},"end":{"line":37,"column":1}},"key":"xOFPieW5B1"},{"type":"strong","position":{"start":{"line":37,"column":1},"end":{"line":37,"column":1}},"children":[{"type":"text","value":"black","position":{"start":{"line":37,"column":1},"end":{"line":37,"column":1}},"key":"xLnRiwlwzQ"}],"key":"n2zVDEXJnO"},{"type":"text","value":").","position":{"start":{"line":37,"column":1},"end":{"line":37,"column":1}},"key":"YcSej55R8V"}],"key":"iFKGwjeLHv"},{"type":"listItem","spread":true,"position":{"start":{"line":38,"column":1},"end":{"line":38,"column":1}},"children":[{"type":"text","value":"Otherwise, we insert the node as a ","position":{"start":{"line":38,"column":1},"end":{"line":38,"column":1}},"key":"pgXlBxA1ox"},{"type":"strong","position":{"start":{"line":38,"column":1},"end":{"line":38,"column":1}},"children":[{"type":"text","value":"leaf","position":{"start":{"line":38,"column":1},"end":{"line":38,"column":1}},"key":"JJslmdyvzw"}],"key":"Kr0Ofkwmxs"},{"type":"text","value":" (colored ","position":{"start":{"line":38,"column":1},"end":{"line":38,"column":1}},"key":"fOLk9Bz8Fa"},{"type":"strong","position":{"start":{"line":38,"column":1},"end":{"line":38,"column":1}},"children":[{"type":"text","value":"red","position":{"start":{"line":38,"column":1},"end":{"line":38,"column":1}},"key":"mD9Pi3fe95"}],"key":"fX8YPLoY28"},{"type":"text","value":").","position":{"start":{"line":38,"column":1},"end":{"line":38,"column":1}},"key":"x1ZqcxdGHm"}],"key":"s6XB1Lf5kd"}],"key":"T2OELqy0yj"}],"key":"KlRkCaqZsC"},{"type":"listItem","spread":true,"position":{"start":{"line":39,"column":1},"end":{"line":42,"column":1}},"children":[{"type":"strong","position":{"start":{"line":39,"column":1},"end":{"line":39,"column":1}},"children":[{"type":"text","value":"Insertion Algorithm","position":{"start":{"line":39,"column":1},"end":{"line":39,"column":1}},"key":"er7FxsrLTV"}],"key":"nMOWqdo1EA"},{"type":"text","value":":","position":{"start":{"line":39,"column":1},"end":{"line":39,"column":1}},"key":"fz749sQ9NR"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":40,"column":1},"end":{"line":42,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":40,"column":1},"end":{"line":40,"column":1}},"children":[{"type":"text","value":"Perform a standard ","position":{"start":{"line":40,"column":1},"end":{"line":40,"column":1}},"key":"WSSLcFYG5R"},{"type":"strong","position":{"start":{"line":40,"column":1},"end":{"line":40,"column":1}},"children":[{"type":"text","value":"BST insertion","position":{"start":{"line":40,"column":1},"end":{"line":40,"column":1}},"key":"qWTzU0tB5t"}],"key":"rMLe5wCMBh"},{"type":"text","value":" (similar to a regular binary search tree).","position":{"start":{"line":40,"column":1},"end":{"line":40,"column":1}},"key":"gcW3bP8HQu"}],"key":"j2MZ2K0mPt"},{"type":"listItem","spread":true,"position":{"start":{"line":41,"column":1},"end":{"line":41,"column":1}},"children":[{"type":"text","value":"Color the newly inserted nodes as ","position":{"start":{"line":41,"column":1},"end":{"line":41,"column":1}},"key":"ewTskrbpwL"},{"type":"strong","position":{"start":{"line":41,"column":1},"end":{"line":41,"column":1}},"children":[{"type":"text","value":"RED","position":{"start":{"line":41,"column":1},"end":{"line":41,"column":1}},"key":"qI51a34Y38"}],"key":"rxuHcvNCnM"},{"type":"text","value":".","position":{"start":{"line":41,"column":1},"end":{"line":41,"column":1}},"key":"Pkwabwq7W5"}],"key":"fT2Xrdluvp"},{"type":"listItem","spread":true,"position":{"start":{"line":42,"column":1},"end":{"line":42,"column":1}},"children":[{"type":"text","value":"If the newly inserted node is the ","position":{"start":{"line":42,"column":1},"end":{"line":42,"column":1}},"key":"Ef4egSrhTl"},{"type":"strong","position":{"start":{"line":42,"column":1},"end":{"line":42,"column":1}},"children":[{"type":"text","value":"root","position":{"start":{"line":42,"column":1},"end":{"line":42,"column":1}},"key":"DVuWVNK4lg"}],"key":"BK9n4JkqHa"},{"type":"text","value":", change its color to ","position":{"start":{"line":42,"column":1},"end":{"line":42,"column":1}},"key":"wxuA8u8rka"},{"type":"strong","position":{"start":{"line":42,"column":1},"end":{"line":42,"column":1}},"children":[{"type":"text","value":"BLACK","position":{"start":{"line":42,"column":1},"end":{"line":42,"column":1}},"key":"qE1eSnMsrp"}],"key":"XPY8shBSjd"},{"type":"text","value":" (increasing the black height of the tree by 1).","position":{"start":{"line":42,"column":1},"end":{"line":42,"column":1}},"key":"CsB6zlNzD7"}],"key":"plZMYKQf02"}],"key":"YI78ARMVrU"}],"key":"Gl7ETBENnr"},{"type":"listItem","spread":true,"position":{"start":{"line":43,"column":1},"end":{"line":55,"column":1}},"children":[{"type":"strong","position":{"start":{"line":43,"column":1},"end":{"line":43,"column":1}},"children":[{"type":"text","value":"Balancing Steps","position":{"start":{"line":43,"column":1},"end":{"line":43,"column":1}},"key":"xOzbrhIpUX"}],"key":"lYbyN2duzN"},{"type":"text","value":":","position":{"start":{"line":43,"column":1},"end":{"line":43,"column":1}},"key":"sne2t0B4Ur"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":44,"column":1},"end":{"line":55,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":44,"column":1},"end":{"line":55,"column":1}},"children":[{"type":"text","value":"If the parent of the newly inserted node is not BLACK and the node is not the root :","position":{"start":{"line":44,"column":1},"end":{"line":44,"column":1}},"key":"GIrHieStGy"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":45,"column":1},"end":{"line":55,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":45,"column":1},"end":{"line":48,"column":1}},"children":[{"type":"text","value":"Case 1: If the uncle of the node is RED :","position":{"start":{"line":45,"column":1},"end":{"line":45,"column":1}},"key":"lTCysZTT50"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":46,"column":1},"end":{"line":48,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":46,"column":1},"end":{"line":46,"column":1}},"children":[{"type":"text","value":"Change the color of the parent and uncle to ","position":{"start":{"line":46,"column":1},"end":{"line":46,"column":1}},"key":"S2Sd8Ryii4"},{"type":"strong","position":{"start":{"line":46,"column":1},"end":{"line":46,"column":1}},"children":[{"type":"text","value":"BLACK","position":{"start":{"line":46,"column":1},"end":{"line":46,"column":1}},"key":"ZZsivS3zIm"}],"key":"bbN8z8mb5B"},{"type":"text","value":".","position":{"start":{"line":46,"column":1},"end":{"line":46,"column":1}},"key":"FuIcgqA6Sg"}],"key":"HOO4h3ZdLf"},{"type":"listItem","spread":true,"position":{"start":{"line":47,"column":1},"end":{"line":47,"column":1}},"children":[{"type":"text","value":"Change the color of the ","position":{"start":{"line":47,"column":1},"end":{"line":47,"column":1}},"key":"iKUaHWCS2R"},{"type":"strong","position":{"start":{"line":47,"column":1},"end":{"line":47,"column":1}},"children":[{"type":"text","value":"grandparent","position":{"start":{"line":47,"column":1},"end":{"line":47,"column":1}},"key":"aRFsJkZeKX"}],"key":"efrzgYJv8t"},{"type":"text","value":" to ","position":{"start":{"line":47,"column":1},"end":{"line":47,"column":1}},"key":"EehyCLRg9V"},{"type":"strong","position":{"start":{"line":47,"column":1},"end":{"line":47,"column":1}},"children":[{"type":"text","value":"RED","position":{"start":{"line":47,"column":1},"end":{"line":47,"column":1}},"key":"Z2bNSzfvIF"}],"key":"tHNOk0DQQ3"},{"type":"text","value":".","position":{"start":{"line":47,"column":1},"end":{"line":47,"column":1}},"key":"A0Jevv1XLU"}],"key":"DzTobsbkg9"},{"type":"listItem","spread":true,"position":{"start":{"line":48,"column":1},"end":{"line":48,"column":1}},"children":[{"type":"text","value":"Repeat steps 2 and 3 for the new ","position":{"start":{"line":48,"column":1},"end":{"line":48,"column":1}},"key":"RHY3AwlmaV"},{"type":"strong","position":{"start":{"line":48,"column":1},"end":{"line":48,"column":1}},"children":[{"type":"text","value":"grandparent","position":{"start":{"line":48,"column":1},"end":{"line":48,"column":1}},"key":"mf7w2PgxMe"}],"key":"lQKIUTnQrr"},{"type":"text","value":".","position":{"start":{"line":48,"column":1},"end":{"line":48,"column":1}},"key":"dB4CJIutR3"}],"key":"AKWxs9L12X"}],"key":"UNRR89Yysv"}],"key":"R2lhJzQJwT"},{"type":"listItem","spread":true,"position":{"start":{"line":49,"column":1},"end":{"line":55,"column":1}},"children":[{"type":"text","value":"Case 2: If the uncle is BLACK :","position":{"start":{"line":49,"column":1},"end":{"line":49,"column":1}},"key":"ZEKmaPLJcv"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":50,"column":1},"end":{"line":55,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":50,"column":1},"end":{"line":54,"column":1}},"children":[{"type":"text","value":"There are four possible configurations (similar to AVL Tree rotations):","position":{"start":{"line":50,"column":1},"end":{"line":50,"column":1}},"key":"m0ZIYsKyXn"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":51,"column":1},"end":{"line":54,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":51,"column":1},"end":{"line":51,"column":1}},"children":[{"type":"strong","position":{"start":{"line":51,"column":1},"end":{"line":51,"column":1}},"children":[{"type":"text","value":"Left Left Case (LL rotation)","position":{"start":{"line":51,"column":1},"end":{"line":51,"column":1}},"key":"oEGetI07jC"}],"key":"l12uT2NW6r"}],"key":"VxIkwwdaWy"},{"type":"listItem","spread":true,"position":{"start":{"line":52,"column":1},"end":{"line":52,"column":1}},"children":[{"type":"strong","position":{"start":{"line":52,"column":1},"end":{"line":52,"column":1}},"children":[{"type":"text","value":"Left Right Case (LR rotation)","position":{"start":{"line":52,"column":1},"end":{"line":52,"column":1}},"key":"gJv2JAndl0"}],"key":"LB6LOXpOz2"}],"key":"QhzMxX9k4c"},{"type":"listItem","spread":true,"position":{"start":{"line":53,"column":1},"end":{"line":53,"column":1}},"children":[{"type":"strong","position":{"start":{"line":53,"column":1},"end":{"line":53,"column":1}},"children":[{"type":"text","value":"Right Right Case (RR rotation)","position":{"start":{"line":53,"column":1},"end":{"line":53,"column":1}},"key":"NPN8DPsDu6"}],"key":"HyBcyKI5VD"}],"key":"LjeNJ3slIb"},{"type":"listItem","spread":true,"position":{"start":{"line":54,"column":1},"end":{"line":54,"column":1}},"children":[{"type":"strong","position":{"start":{"line":54,"column":1},"end":{"line":54,"column":1}},"children":[{"type":"text","value":"Right Left Case (RL rotation)","position":{"start":{"line":54,"column":1},"end":{"line":54,"column":1}},"key":"k435lH8Es3"}],"key":"gIGOhU8Bbi"}],"key":"GPG9Xm4ijD"}],"key":"FTn7C282xi"}],"key":"HDbBEFcRlX"},{"type":"listItem","spread":true,"position":{"start":{"line":55,"column":1},"end":{"line":55,"column":1}},"children":[{"type":"text","value":"After these rotations, re-color according to the rotation case.","position":{"start":{"line":55,"column":1},"end":{"line":55,"column":1}},"key":"Gu07pVlB3X"}],"key":"N7BhQXMOxV"}],"key":"hAr735ABFx"}],"key":"V7gXu8DSlW"}],"key":"ibgrxtZG6X"}],"key":"dlGOMTJqwe"}],"key":"hz1ex8Ffel"}],"key":"GPXiYAtq9h"},{"type":"listItem","spread":true,"position":{"start":{"line":56,"column":1},"end":{"line":61,"column":1}},"children":[{"type":"strong","position":{"start":{"line":56,"column":1},"end":{"line":56,"column":1}},"children":[{"type":"text","value":"Re-coloring after Rotations","position":{"start":{"line":56,"column":1},"end":{"line":56,"column":1}},"key":"BUHyuCrSDv"}],"key":"zMI8oU29YZ"},{"type":"text","value":":","position":{"start":{"line":56,"column":1},"end":{"line":56,"column":1}},"key":"a9KmMVXu9l"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":57,"column":1},"end":{"line":61,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"children":[{"type":"text","value":"For ","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"key":"ONoVOTHRSU"},{"type":"strong","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"children":[{"type":"text","value":"Left Left Case","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"key":"Krd0P07Uyy"}],"key":"RPXHRCPDFr"},{"type":"text","value":" and ","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"key":"uGFXcPFNEe"},{"type":"strong","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"children":[{"type":"text","value":"Right Right Case","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"key":"XtnbBz19Rv"}],"key":"m8Y6GcylbN"},{"type":"text","value":", swap colors of ","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"key":"JabJMRxze2"},{"type":"strong","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"children":[{"type":"text","value":"grandparent","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"key":"loOT2v5zzh"}],"key":"LS2ZiaPQzc"},{"type":"text","value":" and ","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"key":"BSI6ApG15R"},{"type":"strong","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"children":[{"type":"text","value":"parent","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"key":"jrBKxJgCmT"}],"key":"SpcgpviCM5"},{"type":"text","value":" after rotations.","position":{"start":{"line":57,"column":1},"end":{"line":57,"column":1}},"key":"jPqiqkTqGn"}],"key":"EhoDxecl9Q"},{"type":"listItem","spread":true,"position":{"start":{"line":58,"column":1},"end":{"line":61,"column":1}},"children":[{"type":"text","value":"For ","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"key":"wgCvlKYmgp"},{"type":"strong","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"children":[{"type":"text","value":"Left Right Case","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"key":"IRPyhuuSe0"}],"key":"rwytrkJzfp"},{"type":"text","value":" and ","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"key":"EwtMAvNlMH"},{"type":"strong","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"children":[{"type":"text","value":"Right Left Case","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"key":"ieH6dWR0ay"}],"key":"EqI7JoJuFF"},{"type":"text","value":", swap colors of ","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"key":"pX30bJk8iI"},{"type":"strong","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"children":[{"type":"text","value":"grandparent","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"key":"addr1LJ3YP"}],"key":"nNmee68bas"},{"type":"text","value":" and ","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"key":"ieGwsTrlfG"},{"type":"strong","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"children":[{"type":"text","value":"inserted node","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"key":"HkEVaelimL"}],"key":"q3dS7CzAmc"},{"type":"text","value":" after rotations.","position":{"start":{"line":58,"column":1},"end":{"line":58,"column":1}},"key":"umNBY6voJk"}],"key":"V3LcqSZ9X2"}],"key":"l7Zotukaes"}],"key":"uITQTLp4Ox"}],"key":"kfhpirdrpe"},{"type":"heading","depth":2,"position":{"start":{"line":62,"column":1},"end":{"line":62,"column":1}},"children":[{"type":"text","value":"Deletion Process","position":{"start":{"line":62,"column":1},"end":{"line":62,"column":1}},"key":"qKD84FuBOa"}],"identifier":"deletion-process","label":"Deletion Process","html_id":"deletion-process","implicit":true,"key":"HnpRaH702G"},{"type":"list","ordered":true,"start":1,"spread":false,"position":{"start":{"line":64,"column":1},"end":{"line":80,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":64,"column":1},"end":{"line":68,"column":1}},"children":[{"type":"strong","position":{"start":{"line":64,"column":1},"end":{"line":64,"column":1}},"children":[{"type":"text","value":"Initial Setup","position":{"start":{"line":64,"column":1},"end":{"line":64,"column":1}},"key":"bAwtLtH45X"}],"key":"BDqh2vAO2f"},{"type":"text","value":":","position":{"start":{"line":64,"column":1},"end":{"line":64,"column":1}},"key":"PTySWd9r10"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":65,"column":1},"end":{"line":68,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":65,"column":1},"end":{"line":68,"column":1}},"children":[{"type":"text","value":"When deleting a node, it can fall into three cases:","position":{"start":{"line":65,"column":1},"end":{"line":65,"column":1}},"key":"enyLKkgOP1"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":66,"column":1},"end":{"line":68,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":66,"column":1},"end":{"line":66,"column":1}},"children":[{"type":"text","value":"The node has ","position":{"start":{"line":66,"column":1},"end":{"line":66,"column":1}},"key":"e8J5H4V9Fj"},{"type":"strong","position":{"start":{"line":66,"column":1},"end":{"line":66,"column":1}},"children":[{"type":"text","value":"no children","position":{"start":{"line":66,"column":1},"end":{"line":66,"column":1}},"key":"Bmbaz96AWs"}],"key":"aUJMlwtybk"},{"type":"text","value":": Simply remove it and update the parent node.","position":{"start":{"line":66,"column":1},"end":{"line":66,"column":1}},"key":"IuWulVtYa7"}],"key":"r78L5Yw2Kz"},{"type":"listItem","spread":true,"position":{"start":{"line":67,"column":1},"end":{"line":67,"column":1}},"children":[{"type":"text","value":"The node has ","position":{"start":{"line":67,"column":1},"end":{"line":67,"column":1}},"key":"KIzCVdS47G"},{"type":"strong","position":{"start":{"line":67,"column":1},"end":{"line":67,"column":1}},"children":[{"type":"text","value":"one child","position":{"start":{"line":67,"column":1},"end":{"line":67,"column":1}},"key":"gB4ROBe94v"}],"key":"IruPLxQs5E"},{"type":"text","value":": Replace the node with its child.","position":{"start":{"line":67,"column":1},"end":{"line":67,"column":1}},"key":"ZkYKAREfpO"}],"key":"qwvKn4jTqD"},{"type":"listItem","spread":true,"position":{"start":{"line":68,"column":1},"end":{"line":68,"column":1}},"children":[{"type":"text","value":"The node has ","position":{"start":{"line":68,"column":1},"end":{"line":68,"column":1}},"key":"oBXHg6rw1u"},{"type":"strong","position":{"start":{"line":68,"column":1},"end":{"line":68,"column":1}},"children":[{"type":"text","value":"two children","position":{"start":{"line":68,"column":1},"end":{"line":68,"column":1}},"key":"O6RTtKUqqs"}],"key":"w3yvQawxnr"},{"type":"text","value":": Replace the node with its ","position":{"start":{"line":68,"column":1},"end":{"line":68,"column":1}},"key":"WzDt30pyr3"},{"type":"strong","position":{"start":{"line":68,"column":1},"end":{"line":68,"column":1}},"children":[{"type":"text","value":"in-order successor","position":{"start":{"line":68,"column":1},"end":{"line":68,"column":1}},"key":"u4WtwsCFoE"}],"key":"HNTkFPa4nt"},{"type":"text","value":", which is the leftmost node in the right subtree.","position":{"start":{"line":68,"column":1},"end":{"line":68,"column":1}},"key":"nHjrkhuUQn"}],"key":"FBZiIocgwe"}],"key":"aZ7lYe6iDo"}],"key":"affbg6xoZB"}],"key":"RdZlRAC3yb"}],"key":"hnIjMzqVqr"},{"type":"listItem","spread":true,"position":{"start":{"line":69,"column":1},"end":{"line":72,"column":1}},"children":[{"type":"strong","position":{"start":{"line":69,"column":1},"end":{"line":69,"column":1}},"children":[{"type":"text","value":"Deletion Algorithm","position":{"start":{"line":69,"column":1},"end":{"line":69,"column":1}},"key":"rkq5BZHHUF"}],"key":"hJxDqJDj1E"},{"type":"text","value":":","position":{"start":{"line":69,"column":1},"end":{"line":69,"column":1}},"key":"KCheNFRz2w"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":70,"column":1},"end":{"line":72,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":70,"column":1},"end":{"line":70,"column":1}},"children":[{"type":"text","value":"Perform a standard ","position":{"start":{"line":70,"column":1},"end":{"line":70,"column":1}},"key":"TRvsrnJtsn"},{"type":"strong","position":{"start":{"line":70,"column":1},"end":{"line":70,"column":1}},"children":[{"type":"text","value":"BST delete","position":{"start":{"line":70,"column":1},"end":{"line":70,"column":1}},"key":"gr8uuVkaP9"}],"key":"eAuqJP4UXn"},{"type":"text","value":" operation (similar to regular binary search tree deletion).","position":{"start":{"line":70,"column":1},"end":{"line":70,"column":1}},"key":"apy7GFJVSu"}],"key":"h2ia9qF5Ig"},{"type":"listItem","spread":true,"position":{"start":{"line":71,"column":1},"end":{"line":71,"column":1}},"children":[{"type":"text","value":"Color the newly inserted nodes as ","position":{"start":{"line":71,"column":1},"end":{"line":71,"column":1}},"key":"a4jZTfTz7Y"},{"type":"strong","position":{"start":{"line":71,"column":1},"end":{"line":71,"column":1}},"children":[{"type":"text","value":"RED","position":{"start":{"line":71,"column":1},"end":{"line":71,"column":1}},"key":"dD7HGyv7KZ"}],"key":"M27wztAetH"},{"type":"text","value":".","position":{"start":{"line":71,"column":1},"end":{"line":71,"column":1}},"key":"FXiS0fohHZ"}],"key":"SorhaklmE8"},{"type":"listItem","spread":true,"position":{"start":{"line":72,"column":1},"end":{"line":72,"column":1}},"children":[{"type":"text","value":"If the deleted node was ","position":{"start":{"line":72,"column":1},"end":{"line":72,"column":1}},"key":"ZxHMghHZoG"},{"type":"strong","position":{"start":{"line":72,"column":1},"end":{"line":72,"column":1}},"children":[{"type":"text","value":"BLACK","position":{"start":{"line":72,"column":1},"end":{"line":72,"column":1}},"key":"d1ukdqL53o"}],"key":"seHCXAuuM9"},{"type":"text","value":", we introduce the concept of ","position":{"start":{"line":72,"column":1},"end":{"line":72,"column":1}},"key":"XbKYVK19Mf"},{"type":"strong","position":{"start":{"line":72,"column":1},"end":{"line":72,"column":1}},"children":[{"type":"text","value":"double black","position":{"start":{"line":72,"column":1},"end":{"line":72,"column":1}},"key":"Kq1h1ObVLo"}],"key":"ZaCD64gi4W"},{"type":"text","value":" (marking the replacement child as double black).","position":{"start":{"line":72,"column":1},"end":{"line":72,"column":1}},"key":"FyK9FqRSG3"}],"key":"rhCdFLpVTz"}],"key":"y9neSgabZm"}],"key":"KdkL54dMd0"},{"type":"listItem","spread":true,"position":{"start":{"line":73,"column":1},"end":{"line":80,"column":1}},"children":[{"type":"strong","position":{"start":{"line":73,"column":1},"end":{"line":73,"column":1}},"children":[{"type":"text","value":"Balancing Steps","position":{"start":{"line":73,"column":1},"end":{"line":73,"column":1}},"key":"TJ9qDRCQl1"}],"key":"XMNKsJB39C"},{"type":"text","value":":","position":{"start":{"line":73,"column":1},"end":{"line":73,"column":1}},"key":"XPWOzuPwrE"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":74,"column":1},"end":{"line":80,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":74,"column":1},"end":{"line":74,"column":1}},"children":[{"type":"text","value":"After deletion, the Red-Black Tree properties might be violated.","position":{"start":{"line":74,"column":1},"end":{"line":74,"column":1}},"key":"GH1wehCJsq"}],"key":"LxH6zf68on"},{"type":"listItem","spread":true,"position":{"start":{"line":75,"column":1},"end":{"line":75,"column":1}},"children":[{"type":"text","value":"To restore these properties, perform color changes and rotations similar to those during insertion, but with different conditions.","position":{"start":{"line":75,"column":1},"end":{"line":75,"column":1}},"key":"MCi1BiXshR"}],"key":"BzpREq6tIy"},{"type":"listItem","spread":true,"position":{"start":{"line":76,"column":1},"end":{"line":76,"column":1}},"children":[{"type":"text","value":"The main goal is to convert the ","position":{"start":{"line":76,"column":1},"end":{"line":76,"column":1}},"key":"JSn2MOVUNb"},{"type":"strong","position":{"start":{"line":76,"column":1},"end":{"line":76,"column":1}},"children":[{"type":"text","value":"double black","position":{"start":{"line":76,"column":1},"end":{"line":76,"column":1}},"key":"dtT3lOAkCb"}],"key":"J2QHJrFLnO"},{"type":"text","value":" node back to a ","position":{"start":{"line":76,"column":1},"end":{"line":76,"column":1}},"key":"Ejpe9tH2eE"},{"type":"strong","position":{"start":{"line":76,"column":1},"end":{"line":76,"column":1}},"children":[{"type":"text","value":"single black","position":{"start":{"line":76,"column":1},"end":{"line":76,"column":1}},"key":"Au4fqHqNft"}],"key":"KNOg5uLRig"},{"type":"text","value":" node.","position":{"start":{"line":76,"column":1},"end":{"line":76,"column":1}},"key":"xsErkHrdhs"}],"key":"ivbGUNlPpJ"},{"type":"listItem","spread":true,"position":{"start":{"line":77,"column":1},"end":{"line":80,"column":1}},"children":[{"type":"text","value":"The cases for restructuring and recoloring are determined by the color of the ","position":{"start":{"line":77,"column":1},"end":{"line":77,"column":1}},"key":"okEboHHl0y"},{"type":"strong","position":{"start":{"line":77,"column":1},"end":{"line":77,"column":1}},"children":[{"type":"text","value":"sibling","position":{"start":{"line":77,"column":1},"end":{"line":77,"column":1}},"key":"cgHqfUliqh"}],"key":"jHCLalKgKS"},{"type":"text","value":" of the double black node.","position":{"start":{"line":77,"column":1},"end":{"line":77,"column":1}},"key":"SibM1M3YwX"}],"key":"Yf8UYFg1Cs"}],"key":"Hx0a9BZNTH"}],"key":"qwlLWFSXXA"}],"key":"O9NF3CznAP"},{"type":"heading","depth":2,"position":{"start":{"line":81,"column":1},"end":{"line":81,"column":1}},"children":[{"type":"text","value":"RED BLACK Class","position":{"start":{"line":81,"column":1},"end":{"line":81,"column":1}},"key":"plcwmSIyMr"}],"identifier":"red-black-class","label":"RED BLACK Class","html_id":"red-black-class","implicit":true,"key":"G02lCd2rhO"},{"type":"code","lang":"java","value":"/*\n * To change this license header, choose License Headers in Project Properties.\n * To change this template file, choose Tools | Templates\n * and open the template in the editor.\n */\n\n\nimport java.util.Random;\n\npublic class RedBlackTree\n{\n\n    //An inner nested class can be declared private and only accessed\n    //within the class\n    //A inner nested class can be declared static and can be accessed\n    //from outside the class. \n    //Example in main or other function outside of class\n    // RedBlackTree.Node tempNode = new RedBlackTree.Node(); \n    \n    static class Node\n    {\n\n        int key; // holds the key\n        Node parent; // pointer to the parent\n        Node left; // pointer to left child\n        Node right; // pointer to right child\n        int color; // 1 . Red, 0 . Black\n\n        //some data - in this case string\n        String sdata;\n    }\n\n    private Node root;\n    private Node TNULL;\n\n    private void preOrderHelper(Node node)\n    {\n        if (node != TNULL)\n        {\n            System.out.print(node.key + \" \");\n            preOrderHelper(node.left);\n            preOrderHelper(node.right);\n        }\n    }\n\n    private void inOrderHelper(Node node)\n    {\n        if (node != TNULL)\n        {\n            inOrderHelper(node.left);\n            System.out.print(node.key + \" \");\n            inOrderHelper(node.right);\n        }\n    }\n\n    private void postOrderHelper(Node node)\n    {\n        if (node != TNULL)\n        {\n            postOrderHelper(node.left);\n            postOrderHelper(node.right);\n            System.out.print(node.key + \" \");\n        }\n    }\n\n    void preOrder()\n    {\n        System.out.println(\"\\nPreOder\");\n        Node node = root;\n        if (node != TNULL)\n        {\n            System.out.print(\" **\" + node.key + \"** \");\n            preOrderHelper(node.left);\n            preOrderHelper(node.right);\n        }\n        System.out.println(\"\\n------------------\\n\");\n    }\n\n    // In-Order traversal\n    // Left Subtree . Node . Right Subtree\n    public void inOrder()\n    {\n        System.out.println(\"\\ninOder\");\n        Node node = root;\n        if (node != TNULL)\n        {\n            inOrderHelper(node.left);\n            System.out.print(\" **\" + node.key + \"** \");\n            inOrderHelper(node.right);\n        }\n        System.out.println(\"\\n------------------\\n\");\n    }\n\n    // Post-Order traversal\n    // Left Subtree . Right Subtree . Node\n    public void postOrder()\n    {\n        System.out.println(\"\\npostOder\");\n        Node node = root;\n        if (node != TNULL)\n        {\n            postOrderHelper(node.left);\n            postOrderHelper(node.right);\n            System.out.print(\" **\" + node.key + \"** \");\n        }\n        System.out.println(\"\\n------------------\\n\");\n    }\n\n    // search the tree for the key k\n    // and return the corresponding node\n    public Node searchTree(int k)\n    {\n        return searchTreeHelper(this.root, k);\n    }\n\n    private Node searchTreeHelper(Node node, int key)\n    {\n        if (node == TNULL || key == node.key)\n        {\n            //if(node == null)\n\n            return node;\n        }\n\n        if (key \u003c node.key)\n        {\n            return searchTreeHelper(node.left, key);\n        }\n        return searchTreeHelper(node.right, key);\n    }\n\n    // fix the rb tree modified by the delete operation\n    private void fixDelete(Node x)\n    {\n        Node s;\n        while (x != root \u0026\u0026 x.color == 0)\n        {\n            if (x == x.parent.left)\n            {\n                s = x.parent.right;\n                if (s.color == 1)\n                {\n                    // case 3.1\n                    s.color = 0;\n                    x.parent.color = 1;\n                    leftRotate(x.parent);\n                    s = x.parent.right;\n                }\n\n                if (s.left.color == 0 \u0026\u0026 s.right.color == 0)\n                {\n                    // case 3.2\n                    s.color = 1;\n                    x = x.parent;\n                } else\n                {\n                    if (s.right.color == 0)\n                    {\n                        // case 3.3\n                        s.left.color = 0;\n                        s.color = 1;\n                        rightRotate(s);\n                        s = x.parent.right;\n                    }\n\n                    // case 3.4\n                    s.color = x.parent.color;\n                    x.parent.color = 0;\n                    s.right.color = 0;\n                    leftRotate(x.parent);\n                    x = root;\n                }\n            } else\n            {\n                s = x.parent.left;\n                if (s.color == 1)\n                {\n                    // case 3.1\n                    s.color = 0;\n                    x.parent.color = 1;\n                    rightRotate(x.parent);\n                    s = x.parent.left;\n                }\n\n                if (s.right.color == 0 \u0026\u0026 s.right.color == 0)\n                {\n                    // case 3.2\n                    s.color = 1;\n                    x = x.parent;\n                } else\n                {\n                    if (s.left.color == 0)\n                    {\n                        // case 3.3\n                        s.right.color = 0;\n                        s.color = 1;\n                        leftRotate(s);\n                        s = x.parent.left;\n                    }\n\n                    // case 3.4\n                    s.color = x.parent.color;\n                    x.parent.color = 0;\n                    s.left.color = 0;\n                    rightRotate(x.parent);\n                    x = root;\n                }\n            }\n        }\n        x.color = 0;\n    }\n\n    private void rbTransplant(Node u, Node v)\n    {\n        if (u.parent == null)\n        {\n            root = v;\n        } else if (u == u.parent.left)\n        {\n            u.parent.left = v;\n        } else\n        {\n            u.parent.right = v;\n        }\n        v.parent = u.parent;\n    }\n\n    private void deleteNodeHelper(Node node, int key)\n    {\n        // find the node containing key\n        Node z = TNULL;\n        Node x, y;\n        while (node != TNULL)\n        {\n            if (node.key == key)\n            {\n                z = node;\n            }\n\n            if (node.key \u003c= key)\n            {\n                node = node.right;\n            } else\n            {\n                node = node.left;\n            }\n        }\n\n        if (z == TNULL)\n        {\n            System.out.println(\"Couldn't find key in the tree\");\n            return;\n        }\n\n        y = z;\n        int yOriginalColor = y.color;\n        if (z.left == TNULL)\n        {\n            x = z.right;\n            rbTransplant(z, z.right);\n        } else if (z.right == TNULL)\n        {\n            x = z.left;\n            rbTransplant(z, z.left);\n        } else\n        {\n            y = minimum(z.right);\n            yOriginalColor = y.color;\n            x = y.right;\n            if (y.parent == z)\n            {\n                x.parent = y;\n            } else\n            {\n                rbTransplant(y, y.right);\n                y.right = z.right;\n                y.right.parent = y;\n            }\n\n            rbTransplant(z, y);\n            y.left = z.left;\n            y.left.parent = y;\n            y.color = z.color;\n        }\n        if (yOriginalColor == 0)\n        {\n            fixDelete(x);\n        }\n    }\n\n    // fix the red-black tree\n    private void fixInsert(Node k)\n    {\n        Node u;\n        while (k.parent.color == 1)\n        {\n            if (k.parent == k.parent.parent.right)\n            {\n                u = k.parent.parent.left; // uncle\n                if (u.color == 1)\n                {\n                    // case 3.1\n                    u.color = 0;\n                    k.parent.color = 0;\n                    k.parent.parent.color = 1;\n                    k = k.parent.parent;\n                } else\n                {\n                    if (k == k.parent.left)\n                    {\n                        // case 3.2.2\n                        k = k.parent;\n                        rightRotate(k);\n                    }\n                    // case 3.2.1\n                    k.parent.color = 0;\n                    k.parent.parent.color = 1;\n                    leftRotate(k.parent.parent);\n                }\n            } else\n            {\n                u = k.parent.parent.right; // uncle\n\n                if (u.color == 1)\n                {\n                    // mirror case 3.1\n                    u.color = 0;\n                    k.parent.color = 0;\n                    k.parent.parent.color = 1;\n                    k = k.parent.parent;\n                } else\n                {\n                    if (k == k.parent.right)\n                    {\n                        // mirror case 3.2.2\n                        k = k.parent;\n                        leftRotate(k);\n                    }\n                    // mirror case 3.2.1\n                    k.parent.color = 0;\n                    k.parent.parent.color = 1;\n                    rightRotate(k.parent.parent);\n                }\n            }\n            if (k == root)\n            {\n                break;\n            }\n        }\n        root.color = 0;\n    }\n\n    private void printHelper(Node root, String indent, boolean last)\n    {\n        // print the tree structure on the screen\n        if (root != TNULL)\n        {\n            System.out.print(indent);\n            if (last)\n            {\n                System.out.print(\"R----\");\n                indent += \"     \";\n            } else\n            {\n                System.out.print(\"L----\");\n                indent += \"|    \";\n            }\n\n            String sColor = root.color == 1 ? \"RED\" : \"BLACK\";\n            System.out.println(root.key + \"-\" + root.sdata\n                    + \"(\" + sColor + \")\");\n            printHelper(root.left, indent, false);\n            printHelper(root.right, indent, true);\n        }\n    }\n\n    public RedBlackTree()\n    {\n        TNULL = new Node();\n        TNULL.color = 0;\n        TNULL.left = null;\n        TNULL.right = null;\n        root = TNULL;\n    }\n\n    // find the node with the minimum key\n    public Node minimum(Node node)\n    {\n        while (node.left != TNULL)\n        {\n            node = node.left;\n        }\n        return node;\n    }\n\n    // find the node with the maximum key\n    public Node maximum(Node node)\n    {\n        while (node.right != TNULL)\n        {\n            node = node.right;\n        }\n        return node;\n    }\n\n    // find the successor of a given node\n    public Node successor(Node x)\n    {\n        // if the right subtree is not null,\n        // the successor is the leftmost node in the\n        // right subtree\n        if (x.right != TNULL)\n        {\n            return minimum(x.right);\n        }\n\n        // else it is the lowest ancestor of x whose\n        // left child is also an ancestor of x.\n        Node y = x.parent;\n        while (y != TNULL \u0026\u0026 x == y.right)\n        {\n            x = y;\n            y = y.parent;\n        }\n        return y;\n    }\n\n    // find the predecessor of a given node\n    public Node predecessor(Node x)\n    {\n        // if the left subtree is not null,\n        // the predecessor is the rightmost node in the \n        // left subtree\n        if (x.left != TNULL)\n        {\n            return maximum(x.left);\n        }\n\n        Node y = x.parent;\n        while (y != TNULL \u0026\u0026 x == y.left)\n        {\n            x = y;\n            y = y.parent;\n        }\n\n        return y;\n    }\n\n    // rotate left at node x\n    public void leftRotate(Node x)\n    {\n        Node y = x.right;\n        x.right = y.left;\n        if (y.left != TNULL)\n        {\n            y.left.parent = x;\n        }\n        y.parent = x.parent;\n        if (x.parent == null)\n        {\n            this.root = y;\n        } else if (x == x.parent.left)\n        {\n            x.parent.left = y;\n        } else\n        {\n            x.parent.right = y;\n        }\n        y.left = x;\n        x.parent = y;\n    }\n\n    // rotate right at node x\n    public void rightRotate(Node x)\n    {\n        Node y = x.left;\n        x.left = y.right;\n        if (y.right != TNULL)\n        {\n            y.right.parent = x;\n        }\n        y.parent = x.parent;\n        if (x.parent == null)\n        {\n            this.root = y;\n        } else if (x == x.parent.right)\n        {\n            x.parent.right = y;\n        } else\n        {\n            x.parent.left = y;\n        }\n        y.right = x;\n        x.parent = y;\n    }\n\n    // insert the key to the tree in its appropriate position\n    // and fix the tree\n    public void insert(int key, String sdata)\n    {\n        // Ordinary Binary Search Insertion\n        Node node = new Node();\n        node.parent = null;\n        node.key = key;\n\n        node.sdata = sdata;\n\n        node.left = TNULL;\n        node.right = TNULL;\n        node.color = 1; // new node must be red\n\n        Node y = null;\n        Node x = this.root;\n\n        while (x != TNULL)\n        {\n            y = x;\n            if (node.key \u003c x.key)\n            {\n                x = x.left;\n            } else\n            {\n                x = x.right;\n            }\n        }\n\n        // y is parent of x\n        node.parent = y;\n        if (y == null)\n        {\n            root = node;\n        } else if (node.key \u003c y.key)\n        {\n            y.left = node;\n        } else\n        {\n            y.right = node;\n        }\n\n        // if new node is a root node, simply return\n        if (node.parent == null)\n        {\n            node.color = 0;\n            return;\n        }\n\n        // if the grandparent is null, simply return\n        if (node.parent.parent == null)\n        {\n            return;\n        }\n\n        // Fix the tree\n        fixInsert(node);\n    }\n\n    public Node getRoot()\n    {\n        return this.root;\n    }\n\n    // delete the node from the tree\n    public void deleteNode(int key)\n    {\n        deleteNodeHelper(this.root, key);\n    }\n\n    // print the tree structure on the screen\n    public void prettyPrint()\n    {\n        printHelper(this.root, \"\", true);\n    }\n\n   // static RedBlackTree bst = new RedBlackTree();\n\n    void insertRandom()\n    {\n        int amt = 12;\n        int amts = 5;\n        int amtNodes, amtLetters;\n        int[] keys;\n\n        int selectKey = -1;\n        int selectIndex = -1;\n        boolean run = true;\n\n        String numberOrder = \"\";\n        int numberOrderCount = 0;\n\n        Random RNG = new Random();\n        amtNodes = RNG.nextInt(amt);\n        //amtNodes = 15; //hard code the amount \n        amtLetters = 3;\n\n        System.out.println(amtNodes);\n        keys = new int[amtNodes];\n\n        //load keys\n        for (int i = 0; i \u003c keys.length; i++)\n        {\n            keys[i] = i;\n        }\n\n        for (int i = 0; i \u003c amtNodes; i++)\n        {\n            //create random letter patterns\n            String ld = \"\";\n            for (int j = 0; j \u003c amtLetters; j++)\n            {\n                ld = ld + (char) (RNG.nextInt(25) + 65);\n            }\n\n            //pick random key\n            int cntr = 0;\n            selectIndex = RNG.nextInt(amtNodes);\n\n            selectKey = keys[selectIndex];\n            run = true;\n            while (run)\n            {\n\n                if (selectKey \u003e -1)\n                {\n                    run = false;\n                } else\n                {\n                    selectIndex = selectIndex + 1;\n                    if (selectIndex \u003e= amtNodes)\n                    {\n                        selectIndex = 0;\n                    }\n\n                }\n                selectKey = keys[selectIndex];\n\n            }\n            //System.out.print(selectKey + \" \");\n\n            numberOrder = numberOrder + selectKey + \" \";\n            numberOrderCount++;\n            if (numberOrderCount \u003e 20)\n            {\n                numberOrder = numberOrder + \"\\n\";\n                numberOrderCount = 0;\n\n            }\n\n            insert(selectKey, ld);\n            keys[selectKey] = -1;\n        }\n        System.out.println(\"\\n\" + numberOrder + \"\\n\");\n        System.out.println(\"\");\n\n    }\n\n}\n","position":{"start":{"line":83,"column":1},"end":{"line":741,"column":1}},"key":"P2cP6CW8CK"}],"key":"LQAwquUCTH"}],"key":"eLf2mKUxlq"},"references":{"cite":{"order":[],"data":{}}},"footer":{"navigation":{"prev":{"title":"AVL Tree","url":"/xbst-avltree","group":"Algorithms"},"next":{"title":"BST AVL Red Black Tree Comparisons","url":"/xbst-comparisiontable","group":"Algorithms"}}},"domain":"http://localhost:3002"},"project":{"bibliography":["C:\\a_books\\CSCI232_algobook\\references.bib"],"exports":[],"title":"Algorithms","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\CSCI232_algobook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024","toc":[{"file":"intro.md"},{"file":"xCSCI232_Intro.md"},{"children":[{"file":"xTerms_Radix.md"},{"file":"xTerms_Serializable.md"},{"file":"xTerms_Iterator.md"}],"file":"xTerms.md"},{"children":[{"file":"xBST_Applications.md"},{"file":"xBST_Comparisons.md"},{"file":"xBST_TreeTraversal.md"},{"file":"xBST_Iterative_Recursion_Search.md"},{"file":"xBST_BinarySearchTree.md"},{"file":"xBST_AVLTree.md"},{"file":"xBST_RedBlack.md"},{"file":"xBST_ComparisionTable.md"},{"file":"xBST_SplayTrees_2025.md"}],"file":"xBST_Intro.md"},{"children":[{"file":"xHashing_UnderstandingHashTables.md"},{"file":"xHashing_ModulusHashFunction.md"},{"file":"xHashing_Chaining.md"},{"file":"xHashing_OpenAddressing.md"},{"file":"xHashing_OpenAddressingHashingCodeExamples.md"}],"file":"xHashing_HashTable.md"},{"file":"xSkipList.md"},{"children":[{"file":"xGraphsAnalysisOfBFSandDFS.md"},{"file":"xUnderstandingBFS_202504.md"},{"file":"xUnderstandingDFS_202504.md"},{"file":"xGraphsSevenBridges.md"},{"file":"xGraphsDFS.md"},{"file":"xGraphsBFS.md"},{"file":"xDFSStoredPaths.md"},{"file":"xGraphsMazeSolverDFS.md"},{"file":"xGraphsDijkstra.md"}],"file":"xGraphs.md"},{"file":"xHuffmanCode.md"},{"file":"xSerializable.md"},{"children":[{"file":"xJavaHashMapTreeMapLinkedHashMap.md"},{"file":"xHashSetLinkedHashSetTreeSetComparision.md"},{"file":"xProgrammingToTheInterfacemd.md"}],"file":"xJAVATechniques.md"},{"file":"xEnd.md"}],"index":"index","pages":[{"slug":"xcsci232-intro","title":"CSCI 232 Data Structures and Algorithms","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xterms","title":"Terms and Concepts","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xterms-radix","title":"Radix - Number Bases","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xterms-serializable","title":"Serializable","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xterms-iterator","title":"Iterator","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-intro","title":"Binary Search Tree - Intro","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbst-applications","title":"Applications That Use Binary Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-comparisons","title":"Binary Tree Comparisons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-treetraversal","title":"Tree Traversal","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-iterative-recursion-search","title":"Demonstrate BST using iterative looping and recursion","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-binarysearchtree","title":"Binary Search Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-avltree","title":"AVL Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-redblack","title":"Red Black Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-comparisiontable","title":"BST AVL Red Black Tree Comparisons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-splaytrees-2025","title":"Splay Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-hashtable","title":"Hash Table","description":"","date":"","thumbnail":"/CSCI232/build/f694c399ae1cdea2e011d1ecd6ed8d9d.jpeg","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhashing-understandinghashtables","title":"Understanding Hash Tables and Hash Functions*","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-modulushashfunction","title":"Modulus Hash Function","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-chaining","title":"Hash Tables - Chaining","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-openaddressing","title":"Hash Table - Open Addressing","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-openaddressinghashingcodeexamples","title":"Java code for double hashing in a hash table:","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xskiplist","title":"Skip List","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xgraphs","title":"Graphs","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xgraphsanalysisofbfsanddfs","title":"A Comparative Analysis of Breadth-First Search and Depth-First Search Algorithms","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingbfs-202504","title":"Understanding Breadth-First Search (BFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingdfs-202504","title":"Understanding Depth-First Search (DFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphssevenbridges","title":"Seven Bridges of Königsberg","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsdfs","title":"Depth-First Search (DFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsbfs","title":"Breadth First","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdfsstoredpaths","title":"DFS - Stored Paths","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsmazesolverdfs","title":"DSF - Maze Solving","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsdijkstra","title":"Dijkstra’s Algorithm","description":"","date":"","thumbnail":"/CSCI232/build/dijkstra_example-8cca3c2c620cd1d44d2c9745b698d02d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhuffmancode","title":"Huffman Code","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xserializable","title":"Serialization","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjavatechniques","title":"JAVA Techniques","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjavahashmaptreemaplinkedhashmap","title":"Examples of Java’s HashMap, TreeMap, and LinkedHashMap","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashsetlinkedhashsettreesetcomparision","title":"HashSet, LinkedHashSet, and TreeSet Comparision","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xprogrammingtotheinterfacemd","title":"Programming To The Interface, Not The Implementation\"","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xend","title":"End","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1}]}}},"actionData":null,"errors":null},"future":{"unstable_dev":false,"unstable_postcss":false,"unstable_tailwind":false,"v2_errorBoundary":true,"v2_headers":true,"v2_meta":true,"v2_normalizeFormMethod":true,"v2_routeConvention":true}};</script><script type="module" async="">import "/CSCI232/build/manifest-54BD5942.js";
+import * as route0 from "/CSCI232/build/root-PMP5BIHC.js";
+import * as route1 from "/CSCI232/build/routes/$-5ZLZ2O3Y.js";
+window.__remixRouteModules = {"root":route0,"routes/$":route1};
+
+import("/CSCI232/build/entry.client-PCJPW7TK.js");</script></body></html>

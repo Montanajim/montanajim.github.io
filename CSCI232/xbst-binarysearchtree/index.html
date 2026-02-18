@@ -1,0 +1,713 @@
+<!DOCTYPE html><html lang="en" class="" style="scroll-padding:60px"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Binary Search Tree - Algorithms</title><meta property="og:title" content="Binary Search Tree - Algorithms"/><meta name="generator" content="mystmd"/><meta name="keywords" content=""/><link rel="stylesheet" href="/CSCI232/build/_assets/app-2K3KGISG.css"/><link rel="stylesheet" href="/CSCI232/build/_assets/thebe-core-VKVHG5VY.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jupyter-matplotlib@0.11.3/css/mpl_widget.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous"/><link rel="icon" href="/CSCI232/favicon.ico"/><link rel="stylesheet" href="/CSCI232/myst-theme.css"/><script>
+  const savedTheme = localStorage.getItem("myst:theme");
+  const theme = window.matchMedia("(prefers-color-scheme: light)").matches ? 'light' : 'dark';
+  const classes = document.documentElement.classList;
+  const hasAnyTheme = classes.contains('light') || classes.contains('dark');
+  if (!hasAnyTheme) classes.add(savedTheme ?? theme);
+</script></head><body class="m-0 transition-colors duration-500 bg-white dark:bg-stone-900"><div class="myst-skip-to-article fixed top-1 left-1 h-[0px] w-[0px] focus-within:z-40 focus-within:h-auto focus-within:w-auto bg-white overflow-hidden focus-within:p-2 focus-within:ring-1" aria-label="skip to content options"><a href="#skip-to-frontmatter" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article frontmatter</a><a href="#skip-to-article" class="myst-skip-to-link block px-2 py-1 text-black underline">Skip to article content</a></div><dialog id="myst-no-css" style="position:fixed;left:0px;top:0px;width:100%;height:100vh;font-size:4rem;padding:1rem;color:black;background:white"><strong>Site not loading correctly?</strong><p>This may be due to an incorrect <code>BASE_URL</code> configuration. See<!-- --> <a href="https://mystmd.org/guide/deployment#deploy-base-url">the MyST Documentation</a> <!-- -->for reference.</p><script>
+    (() => {
+            // Test for has-styling variable set by the MyST stylesheet
+            const node = document.currentScript.parentNode;
+            const hasCSS = window.getComputedStyle(node).getPropertyValue("--has-styling");
+            if (hasCSS === ""){
+                    node.showModal();
+            }
+
+    })()
+</script></dialog><div class="myst-top-nav bg-white/80 backdrop-blur dark:bg-stone-900/80 shadow dark:shadow-stone-700 p-3 md:px-8 sticky w-full top-0 z-30 h-[60px]"><nav class="myst-top-nav-bar flex items-center justify-between flex-nowrap max-w-[1440px] mx-auto"><div class="flex flex-row xl:min-w-[19.5rem] mr-2 sm:mr-7 justify-start items-center shrink-0"><div class="block xl:hidden"><button class="myst-top-nav-menu-button flex items-center justify-center border-stone-400 text-stone-800 hover:text-stone-900 dark:text-stone-200 hover:dark:text-stone-100 w-10 h-10"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem"><path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"></path></svg><span class="sr-only">Open Menu</span></button></div><a class="myst-home-link flex items-center ml-3 dark:text-white w-fit md:ml-5 xl:ml-7" href="/CSCI232/"><span class="text-md sm:text-xl tracking-tight sm:mr-5">CSCI 211</span></a></div><div class="flex items-center flex-grow w-auto"><div class="flex-grow hidden text-md lg:block"></div><div class="flex-grow block"></div><button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R75cp:" data-state="closed" class="myst-search-bar flex items-center h-10 aspect-square sm:w-64 text-left text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 myst-search-bar-disabled hover:ring-blue-500 dark:hover:ring-blue-500 hover:border-blue-500 dark:hover:border-blue-500"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="p-2.5 h-10 w-10 aspect-square"><path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd"></path></svg><span class="myst-search-text-placeholder hidden sm:block grow">Search</span><div aria-hidden="true" class="myst-search-shortcut items-center hidden mx-1 font-mono text-sm text-gray-600 dark:text-gray-300 sm:flex gap-x-1"><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none hide-mac">CTRL</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none show-mac">⌘</kbd><kbd class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:shadow-none ">K</kbd><script>
+;(() => {
+const script = document.currentScript;
+const root = script.parentElement;
+
+const isMac = /mac/i.test(
+      window.navigator.userAgentData?.platform ?? window.navigator.userAgent,
+    );
+root.querySelectorAll(".hide-mac").forEach(node => {node.classList.add(isMac ? "hidden" : "block")});
+root.querySelectorAll(".show-mac").forEach(node => {node.classList.add(!isMac ? "hidden" : "block")});
+})()</script></div></button><button class="myst-theme-button theme rounded-full aspect-square border border-stone-700 dark:border-white hover:bg-neutral-100 border-solid overflow-hidden text-stone-700 dark:text-white hover:text-stone-500 dark:hover:text-neutral-800 w-10 h-10 mx-3" title="Toggle theme between light and dark mode" aria-label="Toggle theme between light and dark mode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-moon-icon h-full w-full p-0.5 hidden dark:block"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="myst-theme-sun-icon h-full w-full p-0.5 dark:hidden"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></button><div class="block sm:hidden"></div><div class="hidden sm:block"></div></div></nav></div><div class="myst-primary-sidebar fixed xl:article-grid grid-gap xl:w-full xl:pointer-events-none overflow-auto max-xl:w-[75vw] max-xl:max-w-[350px] max-xl:!top-0 max-xl:h-screen hidden z-10" style="top:60px"><div class="myst-primary-sidebar-pointer pointer-events-auto xl:col-margin-left flex-col overflow-hidden max-xl:h-full hidden xl:flex"><div class="myst-primary-sidebar-nav flex-grow py-6 overflow-y-auto primary-scrollbar"><nav aria-label="Navigation" class="myst-primary-sidebar-topnav overflow-y-hidden transition-opacity lg:hidden ml-3 xl:ml-0 mr-3 max-w-[350px]"><div class="w-full px-1 dark:text-white font-medium"></div></nav><div class="my-3 border-b-2 lg:hidden"></div><nav aria-label="Table of Contents" class="myst-primary-sidebar-toc flex-grow overflow-y-hidden transition-opacity ml-3 xl:ml-0 mr-3 max-w-[350px]"><div class="myst-toc w-full px-1 dark:text-white"><a title="Algorithms" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30 font-bold" href="/CSCI232/">Algorithms</a><a title="CSCI 232 Data Structures and Algorithms" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/CSCI232/xcsci232-intro">CSCI 232 Data Structures and Algorithms</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 pl-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Terms and Concepts" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/CSCI232/xterms">Terms and Concepts</a><button class="self-stretch flex items-center flex-none px-1 rounded-l-md group hover:bg-slate-300/30 focus-visible:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:Rupsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:Rupsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 pl-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Binary Search Tree - Intro" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/CSCI232/xbst-intro">Binary Search Tree - Intro</a><button class="self-stretch flex items-center flex-none px-1 rounded-l-md group hover:bg-slate-300/30 focus-visible:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R16psp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R16psp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 pl-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Hash Table" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/CSCI232/xhashing-hashtable">Hash Table</a><button class="self-stretch flex items-center flex-none px-1 rounded-l-md group hover:bg-slate-300/30 focus-visible:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R1epsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R1epsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="Skip List" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/CSCI232/xskiplist">Skip List</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 pl-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="Graphs" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/CSCI232/xgraphs">Graphs</a><button class="self-stretch flex items-center flex-none px-1 rounded-l-md group hover:bg-slate-300/30 focus-visible:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R1upsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R1upsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="Huffman Code" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/CSCI232/xhuffmancode">Huffman Code</a><a title="Serialization" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/CSCI232/xserializable">Serialization</a><div data-state="closed" class="w-full"><div class="myst-toc-item flex flex-row w-full gap-2 pl-2 my-1 text-left rounded-lg outline-none hover:bg-slate-300/30"><a title="JAVA Techniques" class="block break-words focus:outline outline-blue-200 outline-2 rounded py-2 grow" href="/CSCI232/xjavatechniques">JAVA Techniques</a><button class="self-stretch flex items-center flex-none px-1 rounded-l-md group hover:bg-slate-300/30 focus-visible:outline outline-blue-200 outline-2" aria-label="Open Folder" type="button" aria-controls="radix-:R2mpsp:" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="transition-transform duration-300 group-data-[state=open]:rotate-90 text-text-slate-700 dark:text-slate-100" height="1.5rem" width="1.5rem"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"></path></svg></button></div><div data-state="closed" id="radix-:R2mpsp:" hidden="" class="pl-3 pr-[2px] collapsible-content"></div></div><a title="End" class="block break-words focus:outline outline-blue-200 outline-2 rounded myst-toc-item p-2 my-1 rounded-lg hover:bg-slate-300/30" href="/CSCI232/xend">End</a></div></nav></div><div class="myst-primary-sidebar-footer flex-none py-6 transition-all duration-700 translate-y-6 opacity-0 ml-3 xl:ml-0 mr-3 max-w-[350px]"><div class="article footer myst-primary-sidebar-footer"><p>© 2026 by James Goudy</p></div></div></div></div><main class="article-grid grid-gap"><article class="article-grid subgrid-gap col-screen article content"><div class="hidden"></div><div id="skip-to-frontmatter" aria-label="article frontmatter" class="myst-fm-block mb-8 pt-9"><div class="myst-fm-block-header flex items-center mb-5 h-6 text-sm font-light"><div class="flex-grow"></div><div class="myst-fm-block-badges"><a href="https://github.com/executablebooks/jupyter-book" title="GitHub Repository: executablebooks/jupyter-book" target="_blank" rel="noopener noreferrer" class="myst-fm-github-link text-inherit hover:text-inherit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="1.25rem" height="1.25rem" class="myst-fm-github-icon inline-block mr-1 opacity-60 hover:opacity-100"><path d="M12 2.5c-5.4 0-9.8 4.4-9.8 9.7 0 4.3 2.8 8 6.7 9.2.5.1.7-.2.7-.5v-1.8c-2.4.5-3.1-.6-3.3-1.1-.1-.3-.6-1.1-1-1.4-.3-.2-.8-.6 0-.6s1.3.7 1.5 1c.9 1.5 2.3 1.1 2.8.8.1-.6.3-1.1.6-1.3-2.2-.2-4.4-1.1-4.4-4.8 0-1.1.4-1.9 1-2.6-.1-.2-.4-1.2.1-2.6 0 0 .8-.3 2.7 1 .8-.2 1.6-.3 2.4-.3.8 0 1.7.1 2.4.3 1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.6 0 3.7-2.3 4.6-4.4 4.8.4.3.7.9.7 1.8V21c0 .3.2.6.7.5 3.9-1.3 6.6-4.9 6.6-9.2 0-5.4-4.4-9.8-9.8-9.8z"></path></svg></a></div><div class="myst-fm-downloads-dropdown relative flex inline-block mx-1 grow-0" data-headlessui-state=""><button class="myst-fm-downloads-button relative ml-2 -mr-1" id="headlessui-menu-button-:Rs8ucp:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state=""><span class="sr-only">Downloads</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.25rem" height="1.25rem" class="myst-fm-downloads-icon"><title>Download</title><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg></button></div></div><h1 class="myst-fm-block-title mb-0">Binary Search Tree</h1><header class="myst-fm-authors-affiliations mt-4 not-prose"><div class="myst-fm-authors-list"><span class="myst-fm-author font-semibold text-sm myst-fm-author-item inline-block"><button class="myst-fm-author-popover focus:shadow-[0_0_0_2px] focus:shadow-black outline-none hover:underline" aria-label="Author Details" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R78ucp:" data-state="closed"><span class="myst-fm-author-name">James Goudy</span></button></span></div></header></div><div class="block my-10 lg:sticky lg:z-10 lg:h-0 lg:pt-0 lg:my-0 lg:ml-10 lg:col-margin-right" style="top:60px"><nav></nav></div><div id="skip-to-article"></div><h2 id="background-information" class="relative group"><span class="heading-text">Background Information</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#background-information" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><p>A binary search tree (BST) is a special type of binary tree data structure used to efficiently store and access sorted data. It’s like a regular tree, but with additional rules that keep everything neatly organized:</p><p><strong>Key features:</strong></p><ul><li><strong>Ordering:</strong> Each node in the tree has a value (key), and the key of a node is <strong>always greater than</strong> all the keys in its <strong>left subtree</strong> and <strong>less than</strong> all the keys in its <strong>right subtree</strong>. This creates a sorted order throughout the tree.</li><li><strong>Efficient searching:</strong> Because of this ordering, you can very quickly search for specific values in the tree. Imagine searching a phone book - you wouldn’t start at the very beginning or end, but somewhere in the middle based on the last name. Similarly, in a BST, you can efficiently move left or right depending on the value you’re searching for, narrowing down the possibilities with each comparison.</li><li><strong>Dynamic insertions and deletions:</strong> You can easily add new values (insert) or remove existing ones (delete) from the tree while maintaining the sorted order. The process involves comparing the new value with existing nodes and finding its appropriate place based on the ordering rule.</li><li><strong>No Duplicates</strong>: Typically, BSTs do <strong>not</strong> allow duplicate values, although variations exist that permit duplicates with specific rules (e.g., storing duplicates in the left or right subtree).</li></ul><p><strong>Benefits of using BSTs:</strong></p><ul><li><strong>Fast search:</strong> Searching for elements in a balanced BST takes <strong>logarithmic time</strong> on average, which is significantly faster than searching an unsorted list.</li><li><strong>Ordered access:</strong> You can easily traverse the tree in sorted order (e.g., for printing all elements in ascending order).</li><li><strong>Efficient insertions and deletions:</strong> These operations can also be done in logarithmic time in balanced BSTs.</li></ul><p><strong>However, BSTs also have some drawbacks:</strong></p><ul><li><strong>Performance depends on balance:</strong> The efficiency of BST operations relies heavily on the tree’s balance. An unbalanced tree can perform much worse than a balanced one.</li><li><strong>Not self-balancing:</strong> By default, BSTs are not self-balancing, meaning insertions and deletions can sometimes lead to imbalances. Special techniques are needed to maintain balance and ensure optimal performance.</li></ul><p>Overall, binary search trees are a powerful and versatile data structure for storing and managing sorted data efficiently. They offer fast search, insertion, and deletion operations, making them suitable for various applications like symbol tables, priority queues, and sorting algorithms.</p><h2 id="lecture-code" class="relative group"><span class="heading-text">Lecture Code</span><a class="no-underline text-inherit hover:text-inherit inline-block w-0 px-0 translate-x-[10px] font-normal select-none transition-opacity opacity-0 focus:opacity-100 group-hover:opacity-70" href="#lecture-code" title="Link to this Section" aria-label="Link to this Section">¶</a></h2><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-java" style="white-space:pre">/*
+ * binary tree
+ *
+ */
+package btreedemoone;
+
+import java.util.Scanner;
+import java.util.Stack;
+
+class Node {
+
+    // key
+    public int key;
+
+    // data - that&#x27;s a double	
+    public int data;
+
+    // node characteristics
+    public Node leftChild;
+    public Node rightChild;
+
+    public Node(int key, int data) {
+        this.key = key;
+        this.data = data;
+    }
+
+    // display node
+    public void displayNode() {
+        System.out.print(&quot;{&quot; + key + &quot;,&quot; + data + &quot;}&quot;);
+    }
+
+}// end of node
+
+class Tree {
+
+    private Node root;
+    static Scanner myScan = new Scanner(System.in);
+
+    public Tree() {
+        root = null;
+    }
+
+    public void insert(int key, int data) {
+        // newNode
+        Node newNode = new Node(key, data);
+        boolean run = true;
+
+        if (root == null) {
+            root = newNode;
+        } else {
+            Node current = root;
+            Node parent;
+
+            while (run) {
+                parent = current;
+
+                if (key &lt; current.key) //go left
+                {
+                    current = current.leftChild;
+
+                    if (current == null) {
+                        parent.leftChild = newNode;
+                        run = false;
+                    }
+                } else // go right
+                {
+                    current = current.rightChild;
+
+                    if (current == null) {
+                        parent.rightChild = newNode;
+                        run = false;
+                    }
+                }
+            }
+
+        }
+
+    }// end of insert
+
+    public Node find(int key) {
+
+        Node current = root;
+
+        // check if empty
+        if (root == null) {
+            System.out.println(&quot;** Tree is empty **&quot;);
+            return null;
+        }
+
+        while (current.key != key) {
+
+            if (key &lt; current.key) // go left?
+            {
+                current = current.leftChild;
+            } else // go right
+            {
+                current = current.rightChild;
+            }
+
+            if (current == null) {
+                System.out.println(&quot;*** key not found ***&quot;);
+                return null;
+            }
+        }
+
+        System.out.println(&quot;Key was FOUND&quot;);
+        return current;
+    }
+
+    public boolean delete(int key) {
+        Node current = root;
+        Node parent = root;
+        boolean isLeftChild = true;
+
+        //check if empty
+        if (root == null) {
+            System.out.println(&quot;*** Tree is empty ***&quot;);
+            return false;
+        }
+
+        // look for the key
+        while (current.key != key) {
+            parent = current;
+
+            if (key &lt; current.key) // go left?
+            {
+                isLeftChild = true;
+                current = current.leftChild;
+            } else // go right
+            {
+                isLeftChild = false;
+                current = current.rightChild;
+            }
+
+            if (current == null) {
+                System.out.println(&quot;*** key not found ***&quot;);
+                return false;
+            }
+
+        }// end while
+
+        // found we are on the node to delete
+        // if there is no children - simply delete the node
+        if (current.leftChild == null &amp;&amp; current.rightChild == null) {
+            //check if node is the root (there is only one node in tree)
+            if (current == root) {
+                root = null;
+            } else if (isLeftChild) {
+                parent.leftChild = null;
+            } else {
+                parent.rightChild = null;
+            }
+        } // if no right child, rplace with left subtree
+        else if (current.rightChild == null) {
+            if (current == root) {
+                root = current.leftChild;
+            } else if (isLeftChild) {
+                parent.leftChild = current.leftChild;
+            } else {
+                parent.rightChild = current.leftChild;
+            }
+        } //if no left child, replace with right subtree
+        else if (current.leftChild == null) {
+            if (current == root) {
+                root = current.rightChild;
+            } else if (isLeftChild) {
+                parent.leftChild = current.rightChild;
+            } else {
+                parent.rightChild = current.rightChild;
+            }
+        } // if there are two children, replace with inorder successor
+        else {
+            //get successor of node to delete of current
+            Node successor = getSuccessor(current);
+
+            // connect parent of current to successor instead
+            if (current == root) {
+                root = successor;
+            } else if (isLeftChild) {
+                parent.leftChild = successor;
+            } else {
+                parent.rightChild = successor;
+            }
+
+            // connect successor to current&#x27;s left child
+            successor.leftChild = current.leftChild;
+
+            // NOTE: successor cannot have a left child
+        }
+
+        return true;
+
+    }
+
+    // return node with the next highest value after the delete node
+    // goes to right child, then right child&#x27;s lef descendent&#x27;s
+    private Node getSuccessor(Node deleteNode) {
+        Node successorParent = deleteNode;
+        Node successor = deleteNode;
+        Node current = deleteNode.rightChild;
+
+        while (current != null) {
+            successorParent = successor;
+            successor = current;
+            current = current.leftChild;
+        }
+
+        // if successor not successful
+        if (successor != deleteNode.rightChild) {
+            successorParent.leftChild = successor.rightChild;
+            successor.rightChild = deleteNode.rightChild;
+        }
+
+        return successor;
+    }
+
+    public void traverse2() {
+
+        System.out.print(&quot;\nPreorder Traversal: &quot;);
+        preorder(root);
+
+        System.out.print(&quot;\nInorder Traversal: &quot;);
+        inorder(root);
+
+        System.out.print(&quot;\nPostorder Traversal: &quot;);
+        postorder(root);
+
+    }
+
+    private void preorder(Node nodeStart) {
+        if (nodeStart != null) {
+            System.out.print(nodeStart.key + &quot; &quot;);
+            preorder(nodeStart.leftChild);
+            preorder(nodeStart.rightChild);
+        }
+    }
+
+    private void inorder(Node nodeStart) {
+        if (nodeStart != null) {
+            inorder(nodeStart.leftChild);
+            System.out.print(nodeStart.key + &quot; &quot;);
+            inorder(nodeStart.rightChild);
+        }
+    }
+
+    private void postorder(Node nodeStart) {
+        if (nodeStart != null) {
+            postorder(nodeStart.leftChild);
+            postorder(nodeStart.rightChild);
+            System.out.print(nodeStart.key + &quot; &quot;);
+        }
+    }
+
+    public void displayTree() {
+        Stack globalStack = new Stack();
+        globalStack.push(root);
+
+        int nBlanks = 32;
+
+        boolean isRowEmpty = false;
+
+        System.out.println(
+                &quot;\n..........         Display Tree     ..........................&quot;);
+
+        while (!isRowEmpty) {
+            Stack localStack = new Stack();
+            isRowEmpty = true;
+
+            for (int j = 0; j &lt; nBlanks; j++) {
+                System.out.print(&quot; &quot;);
+            }
+
+            while (globalStack.isEmpty() == false) {
+                Node temp = (Node) globalStack.pop();
+                if (temp != null) {
+                    System.out.print(temp.data);
+                    localStack.push(temp.leftChild);
+                    localStack.push(temp.rightChild);
+
+                    if (temp.leftChild != null || temp.rightChild != null) {
+                        isRowEmpty = false;
+                    }
+                } else {
+                    System.out.print(&quot;--&quot;);
+                    localStack.push(null);
+                    localStack.push(null);
+                }
+
+                for (int j = 0; j &lt; nBlanks * 2 - 2; j++) {
+                    System.out.print(&#x27; &#x27;);
+                }
+            }//while
+
+            System.out.println();
+            nBlanks /= 2;
+            while (localStack.isEmpty() == false) {
+                globalStack.push(localStack.pop());
+            }
+        }
+        // for separation
+        System.out.println(&quot;---------------------------&quot;);
+    } // display tree
+
+}
+
+public class BTreeDemoOne {
+
+    static Scanner myScan = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+        String quit = &quot;n&quot;;
+
+        int findValue = 0;
+        int deleteValue = 0;
+        int insertValue = 0;
+        
+        boolean result = false;
+
+        Tree theTree = new Tree();
+
+        while (!quit.equals(&quot;y&quot;)) {
+            theTree.insert(50, 50);
+            theTree.insert(25, 25);
+            theTree.insert(75, 75);
+            theTree.insert(12, 12);
+            theTree.insert(37, 37);
+            theTree.insert(43, 43);
+            theTree.insert(30, 30);
+            theTree.insert(33, 33);
+            theTree.insert(87, 87);
+            theTree.insert(93, 93);
+            theTree.insert(97, 97);
+            theTree.insert(70, 70);
+            theTree.insert(60, 60);
+
+            theTree.displayTree();
+
+            theTree.insert(85, 85);
+            theTree.insert(47, 47);
+            
+
+            theTree.displayTree();
+
+            try {
+                System.out.print(&quot;Enter an integer to insert &quot;
+                        + &quot;or letter to skip: &quot;);
+                insertValue = Integer.parseInt(myScan.nextLine());
+                theTree.insert(insertValue, insertValue);
+                theTree.displayTree();
+                
+            } catch (Exception e) {
+            }
+            
+            
+            theTree.traverse2();
+            try {
+                
+                System.out.print(&quot;\nEnter Value To Find or letter to skip: &quot;);
+                findValue = Integer.parseInt(myScan.nextLine());
+                theTree.find(findValue);
+
+            
+                System.out.println(&quot;\nEnter value to delete: &quot;);
+                deleteValue = Integer.parseInt(myScan.nextLine());
+
+                if (theTree.delete(deleteValue)) {
+                    theTree.displayTree();
+                } else {
+                    System.out.println(&quot;NOT FOUND&quot;);
+                }
+            } catch (Exception e) {
+            }
+
+            System.out.print(&quot;Would you like to quit y/n: &quot;);
+            quit = myScan.nextLine().toLowerCase();
+
+        }
+
+        System.out.println(&quot;\nbye\n&quot;);
+    }
+
+}
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><p>BST as Class</p><div class="relative myst-code group not-prose my-5 text-sm shadow hover:shadow-md dark:shadow-2xl dark:shadow-neutral-900 bg-stone-200/10"><pre class="block overflow-auto p-3 myst-code-body hljs" style="background-color:unset"><code class="language-java" style="white-space:pre">/*
+    Change the package to your specific package
+ */
+package ds_redblacktree_rev2_separateclass;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+/**
+ *
+ * @author jgoudy
+ */
+public class BinaryTreeSearch
+{
+
+    class Node
+    {
+
+        int key;
+        Node left;
+        Node right;
+        
+        
+
+        Node(int key)
+        {
+            this.key = key;
+            right = null;
+            left = null;
+        }
+    }
+
+    Node root;
+    public int trip = 0;
+
+    public void add(int key)
+    {
+        root = addRecursive(root, key);
+    }
+
+    private Node addRecursive(Node current, int key)
+    {
+
+        if (current == null)
+        {
+            return new Node(key);
+        }
+
+        if (key &lt; current.key)
+        {
+            current.left = addRecursive(current.left, key);
+        } else if (key &gt; current.key)
+        {
+            current.right = addRecursive(current.right, key);
+        }
+
+        return current;
+    }
+
+    public boolean isEmpty()
+    {
+        return root == null;
+    }
+
+    public int getSize()
+    {
+        return getSizeRecursive(root);
+    }
+
+    private int getSizeRecursive(Node current)
+    {
+        return current == null ? 0 : getSizeRecursive(current.left)
+                + 1 + getSizeRecursive(current.right);
+    }
+
+    public boolean containsNode(int key)
+    {
+        trip = 0;
+        return containsNodeRecursive(root, key);
+    }
+
+    private boolean containsNodeRecursive(Node current, int key)
+    {
+        if (current == null)
+        {
+            return false;
+        }
+        trip++;
+        if (key == current.key)
+        {
+            return true;
+        }
+
+        return key &lt; current.key
+                ? containsNodeRecursive(current.left, key)
+                : containsNodeRecursive(current.right, key);
+    }
+
+    public void delete(int key)
+    {
+        root = deleteRecursive(root, key);
+    }
+
+    private Node deleteRecursive(Node current, int key)
+    {
+        if (current == null)
+        {
+            return null;
+        }
+
+        if (key == current.key)
+        {
+            // Case 1: no children
+            if (current.left == null &amp;&amp; current.right == null)
+            {
+                return null;
+            }
+
+            // Case 2: only 1 child
+            if (current.right == null)
+            {
+                return current.left;
+            }
+
+            if (current.left == null)
+            {
+                return current.right;
+            }
+
+            // Case 3: 2 children
+            int smallestValue = findSmallestValue(current.right);
+            current.key = smallestValue;
+            current.right = deleteRecursive(current.right, smallestValue);
+            return current;
+        }
+        if (key &lt; current.key)
+        {
+            current.left = deleteRecursive(current.left, key);
+            return current;
+        }
+
+        current.right = deleteRecursive(current.right, key);
+        return current;
+    }
+
+    public int findSmallestValue(Node root)
+    {
+        return root.left == null ? root.key : findSmallestValue(root.left);
+    }
+
+    public int findLargestValue(Node root)
+    {
+        return root.left == null ? root.key : findLargestValue(root.right);
+    }
+
+    public void traverseInOrder(Node node)
+    {
+        if (node != null)
+        {
+            traverseInOrder(node.left);
+            visit(node.key);
+            traverseInOrder(node.right);
+        }
+    }
+
+    public void traversePreOrder(Node node)
+    {
+        if (node != null)
+        {
+            visit(node.key);
+            traversePreOrder(node.left);
+            traversePreOrder(node.right);
+        }
+    }
+
+    public void traversePostOrder(Node node)
+    {
+        if (node != null)
+        {
+            traversePostOrder(node.left);
+            traversePostOrder(node.right);
+            visit(node.key);
+        }
+    }
+
+    public void traverseLevelOrder()
+    {
+        if (root == null)
+        {
+            return;
+        }
+
+        Queue&lt;Node&gt; nodes = new LinkedList&lt;&gt;();
+        nodes.add(root);
+
+        while (!nodes.isEmpty())
+        {
+
+            Node node = nodes.remove();
+
+            System.out.print(&quot; &quot; + node.key);
+
+            if (node.left != null)
+            {
+                nodes.add(node.left);
+            }
+
+            if (node.left != null)
+            {
+                nodes.add(node.right);
+            }
+        }
+    }
+
+    public void traverseInOrderWithoutRecursion()
+    {
+        Stack&lt;Node&gt; stack = new Stack&lt;Node&gt;();
+        Node current = root;
+        stack.push(root);
+        while (!stack.isEmpty())
+        {
+            while (current.left != null)
+            {
+                current = current.left;
+                stack.push(current);
+            }
+            current = stack.pop();
+            visit(current.key);
+            if (current.right != null)
+            {
+                current = current.right;
+                stack.push(current);
+            }
+        }
+    }
+
+    public void traversePreOrderWithoutRecursion()
+    {
+        Stack&lt;Node&gt; stack = new Stack&lt;Node&gt;();
+        Node current = root;
+        stack.push(root);
+        while (!stack.isEmpty())
+        {
+            current = stack.pop();
+            visit(current.key);
+
+            if (current.right != null)
+            {
+                stack.push(current.right);
+            }
+
+            if (current.left != null)
+            {
+                stack.push(current.left);
+            }
+        }
+    }
+
+    public void traversePostOrderWithoutRecursion()
+    {
+        Stack&lt;Node&gt; stack = new Stack&lt;Node&gt;();
+        Node prev = root;
+        Node current = root;
+        stack.push(root);
+
+        while (!stack.isEmpty())
+        {
+            current = stack.peek();
+            boolean hasChild = (current.left != null || current.right != null);
+            boolean isPrevLastChild = (prev == current.right
+                    || (prev == current.left &amp;&amp; current.right == null));
+
+            if (!hasChild || isPrevLastChild)
+            {
+                current = stack.pop();
+                visit(current.key);
+                prev = current;
+            } else
+            {
+                if (current.right != null)
+                {
+                    stack.push(current.right);
+                }
+                if (current.left != null)
+                {
+                    stack.push(current.left);
+                }
+            }
+        }
+    }
+
+    private void visit(int key)
+    {
+        System.out.print(&quot; &quot; + key);
+    }
+
+}
+</code></pre><button title="Copy to Clipboard" class="inline-flex items-center opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100 active:opacity-100 cursor-pointer ml-2 transition-color duration-200 ease-in-out text-blue-400 hover:text-blue-500 absolute right-1 myst-code-copy-icon top-1" aria-pressed="false" aria-label="Copy code to clipboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path></svg></button></div><div class="myst-backmatter-parts"></div><div class="myst-footer-links flex pt-10 mb-10 space-x-4"><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-prev" href="/CSCI232/xbst-iterative-recursion-search"><div class="flex h-full align-middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:-translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path></svg><div class="flex-grow text-right"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">Algorithms</div>Demonstrate BST using iterative looping and recursion</div></div></a><a class="myst-footer-link flex-1 block p-4 font-normal text-gray-600 no-underline border border-gray-200 rounded shadow-sm group hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 dark:text-gray-100 dark:border-gray-500 hover:shadow-lg dark:shadow-neutral-700 myst-footer-link-next" href="/CSCI232/xbst-avltree"><div class="flex h-full align-middle"><div class="flex-grow"><div class="myst-footer-link-group text-xs text-gray-500 dark:text-gray-400">Algorithms</div>AVL Tree</div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" width="1.5rem" height="1.5rem" class="myst-footer-link-icon self-center transition-transform group-hover:translate-x-1 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path></svg></div></a></div></article></main><script>((a,l)=>{if(!window.history.state||!window.history.state.key){let u=Math.random().toString(32).slice(2);window.history.replaceState({key:u},"")}try{let d=JSON.parse(sessionStorage.getItem(a)||"{}")[l||window.history.state.key];typeof d=="number"&&window.scrollTo(0,d)}catch(u){console.error(u),sessionStorage.removeItem(a)}})("positions", null)</script><link rel="modulepreload" href="/CSCI232/build/entry.client-PCJPW7TK.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-AQ2CODAG.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-JJXTQVMA.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-OZE3FFNP.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-G62B6HZR.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-C4DFGG5C.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-J7TUH54J.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-FZ2S7OYD.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-JEM6JXYA.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-34XIY2DH.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-KQM5FBHR.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-OCWQY3HK.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-7HNKBP4B.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-CUKUDK3R.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-3EBOCCHJ.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-O4VQNZ62.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-4OEDG4JQ.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-GUCIBHGO.js"/><link rel="modulepreload" href="/CSCI232/build/root-PMP5BIHC.js"/><link rel="modulepreload" href="/CSCI232/build/_shared/chunk-IX5KPAHP.js"/><link rel="modulepreload" href="/CSCI232/build/routes/$-5ZLZ2O3Y.js"/><script>window.__remixContext = {"url":"/xbst-binarysearchtree","state":{"loaderData":{"root":{"config":{"version":2,"myst":"1.6.0","options":{"logo_text":"CSCI 211","folders":true},"parts":{"primary_sidebar_footer":{"mdast":{"type":"root","children":[{"type":"block","data":{"part":"primary_sidebar_footer"},"children":[{"type":"paragraph","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"children":[{"type":"text","value":"© 2026 by James Goudy","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"key":"JNqyZV4dE3"}],"key":"rHtYhRJkF4"}],"key":"Q6hsjbFdwJ"}],"key":"bEhouLfs9N"},"frontmatter":{"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\CSCI232_algobook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024"}}},"nav":[],"actions":[],"projects":[{"bibliography":["C:\\a_books\\CSCI232_algobook\\references.bib"],"exports":[],"title":"Algorithms","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\CSCI232_algobook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024","toc":[{"file":"intro.md"},{"file":"xCSCI232_Intro.md"},{"children":[{"file":"xTerms_Radix.md"},{"file":"xTerms_Serializable.md"},{"file":"xTerms_Iterator.md"}],"file":"xTerms.md"},{"children":[{"file":"xBST_Applications.md"},{"file":"xBST_Comparisons.md"},{"file":"xBST_TreeTraversal.md"},{"file":"xBST_Iterative_Recursion_Search.md"},{"file":"xBST_BinarySearchTree.md"},{"file":"xBST_AVLTree.md"},{"file":"xBST_RedBlack.md"},{"file":"xBST_ComparisionTable.md"},{"file":"xBST_SplayTrees_2025.md"}],"file":"xBST_Intro.md"},{"children":[{"file":"xHashing_UnderstandingHashTables.md"},{"file":"xHashing_ModulusHashFunction.md"},{"file":"xHashing_Chaining.md"},{"file":"xHashing_OpenAddressing.md"},{"file":"xHashing_OpenAddressingHashingCodeExamples.md"}],"file":"xHashing_HashTable.md"},{"file":"xSkipList.md"},{"children":[{"file":"xGraphsAnalysisOfBFSandDFS.md"},{"file":"xUnderstandingBFS_202504.md"},{"file":"xUnderstandingDFS_202504.md"},{"file":"xGraphsSevenBridges.md"},{"file":"xGraphsDFS.md"},{"file":"xGraphsBFS.md"},{"file":"xDFSStoredPaths.md"},{"file":"xGraphsMazeSolverDFS.md"},{"file":"xGraphsDijkstra.md"}],"file":"xGraphs.md"},{"file":"xHuffmanCode.md"},{"file":"xSerializable.md"},{"children":[{"file":"xJavaHashMapTreeMapLinkedHashMap.md"},{"file":"xHashSetLinkedHashSetTreeSetComparision.md"},{"file":"xProgrammingToTheInterfacemd.md"}],"file":"xJAVATechniques.md"},{"file":"xEnd.md"}],"index":"index","pages":[{"slug":"xcsci232-intro","title":"CSCI 232 Data Structures and Algorithms","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xterms","title":"Terms and Concepts","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xterms-radix","title":"Radix - Number Bases","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xterms-serializable","title":"Serializable","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xterms-iterator","title":"Iterator","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-intro","title":"Binary Search Tree - Intro","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbst-applications","title":"Applications That Use Binary Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-comparisons","title":"Binary Tree Comparisons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-treetraversal","title":"Tree Traversal","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-iterative-recursion-search","title":"Demonstrate BST using iterative looping and recursion","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-binarysearchtree","title":"Binary Search Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-avltree","title":"AVL Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-redblack","title":"Red Black Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-comparisiontable","title":"BST AVL Red Black Tree Comparisons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-splaytrees-2025","title":"Splay Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-hashtable","title":"Hash Table","description":"","date":"","thumbnail":"/CSCI232/build/f694c399ae1cdea2e011d1ecd6ed8d9d.jpeg","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhashing-understandinghashtables","title":"Understanding Hash Tables and Hash Functions*","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-modulushashfunction","title":"Modulus Hash Function","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-chaining","title":"Hash Tables - Chaining","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-openaddressing","title":"Hash Table - Open Addressing","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-openaddressinghashingcodeexamples","title":"Java code for double hashing in a hash table:","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xskiplist","title":"Skip List","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xgraphs","title":"Graphs","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xgraphsanalysisofbfsanddfs","title":"A Comparative Analysis of Breadth-First Search and Depth-First Search Algorithms","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingbfs-202504","title":"Understanding Breadth-First Search (BFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingdfs-202504","title":"Understanding Depth-First Search (DFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphssevenbridges","title":"Seven Bridges of Königsberg","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsdfs","title":"Depth-First Search (DFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsbfs","title":"Breadth First","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdfsstoredpaths","title":"DFS - Stored Paths","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsmazesolverdfs","title":"DSF - Maze Solving","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsdijkstra","title":"Dijkstra’s Algorithm","description":"","date":"","thumbnail":"/CSCI232/build/dijkstra_example-8cca3c2c620cd1d44d2c9745b698d02d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhuffmancode","title":"Huffman Code","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xserializable","title":"Serialization","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjavatechniques","title":"JAVA Techniques","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjavahashmaptreemaplinkedhashmap","title":"Examples of Java’s HashMap, TreeMap, and LinkedHashMap","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashsetlinkedhashsettreesetcomparision","title":"HashSet, LinkedHashSet, and TreeSet Comparision","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xprogrammingtotheinterfacemd","title":"Programming To The Interface, Not The Implementation\"","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xend","title":"End","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1}]}]},"CONTENT_CDN_PORT":"3100","MODE":"static","BASE_URL":"/CSCI232"},"routes/$":{"config":{"version":2,"myst":"1.6.0","options":{"logo_text":"CSCI 211","folders":true},"parts":{"primary_sidebar_footer":{"mdast":{"type":"root","children":[{"type":"block","data":{"part":"primary_sidebar_footer"},"children":[{"type":"paragraph","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"children":[{"type":"text","value":"© 2026 by James Goudy","position":{"start":{"line":1,"column":1},"end":{"line":1,"column":1}},"key":"JNqyZV4dE3"}],"key":"rHtYhRJkF4"}],"key":"Q6hsjbFdwJ"}],"key":"bEhouLfs9N"},"frontmatter":{"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\CSCI232_algobook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024"}}},"nav":[],"actions":[],"projects":[{"bibliography":["C:\\a_books\\CSCI232_algobook\\references.bib"],"exports":[],"title":"Algorithms","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\CSCI232_algobook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024","toc":[{"file":"intro.md"},{"file":"xCSCI232_Intro.md"},{"children":[{"file":"xTerms_Radix.md"},{"file":"xTerms_Serializable.md"},{"file":"xTerms_Iterator.md"}],"file":"xTerms.md"},{"children":[{"file":"xBST_Applications.md"},{"file":"xBST_Comparisons.md"},{"file":"xBST_TreeTraversal.md"},{"file":"xBST_Iterative_Recursion_Search.md"},{"file":"xBST_BinarySearchTree.md"},{"file":"xBST_AVLTree.md"},{"file":"xBST_RedBlack.md"},{"file":"xBST_ComparisionTable.md"},{"file":"xBST_SplayTrees_2025.md"}],"file":"xBST_Intro.md"},{"children":[{"file":"xHashing_UnderstandingHashTables.md"},{"file":"xHashing_ModulusHashFunction.md"},{"file":"xHashing_Chaining.md"},{"file":"xHashing_OpenAddressing.md"},{"file":"xHashing_OpenAddressingHashingCodeExamples.md"}],"file":"xHashing_HashTable.md"},{"file":"xSkipList.md"},{"children":[{"file":"xGraphsAnalysisOfBFSandDFS.md"},{"file":"xUnderstandingBFS_202504.md"},{"file":"xUnderstandingDFS_202504.md"},{"file":"xGraphsSevenBridges.md"},{"file":"xGraphsDFS.md"},{"file":"xGraphsBFS.md"},{"file":"xDFSStoredPaths.md"},{"file":"xGraphsMazeSolverDFS.md"},{"file":"xGraphsDijkstra.md"}],"file":"xGraphs.md"},{"file":"xHuffmanCode.md"},{"file":"xSerializable.md"},{"children":[{"file":"xJavaHashMapTreeMapLinkedHashMap.md"},{"file":"xHashSetLinkedHashSetTreeSetComparision.md"},{"file":"xProgrammingToTheInterfacemd.md"}],"file":"xJAVATechniques.md"},{"file":"xEnd.md"}],"index":"index","pages":[{"slug":"xcsci232-intro","title":"CSCI 232 Data Structures and Algorithms","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xterms","title":"Terms and Concepts","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xterms-radix","title":"Radix - Number Bases","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xterms-serializable","title":"Serializable","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xterms-iterator","title":"Iterator","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-intro","title":"Binary Search Tree - Intro","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbst-applications","title":"Applications That Use Binary Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-comparisons","title":"Binary Tree Comparisons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-treetraversal","title":"Tree Traversal","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-iterative-recursion-search","title":"Demonstrate BST using iterative looping and recursion","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-binarysearchtree","title":"Binary Search Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-avltree","title":"AVL Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-redblack","title":"Red Black Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-comparisiontable","title":"BST AVL Red Black Tree Comparisons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-splaytrees-2025","title":"Splay Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-hashtable","title":"Hash Table","description":"","date":"","thumbnail":"/CSCI232/build/f694c399ae1cdea2e011d1ecd6ed8d9d.jpeg","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhashing-understandinghashtables","title":"Understanding Hash Tables and Hash Functions*","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-modulushashfunction","title":"Modulus Hash Function","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-chaining","title":"Hash Tables - Chaining","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-openaddressing","title":"Hash Table - Open Addressing","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-openaddressinghashingcodeexamples","title":"Java code for double hashing in a hash table:","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xskiplist","title":"Skip List","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xgraphs","title":"Graphs","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xgraphsanalysisofbfsanddfs","title":"A Comparative Analysis of Breadth-First Search and Depth-First Search Algorithms","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingbfs-202504","title":"Understanding Breadth-First Search (BFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingdfs-202504","title":"Understanding Depth-First Search (DFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphssevenbridges","title":"Seven Bridges of Königsberg","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsdfs","title":"Depth-First Search (DFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsbfs","title":"Breadth First","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdfsstoredpaths","title":"DFS - Stored Paths","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsmazesolverdfs","title":"DSF - Maze Solving","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsdijkstra","title":"Dijkstra’s Algorithm","description":"","date":"","thumbnail":"/CSCI232/build/dijkstra_example-8cca3c2c620cd1d44d2c9745b698d02d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhuffmancode","title":"Huffman Code","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xserializable","title":"Serialization","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjavatechniques","title":"JAVA Techniques","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjavahashmaptreemaplinkedhashmap","title":"Examples of Java’s HashMap, TreeMap, and LinkedHashMap","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashsetlinkedhashsettreesetcomparision","title":"HashSet, LinkedHashSet, and TreeSet Comparision","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xprogrammingtotheinterfacemd","title":"Programming To The Interface, Not The Implementation\"","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xend","title":"End","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1}]}]},"page":{"version":3,"kind":"Article","sha256":"00f9b1a5d73e344936f2b41cc014f7e8afbd47624e07479c836012e4d245b2af","slug":"xbst-binarysearchtree","location":"/xBST_BinarySearchTree.md","dependencies":[],"frontmatter":{"title":"Binary Search Tree","content_includes_title":false,"authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\CSCI232_algobook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024","numbering":{"title":{"offset":1}},"exports":[{"format":"md","filename":"xBST_BinarySearchTree.md","url":"/CSCI232/build/xBST_BinarySearchTre-1472daeeaaa2e611b2db354c7a79ef40.md"}]},"mdast":{"type":"root","children":[{"type":"block","children":[{"type":"heading","depth":2,"position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"children":[{"type":"text","value":"Background Information","position":{"start":{"line":3,"column":1},"end":{"line":3,"column":1}},"key":"p6hSoFTjls"}],"identifier":"background-information","label":"Background Information","html_id":"background-information","implicit":true,"key":"ly74nkbHqP"},{"type":"paragraph","position":{"start":{"line":5,"column":1},"end":{"line":5,"column":1}},"children":[{"type":"text","value":"A binary search tree (BST) is a special type of binary tree data structure used to efficiently store and access sorted data. It’s like a regular tree, but with additional rules that keep everything neatly organized:","position":{"start":{"line":5,"column":1},"end":{"line":5,"column":1}},"key":"sqyAUX394Z"}],"key":"DhMKblOSP9"},{"type":"paragraph","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"children":[{"type":"strong","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"children":[{"type":"text","value":"Key features:","position":{"start":{"line":9,"column":1},"end":{"line":9,"column":1}},"key":"vjVNWSXE9A"}],"key":"TKnoXzOf0g"}],"key":"cWrZk3oOJI"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":11,"column":1},"end":{"line":17,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"children":[{"type":"strong","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"children":[{"type":"text","value":"Ordering:","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"K7OLHM8ixf"}],"key":"VKURYBi949"},{"type":"text","value":" Each node in the tree has a value (key), and the key of a node is ","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"hXq6k69iIb"},{"type":"strong","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"children":[{"type":"text","value":"always greater than","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"HoIqOz9MX1"}],"key":"HtSHWACtFA"},{"type":"text","value":" all the keys in its ","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"Zt0F3hEhp8"},{"type":"strong","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"children":[{"type":"text","value":"left subtree","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"Nl20U5GJNl"}],"key":"RFoQv7vTgX"},{"type":"text","value":" and ","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"kBCsfCdLOn"},{"type":"strong","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"children":[{"type":"text","value":"less than","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"eHY7qz3SZ5"}],"key":"B1vg3Y6NKS"},{"type":"text","value":" all the keys in its ","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"W9LxQkLkBa"},{"type":"strong","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"children":[{"type":"text","value":"right subtree","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"XU3OP1nQvE"}],"key":"nf6AXYhMKs"},{"type":"text","value":". This creates a sorted order throughout the tree.","position":{"start":{"line":11,"column":1},"end":{"line":11,"column":1}},"key":"COdDWx4gXB"}],"key":"cS2QxWZLES"},{"type":"listItem","spread":true,"position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"children":[{"type":"strong","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"children":[{"type":"text","value":"Efficient searching:","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"key":"xYVrT22LiS"}],"key":"zDalLHZWDI"},{"type":"text","value":" Because of this ordering, you can very quickly search for specific values in the tree. Imagine searching a phone book - you wouldn’t start at the very beginning or end, but somewhere in the middle based on the last name. Similarly, in a BST, you can efficiently move left or right depending on the value you’re searching for, narrowing down the possibilities with each comparison.","position":{"start":{"line":12,"column":1},"end":{"line":12,"column":1}},"key":"Uj2zDH39Kq"}],"key":"Xv5aPXgN4g"},{"type":"listItem","spread":true,"position":{"start":{"line":13,"column":1},"end":{"line":13,"column":1}},"children":[{"type":"strong","position":{"start":{"line":13,"column":1},"end":{"line":13,"column":1}},"children":[{"type":"text","value":"Dynamic insertions and deletions:","position":{"start":{"line":13,"column":1},"end":{"line":13,"column":1}},"key":"VaIyDflVDv"}],"key":"vXDKRhPHuO"},{"type":"text","value":" You can easily add new values (insert) or remove existing ones (delete) from the tree while maintaining the sorted order. The process involves comparing the new value with existing nodes and finding its appropriate place based on the ordering rule.","position":{"start":{"line":13,"column":1},"end":{"line":13,"column":1}},"key":"nRJSw8rKyo"}],"key":"qiYui3PoxS"},{"type":"listItem","spread":true,"position":{"start":{"line":14,"column":1},"end":{"line":17,"column":1}},"children":[{"type":"strong","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"children":[{"type":"text","value":"No Duplicates","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"key":"ulcidUXztw"}],"key":"ty8hnAcSnX"},{"type":"text","value":": Typically, BSTs do ","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"key":"MDYsMvUL8W"},{"type":"strong","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"children":[{"type":"text","value":"not","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"key":"ogGnLLzD53"}],"key":"tvEPyNwi5B"},{"type":"text","value":" allow duplicate values, although variations exist that permit duplicates with specific rules (e.g., storing duplicates in the left or right subtree).","position":{"start":{"line":14,"column":1},"end":{"line":14,"column":1}},"key":"zD4QQkLINm"}],"key":"aNG333R6o2"}],"key":"CmexAZrnBL"},{"type":"paragraph","position":{"start":{"line":18,"column":1},"end":{"line":18,"column":1}},"children":[{"type":"strong","position":{"start":{"line":18,"column":1},"end":{"line":18,"column":1}},"children":[{"type":"text","value":"Benefits of using BSTs:","position":{"start":{"line":18,"column":1},"end":{"line":18,"column":1}},"key":"fqRr1qUdLP"}],"key":"CVFnDaNDBW"}],"key":"o5B36abRYo"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":20,"column":1},"end":{"line":25,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"children":[{"type":"strong","position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"children":[{"type":"text","value":"Fast search:","position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"key":"vzGh1hWfgt"}],"key":"wZ6j37JvXA"},{"type":"text","value":" Searching for elements in a balanced BST takes ","position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"key":"DYtn49uIDt"},{"type":"strong","position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"children":[{"type":"text","value":"logarithmic time","position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"key":"SzuaWd8FUJ"}],"key":"n4PlSJgKis"},{"type":"text","value":" on average, which is significantly faster than searching an unsorted list.","position":{"start":{"line":20,"column":1},"end":{"line":20,"column":1}},"key":"QfKUwSiN3a"}],"key":"IaicHDOGnV"},{"type":"listItem","spread":true,"position":{"start":{"line":21,"column":1},"end":{"line":21,"column":1}},"children":[{"type":"strong","position":{"start":{"line":21,"column":1},"end":{"line":21,"column":1}},"children":[{"type":"text","value":"Ordered access:","position":{"start":{"line":21,"column":1},"end":{"line":21,"column":1}},"key":"VwPT5x1X86"}],"key":"q1RCKeJKrl"},{"type":"text","value":" You can easily traverse the tree in sorted order (e.g., for printing all elements in ascending order).","position":{"start":{"line":21,"column":1},"end":{"line":21,"column":1}},"key":"SSzPAcint5"}],"key":"EhKviOZbR0"},{"type":"listItem","spread":true,"position":{"start":{"line":22,"column":1},"end":{"line":25,"column":1}},"children":[{"type":"strong","position":{"start":{"line":22,"column":1},"end":{"line":22,"column":1}},"children":[{"type":"text","value":"Efficient insertions and deletions:","position":{"start":{"line":22,"column":1},"end":{"line":22,"column":1}},"key":"IWJC7PmdNW"}],"key":"dPir3zfFNf"},{"type":"text","value":" These operations can also be done in logarithmic time in balanced BSTs.","position":{"start":{"line":22,"column":1},"end":{"line":22,"column":1}},"key":"jScp3YRNut"}],"key":"kzNZruK35D"}],"key":"qXkztyfuNl"},{"type":"paragraph","position":{"start":{"line":26,"column":1},"end":{"line":26,"column":1}},"children":[{"type":"strong","position":{"start":{"line":26,"column":1},"end":{"line":26,"column":1}},"children":[{"type":"text","value":"However, BSTs also have some drawbacks:","position":{"start":{"line":26,"column":1},"end":{"line":26,"column":1}},"key":"T70Kmb7Ev8"}],"key":"bCYgOnQ6Ua"}],"key":"ZtD4MHoNRh"},{"type":"list","ordered":false,"spread":false,"position":{"start":{"line":28,"column":1},"end":{"line":32,"column":1}},"children":[{"type":"listItem","spread":true,"position":{"start":{"line":28,"column":1},"end":{"line":28,"column":1}},"children":[{"type":"strong","position":{"start":{"line":28,"column":1},"end":{"line":28,"column":1}},"children":[{"type":"text","value":"Performance depends on balance:","position":{"start":{"line":28,"column":1},"end":{"line":28,"column":1}},"key":"yV3OMZE6xv"}],"key":"lRYExLpzNv"},{"type":"text","value":" The efficiency of BST operations relies heavily on the tree’s balance. An unbalanced tree can perform much worse than a balanced one.","position":{"start":{"line":28,"column":1},"end":{"line":28,"column":1}},"key":"Bf1AgMylZL"}],"key":"V2LXRjnlYp"},{"type":"listItem","spread":true,"position":{"start":{"line":29,"column":1},"end":{"line":32,"column":1}},"children":[{"type":"strong","position":{"start":{"line":29,"column":1},"end":{"line":29,"column":1}},"children":[{"type":"text","value":"Not self-balancing:","position":{"start":{"line":29,"column":1},"end":{"line":29,"column":1}},"key":"qnKmY3pAR1"}],"key":"RvqPqAlEJe"},{"type":"text","value":" By default, BSTs are not self-balancing, meaning insertions and deletions can sometimes lead to imbalances. Special techniques are needed to maintain balance and ensure optimal performance.","position":{"start":{"line":29,"column":1},"end":{"line":29,"column":1}},"key":"O17QWfOVfZ"}],"key":"vUYrAbOty9"}],"key":"nxQyHKueZg"},{"type":"paragraph","position":{"start":{"line":33,"column":1},"end":{"line":33,"column":1}},"children":[{"type":"text","value":"Overall, binary search trees are a powerful and versatile data structure for storing and managing sorted data efficiently. They offer fast search, insertion, and deletion operations, making them suitable for various applications like symbol tables, priority queues, and sorting algorithms.","position":{"start":{"line":33,"column":1},"end":{"line":33,"column":1}},"key":"dbettOXZud"}],"key":"wnY8JMdb5K"},{"type":"heading","depth":2,"position":{"start":{"line":39,"column":1},"end":{"line":39,"column":1}},"children":[{"type":"text","value":"Lecture Code","position":{"start":{"line":39,"column":1},"end":{"line":39,"column":1}},"key":"LREvYMxQN9"}],"identifier":"lecture-code","label":"Lecture Code","html_id":"lecture-code","implicit":true,"key":"xgUN7MEKxa"},{"type":"code","lang":"java","value":"/*\n * binary tree\n *\n */\npackage btreedemoone;\n\nimport java.util.Scanner;\nimport java.util.Stack;\n\nclass Node {\n\n    // key\n    public int key;\n\n    // data - that's a double\t\n    public int data;\n\n    // node characteristics\n    public Node leftChild;\n    public Node rightChild;\n\n    public Node(int key, int data) {\n        this.key = key;\n        this.data = data;\n    }\n\n    // display node\n    public void displayNode() {\n        System.out.print(\"{\" + key + \",\" + data + \"}\");\n    }\n\n}// end of node\n\nclass Tree {\n\n    private Node root;\n    static Scanner myScan = new Scanner(System.in);\n\n    public Tree() {\n        root = null;\n    }\n\n    public void insert(int key, int data) {\n        // newNode\n        Node newNode = new Node(key, data);\n        boolean run = true;\n\n        if (root == null) {\n            root = newNode;\n        } else {\n            Node current = root;\n            Node parent;\n\n            while (run) {\n                parent = current;\n\n                if (key \u003c current.key) //go left\n                {\n                    current = current.leftChild;\n\n                    if (current == null) {\n                        parent.leftChild = newNode;\n                        run = false;\n                    }\n                } else // go right\n                {\n                    current = current.rightChild;\n\n                    if (current == null) {\n                        parent.rightChild = newNode;\n                        run = false;\n                    }\n                }\n            }\n\n        }\n\n    }// end of insert\n\n    public Node find(int key) {\n\n        Node current = root;\n\n        // check if empty\n        if (root == null) {\n            System.out.println(\"** Tree is empty **\");\n            return null;\n        }\n\n        while (current.key != key) {\n\n            if (key \u003c current.key) // go left?\n            {\n                current = current.leftChild;\n            } else // go right\n            {\n                current = current.rightChild;\n            }\n\n            if (current == null) {\n                System.out.println(\"*** key not found ***\");\n                return null;\n            }\n        }\n\n        System.out.println(\"Key was FOUND\");\n        return current;\n    }\n\n    public boolean delete(int key) {\n        Node current = root;\n        Node parent = root;\n        boolean isLeftChild = true;\n\n        //check if empty\n        if (root == null) {\n            System.out.println(\"*** Tree is empty ***\");\n            return false;\n        }\n\n        // look for the key\n        while (current.key != key) {\n            parent = current;\n\n            if (key \u003c current.key) // go left?\n            {\n                isLeftChild = true;\n                current = current.leftChild;\n            } else // go right\n            {\n                isLeftChild = false;\n                current = current.rightChild;\n            }\n\n            if (current == null) {\n                System.out.println(\"*** key not found ***\");\n                return false;\n            }\n\n        }// end while\n\n        // found we are on the node to delete\n        // if there is no children - simply delete the node\n        if (current.leftChild == null \u0026\u0026 current.rightChild == null) {\n            //check if node is the root (there is only one node in tree)\n            if (current == root) {\n                root = null;\n            } else if (isLeftChild) {\n                parent.leftChild = null;\n            } else {\n                parent.rightChild = null;\n            }\n        } // if no right child, rplace with left subtree\n        else if (current.rightChild == null) {\n            if (current == root) {\n                root = current.leftChild;\n            } else if (isLeftChild) {\n                parent.leftChild = current.leftChild;\n            } else {\n                parent.rightChild = current.leftChild;\n            }\n        } //if no left child, replace with right subtree\n        else if (current.leftChild == null) {\n            if (current == root) {\n                root = current.rightChild;\n            } else if (isLeftChild) {\n                parent.leftChild = current.rightChild;\n            } else {\n                parent.rightChild = current.rightChild;\n            }\n        } // if there are two children, replace with inorder successor\n        else {\n            //get successor of node to delete of current\n            Node successor = getSuccessor(current);\n\n            // connect parent of current to successor instead\n            if (current == root) {\n                root = successor;\n            } else if (isLeftChild) {\n                parent.leftChild = successor;\n            } else {\n                parent.rightChild = successor;\n            }\n\n            // connect successor to current's left child\n            successor.leftChild = current.leftChild;\n\n            // NOTE: successor cannot have a left child\n        }\n\n        return true;\n\n    }\n\n    // return node with the next highest value after the delete node\n    // goes to right child, then right child's lef descendent's\n    private Node getSuccessor(Node deleteNode) {\n        Node successorParent = deleteNode;\n        Node successor = deleteNode;\n        Node current = deleteNode.rightChild;\n\n        while (current != null) {\n            successorParent = successor;\n            successor = current;\n            current = current.leftChild;\n        }\n\n        // if successor not successful\n        if (successor != deleteNode.rightChild) {\n            successorParent.leftChild = successor.rightChild;\n            successor.rightChild = deleteNode.rightChild;\n        }\n\n        return successor;\n    }\n\n    public void traverse2() {\n\n        System.out.print(\"\\nPreorder Traversal: \");\n        preorder(root);\n\n        System.out.print(\"\\nInorder Traversal: \");\n        inorder(root);\n\n        System.out.print(\"\\nPostorder Traversal: \");\n        postorder(root);\n\n    }\n\n    private void preorder(Node nodeStart) {\n        if (nodeStart != null) {\n            System.out.print(nodeStart.key + \" \");\n            preorder(nodeStart.leftChild);\n            preorder(nodeStart.rightChild);\n        }\n    }\n\n    private void inorder(Node nodeStart) {\n        if (nodeStart != null) {\n            inorder(nodeStart.leftChild);\n            System.out.print(nodeStart.key + \" \");\n            inorder(nodeStart.rightChild);\n        }\n    }\n\n    private void postorder(Node nodeStart) {\n        if (nodeStart != null) {\n            postorder(nodeStart.leftChild);\n            postorder(nodeStart.rightChild);\n            System.out.print(nodeStart.key + \" \");\n        }\n    }\n\n    public void displayTree() {\n        Stack globalStack = new Stack();\n        globalStack.push(root);\n\n        int nBlanks = 32;\n\n        boolean isRowEmpty = false;\n\n        System.out.println(\n                \"\\n..........         Display Tree     ..........................\");\n\n        while (!isRowEmpty) {\n            Stack localStack = new Stack();\n            isRowEmpty = true;\n\n            for (int j = 0; j \u003c nBlanks; j++) {\n                System.out.print(\" \");\n            }\n\n            while (globalStack.isEmpty() == false) {\n                Node temp = (Node) globalStack.pop();\n                if (temp != null) {\n                    System.out.print(temp.data);\n                    localStack.push(temp.leftChild);\n                    localStack.push(temp.rightChild);\n\n                    if (temp.leftChild != null || temp.rightChild != null) {\n                        isRowEmpty = false;\n                    }\n                } else {\n                    System.out.print(\"--\");\n                    localStack.push(null);\n                    localStack.push(null);\n                }\n\n                for (int j = 0; j \u003c nBlanks * 2 - 2; j++) {\n                    System.out.print(' ');\n                }\n            }//while\n\n            System.out.println();\n            nBlanks /= 2;\n            while (localStack.isEmpty() == false) {\n                globalStack.push(localStack.pop());\n            }\n        }\n        // for separation\n        System.out.println(\"---------------------------\");\n    } // display tree\n\n}\n\npublic class BTreeDemoOne {\n\n    static Scanner myScan = new Scanner(System.in);\n\n    public static void main(String[] args) {\n\n        String quit = \"n\";\n\n        int findValue = 0;\n        int deleteValue = 0;\n        int insertValue = 0;\n        \n        boolean result = false;\n\n        Tree theTree = new Tree();\n\n        while (!quit.equals(\"y\")) {\n            theTree.insert(50, 50);\n            theTree.insert(25, 25);\n            theTree.insert(75, 75);\n            theTree.insert(12, 12);\n            theTree.insert(37, 37);\n            theTree.insert(43, 43);\n            theTree.insert(30, 30);\n            theTree.insert(33, 33);\n            theTree.insert(87, 87);\n            theTree.insert(93, 93);\n            theTree.insert(97, 97);\n            theTree.insert(70, 70);\n            theTree.insert(60, 60);\n\n            theTree.displayTree();\n\n            theTree.insert(85, 85);\n            theTree.insert(47, 47);\n            \n\n            theTree.displayTree();\n\n            try {\n                System.out.print(\"Enter an integer to insert \"\n                        + \"or letter to skip: \");\n                insertValue = Integer.parseInt(myScan.nextLine());\n                theTree.insert(insertValue, insertValue);\n                theTree.displayTree();\n                \n            } catch (Exception e) {\n            }\n            \n            \n            theTree.traverse2();\n            try {\n                \n                System.out.print(\"\\nEnter Value To Find or letter to skip: \");\n                findValue = Integer.parseInt(myScan.nextLine());\n                theTree.find(findValue);\n\n            \n                System.out.println(\"\\nEnter value to delete: \");\n                deleteValue = Integer.parseInt(myScan.nextLine());\n\n                if (theTree.delete(deleteValue)) {\n                    theTree.displayTree();\n                } else {\n                    System.out.println(\"NOT FOUND\");\n                }\n            } catch (Exception e) {\n            }\n\n            System.out.print(\"Would you like to quit y/n: \");\n            quit = myScan.nextLine().toLowerCase();\n\n        }\n\n        System.out.println(\"\\nbye\\n\");\n    }\n\n}\n","position":{"start":{"line":41,"column":1},"end":{"line":426,"column":1}},"key":"rwXBjpqwAO"},{"type":"paragraph","position":{"start":{"line":430,"column":1},"end":{"line":430,"column":1}},"children":[{"type":"text","value":"BST as Class","position":{"start":{"line":430,"column":1},"end":{"line":430,"column":1}},"key":"kosl6VBp2D"}],"key":"It2axkX0IL"},{"type":"code","lang":"java","value":"/*\n    Change the package to your specific package\n */\npackage ds_redblacktree_rev2_separateclass;\n\nimport java.util.LinkedList;\nimport java.util.Queue;\nimport java.util.Stack;\n\n/**\n *\n * @author jgoudy\n */\npublic class BinaryTreeSearch\n{\n\n    class Node\n    {\n\n        int key;\n        Node left;\n        Node right;\n        \n        \n\n        Node(int key)\n        {\n            this.key = key;\n            right = null;\n            left = null;\n        }\n    }\n\n    Node root;\n    public int trip = 0;\n\n    public void add(int key)\n    {\n        root = addRecursive(root, key);\n    }\n\n    private Node addRecursive(Node current, int key)\n    {\n\n        if (current == null)\n        {\n            return new Node(key);\n        }\n\n        if (key \u003c current.key)\n        {\n            current.left = addRecursive(current.left, key);\n        } else if (key \u003e current.key)\n        {\n            current.right = addRecursive(current.right, key);\n        }\n\n        return current;\n    }\n\n    public boolean isEmpty()\n    {\n        return root == null;\n    }\n\n    public int getSize()\n    {\n        return getSizeRecursive(root);\n    }\n\n    private int getSizeRecursive(Node current)\n    {\n        return current == null ? 0 : getSizeRecursive(current.left)\n                + 1 + getSizeRecursive(current.right);\n    }\n\n    public boolean containsNode(int key)\n    {\n        trip = 0;\n        return containsNodeRecursive(root, key);\n    }\n\n    private boolean containsNodeRecursive(Node current, int key)\n    {\n        if (current == null)\n        {\n            return false;\n        }\n        trip++;\n        if (key == current.key)\n        {\n            return true;\n        }\n\n        return key \u003c current.key\n                ? containsNodeRecursive(current.left, key)\n                : containsNodeRecursive(current.right, key);\n    }\n\n    public void delete(int key)\n    {\n        root = deleteRecursive(root, key);\n    }\n\n    private Node deleteRecursive(Node current, int key)\n    {\n        if (current == null)\n        {\n            return null;\n        }\n\n        if (key == current.key)\n        {\n            // Case 1: no children\n            if (current.left == null \u0026\u0026 current.right == null)\n            {\n                return null;\n            }\n\n            // Case 2: only 1 child\n            if (current.right == null)\n            {\n                return current.left;\n            }\n\n            if (current.left == null)\n            {\n                return current.right;\n            }\n\n            // Case 3: 2 children\n            int smallestValue = findSmallestValue(current.right);\n            current.key = smallestValue;\n            current.right = deleteRecursive(current.right, smallestValue);\n            return current;\n        }\n        if (key \u003c current.key)\n        {\n            current.left = deleteRecursive(current.left, key);\n            return current;\n        }\n\n        current.right = deleteRecursive(current.right, key);\n        return current;\n    }\n\n    public int findSmallestValue(Node root)\n    {\n        return root.left == null ? root.key : findSmallestValue(root.left);\n    }\n\n    public int findLargestValue(Node root)\n    {\n        return root.left == null ? root.key : findLargestValue(root.right);\n    }\n\n    public void traverseInOrder(Node node)\n    {\n        if (node != null)\n        {\n            traverseInOrder(node.left);\n            visit(node.key);\n            traverseInOrder(node.right);\n        }\n    }\n\n    public void traversePreOrder(Node node)\n    {\n        if (node != null)\n        {\n            visit(node.key);\n            traversePreOrder(node.left);\n            traversePreOrder(node.right);\n        }\n    }\n\n    public void traversePostOrder(Node node)\n    {\n        if (node != null)\n        {\n            traversePostOrder(node.left);\n            traversePostOrder(node.right);\n            visit(node.key);\n        }\n    }\n\n    public void traverseLevelOrder()\n    {\n        if (root == null)\n        {\n            return;\n        }\n\n        Queue\u003cNode\u003e nodes = new LinkedList\u003c\u003e();\n        nodes.add(root);\n\n        while (!nodes.isEmpty())\n        {\n\n            Node node = nodes.remove();\n\n            System.out.print(\" \" + node.key);\n\n            if (node.left != null)\n            {\n                nodes.add(node.left);\n            }\n\n            if (node.left != null)\n            {\n                nodes.add(node.right);\n            }\n        }\n    }\n\n    public void traverseInOrderWithoutRecursion()\n    {\n        Stack\u003cNode\u003e stack = new Stack\u003cNode\u003e();\n        Node current = root;\n        stack.push(root);\n        while (!stack.isEmpty())\n        {\n            while (current.left != null)\n            {\n                current = current.left;\n                stack.push(current);\n            }\n            current = stack.pop();\n            visit(current.key);\n            if (current.right != null)\n            {\n                current = current.right;\n                stack.push(current);\n            }\n        }\n    }\n\n    public void traversePreOrderWithoutRecursion()\n    {\n        Stack\u003cNode\u003e stack = new Stack\u003cNode\u003e();\n        Node current = root;\n        stack.push(root);\n        while (!stack.isEmpty())\n        {\n            current = stack.pop();\n            visit(current.key);\n\n            if (current.right != null)\n            {\n                stack.push(current.right);\n            }\n\n            if (current.left != null)\n            {\n                stack.push(current.left);\n            }\n        }\n    }\n\n    public void traversePostOrderWithoutRecursion()\n    {\n        Stack\u003cNode\u003e stack = new Stack\u003cNode\u003e();\n        Node prev = root;\n        Node current = root;\n        stack.push(root);\n\n        while (!stack.isEmpty())\n        {\n            current = stack.peek();\n            boolean hasChild = (current.left != null || current.right != null);\n            boolean isPrevLastChild = (prev == current.right\n                    || (prev == current.left \u0026\u0026 current.right == null));\n\n            if (!hasChild || isPrevLastChild)\n            {\n                current = stack.pop();\n                visit(current.key);\n                prev = current;\n            } else\n            {\n                if (current.right != null)\n                {\n                    stack.push(current.right);\n                }\n                if (current.left != null)\n                {\n                    stack.push(current.left);\n                }\n            }\n        }\n    }\n\n    private void visit(int key)\n    {\n        System.out.print(\" \" + key);\n    }\n\n}\n","position":{"start":{"line":432,"column":1},"end":{"line":732,"column":1}},"key":"oyOSN5fnjW"}],"key":"vvU1Ao8hob"}],"key":"L5ckr89s8b"},"references":{"cite":{"order":[],"data":{}}},"footer":{"navigation":{"prev":{"title":"Demonstrate BST using iterative looping and recursion","url":"/xbst-iterative-recursion-search","group":"Algorithms"},"next":{"title":"AVL Tree","url":"/xbst-avltree","group":"Algorithms"}}},"domain":"http://localhost:3002"},"project":{"bibliography":["C:\\a_books\\CSCI232_algobook\\references.bib"],"exports":[],"title":"Algorithms","authors":[{"nameParsed":{"literal":"James Goudy","given":"James","family":"Goudy"},"name":"James Goudy","id":"contributors-a_books\\CSCI232_algobook\\myst-generated-uid-0"}],"github":"https://github.com/executablebooks/jupyter-book","copyright":"2024","toc":[{"file":"intro.md"},{"file":"xCSCI232_Intro.md"},{"children":[{"file":"xTerms_Radix.md"},{"file":"xTerms_Serializable.md"},{"file":"xTerms_Iterator.md"}],"file":"xTerms.md"},{"children":[{"file":"xBST_Applications.md"},{"file":"xBST_Comparisons.md"},{"file":"xBST_TreeTraversal.md"},{"file":"xBST_Iterative_Recursion_Search.md"},{"file":"xBST_BinarySearchTree.md"},{"file":"xBST_AVLTree.md"},{"file":"xBST_RedBlack.md"},{"file":"xBST_ComparisionTable.md"},{"file":"xBST_SplayTrees_2025.md"}],"file":"xBST_Intro.md"},{"children":[{"file":"xHashing_UnderstandingHashTables.md"},{"file":"xHashing_ModulusHashFunction.md"},{"file":"xHashing_Chaining.md"},{"file":"xHashing_OpenAddressing.md"},{"file":"xHashing_OpenAddressingHashingCodeExamples.md"}],"file":"xHashing_HashTable.md"},{"file":"xSkipList.md"},{"children":[{"file":"xGraphsAnalysisOfBFSandDFS.md"},{"file":"xUnderstandingBFS_202504.md"},{"file":"xUnderstandingDFS_202504.md"},{"file":"xGraphsSevenBridges.md"},{"file":"xGraphsDFS.md"},{"file":"xGraphsBFS.md"},{"file":"xDFSStoredPaths.md"},{"file":"xGraphsMazeSolverDFS.md"},{"file":"xGraphsDijkstra.md"}],"file":"xGraphs.md"},{"file":"xHuffmanCode.md"},{"file":"xSerializable.md"},{"children":[{"file":"xJavaHashMapTreeMapLinkedHashMap.md"},{"file":"xHashSetLinkedHashSetTreeSetComparision.md"},{"file":"xProgrammingToTheInterfacemd.md"}],"file":"xJAVATechniques.md"},{"file":"xEnd.md"}],"index":"index","pages":[{"slug":"xcsci232-intro","title":"CSCI 232 Data Structures and Algorithms","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xterms","title":"Terms and Concepts","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xterms-radix","title":"Radix - Number Bases","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xterms-serializable","title":"Serializable","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xterms-iterator","title":"Iterator","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-intro","title":"Binary Search Tree - Intro","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xbst-applications","title":"Applications That Use Binary Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-comparisons","title":"Binary Tree Comparisons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-treetraversal","title":"Tree Traversal","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-iterative-recursion-search","title":"Demonstrate BST using iterative looping and recursion","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-binarysearchtree","title":"Binary Search Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-avltree","title":"AVL Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-redblack","title":"Red Black Tree","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-comparisiontable","title":"BST AVL Red Black Tree Comparisons","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xbst-splaytrees-2025","title":"Splay Trees","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-hashtable","title":"Hash Table","description":"","date":"","thumbnail":"/CSCI232/build/f694c399ae1cdea2e011d1ecd6ed8d9d.jpeg","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xhashing-understandinghashtables","title":"Understanding Hash Tables and Hash Functions*","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-modulushashfunction","title":"Modulus Hash Function","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-chaining","title":"Hash Tables - Chaining","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-openaddressing","title":"Hash Table - Open Addressing","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashing-openaddressinghashingcodeexamples","title":"Java code for double hashing in a hash table:","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xskiplist","title":"Skip List","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xgraphs","title":"Graphs","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xgraphsanalysisofbfsanddfs","title":"A Comparative Analysis of Breadth-First Search and Depth-First Search Algorithms","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingbfs-202504","title":"Understanding Breadth-First Search (BFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xunderstandingdfs-202504","title":"Understanding Depth-First Search (DFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphssevenbridges","title":"Seven Bridges of Königsberg","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsdfs","title":"Depth-First Search (DFS)","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsbfs","title":"Breadth First","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xdfsstoredpaths","title":"DFS - Stored Paths","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsmazesolverdfs","title":"DSF - Maze Solving","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xgraphsdijkstra","title":"Dijkstra’s Algorithm","description":"","date":"","thumbnail":"/CSCI232/build/dijkstra_example-8cca3c2c620cd1d44d2c9745b698d02d.png","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhuffmancode","title":"Huffman Code","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xserializable","title":"Serialization","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjavatechniques","title":"JAVA Techniques","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1},{"slug":"xjavahashmaptreemaplinkedhashmap","title":"Examples of Java’s HashMap, TreeMap, and LinkedHashMap","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xhashsetlinkedhashsettreesetcomparision","title":"HashSet, LinkedHashSet, and TreeSet Comparision","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xprogrammingtotheinterfacemd","title":"Programming To The Interface, Not The Implementation\"","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":2},{"slug":"xend","title":"End","description":"","date":"","thumbnail":"","thumbnailOptimized":"","banner":"","bannerOptimized":"","tags":[],"level":1}]}}},"actionData":null,"errors":null},"future":{"unstable_dev":false,"unstable_postcss":false,"unstable_tailwind":false,"v2_errorBoundary":true,"v2_headers":true,"v2_meta":true,"v2_normalizeFormMethod":true,"v2_routeConvention":true}};</script><script type="module" async="">import "/CSCI232/build/manifest-54BD5942.js";
+import * as route0 from "/CSCI232/build/root-PMP5BIHC.js";
+import * as route1 from "/CSCI232/build/routes/$-5ZLZ2O3Y.js";
+window.__remixRouteModules = {"root":route0,"routes/$":route1};
+
+import("/CSCI232/build/entry.client-PCJPW7TK.js");</script></body></html>
