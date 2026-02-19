@@ -1,0 +1,204 @@
+# Arrays 
+
+An array in JavaScript is an ordered collection of values. Arrays are used when you need to store multiple related items in a specific sequence and access them by position.
+
+Each item in an array is called an element. Every element has an index, which represents its position in the array. JavaScript arrays are **zero-indexed**, meaning the first element is at index `0`, the second at index `1`, and so on. The last element is always at `array.length - 1`.
+
+JavaScript arrays are **dynamic**. They can grow and shrink while the program is running. You can add elements, remove elements, and reorder elements at any time. Many array methods **modify the array itself**, and that fact is called out explicitly throughout this lesson.
+
+Arrays can store mixed data types, but flexibility does not mean safety. JavaScript assumes you are paying attention.
+
+Arrays are objects, but they are **not associative arrays**. They are designed for numeric indexing and ordered data. If you need named keys, use an object.
+
+------
+
+## Creating Arrays
+
+The preferred way to create an array is with an array literal. It is clear, readable, and avoids edge cases.
+
+```javascript
+let cities = ["New York", "Los Angeles", "Chicago", "Houston"];
+```
+
+------
+
+## Accessing Array Elements
+
+Array elements are accessed using bracket notation and an index.
+
+```javascript
+cities[0]; // first element
+cities[2]; // third element
+```
+
+If an index does not exist, JavaScript returns `undefined`. It does not throw an error.
+
+------
+
+## Mutating vs Non-Mutating Operations
+
+Some array methods **change the original array**. Others return new values and leave the original unchanged. This lesson demonstrates both, and each case is labeled clearly. Ignoring this distinction causes bugs later.
+
+------
+
+## Lecture Code
+
+This example demonstrates common array operations and displays their effects directly in the browser. The code is intentionally linear and explicit.
+
+### Complete Example (Using `querySelector`)
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JavaScript Arrays</title>
+
+    <style>
+        .heading {
+            color: blue;
+            font-weight: bold;
+        }
+        .block {
+            margin-bottom: 1em;
+        }
+    </style>
+
+    <script>
+        function write(tagId, html) {
+            document.querySelector("#" + tagId).innerHTML = html;
+        }
+
+        function printArray(arr, tagId, heading) {
+            const output = arr.join("<br>");
+
+            write(tagId,
+                "<div class='block'>" +
+                "<div class='heading'>" + heading + "</div>" +
+                output +
+                "</div>"
+            );
+        }
+
+        function findItem(arr, value) {
+            return arr.indexOf(value);
+        }
+    </script>
+</head>
+
+<body>
+
+<p id="p0"></p>
+<p id="p1"></p>
+<p id="p2"></p>
+<p id="p3"></p>
+<p id="p4"></p>
+<p id="p5"></p>
+<p id="p6"></p>
+<p id="p7"></p>
+<p id="p8"></p>
+<p id="p9"></p>
+<p id="p10"></p>
+<p id="p11"></p>
+<p id="p12"></p>
+<p id="p13"></p>
+<p id="p14"></p>
+<p id="p15"></p>
+
+<script>
+    // Create an array
+    let cities = [
+        "New York",
+        "Los Angeles",
+        "Chicago",
+        "Houston",
+        "Phoenix",
+        "San Diego",
+        "Dallas",
+        "Kalispell"
+    ];
+
+    printArray(cities, "p0", "Original Array");
+
+    // Access individual elements
+    write("p1",
+        cities[0] + "<br>" +
+        cities[2] + "<br>" +
+        cities[4]
+    );
+
+    // pop() removes the last element (mutates the array)
+    let removedCity = cities.pop();
+    printArray(cities, "p2", "After pop() — removed: " + removedCity);
+
+    // push() adds elements to the end (mutates the array)
+    cities.push("Toledo", "Big Fork");
+    printArray(cities, "p3", "After push()");
+
+    // sort() orders strings alphabetically (mutates the array)
+    cities.sort();
+    printArray(cities, "p4", "After sort()");
+
+    // reverse() reverses order (mutates the array)
+    cities.reverse();
+    printArray(cities, "p5", "After reverse()");
+
+    // shift() removes the first element (mutates the array)
+    cities.shift();
+    printArray(cities, "p6", "After shift()");
+
+    // unshift() adds elements to the beginning (mutates the array)
+    cities.unshift("Las Vegas");
+    printArray(cities, "p7", "After unshift()");
+
+    // join() creates a string from the array (does NOT mutate)
+    let cityString = cities.join(" | ");
+    write("p8",
+        "<div class='heading'>Join Result</div>" +
+        cityString
+    );
+
+    // split() creates an array from a string
+    let names = "Jim,Bob,George,Harry,Daryl,Daryl";
+    let nameArray = names.split(",");
+    printArray(nameArray, "p9", "Array Created with split()");
+
+    // splice() removes elements by index (mutates the array)
+    cities.splice(1, 1);
+    printArray(cities, "p10", "After splice() — remove one item");
+
+    // splice() can insert elements (mutates the array)
+    cities.splice(1, 0, "Dillon", "Helena");
+    printArray(cities, "p11", "After splice() — insert items");
+
+    // slice() creates a new array (does NOT mutate)
+    let subset = cities.slice(2, 5);
+    printArray(subset, "p12", "Result of slice() (new array)");
+    printArray(cities, "p13", "Original Array After slice()");
+
+    // indexOf() search — found
+    let searchItem = "Chicago";
+    let index = findItem(cities, searchItem);
+
+    write("p14",
+        "<div class='heading'>Search Result (found)</div>" +
+        "Index: " + index + "<br>" +
+        "Value: " + cities[index]
+    );
+
+    // indexOf() search — not found
+    searchItem = "HooBoo";
+    index = findItem(cities, searchItem);
+
+    write("p15",
+        "<div class='heading'>Search Result (not found)</div>" +
+        "Returned value: " + index
+    );
+</script>
+
+</body>
+</html>
+```
+
+## 
